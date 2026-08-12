@@ -15,6 +15,7 @@ export type QualityDecision = {
   status: "approved" | "rejected" | "quarantined";
   reason: string;
   linkedInUrl: string | null;
+  minimumEmployees: number | null;
 };
 
 const UNPAID_PATTERNS = [
@@ -41,7 +42,7 @@ export function evaluateCompanyQuality(
   registry: VerifiedCompany[],
 ): QualityDecision {
   if (UNPAID_PATTERNS.some((pattern) => pattern.test(jobText))) {
-    return { status: "rejected", reason: "The posting explicitly appears unpaid or fee-based.", linkedInUrl: null };
+    return { status: "rejected", reason: "The posting explicitly appears unpaid or fee-based.", linkedInUrl: null, minimumEmployees: null };
   }
 
   const normalized = normalizeCompanyName(company.name);
@@ -51,6 +52,7 @@ export function evaluateCompanyQuality(
       status: "approved",
       reason: `Verified company registry: ${verified.usPresence} U.S. presence and at least ${verified.minimumEmployees} employees.`,
       linkedInUrl: verified.linkedInUrl,
+      minimumEmployees: verified.minimumEmployees,
     };
   }
 
@@ -59,6 +61,7 @@ export function evaluateCompanyQuality(
       status: "approved",
       reason: "Substantial recent U.S. employment evidence from at least 10 H-1B approvals.",
       linkedInUrl: company.linkedInUrl ?? null,
+      minimumEmployees: null,
     };
   }
 
@@ -66,5 +69,6 @@ export function evaluateCompanyQuality(
     status: "quarantined",
     reason: "Company size and substantial U.S. operating presence have not been verified.",
     linkedInUrl: null,
+    minimumEmployees: null,
   };
 }

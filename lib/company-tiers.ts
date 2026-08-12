@@ -26,3 +26,9 @@ export function hasCompanyTier(company: string, tier: CompanyTier): boolean {
   const normalized = normalizeCompanyName(company);
   return tier === "faang_plus" ? FAANG_PLUS.has(normalized) : FORTUNE_500.has(normalized);
 }
+
+export function companyTierLabel(company: string): string {
+  if (hasCompanyTier(company, "faang_plus")) return "FAANG+";
+  if (hasCompanyTier(company, "fortune_500")) return "Fortune 500";
+  return "Verified company";
+}

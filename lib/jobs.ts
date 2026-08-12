@@ -15,6 +15,7 @@ export type PublicJob = {
   salary: string | null;
   sources: string[];
   verifiedCompany: boolean;
+  employeeCount?: number | null;
 };
 
 export type JobsSnapshot = {

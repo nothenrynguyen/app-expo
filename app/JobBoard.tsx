@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { daysAgo, type JobsSnapshot, type PublicJob } from "@/lib/jobs";
 import { isInCollection } from "@/lib/job-collections";
-import { hasCompanyTier, type CompanyTier } from "@/lib/company-tiers";
+import { companyTierLabel, hasCompanyTier, type CompanyTier } from "@/lib/company-tiers";
 
 const PAGE_SIZE = 100;
 const modeLabels: Record<PublicJob["workMode"], string> = { remote: "Remote", hybrid: "Hybrid", in_person: "In person", unknown: "" };
@@ -62,7 +62,7 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
         <div className="job-main"><p className="company">{displayText(job.company)}</p><h2>{displayText(job.title)}</h2><div className="job-meta"><span>{displayText(job.location)}</span>{modeLabels[job.workMode] && <span>{modeLabels[job.workMode]}</span>}{job.term !== "Not stated" && <span>{displayText(job.term)}</span>}</div></div>
         <div className="posted-age">{daysAgo(job.postedAt)} days</div>
         <div className="actions"><a className="button secondary" href={job.linkedInUrl ?? `https://www.linkedin.com/search/results/companies/?keywords=${encodeURIComponent(job.company)}`} target="_blank" rel="noreferrer">LinkedIn</a><button className="button secondary" type="button" onClick={() => setExpanded(expanded === job.id ? null : job.id)} aria-expanded={expanded === job.id}>Info</button><a className="button primary" href={job.applyUrl} target="_blank" rel="noreferrer">Apply</a></div>
-        {expanded === job.id && <div className="job-info"><p><strong>Posted:</strong> {new Date(job.postedAt).toLocaleDateString()} · {job.postedAtSource.replaceAll("_", " ")}</p><p><strong>Source:</strong> {job.sources.join(", ")}</p>{job.salary && <p><strong>Compensation:</strong> {displayText(job.salary)}</p>}<p>Company eligibility was verified before this listing was published.</p></div>}
+        {expanded === job.id && <div className="job-info"><p><strong>Posted:</strong> {new Date(job.postedAt).toLocaleDateString()}</p><p><strong>Employees:</strong> {job.employeeCount ? `${job.employeeCount.toLocaleString()}+` : "Not listed"}</p><p><strong>Status:</strong> {companyTierLabel(job.company)}</p><p><strong>LinkedIn:</strong> {job.linkedInUrl ? "Company profile available" : "Company search available"}</p></div>}
       </article>)}
       {jobs.length === 0 && <p className="state-card">No verified jobs match these filters.</p>}
     </div>

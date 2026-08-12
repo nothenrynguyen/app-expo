@@ -293,6 +293,7 @@ async function main() {
       salary: candidate.salary,
       sources: [candidate.source],
       verifiedCompany: true,
+      employeeCount: decision.minimumEmployees,
     });
   }
 
