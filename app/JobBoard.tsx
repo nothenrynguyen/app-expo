@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { daysAgo, type JobsSnapshot, type PublicJob } from "@/lib/jobs";
 import { isInCollection } from "@/lib/job-collections";
+import { hasCompanyTier, type CompanyTier } from "@/lib/company-tiers";
 
 const PAGE_SIZE = 100;
 const modeLabels: Record<PublicJob["workMode"], string> = { remote: "Remote", hybrid: "Hybrid", in_person: "In person", unknown: "" };
@@ -13,8 +14,9 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
   const [error, setError] = useState(false);
   const [query, setQuery] = useState("");
   const [location, setLocation] = useState("");
-  const [mode, setMode] = useState("all");
-  const [term, setTerm] = useState("all");
+  const [modes, setModes] = useState<string[]>([]);
+  const [selectedTerms, setSelectedTerms] = useState<string[]>([]);
+  const [companyTiers, setCompanyTiers] = useState<CompanyTier[]>([]);
   const [page, setPage] = useState(0);
   const [expanded, setExpanded] = useState<string | null>(null);
 
@@ -34,10 +36,11 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
       const inCollection = isInCollection(job, type);
       return inCollection && (!normalizedQuery || search.includes(normalizedQuery))
         && (!normalizedLocation || job.location.toLowerCase().includes(normalizedLocation))
-        && (mode === "all" || job.workMode === mode)
-        && (term === "all" || job.term === term);
+        && (modes.length === 0 || modes.includes(job.workMode))
+        && (selectedTerms.length === 0 || selectedTerms.includes(job.term))
+        && (companyTiers.length === 0 || companyTiers.some((tier) => hasCompanyTier(job.company, tier)));
     }).sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime());
-  }, [snapshot, type, query, location, mode, term]);
+  }, [snapshot, type, query, location, modes, selectedTerms, companyTiers]);
 
   if (error) return <p className="state-card">The latest job snapshot could not be loaded. Please try again shortly.</p>;
   if (!snapshot) return <p className="state-card">Loading verified jobs…</p>;
@@ -49,8 +52,9 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
     <section className="filters" aria-label="Job filters">
       <label className="search-field"><span>Search</span><input value={query} onChange={(event) => { setQuery(event.target.value); setPage(0); }} placeholder="Company or role" /></label>
       <label><span>Location</span><input value={location} onChange={(event) => { setLocation(event.target.value); setPage(0); }} placeholder="City, state, or US" /></label>
-      <Filter label="Workplace" value={mode} onChange={(value) => { setMode(value); setPage(0); }} options={[["all", "All"], ["remote", "Remote"], ["hybrid", "Hybrid"], ["in_person", "In person"]]} />
-      <Filter label="Term" value={term} onChange={(value) => { setTerm(value); setPage(0); }} options={[["all", "All"], ...terms.map((value) => [value, value] as [string, string])]} />
+      <MultiFilter label="Workplace" values={modes} onChange={(values) => { setModes(values); setPage(0); }} options={[["remote", "Remote"], ["hybrid", "Hybrid"], ["in_person", "In person"]]} />
+      <MultiFilter label="Term" values={selectedTerms} onChange={(values) => { setSelectedTerms(values); setPage(0); }} options={terms.map((value) => [value, value] as [string, string])} />
+      <MultiFilter label="Company tier" values={companyTiers} onChange={(values) => { setCompanyTiers(values as CompanyTier[]); setPage(0); }} options={[["faang_plus", "FAANG+"], ["fortune_500", "Fortune 500"]]} />
     </section>
     <div className="column-labels"><span>Role</span><span>Posted</span><span>Links</span></div>
     <div className="job-list">
@@ -66,6 +70,8 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
   </>;
 }
 
-function Filter({ label, value, onChange, options }: { label: string; value: string; onChange: (value: string) => void; options: Array<[string, string]> }) {
-  return <label><span>{label}</span><select value={value} onChange={(event) => onChange(event.target.value)}>{options.map(([optionValue, optionLabel]) => <option key={optionValue} value={optionValue}>{optionLabel}</option>)}</select></label>;
+function MultiFilter({ label, values, onChange, options }: { label: string; values: string[]; onChange: (values: string[]) => void; options: Array<[string, string]> }) {
+  const summary = values.length === 0 ? "All" : values.length === 1 ? options.find(([value]) => value === values[0])?.[1] : `${values.length} selected`;
+  const toggle = (value: string) => onChange(values.includes(value) ? values.filter((item) => item !== value) : [...values, value]);
+  return <div className="filter-control"><span>{label}</span><details className="multi-filter"><summary>{summary}</summary><div className="multi-filter-menu"><label><input type="checkbox" checked={values.length === 0} onChange={() => onChange([])} />All</label>{options.map(([value, optionLabel]) => <label key={value}><input type="checkbox" checked={values.includes(value)} onChange={() => toggle(value)} />{optionLabel}</label>)}</div></details></div>;
 }
