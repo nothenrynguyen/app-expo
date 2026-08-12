@@ -3,6 +3,7 @@ import test from "node:test";
 import { evaluateCompanyQuality, normalizeCompanyName, type VerifiedCompany } from "../lib/company-quality";
 import { daysAgo } from "../lib/jobs";
 import { canonicalizeUrl, inferTerm, inferWorkMode, isEligibleUSLocation, jobIdentity, parsePostedAt } from "../lib/source-normalization";
+import { isInCollection } from "../lib/job-collections";
 
 const registry: VerifiedCompany[] = [{
   name: "Figma",
@@ -25,6 +26,12 @@ test("ATS identities merge tracking variants and foreign-only roles stay out", (
   );
   assert.equal(isEligibleUSLocation("Vancouver, BC, Canada"), false);
   assert.equal(isEligibleUSLocation("London, United Kingdom; New York, NY, United States"), true);
+});
+
+test("job collections distinguish 2027 internships from full-time new-grad roles", () => {
+  const base = { id: "job", company: "Example", location: "New York, NY", workMode: "unknown" as const, postedAt: "2026-08-12T00:00:00Z", postedAtSource: "exact" as const, applyUrl: "https://example.com/job", linkedInUrl: null, salary: null, sources: ["Test"], verifiedCompany: true };
+  assert.equal(isInCollection({ ...base, title: "Software Engineer Intern", term: "Summer 2027", category: "Internship" }, "internships"), true);
+  assert.equal(isInCollection({ ...base, title: "Software Engineer, New Grad", term: "Not stated", category: "New grad" }, "fulltime"), true);
 });
 
 test("verified and substantial-US-employment companies pass", () => {

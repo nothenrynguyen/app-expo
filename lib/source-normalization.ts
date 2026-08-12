@@ -72,7 +72,7 @@ export function inferTerm(text: string): string {
 
 export function parsePostedAt(value: string, now = new Date()): { postedAt: string; source: PostedAtSource } | null {
   const clean = value.trim();
-  if (!clean || clean === "-" || clean === "—" || /undated/i.test(clean)) return null;
+  if (!clean || clean === "-" || clean === "\u2014" || /undated/i.test(clean)) return null;
   const age = clean.match(/^(\d+)\s*(d|day|days|mo|month|months)$/i);
   if (age) {
     const count = Number(age[1]);

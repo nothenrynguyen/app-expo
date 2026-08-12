@@ -14,10 +14,11 @@ npm run dev
 
 ## Data policy
 
-Unknown companies are quarantined by default. A company is published only when it has a reviewed
-registry entry or strong evidence of substantial U.S. employment. Explicitly unpaid, volunteer,
-commission-only, equity-only, and fee-based postings are rejected. A U.S. job location or
-`Remote US` label alone is not proof of company eligibility.
+Simplify's maintained public internship lists and SpeedyApply's maintained U.S. new-grad list are
+the coverage baselines and are published with their direct employer links, after hard exclusions
+for explicit unpaid, volunteer, commission-only, equity-only, fee-based, and clearly non-U.S.
+postings. For all other aggregator sources, unknown companies are quarantined until a reviewed
+registry entry or strong evidence of substantial U.S. employment is available.
 
 The source posting time is retained separately from first-seen time. Visible ages are rolling
 24-hour buckets such as `0 days ago` and `1 days ago`.
@@ -30,5 +31,6 @@ Apply links are normalized to direct employer postings. Each listing retains sou
 
 ## Hosting
 
-The frontend is a static Next.js export intended for Vercel Hobby. GitHub Actions refreshes data
-hourly from 5:00 a.m. through 5:00 p.m. America/New_York and commits only material changes.
+The frontend is a static Next.js export intended for Vercel Hobby. It publishes separate full-time
+and internship datasets so each collection only downloads the listings it needs. GitHub Actions
+refreshes data hourly from 5:00 a.m. through 5:00 p.m. America/New_York and commits only material changes.

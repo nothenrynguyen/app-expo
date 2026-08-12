@@ -1,23 +1,31 @@
-import { JobBoard } from "./JobBoard";
+import Link from "next/link";
+import { LogoMark } from "./LogoMark";
+import { LandingCollections } from "./LandingCollections";
 
 export default function Home() {
   return (
     <main>
       <header className="site-header">
-        <div className="wordmark"><span className="mark">A</span>App Expo</div>
-        <a href="#jobs">Browse jobs</a>
+        <Link className="wordmark" href="/"><LogoMark />App Expo</Link>
+        <div className="header-links"><a href="#about">About</a><span className="header-note"><i />Live job board</span></div>
       </header>
-      <section className="hero">
-        <p className="eyebrow">Direct applications. Verified companies.</p>
-        <h1>Fresh early-career jobs without the detours.</h1>
-        <p>Every listing opens the employer’s real application page. No account gate, no popup maze, and unknown companies stay out until they are verified.</p>
-      </section>
-      <section id="jobs" className="board-shell">
-        <div className="board-heading">
-          <div><p className="eyebrow">Job board</p><h2>Open roles</h2></div>
-          <p>Newest postings appear first.</p>
-        </div>
-        <JobBoard />
+      <section className="landing-shell">
+        <p className="eyebrow">A no-friction job board</p>
+        <h1>No sign-up. No BS. Here are the jobs.</h1>
+        <p className="landing-copy">Updated every hour with direct applications from verified U.S. companies.</p>
+        <div className="live-line"><i />Live listings refresh hourly from 5 a.m. to 5 p.m. EST</div>
+        <LandingCollections />
+        <section id="about" className="about-section">
+          <div>
+            <p className="eyebrow">About App Expo</p>
+            <h2>One place to browse. One click to apply.</h2>
+          </div>
+          <div className="about-copy">
+            <p>Checking a pile of internship lists and job pages is annoying. The nicer aggregators often add another layer of friction, or try to sell you something, before they let you apply.</p>
+            <p>App Expo takes the opposite approach: we collect current openings from many maintained sources, remove duplicates, and send you directly to the employer&apos;s application page. No account. No popups. No detour.</p>
+            <p>We also screen listings for clear red flags such as unpaid work and clearly non-U.S. roles, and use company verification rules alongside curated source coverage to keep the board useful instead of noisy.</p>
+          </div>
+        </section>
       </section>
       <footer>App Expo · Free, direct, and intentionally selective.</footer>
     </main>

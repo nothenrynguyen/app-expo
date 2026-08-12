@@ -2,6 +2,7 @@ import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { load } from "cheerio";
 import { evaluateCompanyQuality, type VerifiedCompany } from "../lib/company-quality";
+import { isInCollection } from "../lib/job-collections";
 import type { JobsSnapshot, PublicJob } from "../lib/jobs";
 import {
   canonicalizeUrl,
@@ -42,6 +43,12 @@ const MARKDOWN_SOURCES = [
   { name: "Vansh Summer 2027", url: "https://raw.githubusercontent.com/vanshb03/Summer2027-Internships/dev/README.md" },
   { name: "Vansh Off-Season 2027", url: "https://raw.githubusercontent.com/vanshb03/Summer2027-Internships/dev/OFFSEASON_README.md" },
 ];
+
+const TRUSTED_CURATED_SOURCES = new Set([
+  "Simplify Summer 2027",
+  "Simplify Off-Season 2027",
+  "SpeedyApply New Grad USA",
+]);
 
 function cleanText(value: string): string {
   return value
@@ -114,7 +121,7 @@ export function parseMarkdownSource(markdown: string, source: string, now = new 
           postedAt: posted.postedAt,
           postedAtSource: posted.source,
           applyUrl,
-          category: /new grad/i.test(section) ? "New grad" : /quant/i.test(section) ? "Quant" : "Internship",
+          category: /new grad|early career/i.test(`${section} ${source}`) ? "New grad" : /quant/i.test(section) ? "Quant" : "Internship",
           salary: null,
           source,
           rawText,
@@ -156,7 +163,7 @@ export function parseMarkdownSource(markdown: string, source: string, now = new 
           postedAt: posted.postedAt,
           postedAtSource: posted.source,
           applyUrl,
-          category: /new grad/i.test(title) ? "New grad" : /quant/i.test(title) ? "Quant" : "Internship",
+          category: /new grad|early career/i.test(`${title} ${source}`) ? "New grad" : /quant/i.test(title) ? "Quant" : "Internship",
           salary: null,
           source,
           rawText,
@@ -247,8 +254,13 @@ async function main() {
       continue;
     }
     if (decision.status === "quarantined") {
-      quarantined.push({ company: candidate.company, title: candidate.title, reason: decision.reason, source: candidate.source, applyUrl: candidate.applyUrl });
-      continue;
+      if (TRUSTED_CURATED_SOURCES.has(candidate.source)) {
+        // Simplify is our explicit coverage baseline. Its public, maintained lists retain
+        // direct employer links; we still apply the non-U.S. and unpaid hard exclusions above.
+      } else {
+        quarantined.push({ company: candidate.company, title: candidate.title, reason: decision.reason, source: candidate.source, applyUrl: candidate.applyUrl });
+        continue;
+      }
     }
 
     const canonical = canonicalizeUrl(candidate.applyUrl)!;
@@ -301,6 +313,10 @@ async function main() {
   await writeFile(temporary, `${JSON.stringify(snapshot, null, 2)}\n`);
   await rename(temporary, output);
   await writeFile(path.join(root, "data/quarantine.json"), `${JSON.stringify({ generatedAt: snapshot.generatedAt, rejectedCount, jobs: quarantined }, null, 2)}\n`);
+  const internships = { ...snapshot, jobs: snapshot.jobs.filter((job) => isInCollection(job, "internships")) };
+  const fulltime = { ...snapshot, jobs: snapshot.jobs.filter((job) => isInCollection(job, "fulltime")) };
+  await writeFile(path.join(root, "public/internships.json"), `${JSON.stringify(internships, null, 2)}\n`);
+  await writeFile(path.join(root, "public/fulltime.json"), `${JSON.stringify(fulltime, null, 2)}\n`);
   console.log(`Published ${jobs.length} jobs; quarantined ${quarantined.length}; rejected ${rejectedCount}.`);
 }
 
