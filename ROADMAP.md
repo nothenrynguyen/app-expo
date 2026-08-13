@@ -10,14 +10,15 @@ The immediate goal is to make this software job board comprehensive, current, ea
 
 ## Future job categories
 
-Add separate browsing tabs for:
+Use role buttons that open the shared job board with the matching role filter already applied. This keeps one consistent list, filter system, and pagination experience.
 
-- [ ] Product management
-- [ ] Quant
-- [ ] Finance
-- [ ] Business analyst
+- [x] Software
+- [x] Product management
+- [x] Quant
+- [x] Finance
+- [x] Business analyst
 
-Each tab should have its own relevant terms, role classifications, and filters while keeping the same direct-application experience as the software board.
+Continue expanding and refining the source coverage behind each role filter while keeping the same direct-application experience.
 
 ## Data quality improvements
 
@@ -29,7 +30,7 @@ Each tab should have its own relevant terms, role classifications, and filters w
 
 ## Job board improvements
 
-- [ ] Add category-specific filters when the new job tabs launch
+- [x] Add role buttons that open prefiltered job-board views
 - [ ] Consider state and metro-area location filters
 - [ ] Consider role-area filters within software, such as software engineering, data, product design, and security
 - [ ] Consider a way to hide jobs a visitor has already reviewed on their current device

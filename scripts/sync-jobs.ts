@@ -1,5 +1,6 @@
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 import { load } from "cheerio";
 import { evaluateCompanyQuality, type VerifiedCompany } from "../lib/company-quality";
 import { isInCollection } from "../lib/job-collections";
@@ -95,6 +96,7 @@ export function parseMarkdownSource(markdown: string, source: string, now = new 
     const companyIndex = findColumn(headers, ["company", "employer", "organization"]);
     const titleIndex = findColumn(headers, ["position", "role", "title", "job"]);
     const locationIndex = findColumn(headers, ["location"]);
+    const termIndex = findColumn(headers, ["term", "season"]);
     const applyIndex = findColumn(headers, ["application", "apply", "posting", "link"]);
     const dateIndex = findColumn(headers, ["date posted", "posted", "added", "age", "date"]);
     if (companyIndex < 0 || titleIndex < 0 || applyIndex < 0 || dateIndex < 0) continue;
@@ -115,7 +117,7 @@ export function parseMarkdownSource(markdown: string, source: string, now = new 
         jobs.push({
           company,
           title,
-          term: inferTerm(`${title} ${section}`),
+          term: inferTerm(`${cleanText(cells[termIndex] ?? "")} ${title} ${section}`),
           location,
           workMode: inferWorkMode(`${title} ${location} ${rawText}`),
           postedAt: posted.postedAt,
@@ -137,6 +139,7 @@ export function parseMarkdownSource(markdown: string, source: string, now = new 
     const companyIndex = findColumn(headers, ["company", "employer", "organization"]);
     const titleIndex = findColumn(headers, ["position", "role", "title", "job"]);
     const locationIndex = findColumn(headers, ["location"]);
+    const termIndex = findColumn(headers, ["term", "season"]);
     const applyIndex = findColumn(headers, ["application", "apply", "posting", "link"]);
     const dateIndex = findColumn(headers, ["date posted", "posted", "added", "age", "date"]);
     if (companyIndex < 0 || titleIndex < 0 || applyIndex < 0 || dateIndex < 0) return;
@@ -157,7 +160,7 @@ export function parseMarkdownSource(markdown: string, source: string, now = new 
         jobs.push({
           company,
           title,
-          term: inferTerm(title),
+          term: inferTerm(`${cleanText(cell(termIndex)?.text() ?? "")} ${title}`),
           location,
           workMode: inferWorkMode(`${title} ${location} ${rawText}`),
           postedAt: posted.postedAt,
@@ -321,4 +324,4 @@ async function main() {
   console.log(`Published ${jobs.length} jobs; quarantined ${quarantined.length}; rejected ${rejectedCount}.`);
 }
 
-await main();
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) await main();

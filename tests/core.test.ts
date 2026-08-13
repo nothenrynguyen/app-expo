@@ -4,6 +4,8 @@ import { evaluateCompanyQuality, normalizeCompanyName, type VerifiedCompany } fr
 import { daysAgo } from "../lib/jobs";
 import { canonicalizeUrl, inferTerm, inferWorkMode, isEligibleUSLocation, jobIdentity, parsePostedAt } from "../lib/source-normalization";
 import { isInCollection } from "../lib/job-collections";
+import { classifyRoleArea } from "../lib/role-areas";
+import { parseMarkdownSource } from "../scripts/sync-jobs";
 
 const registry: VerifiedCompany[] = [{
   name: "Figma",
@@ -53,4 +55,17 @@ test("normalization helpers preserve direct identity and source dates", () => {
     postedAt: "2026-08-09T12:00:00.000Z",
     source: "relative_derived",
   });
+});
+
+test("off-season HTML tables preserve their dedicated term column", () => {
+  const source = `<table><thead><tr><th>Company</th><th>Role</th><th>Location</th><th>Terms</th><th>Application</th><th>Age</th></tr></thead><tbody><tr><td>Figma</td><td>Software Engineer Intern</td><td>New York, NY</td><td>Winter 2027</td><td><a href="https://example.com/apply">Apply</a></td><td>0d</td></tr></tbody></table>`;
+  assert.equal(parseMarkdownSource(source, "Test", new Date("2026-08-12T00:00:00Z"))[0]?.term, "Winter 2027");
+});
+
+test("role areas classify prefiltered board views", () => {
+  assert.equal(classifyRoleArea({ title: "Product Management Intern", category: "Internship" }), "product");
+  assert.equal(classifyRoleArea({ title: "Quantitative Trading Intern", category: "Quant" }), "quant");
+  assert.equal(classifyRoleArea({ title: "Finance Analyst Intern", category: "Internship" }), "finance");
+  assert.equal(classifyRoleArea({ title: "Business Analyst Intern", category: "Internship" }), "business-analyst");
+  assert.equal(classifyRoleArea({ title: "Machine Learning Engineer Intern", category: "Internship" }), "software");
 });

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { JobBoard } from "../JobBoard";
 import { LogoMark } from "../LogoMark";
 
@@ -18,7 +19,7 @@ function BoardPage({ title, description, type }: { title: string; description: s
           <div><p className="eyebrow">Job board</p><h1>{title}</h1><p>{description}</p></div>
           <div className="live-line compact"><i />Live · refreshed hourly</div>
         </div>
-        <JobBoard type={type} />
+        <Suspense fallback={<p className="state-card">Loading verified jobs...</p>}><JobBoard type={type} /></Suspense>
       </section>
       <footer>App Expo · Free, direct, and intentionally selective.</footer>
     </main>

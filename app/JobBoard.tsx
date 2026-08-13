@@ -1,15 +1,21 @@
 "use client";
 
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { daysAgo, type JobsSnapshot, type PublicJob } from "@/lib/jobs";
 import { isInCollection } from "@/lib/job-collections";
 import { companyTierLabel, hasCompanyTier, type CompanyTier } from "@/lib/company-tiers";
+import { isRoleArea, matchesRoleArea, ROLE_AREAS } from "@/lib/role-areas";
 
 const PAGE_SIZE = 100;
 const modeLabels: Record<PublicJob["workMode"], string> = { remote: "Remote", hybrid: "Hybrid", in_person: "In person", unknown: "" };
 const displayText = (value: string) => value.replace(/[\u2013\u2014]/g, "-");
 
 export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
+  const searchParams = useSearchParams();
+  const roleParam = searchParams.get("role");
+  const roleArea = isRoleArea(roleParam) ? roleParam : "all";
   const [snapshot, setSnapshot] = useState<JobsSnapshot | null>(null);
   const [error, setError] = useState(false);
   const [query, setQuery] = useState("");
@@ -35,12 +41,13 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
       const search = `${job.company} ${job.title} ${job.location}`.toLowerCase();
       const inCollection = isInCollection(job, type);
       return inCollection && (!normalizedQuery || search.includes(normalizedQuery))
+        && matchesRoleArea(job, roleArea)
         && (!normalizedLocation || job.location.toLowerCase().includes(normalizedLocation))
         && (modes.length === 0 || modes.includes(job.workMode))
         && (selectedTerms.length === 0 || selectedTerms.includes(job.term))
         && (companyTiers.length === 0 || companyTiers.some((tier) => hasCompanyTier(job.company, tier)));
     }).sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime());
-  }, [snapshot, type, query, location, modes, selectedTerms, companyTiers]);
+  }, [snapshot, type, roleArea, query, location, modes, selectedTerms, companyTiers]);
 
   if (error) return <p className="state-card">The latest job snapshot could not be loaded. Please try again shortly.</p>;
   if (!snapshot) return <p className="state-card">Loading verified jobs…</p>;
@@ -48,6 +55,7 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
   const pageCount = Math.max(1, Math.ceil(jobs.length / PAGE_SIZE));
   const visibleJobs = jobs.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
   return <>
+    <nav className="role-tabs" aria-label="Role area">{ROLE_AREAS.map((area) => <Link className={roleArea === area.value ? "active" : ""} href={area.value === "all" ? `/${type === "internships" ? "internships" : "jobs"}` : `/${type === "internships" ? "internships" : "jobs"}?role=${area.value}`} key={area.value}>{area.label}</Link>)}</nav>
     <div className="board-stats"><span><i />Live</span><strong>{jobs.length}</strong> matching roles <span className="updated">Updated {daysAgo(snapshot.generatedAt) === 0 ? "today" : `${daysAgo(snapshot.generatedAt)} days ago`}</span></div>
     <section className="filters" aria-label="Job filters">
       <label className="search-field"><span>Search</span><input value={query} onChange={(event) => { setQuery(event.target.value); setPage(0); }} placeholder="Company or role" /></label>
