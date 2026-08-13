@@ -2,8 +2,11 @@ import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { load } from "cheerio";
-import { evaluateCompanyQuality, type VerifiedCompany } from "../lib/company-quality";
+import { discoverAtsBoard, fetchAtsBoard, type AtsBoardResult } from "../lib/ats-boards";
+import { evaluateCompanyQuality, normalizeCompanyName, type VerifiedCompany } from "../lib/company-quality";
 import { isInCollection } from "../lib/job-collections";
+import { needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
+import type { JobSource, SourceCatalog } from "../lib/source-catalog";
 import type { JobsSnapshot, PublicJob } from "../lib/jobs";
 import {
   canonicalizeUrl,
@@ -11,6 +14,7 @@ import {
   inferWorkMode,
   isEligibleUSLocation,
   jobIdentity,
+  normalizeDisplayText,
   parsePostedAt,
   stableJobId,
   type CandidateJob,
@@ -32,24 +36,6 @@ type EngineJob = {
   h1b_approvals?: number | null;
   remote?: boolean;
 };
-
-const ENGINE_URL = "https://zshah101.github.io/Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships/api/jobs.json";
-
-const MARKDOWN_SOURCES = [
-  { name: "Simplify Summer 2027", url: "https://raw.githubusercontent.com/SimplifyJobs/Summer2027-Internships/dev/README.md" },
-  { name: "Simplify Off-Season 2027", url: "https://raw.githubusercontent.com/SimplifyJobs/Summer2027-Internships/dev/README-Off-Season.md" },
-  { name: "SpeedyApply Internships", url: "https://raw.githubusercontent.com/speedyapply/2027-SWE-College-Jobs/main/README.md" },
-  { name: "SpeedyApply New Grad USA", url: "https://raw.githubusercontent.com/speedyapply/2027-SWE-College-Jobs/main/NEW_GRAD_USA.md" },
-  { name: "Summer 2027 Tech Internships", url: "https://raw.githubusercontent.com/sndsh404/summer-2027-internships/main/README.md" },
-  { name: "Vansh Summer 2027", url: "https://raw.githubusercontent.com/vanshb03/Summer2027-Internships/dev/README.md" },
-  { name: "Vansh Off-Season 2027", url: "https://raw.githubusercontent.com/vanshb03/Summer2027-Internships/dev/OFFSEASON_README.md" },
-];
-
-const TRUSTED_CURATED_SOURCES = new Set([
-  "Simplify Summer 2027",
-  "Simplify Off-Season 2027",
-  "SpeedyApply New Grad USA",
-]);
 
 function cleanText(value: string): string {
   return value
@@ -183,38 +169,61 @@ async function fetchText(url: string): Promise<string> {
   return response.text();
 }
 
-async function loadCandidates() {
+async function inBatches<T, R>(items: T[], concurrency: number, task: (item: T) => Promise<R>): Promise<PromiseSettledResult<R>[]> {
+  const results: PromiseSettledResult<R>[] = new Array(items.length);
+  let cursor = 0;
+  await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, async () => {
+    while (cursor < items.length) {
+      const index = cursor;
+      cursor += 1;
+      try {
+        results[index] = { status: "fulfilled", value: await task(items[index]) };
+      } catch (reason) {
+        results[index] = { status: "rejected", reason };
+      }
+    }
+  }));
+  return results;
+}
+
+async function loadCandidates(root: string, sources: JobSource[]) {
   const health: JobsSnapshot["sourceHealth"] = [];
   const candidates: CandidateJob[] = [];
-  const engineText = await fetchText(ENGINE_URL);
-  const engine = JSON.parse(engineText) as { jobs: EngineJob[] };
-  for (const job of engine.jobs) {
-    const url = canonicalizeUrl(job.url);
-    if (!url || !job.posted_at) continue;
-    candidates.push({
-      company: job.company,
-      title: job.title,
-      term: job.season || inferTerm(job.title),
-      location: job.location || "Location not stated",
-      workMode: job.remote ? "remote" : inferWorkMode(`${job.title} ${job.location}`),
-      postedAt: new Date(job.posted_at).toISOString(),
-      postedAtSource: job.posted_at_source,
-      applyUrl: url,
-      category: job.category || "Internship",
-      salary: job.salary ?? null,
-      source: "Internship Engine",
-      h1bApprovals: job.h1b_approvals ?? null,
-      rawText: `${job.title} ${job.location} ${job.sponsorship ?? ""} ${(job.skills ?? []).join(" ")}`,
-    });
+  for (const engineSource of sources.filter((source) => source.kind === "engine_json")) {
+    try {
+      const engine = JSON.parse(await fetchText(engineSource.url)) as { jobs: EngineJob[] };
+      for (const job of engine.jobs) {
+        const url = canonicalizeUrl(job.url);
+        if (!url || !job.posted_at) continue;
+        candidates.push({
+          company: job.company,
+          title: job.title,
+          term: job.season || inferTerm(job.title),
+          location: job.location || "Location not stated",
+          workMode: job.remote ? "remote" : inferWorkMode(`${job.title} ${job.location}`),
+          postedAt: new Date(job.posted_at).toISOString(),
+          postedAtSource: job.posted_at_source,
+          applyUrl: url,
+          category: job.category || "Internship",
+          salary: job.salary ?? null,
+          source: engineSource.name,
+          h1bApprovals: job.h1b_approvals ?? null,
+          rawText: `${job.title} ${job.location} ${job.sponsorship ?? ""} ${(job.skills ?? []).join(" ")}`,
+        });
+      }
+      health.push({ name: engineSource.name, status: "ok", rows: engine.jobs.length });
+    } catch {
+      health.push({ name: engineSource.name, status: "failed", rows: 0 });
+    }
   }
-  health.push({ name: "Internship Engine", status: "ok", rows: engine.jobs.length });
 
-  const results = await Promise.allSettled(MARKDOWN_SOURCES.map(async (source) => ({
+  const markdownSources = sources.filter((source) => source.kind === "markdown");
+  const results = await Promise.allSettled(markdownSources.map(async (source) => ({
     source,
     jobs: parseMarkdownSource(await fetchText(source.url), source.name),
   })));
   results.forEach((result, index) => {
-    const source = MARKDOWN_SOURCES[index];
+    const source = markdownSources[index];
     if (result.status === "fulfilled") {
       candidates.push(...result.value.jobs);
       health.push({ name: source.name, status: "ok", rows: result.value.jobs.length });
@@ -222,25 +231,65 @@ async function loadCandidates() {
       health.push({ name: source.name, status: "failed", rows: 0 });
     }
   });
-  return { candidates, health };
+
+  const boards = new Map<string, NonNullable<ReturnType<typeof discoverAtsBoard>>>();
+  for (const candidate of candidates) {
+    const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
+    if (board && !boards.has(board.id)) boards.set(board.id, board);
+  }
+  const boardList = [...boards.values()];
+  const boardFetches = await inBatches(boardList, 12, (board) => fetchAtsBoard(board));
+  const boardResults = new Map<string, AtsBoardResult>();
+  const boardRegistry = boardFetches.map((result, index) => {
+    const board = boardList[index];
+    if (result.status === "fulfilled") {
+      boardResults.set(board.id, result.value);
+      candidates.push(...result.value.jobs);
+      return { provider: board.provider, key: board.key, company: board.company, status: "ok" as const, rows: result.value.liveIdentities.size };
+    }
+    return { provider: board.provider, key: board.key, company: board.company, status: "failed" as const, rows: 0 };
+  });
+  return { candidates, health, boardResults, boardRegistry };
 }
 
 async function main() {
   const root = path.resolve(import.meta.dirname, "..");
+  const catalog = JSON.parse(await readFile(path.join(root, "data/sources.json"), "utf8")) as SourceCatalog;
+  const activeSources = catalog.sources.filter((source) => source.active);
+  const trustedCuratedSources = new Set(activeSources.filter((source) => source.trustedCoverage).map((source) => source.name));
   const output = path.join(root, "public/jobs.json");
   const previous = await readFile(output, "utf8").then((value) => JSON.parse(value) as JobsSnapshot).catch(() => null);
   const previousByUrl = new Map(previous?.jobs.map((job) => [jobIdentity(job.applyUrl), job]) ?? []);
   const registry = JSON.parse(await readFile(path.join(root, "data/verified-companies.json"), "utf8")) as VerifiedCompany[];
-  const { candidates, health } = await loadCandidates();
+  const listingHealthPath = path.join(root, "data/listing-health.json");
+  const listingHealth: ListingHealthFile = await readFile(listingHealthPath, "utf8")
+    .then((value) => JSON.parse(value) as ListingHealthFile)
+    .catch(() => ({} as ListingHealthFile));
+  const { candidates, health, boardResults, boardRegistry } = await loadCandidates(root, activeSources);
   const unhealthySources = health.filter((source) => source.status === "failed" || source.rows === 0);
-  if (unhealthySources.length > 0) {
-    throw new Error(
-      `Refusing to replace the last known-good snapshot because these sources were unhealthy: ${unhealthySources.map((source) => source.name).join(", ")}`,
-    );
-  }
   const merged = new Map<string, PublicJob>();
   const quarantined: Array<{ company: string; title: string; reason: string; source: string; applyUrl: string }> = [];
   let rejectedCount = 0;
+
+  const trustedCompanies = new Set(
+    candidates
+      .filter((candidate) => trustedCuratedSources.has(candidate.source))
+      .map((candidate) => normalizeCompanyName(candidate.company)),
+  );
+  const genericUrls = new Map<string, string>();
+  for (const candidate of candidates) {
+    const identity = jobIdentity(candidate.applyUrl);
+    const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
+    if (identity && (!board || !boardResults.has(board.id))) genericUrls.set(identity, candidate.applyUrl);
+  }
+  const dueChecks = [...genericUrls]
+    .filter(([identity]) => needsListingCheck(listingHealth[identity]))
+    .sort(([a], [b]) => new Date(listingHealth[a]?.checkedAt ?? 0).getTime() - new Date(listingHealth[b]?.checkedAt ?? 0).getTime())
+    .slice(0, 250);
+  const checked = await inBatches(dueChecks, 20, ([, url]) => verifyListing(url));
+  for (const result of checked) {
+    if (result.status === "fulfilled" && result.value) listingHealth[result.value[0]] = result.value[1];
+  }
 
   for (const candidate of candidates) {
     if (!isEligibleUSLocation(candidate.location)) {
@@ -257,17 +306,27 @@ async function main() {
       continue;
     }
     if (decision.status === "quarantined") {
-      if (TRUSTED_CURATED_SOURCES.has(candidate.source)) {
+      if (trustedCuratedSources.has(candidate.source) || (candidate.source.startsWith("Direct ATS") && trustedCompanies.has(normalizeCompanyName(candidate.company)))) {
         // Simplify is our explicit coverage baseline. Its public, maintained lists retain
         // direct employer links; we still apply the non-U.S. and unpaid hard exclusions above.
       } else {
-        quarantined.push({ company: candidate.company, title: candidate.title, reason: decision.reason, source: candidate.source, applyUrl: candidate.applyUrl });
+        quarantined.push({ company: normalizeDisplayText(candidate.company), title: normalizeDisplayText(candidate.title), reason: decision.reason, source: candidate.source, applyUrl: candidate.applyUrl });
         continue;
       }
     }
 
     const canonical = canonicalizeUrl(candidate.applyUrl)!;
     const identity = jobIdentity(canonical)!;
+    const board = discoverAtsBoard(canonical, candidate.company, candidate.source);
+    const authoritativeBoard = board ? boardResults.get(board.id) : null;
+    if (authoritativeBoard && !authoritativeBoard.liveIdentities.has(identity)) {
+      rejectedCount += 1;
+      continue;
+    }
+    if (!authoritativeBoard && listingHealth[identity]?.status === "closed") {
+      rejectedCount += 1;
+      continue;
+    }
     const existing = merged.get(identity);
     if (existing) {
       if (!existing.sources.includes(candidate.source)) existing.sources.push(candidate.source);
@@ -283,8 +342,8 @@ async function main() {
     const keepPriorDate = prior && precision[prior.postedAtSource] >= precision[candidate.postedAtSource];
     merged.set(identity, {
       id: stableJobId(identity, candidate.company, candidate.title),
-      company: candidate.company,
-      title: candidate.title,
+      company: normalizeDisplayText(candidate.company),
+      title: normalizeDisplayText(candidate.title),
       term: candidate.term,
       location: candidate.location,
       workMode: candidate.workMode,
@@ -300,9 +359,25 @@ async function main() {
     });
   }
 
+  if (unhealthySources.length > 0 && previous) {
+    for (const prior of previous.jobs) {
+      const identity = jobIdentity(prior.applyUrl);
+      if (identity && !merged.has(identity)) merged.set(identity, prior);
+    }
+  }
+
   const jobs = [...merged.values()].sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime());
   if (jobs.length < 10) throw new Error(`Refusing to publish anomalous snapshot with only ${jobs.length} approved jobs.`);
   const snapshot: JobsSnapshot = { generatedAt: new Date().toISOString(), jobs, quarantinedCount: quarantined.length, sourceHealth: health };
+
+  const currentIdentities = new Set(candidates.map((candidate) => jobIdentity(candidate.applyUrl)).filter(Boolean));
+  for (const identity of Object.keys(listingHealth)) {
+    const age = Date.now() - new Date(listingHealth[identity].checkedAt).getTime();
+    if (!currentIdentities.has(identity) && age > 30 * 86_400_000) delete listingHealth[identity];
+  }
+  await mkdir(path.join(root, "data"), { recursive: true });
+  await writeFile(listingHealthPath, `${JSON.stringify(listingHealth, null, 2)}\n`);
+  await writeFile(path.join(root, "data/company-boards.json"), `${JSON.stringify(boardRegistry, null, 2)}\n`);
 
   const materialSnapshot = { jobs: snapshot.jobs, quarantinedCount: snapshot.quarantinedCount, sourceHealth: snapshot.sourceHealth };
   const previousMaterial = previous && { jobs: previous.jobs, quarantinedCount: previous.quarantinedCount, sourceHealth: previous.sourceHealth };
@@ -312,7 +387,6 @@ async function main() {
   }
 
   await mkdir(path.join(root, "public"), { recursive: true });
-  await mkdir(path.join(root, "data"), { recursive: true });
   const temporary = `${output}.tmp`;
   await writeFile(temporary, `${JSON.stringify(snapshot, null, 2)}\n`);
   await rename(temporary, output);

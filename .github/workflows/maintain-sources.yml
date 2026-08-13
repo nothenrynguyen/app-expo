@@ -1,0 +1,48 @@
+name: Maintain job sources
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Maintenance mode
+        required: true
+        default: daily
+        type: choice
+        options:
+          - daily
+          - weekly
+          - monthly
+  schedule:
+    - cron: "30 18 * * *"
+      timezone: "America/New_York"
+    - cron: "45 18 * * 0"
+      timezone: "America/New_York"
+    - cron: "0 19 1 * *"
+      timezone: "America/New_York"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: job-source-maintenance
+  cancel-in-progress: false
+
+jobs:
+  daily:
+    if: github.event.schedule == '30 18 * * *' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'daily')
+    uses: ./.github/workflows/run-source-maintenance.yml
+    with:
+      mode: daily
+    secrets: inherit
+  weekly:
+    if: github.event.schedule == '45 18 * * 0' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'weekly')
+    uses: ./.github/workflows/run-source-maintenance.yml
+    with:
+      mode: weekly
+    secrets: inherit
+  monthly:
+    if: github.event.schedule == '0 19 1 * *' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'monthly')
+    uses: ./.github/workflows/run-source-maintenance.yml
+    with:
+      mode: monthly
+    secrets: inherit

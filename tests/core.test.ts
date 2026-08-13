@@ -2,9 +2,11 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { evaluateCompanyQuality, normalizeCompanyName, type VerifiedCompany } from "../lib/company-quality";
 import { daysAgo } from "../lib/jobs";
-import { canonicalizeUrl, inferTerm, inferWorkMode, isEligibleUSLocation, jobIdentity, parsePostedAt } from "../lib/source-normalization";
+import { canonicalizeUrl, inferTerm, inferWorkMode, isEligibleUSLocation, jobIdentity, normalizeDisplayText, parsePostedAt } from "../lib/source-normalization";
 import { isInCollection } from "../lib/job-collections";
 import { classifyRoleArea } from "../lib/role-areas";
+import { discoverAtsBoard, isEarlyCareerTitle } from "../lib/ats-boards";
+import { classifyListingResponse, needsListingCheck } from "../lib/listing-health";
 import { parseMarkdownSource } from "../scripts/sync-jobs";
 
 const registry: VerifiedCompany[] = [{
@@ -51,6 +53,7 @@ test("normalization helpers preserve direct identity and source dates", () => {
   assert.equal(canonicalizeUrl("https://example.com/jobs/1?utm_source=x&team=eng"), "https://example.com/jobs/1?team=eng");
   assert.equal(inferTerm("Software Intern - Summer '27"), "Summer 2027");
   assert.equal(inferWorkMode("Remote in the United States"), "remote");
+  assert.equal(normalizeDisplayText("Software Intern \u2014 Platform"), "Software Intern - Platform");
   assert.deepEqual(parsePostedAt("2d", new Date("2026-08-11T12:00:00Z")), {
     postedAt: "2026-08-09T12:00:00.000Z",
     source: "relative_derived",
@@ -65,7 +68,25 @@ test("off-season HTML tables preserve their dedicated term column", () => {
 test("role areas classify prefiltered board views", () => {
   assert.equal(classifyRoleArea({ title: "Product Management Intern", category: "Internship" }), "product");
   assert.equal(classifyRoleArea({ title: "Quantitative Trading Intern", category: "Quant" }), "quant");
+  assert.equal(classifyRoleArea({ title: "Data Science and Analytics Intern", category: "Internship" }), "data-science");
+  assert.equal(classifyRoleArea({ title: "Business Intelligence Analyst", category: "New grad" }), "data-science");
   assert.equal(classifyRoleArea({ title: "Finance Analyst Intern", category: "Internship" }), "finance");
   assert.equal(classifyRoleArea({ title: "Business Analyst Intern", category: "Internship" }), "business-analyst");
   assert.equal(classifyRoleArea({ title: "Machine Learning Engineer Intern", category: "Internship" }), "software");
+});
+
+test("supported ATS links reveal stable company board identifiers", () => {
+  assert.equal(discoverAtsBoard("https://job-boards.greenhouse.io/figma/jobs/1234567", "Figma", "Test")?.id, "greenhouse:figma");
+  assert.equal(discoverAtsBoard("https://jobs.lever.co/zoox/11111111-1111-4111-8111-111111111111", "Zoox", "Test")?.provider, "lever");
+  assert.equal(discoverAtsBoard("https://jobs.ashbyhq.com/handshake/11111111-1111-4111-8111-111111111111", "Handshake", "Test")?.key, "handshake");
+  assert.equal(isEarlyCareerTitle("Software Engineer Intern, Summer 2027"), true);
+  assert.equal(isEarlyCareerTitle("Senior Software Engineer"), false);
+});
+
+test("listing checks only remove confirmed closed pages", () => {
+  assert.equal(classifyListingResponse(404, ""), "closed");
+  assert.equal(classifyListingResponse(403, "Access denied"), "unknown");
+  assert.equal(classifyListingResponse(200, "This position has been filled."), "closed");
+  assert.equal(classifyListingResponse(200, "Apply for this open position"), "live");
+  assert.equal(needsListingCheck({ url: "https://example.com/job", status: "live", checkedAt: "2026-08-12T00:00:00Z", httpStatus: 200 }, new Date("2026-08-12T12:00:00Z")), false);
 });

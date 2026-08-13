@@ -10,6 +10,10 @@ export type CandidateJob = Omit<PublicJob, "id" | "sources" | "verifiedCompany" 
 
 const TRACKING_PARAMS = new Set(["ref", "referrer", "referral", "source", "trackingid", "gh_src"]);
 
+export function normalizeDisplayText(value: string): string {
+  return value.replace(/\s*\u2014\s*/g, " - ").replace(/\s+/g, " ").trim();
+}
+
 export function canonicalizeUrl(value: string): string | null {
   try {
     const url = new URL(value.trim());
@@ -35,9 +39,11 @@ export function jobIdentity(value: string): string | null {
   const url = new URL(canonical);
   const workdayId = url.pathname.match(/_(JR\d+)/i)?.[1];
   const greenhouseId = url.pathname.match(/(?:jobs|job)\/(\d{6,})/i)?.[1];
+  const greenhouseToken = /greenhouse\.io$/i.test(url.hostname) ? url.searchParams.get("token") : null;
   const microsoftId = url.searchParams.get("pid") ?? url.pathname.match(/job\/(\d{8,})/i)?.[1];
   const googleId = url.pathname.match(/results\/(\d{8,})/i)?.[1];
-  const atsId = workdayId ?? greenhouseId ?? microsoftId ?? googleId;
+  const uuid = url.pathname.match(/\b([0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})\b/i)?.[1];
+  const atsId = workdayId ?? greenhouseId ?? greenhouseToken ?? microsoftId ?? googleId ?? uuid;
   return atsId ? `${url.hostname}:${atsId.toLowerCase()}` : canonical.toLowerCase();
 }
 
