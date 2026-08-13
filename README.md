@@ -20,6 +20,9 @@ for explicit unpaid, volunteer, commission-only, equity-only, fee-based, and cle
 postings. For all other aggregator sources, unknown companies are quarantined until a reviewed
 registry entry or strong evidence of substantial U.S. employment is available.
 
+Public listings must also match one of App Expo's supported role areas through explicit title
+evidence. Unmatched roles are quarantined rather than being treated as software by default.
+
 App Expo also discovers Greenhouse, Lever, and Ashby company boards from those curated listings.
 It refreshes the public board inventories directly, adds relevant early-career roles, and removes
 jobs that no longer appear on a successfully refreshed company board. Other employer links are

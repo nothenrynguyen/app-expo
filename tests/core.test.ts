@@ -73,6 +73,12 @@ test("role areas classify prefiltered board views", () => {
   assert.equal(classifyRoleArea({ title: "Finance Analyst Intern", category: "Internship" }), "finance");
   assert.equal(classifyRoleArea({ title: "Business Analyst Intern", category: "Internship" }), "business-analyst");
   assert.equal(classifyRoleArea({ title: "Machine Learning Engineer Intern", category: "Internship" }), "software");
+  assert.equal(classifyRoleArea({ title: "MLOps Engineer", category: "New grad" }), "software");
+  assert.equal(classifyRoleArea({ title: "LLM Post-training Engineer Graduate", category: "New grad" }), "software");
+  assert.equal(classifyRoleArea({ title: "Accounting Intern", category: "Internship" }), "finance");
+  assert.equal(classifyRoleArea({ title: "Internship - Touring", category: "Internship" }), null);
+  assert.equal(classifyRoleArea({ title: "Mechanical Engineering Intern", category: "Internship" }), null);
+  assert.equal(classifyRoleArea({ title: "Brand Marketing Intern", category: "Internship" }), null);
 });
 
 test("supported ATS links reveal stable company board identifiers", () => {

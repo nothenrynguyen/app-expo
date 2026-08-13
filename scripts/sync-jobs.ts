@@ -6,6 +6,7 @@ import { discoverAtsBoard, fetchAtsBoard, type AtsBoardResult } from "../lib/ats
 import { evaluateCompanyQuality, normalizeCompanyName, type VerifiedCompany } from "../lib/company-quality";
 import { isInCollection } from "../lib/job-collections";
 import { needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
+import { classifyRoleArea } from "../lib/role-areas";
 import type { JobSource, SourceCatalog } from "../lib/source-catalog";
 import type { JobsSnapshot, PublicJob } from "../lib/jobs";
 import {
@@ -296,6 +297,16 @@ async function main() {
       rejectedCount += 1;
       continue;
     }
+    if (!classifyRoleArea(candidate)) {
+      quarantined.push({
+        company: normalizeDisplayText(candidate.company),
+        title: normalizeDisplayText(candidate.title),
+        reason: "The role does not confidently match a supported App Expo category.",
+        source: candidate.source,
+        applyUrl: candidate.applyUrl,
+      });
+      continue;
+    }
     const decision = evaluateCompanyQuality(
       { name: candidate.company, h1bApprovals: candidate.h1bApprovals },
       candidate.rawText,
@@ -362,7 +373,7 @@ async function main() {
   if (unhealthySources.length > 0 && previous) {
     for (const prior of previous.jobs) {
       const identity = jobIdentity(prior.applyUrl);
-      if (identity && !merged.has(identity)) merged.set(identity, prior);
+      if (identity && classifyRoleArea(prior) && !merged.has(identity)) merged.set(identity, prior);
     }
   }
 
