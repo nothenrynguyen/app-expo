@@ -6,6 +6,7 @@ import { discoverAtsBoard, fetchAtsBoard, type AtsBoardResult } from "../lib/ats
 import { evaluateCompanyQuality, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
 import { getFreshnessRejection } from "../lib/job-freshness";
 import { isInCollection } from "../lib/job-collections";
+import { buildJobsSummary } from "../lib/job-summary";
 import { needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
 import { classifyRoleArea } from "../lib/role-areas";
 import { applySmartRecruitersPosting, fetchSmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
@@ -436,6 +437,7 @@ async function main() {
   const materialSnapshot = { jobs: snapshot.jobs, quarantinedCount: snapshot.quarantinedCount, sourceHealth: snapshot.sourceHealth };
   const previousMaterial = previous && { jobs: previous.jobs, quarantinedCount: previous.quarantinedCount, sourceHealth: previous.sourceHealth };
   if (previousMaterial && JSON.stringify(materialSnapshot) === JSON.stringify(previousMaterial)) {
+    await writeFile(path.join(root, "public/summary.json"), `${JSON.stringify(buildJobsSummary(previous), null, 2)}\n`);
     console.log(`No material changes; retained ${jobs.length} published jobs.`);
     return;
   }
@@ -449,6 +451,7 @@ async function main() {
   const fulltime = { ...snapshot, jobs: snapshot.jobs.filter((job) => isInCollection(job, "fulltime")) };
   await writeFile(path.join(root, "public/internships.json"), `${JSON.stringify(internships, null, 2)}\n`);
   await writeFile(path.join(root, "public/fulltime.json"), `${JSON.stringify(fulltime, null, 2)}\n`);
+  await writeFile(path.join(root, "public/summary.json"), `${JSON.stringify(buildJobsSummary(snapshot), null, 2)}\n`);
   console.log(`Published ${jobs.length} jobs; quarantined ${quarantined.length}; rejected ${rejectedCount}.`);
 }
 

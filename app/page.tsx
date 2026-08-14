@@ -7,23 +7,29 @@ export default function Home() {
     <main>
       <header className="site-header">
         <Link className="wordmark" href="/"><LogoMark />App Expo</Link>
-        <div className="header-links"><a href="#about">About</a><span className="header-note"><i />Live job board</span></div>
+        <div className="header-links"><a href="#about">About</a><Link href="/methodology">Methodology</Link><span className="header-note"><i />Live job board</span></div>
       </header>
       <section className="landing-shell">
         <p className="eyebrow">A no-friction job board</p>
         <h1>No sign-up. No BS. Here are the jobs.</h1>
-        <p className="landing-copy">Updated every hour with direct applications from verified U.S. companies.</p>
-        <div className="live-line"><i />Live listings refresh hourly from 5 a.m. to 5 p.m. EST</div>
+        <p className="landing-copy">Refreshed hourly with direct applications from verified U.S. companies.</p>
+        <div className="live-line"><i />Currently live</div>
         <LandingCollections />
         <section id="about" className="about-section">
-          <div>
+          <div className="about-intro">
             <p className="eyebrow">About App Expo</p>
-            <h2>One place to browse. One click to apply.</h2>
+            <h2 className="about-statement">
+              <span>One place to browse.</span>
+              <span>One click to apply.</span>
+            </h2>
           </div>
           <div className="about-copy">
-            <p>Checking a pile of internship lists and job pages is annoying. The nicer aggregators often add another layer of friction, or try to sell you something, before they let you apply.</p>
-            <p>App Expo takes the opposite approach: we collect current openings from many maintained sources, remove duplicates, and send you directly to the employer&apos;s application page. No account. No popups. No detour.</p>
-            <p>We also screen listings for clear red flags such as unpaid work and clearly non-U.S. roles, and use company verification rules alongside curated source coverage to keep the board useful instead of noisy.</p>
+            <p>I know. Another job aggregator.</p>
+            <p>I got tired of checking a million repos just to make sure I wasn&apos;t missing anything. The nicer sites always seem to be tryna sell you something, make you log in, or collect your email. I don&apos;t want to put my email everywhere, bro.</p>
+            <p>Some even make you <strong className="about-bold">click apply</strong>, redirect you to their own job page, pitch resume tailoring, and <span className="about-emphasis">then</span> make you click <span className="about-emphasis">manually apply.</span></p>
+            <p className="about-punchline">Holy cardio.</p>
+            <p>App Expo keeps it simple. We collect current openings from multiple sources, remove duplicates and obvious junk, and send you directly to the employer&apos;s application. No account. No popups. No detour.</p>
+            <p>I made this for myself, but maybe you&apos;ll find it useful too. Good luck. You got this.</p>
           </div>
         </section>
       </section>

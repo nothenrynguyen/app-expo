@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { evaluateCompanyQuality, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
 import { getFreshnessRejection } from "../lib/job-freshness";
+import { buildJobsSummary } from "../lib/job-summary";
 import { daysAgo } from "../lib/jobs";
 import { canonicalizeUrl, inferTerm, inferWorkMode, isEligibleUSLocation, jobIdentity, normalizeDisplayText, parsePostedAt } from "../lib/source-normalization";
 import { isInCollection } from "../lib/job-collections";
@@ -38,6 +39,27 @@ test("job collections distinguish 2027 internships from full-time new-grad roles
   const base = { id: "job", company: "Example", location: "New York, NY", workMode: "unknown" as const, postedAt: "2026-08-12T00:00:00Z", postedAtSource: "exact" as const, applyUrl: "https://example.com/job", linkedInUrl: null, salary: null, sources: ["Test"], verifiedCompany: true };
   assert.equal(isInCollection({ ...base, title: "Software Engineer Intern", term: "Summer 2027", category: "Internship" }, "internships"), true);
   assert.equal(isInCollection({ ...base, title: "Software Engineer, New Grad", term: "Not stated", category: "New grad" }, "fulltime"), true);
+});
+
+test("job summary keeps homepage counts aligned with the published collections", () => {
+  const base = { id: "job", company: "Example", location: "New York, NY", workMode: "unknown" as const, postedAt: "2026-08-12T00:00:00Z", postedAtSource: "exact" as const, linkedInUrl: null, salary: null, sources: ["Test"], verifiedCompany: true };
+  const snapshot = {
+    generatedAt: "2026-08-12T00:00:00Z",
+    jobs: [
+      { ...base, id: "intern", title: "Software Engineer Intern", term: "Summer 2027", category: "Internship", applyUrl: "https://example.com/intern" },
+      { ...base, id: "fulltime", title: "Software Engineer, New Grad", term: "Not stated", category: "New grad", applyUrl: "https://example.com/fulltime" },
+    ],
+    quarantinedCount: 4,
+    sourceHealth: [{ name: "Healthy", status: "ok" as const, rows: 2 }, { name: "Failed", status: "failed" as const, rows: 0 }],
+  };
+  assert.deepEqual(buildJobsSummary(snapshot), {
+    generatedAt: snapshot.generatedAt,
+    totalJobs: 2,
+    internships: 1,
+    fulltime: 1,
+    activeSources: 2,
+    healthySources: 1,
+  });
 });
 
 test("verified and substantial-US-employment companies pass", () => {

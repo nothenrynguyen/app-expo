@@ -12,7 +12,7 @@ function BoardPage({ title, description, type }: { title: string; description: s
     <main>
       <header className="site-header">
         <Link className="wordmark" href="/"><LogoMark />App Expo</Link>
-        <Link className="back-link" href="/">All collections</Link>
+        <div className="header-links"><Link href="/methodology">Methodology</Link><Link className="back-link" href="/">All collections</Link></div>
       </header>
       <section className="board-shell">
         <div className="board-intro">

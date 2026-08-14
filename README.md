@@ -52,6 +52,8 @@ Apply links are normalized to direct employer postings. Each listing retains sou
 The frontend is a static Next.js export intended for Vercel Hobby. It publishes separate full-time
 and internship datasets so each collection only downloads the listings it needs. GitHub Actions
 refreshes data hourly from 5:00 a.m. through 5:00 p.m. America/New_York and commits only material changes.
+The homepage reads counts and source health from a small `public/summary.json` file instead of downloading
+both complete job collections.
 
 ## Automatic source maintenance
 
