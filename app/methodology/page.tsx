@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { LogoMark } from "../LogoMark";
 import { MethodologyStats } from "../MethodologyStats";
+import { SiteFooter } from "../SiteFooter";
 
 export const metadata: Metadata = {
   title: "Methodology | App Expo",
@@ -75,7 +76,7 @@ export default function MethodologyPage() {
         </section>
         <div className="methodology-cta"><p>See something that looks wrong?</p><span>A lightweight reporting system is next.</span><Link href="/internships">Browse current internships</Link></div>
       </section>
-      <footer>App Expo · Free, direct, and intentionally selective.</footer>
+      <SiteFooter />
     </main>
   );
 }

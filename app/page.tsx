@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { LogoMark } from "./LogoMark";
 import { LandingCollections } from "./LandingCollections";
+import { SiteFooter } from "./SiteFooter";
 
 export default function Home() {
   return (
@@ -33,7 +34,7 @@ export default function Home() {
           </div>
         </section>
       </section>
-      <footer>App Expo · Free, direct, and intentionally selective.</footer>
+      <SiteFooter />
     </main>
   );
 }

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { JobBoard } from "../JobBoard";
 import { LogoMark } from "../LogoMark";
+import { SiteFooter } from "../SiteFooter";
 
 export default function JobsPage() {
   return (
@@ -17,7 +18,7 @@ export default function JobsPage() {
         </div>
         <Suspense fallback={<p className="state-card">Loading verified jobs...</p>}><JobBoard type="fulltime" /></Suspense>
       </section>
-      <footer>App Expo · Free, direct, and intentionally selective.</footer>
+      <SiteFooter />
     </main>
   );
 }
