@@ -3,10 +3,12 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { load } from "cheerio";
 import { discoverAtsBoard, fetchAtsBoard, type AtsBoardResult } from "../lib/ats-boards";
-import { evaluateCompanyQuality, normalizeCompanyName, type VerifiedCompany } from "../lib/company-quality";
+import { evaluateCompanyQuality, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
+import { getFreshnessRejection } from "../lib/job-freshness";
 import { isInCollection } from "../lib/job-collections";
 import { needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
 import { classifyRoleArea } from "../lib/role-areas";
+import { applySmartRecruitersPosting, fetchSmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
 import type { JobSource, SourceCatalog } from "../lib/source-catalog";
 import type { JobsSnapshot, PublicJob } from "../lib/jobs";
 import {
@@ -250,6 +252,30 @@ async function loadCandidates(root: string, sources: JobSource[]) {
     }
     return { provider: board.provider, key: board.key, company: board.company, status: "failed" as const, rows: 0 };
   });
+
+  const smartRecruitersUrls = new Map<string, string>();
+  for (const candidate of candidates) {
+    const identity = jobIdentity(candidate.applyUrl);
+    if (identity && parseSmartRecruitersJobUrl(candidate.applyUrl)) smartRecruitersUrls.set(identity, candidate.applyUrl);
+  }
+  const smartRecruitersEntries = [...smartRecruitersUrls];
+  const smartRecruitersFetches = await inBatches(smartRecruitersEntries, 12, async ([identity, url]) => ({
+    identity,
+    posting: await fetchSmartRecruitersPosting(url),
+  }));
+  const smartRecruitersPostings = new Map(
+    smartRecruitersFetches.flatMap((result) =>
+      result.status === "fulfilled" && result.value.posting ? [[result.value.identity, result.value.posting] as const] : [],
+    ),
+  );
+  for (let index = 0; index < candidates.length; index += 1) {
+    const identity = jobIdentity(candidates[index].applyUrl);
+    const posting = identity ? smartRecruitersPostings.get(identity) : null;
+    if (posting) candidates[index] = applySmartRecruitersPosting(candidates[index], posting);
+  }
+  if (smartRecruitersEntries.length > 0) {
+    console.log(`Verified ${smartRecruitersPostings.size} of ${smartRecruitersEntries.length} SmartRecruiters listings against employer records.`);
+  }
   return { candidates, health, boardResults, boardRegistry };
 }
 
@@ -262,6 +288,7 @@ async function main() {
   const previous = await readFile(output, "utf8").then((value) => JSON.parse(value) as JobsSnapshot).catch(() => null);
   const previousByUrl = new Map(previous?.jobs.map((job) => [jobIdentity(job.applyUrl), job]) ?? []);
   const registry = JSON.parse(await readFile(path.join(root, "data/verified-companies.json"), "utf8")) as VerifiedCompany[];
+  const trustRegistry = JSON.parse(await readFile(path.join(root, "data/company-trust.json"), "utf8")) as CompanyTrustEntry[];
   const listingHealthPath = path.join(root, "data/listing-health.json");
   const listingHealth: ListingHealthFile = await readFile(listingHealthPath, "utf8")
     .then((value) => JSON.parse(value) as ListingHealthFile)
@@ -307,10 +334,22 @@ async function main() {
       });
       continue;
     }
+    const freshnessRejection = getFreshnessRejection(candidate);
+    if (freshnessRejection) {
+      quarantined.push({
+        company: normalizeDisplayText(candidate.company),
+        title: normalizeDisplayText(candidate.title),
+        reason: freshnessRejection,
+        source: candidate.source,
+        applyUrl: candidate.applyUrl,
+      });
+      continue;
+    }
     const decision = evaluateCompanyQuality(
       { name: candidate.company, h1bApprovals: candidate.h1bApprovals },
       candidate.rawText,
       registry,
+      trustRegistry,
     );
     if (decision.status === "rejected") {
       rejectedCount += 1;
@@ -373,7 +412,11 @@ async function main() {
   if (unhealthySources.length > 0 && previous) {
     for (const prior of previous.jobs) {
       const identity = jobIdentity(prior.applyUrl);
-      if (identity && classifyRoleArea(prior) && !merged.has(identity)) merged.set(identity, prior);
+      const decision = evaluateCompanyQuality({ name: prior.company }, "", registry, trustRegistry);
+      const freshnessRejection = getFreshnessRejection(prior);
+      if (identity && classifyRoleArea(prior) && decision.status !== "rejected" && !freshnessRejection && !merged.has(identity)) {
+        merged.set(identity, prior);
+      }
     }
   }
 

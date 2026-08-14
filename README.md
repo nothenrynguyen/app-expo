@@ -29,6 +29,15 @@ jobs that no longer appear on a successfully refreshed company board. Other empl
 checked in rotating daily batches. Confirmed 404, 410, expired, filled, and no-longer-accepting
 responses are excluded, while temporary blocks and outages retain the last known listing.
 
+SmartRecruiters links are checked against SmartRecruiters' public employer records on every sync.
+The employer's active status and original release date override the age shown by a source list.
+Internships with an exact employer posting date older than 180 days are excluded, even if a source
+list recently added them.
+
+Reviewed company decisions live in `data/company-trust.json`. A blocked company and its aliases are
+excluded from every source, including trusted coverage sources. Approved and pending records provide
+the foundation for a growing company trust registry without requiring special-case code changes.
+
 The source posting time is retained separately from first-seen time. Visible ages are rolling
 24-hour buckets such as `0 days ago` and `1 days ago`.
 

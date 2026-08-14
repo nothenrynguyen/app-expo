@@ -1,12 +1,14 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { evaluateCompanyQuality, normalizeCompanyName, type VerifiedCompany } from "../lib/company-quality";
+import { evaluateCompanyQuality, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
+import { getFreshnessRejection } from "../lib/job-freshness";
 import { daysAgo } from "../lib/jobs";
 import { canonicalizeUrl, inferTerm, inferWorkMode, isEligibleUSLocation, jobIdentity, normalizeDisplayText, parsePostedAt } from "../lib/source-normalization";
 import { isInCollection } from "../lib/job-collections";
 import { classifyRoleArea } from "../lib/role-areas";
 import { discoverAtsBoard, isEarlyCareerTitle } from "../lib/ats-boards";
 import { classifyListingResponse, needsListingCheck } from "../lib/listing-health";
+import { applySmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
 import { parseMarkdownSource } from "../scripts/sync-jobs";
 
 const registry: VerifiedCompany[] = [{
@@ -48,6 +50,17 @@ test("unknown companies quarantine and unpaid roles reject", () => {
   assert.equal(evaluateCompanyQuality({ name: "Figma" }, "Unpaid software internship", registry).status, "rejected");
 });
 
+test("company trust records block aliases and approve reviewed companies", () => {
+  const trustRegistry: CompanyTrustEntry[] = [
+    { name: "Inbulks", aliases: ["Inbulks Corp"], status: "blocked", reason: "Does not meet the company standard.", reviewedAt: "2026-08-14" },
+    { name: "Reviewed Company", status: "approved", reason: "Established U.S. employer.", reviewedAt: "2026-08-14", minimumEmployees: 200 },
+  ];
+  assert.equal(evaluateCompanyQuality({ name: "Inbulks Corp" }, "internship", registry, trustRegistry).status, "rejected");
+  const approved = evaluateCompanyQuality({ name: "Reviewed Company" }, "internship", registry, trustRegistry);
+  assert.equal(approved.status, "approved");
+  assert.equal(approved.minimumEmployees, 200);
+});
+
 test("normalization helpers preserve direct identity and source dates", () => {
   assert.equal(normalizeCompanyName("Figma, Inc."), "figma");
   assert.equal(canonicalizeUrl("https://example.com/jobs/1?utm_source=x&team=eng"), "https://example.com/jobs/1?team=eng");
@@ -87,6 +100,36 @@ test("supported ATS links reveal stable company board identifiers", () => {
   assert.equal(discoverAtsBoard("https://jobs.ashbyhq.com/handshake/11111111-1111-4111-8111-111111111111", "Handshake", "Test")?.key, "handshake");
   assert.equal(isEarlyCareerTitle("Software Engineer Intern, Summer 2027"), true);
   assert.equal(isEarlyCareerTitle("Senior Software Engineer"), false);
+});
+
+test("SmartRecruiters records replace source-list age with employer date and status", () => {
+  const url = "https://jobs.smartrecruiters.com/InbulksCorp/743999750129753/example";
+  assert.deepEqual(parseSmartRecruitersJobUrl(url), {
+    companyIdentifier: "InbulksCorp",
+    jobId: "743999750129753",
+    endpoint: "https://api.smartrecruiters.com/v1/companies/InbulksCorp/postings/743999750129753",
+  });
+  const candidate = {
+    company: "Inbulks",
+    title: "Junior Front End Developer Intern",
+    term: "Not stated",
+    location: "Remote, United States",
+    workMode: "remote" as const,
+    postedAt: "2026-08-14T00:00:00.000Z",
+    postedAtSource: "relative_derived" as const,
+    applyUrl: url,
+    category: "Internship",
+    salary: null,
+    source: "Test",
+    rawText: "Junior Front End Developer Intern",
+  };
+  const enriched = applySmartRecruitersPosting(candidate, { active: true, releasedDate: "2021-05-25T20:26:03.000Z" });
+  assert.equal(enriched.postedAt, "2021-05-25T20:26:03.000Z");
+  assert.equal(enriched.postedAtSource, "exact");
+  assert.equal(enriched.sourceActive, true);
+  assert.match(getFreshnessRejection(enriched, new Date("2026-08-14T00:00:00Z")) ?? "", /beyond the 180-day internship limit/);
+  assert.equal(getFreshnessRejection({ ...enriched, postedAt: "2026-08-01T00:00:00Z" }, new Date("2026-08-14T00:00:00Z")), null);
+  assert.match(getFreshnessRejection({ ...enriched, sourceActive: false }, new Date("2026-08-14T00:00:00Z")) ?? "", /marks this posting as closed/);
 });
 
 test("listing checks only remove confirmed closed pages", () => {

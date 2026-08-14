@@ -11,6 +11,17 @@ export type VerifiedCompany = {
   linkedInUrl: string | null;
 };
 
+export type CompanyTrustEntry = {
+  name: string;
+  aliases?: string[];
+  status: "approved" | "pending" | "blocked";
+  reason: string;
+  reviewedAt: string;
+  minimumEmployees?: number | null;
+  usPresence?: "headquartered" | "major" | null;
+  linkedInUrl?: string | null;
+};
+
 export type QualityDecision = {
   status: "approved" | "rejected" | "quarantined";
   reason: string;
@@ -40,12 +51,40 @@ export function evaluateCompanyQuality(
   company: CompanyEvidence,
   jobText: string,
   registry: VerifiedCompany[],
+  trustRegistry: CompanyTrustEntry[] = [],
 ): QualityDecision {
   if (UNPAID_PATTERNS.some((pattern) => pattern.test(jobText))) {
     return { status: "rejected", reason: "The posting explicitly appears unpaid or fee-based.", linkedInUrl: null, minimumEmployees: null };
   }
 
   const normalized = normalizeCompanyName(company.name);
+  const trustEntry = trustRegistry.find((entry) =>
+    [entry.name, ...(entry.aliases ?? [])].some((name) => normalizeCompanyName(name) === normalized),
+  );
+  if (trustEntry?.status === "blocked") {
+    return {
+      status: "rejected",
+      reason: `Blocked company trust record: ${trustEntry.reason}`,
+      linkedInUrl: null,
+      minimumEmployees: null,
+    };
+  }
+  if (trustEntry?.status === "pending") {
+    return {
+      status: "quarantined",
+      reason: `Company trust review pending: ${trustEntry.reason}`,
+      linkedInUrl: trustEntry.linkedInUrl ?? null,
+      minimumEmployees: trustEntry.minimumEmployees ?? null,
+    };
+  }
+  if (trustEntry?.status === "approved") {
+    return {
+      status: "approved",
+      reason: `Approved company trust record: ${trustEntry.reason}`,
+      linkedInUrl: trustEntry.linkedInUrl ?? null,
+      minimumEmployees: trustEntry.minimumEmployees ?? null,
+    };
+  }
   const verified = registry.find((entry) => normalizeCompanyName(entry.name) === normalized);
   if (verified && verified.minimumEmployees >= 10) {
     return {

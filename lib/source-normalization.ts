@@ -6,6 +6,7 @@ export type CandidateJob = Omit<PublicJob, "id" | "sources" | "verifiedCompany" 
   companyLinkedInUrl?: string | null;
   h1bApprovals?: number | null;
   rawText: string;
+  sourceActive?: boolean;
 };
 
 const TRACKING_PARAMS = new Set(["ref", "referrer", "referral", "source", "trackingid", "gh_src"]);
