@@ -48,18 +48,6 @@ export function jobIdentity(value: string): string | null {
   return atsId ? `${url.hostname}:${atsId.toLowerCase()}` : canonical.toLowerCase();
 }
 
-const US_STATE_CODES = new Set([
-  "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY", "DC",
-]);
-
-export function isEligibleUSLocation(location: string): boolean {
-  if (!location || /not stated|unknown/i.test(location)) return true;
-  if (/united states|\busa\b|u\.s\.|remote\s*(?:-|in)?\s*(?:us|united states)/i.test(location)) return true;
-  const codes = location.toUpperCase().match(/\b[A-Z]{2}\b/g) ?? [];
-  if (codes.some((code) => US_STATE_CODES.has(code))) return true;
-  return !/\b(canada|united kingdom|uk|india|singapore|australia|mexico|germany|france|ireland|spain|italy|netherlands|china|japan|brazil)\b/i.test(location);
-}
-
 export function stableJobId(url: string, company: string, title: string): string {
   return createHash("sha256").update(`${url}|${company}|${title}`).digest("hex").slice(0, 24);
 }

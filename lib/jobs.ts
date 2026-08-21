@@ -6,6 +6,7 @@ export type PublicJob = {
   title: string;
   term: string;
   location: string;
+  regions?: import("./job-locations").JobRegion[];
   workMode: "remote" | "hybrid" | "in_person" | "unknown";
   postedAt: string;
   postedAtSource: PostedAtSource;

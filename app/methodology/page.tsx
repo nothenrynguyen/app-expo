@@ -23,12 +23,12 @@ const steps = [
   {
     number: "03",
     title: "Keep relevant roles",
-    copy: "A title must clearly match one of the supported early-career areas. Software, data, product, quant, finance, and business analyst roles are included. Unmatched roles are quarantined instead of being quietly labeled as software.",
+    copy: "A title must clearly match one of the supported early-career areas. Software, data, product, quant, finance, business analyst, and IT/networking roles are included. Unmatched roles are quarantined instead of being quietly labeled as software.",
   },
   {
     number: "04",
     title: "Screen obvious risk",
-    copy: "Listings that explicitly appear unpaid, volunteer, fee-based, equity-only, or commission-only are rejected. Clearly foreign-only roles are removed. A missing location is treated as unknown, not automatically rejected.",
+    copy: "Listings that explicitly appear unpaid, volunteer, fee-based, equity-only, or commission-only are rejected. Locations are normalized and limited to the United States, Canada, and Europe, with United States selected by default.",
   },
   {
     number: "05",
