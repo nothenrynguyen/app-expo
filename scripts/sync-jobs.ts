@@ -16,13 +16,13 @@ import {
   canonicalizeUrl,
   inferTerm,
   inferWorkMode,
-  isEligibleUSLocation,
   jobIdentity,
   normalizeDisplayText,
   parsePostedAt,
   stableJobId,
   type CandidateJob,
 } from "../lib/source-normalization";
+import { getSupportedJobRegions, normalizeJobLocation } from "../lib/job-locations";
 
 type EngineJob = {
   company: string;
@@ -46,6 +46,7 @@ function cleanText(value: string): string {
     .replace(/<br\s*\/?>/gi, " / ")
     .replace(/<[^>]+>/g, " ")
     .replace(/\[([^\]]+)]\([^)]+\)/g, "$1")
+    .replace(/[*_~`]+/g, "")
     .replace(/&amp;/g, "&")
     .replace(/&nbsp;/g, " ")
     .replace(/\s+/g, " ")
@@ -89,7 +90,8 @@ export function parseMarkdownSource(markdown: string, source: string, now = new 
     const termIndex = findColumn(headers, ["term", "season"]);
     const applyIndex = findColumn(headers, ["application", "apply", "posting", "link"]);
     const dateIndex = findColumn(headers, ["date posted", "posted", "added", "age", "date"]);
-    if (companyIndex < 0 || titleIndex < 0 || applyIndex < 0 || dateIndex < 0) continue;
+    if (companyIndex < 0 || titleIndex < 0 || dateIndex < 0) continue;
+    const effectiveApplyIndex = applyIndex >= 0 ? applyIndex : titleIndex;
 
     index += 2;
     while (index < lines.length && lines[index].includes("|") && !isDivider(lines[index])) {
@@ -99,7 +101,7 @@ export function parseMarkdownSource(markdown: string, source: string, now = new 
       if (company) lastCompany = company;
       const title = cleanText(cells[titleIndex] ?? "");
       const location = cleanText(cells[locationIndex] ?? "") || "Location not stated";
-      const applyUrl = extractUrl(cells[applyIndex] ?? "");
+      const applyUrl = extractUrl(cells[effectiveApplyIndex] ?? "");
       const posted = parsePostedAt(cleanText(cells[dateIndex] ?? ""), now);
       const rawText = cleanText(cells.join(" | "));
       const closed = /(?:🔒|\bclosed\b|\bexpired\b)/i.test(rawText);
@@ -132,7 +134,8 @@ export function parseMarkdownSource(markdown: string, source: string, now = new 
     const termIndex = findColumn(headers, ["term", "season"]);
     const applyIndex = findColumn(headers, ["application", "apply", "posting", "link"]);
     const dateIndex = findColumn(headers, ["date posted", "posted", "added", "age", "date"]);
-    if (companyIndex < 0 || titleIndex < 0 || applyIndex < 0 || dateIndex < 0) return;
+    if (companyIndex < 0 || titleIndex < 0 || dateIndex < 0) return;
+    const effectiveApplyIndex = applyIndex >= 0 ? applyIndex : titleIndex;
     let htmlLastCompany = "";
     $(table).find("tbody tr").each((__, row) => {
       const cells = $(row).children("td").toArray();
@@ -142,7 +145,7 @@ export function parseMarkdownSource(markdown: string, source: string, now = new 
       if (company) htmlLastCompany = company;
       const title = cleanText(cell(titleIndex)?.text() ?? "");
       const location = cleanText(cell(locationIndex)?.text() ?? "") || "Location not stated";
-      const applyUrl = canonicalizeUrl(cell(applyIndex)?.find("a[href]").first().attr("href") ?? "");
+      const applyUrl = canonicalizeUrl(cell(effectiveApplyIndex)?.find("a[href]").first().attr("href") ?? "");
       const posted = parsePostedAt(cleanText(cell(dateIndex)?.text() ?? ""), now);
       const rawText = cleanText(cells.map((item) => $(item).text()).join(" | "));
       const closed = /(?:🔒|\bclosed\b|\bexpired\b)/i.test(rawText) || $(row).is(".closed,.expired");
@@ -321,7 +324,8 @@ async function main() {
   }
 
   for (const candidate of candidates) {
-    if (!isEligibleUSLocation(candidate.location)) {
+    const supportedRegions = getSupportedJobRegions(candidate.location);
+    if (supportedRegions.length === 0) {
       rejectedCount += 1;
       continue;
     }
@@ -396,7 +400,8 @@ async function main() {
       company: normalizeDisplayText(candidate.company),
       title: normalizeDisplayText(candidate.title),
       term: candidate.term,
-      location: candidate.location,
+      location: normalizeJobLocation(candidate.location),
+      regions: supportedRegions,
       workMode: candidate.workMode,
       postedAt: keepPriorDate ? prior.postedAt : candidate.postedAt,
       postedAtSource: keepPriorDate ? prior.postedAtSource : candidate.postedAtSource,

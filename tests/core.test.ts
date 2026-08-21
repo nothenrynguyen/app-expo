@@ -4,13 +4,15 @@ import { evaluateCompanyQuality, normalizeCompanyName, type CompanyTrustEntry, t
 import { getFreshnessRejection } from "../lib/job-freshness";
 import { buildJobsSummary } from "../lib/job-summary";
 import { daysAgo } from "../lib/jobs";
-import { canonicalizeUrl, inferTerm, inferWorkMode, isEligibleUSLocation, jobIdentity, normalizeDisplayText, parsePostedAt } from "../lib/source-normalization";
+import { canonicalizeUrl, inferTerm, inferWorkMode, jobIdentity, normalizeDisplayText, parsePostedAt } from "../lib/source-normalization";
 import { isInCollection } from "../lib/job-collections";
 import { classifyRoleArea } from "../lib/role-areas";
 import { discoverAtsBoard, isEarlyCareerTitle } from "../lib/ats-boards";
 import { classifyListingResponse, needsListingCheck } from "../lib/listing-health";
 import { applySmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
 import { parseMarkdownSource } from "../scripts/sync-jobs";
+import { classifyJobRegions, formatSnapshotAge, getSupportedJobRegions, normalizeJobLocation } from "../lib/job-locations";
+import { isDiscoverableYearlyRepository } from "../scripts/maintain-sources";
 
 const registry: VerifiedCompany[] = [{
   name: "Figma",
@@ -26,13 +28,39 @@ test("posting age uses rolling 24-hour buckets including zero", () => {
   assert.equal(daysAgo("2026-08-09T19:59:59Z", now), 2);
 });
 
-test("ATS identities merge tracking variants and foreign-only roles stay out", () => {
+test("ATS identities merge tracking variants", () => {
   assert.equal(
     jobIdentity("https://boards.greenhouse.io/figma/jobs/6131089004?gh_jid=6131089004"),
     jobIdentity("https://boards.greenhouse.io/figma/jobs/6131089004"),
   );
-  assert.equal(isEligibleUSLocation("Vancouver, BC, Canada"), false);
-  assert.equal(isEligibleUSLocation("London, United Kingdom; New York, NY, United States"), true);
+});
+
+test("job locations are normalized and limited to supported regions", () => {
+  assert.equal(normalizeJobLocation("Chicago"), "Chicago, IL");
+  assert.equal(normalizeJobLocation("Austin, Texas"), "Austin, TX");
+  assert.equal(normalizeJobLocation("SFBellevue, WAMountain View, CA"), "San Francisco, CA; Bellevue, WA; Mountain View, CA");
+  assert.equal(normalizeJobLocation("5 locationsRochester, NYAlbany, NY"), "Rochester, NY; Albany, NY");
+  assert.deepEqual(classifyJobRegions("Chicago"), ["us"]);
+  assert.deepEqual(classifyJobRegions("Toronto"), ["canada"]);
+  assert.deepEqual(classifyJobRegions("Auckland, NZ"), ["australia_nz"]);
+  assert.deepEqual(classifyJobRegions("London, United Kingdom; New York, NY"), ["europe", "us"]);
+  assert.deepEqual(getSupportedJobRegions("Auckland, NZ"), []);
+  assert.deepEqual(getSupportedJobRegions("Singapore"), []);
+  assert.deepEqual(getSupportedJobRegions("Location not stated"), []);
+  assert.deepEqual(getSupportedJobRegions("London, United Kingdom; New York, NY"), ["europe", "us"]);
+});
+
+test("snapshot age uses useful minute and hour labels", () => {
+  const now = new Date("2026-08-21T12:00:00Z");
+  assert.equal(formatSnapshotAge("2026-08-21T11:59:30Z", now), "0 minutes ago");
+  assert.equal(formatSnapshotAge("2026-08-21T11:43:00Z", now), "17 minutes ago");
+  assert.equal(formatSnapshotAge("2026-08-21T10:00:00Z", now), "2 hours ago");
+});
+
+test("yearly source discovery accepts maintained future internship repositories", () => {
+  assert.equal(isDiscoverableYearlyRepository({ archived: false, name: "Tech-Internships-2028" }, 2027), true);
+  assert.equal(isDiscoverableYearlyRepository({ archived: true, name: "Tech-Internships-2028" }, 2027), false);
+  assert.equal(isDiscoverableYearlyRepository({ archived: false, name: "Tech-Internships-2026" }, 2027), false);
 });
 
 test("job collections distinguish 2027 internships from full-time new-grad roles", () => {
@@ -100,6 +128,15 @@ test("off-season HTML tables preserve their dedicated term column", () => {
   assert.equal(parseMarkdownSource(source, "Test", new Date("2026-08-12T00:00:00Z"))[0]?.term, "Winter 2027");
 });
 
+test("markdown sources can use the linked role as the application column", () => {
+  const markdown = `| Company | Role | Location | Pay | Added |
+| --- | --- | --- | --- | --- |
+| [Example](https://example.com) | [Software Engineer Intern](https://example.com/jobs/123) | Chicago | $30/hr | 2d |`;
+  const [job] = parseMarkdownSource(markdown, "Dreamwork", new Date("2026-08-21T12:00:00Z"));
+  assert.equal(job?.title, "Software Engineer Intern");
+  assert.equal(job?.applyUrl, "https://example.com/jobs/123");
+});
+
 test("role areas classify prefiltered board views", () => {
   assert.equal(classifyRoleArea({ title: "Product Management Intern", category: "Internship" }), "product");
   assert.equal(classifyRoleArea({ title: "Quantitative Trading Intern", category: "Quant" }), "quant");
@@ -109,6 +146,12 @@ test("role areas classify prefiltered board views", () => {
   assert.equal(classifyRoleArea({ title: "Business Analyst Intern", category: "Internship" }), "business-analyst");
   assert.equal(classifyRoleArea({ title: "Machine Learning Engineer Intern", category: "Internship" }), "software");
   assert.equal(classifyRoleArea({ title: "MLOps Engineer", category: "New grad" }), "software");
+  assert.equal(classifyRoleArea({ title: "Network Software Engineer Intern", category: "Internship" }), "it-network");
+  assert.equal(classifyRoleArea({ title: "IT Infrastructure Internship", category: "Internship" }), "it-network");
+  assert.equal(classifyRoleArea({ title: "Help Desk Technician", category: "New grad" }), "it-network");
+  assert.equal(classifyRoleArea({ title: "Cybersecurity Analyst Intern", category: "Internship" }), "it-network");
+  assert.equal(classifyRoleArea({ title: "Data Science Intern - Corporate IT", category: "Internship" }), "data-science");
+  assert.equal(classifyRoleArea({ title: "Leadership Rotation Network Intern", category: "Internship" }), null);
   assert.equal(classifyRoleArea({ title: "LLM Post-training Engineer Graduate", category: "New grad" }), "software");
   assert.equal(classifyRoleArea({ title: "Accounting Intern", category: "Internship" }), "finance");
   assert.equal(classifyRoleArea({ title: "Internship - Touring", category: "Internship" }), null);

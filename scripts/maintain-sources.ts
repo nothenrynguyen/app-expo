@@ -114,7 +114,7 @@ async function runWeekly(catalog: SourceCatalog) {
     }
     for (const repository of repositories) {
       const cycle = Number(repository.name.match(/20\d{2}/)?.[0] ?? 0);
-      if (repository.archived || cycle < highestCycle || !/(intern|college.jobs|new.grad)/i.test(repository.name)) continue;
+      if (!isDiscoverableYearlyRepository(repository, highestCycle)) continue;
       for (const sourcePath of DISCOVERY_PATHS) {
         const id = `github:${repository.full_name}:${sourcePath}`;
         if (existing.has(id.toLowerCase())) continue;
@@ -142,6 +142,11 @@ async function runWeekly(catalog: SourceCatalog) {
     }
   }
   catalog.sources.sort((a, b) => (b.cycle ?? 0) - (a.cycle ?? 0) || a.name.localeCompare(b.name));
+}
+
+export function isDiscoverableYearlyRepository(repository: Pick<GithubRepository, "archived" | "name">, minimumCycle: number): boolean {
+  const cycle = Number(repository.name.match(/20\d{2}/)?.[0] ?? 0);
+  return !repository.archived && cycle >= minimumCycle && /(intern|college.jobs|new.grad)/i.test(repository.name);
 }
 
 function runMonthly(catalog: SourceCatalog, state: SourceHealthState) {
