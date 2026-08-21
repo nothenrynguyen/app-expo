@@ -12,6 +12,8 @@ npm run sync:jobs
 npm run dev
 ```
 
+For switching between the Mac and Windows PC, see [`docs/WORKFLOW.md`](docs/WORKFLOW.md).
+
 ## Data policy
 
 Simplify's maintained public internship lists and SpeedyApply's maintained U.S. new-grad list are
