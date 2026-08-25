@@ -18,9 +18,9 @@ export function MethodologyStats() {
 
   return (
     <div className="methodology-stats">
-      <div><AnimatedCount value={summary.totalJobs} /><span>current listings</span></div>
-      <div><AnimatedCount value={summary.internships} /><span>internships</span></div>
-      <div><AnimatedCount value={summary.fulltime} /><span>full-time jobs</span></div>
+      <div><AnimatedCount value={summary.totalJobs} /><span>current listings, all locations</span></div>
+      <div><AnimatedCount value={summary.internships} /><span>internships, all locations</span></div>
+      <div><AnimatedCount value={summary.fulltime} /><span>full-time jobs, all locations</span></div>
       <div><strong>{summary.healthySources}/{summary.activeSources}</strong><span>sources healthy</span></div>
     </div>
   );
