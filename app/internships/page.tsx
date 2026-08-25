@@ -5,7 +5,7 @@ import { LogoMark } from "../LogoMark";
 import { SiteFooter } from "../SiteFooter";
 
 export default function InternshipsPage() {
-  return <BoardPage title="Current internships" description="No sign-up. No BS. Here are the jobs, updated every hour." type="internships" />;
+  return <BoardPage title="Current Internships" description="No sign-up. No BS. Here are the jobs, updated every hour." type="internships" />;
 }
 
 function BoardPage({ title, description, type }: { title: string; description: string; type: "internships" | "fulltime" }) {

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { AnimatedCount } from "./AnimatedCount";
 import type { JobsSummary } from "@/lib/job-summary";
 import { ROLE_AREAS } from "@/lib/role-areas";
 
@@ -18,14 +19,14 @@ export function LandingCollections() {
   return <>
     <div className="collection-grid">
       <Link className="collection-card" href="/internships">
-        <h2>Current internships</h2>
-        <p className="collection-subtitle"><strong className="collection-count">{summary ? summary.internships : "Loading"}</strong> current jobs available</p>
-        <span className="collection-link">Browse internships <b>→</b></span>
+        <h2>Current Internships</h2>
+        <p className="collection-subtitle"><AnimatedCount className="collection-count" value={summary?.internships} /> current jobs available</p>
+        <span className="collection-link">Browse Internships <b>→</b></span>
       </Link>
       <Link className="collection-card" href="/jobs">
-        <h2>Current full-time jobs</h2>
-        <p className="collection-subtitle"><strong className="collection-count">{summary ? summary.fulltime : "Loading"}</strong> current jobs available</p>
-        <span className="collection-link">Browse full-time jobs <b>→</b></span>
+        <h2>Current Full-Time Jobs</h2>
+        <p className="collection-subtitle"><AnimatedCount className="collection-count" value={summary?.fulltime} /> current jobs available</p>
+        <span className="collection-link">Browse Full-Time Jobs <b>→</b></span>
       </Link>
     </div>
     <section className="role-shortcuts">

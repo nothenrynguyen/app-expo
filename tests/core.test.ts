@@ -39,6 +39,8 @@ test("job locations are normalized and limited to supported regions", () => {
   assert.equal(normalizeJobLocation("Chicago"), "Chicago, IL");
   assert.equal(normalizeJobLocation("Austin, Texas"), "Austin, TX");
   assert.equal(normalizeJobLocation("SFBellevue, WAMountain View, CA"), "San Francisco, CA; Bellevue, WA; Mountain View, CA");
+  assert.equal(normalizeJobLocation("LAPittsburgh, PA"), "Los Angeles, CA; Pittsburgh, PA");
+  assert.equal(normalizeJobLocation("Indianapolis, IN: Fort Wayne, IN"), "Indianapolis, IN; Fort Wayne, IN");
   assert.equal(normalizeJobLocation("5 locationsRochester, NYAlbany, NY"), "Rochester, NY; Albany, NY");
   assert.deepEqual(classifyJobRegions("Chicago"), ["us"]);
   assert.deepEqual(classifyJobRegions("Toronto"), ["canada"]);

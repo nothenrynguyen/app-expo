@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { AnimatedCount } from "./AnimatedCount";
 import type { JobsSummary } from "@/lib/job-summary";
 
 export function MethodologyStats() {
@@ -17,9 +18,9 @@ export function MethodologyStats() {
 
   return (
     <div className="methodology-stats">
-      <div><strong>{summary.totalJobs.toLocaleString()}</strong><span>current listings</span></div>
-      <div><strong>{summary.internships.toLocaleString()}</strong><span>internships</span></div>
-      <div><strong>{summary.fulltime.toLocaleString()}</strong><span>full-time jobs</span></div>
+      <div><AnimatedCount value={summary.totalJobs} /><span>current listings</span></div>
+      <div><AnimatedCount value={summary.internships} /><span>internships</span></div>
+      <div><AnimatedCount value={summary.fulltime} /><span>full-time jobs</span></div>
       <div><strong>{summary.healthySources}/{summary.activeSources}</strong><span>sources healthy</span></div>
     </div>
   );
