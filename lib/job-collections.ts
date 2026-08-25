@@ -9,7 +9,7 @@ export function isFulltime(job: PublicJob): boolean {
 }
 
 export function isInternship(job: PublicJob): boolean {
-  return !isFulltime(job) && (/\bintern(ship)?\b|\bco-?op\b/i.test(job.title) || /2027/i.test(`${job.title} ${job.term}`));
+  return !isFulltime(job) && (/\bintern(ship)?\b|\bco-?op\b/i.test(job.title) || job.category === "Internship" || /2027/i.test(`${job.title} ${job.term}`));
 }
 
 export function isInCollection(job: PublicJob, collection: JobCollection): boolean {

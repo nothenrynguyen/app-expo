@@ -13,17 +13,17 @@ const steps = [
   {
     number: "01",
     title: "Find broadly",
-    copy: "We collect openings from multiple maintained job lists and use their direct application links to discover employer career boards. We also refresh supported Greenhouse, Lever, Ashby, and SmartRecruiters listings directly.",
+    copy: "We collect openings from maintained public job lists and use their application links to discover employer career boards. Supported Greenhouse, Lever, and Ashby boards are refreshed directly, and SmartRecruiters listings are checked against employer posting records.",
   },
   {
     number: "02",
     title: "Normalize and deduplicate",
-    copy: "Tracking parameters are removed and application links are converted into stable identities. If several sources point to the same role, the board keeps one listing and preserves the strongest available posting date.",
+    copy: "Tracking parameters are removed and application links are converted into stable identities. If several sources point to the same role, the board keeps one listing and preserves the most reliable available posting date.",
   },
   {
     number: "03",
     title: "Keep relevant roles",
-    copy: "A title must clearly match one of the supported early-career areas. Software, data, product, quant, finance, business analyst, and IT/networking roles are included. Unmatched roles are quarantined instead of being quietly labeled as software.",
+    copy: "A role must clearly match one of the supported early-career areas. Software, data, product, quant, finance, business analyst, and IT/networking roles are included. Public collections are then split by source category plus title and term signals.",
   },
   {
     number: "04",
@@ -38,7 +38,7 @@ const steps = [
   {
     number: "06",
     title: "Check freshness",
-    copy: "Scheduled source refreshes run hourly from 5 a.m. to 5 p.m. EST. SmartRecruiters status and original release dates are checked directly. Other links rotate through daily checks, and internships with an exact employer date older than 180 days are held out.",
+    copy: "The job snapshot refreshes hourly from 5 a.m. through 5 p.m. in the America/New_York timezone. Direct ATS boards confirm whether roles still appear on the employer board, generic links rotate through daily checks, and exact-date internships older than 180 days are held out.",
   },
 ];
 
@@ -69,8 +69,8 @@ export default function MethodologyPage() {
           <p className="eyebrow">What this does not guarantee</p>
           <h2>Useful, not magically perfect.</h2>
           <div>
-            <p>A curated source can surface a company that has not received an individual manual review. Employee counts and direct LinkedIn records are not available for every company yet.</p>
-            <p>A job can close between checks, employer pages can block automated requests, and some career systems expose imperfect dates. Temporary errors do not automatically delete a listing because outages happen.</p>
+            <p>A trusted source or discovered employer board can surface a company that has not received an individual manual review. Employee counts and direct LinkedIn records are not available for every company yet.</p>
+            <p>A job can close between checks, employer pages can block automated requests, and some career systems expose imperfect dates. Temporary source failures do not automatically delete existing listings because outages happen.</p>
             <p>The rules will keep getting stricter as the company trust registry and direct employer coverage improve. Until then, treat App Expo as a heavily screened discovery tool, not a promise about any employer.</p>
           </div>
         </section>
