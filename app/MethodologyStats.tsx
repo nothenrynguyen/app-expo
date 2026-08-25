@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatedCount } from "./AnimatedCount";
 import type { JobsSummary } from "@/lib/job-summary";
@@ -19,8 +20,8 @@ export function MethodologyStats() {
   return (
     <div className="methodology-stats">
       <div><AnimatedCount value={summary.totalJobs} /><span>current listings, all locations</span></div>
-      <div><AnimatedCount value={summary.internships} /><span>internships, all locations</span></div>
-      <div><AnimatedCount value={summary.fulltime} /><span>full-time jobs, all locations</span></div>
+      <Link href="/internships"><AnimatedCount value={summary.internships} /><span>internships, all locations</span></Link>
+      <Link href="/jobs"><AnimatedCount value={summary.fulltime} /><span>full-time jobs, all locations</span></Link>
       <div><AnimatedCount value={summary.screenedOut} /><span>screened out this refresh</span></div>
       <div><AnimatedCount value={summary.closedPostingsCaught} /><span>closed postings caught</span></div>
       <div><strong>{summary.healthySources}/{summary.activeSources}</strong><span>sources healthy</span></div>
