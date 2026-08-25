@@ -27,7 +27,7 @@ export default function Home() {
           <div className="about-copy">
             <p>I know. Another job aggregator.</p>
             <p>I got tired of checking a million repos just to make sure I wasn&apos;t missing anything. The nicer sites always seem to be tryna sell you something, make you log in, or collect your email. I don&apos;t want to put my email everywhere, bro.</p>
-            <p>Some even make you <strong className="about-bold">click apply</strong>, redirect you to their own job page, pitch resume tailoring, and <span className="about-emphasis">then</span> make you click <span className="about-emphasis">manually apply.</span></p>
+            <p>Some even make you <strong className="about-bold">click apply</strong>, redirect you to their own job page, pitch resume tailoring, <span className="about-emphasis">and then</span> make you click <span className="about-emphasis">manually apply.</span></p>
             <p className="about-punchline">Holy cardio.</p>
             <p>App Expo keeps it simple. We collect current openings from multiple sources, remove duplicates and obvious junk, and send you directly to the employer&apos;s application. No account. No popups. No detour.</p>
             <p>I made this for myself, but maybe you&apos;ll find it useful too. Good luck. You got this.</p>

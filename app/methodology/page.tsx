@@ -67,7 +67,7 @@ export default function MethodologyPage() {
         </section>
         <section className="limitations">
           <p className="eyebrow">What this does not guarantee</p>
-          <h2>Useful, not magically perfect.</h2>
+          <h2>idk bro this is still a wip lmaoo</h2>
           <div>
             <p>A trusted source or discovered employer board can surface a company that has not received an individual manual review. Employee counts and direct LinkedIn records are not available for every company yet.</p>
             <p>A job can close between checks, employer pages can block automated requests, and some career systems expose imperfect dates. Temporary source failures do not automatically delete existing listings because outages happen.</p>
