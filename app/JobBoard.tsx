@@ -30,21 +30,16 @@ const getLocationDisplay = (location: string) => {
   };
 };
 const logoToken = process.env.NEXT_PUBLIC_LOGO_DEV_TOKEN;
-const companyInitials = (company: string) => displayText(company)
-  .replace(/&/g, " ")
-  .split(/\s+/)
-  .filter(Boolean)
-  .slice(0, 2)
-  .map((word) => word[0]?.toUpperCase())
-  .join("") || "?";
+const showCompanyLogos = Boolean(logoToken);
 type ViewMode = "compact" | "cards";
 
 function CompanyLogo({ company }: { company: string }) {
   const [failed, setFailed] = useState(false);
-  const logoUrl = logoToken && !failed ? `https://img.logo.dev/name/${encodeURIComponent(company)}?token=${encodeURIComponent(logoToken)}&size=80&format=png&theme=dark&fallback=404` : null;
+  if (!logoToken || failed) return null;
+  const logoUrl = `https://img.logo.dev/name/${encodeURIComponent(company)}?token=${encodeURIComponent(logoToken)}&size=80&format=png&theme=dark&fallback=404`;
 
   return <div className="company-logo" aria-hidden="true">
-    {logoUrl ? <Image src={logoUrl} alt="" width={40} height={40} unoptimized onError={() => setFailed(true)} /> : <span>{companyInitials(company)}</span>}
+    <Image src={logoUrl} alt="" width={40} height={40} unoptimized onError={() => setFailed(true)} />
   </div>;
 }
 
@@ -128,10 +123,10 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
     </div>
   </div>;
   const renderCardsView = (className = "") => <div className={`layout-panel cards-panel ${className}`}>
-    <div className="column-labels card-column-labels"><span aria-hidden="true" /><span>Role</span><span>Posted</span><span>Links</span></div>
+    <div className={`column-labels card-column-labels ${showCompanyLogos ? "with-logos" : ""}`}>{showCompanyLogos && <span aria-hidden="true" />}<span>Role</span><span>Posted</span><span>Links</span></div>
     <div className="job-list">
-      {visibleJobs.map((job) => <article className="job-card" key={job.id}>
-        <CompanyLogo company={job.company} />
+      {visibleJobs.map((job) => <article className={`job-card ${showCompanyLogos ? "with-logo" : ""}`} key={job.id}>
+        {showCompanyLogos && <CompanyLogo company={job.company} />}
         <div className="job-main"><p className="company">{displayText(job.company)}</p><h2>{displayText(job.title)}</h2><div className="job-meta"><span>{displayText(normalizeJobLocation(job.location))}</span>{modeLabels[job.workMode] && <span>{modeLabels[job.workMode]}</span>}{job.term !== "Not stated" && <span>{displayText(job.term)}</span>}</div></div>
         <div className="posted-age">{daysAgo(job.postedAt)} days</div>
         <div className="actions"><a className="button secondary" href={job.linkedInUrl ?? `https://www.linkedin.com/search/results/companies/?keywords=${encodeURIComponent(job.company)}`} target="_blank" rel="noreferrer">LinkedIn</a><button className="button secondary" type="button" onClick={() => setExpanded(expanded === job.id ? null : job.id)} aria-expanded={expanded === job.id}>Info</button><a className="button primary" href={job.applyUrl} target="_blank" rel="noreferrer">Apply</a></div>
