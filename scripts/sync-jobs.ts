@@ -429,6 +429,7 @@ async function main() {
   const jobs = [...merged.values()].sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime());
   if (jobs.length < 10) throw new Error(`Refusing to publish anomalous snapshot with only ${jobs.length} approved jobs.`);
   const snapshot: JobsSnapshot = { generatedAt: new Date().toISOString(), jobs, quarantinedCount: quarantined.length, sourceHealth: health };
+  const closedPostingsCaught = Object.values(listingHealth).filter((entry) => entry.status === "closed").length;
 
   const currentIdentities = new Set(candidates.map((candidate) => jobIdentity(candidate.applyUrl)).filter(Boolean));
   for (const identity of Object.keys(listingHealth)) {
@@ -442,7 +443,7 @@ async function main() {
   const materialSnapshot = { jobs: snapshot.jobs, quarantinedCount: snapshot.quarantinedCount, sourceHealth: snapshot.sourceHealth };
   const previousMaterial = previous && { jobs: previous.jobs, quarantinedCount: previous.quarantinedCount, sourceHealth: previous.sourceHealth };
   if (previousMaterial && JSON.stringify(materialSnapshot) === JSON.stringify(previousMaterial)) {
-    await writeFile(path.join(root, "public/summary.json"), `${JSON.stringify(buildJobsSummary(previous), null, 2)}\n`);
+    await writeFile(path.join(root, "public/summary.json"), `${JSON.stringify(buildJobsSummary(previous, { closedPostingsCaught }), null, 2)}\n`);
     console.log(`No material changes; retained ${jobs.length} published jobs.`);
     return;
   }
@@ -456,7 +457,7 @@ async function main() {
   const fulltime = { ...snapshot, jobs: snapshot.jobs.filter((job) => isInCollection(job, "fulltime")) };
   await writeFile(path.join(root, "public/internships.json"), `${JSON.stringify(internships, null, 2)}\n`);
   await writeFile(path.join(root, "public/fulltime.json"), `${JSON.stringify(fulltime, null, 2)}\n`);
-  await writeFile(path.join(root, "public/summary.json"), `${JSON.stringify(buildJobsSummary(snapshot), null, 2)}\n`);
+  await writeFile(path.join(root, "public/summary.json"), `${JSON.stringify(buildJobsSummary(snapshot, { closedPostingsCaught }), null, 2)}\n`);
   console.log(`Published ${jobs.length} jobs; quarantined ${quarantined.length}; rejected ${rejectedCount}.`);
 }
 

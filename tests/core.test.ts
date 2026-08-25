@@ -83,11 +83,13 @@ test("job summary keeps homepage counts aligned with the published collections",
     quarantinedCount: 4,
     sourceHealth: [{ name: "Healthy", status: "ok" as const, rows: 2 }, { name: "Failed", status: "failed" as const, rows: 0 }],
   };
-  assert.deepEqual(buildJobsSummary(snapshot), {
+  assert.deepEqual(buildJobsSummary(snapshot, { closedPostingsCaught: 3 }), {
     generatedAt: snapshot.generatedAt,
     totalJobs: 2,
     internships: 1,
     fulltime: 1,
+    screenedOut: 4,
+    closedPostingsCaught: 3,
     activeSources: 2,
     healthySources: 1,
   });

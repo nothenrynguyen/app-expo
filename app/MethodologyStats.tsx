@@ -21,6 +21,8 @@ export function MethodologyStats() {
       <div><AnimatedCount value={summary.totalJobs} /><span>current listings, all locations</span></div>
       <div><AnimatedCount value={summary.internships} /><span>internships, all locations</span></div>
       <div><AnimatedCount value={summary.fulltime} /><span>full-time jobs, all locations</span></div>
+      <div><AnimatedCount value={summary.screenedOut} /><span>screened out this refresh</span></div>
+      <div><AnimatedCount value={summary.closedPostingsCaught} /><span>closed postings caught</span></div>
       <div><strong>{summary.healthySources}/{summary.activeSources}</strong><span>sources healthy</span></div>
     </div>
   );
