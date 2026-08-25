@@ -13,9 +13,15 @@ const PAGE_SIZE = 100;
 const LAYOUT_TRANSITION_MS = 1050;
 const modeLabels: Record<PublicJob["workMode"], string> = { remote: "Remote", hybrid: "Hybrid", in_person: "In person", unknown: "" };
 const displayText = (value: string) => value.replace(/[\u2013\u2014]/g, "-");
+const splitLocations = (location: string) => {
+  const semicolonLocations = location.split(";").map((item) => item.trim()).filter(Boolean);
+  if (semicolonLocations.length > 1) return semicolonLocations;
+  const usCityStateLocations = location.match(/(?:[^,;]+,\s*)?[A-Za-z .'-]+,\s*[A-Z]{2}(?:,\s*Canada)?/g)?.map((item) => item.trim()) ?? [];
+  return usCityStateLocations.length > 1 ? usCityStateLocations : semicolonLocations;
+};
 const getLocationDisplay = (location: string) => {
   const full = displayText(normalizeJobLocation(location));
-  const locations = full.split(";").map((item) => item.trim()).filter(Boolean);
+  const locations = splitLocations(full);
   return {
     full,
     hasMore: locations.length > 1,
