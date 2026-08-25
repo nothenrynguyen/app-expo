@@ -86,6 +86,7 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
 
   const pageCount = Math.max(1, Math.ceil(jobs.length / PAGE_SIZE));
   const visibleJobs = jobs.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
+  const emptyMessage = query.trim().toLowerCase() === "henwoo" ? "lmaoo imagine if this actually returned smth" : "No verified jobs match these filters.";
   const changeView = (nextView: ViewMode) => {
     if (nextView === activeView) return;
     setViewMode(nextView);
@@ -105,7 +106,7 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
           <div className="job-table-action" role="cell" data-label="LinkedIn"><a className="button table-button secondary" href={job.linkedInUrl ?? `https://www.linkedin.com/search/results/companies/?keywords=${encodeURIComponent(job.company)}`} target="_blank" rel="noreferrer">LinkedIn</a></div>
         </article>;
       })}
-      {jobs.length === 0 && <p className="job-table-empty">No verified jobs match these filters.</p>}
+      {jobs.length === 0 && <p className="job-table-empty">{emptyMessage}</p>}
     </div>
   </div>;
   const renderCardsView = (className = "") => <div className={`layout-panel cards-panel ${className}`}>
@@ -117,7 +118,7 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
         <div className="actions"><a className="button secondary" href={job.linkedInUrl ?? `https://www.linkedin.com/search/results/companies/?keywords=${encodeURIComponent(job.company)}`} target="_blank" rel="noreferrer">LinkedIn</a><button className="button secondary" type="button" onClick={() => setExpanded(expanded === job.id ? null : job.id)} aria-expanded={expanded === job.id}>Info</button><a className="button primary" href={job.applyUrl} target="_blank" rel="noreferrer">Apply</a></div>
         {expanded === job.id && <div className="job-info"><p><strong>Posted:</strong> {new Date(job.postedAt).toLocaleDateString()}</p><p><strong>Employees:</strong> {job.employeeCount ? `${job.employeeCount.toLocaleString()}+` : "Not listed"}</p><p><strong>Status:</strong> {companyTierLabel(job.company)}</p></div>}
       </article>)}
-      {jobs.length === 0 && <p className="state-card">No verified jobs match these filters.</p>}
+      {jobs.length === 0 && <p className="state-card">{emptyMessage}</p>}
     </div>
   </div>;
   const isSwitching = exitingView !== null;
