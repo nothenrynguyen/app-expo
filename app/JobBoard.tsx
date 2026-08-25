@@ -123,7 +123,6 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
     </div>
   </div>;
   const renderCardsView = (className = "") => <div className={`layout-panel cards-panel ${className}`}>
-    <div className={`column-labels card-column-labels ${showCompanyLogos ? "with-logos" : ""}`}>{showCompanyLogos && <span aria-hidden="true" />}<span>Role</span><span>Posted</span><span>Links</span></div>
     <div className="job-list">
       {visibleJobs.map((job) => <article className={`job-card ${showCompanyLogos ? "with-logo" : ""}`} key={job.id}>
         {showCompanyLogos && <CompanyLogo company={job.company} />}
