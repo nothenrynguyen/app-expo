@@ -168,8 +168,12 @@ test("ApplyGuy ingestion keeps only configured categories and direct employer li
 });
 
 test("restricted sources cannot seed full ATS board expansion", () => {
-  const sources = [{ id: "applyguy", name: "ApplyGuy Product Internships 2027", kind: "applyguy_json" as const, url: "https://example.com/feed.json", repository: "ApplyGuy/2027-Internships", active: true, trustedCoverage: false, expandAtsBoards: false }];
+  const sources = [
+    { id: "applyguy", name: "ApplyGuy Product Internships 2027", kind: "applyguy_json" as const, url: "https://example.com/feed.json", repository: "ApplyGuy/2027-Internships", active: true, trustedCoverage: false, expandAtsBoards: false },
+    { id: "dreamwork", name: "Dreamwork New Grad US", kind: "markdown" as const, url: "https://example.com/README.md", repository: "dreamworkhq/New-Grad-Software-Engineer-Jobs", active: true, trustedCoverage: false, expandAtsBoards: false },
+  ];
   assert.equal(sourceAllowsAtsExpansion("ApplyGuy Product Internships 2027", sources), false);
+  assert.equal(sourceAllowsAtsExpansion("Dreamwork New Grad US", sources), false);
   assert.equal(sourceAllowsAtsExpansion("Other Source", sources), true);
 });
 
@@ -188,6 +192,12 @@ test("role areas classify prefiltered board views", () => {
   assert.equal(classifyRoleArea({ title: "Cybersecurity Analyst Intern", category: "Internship" }), "it-network");
   assert.equal(classifyRoleArea({ title: "Data Science Intern - Corporate IT", category: "Internship" }), "data-science");
   assert.equal(classifyRoleArea({ title: "Leadership Rotation Network Intern", category: "Internship" }), null);
+  assert.equal(classifyRoleArea({ title: "Hardware Systems Engineer - Board Design", category: "New grad" }), "hardware");
+  assert.equal(classifyRoleArea({ title: "Electrical Engineering Intern", category: "Internship" }), "hardware");
+  assert.equal(classifyRoleArea({ title: "ASIC Design Verification Engineer", category: "New grad" }), "hardware");
+  assert.equal(classifyRoleArea({ title: "Embedded Systems Engineer", category: "New grad" }), "hardware");
+  assert.equal(classifyRoleArea({ title: "Embedded Software Engineer", category: "New grad" }), "software");
+  assert.equal(classifyRoleArea({ title: "Technical Program Manager Intern, Hardware Engineering", category: "Internship" }), null);
   assert.equal(classifyRoleArea({ title: "LLM Post-training Engineer Graduate", category: "New grad" }), "software");
   assert.equal(classifyRoleArea({ title: "Accounting Intern", category: "Internship" }), "finance");
   assert.equal(classifyRoleArea({ title: "Actuarial Analyst Intern", category: "Internship" }), "finance");

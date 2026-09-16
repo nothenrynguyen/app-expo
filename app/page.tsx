@@ -1,15 +1,9 @@
-import Link from "next/link";
-import { LogoMark } from "./LogoMark";
 import { LandingCollections } from "./LandingCollections";
 import { SiteFooter } from "./SiteFooter";
 
 export default function Home() {
   return (
     <main>
-      <header className="site-header">
-        <Link className="wordmark" href="/"><LogoMark />App Expo</Link>
-        <div className="header-links"><a href="#about">About</a><Link href="/methodology">Methodology</Link><span className="header-note"><i />Live job board</span></div>
-      </header>
       <section className="landing-shell">
         <p className="eyebrow">A no-friction job board</p>
         <h1>No sign-up. No BS. Here are the jobs.</h1>

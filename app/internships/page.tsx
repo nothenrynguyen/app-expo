@@ -1,7 +1,5 @@
-import Link from "next/link";
 import { Suspense } from "react";
 import { JobBoard } from "../JobBoard";
-import { LogoMark } from "../LogoMark";
 import { SiteFooter } from "../SiteFooter";
 
 export default function InternshipsPage() {
@@ -11,10 +9,6 @@ export default function InternshipsPage() {
 function BoardPage({ title, description, type }: { title: string; description: string; type: "internships" | "fulltime" }) {
   return (
     <main>
-      <header className="site-header">
-        <Link className="wordmark" href="/"><LogoMark />App Expo</Link>
-        <div className="header-links"><Link href="/methodology">Methodology</Link><Link className="back-link" href="/">All collections</Link></div>
-      </header>
       <section className="board-shell">
         <div className="board-intro">
           <div><p className="eyebrow">Job board</p><h1>{title}</h1><p>{description}</p></div>

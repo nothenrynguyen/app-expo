@@ -32,6 +32,8 @@ Continue expanding and refining the source coverage behind each role filter whil
 
 - [x] Add Dreamwork's daily Business Internships feed for finance, accounting, and analytics coverage
 - [x] Add ApplyGuy's Product internships feed using direct employer `listingUrl` values and no full-board ATS expansion
+- [x] Add Dreamwork's U.S. new-grad feed without allowing it to expand into unrelated employer-board roles
+- [x] Add a curated Hardware role filter for electrical, silicon, FPGA/ASIC, board, and embedded-systems positions
 - [ ] Add USAJOBS student and recent-graduate searches for federal finance, analysis, data, and IT roles
 - [ ] Enumerate full SmartRecruiters company boards instead of verifying only individual postings
 - [ ] Pilot curated Workable employer boards

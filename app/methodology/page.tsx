@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { LogoMark } from "../LogoMark";
 import { MethodologyStats } from "../MethodologyStats";
 import { SiteFooter } from "../SiteFooter";
 
@@ -23,7 +21,7 @@ const steps = [
   {
     number: "03",
     title: "Keep relevant roles",
-    copy: "A role must clearly match one of the supported early-career areas. Software, data, product, quant, finance, business analyst, and IT/networking roles are included. Public collections are then split by source category plus title and term signals.",
+    copy: "A role must clearly match one of the supported early-career areas. Software, data, product, hardware, quant, finance, business analyst, and IT/security roles are included. Public collections are then split by source category plus title and term signals.",
   },
   {
     number: "04",
@@ -45,10 +43,6 @@ const steps = [
 export default function MethodologyPage() {
   return (
     <main>
-      <header className="site-header">
-        <Link className="wordmark" href="/"><LogoMark />App Expo</Link>
-        <div className="header-links"><Link href="/internships">Internships</Link><Link href="/jobs">Full-time</Link></div>
-      </header>
       <section className="methodology-shell">
         <div className="methodology-hero">
           <p className="eyebrow">How the board works</p>
@@ -74,7 +68,6 @@ export default function MethodologyPage() {
             <p>The rules will keep getting stricter as the company trust registry and direct employer coverage improve. Until then, treat App Expo as a heavily screened discovery tool, not a promise about any employer.</p>
           </div>
         </section>
-        <div className="methodology-cta"><p>See something that looks wrong?</p><span>A lightweight reporting system is next.</span><Link href="/internships">Browse current internships</Link></div>
       </section>
       <SiteFooter />
     </main>
