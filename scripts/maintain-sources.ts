@@ -35,6 +35,11 @@ function emptyHealth(): SourceHealthRecord {
 async function countRows(source: JobSource): Promise<number> {
   const text = await fetchText(source.url);
   if (source.kind === "engine_json") return (JSON.parse(text) as { jobs?: unknown[] }).jobs?.length ?? 0;
+  if (source.kind === "applyguy_json") {
+    const jobs = (JSON.parse(text) as { jobs?: Array<{ category?: string }> }).jobs ?? [];
+    const allowed = new Set((source.categories ?? []).map((category) => category.toLowerCase()));
+    return allowed.size === 0 ? jobs.length : jobs.filter((job) => allowed.has(String(job.category ?? "").toLowerCase())).length;
+  }
   return parseMarkdownSource(text, source.name).length;
 }
 

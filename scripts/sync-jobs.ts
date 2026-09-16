@@ -41,6 +41,16 @@ type EngineJob = {
   remote?: boolean;
 };
 
+type ApplyGuyJob = {
+  company?: string;
+  title?: string;
+  category?: string;
+  location?: string;
+  season?: string;
+  posted?: string;
+  listingUrl?: string;
+};
+
 function cleanText(value: string): string {
   return value
     .replace(/<br\s*\/?>/gi, " / ")
@@ -170,6 +180,42 @@ export function parseMarkdownSource(markdown: string, source: string, now = new 
   return jobs;
 }
 
+export function parseApplyGuySource(payload: string, source: string, categories: string[] = []): CandidateJob[] {
+  const parsed = JSON.parse(payload) as { jobs?: ApplyGuyJob[] };
+  const allowedCategories = new Set(categories.map((category) => category.toLowerCase()));
+  const jobs: CandidateJob[] = [];
+  for (const job of parsed.jobs ?? []) {
+    if (allowedCategories.size > 0 && !allowedCategories.has(String(job.category ?? "").toLowerCase())) continue;
+    const applyUrl = canonicalizeUrl(job.listingUrl ?? "");
+    const posted = job.posted ? parsePostedAt(job.posted) : null;
+    const company = normalizeDisplayText(job.company ?? "");
+    const title = normalizeDisplayText(job.title ?? "");
+    const location = normalizeDisplayText(job.location ?? "") || "Location not stated";
+    if (!applyUrl || new URL(applyUrl).hostname.endsWith("applyguy.ai") || !posted || !company || !title) continue;
+    const season = normalizeDisplayText(job.season ?? "");
+    const rawText = `${title} ${job.category ?? ""} ${location} ${season}`;
+    jobs.push({
+      company,
+      title,
+      term: season && !/not specified/i.test(season) ? season : inferTerm(rawText),
+      location,
+      workMode: inferWorkMode(rawText),
+      postedAt: posted.postedAt,
+      postedAtSource: posted.source,
+      applyUrl,
+      category: "Internship",
+      salary: null,
+      source,
+      rawText,
+    });
+  }
+  return jobs;
+}
+
+export function sourceAllowsAtsExpansion(sourceName: string, sources: JobSource[]): boolean {
+  return sources.find((source) => source.name === sourceName)?.expandAtsBoards !== false;
+}
+
 async function fetchText(url: string): Promise<string> {
   const response = await fetch(url, { headers: { "user-agent": "App-Expo/0.1" } });
   if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
@@ -224,6 +270,16 @@ async function loadCandidates(root: string, sources: JobSource[]) {
     }
   }
 
+  for (const applyGuySource of sources.filter((source) => source.kind === "applyguy_json")) {
+    try {
+      const jobs = parseApplyGuySource(await fetchText(applyGuySource.url), applyGuySource.name, applyGuySource.categories);
+      candidates.push(...jobs);
+      health.push({ name: applyGuySource.name, status: "ok", rows: jobs.length });
+    } catch {
+      health.push({ name: applyGuySource.name, status: "failed", rows: 0 });
+    }
+  }
+
   const markdownSources = sources.filter((source) => source.kind === "markdown");
   const results = await Promise.allSettled(markdownSources.map(async (source) => ({
     source,
@@ -241,6 +297,7 @@ async function loadCandidates(root: string, sources: JobSource[]) {
 
   const boards = new Map<string, NonNullable<ReturnType<typeof discoverAtsBoard>>>();
   for (const candidate of candidates) {
+    if (!sourceAllowsAtsExpansion(candidate.source, sources)) continue;
     const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
     if (board && !boards.has(board.id)) boards.set(board.id, board);
   }

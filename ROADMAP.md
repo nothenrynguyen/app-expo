@@ -24,9 +24,18 @@ Continue expanding and refining the source coverage behind each role filter whil
 
 - [ ] Expand verified company information, including employee-count ranges and direct LinkedIn company profiles
 - [ ] Review quarantined companies and promote valid employers into the verified registry
-- [ ] Improve role classification so jobs consistently appear in the correct category tab
+- [x] Expand finance, business analyst, and IT/networking classification for broader business feeds
 - [ ] Add stronger detection for expired or removed employer listings
 - [ ] Continue improving duplicate detection across sources
+
+## Source coverage plan
+
+- [x] Add Dreamwork's daily Business Internships feed for finance, accounting, and analytics coverage
+- [x] Add ApplyGuy's Product internships feed using direct employer `listingUrl` values and no full-board ATS expansion
+- [ ] Add USAJOBS student and recent-graduate searches for federal finance, analysis, data, and IT roles
+- [ ] Enumerate full SmartRecruiters company boards instead of verifying only individual postings
+- [ ] Pilot curated Workable employer boards
+- [ ] Evaluate CareerOneStop after measuring duplicate rate and destination-link quality
 
 ## Job board improvements
 

@@ -10,7 +10,7 @@ import { classifyRoleArea } from "../lib/role-areas";
 import { discoverAtsBoard, isEarlyCareerTitle } from "../lib/ats-boards";
 import { classifyListingResponse, needsListingCheck } from "../lib/listing-health";
 import { applySmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
-import { parseMarkdownSource } from "../scripts/sync-jobs";
+import { parseApplyGuySource, parseMarkdownSource, sourceAllowsAtsExpansion } from "../scripts/sync-jobs";
 import { classifyJobRegions, formatSnapshotAge, getSupportedJobRegions, normalizeJobLocation } from "../lib/job-locations";
 import { isDiscoverableYearlyRepository } from "../scripts/maintain-sources";
 
@@ -142,6 +142,37 @@ test("markdown sources can use the linked role as the application column", () =>
   assert.equal(job?.applyUrl, "https://example.com/jobs/123");
 });
 
+test("Dreamwork business tables parse linked roles and relative dates", () => {
+  const markdown = `### Finance & Accounting (2)
+| Company | Role | Location | Pay | Added |
+| --- | --- | --- | --- | --- |
+| **Example Bank** | [Credit Risk Analyst Intern](https://example.com/jobs/credit-risk) | Chicago, IL (Hybrid) | $52K | 0d |
+| **Example Insurance** | [Actuarial Analyst Intern](https://example.com/jobs/actuarial) | Hartford, CT | $60K | 2d |`;
+  const jobs = parseMarkdownSource(markdown, "Dreamwork Business Internships 2027", new Date("2026-09-15T12:00:00Z"));
+  assert.equal(jobs.length, 2);
+  assert.equal(jobs[0]?.applyUrl, "https://example.com/jobs/credit-risk");
+  assert.equal(jobs[0]?.workMode, "hybrid");
+  assert.equal(jobs[1]?.postedAt, "2026-09-13T12:00:00.000Z");
+});
+
+test("ApplyGuy ingestion keeps only configured categories and direct employer links", () => {
+  const payload = JSON.stringify({ jobs: [
+    { company: "Example", title: "Product Management Intern", category: "Product", location: "New York, NY", season: "Summer 2027", posted: "2026-09-15", url: "https://applyguy.ai/jobs/1", listingUrl: "https://example.com/jobs/product" },
+    { company: "Example", title: "Software Engineer Intern", category: "Software Engineering", location: "New York, NY", season: "Summer 2027", posted: "2026-09-15", listingUrl: "https://example.com/jobs/software" },
+    { company: "Example", title: "Product Intern", category: "Product", location: "New York, NY", season: "Summer 2027", posted: "2026-09-15", listingUrl: "https://applyguy.ai/jobs/3" },
+  ] });
+  const jobs = parseApplyGuySource(payload, "ApplyGuy Product Internships 2027", ["Product"]);
+  assert.equal(jobs.length, 1);
+  assert.equal(jobs[0]?.applyUrl, "https://example.com/jobs/product");
+  assert.equal(jobs[0]?.category, "Internship");
+});
+
+test("restricted sources cannot seed full ATS board expansion", () => {
+  const sources = [{ id: "applyguy", name: "ApplyGuy Product Internships 2027", kind: "applyguy_json" as const, url: "https://example.com/feed.json", repository: "ApplyGuy/2027-Internships", active: true, trustedCoverage: false, expandAtsBoards: false }];
+  assert.equal(sourceAllowsAtsExpansion("ApplyGuy Product Internships 2027", sources), false);
+  assert.equal(sourceAllowsAtsExpansion("Other Source", sources), true);
+});
+
 test("role areas classify prefiltered board views", () => {
   assert.equal(classifyRoleArea({ title: "Product Management Intern", category: "Internship" }), "product");
   assert.equal(classifyRoleArea({ title: "Quantitative Trading Intern", category: "Quant" }), "quant");
@@ -159,6 +190,16 @@ test("role areas classify prefiltered board views", () => {
   assert.equal(classifyRoleArea({ title: "Leadership Rotation Network Intern", category: "Internship" }), null);
   assert.equal(classifyRoleArea({ title: "LLM Post-training Engineer Graduate", category: "New grad" }), "software");
   assert.equal(classifyRoleArea({ title: "Accounting Intern", category: "Internship" }), "finance");
+  assert.equal(classifyRoleArea({ title: "Actuarial Analyst Intern", category: "Internship" }), "finance");
+  assert.equal(classifyRoleArea({ title: "Commercial Credit Underwriting Intern", category: "Internship" }), "finance");
+  assert.equal(classifyRoleArea({ title: "Credit Risk Analyst Intern", category: "Internship" }), "finance");
+  assert.equal(classifyRoleArea({ title: "Risk Advisory Intern", category: "Internship" }), "finance");
+  assert.equal(classifyRoleArea({ title: "Capital Markets Intern", category: "Internship" }), "finance");
+  assert.equal(classifyRoleArea({ title: "Strategy & Analytics Intern", category: "Internship" }), "data-science");
+  assert.equal(classifyRoleArea({ title: "Business Systems Analyst Intern", category: "Internship" }), "business-analyst");
+  assert.equal(classifyRoleArea({ title: "Supply Chain Analyst Intern", category: "Internship" }), "business-analyst");
+  assert.equal(classifyRoleArea({ title: "Information Security Analyst Intern", category: "Internship" }), "it-network");
+  assert.equal(classifyRoleArea({ title: "Database Administrator Intern", category: "Internship" }), "it-network");
   assert.equal(classifyRoleArea({ title: "Internship - Touring", category: "Internship" }), null);
   assert.equal(classifyRoleArea({ title: "Mechanical Engineering Intern", category: "Internship" }), null);
   assert.equal(classifyRoleArea({ title: "Brand Marketing Intern", category: "Internship" }), null);
