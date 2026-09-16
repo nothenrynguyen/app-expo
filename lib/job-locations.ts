@@ -44,6 +44,8 @@ const REGION_PATTERNS: Array<[DetectedJobRegion, RegExp]> = [
 export function normalizeJobLocation(location: string): string {
   const clean = location
     .replace(/^\d+\s+locations?/i, "")
+    .replace(/^NYC(?=(?:Brooklyn|Queens|Bronx|Manhattan|Staten Island)\b)/i, "")
+    .replace(/\bRemote in USA(?=[A-Z][a-z])/gi, "Remote, United States; ")
     .replace(/^LA(?=[A-Z][a-z])/, "Los Angeles, CA; ")
     .replace(/^SF(?=[A-Z][a-z])/, "San Francisco, CA; ")
     .replace(/\bCanada(?=[A-Z][a-z])/g, "Canada; ")

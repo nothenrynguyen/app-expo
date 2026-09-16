@@ -3,7 +3,8 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { load } from "cheerio";
 import { discoverAtsBoard, fetchAtsBoard, type AtsBoardResult } from "../lib/ats-boards";
-import { evaluateCompanyQuality, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
+import { evaluateCompanyQuality, normalizeCompanyDisplayName, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
+import { deduplicateCrossSourceJobs } from "../lib/job-dedup";
 import { getFreshnessRejection } from "../lib/job-freshness";
 import { isInCollection } from "../lib/job-collections";
 import { buildJobsSummary } from "../lib/job-summary";
@@ -407,6 +408,7 @@ async function main() {
       });
       continue;
     }
+    const displayCompany = normalizeCompanyDisplayName(candidate.company, candidate.applyUrl);
     const decision = evaluateCompanyQuality(
       { name: candidate.company, h1bApprovals: candidate.h1bApprovals },
       candidate.rawText,
@@ -454,7 +456,7 @@ async function main() {
     const keepPriorDate = prior && precision[prior.postedAtSource] >= precision[candidate.postedAtSource];
     merged.set(identity, {
       id: stableJobId(identity, candidate.company, candidate.title),
-      company: normalizeDisplayText(candidate.company),
+      company: normalizeDisplayText(displayCompany),
       title: normalizeDisplayText(candidate.title),
       term: candidate.term,
       location: normalizeJobLocation(candidate.location),
@@ -478,14 +480,26 @@ async function main() {
       const decision = evaluateCompanyQuality({ name: prior.company }, "", registry, trustRegistry);
       const freshnessRejection = getFreshnessRejection(prior);
       if (identity && classifyRoleArea(prior) && decision.status !== "rejected" && !freshnessRejection && !merged.has(identity)) {
-        merged.set(identity, prior);
+        const location = normalizeJobLocation(prior.location);
+        merged.set(identity, {
+          ...prior,
+          company: normalizeCompanyDisplayName(prior.company, prior.applyUrl),
+          location,
+          regions: getSupportedJobRegions(location),
+        });
       }
     }
   }
 
-  const jobs = [...merged.values()].sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime());
+  const jobs = deduplicateCrossSourceJobs([...merged.values()]).sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime());
   if (jobs.length < 10) throw new Error(`Refusing to publish anomalous snapshot with only ${jobs.length} approved jobs.`);
-  const snapshot: JobsSnapshot = { generatedAt: new Date().toISOString(), jobs, quarantinedCount: quarantined.length, sourceHealth: health };
+  const allSourcesUnhealthy = health.length > 0 && unhealthySources.length === health.length;
+  const snapshot: JobsSnapshot = {
+    generatedAt: new Date().toISOString(),
+    jobs,
+    quarantinedCount: allSourcesUnhealthy && previous ? previous.quarantinedCount : quarantined.length,
+    sourceHealth: health,
+  };
   const closedPostingsCaught = Object.values(listingHealth).filter((entry) => entry.status === "closed").length;
 
   const currentIdentities = new Set(candidates.map((candidate) => jobIdentity(candidate.applyUrl)).filter(Boolean));

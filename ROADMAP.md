@@ -25,7 +25,9 @@ Continue expanding and refining the source coverage behind each role filter whil
 - [ ] Expand verified company information, including employee-count ranges and direct LinkedIn company profiles
 - [ ] Review quarantined companies and promote valid employers into the verified registry
 - [x] Expand finance, business analyst, and IT/networking classification for broader business feeds
-- [ ] Add stronger detection for expired or removed employer listings
+- [x] Remove internships from completed seasonal terms while preserving graduation-date mentions on full-time roles
+- [x] Prefer direct employer applications when the same role also appears through an aggregator
+- [ ] Add stronger detection for expired or removed employer listings beyond the current ATS and rotating link checks
 - [ ] Continue improving duplicate detection across sources
 
 ## Source coverage plan

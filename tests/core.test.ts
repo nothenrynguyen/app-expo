@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { evaluateCompanyQuality, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
+import { evaluateCompanyQuality, normalizeCompanyDisplayName, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
+import { deduplicateCrossSourceJobs } from "../lib/job-dedup";
 import { getFreshnessRejection } from "../lib/job-freshness";
 import { buildJobsSummary } from "../lib/job-summary";
 import { daysAgo } from "../lib/jobs";
@@ -42,6 +43,8 @@ test("job locations are normalized and limited to supported regions", () => {
   assert.equal(normalizeJobLocation("LAPittsburgh, PA"), "Los Angeles, CA; Pittsburgh, PA");
   assert.equal(normalizeJobLocation("Indianapolis, IN: Fort Wayne, IN"), "Indianapolis, IN; Fort Wayne, IN");
   assert.equal(normalizeJobLocation("5 locationsRochester, NYAlbany, NY"), "Rochester, NY; Albany, NY");
+  assert.equal(normalizeJobLocation("NYCBrooklyn, NY"), "Brooklyn, NY");
+  assert.equal(normalizeJobLocation("Remote in USAMinneapolis, MN"), "Remote, United States; Minneapolis, MN");
   assert.deepEqual(classifyJobRegions("Chicago"), ["us"]);
   assert.deepEqual(classifyJobRegions("Toronto"), ["canada"]);
   assert.deepEqual(classifyJobRegions("Auckland, NZ"), ["australia_nz"]);
@@ -175,6 +178,31 @@ test("restricted sources cannot seed full ATS board expansion", () => {
   assert.equal(sourceAllowsAtsExpansion("ApplyGuy Product Internships 2027", sources), false);
   assert.equal(sourceAllowsAtsExpansion("Dreamwork New Grad US", sources), false);
   assert.equal(sourceAllowsAtsExpansion("Other Source", sources), true);
+});
+
+test("ATS company aliases use the employer's public name", () => {
+  assert.equal(normalizeCompanyDisplayName("Us Erac", "https://us-erac.icims.com/jobs/564700/accounting-intern/job"), "Enterprise Mobility");
+  assert.equal(normalizeCompanyDisplayName("Example", "https://example.com/jobs/1"), "Example");
+});
+
+test("cross-source dedup prefers direct employer applications without merging separate requisitions", () => {
+  const base = { company: "Amazon", title: "Product Manager Intern", term: "Summer 2027", location: "Seattle, WA", regions: ["us" as const], workMode: "unknown" as const, postedAt: "2026-08-10T00:00:00Z", postedAtSource: "date_only" as const, linkedInUrl: null, category: "Internship", salary: null, verifiedCompany: true };
+  const jobs = deduplicateCrossSourceJobs([
+    { ...base, id: "aggregator", applyUrl: "https://www.dreamworkhq.com/job/abc", sources: ["Dreamwork"] },
+    { ...base, id: "direct", applyUrl: "https://www.amazon.jobs/en/jobs/123/product-manager-intern", sources: ["Open Tech"], postedAt: "2026-08-11T00:00:00Z", postedAtSource: "exact" as const },
+    { ...base, id: "other-requisition", applyUrl: "https://www.amazon.jobs/en/jobs/456/product-manager-intern", sources: ["Another Direct Source"] },
+  ]);
+  assert.equal(jobs.length, 2);
+  assert.equal(jobs[0]?.applyUrl, "https://www.amazon.jobs/en/jobs/123/product-manager-intern");
+  assert.deepEqual(jobs[0]?.sources, ["Open Tech", "Dreamwork"]);
+  assert.equal(jobs[0]?.postedAtSource, "exact");
+});
+
+test("completed internship terms are removed after a conservative season cutoff", () => {
+  const base = { title: "Software Engineer Intern", category: "Internship", term: "Summer 2026", postedAt: "2026-08-20T00:00:00Z", postedAtSource: "relative_derived" as const };
+  assert.match(getFreshnessRejection(base, new Date("2026-09-16T00:00:00Z")) ?? "", /Summer 2026 has already ended/);
+  assert.equal(getFreshnessRejection({ ...base, term: "Fall 2026" }, new Date("2026-09-16T00:00:00Z")), null);
+  assert.equal(getFreshnessRejection({ ...base, title: "Software Engineer", category: "New grad" }, new Date("2026-09-16T00:00:00Z")), null);
 });
 
 test("role areas classify prefiltered board views", () => {

@@ -16,7 +16,7 @@ const steps = [
   {
     number: "02",
     title: "Normalize and deduplicate",
-    copy: "Tracking parameters are removed and application links are converted into stable identities. If several sources point to the same role, the board keeps one listing and preserves the most reliable available posting date.",
+    copy: "Tracking parameters are removed and application links are converted into stable identities. Strong company, title, and location matches can also join an aggregator copy to the direct employer listing. Separate employer requisition IDs remain separate, and the direct application is preferred.",
   },
   {
     number: "03",
@@ -36,7 +36,7 @@ const steps = [
   {
     number: "06",
     title: "Check freshness",
-    copy: "The job snapshot refreshes hourly from 5 a.m. through 5 p.m. in the America/New_York timezone. Direct ATS boards confirm whether roles still appear on the employer board, generic links rotate through daily checks, and exact-date internships older than 180 days are held out.",
+    copy: "The job snapshot refreshes hourly from 5 a.m. through 5 p.m. in the America/New_York timezone. Direct ATS boards confirm whether roles still appear on the employer board, generic links rotate through daily checks, completed internship terms are removed, and exact-date internships older than 180 days are held out.",
   },
 ];
 

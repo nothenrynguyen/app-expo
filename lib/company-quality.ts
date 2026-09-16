@@ -47,6 +47,24 @@ export function normalizeCompanyName(value: string): string {
     .trim();
 }
 
+const ATS_COMPANY_ALIASES: Array<[RegExp, string]> = [
+  [/(?:^|\.)us-erac\.icims\.com$/i, "Enterprise Mobility"],
+  [/(?:^|\.)nationalalamo-erac\.icims\.com$/i, "Enterprise Mobility"],
+];
+
+export function normalizeCompanyDisplayName(value: string, applyUrl?: string): string {
+  if (applyUrl) {
+    try {
+      const hostname = new URL(applyUrl).hostname;
+      const alias = ATS_COMPANY_ALIASES.find(([pattern]) => pattern.test(hostname));
+      if (alias) return alias[1];
+    } catch {
+      // Keep the source-provided name when the application URL is malformed.
+    }
+  }
+  return value;
+}
+
 export function evaluateCompanyQuality(
   company: CompanyEvidence,
   jobText: string,
