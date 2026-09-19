@@ -9,12 +9,12 @@ App Expo is intentionally operated without a billing account or payment method. 
 - Prefer static generation, browser-local storage, committed aggregate data, and free public-repository automation.
 - A free-tier limit must stop, pause, or degrade gracefully. It must never create a charge.
 - Core browsing, filtering, and direct application links remain free and do not require an account.
-- Do not add monetization while App Expo uses sources without explicit commercial-use permission or infrastructure restricted to non-commercial use.
+- Monetization is out of scope for App Expo.
 
 ## Approved architecture
 
 - Next.js static export
-- Vercel Hobby while the project remains personal and non-commercial
+- Vercel Hobby for this personal project
 - Standard GitHub-hosted Actions for a public repository
 - Browser `localStorage` for optional personal state
 - Small generated JSON snapshots and bounded aggregate history committed to the repository
@@ -27,8 +27,8 @@ Do not add any of the following without revisiting this policy and obtaining the
 - Hosted databases or authentication
 - Email, SMS, push-notification, AI, résumé-processing, or payment APIs
 - Paid analytics, monitoring, queues, storage, or background workers
-- Employer payments, advertisements, subscriptions, affiliate revenue, or sponsored listings
-- Commercial hosting or any change from the current non-commercial posture
+- Any monetization feature, including employer payments, advertisements, subscriptions, affiliate revenue, or sponsored listings
+- Any hosting change that could introduce charges
 
 ## Dependency checklist
 

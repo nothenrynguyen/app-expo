@@ -4,8 +4,8 @@ import { MIT_LICENSE_TEXT, sourceLicenseReview } from "@/lib/source-licenses";
 import { SiteFooter } from "../SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Sources & Credits | App Expo",
-  description: "The public job-list sources, license review, attribution, and zero-cost commitments behind App Expo.",
+  title: "Data Sources | App Expo",
+  description: "Where App Expo finds listings and how those sources are checked and credited.",
 };
 
 const sourcesByRepository = new Map<string, string[]>();
@@ -24,36 +24,25 @@ export default function SourcesPage() {
     <main>
       <section className="sources-shell">
         <div className="sources-hero">
-          <p className="eyebrow">Sources &amp; credits</p>
-          <h1>Built in public.<br />Credited in public.</h1>
-          <p>App Expo combines maintained community job lists with direct employer career-page checks. This page records where the upstream feeds come from, what license was detected, and what remains unresolved.</p>
+          <p className="eyebrow">Data sources</p>
+          <h1>Where the listings come from.</h1>
+          <p>App Expo combines maintained community job lists, removes duplicates, and checks listings against employer career pages before sending you to the original application.</p>
         </div>
-
-        <section className="cost-commitment" aria-labelledby="cost-commitment-title">
-          <div>
-            <p className="eyebrow">Zero-cost commitment</p>
-            <h2 id="cost-commitment-title">No billing account. No paid gate.</h2>
-          </div>
-          <div>
-            <p>App Expo is intentionally operated without a payment method, usage-based billing, paid add-ons, or services that can create overage charges.</p>
-            <p>The site remains personal and non-commercial. Browsing, filtering, and following a direct application link do not require an account.</p>
-          </div>
-        </section>
 
         <section className="source-audit" aria-labelledby="source-audit-title">
           <div className="source-section-heading">
             <div>
-              <p className="eyebrow">Upstream review</p>
-              <h2 id="source-audit-title">Every catalog repository has a recorded status.</h2>
+              <p className="eyebrow">Community feeds</p>
+              <h2 id="source-audit-title">The projects that help surface openings.</h2>
             </div>
-            <p>Last reviewed {sourceLicenseReview.reviewedAt}. A missing license is shown as unresolved, never as permission.</p>
+            <p>Source information last reviewed {sourceLicenseReview.reviewedAt}. {licensedCount} repositories publish an MIT license; {unresolvedCount} have no license file detected.</p>
           </div>
 
-          <div className="source-summary" aria-label="Source license summary">
+          <div className="source-summary" aria-label="Data source summary">
             <div><strong>{sourceCatalog.sources.length}</strong><span>active feed entries</span></div>
             <div><strong>{licenses.length}</strong><span>unique repositories</span></div>
             <div><strong>{licensedCount}</strong><span>MIT licensed</span></div>
-            <div><strong>{unresolvedCount}</strong><span>need permission review</span></div>
+            <div><strong>{unresolvedCount}</strong><span>no license detected</span></div>
           </div>
 
           <div className="source-license-grid">
@@ -64,7 +53,7 @@ export default function SourcesPage() {
                 <article className="source-license-card" key={license.repository}>
                   <div className="source-license-topline">
                     <span className={`license-status ${licensed ? "licensed" : "unresolved"}`}>
-                      {licensed ? "MIT licensed" : "No license detected"}
+                      {licensed ? "MIT licensed" : "License not found"}
                     </span>
                     <span>{sourceNames.length} {sourceNames.length === 1 ? "feed" : "feeds"}</span>
                   </div>
@@ -91,12 +80,12 @@ export default function SourcesPage() {
 
         <section className="source-notices" aria-labelledby="source-notices-title">
           <div>
-            <p className="eyebrow">Attribution</p>
-            <h2 id="source-notices-title">MIT license notice</h2>
-            <p>The copyright notices shown above and this permission notice apply to the MIT-licensed repositories. Full notices are also preserved in the project&apos;s third-party notices file.</p>
+            <p className="eyebrow">Credits</p>
+            <h2 id="source-notices-title">Attribution, kept accessible.</h2>
+            <p>App Expo credits each community project above. Copyright and permission notices are preserved in the repository&apos;s third-party notices file.</p>
           </div>
           <details>
-            <summary>Read the MIT license text</summary>
+            <summary>View MIT permission notice</summary>
             <pre>{MIT_LICENSE_TEXT}</pre>
           </details>
         </section>
@@ -106,7 +95,7 @@ export default function SourcesPage() {
           <h2 id="source-disclaimer-title">Credit is not endorsement.</h2>
           <div>
             <p>Upstream maintainers do not sponsor, operate, or endorse App Expo. Company names and trademarks belong to their respective owners.</p>
-            <p>Job links lead to third-party employer or recruiting sites. Repository licenses can cover repository material without resolving every right associated with third-party job information, so commercial use requires a separate review.</p>
+            <p>Job links lead to third-party employer or recruiting sites. Listings can change or close at any time, so confirm the details on the employer&apos;s page before applying.</p>
           </div>
         </section>
       </section>

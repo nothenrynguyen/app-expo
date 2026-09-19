@@ -3,6 +3,7 @@ import test from "node:test";
 import { evaluateCompanyQuality, normalizeCompanyDisplayName, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
 import { deduplicateCrossSourceJobs } from "../lib/job-dedup";
 import { getFreshnessRejection } from "../lib/job-freshness";
+import { buildJobInsightsDay, updateJobInsightsHistory } from "../lib/job-insights";
 import { buildJobsSummary } from "../lib/job-summary";
 import { daysAgo } from "../lib/jobs";
 import { canonicalizeUrl, inferTerm, inferWorkMode, jobIdentity, normalizeDisplayText, parsePostedAt } from "../lib/source-normalization";
@@ -110,6 +111,41 @@ test("job summary keeps homepage counts aligned with the published collections",
     activeSources: 2,
     healthySources: 1,
   });
+});
+
+test("daily insights capture aggregates without storing individual jobs", () => {
+  const base = { company: "Example", term: "Not stated", regions: ["us" as const], postedAtSource: "exact" as const, linkedInUrl: null, salary: null, sources: ["Test"], verifiedCompany: true };
+  const snapshot = {
+    generatedAt: "2026-09-19T12:00:00Z",
+    jobs: [
+      { ...base, id: "intern", title: "Software Engineer Intern", category: "Internship", location: "Palo Alto, CA", metros: ["sf-bay-area" as const], workMode: "hybrid" as const, postedAt: "2026-09-18T12:00:00Z", applyUrl: "https://example.com/intern" },
+      { ...base, id: "fulltime", title: "Data Analyst, New Grad", category: "New grad", location: "New York, NY", metros: ["new-york-city" as const], workMode: "remote" as const, postedAt: "2026-09-01T12:00:00Z", applyUrl: "https://example.com/fulltime" },
+    ],
+    quarantinedCount: 4,
+    sourceHealth: [{ name: "Healthy", status: "ok" as const, rows: 2 }],
+  };
+  const day = buildJobInsightsDay(snapshot, { closedPostingsCaught: 3 });
+  assert.equal(day.date, "2026-09-19");
+  assert.equal(day.openRoles, 2);
+  assert.equal(day.internships, 1);
+  assert.equal(day.fulltime, 1);
+  assert.equal(day.freshListings7d, 1);
+  assert.equal(day.activeCompanies, 1);
+  assert.equal(day.workModes.hybrid, 1);
+  assert.equal(day.workModes.remote, 1);
+  assert.equal(day.regions.us, 2);
+  assert.equal(day.metros["sf-bay-area"], 1);
+  assert.equal(day.metros["new-york-city"], 1);
+  assert.equal(day.roleAreas.software, 1);
+  assert.equal(day.roleAreas["data-science"], 1);
+  assert.equal("jobs" in day, false);
+});
+
+test("daily insights replace the same date and retain a bounded history", () => {
+  const day = buildJobInsightsDay({ generatedAt: "2026-09-19T12:00:00Z", jobs: [], quarantinedCount: 0, sourceHealth: [] });
+  const yesterday = { ...day, date: "2026-09-18", openRoles: 10 };
+  const replacement = { ...day, openRoles: 12 };
+  assert.deepEqual(updateJobInsightsHistory({ version: 1, days: [yesterday, day] }, replacement, 1).days, [replacement]);
 });
 
 test("verified and substantial-US-employment companies pass", () => {

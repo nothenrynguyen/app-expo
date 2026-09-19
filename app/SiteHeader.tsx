@@ -9,7 +9,7 @@ export function SiteHeader() {
         <Link href="/">Home</Link>
         <Link href="/#about">About</Link>
         <Link href="/methodology">Methodology</Link>
-        <Link href="/sources">Sources</Link>
+        <Link href="/sources">Data sources</Link>
       </nav>
     </header>
   );

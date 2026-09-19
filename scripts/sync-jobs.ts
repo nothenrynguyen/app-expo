@@ -6,6 +6,7 @@ import { discoverAtsBoard, fetchAtsBoard, type AtsBoardResult } from "../lib/ats
 import { evaluateCompanyQuality, normalizeCompanyDisplayName, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
 import { deduplicateCrossSourceJobs } from "../lib/job-dedup";
 import { getFreshnessRejection } from "../lib/job-freshness";
+import { buildJobInsightsDay, updateJobInsightsHistory, type JobInsightsHistory } from "../lib/job-insights";
 import { isInCollection } from "../lib/job-collections";
 import { buildJobsSummary } from "../lib/job-summary";
 import { needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
@@ -512,6 +513,16 @@ async function main() {
   await mkdir(path.join(root, "data"), { recursive: true });
   await writeFile(listingHealthPath, `${JSON.stringify(listingHealth, null, 2)}\n`);
   await writeFile(path.join(root, "data/company-boards.json"), `${JSON.stringify(boardRegistry, null, 2)}\n`);
+  await mkdir(path.join(root, "public"), { recursive: true });
+  const insightsHistoryPath = path.join(root, "public/insights-history.json");
+  const insightsHistory = await readFile(insightsHistoryPath, "utf8")
+    .then((value) => JSON.parse(value) as JobInsightsHistory)
+    .catch(() => ({ version: 1 as const, days: [] }));
+  const nextInsightsHistory = updateJobInsightsHistory(
+    insightsHistory,
+    buildJobInsightsDay(snapshot, { closedPostingsCaught }),
+  );
+  await writeFile(insightsHistoryPath, `${JSON.stringify(nextInsightsHistory, null, 2)}\n`);
 
   const materialSnapshot = { jobs: snapshot.jobs, quarantinedCount: snapshot.quarantinedCount, sourceHealth: snapshot.sourceHealth };
   const previousMaterial = previous && { jobs: previous.jobs, quarantinedCount: previous.quarantinedCount, sourceHealth: previous.sourceHealth };
@@ -521,7 +532,6 @@ async function main() {
     return;
   }
 
-  await mkdir(path.join(root, "public"), { recursive: true });
   const temporary = `${output}.tmp`;
   await writeFile(temporary, `${JSON.stringify(snapshot, null, 2)}\n`);
   await rename(temporary, output);

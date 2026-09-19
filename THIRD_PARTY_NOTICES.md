@@ -39,6 +39,6 @@ No license file was detected for these repositories at review time:
 - speedyapply/2027-AI-College-Jobs
 - speedyapply/2027-SWE-College-Jobs
 
-Their public availability is not treated as permission for commercial reuse. App Expo remains non-commercial, records this unresolved status publicly, and would require explicit permission or source removal before monetization.
+No general reuse permission is inferred from public availability. Their license status is retained here as part of App Expo's source record.
 
 Company names and trademarks belong to their respective owners. Job links lead to third-party employer or recruiting sites; App Expo is not affiliated with or endorsed by those employers or upstream maintainers.

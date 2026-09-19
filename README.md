@@ -10,4 +10,4 @@ App Expo is a free early-career job board that collects and checks internships a
 - [Third-party notices](THIRD_PARTY_NOTICES.md)
 - [Machine-readable source license review](data/source-licenses.json)
 
-App Expo is operated as a personal, non-commercial project. Upstream source and license status is also published on the site's **Sources & Credits** page.
+Upstream projects are credited on the site's **Data sources** page, with complete permission notices preserved in this repository.
