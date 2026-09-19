@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { JobBoard } from "../JobBoard";
+import { PageTransition } from "../PageTransition";
 import { SiteFooter } from "../SiteFooter";
 
 export default function InternshipsPage() {
@@ -7,7 +8,7 @@ export default function InternshipsPage() {
 }
 
 function BoardPage({ title, description, type }: { title: string; description: string; type: "internships" | "fulltime" }) {
-  return (
+  return <PageTransition>
     <main>
       <section className="board-shell">
         <div className="board-intro">
@@ -18,5 +19,5 @@ function BoardPage({ title, description, type }: { title: string; description: s
       </section>
       <SiteFooter />
     </main>
-  );
+  </PageTransition>;
 }

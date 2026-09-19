@@ -7,7 +7,6 @@ export function SiteHeader() {
       <Link className="wordmark" href="/"><LogoMark />App Expo</Link>
       <nav className="header-links" aria-label="Primary navigation">
         <Link href="/">Home</Link>
-        <Link href="/#about">About</Link>
         <Link href="/methodology">Methodology</Link>
         <Link href="/sources">Data sources</Link>
       </nav>

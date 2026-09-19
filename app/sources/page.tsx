@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import sourceCatalog from "@/data/sources.json";
 import { MIT_LICENSE_TEXT, sourceLicenseReview } from "@/lib/source-licenses";
+import { AnimatedCount } from "../AnimatedCount";
+import { PageTransition } from "../PageTransition";
 import { SiteFooter } from "../SiteFooter";
 
 export const metadata: Metadata = {
@@ -20,28 +22,21 @@ const licensedCount = licenses.filter((license) => license.status === "licensed"
 const unresolvedCount = licenses.length - licensedCount;
 
 export default function SourcesPage() {
-  return (
+  return <PageTransition>
     <main>
       <section className="sources-shell">
         <div className="sources-hero">
+          <h1 className="sr-only">Data sources</h1>
           <p className="eyebrow">Data sources</p>
           <p>App Expo combines maintained community job lists, removes duplicates, and checks listings against employer career pages before sending you to the original application.</p>
         </div>
 
-        <section className="source-audit" aria-labelledby="source-audit-title">
-          <div className="source-section-heading">
-            <div>
-              <p className="eyebrow">Community feeds</p>
-              <h1 id="source-audit-title">The projects that help surface openings.</h1>
-            </div>
-            <p>Source information last reviewed {sourceLicenseReview.reviewedAt}. {licensedCount} repositories publish an MIT license; {unresolvedCount} have no license file detected.</p>
-          </div>
-
+        <section className="source-audit" aria-label="Community data sources">
           <div className="source-summary" aria-label="Data source summary">
-            <div><strong>{sourceCatalog.sources.length}</strong><span>active feed entries</span></div>
-            <div><strong>{licenses.length}</strong><span>unique repositories</span></div>
-            <div><strong>{licensedCount}</strong><span>MIT licensed</span></div>
-            <div><strong>{unresolvedCount}</strong><span>no license detected</span></div>
+            <div><AnimatedCount value={sourceCatalog.sources.length} /><span>active feed entries</span></div>
+            <div><AnimatedCount value={licenses.length} /><span>unique repositories</span></div>
+            <div><AnimatedCount value={licensedCount} /><span>MIT licensed</span></div>
+            <div><AnimatedCount value={unresolvedCount} /><span>no license detected</span></div>
           </div>
 
           <div className="source-license-list">
@@ -108,5 +103,5 @@ export default function SourcesPage() {
       </section>
       <SiteFooter />
     </main>
-  );
+  </PageTransition>;
 }

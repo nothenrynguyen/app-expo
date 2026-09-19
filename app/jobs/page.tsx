@@ -1,9 +1,10 @@
 import { Suspense } from "react";
 import { JobBoard } from "../JobBoard";
+import { PageTransition } from "../PageTransition";
 import { SiteFooter } from "../SiteFooter";
 
 export default function JobsPage() {
-  return (
+  return <PageTransition>
     <main>
       <section className="board-shell">
         <div className="board-intro">
@@ -14,5 +15,5 @@ export default function JobsPage() {
       </section>
       <SiteFooter />
     </main>
-  );
+  </PageTransition>;
 }

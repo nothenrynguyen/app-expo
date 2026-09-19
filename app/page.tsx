@@ -1,8 +1,9 @@
 import { LandingCollections } from "./LandingCollections";
+import { PageTransition } from "./PageTransition";
 import { SiteFooter } from "./SiteFooter";
 
 export default function Home() {
-  return (
+  return <PageTransition>
     <main>
       <section className="landing-shell">
         <p className="eyebrow">A no-friction job board</p>
@@ -30,5 +31,5 @@ export default function Home() {
       </section>
       <SiteFooter />
     </main>
-  );
+  </PageTransition>;
 }

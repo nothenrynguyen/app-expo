@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { MethodologyStats } from "../MethodologyStats";
+import { PageTransition } from "../PageTransition";
 import { SiteFooter } from "../SiteFooter";
 
 export const metadata: Metadata = {
@@ -41,7 +42,7 @@ const steps = [
 ];
 
 export default function MethodologyPage() {
-  return (
+  return <PageTransition>
     <main>
       <section className="methodology-shell">
         <div className="methodology-hero">
@@ -71,5 +72,5 @@ export default function MethodologyPage() {
       </section>
       <SiteFooter />
     </main>
-  );
+  </PageTransition>;
 }
