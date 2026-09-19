@@ -14,6 +14,8 @@ import { applySmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../lib/
 import { parseApplyGuySource, parseMarkdownSource, sourceAllowsAtsExpansion } from "../scripts/sync-jobs";
 import { classifyJobRegions, formatSnapshotAge, getSupportedJobRegions, normalizeJobLocation } from "../lib/job-locations";
 import { isDiscoverableYearlyRepository } from "../scripts/maintain-sources";
+import sourceCatalog from "../data/sources.json";
+import { sourceLicenseReview } from "../lib/source-licenses";
 
 const registry: VerifiedCompany[] = [{
   name: "Figma",
@@ -287,4 +289,22 @@ test("listing checks only remove confirmed closed pages", () => {
   assert.equal(classifyListingResponse(200, "This position has been filled."), "closed");
   assert.equal(classifyListingResponse(200, "Apply for this open position"), "live");
   assert.equal(needsListingCheck({ url: "https://example.com/job", status: "live", checkedAt: "2026-08-12T00:00:00Z", httpStatus: 200 }, new Date("2026-08-12T12:00:00Z")), false);
+});
+
+test("every upstream repository has explicit license review metadata", () => {
+  const catalogRepositories = [...new Set(sourceCatalog.sources.map((source) => source.repository))].sort();
+  const reviewedRepositories = sourceLicenseReview.repositories.map((record) => record.repository).sort();
+  assert.deepEqual(reviewedRepositories, catalogRepositories);
+
+  for (const record of sourceLicenseReview.repositories) {
+    if (record.status === "licensed") {
+      assert.equal(record.spdxId, "MIT");
+      assert.ok(record.licenseUrl);
+      assert.ok(record.copyright);
+    } else {
+      assert.equal(record.spdxId, null);
+      assert.equal(record.licenseUrl, null);
+      assert.match(record.note, /not treated as permission/i);
+    }
+  }
 });

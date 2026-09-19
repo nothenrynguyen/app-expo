@@ -50,6 +50,7 @@ Continue expanding and refining the source coverage behind each role filter whil
 
 ## Completed
 
+- [x] Publish source credits, license status, third-party notices, and a zero-cost operating policy
 - [x] Separate internship and full-time boards
 - [x] Direct employer application links without sign-up gates
 - [x] Hourly job refreshes
