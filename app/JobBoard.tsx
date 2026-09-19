@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { daysAgo, type JobsSnapshot, type PublicJob } from "@/lib/jobs";
-import { formatSnapshotAge, getSupportedJobRegions, JOB_REGIONS, normalizeJobLocation, type JobRegion } from "@/lib/job-locations";
+import { classifyJobMetros, formatSnapshotAge, getSupportedJobRegions, JOB_METROS, JOB_REGIONS, normalizeJobLocation, type JobMetro, type JobRegion } from "@/lib/job-locations";
 import { isInCollection } from "@/lib/job-collections";
 import { companyTierLabel, hasCompanyTier, type CompanyTier } from "@/lib/company-tiers";
 import { isRoleArea, matchesRoleArea, ROLE_AREAS } from "@/lib/role-areas";
@@ -51,6 +51,7 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
   const [error, setError] = useState(false);
   const [query, setQuery] = useState("");
   const [regions, setRegions] = useState<JobRegion[]>(["us"]);
+  const [metros, setMetros] = useState<JobMetro[]>([]);
   const [modes, setModes] = useState<string[]>([]);
   const [selectedTerms, setSelectedTerms] = useState<string[]>([]);
   const [companyTiers, setCompanyTiers] = useState<CompanyTier[]>([]);
@@ -80,6 +81,15 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
   }, [exitingView]);
 
   const terms = useMemo(() => [...new Set((snapshot?.jobs ?? []).map((job) => job.term).filter((value) => value !== "Not stated"))].sort(), [snapshot]);
+  const metroOptions = useMemo(() => {
+    const available = new Set(
+      (snapshot?.jobs ?? [])
+        .filter((job) => isInCollection(job, type))
+        .filter((job) => regions.length === 0 || regions.some((region) => (job.regions ?? getSupportedJobRegions(job.location)).includes(region)))
+        .flatMap((job) => job.metros ?? classifyJobMetros(job.location)),
+    );
+    return JOB_METROS.filter(([metro]) => available.has(metro));
+  }, [snapshot, type, regions]);
   const jobs = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
     return (snapshot?.jobs ?? []).filter((job) => {
@@ -88,11 +98,12 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
       return inCollection && (!normalizedQuery || search.includes(normalizedQuery))
         && matchesRoleArea(job, roleArea)
         && (regions.length === 0 || regions.some((region) => (job.regions ?? getSupportedJobRegions(job.location)).includes(region)))
+        && (metros.length === 0 || metros.some((metro) => (job.metros ?? classifyJobMetros(job.location)).includes(metro)))
         && (modes.length === 0 || modes.includes(job.workMode))
         && (selectedTerms.length === 0 || selectedTerms.includes(job.term))
         && (companyTiers.length === 0 || companyTiers.some((tier) => hasCompanyTier(job.company, tier)));
     }).sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime());
-  }, [snapshot, type, roleArea, query, regions, modes, selectedTerms, companyTiers]);
+  }, [snapshot, type, roleArea, query, regions, metros, modes, selectedTerms, companyTiers]);
 
   if (error) return <p className="state-card">The latest job snapshot could not be loaded. Please try again shortly.</p>;
   if (!snapshot) return <p className="state-card">Loading verified jobs…</p>;
@@ -140,7 +151,8 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
     <div className="board-stats"><span><i />Live</span><strong>{jobs.length}</strong> matching roles <span className="updated" title={new Date(snapshot.generatedAt).toLocaleString()}>Last updated: {formatSnapshotAge(snapshot.generatedAt, now)}</span></div>
     <section className="filters" aria-label="Job filters">
       <label className="search-field"><span>Search</span><input value={query} onChange={(event) => { setQuery(event.target.value); setPage(0); }} placeholder="Company or role" /></label>
-      <MultiFilter label="Location" values={regions} onChange={(values) => { setRegions(values as JobRegion[]); setPage(0); }} options={JOB_REGIONS} allLabel="All locations" />
+      <MultiFilter label="Location" values={regions} onChange={(values) => { setRegions(values as JobRegion[]); setMetros([]); setPage(0); }} options={JOB_REGIONS} allLabel="All locations" />
+      <MultiFilter label="Metro area" values={metros} onChange={(values) => { setMetros(values as JobMetro[]); setPage(0); }} options={metroOptions} allLabel="All metros" />
       <MultiFilter label="Workplace" values={modes} onChange={(values) => { setModes(values); setPage(0); }} options={[["remote", "Remote"], ["hybrid", "Hybrid"], ["in_person", "In person"]]} />
       <MultiFilter label="Term" values={selectedTerms} onChange={(values) => { setSelectedTerms(values); setPage(0); }} options={terms.map((value) => [value, value] as [string, string])} />
       <MultiFilter label="Company tier" values={companyTiers} onChange={(values) => { setCompanyTiers(values as CompanyTier[]); setPage(0); }} options={[["faang_plus", "FAANG+"], ["fortune_500", "Fortune 500"]]} />

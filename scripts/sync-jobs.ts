@@ -23,7 +23,7 @@ import {
   stableJobId,
   type CandidateJob,
 } from "../lib/source-normalization";
-import { getSupportedJobRegions, normalizeJobLocation } from "../lib/job-locations";
+import { classifyJobMetros, getSupportedJobRegions, normalizeJobLocation } from "../lib/job-locations";
 
 type EngineJob = {
   company: string;
@@ -461,6 +461,7 @@ async function main() {
       term: candidate.term,
       location: normalizeJobLocation(candidate.location),
       regions: supportedRegions,
+      metros: classifyJobMetros(candidate.location),
       workMode: candidate.workMode,
       postedAt: keepPriorDate ? prior.postedAt : candidate.postedAt,
       postedAtSource: keepPriorDate ? prior.postedAtSource : candidate.postedAtSource,
@@ -486,6 +487,7 @@ async function main() {
           company: normalizeCompanyDisplayName(prior.company, prior.applyUrl),
           location,
           regions: getSupportedJobRegions(location),
+          metros: classifyJobMetros(location),
         });
       }
     }

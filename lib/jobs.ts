@@ -7,6 +7,7 @@ export type PublicJob = {
   term: string;
   location: string;
   regions?: import("./job-locations").JobRegion[];
+  metros?: import("./job-locations").JobMetro[];
   workMode: "remote" | "hybrid" | "in_person" | "unknown";
   postedAt: string;
   postedAtSource: PostedAtSource;

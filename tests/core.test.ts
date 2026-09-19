@@ -12,7 +12,7 @@ import { discoverAtsBoard, isEarlyCareerTitle } from "../lib/ats-boards";
 import { classifyListingResponse, needsListingCheck } from "../lib/listing-health";
 import { applySmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
 import { parseApplyGuySource, parseMarkdownSource, sourceAllowsAtsExpansion } from "../scripts/sync-jobs";
-import { classifyJobRegions, formatSnapshotAge, getSupportedJobRegions, normalizeJobLocation } from "../lib/job-locations";
+import { classifyJobMetros, classifyJobRegions, formatSnapshotAge, getSupportedJobRegions, normalizeJobLocation } from "../lib/job-locations";
 import { isDiscoverableYearlyRepository } from "../scripts/maintain-sources";
 import sourceCatalog from "../data/sources.json";
 import { sourceLicenseReview } from "../lib/source-licenses";
@@ -55,6 +55,18 @@ test("job locations are normalized and limited to supported regions", () => {
   assert.deepEqual(getSupportedJobRegions("Singapore"), []);
   assert.deepEqual(getSupportedJobRegions("Location not stated"), []);
   assert.deepEqual(getSupportedJobRegions("London, United Kingdom; New York, NY"), ["europe", "us"]);
+});
+
+test("job locations are grouped into useful metro areas", () => {
+  assert.deepEqual(classifyJobMetros("San Francisco, CA; Mountain View, CA"), ["sf-bay-area"]);
+  assert.deepEqual(classifyJobMetros("New York, NY; Seattle, WA"), ["new-york-city", "seattle"]);
+  assert.deepEqual(classifyJobMetros("Arlington, VA"), ["washington-dc"]);
+  assert.deepEqual(classifyJobMetros("Washington, District of Columbia"), ["washington-dc"]);
+  assert.deepEqual(classifyJobMetros("Arlington, TX"), []);
+  assert.deepEqual(classifyJobMetros("Toronto, ON, Canada"), ["toronto"]);
+  assert.deepEqual(classifyJobMetros("London, United Kingdom"), ["london"]);
+  assert.deepEqual(classifyJobMetros("London, ON, Canada"), []);
+  assert.deepEqual(classifyJobMetros("Madison, WI"), []);
 });
 
 test("snapshot age uses useful minute and hour labels", () => {

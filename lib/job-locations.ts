@@ -7,6 +7,44 @@ export const JOB_REGIONS = [
 export type JobRegion = (typeof JOB_REGIONS)[number][0];
 type DetectedJobRegion = JobRegion | "asia" | "australia_nz" | "latin_america" | "other_unknown";
 
+export const JOB_METROS = [
+  ["sf-bay-area", "SF Bay Area"],
+  ["new-york-city", "New York City"],
+  ["seattle", "Seattle"],
+  ["boston", "Boston"],
+  ["los-angeles", "Los Angeles / Orange County"],
+  ["austin", "Austin"],
+  ["chicago", "Chicago"],
+  ["washington-dc", "Washington, DC / Northern Virginia"],
+  ["dallas-fort-worth", "Dallas–Fort Worth"],
+  ["atlanta", "Atlanta"],
+  ["denver-boulder", "Denver / Boulder"],
+  ["raleigh-durham", "Raleigh–Durham"],
+  ["toronto", "Toronto"],
+  ["vancouver", "Vancouver"],
+  ["london", "London"],
+] as const;
+
+export type JobMetro = (typeof JOB_METROS)[number][0];
+
+const METRO_PATTERNS: ReadonlyArray<readonly [JobMetro, RegExp]> = [
+  ["sf-bay-area", /\b(san francisco|south san francisco|oakland|berkeley|emeryville|san jose|santa clara|sunnyvale|mountain view|palo alto|redwood city|menlo park|cupertino|fremont|san mateo|foster city|pleasanton),?\s*(?:ca|california)?\b/i],
+  ["new-york-city", /\b(new york(?: city)?|nyc|manhattan|brooklyn|queens|bronx|staten island),?\s*(?:ny|new york)?\b|\b(jersey city|newark|hoboken),?\s*(?:nj|new jersey)?\b/i],
+  ["seattle", /\b(seattle|bellevue|redmond|kirkland|renton),?\s*(?:wa|washington)?\b/i],
+  ["boston", /\b(boston|cambridge|somerville|waltham|needham),?\s*(?:ma|massachusetts)?\b/i],
+  ["los-angeles", /\b(los angeles|santa monica|culver city|pasadena|el segundo|irvine|costa mesa|newport beach|anaheim),?\s*(?:ca|california)?\b/i],
+  ["austin", /\b(austin|round rock),?\s*(?:tx|texas)?\b/i],
+  ["chicago", /\b(chicago|evanston),?\s*(?:il|illinois)?\b/i],
+  ["washington-dc", /\bwashington,?\s*(?:dc|d\.c\.|district of columbia)\b|\b(arlington|alexandria|mclean|reston|herndon|fairfax|falls church|tysons),?\s*(?:va|virginia)\b/i],
+  ["dallas-fort-worth", /\b(dallas|fort worth|plano|frisco|irving|richardson),?\s*(?:tx|texas)?\b/i],
+  ["atlanta", /\b(atlanta|alpharetta|sandy springs),?\s*(?:ga|georgia)?\b/i],
+  ["denver-boulder", /\b(denver|boulder|broomfield),?\s*(?:co|colorado)?\b|\baurora,?\s*(?:co|colorado)\b/i],
+  ["raleigh-durham", /\b(raleigh|durham|cary|research triangle park),?\s*(?:nc|north carolina)?\b/i],
+  ["toronto", /\b(toronto|mississauga|markham|brampton),?\s*(?:on|ontario)(?:,?\s*canada)?\b/i],
+  ["vancouver", /\b(vancouver|burnaby|richmond),?\s*(?:bc|british columbia)(?:,?\s*canada)?\b/i],
+  ["london", /\blondon,?\s*(?:united kingdom|england|uk)(?:\s*;|$)/i],
+];
+
 const US_STATE_CODES = new Set([
   "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY", "DC",
 ]);
@@ -79,6 +117,11 @@ export function classifyJobRegions(location: string): DetectedJobRegion[] {
 
 export function getSupportedJobRegions(location: string): JobRegion[] {
   return classifyJobRegions(location).filter((region): region is JobRegion => region === "us" || region === "canada" || region === "europe");
+}
+
+export function classifyJobMetros(location: string): JobMetro[] {
+  const normalized = normalizeJobLocation(location);
+  return METRO_PATTERNS.filter(([, pattern]) => pattern.test(normalized)).map(([metro]) => metro);
 }
 
 export function formatSnapshotAge(generatedAt: string, now = new Date()): string {
