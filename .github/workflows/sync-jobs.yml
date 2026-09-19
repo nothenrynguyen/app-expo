@@ -10,8 +10,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: verified-job-sync
-  cancel-in-progress: true
+  group: app-expo-data-writes
+  cancel-in-progress: false
 
 jobs:
   sync:
@@ -36,4 +36,5 @@ jobs:
           git config user.email "app-expo-bot@users.noreply.github.com"
           git add public/jobs.json public/internships.json public/fulltime.json public/summary.json public/insights-history.json data/quarantine.json data/listing-health.json data/company-boards.json
           git commit -m "data: refresh verified jobs"
+          git pull --rebase origin main
           git push

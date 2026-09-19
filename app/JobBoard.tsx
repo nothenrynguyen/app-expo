@@ -109,7 +109,8 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
   if (!snapshot) return <p className="state-card">Loading verified jobs…</p>;
 
   const pageCount = Math.max(1, Math.ceil(jobs.length / PAGE_SIZE));
-  const visibleJobs = jobs.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
+  const safePage = Math.min(page, pageCount - 1);
+  const visibleJobs = jobs.slice(safePage * PAGE_SIZE, (safePage + 1) * PAGE_SIZE);
   const emptyMessage = query.trim().toLowerCase() === "henwoo" ? "lmaoo imagine if this actually returned smth" : "No verified jobs match these filters.";
   const changeView = (nextView: ViewMode) => {
     if (nextView === activeView) return;
@@ -163,7 +164,7 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
       {exitingView === "cards" && renderCardsView("panel-exit cards-exit")}
       {activeView === "compact" ? renderCompactView(isSwitching ? "panel-enter compact-enter" : "") : renderCardsView(isSwitching ? "panel-enter cards-enter" : "")}
     </div>
-    {jobs.length > PAGE_SIZE && <nav className="pagination" aria-label="Job pages"><button disabled={page === 0} onClick={() => setPage(page - 1)}>Previous</button><span>Page {page + 1} of {pageCount}</span><button disabled={page + 1 === pageCount} onClick={() => setPage(page + 1)}>Next</button></nav>}
+    {jobs.length > PAGE_SIZE && <nav className="pagination" aria-label="Job pages"><button disabled={safePage === 0} onClick={() => setPage(safePage - 1)}>Previous</button><span>Page {safePage + 1} of {pageCount}</span><button disabled={safePage + 1 === pageCount} onClick={() => setPage(safePage + 1)}>Next</button></nav>}
   </>;
 }
 

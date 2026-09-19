@@ -12,7 +12,7 @@ import { classifyRoleArea } from "../lib/role-areas";
 import { discoverAtsBoard, isEarlyCareerTitle } from "../lib/ats-boards";
 import { classifyListingResponse, needsListingCheck } from "../lib/listing-health";
 import { applySmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
-import { parseApplyGuySource, parseMarkdownSource, sourceAllowsAtsExpansion } from "../scripts/sync-jobs";
+import { parseApplyGuySource, parseMarkdownSource, sourceAllowsAtsExpansion } from "../lib/source-parsers";
 import { classifyJobMetros, classifyJobRegions, formatSnapshotAge, getSupportedJobRegions, normalizeJobLocation } from "../lib/job-locations";
 import { isDiscoverableYearlyRepository } from "../scripts/maintain-sources";
 import sourceCatalog from "../data/sources.json";
@@ -339,10 +339,10 @@ test("listing checks only remove confirmed closed pages", () => {
   assert.equal(needsListingCheck({ url: "https://example.com/job", status: "live", checkedAt: "2026-08-12T00:00:00Z", httpStatus: 200 }, new Date("2026-08-12T12:00:00Z")), false);
 });
 
-test("every upstream repository has explicit license review metadata", () => {
-  const catalogRepositories = [...new Set(sourceCatalog.sources.map((source) => source.repository))].sort();
+test("every active upstream repository has explicit license review metadata", () => {
+  const catalogRepositories = [...new Set(sourceCatalog.sources.filter((source) => source.active).map((source) => source.repository))].sort();
   const reviewedRepositories = sourceLicenseReview.repositories.map((record) => record.repository).sort();
-  assert.deepEqual(reviewedRepositories, catalogRepositories);
+  assert.deepEqual(catalogRepositories.filter((repository) => !reviewedRepositories.includes(repository)), []);
 
   for (const record of sourceLicenseReview.repositories) {
     if (record.status === "licensed") {

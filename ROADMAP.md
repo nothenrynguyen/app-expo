@@ -44,7 +44,7 @@ Continue expanding and refining the source coverage behind each role filter whil
 ## Job board improvements
 
 - [x] Add role buttons that open prefiltered job-board views
-- [ ] Consider state and metro-area location filters
+- [x] Add region and metro-area location filters
 - [ ] Consider role-area filters within software, such as software engineering, data, product design, and security
 - [ ] Consider a way to hide jobs a visitor has already reviewed on their current device
 

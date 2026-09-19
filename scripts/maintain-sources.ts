@@ -2,7 +2,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import type { JobSource, SourceCatalog, SourceHealthRecord, SourceHealthState } from "../lib/source-catalog";
-import { parseMarkdownSource } from "./sync-jobs";
+import { parseMarkdownSource } from "../lib/source-parsers";
 
 type MaintenanceMode = "daily" | "weekly" | "monthly";
 type GithubRepository = { full_name: string; default_branch: string; archived: boolean; pushed_at: string | null; name: string };
@@ -136,8 +136,8 @@ async function runWeekly(catalog: SourceCatalog) {
             path: sourcePath,
             branch: repository.default_branch,
             cycle,
-            active: true,
-            trustedCoverage: owner.toLowerCase() === "simplifyjobs" || (owner.toLowerCase() === "speedyapply" && /new_grad/i.test(sourcePath)),
+            active: false,
+            trustedCoverage: false,
           });
           existing.add(id.toLowerCase());
         } catch {
@@ -176,7 +176,8 @@ function runMonthly(catalog: SourceCatalog, state: SourceHealthState) {
 function report(catalog: SourceCatalog, state: SourceHealthState): string {
   const rows = catalog.sources.map((source) => {
     const health = state.sources[source.id] ?? emptyHealth();
-    return `| ${source.active ? "Active" : "Retired"} | ${source.name.replace(/\|/g, "/")} | ${source.cycle ?? "Unknown"} | ${health.status} | ${health.lastRows} | ${health.lastSuccessAt ?? "Never"} |`;
+    const catalogStatus = source.active ? "Active" : health.status === "retired" ? "Retired" : "Pending review";
+    return `| ${catalogStatus} | ${source.name.replace(/\|/g, "/")} | ${source.cycle ?? "Unknown"} | ${health.status} | ${health.lastRows} | ${health.lastSuccessAt ?? "Never"} |`;
   });
   return ["# App Expo source report", "", `Generated ${new Date().toISOString()}.`, "", "| Catalog | Source | Cycle | Health | Parsed jobs | Last success |", "| --- | --- | ---: | --- | ---: | --- |", ...rows, "", "Sources are retired only after sustained failures, repeated empty results, or replacement by a newer maintained cycle.", ""].join("\n");
 }
