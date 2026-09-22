@@ -9,6 +9,7 @@ import { classifyJobMetros, formatSnapshotAge, getSupportedJobRegions, JOB_METRO
 import { isInCollection } from "@/lib/job-collections";
 import { companyTierLabel, hasCompanyTier, type CompanyTier } from "@/lib/company-tiers";
 import { isRoleArea, matchesRoleArea, ROLE_AREAS } from "@/lib/role-areas";
+import { useSavedJobs } from "./useSavedJobs";
 
 const PAGE_SIZE = 100;
 const LAYOUT_TRANSITION_MS = 1050;
@@ -55,12 +56,14 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
   const [modes, setModes] = useState<string[]>([]);
   const [selectedTerms, setSelectedTerms] = useState<string[]>([]);
   const [companyTiers, setCompanyTiers] = useState<CompanyTier[]>([]);
+  const [savedOnly, setSavedOnly] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>("compact");
   const [activeView, setActiveView] = useState<ViewMode>("compact");
   const [exitingView, setExitingView] = useState<ViewMode | null>(null);
   const [page, setPage] = useState(0);
   const [expanded, setExpanded] = useState<string | null>(null);
   const [now, setNow] = useState(() => new Date());
+  const { ids: savedJobIds, toggle: toggleSavedJob } = useSavedJobs();
 
   useEffect(() => {
     fetch(`/${type}.json`, { cache: "no-store" }).then((response) => {
@@ -101,9 +104,10 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
         && (metros.length === 0 || metros.some((metro) => (job.metros ?? classifyJobMetros(job.location)).includes(metro)))
         && (modes.length === 0 || modes.includes(job.workMode))
         && (selectedTerms.length === 0 || selectedTerms.includes(job.term))
-        && (companyTiers.length === 0 || companyTiers.some((tier) => hasCompanyTier(job.company, tier)));
+        && (companyTiers.length === 0 || companyTiers.some((tier) => hasCompanyTier(job.company, tier)))
+        && (!savedOnly || savedJobIds.has(job.id));
     }).sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime());
-  }, [snapshot, type, roleArea, query, regions, metros, modes, selectedTerms, companyTiers]);
+  }, [snapshot, type, roleArea, query, regions, metros, modes, selectedTerms, companyTiers, savedOnly, savedJobIds]);
 
   if (error) return <p className="state-card">The latest job snapshot could not be loaded. Please try again shortly.</p>;
   if (!snapshot) return <p className="state-card">Loading verified jobs…</p>;
@@ -111,7 +115,8 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
   const pageCount = Math.max(1, Math.ceil(jobs.length / PAGE_SIZE));
   const safePage = Math.min(page, pageCount - 1);
   const visibleJobs = jobs.slice(safePage * PAGE_SIZE, (safePage + 1) * PAGE_SIZE);
-  const emptyMessage = query.trim().toLowerCase() === "henwoo" ? "lmaoo imagine if this actually returned smth" : "No verified jobs match these filters.";
+  const savedInCollectionCount = snapshot.jobs.filter((job) => isInCollection(job, type) && savedJobIds.has(job.id)).length;
+  const emptyMessage = savedOnly ? "No saved jobs match these filters." : query.trim().toLowerCase() === "henwoo" ? "lmaoo imagine if this actually returned smth" : "No verified jobs match these filters.";
   const changeView = (nextView: ViewMode) => {
     if (nextView === activeView) return;
     setViewMode(nextView);
@@ -120,13 +125,15 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
   };
   const renderCompactView = (className = "") => <div className={`layout-panel compact-panel ${className}`}>
     <div className="job-table" role="table" aria-label="Verified jobs">
-      <div className="job-table-head" role="row"><span role="columnheader">Company</span><span role="columnheader">Position</span><span role="columnheader">Location</span><span role="columnheader">Apply</span><span role="columnheader">LinkedIn</span></div>
+      <div className="job-table-head" role="row"><span role="columnheader">Company</span><span role="columnheader">Position</span><span role="columnheader">Location</span><span role="columnheader">Save</span><span role="columnheader">Apply</span><span role="columnheader">LinkedIn</span></div>
       {visibleJobs.map((job) => {
         const location = getLocationDisplay(job.location);
+        const isSaved = savedJobIds.has(job.id);
         return <article className="job-table-row" role="row" key={job.id}>
           <div className="job-table-company" role="cell" data-label="Company">{displayText(job.company)}</div>
           <div className="job-table-title" role="cell" data-label="Position">{displayText(job.title)}</div>
           <div className="job-table-location" role="cell" data-label="Location">{location.hasMore ? <span className="location-with-more" tabIndex={0}><span className="location-label">{location.compact}</span><span className="location-popover" role="tooltip">{location.full}</span></span> : location.compact}</div>
+          <div className="job-table-action" role="cell" data-label="Save"><SaveButton compact isSaved={isSaved} job={job} onToggle={() => toggleSavedJob(job.id)} /></div>
           <div className="job-table-action" role="cell" data-label="Apply"><a className="button table-button primary" href={job.applyUrl} target="_blank" rel="noreferrer">Apply</a></div>
           <div className="job-table-action" role="cell" data-label="LinkedIn"><a className="button table-button secondary" href={job.linkedInUrl ?? `https://www.linkedin.com/search/results/companies/?keywords=${encodeURIComponent(job.company)}`} target="_blank" rel="noreferrer">LinkedIn</a></div>
         </article>;
@@ -140,7 +147,7 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
         {showCompanyLogos && <CompanyLogo company={job.company} />}
         <div className="job-main"><p className="company">{displayText(job.company)}</p><h2>{displayText(job.title)}</h2><div className="job-meta"><span>{displayText(normalizeJobLocation(job.location))}</span>{modeLabels[job.workMode] && <span>{modeLabels[job.workMode]}</span>}{job.term !== "Not stated" && <span>{displayText(job.term)}</span>}</div></div>
         <div className="posted-age">{daysAgo(job.postedAt)} days</div>
-        <div className="actions"><a className="button secondary" href={job.linkedInUrl ?? `https://www.linkedin.com/search/results/companies/?keywords=${encodeURIComponent(job.company)}`} target="_blank" rel="noreferrer">LinkedIn</a><button className="button secondary" type="button" onClick={() => setExpanded(expanded === job.id ? null : job.id)} aria-expanded={expanded === job.id}>Info</button><a className="button primary" href={job.applyUrl} target="_blank" rel="noreferrer">Apply</a></div>
+        <div className="actions"><SaveButton isSaved={savedJobIds.has(job.id)} job={job} onToggle={() => toggleSavedJob(job.id)} /><a className="button secondary" href={job.linkedInUrl ?? `https://www.linkedin.com/search/results/companies/?keywords=${encodeURIComponent(job.company)}`} target="_blank" rel="noreferrer">LinkedIn</a><button className="button secondary" type="button" onClick={() => setExpanded(expanded === job.id ? null : job.id)} aria-expanded={expanded === job.id}>Info</button><a className="button primary" href={job.applyUrl} target="_blank" rel="noreferrer">Apply</a></div>
         {expanded === job.id && <div className="job-info"><p><strong>Posted:</strong> {new Date(job.postedAt).toLocaleDateString()}</p><p><strong>Employees:</strong> {job.employeeCount ? `${job.employeeCount.toLocaleString()}+` : "Not listed"}</p><p><strong>Status:</strong> {companyTierLabel(job.company)}</p></div>}
       </article>)}
       {jobs.length === 0 && <p className="state-card">{emptyMessage}</p>}
@@ -149,7 +156,7 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
   const isSwitching = exitingView !== null;
   return <>
     <nav className="role-tabs" aria-label="Role area">{ROLE_AREAS.map((area) => <Link className={roleArea === area.value ? "active" : ""} href={area.value === "all" ? `/${type === "internships" ? "internships" : "jobs"}` : `/${type === "internships" ? "internships" : "jobs"}?role=${area.value}`} key={area.value}>{area.label}</Link>)}</nav>
-    <div className="board-stats"><span><i />Live</span><strong>{jobs.length}</strong> matching roles <span className="updated" title={new Date(snapshot.generatedAt).toLocaleString()}>Last updated: {formatSnapshotAge(snapshot.generatedAt, now)}</span></div>
+    <div className="board-stats"><span><i />Live</span><strong>{jobs.length}</strong> matching roles <button className={`saved-filter ${savedOnly ? "active" : ""}`} type="button" onClick={() => { setSavedOnly(!savedOnly); setPage(0); }} aria-pressed={savedOnly} title="Saved in this browser"><span aria-hidden="true">★</span> Saved locally {savedInCollectionCount}</button><span className="updated" title={new Date(snapshot.generatedAt).toLocaleString()}>Last updated: {formatSnapshotAge(snapshot.generatedAt, now)}</span></div>
     <section className="filters" aria-label="Job filters">
       <label className="search-field"><span>Search</span><input value={query} onChange={(event) => { setQuery(event.target.value); setPage(0); }} placeholder="Company or role" /></label>
       <MultiFilter label="Location" values={regions} onChange={(values) => { setRegions(values as JobRegion[]); setMetros([]); setPage(0); }} options={JOB_REGIONS} allLabel="All locations" />
@@ -166,6 +173,20 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
     </div>
     {jobs.length > PAGE_SIZE && <nav className="pagination" aria-label="Job pages"><button disabled={safePage === 0} onClick={() => setPage(safePage - 1)}>Previous</button><span>Page {safePage + 1} of {pageCount}</span><button disabled={safePage + 1 === pageCount} onClick={() => setPage(safePage + 1)}>Next</button></nav>}
   </>;
+}
+
+function SaveButton({ compact = false, isSaved, job, onToggle }: { compact?: boolean; isSaved: boolean; job: PublicJob; onToggle: () => void }) {
+  const [sparkleBurst, setSparkleBurst] = useState(0);
+  const action = isSaved ? "Remove saved job" : "Save job";
+  const handleToggle = () => {
+    if (!isSaved) setSparkleBurst((burst) => burst + 1);
+    onToggle();
+  };
+  return <button className={`button save-button ${compact ? "compact-save" : "secondary"} ${isSaved ? "saved" : ""}`} type="button" onClick={handleToggle} aria-pressed={isSaved} aria-label={`${action}: ${job.title} at ${job.company}`} title={action}>
+    <span className={sparkleBurst > 0 ? "save-star sparkling" : "save-star"} aria-hidden="true" key={`star-${sparkleBurst}`}>★</span>
+    {sparkleBurst > 0 && <span className="save-sparkles" aria-hidden="true" key={`sparkles-${sparkleBurst}`}><span /><span /><span /><span /><span /><span /></span>}
+    {compact ? <span className="sr-only">{isSaved ? "Saved" : "Save"}</span> : isSaved ? "Saved" : "Save"}
+  </button>;
 }
 
 function MultiFilter({ label, values, onChange, options, allLabel = "All" }: { label: string; values: readonly string[]; onChange: (values: string[]) => void; options: ReadonlyArray<readonly [string, string]>; allLabel?: string }) {
