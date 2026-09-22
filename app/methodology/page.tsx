@@ -61,12 +61,12 @@ export default function MethodologyPage() {
           ))}
         </section>
         <section className="limitations">
-          <p className="eyebrow">What this does not guarantee</p>
-          <h2>idk bro this is still a wip lmaoo</h2>
+          <p className="eyebrow">Reality check</p>
+          <h2>Is every listing perfect? lol no.</h2>
           <div>
-            <p>A trusted source or discovered employer board can surface a company that has not received an individual manual review. Employee counts and direct LinkedIn records are not available for every company yet.</p>
-            <p>A job can close between checks, employer pages can block automated requests, and some career systems expose imperfect dates. Temporary source failures do not automatically delete existing listings because outages happen.</p>
-            <p>The rules will keep getting stricter as the company trust registry and direct employer coverage improve. Until then, treat App Expo as a heavily screened discovery tool, not a promise about any employer.</p>
+            <p>I filter out a lot of obvious junk, but I&apos;m not personally investigating every company and every job. Some listings come from sources I trust, while others come directly from employer job boards that pass the project&apos;s checks. That still does not mean I can guarantee every company is amazing, trustworthy, or even real.</p>
+            <p>Jobs also close randomly, career pages break, and some companies make it weirdly difficult to tell when something was posted. I refresh and recheck listings regularly, but a dead link or outdated opening might still sneak through.</p>
+            <p>Basically, use App Expo to find opportunities faster. Do your own research before applying, and definitely do not send anyone money. I&apos;m still tightening the filters and improving the company checks as I go. If something looks off, trust your gut.</p>
           </div>
         </section>
       </section>
