@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./job-board.css";
 import { SiteHeader } from "./SiteHeader";
 
 export const metadata: Metadata = {

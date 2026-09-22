@@ -4,6 +4,7 @@ import { evaluateCompanyQuality, normalizeCompanyDisplayName, normalizeCompanyNa
 import { deduplicateCrossSourceJobs } from "../lib/job-dedup";
 import { getFreshnessRejection } from "../lib/job-freshness";
 import { buildJobInsightsDay, updateJobInsightsHistory } from "../lib/job-insights";
+import { countSavedJobs, filterJobs, getAvailableMetroOptions, getJobTerms } from "../lib/job-board";
 import { buildJobsSummary } from "../lib/job-summary";
 import { daysAgo } from "../lib/jobs";
 import { canonicalizeUrl, inferTerm, inferWorkMode, jobIdentity, normalizeDisplayText, parsePostedAt } from "../lib/source-normalization";
@@ -17,6 +18,8 @@ import { classifyJobMetros, classifyJobRegions, formatSnapshotAge, getSupportedJ
 import { isDiscoverableYearlyRepository } from "../scripts/maintain-sources";
 import sourceCatalog from "../data/sources.json";
 import { sourceLicenseReview } from "../lib/source-licenses";
+import { parseSavedJobIds, toggleSavedJobId } from "../lib/saved-jobs";
+import { displayText, getLocationDisplay, getPaginationState } from "../app/job-board/job-board-utils";
 
 const registry: VerifiedCompany[] = [{
   name: "Figma",
@@ -68,6 +71,83 @@ test("job locations are grouped into useful metro areas", () => {
   assert.deepEqual(classifyJobMetros("London, United Kingdom"), ["london"]);
   assert.deepEqual(classifyJobMetros("London, ON, Canada"), []);
   assert.deepEqual(classifyJobMetros("Madison, WI"), []);
+});
+
+test("job board helpers combine filters and derive available options", () => {
+  const base = {
+    company: "Example",
+    term: "Summer 2027",
+    workMode: "remote" as const,
+    postedAt: "2026-09-20T00:00:00Z",
+    postedAtSource: "exact" as const,
+    linkedInUrl: null,
+    salary: null,
+    sources: ["Test"],
+    verifiedCompany: true,
+    category: "Internship",
+  };
+  const jobs = [
+    { ...base, id: "saved", company: "Microsoft", title: "Software Engineer Intern", location: "San Francisco, CA", regions: ["us" as const], metros: ["sf-bay-area" as const], applyUrl: "https://example.com/saved" },
+    { ...base, id: "canada", title: "Data Analyst Intern", location: "Toronto, ON, Canada", regions: ["canada" as const], metros: ["toronto" as const], workMode: "hybrid" as const, applyUrl: "https://example.com/canada" },
+    { ...base, id: "fulltime", title: "Software Engineer", term: "Not stated", location: "New York, NY", regions: ["us" as const], metros: ["new-york-city" as const], category: "New grad", applyUrl: "https://example.com/fulltime" },
+  ];
+
+  const filtered = filterJobs(jobs, {
+    type: "internships",
+    roleArea: "software",
+    query: "microsoft",
+    regions: ["us"],
+    metros: ["sf-bay-area"],
+    modes: ["remote"],
+    terms: ["Summer 2027"],
+    companyTiers: ["faang_plus"],
+    savedOnly: true,
+    savedJobIds: new Set(["saved"]),
+  });
+
+  assert.deepEqual(filtered.map((job) => job.id), ["saved"]);
+  assert.deepEqual(getJobTerms(jobs), ["Summer 2027"]);
+  assert.deepEqual(getAvailableMetroOptions(jobs, "internships", ["us"]).map(([value]) => value), ["sf-bay-area"]);
+  assert.equal(countSavedJobs(jobs, "internships", new Set(["saved", "fulltime"])), 1);
+});
+
+test("saved job helpers reject invalid storage and toggle unique IDs", () => {
+  assert.deepEqual(parseSavedJobIds(null), []);
+  assert.deepEqual(parseSavedJobIds("not json"), []);
+  assert.deepEqual(parseSavedJobIds('{"id":"job-1"}'), []);
+  assert.deepEqual(parseSavedJobIds('["job-1",3,"job-1","job-2"]'), ["job-1", "job-2"]);
+  assert.deepEqual(toggleSavedJobId(["job-1"], "job-2"), ["job-1", "job-2"]);
+  assert.deepEqual(toggleSavedJobId(["job-1", "job-2"], "job-1"), ["job-2"]);
+});
+
+test("job board pagination clamps first, last, and empty pages", () => {
+  assert.deepEqual(getPaginationState(0, 8), {
+    pageCount: 1,
+    safePage: 0,
+    startIndex: 0,
+    endIndex: 100,
+  });
+  assert.deepEqual(getPaginationState(201, -2), {
+    pageCount: 3,
+    safePage: 0,
+    startIndex: 0,
+    endIndex: 100,
+  });
+  assert.deepEqual(getPaginationState(201, 3), {
+    pageCount: 3,
+    safePage: 2,
+    startIndex: 200,
+    endIndex: 300,
+  });
+});
+
+test("job board display helpers keep copy plain and summarize long locations", () => {
+  assert.equal(displayText("Platform — Reliability – US"), "Platform - Reliability - US");
+  assert.deepEqual(getLocationDisplay("San Francisco, CA; Bellevue, WA; Toronto, ON, Canada"), {
+    full: "San Francisco, CA; Bellevue, WA; Toronto, ON, Canada",
+    hasMore: true,
+    compact: "San Francisco, CA + 2 more",
+  });
 });
 
 test("snapshot age uses useful minute and hour labels", () => {

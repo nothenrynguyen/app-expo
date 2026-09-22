@@ -1,47 +1,32 @@
 "use client";
 
 import { useMemo, useSyncExternalStore } from "react";
+import { EMPTY_SAVED_JOB_IDS, parseSavedJobIds, SAVED_JOBS_STORAGE_KEY, toggleSavedJobId } from "@/lib/saved-jobs";
 
-const STORAGE_KEY = "app-expo:saved-job-ids:v1";
 const CHANGE_EVENT = "app-expo:saved-jobs-change";
-const EMPTY_IDS: readonly string[] = [];
 
 let cachedRaw: string | null | undefined;
-let cachedIds: readonly string[] = EMPTY_IDS;
+let cachedIds: readonly string[] = EMPTY_SAVED_JOB_IDS;
 
 function readSavedJobIds(): readonly string[] {
-  if (typeof window === "undefined") return EMPTY_IDS;
+  if (typeof window === "undefined") return EMPTY_SAVED_JOB_IDS;
 
   let raw: string | null;
   try {
-    raw = window.localStorage.getItem(STORAGE_KEY);
+    raw = window.localStorage.getItem(SAVED_JOBS_STORAGE_KEY);
   } catch {
-    return EMPTY_IDS;
+    return EMPTY_SAVED_JOB_IDS;
   }
 
   if (raw === cachedRaw) return cachedIds;
   cachedRaw = raw;
-
-  if (!raw) {
-    cachedIds = EMPTY_IDS;
-    return cachedIds;
-  }
-
-  try {
-    const parsed: unknown = JSON.parse(raw);
-    cachedIds = Array.isArray(parsed)
-      ? [...new Set(parsed.filter((value): value is string => typeof value === "string"))]
-      : EMPTY_IDS;
-  } catch {
-    cachedIds = EMPTY_IDS;
-  }
-
+  cachedIds = parseSavedJobIds(raw);
   return cachedIds;
 }
 
 function subscribe(onChange: () => void) {
   const handleStorage = (event: StorageEvent) => {
-    if (event.key === STORAGE_KEY) onChange();
+    if (event.key === SAVED_JOBS_STORAGE_KEY) onChange();
   };
   window.addEventListener("storage", handleStorage);
   window.addEventListener(CHANGE_EVENT, onChange);
@@ -54,7 +39,7 @@ function subscribe(onChange: () => void) {
 function writeSavedJobIds(ids: readonly string[]) {
   const raw = JSON.stringify(ids);
   try {
-    window.localStorage.setItem(STORAGE_KEY, raw);
+    window.localStorage.setItem(SAVED_JOBS_STORAGE_KEY, raw);
   } catch {
     return;
   }
@@ -63,14 +48,11 @@ function writeSavedJobIds(ids: readonly string[]) {
 }
 
 export function useSavedJobs() {
-  const ids = useSyncExternalStore(subscribe, readSavedJobIds, () => EMPTY_IDS);
+  const ids = useSyncExternalStore(subscribe, readSavedJobIds, () => EMPTY_SAVED_JOB_IDS);
   const idSet = useMemo(() => new Set(ids), [ids]);
 
   const toggle = (jobId: string) => {
-    const next = new Set(readSavedJobIds());
-    if (next.has(jobId)) next.delete(jobId);
-    else next.add(jobId);
-    writeSavedJobIds([...next]);
+    writeSavedJobIds(toggleSavedJobId(readSavedJobIds(), jobId));
   };
 
   return { ids: idSet, toggle };

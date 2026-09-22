@@ -1,50 +1,24 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import { daysAgo, type JobsSnapshot, type PublicJob } from "@/lib/jobs";
-import { classifyJobMetros, formatSnapshotAge, getSupportedJobRegions, JOB_METROS, JOB_REGIONS, normalizeJobLocation, type JobMetro, type JobRegion } from "@/lib/job-locations";
-import { isInCollection } from "@/lib/job-collections";
-import { companyTierLabel, hasCompanyTier, type CompanyTier } from "@/lib/company-tiers";
-import { isRoleArea, matchesRoleArea, ROLE_AREAS } from "@/lib/role-areas";
+import type { CompanyTier } from "@/lib/company-tiers";
+import { countSavedJobs, filterJobs, getAvailableMetroOptions, getJobTerms } from "@/lib/job-board";
+import { formatSnapshotAge, type JobMetro, type JobRegion } from "@/lib/job-locations";
+import type { JobsSnapshot } from "@/lib/jobs";
+import { isRoleArea } from "@/lib/role-areas";
+import { JobFilters, RoleTabs } from "./job-board/JobFilters";
+import { JobResults } from "./job-board/JobResults";
+import { getPaginationState, LAYOUT_TRANSITION_MS, PAGE_SIZE, type ViewMode } from "./job-board/job-board-utils";
 import { useSavedJobs } from "./useSavedJobs";
 
-const PAGE_SIZE = 100;
-const LAYOUT_TRANSITION_MS = 1050;
-const modeLabels: Record<PublicJob["workMode"], string> = { remote: "Remote", hybrid: "Hybrid", in_person: "In person", unknown: "" };
-const displayText = (value: string) => value.replace(/[\u2013\u2014]/g, "-");
-const splitLocations = (location: string) => {
-  const semicolonLocations = location.split(";").map((item) => item.trim()).filter(Boolean);
-  if (semicolonLocations.length > 1) return semicolonLocations;
-  const usCityStateLocations = location.match(/(?:[^,;]+,\s*)?[A-Za-z .'-]+,\s*[A-Z]{2}(?:,\s*Canada)?/g)?.map((item) => item.trim()) ?? [];
-  return usCityStateLocations.length > 1 ? usCityStateLocations : semicolonLocations;
+type JobBoardProps = {
+  type: "internships" | "fulltime";
 };
-const getLocationDisplay = (location: string) => {
-  const full = displayText(normalizeJobLocation(location));
-  const locations = splitLocations(full);
-  return {
-    full,
-    hasMore: locations.length > 1,
-    compact: locations.length > 1 ? `${locations[0]} + ${locations.length - 1} more` : full,
-  };
-};
-const logoToken = process.env.NEXT_PUBLIC_LOGO_DEV_TOKEN;
-const showCompanyLogos = Boolean(logoToken);
-type ViewMode = "compact" | "cards";
 
-function CompanyLogo({ company }: { company: string }) {
-  const [failed, setFailed] = useState(false);
-  if (!logoToken || failed) return null;
-  const logoUrl = `https://img.logo.dev/name/${encodeURIComponent(company)}?token=${encodeURIComponent(logoToken)}&size=80&format=png&theme=dark&fallback=404`;
+const EMPTY_JOBS: JobsSnapshot["jobs"] = [];
 
-  return <div className="company-logo" aria-hidden="true">
-    <Image src={logoUrl} alt="" width={40} height={40} unoptimized onError={() => setFailed(true)} />
-  </div>;
-}
-
-export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
+export function JobBoard({ type }: JobBoardProps) {
   const searchParams = useSearchParams();
   const roleParam = searchParams.get("role");
   const roleArea = isRoleArea(roleParam) ? roleParam : "all";
@@ -61,15 +35,18 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
   const [activeView, setActiveView] = useState<ViewMode>("compact");
   const [exitingView, setExitingView] = useState<ViewMode | null>(null);
   const [page, setPage] = useState(0);
-  const [expanded, setExpanded] = useState<string | null>(null);
+  const [expandedJobId, setExpandedJobId] = useState<string | null>(null);
   const [now, setNow] = useState(() => new Date());
   const { ids: savedJobIds, toggle: toggleSavedJob } = useSavedJobs();
 
   useEffect(() => {
-    fetch(`/${type}.json`, { cache: "no-store" }).then((response) => {
-      if (!response.ok) throw new Error("Could not load jobs");
-      return response.json() as Promise<JobsSnapshot>;
-    }).then(setSnapshot).catch(() => setError(true));
+    fetch(`/${type}.json`, { cache: "no-store" })
+      .then((response) => {
+        if (!response.ok) throw new Error("Could not load jobs");
+        return response.json() as Promise<JobsSnapshot>;
+      })
+      .then(setSnapshot)
+      .catch(() => setError(true));
   }, [type]);
 
   useEffect(() => {
@@ -83,114 +60,103 @@ export function JobBoard({ type }: { type: "internships" | "fulltime" }) {
     return () => window.clearTimeout(timer);
   }, [exitingView]);
 
-  const terms = useMemo(() => [...new Set((snapshot?.jobs ?? []).map((job) => job.term).filter((value) => value !== "Not stated"))].sort(), [snapshot]);
-  const metroOptions = useMemo(() => {
-    const available = new Set(
-      (snapshot?.jobs ?? [])
-        .filter((job) => isInCollection(job, type))
-        .filter((job) => regions.length === 0 || regions.some((region) => (job.regions ?? getSupportedJobRegions(job.location)).includes(region)))
-        .flatMap((job) => job.metros ?? classifyJobMetros(job.location)),
-    );
-    return JOB_METROS.filter(([metro]) => available.has(metro));
-  }, [snapshot, type, regions]);
-  const jobs = useMemo(() => {
-    const normalizedQuery = query.trim().toLowerCase();
-    return (snapshot?.jobs ?? []).filter((job) => {
-      const search = `${job.company} ${job.title} ${job.location}`.toLowerCase();
-      const inCollection = isInCollection(job, type);
-      return inCollection && (!normalizedQuery || search.includes(normalizedQuery))
-        && matchesRoleArea(job, roleArea)
-        && (regions.length === 0 || regions.some((region) => (job.regions ?? getSupportedJobRegions(job.location)).includes(region)))
-        && (metros.length === 0 || metros.some((metro) => (job.metros ?? classifyJobMetros(job.location)).includes(metro)))
-        && (modes.length === 0 || modes.includes(job.workMode))
-        && (selectedTerms.length === 0 || selectedTerms.includes(job.term))
-        && (companyTiers.length === 0 || companyTiers.some((tier) => hasCompanyTier(job.company, tier)))
-        && (!savedOnly || savedJobIds.has(job.id));
-    }).sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime());
-  }, [snapshot, type, roleArea, query, regions, metros, modes, selectedTerms, companyTiers, savedOnly, savedJobIds]);
+  const sourceJobs = snapshot?.jobs ?? EMPTY_JOBS;
+  const terms = useMemo(() => getJobTerms(sourceJobs), [sourceJobs]);
+  const metroOptions = useMemo(
+    () => getAvailableMetroOptions(sourceJobs, type, regions),
+    [sourceJobs, type, regions],
+  );
+  const jobs = useMemo(
+    () => filterJobs(sourceJobs, {
+      type,
+      roleArea,
+      query,
+      regions,
+      metros,
+      modes,
+      terms: selectedTerms,
+      companyTiers,
+      savedOnly,
+      savedJobIds,
+    }),
+    [sourceJobs, type, roleArea, query, regions, metros, modes, selectedTerms, companyTiers, savedOnly, savedJobIds],
+  );
 
   if (error) return <p className="state-card">The latest job snapshot could not be loaded. Please try again shortly.</p>;
   if (!snapshot) return <p className="state-card">Loading verified jobs…</p>;
 
-  const pageCount = Math.max(1, Math.ceil(jobs.length / PAGE_SIZE));
-  const safePage = Math.min(page, pageCount - 1);
-  const visibleJobs = jobs.slice(safePage * PAGE_SIZE, (safePage + 1) * PAGE_SIZE);
-  const savedInCollectionCount = snapshot.jobs.filter((job) => isInCollection(job, type) && savedJobIds.has(job.id)).length;
-  const emptyMessage = savedOnly ? "No saved jobs match these filters." : query.trim().toLowerCase() === "henwoo" ? "lmaoo imagine if this actually returned smth" : "No verified jobs match these filters.";
+  const { pageCount, safePage, startIndex, endIndex } = getPaginationState(jobs.length, page);
+  const visibleJobs = jobs.slice(startIndex, endIndex);
+  const savedInCollectionCount = countSavedJobs(snapshot.jobs, type, savedJobIds);
+  const emptyMessage = savedOnly
+    ? "No saved jobs match these filters."
+    : query.trim().toLowerCase() === "henwoo"
+      ? "lmaoo imagine if this actually returned smth"
+      : "No verified jobs match these filters.";
+
+  const resetPage = () => setPage(0);
   const changeView = (nextView: ViewMode) => {
     if (nextView === activeView) return;
     setViewMode(nextView);
     setExitingView(activeView);
     setActiveView(nextView);
   };
-  const renderCompactView = (className = "") => <div className={`layout-panel compact-panel ${className}`}>
-    <div className="job-table" role="table" aria-label="Verified jobs">
-      <div className="job-table-head" role="row"><span role="columnheader">Company</span><span role="columnheader">Position</span><span role="columnheader">Location</span><span role="columnheader">Save</span><span role="columnheader">Apply</span><span role="columnheader">LinkedIn</span></div>
-      {visibleJobs.map((job) => {
-        const location = getLocationDisplay(job.location);
-        const isSaved = savedJobIds.has(job.id);
-        return <article className="job-table-row" role="row" key={job.id}>
-          <div className="job-table-company" role="cell" data-label="Company">{displayText(job.company)}</div>
-          <div className="job-table-title" role="cell" data-label="Position">{displayText(job.title)}</div>
-          <div className="job-table-location" role="cell" data-label="Location">{location.hasMore ? <span className="location-with-more" tabIndex={0}><span className="location-label">{location.compact}</span><span className="location-popover" role="tooltip">{location.full}</span></span> : location.compact}</div>
-          <div className="job-table-action" role="cell" data-label="Save"><SaveButton compact isSaved={isSaved} job={job} onToggle={() => toggleSavedJob(job.id)} /></div>
-          <div className="job-table-action" role="cell" data-label="Apply"><a className="button table-button primary" href={job.applyUrl} target="_blank" rel="noreferrer">Apply</a></div>
-          <div className="job-table-action" role="cell" data-label="LinkedIn"><a className="button table-button secondary" href={job.linkedInUrl ?? `https://www.linkedin.com/search/results/companies/?keywords=${encodeURIComponent(job.company)}`} target="_blank" rel="noreferrer">LinkedIn</a></div>
-        </article>;
-      })}
-      {jobs.length === 0 && <p className="job-table-empty">{emptyMessage}</p>}
-    </div>
-  </div>;
-  const renderCardsView = (className = "") => <div className={`layout-panel cards-panel ${className}`}>
-    <div className="job-list">
-      {visibleJobs.map((job) => <article className={`job-card ${showCompanyLogos ? "with-logo" : ""}`} key={job.id}>
-        {showCompanyLogos && <CompanyLogo company={job.company} />}
-        <div className="job-main"><p className="company">{displayText(job.company)}</p><h2>{displayText(job.title)}</h2><div className="job-meta"><span>{displayText(normalizeJobLocation(job.location))}</span>{modeLabels[job.workMode] && <span>{modeLabels[job.workMode]}</span>}{job.term !== "Not stated" && <span>{displayText(job.term)}</span>}</div></div>
-        <div className="posted-age">{daysAgo(job.postedAt)} days</div>
-        <div className="actions"><SaveButton isSaved={savedJobIds.has(job.id)} job={job} onToggle={() => toggleSavedJob(job.id)} /><a className="button secondary" href={job.linkedInUrl ?? `https://www.linkedin.com/search/results/companies/?keywords=${encodeURIComponent(job.company)}`} target="_blank" rel="noreferrer">LinkedIn</a><button className="button secondary" type="button" onClick={() => setExpanded(expanded === job.id ? null : job.id)} aria-expanded={expanded === job.id}>Info</button><a className="button primary" href={job.applyUrl} target="_blank" rel="noreferrer">Apply</a></div>
-        {expanded === job.id && <div className="job-info"><p><strong>Posted:</strong> {new Date(job.postedAt).toLocaleDateString()}</p><p><strong>Employees:</strong> {job.employeeCount ? `${job.employeeCount.toLocaleString()}+` : "Not listed"}</p><p><strong>Status:</strong> {companyTierLabel(job.company)}</p></div>}
-      </article>)}
-      {jobs.length === 0 && <p className="state-card">{emptyMessage}</p>}
-    </div>
-  </div>;
-  const isSwitching = exitingView !== null;
-  return <>
-    <nav className="role-tabs" aria-label="Role area">{ROLE_AREAS.map((area) => <Link className={roleArea === area.value ? "active" : ""} href={area.value === "all" ? `/${type === "internships" ? "internships" : "jobs"}` : `/${type === "internships" ? "internships" : "jobs"}?role=${area.value}`} key={area.value}>{area.label}</Link>)}</nav>
-    <div className="board-stats"><span><i />Live</span><strong>{jobs.length}</strong> matching roles <button className={`saved-filter ${savedOnly ? "active" : ""}`} type="button" onClick={() => { setSavedOnly(!savedOnly); setPage(0); }} aria-pressed={savedOnly} title="Saved in this browser"><span aria-hidden="true">★</span> Saved locally {savedInCollectionCount}</button><span className="updated" title={new Date(snapshot.generatedAt).toLocaleString()}>Last updated: {formatSnapshotAge(snapshot.generatedAt, now)}</span></div>
-    <section className="filters" aria-label="Job filters">
-      <label className="search-field"><span>Search</span><input value={query} onChange={(event) => { setQuery(event.target.value); setPage(0); }} placeholder="Company or role" /></label>
-      <MultiFilter label="Location" values={regions} onChange={(values) => { setRegions(values as JobRegion[]); setMetros([]); setPage(0); }} options={JOB_REGIONS} allLabel="All locations" />
-      <MultiFilter label="Metro area" values={metros} onChange={(values) => { setMetros(values as JobMetro[]); setPage(0); }} options={metroOptions} allLabel="All metros" />
-      <MultiFilter label="Workplace" values={modes} onChange={(values) => { setModes(values); setPage(0); }} options={[["remote", "Remote"], ["hybrid", "Hybrid"], ["in_person", "In person"]]} />
-      <MultiFilter label="Term" values={selectedTerms} onChange={(values) => { setSelectedTerms(values); setPage(0); }} options={terms.map((value) => [value, value] as [string, string])} />
-      <MultiFilter label="Company tier" values={companyTiers} onChange={(values) => { setCompanyTiers(values as CompanyTier[]); setPage(0); }} options={[["faang_plus", "FAANG+"], ["fortune_500", "Fortune 500"]]} />
-      <div className="filter-control"><span>Layout</span><div className={`view-toggle ${viewMode === "cards" ? "cards-active" : ""}`} role="group" aria-label="Job layout"><button className={viewMode === "compact" ? "active" : ""} type="button" onClick={() => changeView("compact")} aria-pressed={viewMode === "compact"}>Compact</button><button className={viewMode === "cards" ? "active" : ""} type="button" onClick={() => changeView("cards")} aria-pressed={viewMode === "cards"}>Cards</button></div></div>
-    </section>
-    <div className={`layout-stage ${isSwitching ? "is-switching" : ""}`}>
-      {exitingView === "compact" && renderCompactView("panel-exit compact-exit")}
-      {exitingView === "cards" && renderCardsView("panel-exit cards-exit")}
-      {activeView === "compact" ? renderCompactView(isSwitching ? "panel-enter compact-enter" : "") : renderCardsView(isSwitching ? "panel-enter cards-enter" : "")}
-    </div>
-    {jobs.length > PAGE_SIZE && <nav className="pagination" aria-label="Job pages"><button disabled={safePage === 0} onClick={() => setPage(safePage - 1)}>Previous</button><span>Page {safePage + 1} of {pageCount}</span><button disabled={safePage + 1 === pageCount} onClick={() => setPage(safePage + 1)}>Next</button></nav>}
-  </>;
-}
 
-function SaveButton({ compact = false, isSaved, job, onToggle }: { compact?: boolean; isSaved: boolean; job: PublicJob; onToggle: () => void }) {
-  const [sparkleBurst, setSparkleBurst] = useState(0);
-  const action = isSaved ? "Remove saved job" : "Save job";
-  const handleToggle = () => {
-    if (!isSaved) setSparkleBurst((burst) => burst + 1);
-    onToggle();
-  };
-  return <button className={`button save-button ${compact ? "compact-save" : "secondary"} ${isSaved ? "saved" : ""}`} type="button" onClick={handleToggle} aria-pressed={isSaved} aria-label={`${action}: ${job.title} at ${job.company}`} title={action}>
-    <span className={sparkleBurst > 0 ? "save-star sparkling" : "save-star"} aria-hidden="true" key={`star-${sparkleBurst}`}>★</span>
-    {sparkleBurst > 0 && <span className="save-sparkles" aria-hidden="true" key={`sparkles-${sparkleBurst}`}><span /><span /><span /><span /><span /><span /></span>}
-    {compact ? <span className="sr-only">{isSaved ? "Saved" : "Save"}</span> : isSaved ? "Saved" : "Save"}
-  </button>;
-}
-
-function MultiFilter({ label, values, onChange, options, allLabel = "All" }: { label: string; values: readonly string[]; onChange: (values: string[]) => void; options: ReadonlyArray<readonly [string, string]>; allLabel?: string }) {
-  const summary = values.length === 0 ? "All" : values.length === 1 ? options.find(([value]) => value === values[0])?.[1] : `${values.length} selected`;
-  const toggle = (value: string) => onChange(values.includes(value) ? values.filter((item) => item !== value) : [...values, value]);
-  return <div className="filter-control"><span>{label}</span><details className="multi-filter"><summary>{summary}</summary><div className="multi-filter-menu"><label><input type="checkbox" checked={values.length === 0} onChange={() => onChange([])} />{allLabel}</label>{options.map(([value, optionLabel]) => <label key={value}><input type="checkbox" checked={values.includes(value)} onChange={() => toggle(value)} />{optionLabel}</label>)}</div></details></div>;
+  return (
+    <>
+      <RoleTabs roleArea={roleArea} type={type} />
+      <div className="board-stats">
+        <span><i />Live</span>
+        <strong>{jobs.length}</strong> matching roles
+        <button
+          className={`saved-filter ${savedOnly ? "active" : ""}`}
+          type="button"
+          onClick={() => { setSavedOnly((current) => !current); resetPage(); }}
+          aria-pressed={savedOnly}
+          title="Saved in this browser"
+        >
+          <span aria-hidden="true">★</span> Saved locally {savedInCollectionCount}
+        </button>
+        <span className="updated" title={new Date(snapshot.generatedAt).toLocaleString()}>
+          Last updated: {formatSnapshotAge(snapshot.generatedAt, now)}
+        </span>
+      </div>
+      <JobFilters
+        query={query}
+        regions={regions}
+        metros={metros}
+        metroOptions={metroOptions}
+        modes={modes}
+        selectedTerms={selectedTerms}
+        terms={terms}
+        companyTiers={companyTiers}
+        viewMode={viewMode}
+        onQueryChange={(value) => { setQuery(value); resetPage(); }}
+        onRegionsChange={(values) => { setRegions(values); setMetros([]); resetPage(); }}
+        onMetrosChange={(values) => { setMetros(values); resetPage(); }}
+        onModesChange={(values) => { setModes(values); resetPage(); }}
+        onTermsChange={(values) => { setSelectedTerms(values); resetPage(); }}
+        onCompanyTiersChange={(values) => { setCompanyTiers(values); resetPage(); }}
+        onViewChange={changeView}
+      />
+      <JobResults
+        activeView={activeView}
+        exitingView={exitingView}
+        jobs={visibleJobs}
+        totalJobCount={jobs.length}
+        emptyMessage={emptyMessage}
+        savedJobIds={savedJobIds}
+        expandedJobId={expandedJobId}
+        onToggleSaved={toggleSavedJob}
+        onToggleExpanded={(jobId) => setExpandedJobId((current) => current === jobId ? null : jobId)}
+      />
+      {jobs.length > PAGE_SIZE ? (
+        <nav className="pagination" aria-label="Job pages">
+          <button disabled={safePage === 0} onClick={() => setPage(safePage - 1)}>Previous</button>
+          <span>Page {safePage + 1} of {pageCount}</span>
+          <button disabled={safePage + 1 === pageCount} onClick={() => setPage(safePage + 1)}>Next</button>
+        </nav>
+      ) : null}
+    </>
+  );
 }
