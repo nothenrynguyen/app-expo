@@ -54,6 +54,8 @@ const STATE_NAMES: Record<string, string> = {
 };
 
 const CITY_NORMALIZATIONS: Array<[RegExp, string]> = [
+  [/^in,\s*in$/i, "India"],
+  [/^il,\s*il$/i, "Israel"],
   [/^chicago$/i, "Chicago, IL"],
   [/^dallas$/i, "Dallas, TX"],
   [/^austin(?:, texas)?$/i, "Austin, TX"],

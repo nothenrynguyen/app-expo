@@ -9,6 +9,7 @@ import { buildJobInsightsDay, updateJobInsightsHistory, type JobInsightsHistory 
 import { isInCollection } from "../lib/job-collections";
 import { buildJobsSummary } from "../lib/job-summary";
 import { needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
+import { applyMicrosoftCareersPosting, fetchMicrosoftCareersPosting, parseMicrosoftCareersJobUrl } from "../lib/microsoft-careers";
 import { classifyRoleArea } from "../lib/role-areas";
 import { applySmartRecruitersPosting, fetchSmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
 import type { JobSource, SourceCatalog } from "../lib/source-catalog";
@@ -165,6 +166,30 @@ async function loadCandidates(root: string, sources: JobSource[]) {
   }
   if (smartRecruitersEntries.length > 0) {
     console.log(`Verified ${smartRecruitersPostings.size} of ${smartRecruitersEntries.length} SmartRecruiters listings against employer records.`);
+  }
+
+  const microsoftUrls = new Map<string, string>();
+  for (const candidate of candidates) {
+    const microsoftJob = parseMicrosoftCareersJobUrl(candidate.applyUrl);
+    if (microsoftJob) microsoftUrls.set(microsoftJob.jobId, candidate.applyUrl);
+  }
+  const microsoftEntries = [...microsoftUrls];
+  const microsoftFetches = await inBatches(microsoftEntries, 12, async ([jobId, url]) => ({
+    jobId,
+    posting: await fetchMicrosoftCareersPosting(url),
+  }));
+  const microsoftPostings = new Map(
+    microsoftFetches.flatMap((result) =>
+      result.status === "fulfilled" && result.value.posting ? [[result.value.jobId, result.value.posting] as const] : [],
+    ),
+  );
+  for (let index = 0; index < candidates.length; index += 1) {
+    const microsoftJob = parseMicrosoftCareersJobUrl(candidates[index].applyUrl);
+    const posting = microsoftJob ? microsoftPostings.get(microsoftJob.jobId) : null;
+    if (posting) candidates[index] = applyMicrosoftCareersPosting(candidates[index], posting);
+  }
+  if (microsoftEntries.length > 0) {
+    console.log(`Verified ${microsoftPostings.size} of ${microsoftEntries.length} Microsoft Careers listings against employer records.`);
   }
   return { candidates, health, boardResults, boardRegistry };
 }

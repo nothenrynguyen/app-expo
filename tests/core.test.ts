@@ -12,6 +12,7 @@ import { isInCollection } from "../lib/job-collections";
 import { classifyRoleArea } from "../lib/role-areas";
 import { discoverAtsBoard, isEarlyCareerTitle } from "../lib/ats-boards";
 import { classifyListingResponse, needsListingCheck } from "../lib/listing-health";
+import { applyMicrosoftCareersPosting, parseMicrosoftCareersJobUrl, parseMicrosoftCareersPosting } from "../lib/microsoft-careers";
 import { applySmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
 import { parseApplyGuySource, parseMarkdownSource, sourceAllowsAtsExpansion } from "../lib/source-parsers";
 import { classifyJobMetros, classifyJobRegions, formatSnapshotAge, getSupportedJobRegions, normalizeJobLocation } from "../lib/job-locations";
@@ -51,6 +52,8 @@ test("job locations are normalized and limited to supported regions", () => {
   assert.equal(normalizeJobLocation("5 locationsRochester, NYAlbany, NY"), "Rochester, NY; Albany, NY");
   assert.equal(normalizeJobLocation("NYCBrooklyn, NY"), "Brooklyn, NY");
   assert.equal(normalizeJobLocation("Remote in USAMinneapolis, MN"), "Remote, United States; Minneapolis, MN");
+  assert.equal(normalizeJobLocation("In, IN"), "India");
+  assert.equal(normalizeJobLocation("Il, IL"), "Israel");
   assert.deepEqual(classifyJobRegions("Chicago"), ["us"]);
   assert.deepEqual(classifyJobRegions("Toronto"), ["canada"]);
   assert.deepEqual(classifyJobRegions("Auckland, NZ"), ["australia_nz"]);
@@ -58,6 +61,8 @@ test("job locations are normalized and limited to supported regions", () => {
   assert.deepEqual(getSupportedJobRegions("Auckland, NZ"), []);
   assert.deepEqual(getSupportedJobRegions("Singapore"), []);
   assert.deepEqual(getSupportedJobRegions("Location not stated"), []);
+  assert.deepEqual(getSupportedJobRegions("In, IN"), []);
+  assert.deepEqual(getSupportedJobRegions("Il, IL"), []);
   assert.deepEqual(getSupportedJobRegions("London, United Kingdom; New York, NY"), ["europe", "us"]);
 });
 
@@ -409,6 +414,40 @@ test("SmartRecruiters records replace source-list age with employer date and sta
   assert.match(getFreshnessRejection(enriched, new Date("2026-08-14T00:00:00Z")) ?? "", /beyond the 180-day internship limit/);
   assert.equal(getFreshnessRejection({ ...enriched, postedAt: "2026-08-01T00:00:00Z" }, new Date("2026-08-14T00:00:00Z")), null);
   assert.match(getFreshnessRejection({ ...enriched, sourceActive: false }, new Date("2026-08-14T00:00:00Z")) ?? "", /marks this posting as closed/);
+});
+
+test("Microsoft Careers records replace source-list age and country-code collisions", () => {
+  const url = "https://apply.careers.microsoft.com/careers/job/1970393556911730";
+  assert.deepEqual(parseMicrosoftCareersJobUrl(url), { jobId: "1970393556911730", endpoint: url });
+  assert.equal(parseMicrosoftCareersJobUrl("https://apply.careers.microsoft.com/careers?pid=200047371")?.jobId, "200047371");
+
+  const html = `<script type="application/ld+json">${JSON.stringify({
+    "@context": "http://schema.org",
+    "@type": "JobPosting",
+    datePosted: "2026-08-07T10:30:00",
+    jobLocation: { "@type": "Place", address: { "@type": "PostalAddress", addressCountry: { "@type": "Country", name: "IL" }, addressLocality: "", addressRegion: "" } },
+  })}</script>`;
+  assert.deepEqual(parseMicrosoftCareersPosting(html), { postedAt: "2026-08-07T10:30:00.000Z", location: "Israel" });
+
+  const candidate = {
+    company: "Microsoft",
+    title: "Software Engineering INTERN",
+    term: "Not stated",
+    location: "Il, IL",
+    workMode: "hybrid" as const,
+    postedAt: "2026-09-24T12:00:00.000Z",
+    postedAtSource: "relative_derived" as const,
+    applyUrl: url,
+    category: "Internship",
+    salary: null,
+    source: "Test",
+    rawText: "Microsoft Software Engineering INTERN",
+  };
+  const enriched = applyMicrosoftCareersPosting(candidate, parseMicrosoftCareersPosting(html)!);
+  assert.equal(enriched.postedAt, "2026-08-07T10:30:00.000Z");
+  assert.equal(enriched.postedAtSource, "exact");
+  assert.equal(enriched.location, "Israel");
+  assert.deepEqual(getSupportedJobRegions(enriched.location), []);
 });
 
 test("listing checks only remove confirmed closed pages", () => {
