@@ -13,7 +13,6 @@ function BoardPage({ title, description, type }: { title: string; description: s
       <section className="board-shell">
         <div className="board-intro">
           <div><p className="eyebrow">Job board</p><h1>{title}</h1><p>{description}</p></div>
-          <div className="live-line compact"><i />Live · refreshed hourly</div>
         </div>
         <Suspense fallback={<p className="state-card">Loading verified jobs...</p>}><JobBoard type={type} /></Suspense>
       </section>

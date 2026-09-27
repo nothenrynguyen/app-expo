@@ -12,6 +12,8 @@ export type AtsBoard = {
   endpoint: string;
 };
 
+export type AtsBoardSeed = Pick<AtsBoard, "provider" | "key" | "company">;
+
 type BoardJob = {
   title: string;
   location: string;
@@ -26,6 +28,25 @@ export type AtsBoardResult = {
   liveIdentities: Set<string>;
 };
 
+export function createAtsBoard(seed: AtsBoardSeed, source = "Pinned ATS"): AtsBoard {
+  const key = seed.key.trim();
+  const normalizedKey = key.toLowerCase();
+  const endpoint = seed.provider === "greenhouse"
+    ? `https://boards-api.greenhouse.io/v1/boards/${encodeURIComponent(key)}/jobs?content=true`
+    : seed.provider === "lever"
+      ? `https://api.lever.co/v0/postings/${encodeURIComponent(key)}?mode=json&limit=1000`
+      : `https://api.ashbyhq.com/posting-api/job-board/${encodeURIComponent(key)}`;
+
+  return {
+    id: seed.provider === "lever" ? `lever:api.lever.co:${normalizedKey}` : `${seed.provider}:${normalizedKey}`,
+    provider: seed.provider,
+    key,
+    company: seed.company,
+    source,
+    endpoint,
+  };
+}
+
 export function discoverAtsBoard(applyUrl: string, company: string, source: string): AtsBoard | null {
   const canonical = canonicalizeUrl(applyUrl);
   if (!canonical) return null;
@@ -34,14 +55,7 @@ export function discoverAtsBoard(applyUrl: string, company: string, source: stri
   if (!key || key === "embed") return null;
 
   if (/^(?:job-boards\.|boards\.)greenhouse\.io$/i.test(url.hostname)) {
-    return {
-      id: `greenhouse:${key.toLowerCase()}`,
-      provider: "greenhouse",
-      key,
-      company,
-      source,
-      endpoint: `https://boards-api.greenhouse.io/v1/boards/${encodeURIComponent(key)}/jobs?content=true`,
-    };
+    return createAtsBoard({ provider: "greenhouse", key, company }, source);
   }
   if (/^jobs(?:\.eu)?\.lever\.co$/i.test(url.hostname)) {
     const apiHost = url.hostname === "jobs.eu.lever.co" ? "api.eu.lever.co" : "api.lever.co";
@@ -55,20 +69,16 @@ export function discoverAtsBoard(applyUrl: string, company: string, source: stri
     };
   }
   if (url.hostname === "jobs.ashbyhq.com") {
-    return {
-      id: `ashby:${key.toLowerCase()}`,
-      provider: "ashby",
-      key,
-      company,
-      source,
-      endpoint: `https://api.ashbyhq.com/posting-api/job-board/${encodeURIComponent(key)}`,
-    };
+    return createAtsBoard({ provider: "ashby", key, company }, source);
   }
   return null;
 }
 
 export function isEarlyCareerTitle(title: string): boolean {
-  return /\bintern(ship)?\b|\bco-?op\b|\bnew grad(uate)?\b|\bentry[- ]level\b|\bearly career\b|\buniversity (?:grad|graduate|hire)\b|\bcampus (?:hire|recruit)\b/i.test(title);
+  const explicitEarlyCareer = /\b(?:intern(?:ship)?|co-?op|new grad(?:uate)?|early career|university grad(?:uate)?|entry[- ]level)\b/i.test(title);
+  if (/\b(?:senior|sr\.?|staff|principal|director|head|lead)\b/i.test(title)) return false;
+  if (/\bmanager\b/i.test(title) && !explicitEarlyCareer) return false;
+  return /\bintern(ship)?\b|\bco-?op\b|\bnew grad(uate)?\b|\bentry[- ]level\b|\bearly career\b|\buniversity (?:grad|graduate|hire)\b|\bcampus (?:hire|recruit)\b|\bjunior\b|\bjr\.?\b|\b(?:engineer|scientist|analyst|specialist) i\b/i.test(title);
 }
 
 function validPostedAt(value: unknown): string | null {

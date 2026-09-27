@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatedCount } from "./AnimatedCount";
 import type { JobsSummary } from "@/lib/job-summary";
-import { ROLE_AREAS } from "@/lib/role-areas";
+import { ROLE_FAMILIES } from "@/lib/role-areas";
 
 export function LandingCollections() {
   const [summary, setSummary] = useState<JobsSummary | null>(null);
@@ -30,8 +30,8 @@ export function LandingCollections() {
       </Link>
     </div>
     <section className="role-shortcuts">
-      <p className="eyebrow">Browse internships by role</p>
-      <div>{ROLE_AREAS.filter((area) => area.value !== "all").map((area) => <Link href={`/internships?role=${area.value}`} key={area.value}>{area.label}</Link>)}</div>
+      <p className="eyebrow">Browse internships by field</p>
+      <div>{ROLE_FAMILIES.filter((family) => family.value !== "all").map((family) => <Link href={`/internships?role=${family.value}`} key={family.value}>{family.label}</Link>)}</div>
     </section>
   </>;
 }

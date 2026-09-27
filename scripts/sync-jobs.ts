@@ -1,7 +1,7 @@
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { discoverAtsBoard, fetchAtsBoard, type AtsBoardResult } from "../lib/ats-boards";
+import { createAtsBoard, discoverAtsBoard, fetchAtsBoard, type AtsBoardResult, type AtsBoardSeed } from "../lib/ats-boards";
 import { evaluateCompanyQuality, normalizeCompanyDisplayName, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
 import { deduplicateCrossSourceJobs } from "../lib/job-dedup";
 import { getFreshnessRejection } from "../lib/job-freshness";
@@ -10,7 +10,7 @@ import { isInCollection } from "../lib/job-collections";
 import { buildJobsSummary } from "../lib/job-summary";
 import { needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
 import { applyMicrosoftCareersPosting, fetchMicrosoftCareersPosting, parseMicrosoftCareersJobUrl } from "../lib/microsoft-careers";
-import { classifyRoleArea } from "../lib/role-areas";
+import { classifyRoleTags } from "../lib/role-areas";
 import { applySmartRecruitersPosting, fetchSmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
 import type { JobSource, SourceCatalog } from "../lib/source-catalog";
 import type { JobsSnapshot, PublicJob } from "../lib/jobs";
@@ -131,6 +131,13 @@ async function loadCandidates(root: string, sources: JobSource[]) {
     const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
     if (board && !boards.has(board.id)) boards.set(board.id, board);
   }
+  const pinnedSeeds = await readFile(path.join(root, "data/pinned-boards.json"), "utf8")
+    .then((value) => JSON.parse(value) as AtsBoardSeed[])
+    .catch(() => []);
+  for (const seed of pinnedSeeds) {
+    const board = createAtsBoard(seed);
+    boards.set(board.id, board);
+  }
   const boardList = [...boards.values()];
   const boardFetches = await inBatches(boardList, 12, (board) => fetchAtsBoard(board));
   const boardResults = new Map<string, AtsBoardResult>();
@@ -191,7 +198,7 @@ async function loadCandidates(root: string, sources: JobSource[]) {
   if (microsoftEntries.length > 0) {
     console.log(`Verified ${microsoftPostings.size} of ${microsoftEntries.length} Microsoft Careers listings against employer records.`);
   }
-  return { candidates, health, boardResults, boardRegistry };
+  return { candidates, health, boardResults, boardRegistry, pinnedCompanies: pinnedSeeds.map((seed) => seed.company) };
 }
 
 async function main() {
@@ -208,17 +215,18 @@ async function main() {
   const listingHealth: ListingHealthFile = await readFile(listingHealthPath, "utf8")
     .then((value) => JSON.parse(value) as ListingHealthFile)
     .catch(() => ({} as ListingHealthFile));
-  const { candidates, health, boardResults, boardRegistry } = await loadCandidates(root, activeSources);
+  const { candidates, health, boardResults, boardRegistry, pinnedCompanies } = await loadCandidates(root, activeSources);
   const unhealthySources = health.filter((source) => source.status === "failed" || source.rows === 0);
   const merged = new Map<string, PublicJob>();
   const quarantined: Array<{ company: string; title: string; reason: string; source: string; applyUrl: string }> = [];
   let rejectedCount = 0;
 
-  const trustedCompanies = new Set(
-    candidates
+  const trustedCompanies = new Set([
+    ...candidates
       .filter((candidate) => trustedCuratedSources.has(candidate.source))
       .map((candidate) => normalizeCompanyName(candidate.company)),
-  );
+    ...pinnedCompanies.map(normalizeCompanyName),
+  ]);
   const genericUrls = new Map<string, string>();
   for (const candidate of candidates) {
     const identity = jobIdentity(candidate.applyUrl);
@@ -240,7 +248,8 @@ async function main() {
       rejectedCount += 1;
       continue;
     }
-    if (!classifyRoleArea(candidate)) {
+    const roleTags = classifyRoleTags(candidate);
+    if (roleTags.length === 0) {
       quarantined.push({
         company: normalizeDisplayText(candidate.company),
         title: normalizeDisplayText(candidate.title),
@@ -297,6 +306,7 @@ async function main() {
     const existing = merged.get(identity);
     if (existing) {
       if (!existing.sources.includes(candidate.source)) existing.sources.push(candidate.source);
+      existing.roleTags = [...new Set([...(existing.roleTags ?? []), ...roleTags])];
       const precision = { first_seen: 0, relative_derived: 1, date_only: 2, exact: 3 } as const;
       if (precision[candidate.postedAtSource] > precision[existing.postedAtSource]) {
         existing.postedAt = candidate.postedAt;
@@ -321,6 +331,7 @@ async function main() {
       applyUrl: canonical,
       linkedInUrl: decision.linkedInUrl,
       category: candidate.category,
+      roleTags,
       salary: candidate.salary,
       sources: [candidate.source],
       verifiedCompany: true,
@@ -333,7 +344,8 @@ async function main() {
       const identity = jobIdentity(prior.applyUrl);
       const decision = evaluateCompanyQuality({ name: prior.company }, "", registry, trustRegistry);
       const freshnessRejection = getFreshnessRejection(prior);
-      if (identity && classifyRoleArea(prior) && decision.status !== "rejected" && !freshnessRejection && !merged.has(identity)) {
+      const roleTags = classifyRoleTags(prior);
+      if (identity && roleTags.length > 0 && decision.status !== "rejected" && !freshnessRejection && !merged.has(identity)) {
         const location = normalizeJobLocation(prior.location);
         merged.set(identity, {
           ...prior,
@@ -341,6 +353,7 @@ async function main() {
           location,
           regions: getSupportedJobRegions(location),
           metros: classifyJobMetros(location),
+          roleTags,
         });
       }
     }

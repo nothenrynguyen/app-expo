@@ -6,7 +6,7 @@ import type { CompanyTier } from "@/lib/company-tiers";
 import { countSavedJobs, filterJobs, getAvailableMetroOptions, getJobTerms } from "@/lib/job-board";
 import { formatSnapshotAge, type JobMetro, type JobRegion } from "@/lib/job-locations";
 import type { JobsSnapshot } from "@/lib/jobs";
-import { isRoleArea } from "@/lib/role-areas";
+import { getJobRoleTags, getRoleSelection, getRoleTagsForFamily } from "@/lib/role-areas";
 import { JobFilters, RoleTabs } from "./job-board/JobFilters";
 import { JobResults } from "./job-board/JobResults";
 import { getPaginationState, LAYOUT_TRANSITION_MS, PAGE_SIZE, type ViewMode } from "./job-board/job-board-utils";
@@ -21,7 +21,8 @@ const EMPTY_JOBS: JobsSnapshot["jobs"] = [];
 export function JobBoard({ type }: JobBoardProps) {
   const searchParams = useSearchParams();
   const roleParam = searchParams.get("role");
-  const roleArea = isRoleArea(roleParam) ? roleParam : "all";
+  const specialtyParam = searchParams.get("specialty");
+  const roleSelection = useMemo(() => getRoleSelection(roleParam, specialtyParam), [roleParam, specialtyParam]);
   const [snapshot, setSnapshot] = useState<JobsSnapshot | null>(null);
   const [error, setError] = useState(false);
   const [query, setQuery] = useState("");
@@ -61,6 +62,10 @@ export function JobBoard({ type }: JobBoardProps) {
   }, [exitingView]);
 
   const sourceJobs = snapshot?.jobs ?? EMPTY_JOBS;
+  const engineeringSpecialties = useMemo(() => {
+    const availableTags = new Set(sourceJobs.flatMap((job) => getJobRoleTags(job)));
+    return getRoleTagsForFamily("engineering").filter((specialty) => availableTags.has(specialty.value));
+  }, [sourceJobs]);
   const terms = useMemo(() => getJobTerms(sourceJobs), [sourceJobs]);
   const metroOptions = useMemo(
     () => getAvailableMetroOptions(sourceJobs, type, regions),
@@ -69,17 +74,17 @@ export function JobBoard({ type }: JobBoardProps) {
   const jobs = useMemo(
     () => filterJobs(sourceJobs, {
       type,
-      roleArea,
+      roleSelection,
       query,
       regions,
       metros,
       modes,
       terms: selectedTerms,
-      companyTiers,
+      companyTiers: roleSelection.family === "engineering" ? [] : companyTiers,
       savedOnly,
       savedJobIds,
     }),
-    [sourceJobs, type, roleArea, query, regions, metros, modes, selectedTerms, companyTiers, savedOnly, savedJobIds],
+    [sourceJobs, type, roleSelection, query, regions, metros, modes, selectedTerms, companyTiers, savedOnly, savedJobIds],
   );
 
   if (error) return <p className="state-card">The latest job snapshot could not be loaded. Please try again shortly.</p>;
@@ -104,22 +109,22 @@ export function JobBoard({ type }: JobBoardProps) {
 
   return (
     <>
-      <RoleTabs roleArea={roleArea} type={type} />
-      <div className="board-stats">
-        <span><i />Live</span>
-        <strong>{jobs.length}</strong> matching roles
+      <div className="role-toolbar">
+        <RoleTabs selection={roleSelection} type={type} />
         <button
-          className={`saved-filter ${savedOnly ? "active" : ""}`}
+          className={`saved-filter category-saved ${savedOnly ? "active" : ""}`}
           type="button"
           onClick={() => { setSavedOnly((current) => !current); resetPage(); }}
           aria-pressed={savedOnly}
           title="Saved in this browser"
         >
-          <span aria-hidden="true">★</span> Saved locally {savedInCollectionCount}
+          <span aria-hidden="true">★</span> Saved {savedInCollectionCount}
         </button>
-        <span className="updated" title={new Date(snapshot.generatedAt).toLocaleString()}>
-          Last updated: {formatSnapshotAge(snapshot.generatedAt, now)}
-        </span>
+      </div>
+      <div className="board-stats" title={new Date(snapshot.generatedAt).toLocaleString()}>
+        <span className="live-status"><i />Live</span>
+        <span className="refresh-age">· refreshed {formatSnapshotAge(snapshot.generatedAt, now)}</span>
+        <span className="matching-count"><strong>{jobs.length}</strong> matching roles</span>
       </div>
       <JobFilters
         query={query}
@@ -130,6 +135,9 @@ export function JobBoard({ type }: JobBoardProps) {
         selectedTerms={selectedTerms}
         terms={terms}
         companyTiers={companyTiers}
+        engineeringSpecialties={engineeringSpecialties}
+        roleSelection={roleSelection}
+        type={type}
         viewMode={viewMode}
         onQueryChange={(value) => { setQuery(value); resetPage(); }}
         onRegionsChange={(values) => { setRegions(values); setMetros([]); resetPage(); }}

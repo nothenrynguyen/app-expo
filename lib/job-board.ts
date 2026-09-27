@@ -8,13 +8,13 @@ import {
   type JobRegion,
 } from "./job-locations";
 import type { PublicJob } from "./jobs";
-import { matchesRoleArea, type RoleArea } from "./role-areas";
+import { matchesRoleSelection, type RoleSelection } from "./role-areas";
 
 export type JobCollection = "internships" | "fulltime";
 
 export type JobBoardFilters = {
   type: JobCollection;
-  roleArea: RoleArea;
+  roleSelection: RoleSelection;
   query: string;
   regions: readonly JobRegion[];
   metros: readonly JobMetro[];
@@ -36,7 +36,7 @@ export function filterJobs(jobs: readonly PublicJob[], filters: JobBoardFilters)
 
       return isInCollection(job, filters.type)
         && (!normalizedQuery || search.includes(normalizedQuery))
-        && matchesRoleArea(job, filters.roleArea)
+        && matchesRoleSelection(job, filters.roleSelection)
         && (filters.regions.length === 0 || filters.regions.some((region) => jobRegions.includes(region)))
         && (filters.metros.length === 0 || filters.metros.some((metro) => jobMetros.includes(metro)))
         && (filters.modes.length === 0 || filters.modes.includes(job.workMode))
@@ -59,7 +59,7 @@ export function getAvailableMetroOptions(jobs: readonly PublicJob[], type: JobCo
       .flatMap((job) => job.metros ?? classifyJobMetros(job.location)),
   );
 
-  return JOB_METROS.filter(([metro]) => available.has(metro));
+  return JOB_METROS.filter(([metro]) => metro !== "raleigh-durham" && available.has(metro));
 }
 
 export function countSavedJobs(jobs: readonly PublicJob[], type: JobCollection, savedJobIds: ReadonlySet<string>): number {

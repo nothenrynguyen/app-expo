@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { evaluateCompanyQuality, normalizeCompanyDisplayName, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
 import { deduplicateCrossSourceJobs } from "../lib/job-dedup";
+import { isProcessManufacturingRole } from "../lib/process-manufacturing";
 import { getFreshnessRejection } from "../lib/job-freshness";
 import { buildJobInsightsDay, updateJobInsightsHistory } from "../lib/job-insights";
 import { countSavedJobs, filterJobs, getAvailableMetroOptions, getJobTerms } from "../lib/job-board";
@@ -9,8 +10,8 @@ import { buildJobsSummary } from "../lib/job-summary";
 import { daysAgo } from "../lib/jobs";
 import { canonicalizeUrl, inferTerm, inferWorkMode, jobIdentity, normalizeDisplayText, parsePostedAt } from "../lib/source-normalization";
 import { isInCollection } from "../lib/job-collections";
-import { classifyRoleArea } from "../lib/role-areas";
-import { discoverAtsBoard, isEarlyCareerTitle } from "../lib/ats-boards";
+import { classifyRoleArea, classifyRoleTags, getRoleSelection, matchesRoleSelection } from "../lib/role-areas";
+import { createAtsBoard, discoverAtsBoard, isEarlyCareerTitle, type AtsBoardSeed } from "../lib/ats-boards";
 import { classifyListingResponse, needsListingCheck } from "../lib/listing-health";
 import { applyMicrosoftCareersPosting, parseMicrosoftCareersJobUrl, parseMicrosoftCareersPosting } from "../lib/microsoft-careers";
 import { applySmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
@@ -18,6 +19,7 @@ import { parseApplyGuySource, parseMarkdownSource, sourceAllowsAtsExpansion } fr
 import { classifyJobMetros, classifyJobRegions, formatSnapshotAge, getSupportedJobRegions, normalizeJobLocation } from "../lib/job-locations";
 import { isDiscoverableYearlyRepository } from "../scripts/maintain-sources";
 import sourceCatalog from "../data/sources.json";
+import pinnedBoards from "../data/pinned-boards.json";
 import { sourceLicenseReview } from "../lib/source-licenses";
 import { parseSavedJobIds, toggleSavedJobId } from "../lib/saved-jobs";
 import { displayText, getLocationDisplay, getPaginationState } from "../app/job-board/job-board-utils";
@@ -93,13 +95,14 @@ test("job board helpers combine filters and derive available options", () => {
   };
   const jobs = [
     { ...base, id: "saved", company: "Microsoft", title: "Software Engineer Intern", location: "San Francisco, CA", regions: ["us" as const], metros: ["sf-bay-area" as const], applyUrl: "https://example.com/saved" },
+    { ...base, id: "raleigh", title: "Operations Intern", location: "Raleigh, NC", regions: ["us" as const], metros: ["raleigh-durham" as const], applyUrl: "https://example.com/raleigh" },
     { ...base, id: "canada", title: "Data Analyst Intern", location: "Toronto, ON, Canada", regions: ["canada" as const], metros: ["toronto" as const], workMode: "hybrid" as const, applyUrl: "https://example.com/canada" },
     { ...base, id: "fulltime", title: "Software Engineer", term: "Not stated", location: "New York, NY", regions: ["us" as const], metros: ["new-york-city" as const], category: "New grad", applyUrl: "https://example.com/fulltime" },
   ];
 
   const filtered = filterJobs(jobs, {
     type: "internships",
-    roleArea: "software",
+    roleSelection: { family: "software", specialty: null },
     query: "microsoft",
     regions: ["us"],
     metros: ["sf-bay-area"],
@@ -114,6 +117,21 @@ test("job board helpers combine filters and derive available options", () => {
   assert.deepEqual(getJobTerms(jobs), ["Summer 2027"]);
   assert.deepEqual(getAvailableMetroOptions(jobs, "internships", ["us"]).map(([value]) => value), ["sf-bay-area"]);
   assert.equal(countSavedJobs(jobs, "internships", new Set(["saved", "fulltime"])), 1);
+});
+
+test("process and manufacturing classification finds relevant early-career roles and rejects lookalikes", () => {
+  assert.equal(isProcessManufacturingRole({ title: "Dry Etch Equipment Development Engineering Intern", category: "Internship" }), true);
+  assert.equal(isProcessManufacturingRole({ title: "Process Engineer (New Grad Summer 2027)", category: "New grad" }), true);
+  assert.equal(isProcessManufacturingRole({ title: "FAB Device Engineer Intern", category: "Internship" }), true);
+  assert.equal(isProcessManufacturingRole({ title: "Packaging Engineer Intern", category: "Internship" }), true);
+  assert.equal(isProcessManufacturingRole({ title: "Manufacturing Engineer, New Grad", category: "New grad" }), true);
+  assert.equal(isProcessManufacturingRole({ title: "Jr. AI Process Engineer", category: "New grad" }), false);
+  assert.equal(isProcessManufacturingRole({ title: "Business Process Analyst Intern", category: "Internship" }), false);
+  assert.equal(isProcessManufacturingRole({ title: "Senior Process Engineer", category: "New grad" }), false);
+  assert.equal(isProcessManufacturingRole({ title: "Senior Manufacturing Engineer I", category: "New grad" }), false);
+  assert.equal(isProcessManufacturingRole({ title: "Site Reliability Engineer I", category: "New grad" }), false);
+  assert.equal(isProcessManufacturingRole({ title: "Software Engineering Intern, Fab", category: "Internship" }), false);
+  assert.equal(isProcessManufacturingRole({ title: "PhD Intern - Materials Science", category: "Internship" }), false);
 });
 
 test("saved job helpers reject invalid storage and toggle unique IDs", () => {
@@ -359,6 +377,8 @@ test("role areas classify prefiltered board views", () => {
   assert.equal(classifyRoleArea({ title: "Electrical Engineering Intern", category: "Internship" }), "hardware");
   assert.equal(classifyRoleArea({ title: "ASIC Design Verification Engineer", category: "New grad" }), "hardware");
   assert.equal(classifyRoleArea({ title: "Embedded Systems Engineer", category: "New grad" }), "hardware");
+  assert.equal(classifyRoleArea({ title: "Process Engineer (New Grad Summer 2027)", category: "New grad" }), "process-manufacturing");
+  assert.equal(classifyRoleArea({ title: "Manufacturing Engineering Intern", category: "Internship" }), "process-manufacturing");
   assert.equal(classifyRoleArea({ title: "Embedded Software Engineer", category: "New grad" }), "software");
   assert.equal(classifyRoleArea({ title: "Technical Program Manager Intern, Hardware Engineering", category: "Internship" }), null);
   assert.equal(classifyRoleArea({ title: "LLM Post-training Engineer Graduate", category: "New grad" }), "software");
@@ -383,7 +403,44 @@ test("supported ATS links reveal stable company board identifiers", () => {
   assert.equal(discoverAtsBoard("https://jobs.lever.co/zoox/11111111-1111-4111-8111-111111111111", "Zoox", "Test")?.provider, "lever");
   assert.equal(discoverAtsBoard("https://jobs.ashbyhq.com/handshake/11111111-1111-4111-8111-111111111111", "Handshake", "Test")?.key, "handshake");
   assert.equal(isEarlyCareerTitle("Software Engineer Intern, Summer 2027"), true);
+  assert.equal(isEarlyCareerTitle("Process Engineer I"), true);
   assert.equal(isEarlyCareerTitle("Senior Software Engineer"), false);
+  assert.equal(isEarlyCareerTitle("Senior Mechanical Engineer I"), false);
+  assert.equal(isEarlyCareerTitle("Product Manager Intern"), true);
+});
+
+test("role taxonomy supports multiple tags, broad families, and legacy links", () => {
+  const semiconductor = { title: "Materials and Process Engineering Intern", category: "Internship" };
+  assert.deepEqual(classifyRoleTags(semiconductor), ["process-manufacturing", "materials-chemical"]);
+  assert.deepEqual(classifyRoleTags({ title: "Machine Learning Engineer Intern", category: "Internship" }), ["software-engineering", "ai-ml-engineering"]);
+  assert.deepEqual(classifyRoleTags({ title: "Civil Engineering Intern", category: "Internship" }), ["civil-infrastructure"]);
+  assert.deepEqual(classifyRoleTags({ title: "Mechanical Systems Test Engineer I", category: "New grad" }), ["mechanical", "systems-test"]);
+  assert.deepEqual(classifyRoleTags({ title: "Software Engineer II - Reliability Engineering Tooling", category: "New grad" }), ["software-engineering"]);
+  assert.deepEqual(classifyRoleTags({ title: "OTA/Cloud Validation Engineer - New Grad", category: "New grad" }), ["cloud-infrastructure"]);
+  assert.deepEqual(classifyRoleTags({ title: "Quality Engineer I", category: "New grad" }), []);
+  assert.deepEqual(classifyRoleTags({ title: "Supplier Quality Engineer I", category: "New grad" }), ["process-manufacturing", "quality-reliability"]);
+  assert.deepEqual(classifyRoleTags({ title: "Device Engineer I", category: "New grad" }), ["hardware-electrical"]);
+  assert.deepEqual(classifyRoleTags({ title: "Senior Mechanical Engineer I", category: "New grad" }), []);
+  assert.deepEqual(classifyRoleTags({ title: "Product Manager Intern", category: "Internship" }), ["product"]);
+  assert.deepEqual(getRoleSelection("process-manufacturing", null), { family: "engineering", specialty: "process-manufacturing" });
+  assert.deepEqual(getRoleSelection("engineering", "mechanical"), { family: "engineering", specialty: "mechanical" });
+  assert.deepEqual(getRoleSelection("data", "mechanical"), { family: "data", specialty: null });
+  assert.equal(matchesRoleSelection(semiconductor, { family: "engineering", specialty: null }), true);
+  assert.equal(matchesRoleSelection(semiconductor, { family: "engineering", specialty: "materials-chemical" }), true);
+  assert.equal(matchesRoleSelection(semiconductor, { family: "software", specialty: null }), false);
+});
+
+test("pinned ATS boards produce stable public endpoints", () => {
+  for (const seed of pinnedBoards) {
+    const board = createAtsBoard(seed as AtsBoardSeed);
+    assert.equal(board.endpoint.startsWith("https://"), true);
+    assert.equal(board.source, "Pinned ATS");
+  }
+
+  assert.equal(
+    createAtsBoard({ provider: "greenhouse", key: "freeformfuturecorp", company: "Freeform" }).id,
+    "greenhouse:freeformfuturecorp",
+  );
 });
 
 test("SmartRecruiters records replace source-list age with employer date and status", () => {

@@ -14,6 +14,7 @@ export type PublicJob = {
   applyUrl: string;
   linkedInUrl: string | null;
   category: string;
+  roleTags?: import("./role-areas").RoleTag[];
   salary: string | null;
   sources: string[];
   verifiedCompany: boolean;

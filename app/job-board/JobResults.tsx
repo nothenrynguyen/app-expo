@@ -94,7 +94,7 @@ function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJob
               <div className="job-table-location" role="cell" data-label="Location">
                 {location.hasMore
                   ? <span className="location-with-more" tabIndex={0}><span className="location-label">{location.compact}</span><span className="location-popover" role="tooltip">{location.full}</span></span>
-                  : location.compact}
+                  : <span className="location-label" title={location.full}>{location.compact}</span>}
               </div>
               <div className="job-table-action" role="cell" data-label="Save"><SaveButton compact isSaved={savedJobIds.has(job.id)} job={job} onToggle={() => onToggleSaved(job.id)} /></div>
               <div className="job-table-action" role="cell" data-label="Apply"><a className="button table-button primary" href={job.applyUrl} target="_blank" rel="noreferrer">Apply</a></div>
