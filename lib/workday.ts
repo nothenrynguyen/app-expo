@@ -9,6 +9,7 @@ export type WorkdayBoardSeed = {
   company: string;
   searchTerms: string[];
   maxResultsPerSearch?: number;
+  prefilterEarlyCareerTitles?: boolean;
 };
 
 export type WorkdayBoard = WorkdayBoardSeed & {
@@ -22,6 +23,13 @@ export type WorkdayBoardResult = {
   jobs: CandidateJob[];
   liveIdentities: Set<string>;
   searchedPostings: number;
+  diagnostics: {
+    durationMs: number;
+    listRequests: number;
+    detailRequests: number;
+    detailFailures: number;
+    retryRequests: number;
+  };
 };
 
 type WorkdaySummary = {
@@ -53,6 +61,45 @@ type WorkdayDetail = {
 };
 
 const PAGE_SIZE = 20;
+const REQUEST_ATTEMPTS = 3;
+
+type WorkdayRequestOptions = {
+  method?: "GET" | "POST";
+  body?: string;
+  timeoutMs: number;
+};
+
+async function requestWorkdayJson<T>(url: string, options: WorkdayRequestOptions): Promise<{ data: T; retries: number }> {
+  let retries = 0;
+  let lastError: unknown;
+  for (let attempt = 0; attempt < REQUEST_ATTEMPTS; attempt += 1) {
+    try {
+      const response = await fetch(url, {
+        method: options.method ?? "GET",
+        headers: {
+          accept: "application/json",
+          connection: "close",
+          ...(options.body ? { "content-type": "application/json" } : {}),
+          "user-agent": "App-Expo/0.4",
+        },
+        body: options.body,
+        signal: AbortSignal.timeout(options.timeoutMs),
+      });
+      if (response.ok) return { data: await response.json() as T, retries };
+      const retryable = response.status === 408 || response.status === 429 || response.status >= 500;
+      if (!retryable) throw new Error(`${response.status} ${response.statusText}`);
+      lastError = new Error(`${response.status} ${response.statusText}`);
+    } catch (error) {
+      lastError = error;
+      if (error instanceof Error && /^4\d\d /.test(error.message) && !/^(?:408|429) /.test(error.message)) throw error;
+    }
+    if (attempt < REQUEST_ATTEMPTS - 1) {
+      retries += 1;
+      await new Promise((resolve) => setTimeout(resolve, 250 * (attempt + 1)));
+    }
+  }
+  throw lastError instanceof Error ? lastError : new Error("Workday request failed.");
+}
 
 export function createWorkdayBoard(seed: WorkdayBoardSeed): WorkdayBoard {
   const host = seed.host.trim().toLowerCase().replace(/^https?:\/\//, "").replace(/\/+$/, "");
@@ -172,26 +219,24 @@ async function inBatches<T, R>(items: T[], concurrency: number, task: (item: T) 
 }
 
 export async function fetchWorkdayBoard(board: WorkdayBoard, now = new Date()): Promise<WorkdayBoardResult> {
+  const startedAt = Date.now();
   const summaries = new Map<string, WorkdaySummary>();
   const maxResults = board.maxResultsPerSearch ?? 500;
+  let listRequests = 0;
+  let retryRequests = 0;
 
   for (const searchText of board.searchTerms) {
     let offset = 0;
     let total = 0;
     do {
-      const response = await fetch(board.endpoint, {
+      listRequests += 1;
+      const response = await requestWorkdayJson<{ total?: number; jobPostings?: WorkdaySummary[] }>(board.endpoint, {
         method: "POST",
-        headers: {
-          accept: "application/json",
-          connection: "close",
-          "content-type": "application/json",
-          "user-agent": "App-Expo/0.3",
-        },
         body: JSON.stringify({ appliedFacets: {}, limit: PAGE_SIZE, offset, searchText }),
-        signal: AbortSignal.timeout(15_000),
+        timeoutMs: 15_000,
       });
-      if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-      const payload = await response.json() as { total?: number; jobPostings?: WorkdaySummary[] };
+      retryRequests += response.retries;
+      const payload = response.data;
       const postings = payload.jobPostings ?? [];
       total = Math.min(payload.total ?? postings.length, maxResults);
       for (const posting of postings) {
@@ -202,18 +247,25 @@ export async function fetchWorkdayBoard(board: WorkdayBoard, now = new Date()): 
     } while (offset < total);
   }
 
-  const entries = [...summaries.entries()];
+  const searchedPostings = summaries.size;
+  const entries = [...summaries.entries()].filter(([, summary]) => {
+    if (!board.prefilterEarlyCareerTitles) return true;
+    const title = summary.title ?? "";
+    if (/\b(?:senior|sr\.?|staff|principal|director|head|lead)\b/i.test(title)) return false;
+    return isEarlyCareerTitle(title) || /\bassociate\b/i.test(title);
+  });
   const details = await inBatches(entries, 4, async ([externalPath, summary]) => {
-    const response = await fetch(detailUrl(board, externalPath), {
-      headers: { accept: "application/json", connection: "close", "user-agent": "App-Expo/0.3" },
-      signal: AbortSignal.timeout(12_000),
+    const response = await requestWorkdayJson<WorkdayDetail>(detailUrl(board, externalPath), {
+      timeoutMs: 12_000,
     });
-    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-    return { summary, payload: await response.json() as WorkdayDetail };
+    retryRequests += response.retries;
+    return { summary, payload: response.data };
   });
 
   const jobs: CandidateJob[] = [];
   const liveIdentities = new Set<string>();
+  const detailFailures = details.filter((result) => result.status === "rejected").length;
+  if (entries.length > 0 && detailFailures === entries.length) throw new Error("Every Workday detail request failed.");
   for (const result of details) {
     if (result.status !== "fulfilled") continue;
     const job = parseWorkdayJob(board, result.value.summary, result.value.payload, now);
@@ -223,5 +275,17 @@ export async function fetchWorkdayBoard(board: WorkdayBoard, now = new Date()): 
     jobs.push(job);
   }
 
-  return { board, jobs, liveIdentities, searchedPostings: entries.length };
+  return {
+    board,
+    jobs,
+    liveIdentities,
+    searchedPostings,
+    diagnostics: {
+      durationMs: Date.now() - startedAt,
+      listRequests,
+      detailRequests: entries.length,
+      detailFailures,
+      retryRequests,
+    },
+  };
 }

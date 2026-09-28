@@ -10,7 +10,7 @@ import { isInCollection } from "../lib/job-collections";
 import { buildJobsSummary } from "../lib/job-summary";
 import { needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
 import { applyMicrosoftCareersPosting, fetchMicrosoftCareersPosting, parseMicrosoftCareersJobUrl } from "../lib/microsoft-careers";
-import { classifyRoleTags } from "../lib/role-areas";
+import { classifyRoleTags, getJobRoleTags } from "../lib/role-areas";
 import { applySmartRecruitersPosting, fetchSmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
 import type { JobSource, SourceCatalog } from "../lib/source-catalog";
 import type { JobsSnapshot, PublicJob } from "../lib/jobs";
@@ -148,6 +148,12 @@ async function loadCandidates(root: string, sources: JobSource[]) {
     company: string;
     status: "ok" | "failed";
     rows: number;
+    searchedRows?: number;
+    listRequests?: number;
+    detailRequests?: number;
+    detailFailures?: number;
+    retryRequests?: number;
+    durationMs?: number;
   }> = boardFetches.map((result, index) => {
     const board = boardList[index];
     if (result.status === "fulfilled") {
@@ -168,7 +174,19 @@ async function loadCandidates(root: string, sources: JobSource[]) {
     if (result.status === "fulfilled") {
       candidates.push(...result.value.jobs);
       health.push({ name: `Workday: ${board.company}`, status: "ok", rows: result.value.searchedPostings });
-      boardRegistry.push({ provider: "workday", key: `${board.tenant}/${board.site}`, company: board.company, status: "ok", rows: result.value.liveIdentities.size });
+      boardRegistry.push({
+        provider: "workday",
+        key: `${board.tenant}/${board.site}`,
+        company: board.company,
+        status: "ok",
+        rows: result.value.liveIdentities.size,
+        searchedRows: result.value.searchedPostings,
+        listRequests: result.value.diagnostics.listRequests,
+        detailRequests: result.value.diagnostics.detailRequests,
+        detailFailures: result.value.diagnostics.detailFailures,
+        retryRequests: result.value.diagnostics.retryRequests,
+        durationMs: result.value.diagnostics.durationMs,
+      });
     } else {
       health.push({ name: `Workday: ${board.company}`, status: "failed", rows: 0 });
       boardRegistry.push({ provider: "workday", key: `${board.tenant}/${board.site}`, company: board.company, status: "failed", rows: 0 });
@@ -389,7 +407,9 @@ async function main() {
     }
   }
 
-  const jobs = deduplicateCrossSourceJobs([...merged.values()]).sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime());
+  const jobs = deduplicateCrossSourceJobs([...merged.values()])
+    .map((job) => ({ ...job, roleTags: getJobRoleTags(job) }))
+    .sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime());
   if (jobs.length < 10) throw new Error(`Refusing to publish anomalous snapshot with only ${jobs.length} approved jobs.`);
   const allSourcesUnhealthy = health.length > 0 && unhealthySources.length === health.length;
   const snapshot: JobsSnapshot = {

@@ -6,16 +6,25 @@ This is the living list of ideas and future work for App Expo. Update it wheneve
 
 App Expo covers early-career software, data, engineering, product, solutions and support, business, finance, quant, IT, and security roles across internship and full-time collections.
 
-The immediate goal is to reduce the source bias toward software-focused community lists by expanding reviewed direct-employer coverage without adding more interface complexity.
+The reviewed-source expansion milestone is complete. The immediate goal is to turn the ingestion pipeline into a cleaner backend foundation, then use that foundation to build a server-backed feature.
 
 ## Next milestone
 
-- [ ] Pilot Medtronic and Abbott through the Workday connector for Quality / Reliability and manufacturing coverage
-- [ ] Measure net-new roles, duplicate rate, refresh duration, and false positives before adding more Workday employers
-- [ ] Improve Materials / Chemical classification for clearly relevant thin-film, deposition, etch, CMP, metrology, and failure-analysis roles
-- [ ] Add reviewed employers in small category-focused batches rather than broad, unreviewed aggregators
-- [ ] Add per-connector timing and request counts before the Workday registry grows beyond a small pilot
-- [ ] Split source loading and provider orchestration out of `scripts/sync-jobs.ts` before adding another high-volume connector
+- [ ] Extract provider orchestration from `scripts/sync-jobs.ts` into typed ingestion modules
+- [ ] Add mocked HTTP integration tests for pagination, retries, partial detail failures, and last-known-good behavior
+- [ ] Produce one typed refresh report with source timing, request volume, accepted jobs, quarantined jobs, and rejection counts
+- [ ] Decide the first server-backed feature, with saved searches and job alerts or a personal application tracker as the leading options
+- [ ] If a server-backed feature is selected, replace static export with the Next.js Node runtime before adding authentication or a database
+- [ ] Preserve the no-sign-up public board even if optional accounts are introduced for personal features
+
+## Completed source milestone
+
+- [x] Pilot Medtronic and Abbott through the Workday connector for Quality / Reliability and manufacturing coverage
+- [x] Measure net-new roles, refresh duration, request counts, detail failures, retries, and false positives
+- [x] Improve Materials / Chemical classification for thin-film, deposition, etch, CMP, metrology, and electrochemistry roles
+- [x] Add physical medical-device context for Quality / Reliability while excluding software QA
+- [x] Add bounded Workday retries and preserve last-known-good data during source failures
+- [x] Add per-connector timing and request diagnostics before broader Workday expansion
 
 ## Future job categories
 

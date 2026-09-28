@@ -10,7 +10,7 @@ import { buildJobsSummary } from "../lib/job-summary";
 import { daysAgo } from "../lib/jobs";
 import { canonicalizeUrl, inferTerm, inferWorkMode, jobIdentity, normalizeDisplayText, parsePostedAt } from "../lib/source-normalization";
 import { isInCollection } from "../lib/job-collections";
-import { classifyRoleArea, classifyRoleTags, getRoleSelection, matchesRoleSelection } from "../lib/role-areas";
+import { classifyRoleArea, classifyRoleTags, getJobRoleTags, getRoleSelection, matchesRoleSelection } from "../lib/role-areas";
 import { createAtsBoard, discoverAtsBoard, isEarlyCareerTitle, type AtsBoardSeed } from "../lib/ats-boards";
 import { classifyListingResponse, needsListingCheck } from "../lib/listing-health";
 import { applyMicrosoftCareersPosting, parseMicrosoftCareersJobUrl, parseMicrosoftCareersPosting } from "../lib/microsoft-careers";
@@ -462,6 +462,33 @@ test("role taxonomy supports multiple tags, broad families, and legacy links", (
   assert.equal(matchesRoleSelection(semiconductor, { family: "software", specialty: null }), false);
   assert.equal(matchesRoleSelection({ title: "Associate Product Manager", category: "New grad", roleTags: ["product"] }, { family: "product", specialty: null }), true);
   assert.equal(matchesRoleSelection({ title: "Forward Deployed Engineer", category: "New grad", roleTags: ["software-engineering"] }, { family: "solutions-support", specialty: null }), true);
+});
+
+test("physical quality context and semiconductor materials terms remain distinct from software QA", () => {
+  assert.deepEqual(
+    classifyRoleTags({ title: "Quality Engineer I", category: "New grad", rawText: "Medical device manufacturing under ISO 13485 and FDA requirements" }),
+    ["quality-reliability"],
+  );
+  assert.equal(
+    classifyRoleTags({ title: "Software Quality Engineer I", category: "New grad", rawText: "Medical device software verification" }).includes("quality-reliability"),
+    false,
+  );
+  assert.equal(
+    classifyRoleTags({ title: "New College Grad - Dry Etch Process Engineer", category: "New grad" }).includes("materials-chemical"),
+    true,
+  );
+  assert.equal(
+    classifyRoleTags({ title: "Software Engineer - Metrology Systems", category: "New grad" }).includes("materials-chemical"),
+    false,
+  );
+  assert.equal(
+    classifyRoleTags({ title: "Commercial Analytics Intern", category: "Chemistry" }).includes("materials-chemical"),
+    false,
+  );
+  assert.deepEqual(
+    getJobRoleTags({ title: "Commercial Analytics Intern", category: "Internship", roleTags: ["analytics", "materials-chemical"] }),
+    ["analytics"],
+  );
 });
 
 test("pinned ATS boards produce stable public endpoints", () => {

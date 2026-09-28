@@ -112,7 +112,8 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
   const add = (tag: RoleTag, pattern: RegExp) => { if (pattern.test(text)) tags.add(tag); };
   const addTitle = (tag: RoleTag, pattern: RegExp) => { if (pattern.test(title)) tags.add(tag); };
   const softwareContext = /\bsoftware\b|\bcloud\b|\bsite reliability\b|\bsre\b|\btooling\b|\bdevops\b|\bplatform\b|\bota\b|\bqa\b|\btest automation\b/.test(text);
-  const physicalQualityContext = /\b(?:supplier|manufacturing|production|process|product|hardware|device|component|semiconductor|silicon|wafer|materials?|mechanical|electrical|industrial|factory)\b|\bquality systems?\b|\bquality control\b|\bfailure analysis\b/.test(text);
+  const physicalQualityContext = /\b(?:supplier|manufacturing|production|process|product|hardware|device|component|semiconductor|silicon|wafer|materials?|mechanical|electrical|industrial|factory)\b|\bquality systems?\b|\bquality control\b|\bfailure analysis\b/.test(text)
+    || /\b(?:medical device|medical technology|supplier quality|manufacturing quality|design quality|quality systems?|quality control|failure analysis|capa|gmp|iso 13485|fda)\b/.test(rawText);
   const customerFacingContext = /\b(?:customer-facing|client-facing|work(?:ing)? (?:directly )?with (?:our )?(?:customers|clients)|support(?:ing)? (?:our )?(?:customers|clients)|customer deployments?|client implementations?|pre[- ]sales|post[- ]sales|technical sales|field applications?)\b/.test(rawText);
 
   const internalPeopleRole = /\b(?:talent acquisition|recruiting|human resources?|people operations?)\b/.test(title);
@@ -133,7 +134,7 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
   add("finance", /\bfinance\b|\bfinancial\b|\baccount(?:ant|ing)\b|\binvestment\b|\bbanking\b|\btreasury\b|\baudit(?:or|ing)?\b|\btax\b|\bcontroller\b|\bfp&a\b|\bprivate equity\b|\bwealth management\b|\basset management\b|\bcapital markets\b|\bactuari(?:al|y)\b|\bunderwrit(?:er|ing)\b|\bcredit (?:analyst|risk|services)\b|\bmarket risk\b|\brisk (?:analyst|management|advisory|intern)\b|\bloan review\b|\bvaluation\b|\bcommercial banking\b|\bcorporate banking\b/);
 
   if (isProcessManufacturingRole(job)) tags.add("process-manufacturing");
-  add("materials-chemical", /\bchemical engineer(?:ing)?\b|\bmaterials? (?:engineer(?:ing)?|science|scientist|and process engineering)\b|\bpolymer\b|\bmetallurg(?:y|ical|ist)\b|\bchemistry\b|\bchemical process\b/);
+  if (!softwareContext) addTitle("materials-chemical", /\bchemical engineer(?:ing)?\b|\bmaterials? (?:engineer(?:ing)?|science|scientist|and process engineering|characterization)\b|\bpolymer\b|\bmetallurg(?:y|ical|ist)\b|\bchemistry\b|\bchemical process\b|\bthin[- ]films?\b|\b(?:cvd|pcvd|pvd)\b|\b(?:dry|wet) etch\b|\bcmp\b|\bmetrology\b|\bdeposition engineer(?:ing)?\b|\bbattery materials?\b|\belectrochem(?:istry|ical)\b/);
   if (!softwareContext && physicalQualityContext) add("quality-reliability", /\bquality engineer(?:ing)?\b|\breliability engineer(?:ing)?\b|\bfailure analysis\b|\bquality control\b|\bquality systems?\b|\bvalidation engineer(?:ing)?\b/);
   if (!/\b(?:technical )?program manager\b/.test(text)) add("hardware-electrical", /\bhardware (?:design |development |systems? |test |validation |verification |applications? )?engineer(?:ing)?\b|\bdevice engineer(?:ing)?\b|\belectrical engineer(?:ing)?\b|\belectronics engineer(?:ing)?\b|\bembedded systems? engineer(?:ing)?\b|\bfpga\b|\b(?:asic|rtl) (?:design|verification|validation|engineer(?:ing)?)\b|\bsilicon (?:design|validation|verification|engineer(?:ing)?)\b|\b(?:pre|post)[ -]?silicon\b|\bsemiconductor (?:design|test|process|product|engineer(?:ing)?)\b|\b(?:analog|mixed[ -]?signal|digital|logic|circuit|board|pcb|chip) design engineer(?:ing)?\b|\bdesign verification engineer(?:ing)?\b|\bsignal integrity engineer(?:ing)?\b|\bpower electronics engineer(?:ing)?\b|\brf engineer(?:ing)?\b|\brobotics hardware\b/);
   const structuralTitle = /\bstructural engineer(?:ing)?\b/.test(title);
@@ -156,7 +157,10 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
 
 export function getJobRoleTags(job: RoleCandidate): RoleTag[] {
   const stored = (job.roleTags ?? []).filter((tag): tag is RoleTag => isRoleTag(tag));
-  return [...new Set([...stored, ...classifyRoleTags(job)])];
+  const tags = new Set([...stored, ...classifyRoleTags(job)]);
+  if (/\b(?:software|analytics?)\b/i.test(job.title)) tags.delete("materials-chemical");
+  if (/\bsoftware\b/i.test(job.title)) tags.delete("quality-reliability");
+  return ROLE_TAGS.map((role) => role.value).filter((tag) => tags.has(tag));
 }
 
 export function matchesRoleSelection(job: RoleCandidate, selection: RoleSelection): boolean {

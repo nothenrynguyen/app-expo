@@ -1,6 +1,6 @@
 # Job board coverage report
 
-Updated September 27, 2026 after the role-taxonomy, early-career detection, reviewed-source expansion, and initial Workday pilot.
+Updated September 28, 2026 after the role-taxonomy, early-career detection, reviewed-source expansion, and four-employer Workday milestone.
 
 ## Outcome
 
@@ -30,6 +30,14 @@ The first live refresh produced 67 approved Workday listings, including 62 full-
 
 Both pilot employers returned healthy responses. Workday requests run with lower concurrency and without reused connections because the provider can terminate persistent connections during larger refreshes. This makes the source slower than the existing ATS connectors, but it remains suitable for the hourly background sync and does not affect page-load performance.
 
+## Medical-device expansion
+
+Medtronic and Abbott were added as reviewed Workday employers using targeted quality, reliability, and manufacturing searches. A title-level early-career prefilter reduces their combined detail requests from 225 search matches to 27 likely early-career postings. The final connector results published six jobs from these two boards, including Quality Engineer I roles from both employers, and recorded zero detail failures.
+
+The refreshed snapshot contains 5,249 jobs and 2,209 full-time roles. Materials / Chemical increased from 16 to 24 total listings, including 20 full-time roles. Quality / Reliability increased from 24 to 30 total listings, including 22 full-time roles. Software quality titles remain excluded from physical Quality / Reliability, and software or analytics titles cannot retain a conflicting Materials / Chemical tag after cross-source merging.
+
+Each Workday board now records searched rows, list requests, detail requests, detail failures, retry requests, and duration. Transient timeouts, rate limits, and server failures receive bounded retries, while configuration and permanent client errors still fail immediately. The final validation returned 21 of 21 healthy sources.
+
 ## Reviewed official boards
 
 Ten official boards were added to the pinned registry:
@@ -52,6 +60,9 @@ Olsson produced the largest immediate gain, with 17 full-time listings and 59 in
 - Internal recruiting and talent-acquisition Solutions titles are excluded from Solutions / Support.
 - Customer-service titles containing “Active Trader” no longer enter Quant.
 - Structural engineering roles with bridge, rail, facilities, construction, civil, infrastructure, or industrial context enter Civil / Infrastructure instead of Mechanical.
+- Medical-device Quality Engineer titles require physical product, manufacturing, supplier, regulatory, or quality-system context.
+- Thin-film, deposition, etch, CMP, metrology, and electrochemistry titles can enter Materials / Chemical, while software and analytics titles are explicitly excluded.
+- Stored role tags are sanitized after source merging so a stale or contradictory tag cannot survive deduplication.
 
 ## Source-expansion consequences
 
@@ -67,6 +78,6 @@ The main ongoing cost is additional network work during the hourly sync. The Wor
 - Search empty states, saved-job toggling, pagination, long locations, filter substitution, and horizontal overflow were checked.
 - Responsive styles keep role categories horizontally scrollable and move filters into the mobile filter panel below 620 pixels.
 
-## Remaining opportunity
+## Next phase
 
-Materials / Chemical remains at 16 listings and Quality / Reliability increased to 24. The next expansion should add a small reviewed medical-device quality pilot, then improve materials classification for clearly relevant thin-film, deposition, etch, CMP, metrology, and failure-analysis titles without treating every semiconductor process role as a materials role.
+The source-expansion milestone is complete. Further employers should be added only in small reviewed batches supported by the connector diagnostics. The next engineering phase should focus on backend foundations: modular provider orchestration, mocked connector integration tests, a typed refresh report, and an explicit decision about the first server-backed user feature.

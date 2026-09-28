@@ -22,7 +22,7 @@ const steps = [
   {
     number: "03",
     title: "Keep relevant roles",
-    copy: "A role must clearly match one of the supported early-career areas. Software, data, product, hardware, quant, finance, business analyst, and IT/security roles are included. Public collections are then split by source category plus title and term signals.",
+    copy: "A role must clearly match one of the supported early-career areas. Software, data, engineering, product, solutions and support, business, finance, quant, IT, and security roles are included. Public collections are then split by source category plus title and term signals.",
   },
   {
     number: "04",
@@ -37,7 +37,7 @@ const steps = [
   {
     number: "06",
     title: "Check freshness",
-    copy: "The job snapshot refreshes hourly from 5 a.m. through 5 p.m. in the America/New_York timezone. Direct ATS boards confirm whether roles still appear on the employer board, generic links rotate through daily checks, completed internship terms are removed, and exact-date internships older than 180 days are held out.",
+    copy: "The job snapshot refreshes hourly from 5 a.m. through 5 p.m. in the America/New_York timezone. Direct ATS boards confirm whether roles still appear on the employer board, transient source failures receive bounded retries, generic links rotate through daily checks, and the last healthy snapshot is preserved when a source fails.",
   },
 ];
 
