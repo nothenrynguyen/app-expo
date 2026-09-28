@@ -12,7 +12,7 @@ const steps = [
   {
     number: "01",
     title: "Find broadly",
-    copy: "We collect openings from maintained public job lists and use their application links to discover employer career boards. Supported Greenhouse, Lever, and Ashby boards are refreshed directly, and SmartRecruiters listings are checked against employer posting records.",
+    copy: "We collect openings from maintained public job lists and use their application links to discover employer career boards. Reviewed Greenhouse, Lever, Ashby, and Workday boards are refreshed directly, and SmartRecruiters listings are checked against employer posting records. Direct-board jobs use the same screening, classification, and duplicate checks as every other listing.",
   },
   {
     number: "02",

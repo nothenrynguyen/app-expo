@@ -75,16 +75,16 @@ export function discoverAtsBoard(applyUrl: string, company: string, source: stri
 }
 
 export function isEarlyCareerTitle(title: string, description = ""): boolean {
-  const explicitEarlyCareer = /\b(?:intern(?:ship)?|co-?op|new grad(?:uate)?|early career|university grad(?:uate)?|entry[- ]level)\b/i.test(title);
+  const explicitEarlyCareer = /\b(?:intern(?:ship)?|co-?op|new (?:college )?grad(?:uate)?|early career|university grad(?:uate)?|entry[- ]level)\b/i.test(title);
   if (/\b(?:senior|sr\.?|staff|principal|director|head|lead)\b/i.test(title)) return false;
-  const titleSignal = /\bintern(ship)?\b|\bco-?op\b|\bnew grad(uate)?\b|\bentry[- ]level\b|\bearly career\b|\buniversity (?:grad|graduate|hire)\b|\bcampus (?:hire|recruit)\b|\bjunior\b|\bjr\.?\b|\b(?:engineer|scientist|analyst|specialist) i\b|\bassociate solutions? engineer\b|\bsupport engineer(?:ing)? tier 1\b/i.test(title);
+  const titleSignal = /\bintern(ship)?\b|\bco-?op\b|\bnew (?:college )?grad(uate)?\b|\bentry[- ]level\b|\bearly career\b|\buniversity (?:grad|graduate|hire)\b|\bcampus (?:hire|recruit)\b|\bjunior\b|\bjr\.?\b|\b(?:engineer|scientist|analyst|specialist) i\b|\bassociate solutions? engineer\b|\bsupport engineer(?:ing)? tier 1\b/i.test(title);
 
   const normalizedDescription = description
     .replace(/&(?:ndash|mdash|#8211|#8212|#x2013|#x2014);/gi, "-")
     .replace(/[\u2013\u2014]/g, "-")
     .replace(/<[^>]+>/g, " ")
     .replace(/\s+/g, " ");
-  const descriptionSignal = /\b(?:entry[- ]level|new grad(?:uate)?|early career|university grad(?:uate)?)\b/i.test(normalizedDescription)
+  const descriptionSignal = /\b(?:entry[- ]level|new (?:college )?grad(?:uate)?|early career|university grad(?:uate)?)\b/i.test(normalizedDescription)
     || /\b(?:0|1)\s*(?:-|to)\s*[123]\s+(?:years?|yrs?)\b[^.]{0,60}\bexperience\b/i.test(normalizedDescription)
     || /\b(?:experience|professional experience)\b[^.]{0,60}\b(?:0|1)\s*(?:-|to)\s*[123]\s+(?:years?|yrs?)\b/i.test(normalizedDescription)
     || /\bup to\s+3\s+(?:years?|yrs?)\b[^.]{0,60}\bexperience\b/i.test(normalizedDescription)

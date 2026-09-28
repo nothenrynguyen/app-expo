@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import sourceCatalog from "@/data/sources.json";
 import pinnedBoards from "@/data/pinned-boards.json";
+import workdayBoards from "@/data/workday-boards.json";
 import { MIT_LICENSE_TEXT, sourceLicenseReview } from "@/lib/source-licenses";
 import { AnimatedCount } from "../AnimatedCount";
 import { PageTransition } from "../PageTransition";
@@ -38,15 +39,16 @@ export default function SourcesPage() {
             <div><AnimatedCount value={licenses.length} /><span>unique repositories</span></div>
             <div><AnimatedCount value={licensedCount} /><span>MIT licensed</span></div>
             <div><AnimatedCount value={unresolvedCount} /><span>no license detected</span></div>
-            <div><AnimatedCount value={pinnedBoards.length} /><span>pinned employer boards</span></div>
+            <div><AnimatedCount value={pinnedBoards.length + workdayBoards.length} /><span>pinned employer boards</span></div>
           </div>
 
           <div className="pinned-source-note">
             <p className="eyebrow">Direct employer coverage</p>
             <h2>Public ATS boards checked every refresh.</h2>
-            <p>App Expo keeps a small reviewed registry for employers with relevant early-career engineering roles, even when a community feed does not currently link to them.</p>
+            <p>App Expo keeps a small reviewed registry of public Greenhouse, Lever, Ashby, and Workday career sites. Their qualifying early-career roles can enter any matching job category, even when a community feed does not currently link to them.</p>
             <ul aria-label="Pinned employer boards">
               {pinnedBoards.map((board) => <li key={`${board.provider}:${board.key}`}>{board.company}</li>)}
+              {workdayBoards.map((board) => <li key={`workday:${board.tenant}:${board.site}`}>{board.company}</li>)}
             </ul>
           </div>
 

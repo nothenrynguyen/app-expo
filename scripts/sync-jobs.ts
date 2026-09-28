@@ -1,7 +1,7 @@
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { createAtsBoard, discoverAtsBoard, fetchAtsBoard, type AtsBoardResult, type AtsBoardSeed } from "../lib/ats-boards";
+import { createAtsBoard, discoverAtsBoard, fetchAtsBoard, type AtsBoardResult, type AtsBoardSeed, type AtsProvider } from "../lib/ats-boards";
 import { evaluateCompanyQuality, normalizeCompanyDisplayName, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
 import { deduplicateCrossSourceJobs } from "../lib/job-dedup";
 import { getFreshnessRejection } from "../lib/job-freshness";
@@ -25,6 +25,7 @@ import {
 } from "../lib/source-normalization";
 import { classifyJobMetros, getSupportedJobRegions, normalizeJobLocation } from "../lib/job-locations";
 import { parseApplyGuySource, parseMarkdownSource, sourceAllowsAtsExpansion } from "../lib/source-parsers";
+import { createWorkdayBoard, fetchWorkdayBoard, type WorkdayBoardSeed } from "../lib/workday";
 
 type EngineJob = {
   company: string;
@@ -141,7 +142,13 @@ async function loadCandidates(root: string, sources: JobSource[]) {
   const boardList = [...boards.values()];
   const boardFetches = await inBatches(boardList, 12, (board) => fetchAtsBoard(board));
   const boardResults = new Map<string, AtsBoardResult>();
-  const boardRegistry = boardFetches.map((result, index) => {
+  const boardRegistry: Array<{
+    provider: AtsProvider | "workday";
+    key: string;
+    company: string;
+    status: "ok" | "failed";
+    rows: number;
+  }> = boardFetches.map((result, index) => {
     const board = boardList[index];
     if (result.status === "fulfilled") {
       boardResults.set(board.id, result.value);
@@ -149,6 +156,23 @@ async function loadCandidates(root: string, sources: JobSource[]) {
       return { provider: board.provider, key: board.key, company: board.company, status: "ok" as const, rows: result.value.liveIdentities.size };
     }
     return { provider: board.provider, key: board.key, company: board.company, status: "failed" as const, rows: 0 };
+  });
+
+  const workdaySeeds = await readFile(path.join(root, "data/workday-boards.json"), "utf8")
+    .then((value) => JSON.parse(value) as WorkdayBoardSeed[])
+    .catch(() => []);
+  const workdayBoards = workdaySeeds.map(createWorkdayBoard);
+  const workdayFetches = await inBatches(workdayBoards, 1, (board) => fetchWorkdayBoard(board));
+  workdayFetches.forEach((result, index) => {
+    const board = workdayBoards[index];
+    if (result.status === "fulfilled") {
+      candidates.push(...result.value.jobs);
+      health.push({ name: `Workday: ${board.company}`, status: "ok", rows: result.value.searchedPostings });
+      boardRegistry.push({ provider: "workday", key: `${board.tenant}/${board.site}`, company: board.company, status: "ok", rows: result.value.liveIdentities.size });
+    } else {
+      health.push({ name: `Workday: ${board.company}`, status: "failed", rows: 0 });
+      boardRegistry.push({ provider: "workday", key: `${board.tenant}/${board.site}`, company: board.company, status: "failed", rows: 0 });
+    }
   });
 
   const smartRecruitersUrls = new Map<string, string>();
@@ -198,7 +222,13 @@ async function loadCandidates(root: string, sources: JobSource[]) {
   if (microsoftEntries.length > 0) {
     console.log(`Verified ${microsoftPostings.size} of ${microsoftEntries.length} Microsoft Careers listings against employer records.`);
   }
-  return { candidates, health, boardResults, boardRegistry, pinnedCompanies: pinnedSeeds.map((seed) => seed.company) };
+  return {
+    candidates,
+    health,
+    boardResults,
+    boardRegistry,
+    pinnedCompanies: [...pinnedSeeds.map((seed) => seed.company), ...workdaySeeds.map((seed) => seed.company)],
+  };
 }
 
 async function main() {
@@ -231,7 +261,7 @@ async function main() {
   for (const candidate of candidates) {
     const identity = jobIdentity(candidate.applyUrl);
     const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
-    if (identity && (!board || !boardResults.has(board.id))) genericUrls.set(identity, candidate.applyUrl);
+    if (identity && candidate.source !== "Direct ATS (Workday)" && (!board || !boardResults.has(board.id))) genericUrls.set(identity, candidate.applyUrl);
   }
   const dueChecks = [...genericUrls]
     .filter(([identity]) => needsListingCheck(listingHealth[identity]))

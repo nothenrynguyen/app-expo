@@ -105,7 +105,7 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
   const title = job.title.toLowerCase();
   const text = `${job.title} ${job.category}`.toLowerCase();
   const rawText = job.rawText?.toLowerCase() ?? "";
-  const explicitEarlyCareerTitle = /\b(?:intern(?:ship)?|co-?op|new grad(?:uate)?|early career|university grad(?:uate)?|entry[- ]level)\b/i.test(job.title);
+  const explicitEarlyCareerTitle = /\b(?:intern(?:ship)?|co-?op|new (?:college )?grad(?:uate)?|early career|university grad(?:uate)?|entry[- ]level)\b/i.test(job.title);
   if (/\b(?:senior|sr\.?|staff|principal|director|head|lead)\b/i.test(job.title)) return [];
   if (/\bmanager\b/i.test(job.title) && !explicitEarlyCareerTitle && !/\bproduct manager\b/i.test(job.title)) return [];
   const tags = new Set<RoleTag>();

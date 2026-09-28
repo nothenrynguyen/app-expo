@@ -4,9 +4,18 @@ This is the living list of ideas and future work for App Expo. Update it wheneve
 
 ## Current focus
 
-App Expo currently focuses on software and technical early-career jobs, split between internships and full-time roles.
+App Expo covers early-career software, data, engineering, product, solutions and support, business, finance, quant, IT, and security roles across internship and full-time collections.
 
-The immediate goal is to make this software job board comprehensive, current, easy to filter, and free of sign-up friction before expanding into additional job families.
+The immediate goal is to reduce the source bias toward software-focused community lists by expanding reviewed direct-employer coverage without adding more interface complexity.
+
+## Next milestone
+
+- [ ] Pilot Medtronic and Abbott through the Workday connector for Quality / Reliability and manufacturing coverage
+- [ ] Measure net-new roles, duplicate rate, refresh duration, and false positives before adding more Workday employers
+- [ ] Improve Materials / Chemical classification for clearly relevant thin-film, deposition, etch, CMP, metrology, and failure-analysis roles
+- [ ] Add reviewed employers in small category-focused batches rather than broad, unreviewed aggregators
+- [ ] Add per-connector timing and request counts before the Workday registry grows beyond a small pilot
+- [ ] Split source loading and provider orchestration out of `scripts/sync-jobs.ts` before adding another high-volume connector
 
 ## Future job categories
 
@@ -36,6 +45,7 @@ Continue expanding and refining the source coverage behind each role filter whil
 - [x] Add ApplyGuy's Product internships feed using direct employer `listingUrl` values and no full-board ATS expansion
 - [x] Add Dreamwork's U.S. new-grad feed without allowing it to expand into unrelated employer-board roles
 - [x] Add a curated Hardware role filter for electrical, silicon, FPGA/ASIC, board, and embedded-systems positions
+- [x] Add a reusable Workday connector with Applied Materials and Micron as reviewed pilot employers
 - [ ] Add USAJOBS student and recent-graduate searches for federal finance, analysis, data, and IT roles
 - [ ] Enumerate full SmartRecruiters company boards instead of verifying only individual postings
 - [ ] Pilot curated Workable employer boards

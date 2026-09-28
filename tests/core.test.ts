@@ -23,6 +23,7 @@ import pinnedBoards from "../data/pinned-boards.json";
 import { sourceLicenseReview } from "../lib/source-licenses";
 import { parseSavedJobIds, toggleSavedJobId } from "../lib/saved-jobs";
 import { displayText, getLocationDisplay, getPaginationState } from "../app/job-board/job-board-utils";
+import { createWorkdayBoard, parseWorkdayJob, parseWorkdayPostedAt } from "../lib/workday";
 
 const registry: VerifiedCompany[] = [{
   name: "Figma",
@@ -474,6 +475,50 @@ test("pinned ATS boards produce stable public endpoints", () => {
     createAtsBoard({ provider: "greenhouse", key: "freeformfuturecorp", company: "Freeform" }).id,
     "greenhouse:freeformfuturecorp",
   );
+});
+
+test("Workday boards produce stable endpoints and parse live early-career jobs", () => {
+  const board = createWorkdayBoard({
+    host: "https://micron.wd1.myworkdayjobs.com/",
+    tenant: "micron",
+    site: "External",
+    company: "Micron",
+    searchTerms: ["new college grad"],
+  });
+  assert.equal(board.endpoint, "https://micron.wd1.myworkdayjobs.com/wday/cxs/micron/External/jobs");
+  assert.throws(() => createWorkdayBoard({
+    host: "example.com",
+    tenant: "micron",
+    site: "External",
+    company: "Micron",
+    searchTerms: ["new college grad"],
+  }), /Invalid Workday host/);
+  assert.deepEqual(parseWorkdayPostedAt("Posted 3 Days Ago", new Date("2026-09-27T12:00:00Z")), {
+    postedAt: "2026-09-24T12:00:00.000Z",
+    source: "relative_derived",
+  });
+
+  const job = parseWorkdayJob(board, {
+    title: "New College Grad - Process Engineer",
+    externalPath: "/job/Boise-ID/New-College-Grad---Process-Engineer_JR12345",
+    locationsText: "Boise, ID",
+  }, {
+    jobPostingInfo: {
+      title: "New College Grad - Process Engineer",
+      jobDescription: "Support thin film deposition and process improvements.",
+      location: "Boise, ID",
+      startDate: "2026-09-20",
+      timeType: "Full time",
+      canApply: true,
+      posted: true,
+    },
+  }, new Date("2026-09-27T12:00:00Z"));
+
+  assert.equal(job?.company, "Micron");
+  assert.equal(job?.category, "New grad");
+  assert.equal(job?.source, "Direct ATS (Workday)");
+  assert.match(job?.applyUrl ?? "", /JR12345/);
+  assert.match(job?.rawText ?? "", /thin film deposition/);
 });
 
 test("SmartRecruiters records replace source-list age with employer date and status", () => {
