@@ -51,8 +51,14 @@ export function discoverAtsBoard(applyUrl: string, company: string, source: stri
   const canonical = canonicalizeUrl(applyUrl);
   if (!canonical) return null;
   const url = new URL(canonical);
-  const [key] = url.pathname.split("/").filter(Boolean);
-  if (!key || key === "embed") return null;
+  const [encodedKey] = url.pathname.split("/").filter(Boolean);
+  if (!encodedKey || encodedKey === "embed") return null;
+  let key: string;
+  try {
+    key = decodeURIComponent(encodedKey);
+  } catch {
+    return null;
+  }
 
   if (/^(?:job-boards\.|boards\.)greenhouse\.io$/i.test(url.hostname)) {
     return createAtsBoard({ provider: "greenhouse", key, company }, source);

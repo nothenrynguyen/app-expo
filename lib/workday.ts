@@ -67,14 +67,16 @@ type WorkdayRequestOptions = {
   method?: "GET" | "POST";
   body?: string;
   timeoutMs: number;
+  fetchImpl: typeof fetch;
+  retryDelayMs: number;
+  onRetry: () => void;
 };
 
-async function requestWorkdayJson<T>(url: string, options: WorkdayRequestOptions): Promise<{ data: T; retries: number }> {
-  let retries = 0;
+async function requestWorkdayJson<T>(url: string, options: WorkdayRequestOptions): Promise<T> {
   let lastError: unknown;
   for (let attempt = 0; attempt < REQUEST_ATTEMPTS; attempt += 1) {
     try {
-      const response = await fetch(url, {
+      const response = await options.fetchImpl(url, {
         method: options.method ?? "GET",
         headers: {
           accept: "application/json",
@@ -85,7 +87,7 @@ async function requestWorkdayJson<T>(url: string, options: WorkdayRequestOptions
         body: options.body,
         signal: AbortSignal.timeout(options.timeoutMs),
       });
-      if (response.ok) return { data: await response.json() as T, retries };
+      if (response.ok) return await response.json() as T;
       const retryable = response.status === 408 || response.status === 429 || response.status >= 500;
       if (!retryable) throw new Error(`${response.status} ${response.statusText}`);
       lastError = new Error(`${response.status} ${response.statusText}`);
@@ -94,8 +96,8 @@ async function requestWorkdayJson<T>(url: string, options: WorkdayRequestOptions
       if (error instanceof Error && /^4\d\d /.test(error.message) && !/^(?:408|429) /.test(error.message)) throw error;
     }
     if (attempt < REQUEST_ATTEMPTS - 1) {
-      retries += 1;
-      await new Promise((resolve) => setTimeout(resolve, 250 * (attempt + 1)));
+      options.onRetry();
+      if (options.retryDelayMs > 0) await new Promise((resolve) => setTimeout(resolve, options.retryDelayMs * (attempt + 1)));
     }
   }
   throw lastError instanceof Error ? lastError : new Error("Workday request failed.");
@@ -218,8 +220,19 @@ async function inBatches<T, R>(items: T[], concurrency: number, task: (item: T) 
   return results;
 }
 
-export async function fetchWorkdayBoard(board: WorkdayBoard, now = new Date()): Promise<WorkdayBoardResult> {
+export type WorkdayFetchOptions = {
+  fetchImpl?: typeof fetch;
+  retryDelayMs?: number;
+};
+
+export async function fetchWorkdayBoard(
+  board: WorkdayBoard,
+  now = new Date(),
+  options: WorkdayFetchOptions = {},
+): Promise<WorkdayBoardResult> {
   const startedAt = Date.now();
+  const fetchImpl = options.fetchImpl ?? fetch;
+  const retryDelayMs = options.retryDelayMs ?? 250;
   const summaries = new Map<string, WorkdaySummary>();
   const maxResults = board.maxResultsPerSearch ?? 500;
   let listRequests = 0;
@@ -230,13 +243,14 @@ export async function fetchWorkdayBoard(board: WorkdayBoard, now = new Date()): 
     let total = 0;
     do {
       listRequests += 1;
-      const response = await requestWorkdayJson<{ total?: number; jobPostings?: WorkdaySummary[] }>(board.endpoint, {
+      const payload = await requestWorkdayJson<{ total?: number; jobPostings?: WorkdaySummary[] }>(board.endpoint, {
         method: "POST",
         body: JSON.stringify({ appliedFacets: {}, limit: PAGE_SIZE, offset, searchText }),
         timeoutMs: 15_000,
+        fetchImpl,
+        retryDelayMs,
+        onRetry: () => { retryRequests += 1; },
       });
-      retryRequests += response.retries;
-      const payload = response.data;
       const postings = payload.jobPostings ?? [];
       total = Math.min(payload.total ?? postings.length, maxResults);
       for (const posting of postings) {
@@ -255,11 +269,13 @@ export async function fetchWorkdayBoard(board: WorkdayBoard, now = new Date()): 
     return isEarlyCareerTitle(title) || /\bassociate\b/i.test(title);
   });
   const details = await inBatches(entries, 4, async ([externalPath, summary]) => {
-    const response = await requestWorkdayJson<WorkdayDetail>(detailUrl(board, externalPath), {
+    const payload = await requestWorkdayJson<WorkdayDetail>(detailUrl(board, externalPath), {
       timeoutMs: 12_000,
+      fetchImpl,
+      retryDelayMs,
+      onRetry: () => { retryRequests += 1; },
     });
-    retryRequests += response.retries;
-    return { summary, payload: response.data };
+    return { summary, payload };
   });
 
   const jobs: CandidateJob[] = [];

@@ -1,255 +1,26 @@
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
-import { createAtsBoard, discoverAtsBoard, fetchAtsBoard, type AtsBoardResult, type AtsBoardSeed, type AtsProvider } from "../lib/ats-boards";
+import { discoverAtsBoard } from "../lib/ats-boards";
 import { evaluateCompanyQuality, normalizeCompanyDisplayName, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
+import { inBatches } from "../lib/ingestion/concurrency";
+import { preserveLastKnownGoodJobs } from "../lib/ingestion/last-known-good";
+import { loadCandidates } from "../lib/ingestion/load-candidates";
+import { buildRefreshReport } from "../lib/ingestion/refresh-report";
+import { isInCollection } from "../lib/job-collections";
 import { deduplicateCrossSourceJobs } from "../lib/job-dedup";
 import { getFreshnessRejection } from "../lib/job-freshness";
 import { buildJobInsightsDay, updateJobInsightsHistory, type JobInsightsHistory } from "../lib/job-insights";
-import { isInCollection } from "../lib/job-collections";
-import { buildJobsSummary } from "../lib/job-summary";
-import { needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
-import { applyMicrosoftCareersPosting, fetchMicrosoftCareersPosting, parseMicrosoftCareersJobUrl } from "../lib/microsoft-careers";
-import { classifyRoleTags, getJobRoleTags } from "../lib/role-areas";
-import { applySmartRecruitersPosting, fetchSmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
-import type { JobSource, SourceCatalog } from "../lib/source-catalog";
-import type { JobsSnapshot, PublicJob } from "../lib/jobs";
-import {
-  canonicalizeUrl,
-  inferTerm,
-  inferWorkMode,
-  jobIdentity,
-  normalizeDisplayText,
-  stableJobId,
-  type CandidateJob,
-} from "../lib/source-normalization";
 import { classifyJobMetros, getSupportedJobRegions, normalizeJobLocation } from "../lib/job-locations";
-import { parseApplyGuySource, parseMarkdownSource, sourceAllowsAtsExpansion } from "../lib/source-parsers";
-import { createWorkdayBoard, fetchWorkdayBoard, type WorkdayBoardSeed } from "../lib/workday";
-
-type EngineJob = {
-  company: string;
-  title: string;
-  season: string;
-  category: string;
-  location: string;
-  url: string;
-  posted_at: string;
-  posted_at_source: "exact" | "date_only" | "relative_derived";
-  sponsorship?: string | null;
-  salary?: string | null;
-  skills?: string[] | null;
-  source: string;
-  h1b_approvals?: number | null;
-  remote?: boolean;
-};
-
-async function fetchText(url: string): Promise<string> {
-  const response = await fetch(url, {
-    headers: { "user-agent": "App-Expo/0.1" },
-    signal: AbortSignal.timeout(15_000),
-  });
-  if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-  return response.text();
-}
-
-async function inBatches<T, R>(items: T[], concurrency: number, task: (item: T) => Promise<R>): Promise<PromiseSettledResult<R>[]> {
-  const results: PromiseSettledResult<R>[] = new Array(items.length);
-  let cursor = 0;
-  await Promise.all(Array.from({ length: Math.min(concurrency, items.length) }, async () => {
-    while (cursor < items.length) {
-      const index = cursor;
-      cursor += 1;
-      try {
-        results[index] = { status: "fulfilled", value: await task(items[index]) };
-      } catch (reason) {
-        results[index] = { status: "rejected", reason };
-      }
-    }
-  }));
-  return results;
-}
-
-async function loadCandidates(root: string, sources: JobSource[]) {
-  const health: JobsSnapshot["sourceHealth"] = [];
-  const candidates: CandidateJob[] = [];
-  for (const engineSource of sources.filter((source) => source.kind === "engine_json")) {
-    try {
-      const engine = JSON.parse(await fetchText(engineSource.url)) as { jobs: EngineJob[] };
-      for (const job of engine.jobs) {
-        const url = canonicalizeUrl(job.url);
-        if (!url || !job.posted_at) continue;
-        candidates.push({
-          company: job.company,
-          title: job.title,
-          term: job.season || inferTerm(job.title),
-          location: job.location || "Location not stated",
-          workMode: job.remote ? "remote" : inferWorkMode(`${job.title} ${job.location}`),
-          postedAt: new Date(job.posted_at).toISOString(),
-          postedAtSource: job.posted_at_source,
-          applyUrl: url,
-          category: job.category || "Internship",
-          salary: job.salary ?? null,
-          source: engineSource.name,
-          h1bApprovals: job.h1b_approvals ?? null,
-          rawText: `${job.title} ${job.location} ${job.sponsorship ?? ""} ${(job.skills ?? []).join(" ")}`,
-        });
-      }
-      health.push({ name: engineSource.name, status: "ok", rows: engine.jobs.length });
-    } catch {
-      health.push({ name: engineSource.name, status: "failed", rows: 0 });
-    }
-  }
-
-  for (const applyGuySource of sources.filter((source) => source.kind === "applyguy_json")) {
-    try {
-      const jobs = parseApplyGuySource(await fetchText(applyGuySource.url), applyGuySource.name, applyGuySource.categories);
-      candidates.push(...jobs);
-      health.push({ name: applyGuySource.name, status: "ok", rows: jobs.length });
-    } catch {
-      health.push({ name: applyGuySource.name, status: "failed", rows: 0 });
-    }
-  }
-
-  const markdownSources = sources.filter((source) => source.kind === "markdown");
-  const results = await Promise.allSettled(markdownSources.map(async (source) => ({
-    source,
-    jobs: parseMarkdownSource(await fetchText(source.url), source.name),
-  })));
-  results.forEach((result, index) => {
-    const source = markdownSources[index];
-    if (result.status === "fulfilled") {
-      candidates.push(...result.value.jobs);
-      health.push({ name: source.name, status: "ok", rows: result.value.jobs.length });
-    } else {
-      health.push({ name: source.name, status: "failed", rows: 0 });
-    }
-  });
-
-  const boards = new Map<string, NonNullable<ReturnType<typeof discoverAtsBoard>>>();
-  for (const candidate of candidates) {
-    if (!sourceAllowsAtsExpansion(candidate.source, sources)) continue;
-    const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
-    if (board && !boards.has(board.id)) boards.set(board.id, board);
-  }
-  const pinnedSeeds = await readFile(path.join(root, "data/pinned-boards.json"), "utf8")
-    .then((value) => JSON.parse(value) as AtsBoardSeed[])
-    .catch(() => []);
-  for (const seed of pinnedSeeds) {
-    const board = createAtsBoard(seed);
-    boards.set(board.id, board);
-  }
-  const boardList = [...boards.values()];
-  const boardFetches = await inBatches(boardList, 12, (board) => fetchAtsBoard(board));
-  const boardResults = new Map<string, AtsBoardResult>();
-  const boardRegistry: Array<{
-    provider: AtsProvider | "workday";
-    key: string;
-    company: string;
-    status: "ok" | "failed";
-    rows: number;
-    searchedRows?: number;
-    listRequests?: number;
-    detailRequests?: number;
-    detailFailures?: number;
-    retryRequests?: number;
-    durationMs?: number;
-  }> = boardFetches.map((result, index) => {
-    const board = boardList[index];
-    if (result.status === "fulfilled") {
-      boardResults.set(board.id, result.value);
-      candidates.push(...result.value.jobs);
-      return { provider: board.provider, key: board.key, company: board.company, status: "ok" as const, rows: result.value.liveIdentities.size };
-    }
-    return { provider: board.provider, key: board.key, company: board.company, status: "failed" as const, rows: 0 };
-  });
-
-  const workdaySeeds = await readFile(path.join(root, "data/workday-boards.json"), "utf8")
-    .then((value) => JSON.parse(value) as WorkdayBoardSeed[])
-    .catch(() => []);
-  const workdayBoards = workdaySeeds.map(createWorkdayBoard);
-  const workdayFetches = await inBatches(workdayBoards, 1, (board) => fetchWorkdayBoard(board));
-  workdayFetches.forEach((result, index) => {
-    const board = workdayBoards[index];
-    if (result.status === "fulfilled") {
-      candidates.push(...result.value.jobs);
-      health.push({ name: `Workday: ${board.company}`, status: "ok", rows: result.value.searchedPostings });
-      boardRegistry.push({
-        provider: "workday",
-        key: `${board.tenant}/${board.site}`,
-        company: board.company,
-        status: "ok",
-        rows: result.value.liveIdentities.size,
-        searchedRows: result.value.searchedPostings,
-        listRequests: result.value.diagnostics.listRequests,
-        detailRequests: result.value.diagnostics.detailRequests,
-        detailFailures: result.value.diagnostics.detailFailures,
-        retryRequests: result.value.diagnostics.retryRequests,
-        durationMs: result.value.diagnostics.durationMs,
-      });
-    } else {
-      health.push({ name: `Workday: ${board.company}`, status: "failed", rows: 0 });
-      boardRegistry.push({ provider: "workday", key: `${board.tenant}/${board.site}`, company: board.company, status: "failed", rows: 0 });
-    }
-  });
-
-  const smartRecruitersUrls = new Map<string, string>();
-  for (const candidate of candidates) {
-    const identity = jobIdentity(candidate.applyUrl);
-    if (identity && parseSmartRecruitersJobUrl(candidate.applyUrl)) smartRecruitersUrls.set(identity, candidate.applyUrl);
-  }
-  const smartRecruitersEntries = [...smartRecruitersUrls];
-  const smartRecruitersFetches = await inBatches(smartRecruitersEntries, 12, async ([identity, url]) => ({
-    identity,
-    posting: await fetchSmartRecruitersPosting(url),
-  }));
-  const smartRecruitersPostings = new Map(
-    smartRecruitersFetches.flatMap((result) =>
-      result.status === "fulfilled" && result.value.posting ? [[result.value.identity, result.value.posting] as const] : [],
-    ),
-  );
-  for (let index = 0; index < candidates.length; index += 1) {
-    const identity = jobIdentity(candidates[index].applyUrl);
-    const posting = identity ? smartRecruitersPostings.get(identity) : null;
-    if (posting) candidates[index] = applySmartRecruitersPosting(candidates[index], posting);
-  }
-  if (smartRecruitersEntries.length > 0) {
-    console.log(`Verified ${smartRecruitersPostings.size} of ${smartRecruitersEntries.length} SmartRecruiters listings against employer records.`);
-  }
-
-  const microsoftUrls = new Map<string, string>();
-  for (const candidate of candidates) {
-    const microsoftJob = parseMicrosoftCareersJobUrl(candidate.applyUrl);
-    if (microsoftJob) microsoftUrls.set(microsoftJob.jobId, candidate.applyUrl);
-  }
-  const microsoftEntries = [...microsoftUrls];
-  const microsoftFetches = await inBatches(microsoftEntries, 12, async ([jobId, url]) => ({
-    jobId,
-    posting: await fetchMicrosoftCareersPosting(url),
-  }));
-  const microsoftPostings = new Map(
-    microsoftFetches.flatMap((result) =>
-      result.status === "fulfilled" && result.value.posting ? [[result.value.jobId, result.value.posting] as const] : [],
-    ),
-  );
-  for (let index = 0; index < candidates.length; index += 1) {
-    const microsoftJob = parseMicrosoftCareersJobUrl(candidates[index].applyUrl);
-    const posting = microsoftJob ? microsoftPostings.get(microsoftJob.jobId) : null;
-    if (posting) candidates[index] = applyMicrosoftCareersPosting(candidates[index], posting);
-  }
-  if (microsoftEntries.length > 0) {
-    console.log(`Verified ${microsoftPostings.size} of ${microsoftEntries.length} Microsoft Careers listings against employer records.`);
-  }
-  return {
-    candidates,
-    health,
-    boardResults,
-    boardRegistry,
-    pinnedCompanies: [...pinnedSeeds.map((seed) => seed.company), ...workdaySeeds.map((seed) => seed.company)],
-  };
-}
+import { buildJobsSummary } from "../lib/job-summary";
+import type { JobsSnapshot, PublicJob } from "../lib/jobs";
+import { needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
+import { classifyRoleTags, getJobRoleTags } from "../lib/role-areas";
+import type { SourceCatalog } from "../lib/source-catalog";
+import { canonicalizeUrl, jobIdentity, normalizeDisplayText, stableJobId } from "../lib/source-normalization";
 
 async function main() {
+  const startedAt = new Date();
   const root = path.resolve(import.meta.dirname, "..");
   const catalog = JSON.parse(await readFile(path.join(root, "data/sources.json"), "utf8")) as SourceCatalog;
   const activeSources = catalog.sources.filter((source) => source.active);
@@ -263,11 +34,20 @@ async function main() {
   const listingHealth: ListingHealthFile = await readFile(listingHealthPath, "utf8")
     .then((value) => JSON.parse(value) as ListingHealthFile)
     .catch(() => ({} as ListingHealthFile));
-  const { candidates, health, boardResults, boardRegistry, pinnedCompanies } = await loadCandidates(root, activeSources);
+  const {
+    candidates,
+    health,
+    sourceDiagnostics,
+    boardResults,
+    boardRegistry,
+    verificationDiagnostics,
+    pinnedCompanies,
+  } = await loadCandidates(root, activeSources);
   const unhealthySources = health.filter((source) => source.status === "failed" || source.rows === 0);
   const merged = new Map<string, PublicJob>();
   const quarantined: Array<{ company: string; title: string; reason: string; source: string; applyUrl: string }> = [];
   let rejectedCount = 0;
+  let preservedFromLastHealthySnapshot = 0;
 
   const trustedCompanies = new Set([
     ...candidates
@@ -286,8 +66,12 @@ async function main() {
     .sort(([a], [b]) => new Date(listingHealth[a]?.checkedAt ?? 0).getTime() - new Date(listingHealth[b]?.checkedAt ?? 0).getTime())
     .slice(0, 250);
   const checked = await inBatches(dueChecks, 20, ([, url]) => verifyListing(url));
+  let completedListingChecks = 0;
   for (const result of checked) {
-    if (result.status === "fulfilled" && result.value) listingHealth[result.value[0]] = result.value[1];
+    if (result.status === "fulfilled" && result.value) {
+      listingHealth[result.value[0]] = result.value[1];
+      completedListingChecks += 1;
+    }
   }
 
   for (const candidate of candidates) {
@@ -331,8 +115,7 @@ async function main() {
     }
     if (decision.status === "quarantined") {
       if (trustedCuratedSources.has(candidate.source) || (candidate.source.startsWith("Direct ATS") && trustedCompanies.has(normalizeCompanyName(candidate.company)))) {
-        // Simplify is our explicit coverage baseline. Its public, maintained lists retain
-        // direct employer links; we still apply the non-U.S. and unpaid hard exclusions above.
+        // Reviewed community lists and pinned employer boards are the explicit coverage baseline.
       } else {
         quarantined.push({ company: normalizeDisplayText(candidate.company), title: normalizeDisplayText(candidate.title), reason: decision.reason, source: candidate.source, applyUrl: candidate.applyUrl });
         continue;
@@ -388,23 +171,21 @@ async function main() {
   }
 
   if (unhealthySources.length > 0 && previous) {
-    for (const prior of previous.jobs) {
-      const identity = jobIdentity(prior.applyUrl);
+    preservedFromLastHealthySnapshot = preserveLastKnownGoodJobs(merged, previous.jobs, (prior) => {
       const decision = evaluateCompanyQuality({ name: prior.company }, "", registry, trustRegistry);
       const freshnessRejection = getFreshnessRejection(prior);
       const roleTags = classifyRoleTags(prior);
-      if (identity && roleTags.length > 0 && decision.status !== "rejected" && !freshnessRejection && !merged.has(identity)) {
-        const location = normalizeJobLocation(prior.location);
-        merged.set(identity, {
-          ...prior,
-          company: normalizeCompanyDisplayName(prior.company, prior.applyUrl),
-          location,
-          regions: getSupportedJobRegions(location),
-          metros: classifyJobMetros(location),
-          roleTags,
-        });
-      }
-    }
+      if (roleTags.length === 0 || decision.status === "rejected" || freshnessRejection) return null;
+      const location = normalizeJobLocation(prior.location);
+      return {
+        ...prior,
+        company: normalizeCompanyDisplayName(prior.company, prior.applyUrl),
+        location,
+        regions: getSupportedJobRegions(location),
+        metros: classifyJobMetros(location),
+        roleTags,
+      };
+    });
   }
 
   const jobs = deduplicateCrossSourceJobs([...merged.values()])
@@ -428,15 +209,28 @@ async function main() {
   await mkdir(path.join(root, "data"), { recursive: true });
   await writeFile(listingHealthPath, `${JSON.stringify(listingHealth, null, 2)}\n`);
   await writeFile(path.join(root, "data/company-boards.json"), `${JSON.stringify(boardRegistry, null, 2)}\n`);
+  const refreshReport = buildRefreshReport({
+    startedAt,
+    sourceDiagnostics,
+    boardDiagnostics: boardRegistry,
+    verificationDiagnostics,
+    candidates: candidates.length,
+    accepted: jobs.length,
+    quarantined: quarantined.length,
+    rejected: rejectedCount,
+    preservedFromLastHealthySnapshot,
+    checksAttempted: dueChecks.length,
+    checksCompleted: completedListingChecks,
+    knownClosed: closedPostingsCaught,
+  });
+  await writeFile(path.join(root, "data/refresh-report.json"), `${JSON.stringify(refreshReport, null, 2)}\n`);
+
   await mkdir(path.join(root, "public"), { recursive: true });
   const insightsHistoryPath = path.join(root, "public/insights-history.json");
   const insightsHistory = await readFile(insightsHistoryPath, "utf8")
     .then((value) => JSON.parse(value) as JobInsightsHistory)
     .catch(() => ({ version: 1 as const, days: [] }));
-  const nextInsightsHistory = updateJobInsightsHistory(
-    insightsHistory,
-    buildJobInsightsDay(snapshot, { closedPostingsCaught }),
-  );
+  const nextInsightsHistory = updateJobInsightsHistory(insightsHistory, buildJobInsightsDay(snapshot, { closedPostingsCaught }));
   await writeFile(insightsHistoryPath, `${JSON.stringify(nextInsightsHistory, null, 2)}\n`);
 
   const materialSnapshot = { jobs: snapshot.jobs, quarantinedCount: snapshot.quarantinedCount, sourceHealth: snapshot.sourceHealth };

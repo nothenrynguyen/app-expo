@@ -78,6 +78,6 @@ The main ongoing cost is additional network work during the hourly sync. The Wor
 - Search empty states, saved-job toggling, pagination, long locations, filter substitution, and horizontal overflow were checked.
 - Responsive styles keep role categories horizontally scrollable and move filters into the mobile filter panel below 620 pixels.
 
-## Next phase
+## Backend foundation
 
-The source-expansion milestone is complete. Further employers should be added only in small reviewed batches supported by the connector diagnostics. The next engineering phase should focus on backend foundations: modular provider orchestration, mocked connector integration tests, a typed refresh report, and an explicit decision about the first server-backed user feature.
+The source-expansion milestone is complete. Further employers should be added only in small reviewed batches supported by the connector diagnostics. Provider orchestration now lives in typed ingestion modules, Workday behavior is covered by mocked pagination and failure tests, and each live refresh writes `data/refresh-report.json` with timing, request volume, validation outcomes, and recovery counts. The next product decision is the first server-backed user feature.

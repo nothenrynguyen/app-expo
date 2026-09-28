@@ -6,16 +6,20 @@ This is the living list of ideas and future work for App Expo. Update it wheneve
 
 App Expo covers early-career software, data, engineering, product, solutions and support, business, finance, quant, IT, and security roles across internship and full-time collections.
 
-The reviewed-source expansion milestone is complete. The immediate goal is to turn the ingestion pipeline into a cleaner backend foundation, then use that foundation to build a server-backed feature.
+The reviewed-source expansion and ingestion-foundation milestones are complete. The immediate goal is to choose and design the first server-backed feature while continuing to operate the no-sign-up public board.
 
 ## Next milestone
 
-- [ ] Extract provider orchestration from `scripts/sync-jobs.ts` into typed ingestion modules
-- [ ] Add mocked HTTP integration tests for pagination, retries, partial detail failures, and last-known-good behavior
-- [ ] Produce one typed refresh report with source timing, request volume, accepted jobs, quarantined jobs, and rejection counts
 - [ ] Decide the first server-backed feature, with saved searches and job alerts or a personal application tracker as the leading options
 - [ ] If a server-backed feature is selected, replace static export with the Next.js Node runtime before adding authentication or a database
 - [ ] Preserve the no-sign-up public board even if optional accounts are introduced for personal features
+
+## Completed ingestion milestone
+
+- [x] Extract provider orchestration from `scripts/sync-jobs.ts` into typed ingestion modules
+- [x] Add mocked HTTP integration tests for pagination, retries, partial detail failures, and last-known-good behavior
+- [x] Produce one typed refresh report with source timing, request volume, accepted jobs, quarantined jobs, and rejection counts
+- [x] Document an incremental server-runtime and database migration that preserves the existing source work
 
 ## Completed source milestone
 

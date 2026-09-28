@@ -23,7 +23,9 @@ import pinnedBoards from "../data/pinned-boards.json";
 import { sourceLicenseReview } from "../lib/source-licenses";
 import { parseSavedJobIds, toggleSavedJobId } from "../lib/saved-jobs";
 import { displayText, getLocationDisplay, getPaginationState } from "../app/job-board/job-board-utils";
-import { createWorkdayBoard, parseWorkdayJob, parseWorkdayPostedAt } from "../lib/workday";
+import { createWorkdayBoard, fetchWorkdayBoard, parseWorkdayJob, parseWorkdayPostedAt } from "../lib/workday";
+import { buildRefreshReport } from "../lib/ingestion/refresh-report";
+import { preserveLastKnownGoodJobs } from "../lib/ingestion/last-known-good";
 
 const registry: VerifiedCompany[] = [{
   name: "Figma",
@@ -403,6 +405,10 @@ test("supported ATS links reveal stable company board identifiers", () => {
   assert.equal(discoverAtsBoard("https://job-boards.greenhouse.io/figma/jobs/1234567", "Figma", "Test")?.id, "greenhouse:figma");
   assert.equal(discoverAtsBoard("https://jobs.lever.co/zoox/11111111-1111-4111-8111-111111111111", "Zoox", "Test")?.provider, "lever");
   assert.equal(discoverAtsBoard("https://jobs.ashbyhq.com/handshake/11111111-1111-4111-8111-111111111111", "Handshake", "Test")?.key, "handshake");
+  assert.equal(
+    discoverAtsBoard("https://jobs.ashbyhq.com/Citizen%20Health/11111111-1111-4111-8111-111111111111", "Citizen Health", "Test")?.endpoint,
+    "https://api.ashbyhq.com/posting-api/job-board/Citizen%20Health",
+  );
   assert.equal(isEarlyCareerTitle("Software Engineer Intern, Summer 2027"), true);
   assert.equal(isEarlyCareerTitle("Process Engineer I"), true);
   assert.equal(isEarlyCareerTitle("Senior Software Engineer"), false);
@@ -546,6 +552,122 @@ test("Workday boards produce stable endpoints and parse live early-career jobs",
   assert.equal(job?.source, "Direct ATS (Workday)");
   assert.match(job?.applyUrl ?? "", /JR12345/);
   assert.match(job?.rawText ?? "", /thin film deposition/);
+});
+
+test("Workday connector paginates, retries transient failures, and keeps successful details", async () => {
+  const board = createWorkdayBoard({
+    host: "example.wd1.myworkdayjobs.com",
+    tenant: "example",
+    site: "Careers",
+    company: "Example",
+    searchTerms: ["engineer i"],
+  });
+  const summaries = Array.from({ length: 21 }, (_, index) => ({
+    title: "Process Engineer I",
+    externalPath: index === 20 ? "/job/Test/Process-Engineer-I_JRFAILED" : `/job/Test/Process-Engineer-I_JR${1000 + index}`,
+    locationsText: "Austin, TX",
+    postedOn: "Posted Today",
+  }));
+  let listAttempts = 0;
+  const fetchImpl = (async (input: string | URL | Request, init?: RequestInit) => {
+    const url = String(input);
+    if (init?.method === "POST") {
+      listAttempts += 1;
+      if (listAttempts === 1) return new Response("temporary", { status: 500, statusText: "Temporary failure" });
+      const body = JSON.parse(String(init.body)) as { offset: number };
+      const page = body.offset === 0 ? summaries.slice(0, 20) : summaries.slice(20);
+      return Response.json({ total: summaries.length, jobPostings: page });
+    }
+    if (url.includes("JRFAILED")) return new Response("temporary", { status: 503, statusText: "Unavailable" });
+    const externalPath = new URL(url).pathname.replace("/wday/cxs/example/Careers", "");
+    return Response.json({
+      jobPostingInfo: {
+        title: "Process Engineer I",
+        jobDescription: "Entry-level semiconductor manufacturing process engineering.",
+        location: "Austin, TX",
+        postedOn: "Posted Today",
+        timeType: "Full time",
+        canApply: true,
+        posted: true,
+        externalUrl: `${board.careerBaseUrl}${externalPath}`,
+      },
+    });
+  }) as typeof fetch;
+
+  const result = await fetchWorkdayBoard(board, new Date("2026-09-28T12:00:00Z"), { fetchImpl, retryDelayMs: 0 });
+  assert.equal(result.searchedPostings, 21);
+  assert.equal(result.jobs.length, 20);
+  assert.equal(result.diagnostics.listRequests, 2);
+  assert.equal(result.diagnostics.detailRequests, 21);
+  assert.equal(result.diagnostics.detailFailures, 1);
+  assert.equal(result.diagnostics.retryRequests, 3);
+});
+
+test("refresh report summarizes source health, request volume, and listing decisions", () => {
+  const report = buildRefreshReport({
+    startedAt: new Date("2026-09-28T12:00:00Z"),
+    completedAt: new Date("2026-09-28T12:00:05Z"),
+    sourceDiagnostics: [
+      { name: "Community", kind: "markdown", status: "ok", rows: 100, durationMs: 400, requestCount: 1 },
+      { name: "Empty", kind: "markdown", status: "ok", rows: 0, durationMs: 200, requestCount: 1 },
+    ],
+    boardDiagnostics: [{
+      provider: "workday",
+      key: "example/Careers",
+      company: "Example",
+      status: "ok",
+      rows: 20,
+      listRequests: 2,
+      detailRequests: 21,
+      detailFailures: 1,
+      retryRequests: 3,
+      durationMs: 900,
+    }],
+    verificationDiagnostics: [{ provider: "microsoft", attempted: 2, verified: 1 }],
+    candidates: 120,
+    accepted: 80,
+    quarantined: 10,
+    rejected: 30,
+    preservedFromLastHealthySnapshot: 4,
+    checksAttempted: 8,
+    checksCompleted: 7,
+    knownClosed: 2,
+  });
+  assert.equal(report.status, "degraded");
+  assert.equal(report.durationMs, 5_000);
+  assert.equal(report.sources.requestCount, 2);
+  assert.equal(report.boards.requestCount, 26);
+  assert.equal(report.boards.detailFailures, 1);
+  assert.equal(report.listings.preservedFromLastHealthySnapshot, 4);
+});
+
+test("last-known-good recovery preserves only missing jobs that still pass validation", () => {
+  const existing = {
+    id: "existing",
+    company: "Example",
+    title: "Process Engineer I",
+    term: "Not stated",
+    location: "Austin, TX",
+    workMode: "in_person" as const,
+    postedAt: "2026-09-28T00:00:00.000Z",
+    postedAtSource: "exact" as const,
+    applyUrl: "https://example.com/jobs/1",
+    linkedInUrl: null,
+    category: "New grad",
+    salary: null,
+    sources: ["Test"],
+    verifiedCompany: true,
+  };
+  const current = new Map([[jobIdentity(existing.applyUrl)!, existing]]);
+  const priorJobs = [
+    existing,
+    { ...existing, id: "preserve", applyUrl: "https://example.com/jobs/2" },
+    { ...existing, id: "reject", applyUrl: "https://example.com/jobs/3", title: "Expired role" },
+  ];
+  const preserved = preserveLastKnownGoodJobs(current, priorJobs, (job) => job.title === "Expired role" ? null : job);
+  assert.equal(preserved, 1);
+  assert.equal(current.size, 2);
+  assert.equal(current.get(jobIdentity("https://example.com/jobs/2")!)?.id, "preserve");
 });
 
 test("SmartRecruiters records replace source-list age with employer date and status", () => {
