@@ -83,6 +83,12 @@
   background:rgba(32,33,38,.82);
 }
 
+.filter-options { display:contents; }
+.mobile-filter-trigger,
+.mobile-filter-backdrop,
+.mobile-filter-panel-header,
+.mobile-filter-done { display:none; }
+
 .filters label,
 .filter-control { min-width:0; }
 .filters label>span,
@@ -279,6 +285,62 @@
 }
 
 @media (max-width:620px) {
+  body.mobile-filters-open { overflow:hidden; }
+  .role-toolbar { min-width:0; width:100%; overflow:hidden; }
+  .role-navigation { width:100%; max-width:100%; overflow-x:auto; scrollbar-width:none; }
+  .role-navigation::-webkit-scrollbar { display:none; }
+  .role-tabs { width:max-content; flex-wrap:nowrap; }
+  .role-tabs a { flex:0 0 auto; min-height:44px; }
+  .filters { grid-template-columns:minmax(0,1fr) auto; align-items:end; }
+  .search-field input { height:44px; }
+  .mobile-filter-trigger {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    min-width:88px;
+    min-height:44px;
+    border:1px solid var(--accent);
+    border-radius:8px;
+    padding:0 13px;
+    background:#2a2633;
+    color:var(--ink);
+    font:700 13px Arial,sans-serif;
+    cursor:pointer;
+  }
+  .mobile-filter-trigger span { display:grid; place-items:center; min-width:20px; height:20px; border-radius:999px; background:var(--accent); color:var(--accent-ink); font-size:11px; }
+  .mobile-filter-trigger:focus-visible,
+  .mobile-filter-panel-header button:focus-visible,
+  .mobile-filter-done:focus-visible { outline:2px solid var(--accent-bright); outline-offset:2px; }
+  .mobile-filter-backdrop.open { display:block; position:fixed; z-index:49; inset:0; border:0; padding:0; background:rgba(8,8,12,.68); cursor:pointer; }
+  .filter-options { display:none; }
+  .filter-options.open {
+    position:fixed;
+    z-index:50;
+    top:0;
+    right:0;
+    bottom:0;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    width:min(100%,400px);
+    padding:18px;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    border-left:1px solid var(--line);
+    background:#1d1e24;
+    box-shadow:-18px 0 42px rgba(0,0,0,.38);
+  }
+  .mobile-filter-panel-header { position:sticky; z-index:3; top:-18px; display:flex; align-items:center; justify-content:space-between; min-height:62px; margin:-18px -18px 2px; padding:9px 18px; border-bottom:1px solid var(--line); background:#1d1e24; }
+  .mobile-filter-panel-header strong { font-size:19px; letter-spacing:-.02em; }
+  .mobile-filter-panel-header button { min-width:64px; min-height:44px; border:1px solid var(--line); border-radius:8px; background:var(--surface); color:var(--ink); font-weight:700; cursor:pointer; }
+  .filter-options>.filter-control { flex:0 0 auto; }
+  .filter-options .multi-filter summary { height:44px; }
+  .filter-options .multi-filter-menu { position:static; width:100%; max-width:none; margin-top:6px; box-shadow:none; }
+  .filter-options .multi-filter-menu label,
+  .filter-options .single-filter-menu a { min-height:44px; }
+  .mobile-filter-done { display:flex; align-items:center; justify-content:center; flex:0 0 auto; min-height:46px; margin-top:4px; border:0; border-radius:9px; background:var(--accent); color:var(--accent-ink); font-weight:800; cursor:pointer; }
+  .layout-filter-control { display:none; }
   .job-table-head { display:none; }
   .job-card { grid-template-columns:minmax(0,1fr) auto; gap:14px; }
   .job-card.with-logo { grid-template-columns:42px minmax(0,1fr) auto; }
@@ -286,16 +348,38 @@
   .posted-age { grid-column:2; grid-row:1; align-self:start; }
   .job-card.with-logo .posted-age { grid-column:3; }
   .actions { grid-column:1/-1; justify-content:flex-start; flex-wrap:wrap; }
-  .job-table { border-radius:8px; }
-  .job-table-row { grid-template-columns:1fr; row-gap:6px; min-height:0; padding:12px 14px; }
-  .job-table-row:nth-child(odd) { background:rgba(255,255,255,.02); }
-  .job-table-row>div { display:grid; grid-template-columns:76px minmax(0,1fr); align-items:baseline; gap:10px; }
-  .job-table-row>div::before { content:attr(data-label); color:var(--muted); font-size:10px; font-weight:800; letter-spacing:.07em; text-transform:uppercase; }
+  .job-table { display:grid; gap:10px; border:0; border-radius:0; background:transparent; }
+  .job-table-row {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    grid-template-areas:
+      "company company company"
+      "title title title"
+      "location location location"
+      "save apply linkedin";
+    gap:8px;
+    min-height:0;
+    padding:15px;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:rgba(32,33,38,.92);
+  }
+  .job-table-row:first-of-type { border-top:1px solid var(--line); }
+  .job-table-row:nth-child(odd) { background:rgba(32,33,38,.92); }
+  .job-table-row>div { min-width:0; }
+  .job-table-row>div::before { display:none; }
+  .job-table-company { grid-area:company; }
+  .job-table-title { grid-area:title; font-size:15px; }
+  .job-table-location { grid-area:location; }
+  .job-table-action[data-label="Save"] { grid-area:save; }
+  .job-table-action[data-label="Apply"] { grid-area:apply; }
+  .job-table-action[data-label="LinkedIn"] { grid-area:linkedin; }
   .job-table-location { white-space:normal; }
   .location-popover { right:0; left:auto; max-width:calc(100vw - 36px); }
-  .job-table-action { grid-template-columns:76px minmax(0,1fr); }
-  .table-button { width:max-content; min-width:82px; }
-  .compact-save { min-width:34px; }
+  .job-table-action { display:flex; }
+  .table-button,
+  .compact-save { width:100%; min-width:0; min-height:44px; padding:0 8px; }
+  .compact-save .save-star { margin-right:5px; }
+  .compact-save .sr-only { position:static; width:auto; height:auto; overflow:visible; clip:auto; white-space:normal; }
 }
 
 @media (max-width:720px) {
@@ -306,7 +390,7 @@
 
 @media (max-width:560px) {
   .board-shell { padding-right:18px; padding-left:18px; }
-  .filters { grid-template-columns:1fr; }
+  .filters { grid-template-columns:minmax(0,1fr) auto; }
   .board-intro { align-items:start; flex-direction:column; }
   .compact { margin:0; }
   .role-toolbar { align-items:stretch; flex-direction:column; }
