@@ -1,12 +1,13 @@
 import type { PublicJob } from "./jobs";
 import { isProcessManufacturingRole } from "./process-manufacturing";
 
-export type RoleFamily = "all" | "software" | "data" | "engineering" | "business" | "finance-quant" | "it-security";
+export type RoleFamily = "all" | "software" | "data" | "engineering" | "product" | "solutions-support" | "business" | "finance-quant" | "it-security";
 
 export type RoleTag =
   | "software-engineering"
   | "ai-ml-engineering"
   | "cloud-infrastructure"
+  | "solutions-support"
   | "data-science"
   | "data-engineering"
   | "analytics"
@@ -30,14 +31,17 @@ export type RoleTag =
 export type RoleSelection = { family: RoleFamily; specialty: RoleTag | null };
 
 type RoleDefinition = { value: RoleTag; label: string; family: Exclude<RoleFamily, "all"> };
-type RoleCandidate = Pick<PublicJob, "title" | "category"> & { roleTags?: readonly string[] };
+type RoleClassificationCandidate = Pick<PublicJob, "title" | "category"> & { rawText?: string };
+type RoleCandidate = RoleClassificationCandidate & { roleTags?: readonly string[] };
 
 export const ROLE_FAMILIES: Array<{ value: RoleFamily; label: string }> = [
   { value: "all", label: "All Roles" },
   { value: "software", label: "Software" },
   { value: "data", label: "Data" },
   { value: "engineering", label: "Engineering" },
-  { value: "business", label: "Business / Ops" },
+  { value: "product", label: "Product" },
+  { value: "solutions-support", label: "Solutions / Support" },
+  { value: "business", label: "Business" },
   { value: "finance-quant", label: "Finance / Quant" },
   { value: "it-security", label: "IT / Security" },
 ];
@@ -46,6 +50,7 @@ export const ROLE_TAGS: RoleDefinition[] = [
   { value: "software-engineering", label: "Software Engineering", family: "software" },
   { value: "ai-ml-engineering", label: "AI / ML Engineering", family: "software" },
   { value: "cloud-infrastructure", label: "Cloud / Infrastructure", family: "software" },
+  { value: "solutions-support", label: "Solutions / Support", family: "solutions-support" },
   { value: "data-science", label: "Data Science", family: "data" },
   { value: "data-engineering", label: "Data Engineering", family: "data" },
   { value: "analytics", label: "Analytics / BI", family: "data" },
@@ -56,7 +61,7 @@ export const ROLE_TAGS: RoleDefinition[] = [
   { value: "systems-test", label: "Systems / Test", family: "engineering" },
   { value: "materials-chemical", label: "Materials / Chemical", family: "engineering" },
   { value: "quality-reliability", label: "Quality / Reliability", family: "engineering" },
-  { value: "product", label: "Product", family: "business" },
+  { value: "product", label: "Product", family: "product" },
   { value: "business-analyst", label: "Business Analysis", family: "business" },
   { value: "operations-supply-chain", label: "Operations / Supply Chain", family: "business" },
   { value: "marketing-sales", label: "Marketing / Sales", family: "business" },
@@ -84,25 +89,40 @@ export function getRoleTagsForFamily(family: RoleFamily): RoleDefinition[] {
 }
 
 export function getRoleSelection(roleParam: string | null, specialtyParam: string | null): RoleSelection {
-  if (isRoleTag(roleParam)) return { family: roleDefinitionByTag.get(roleParam)!.family, specialty: roleParam };
-  if (!isRoleFamily(roleParam)) return { family: "all", specialty: null };
-  if (!isRoleTag(specialtyParam)) return { family: roleParam, specialty: null };
-  const specialty = roleDefinitionByTag.get(specialtyParam)!;
-  return specialty.family === roleParam ? { family: roleParam, specialty: specialtyParam } : { family: roleParam, specialty: null };
+  if (isRoleFamily(roleParam)) {
+    if (!isRoleTag(specialtyParam)) return { family: roleParam, specialty: null };
+    const specialty = roleDefinitionByTag.get(specialtyParam)!;
+    return specialty.family === roleParam ? { family: roleParam, specialty: specialtyParam } : { family: roleParam, specialty: null };
+  }
+  if (isRoleTag(roleParam)) {
+    const role = roleDefinitionByTag.get(roleParam)!;
+    return { family: role.family, specialty: roleParam };
+  }
+  return { family: "all", specialty: null };
 }
 
-export function classifyRoleTags(job: Pick<PublicJob, "title" | "category">): RoleTag[] {
+export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
+  const title = job.title.toLowerCase();
   const text = `${job.title} ${job.category}`.toLowerCase();
-  const explicitEarlyCareer = /\b(?:intern(?:ship)?|co-?op|new grad(?:uate)?|early career|university grad(?:uate)?|entry[- ]level)\b/i.test(job.title);
+  const rawText = job.rawText?.toLowerCase() ?? "";
+  const explicitEarlyCareerTitle = /\b(?:intern(?:ship)?|co-?op|new grad(?:uate)?|early career|university grad(?:uate)?|entry[- ]level)\b/i.test(job.title);
   if (/\b(?:senior|sr\.?|staff|principal|director|head|lead)\b/i.test(job.title)) return [];
-  if (/\bmanager\b/i.test(job.title) && !explicitEarlyCareer) return [];
+  if (/\bmanager\b/i.test(job.title) && !explicitEarlyCareerTitle && !/\bproduct manager\b/i.test(job.title)) return [];
   const tags = new Set<RoleTag>();
   const add = (tag: RoleTag, pattern: RegExp) => { if (pattern.test(text)) tags.add(tag); };
+  const addTitle = (tag: RoleTag, pattern: RegExp) => { if (pattern.test(title)) tags.add(tag); };
   const softwareContext = /\bsoftware\b|\bcloud\b|\bsite reliability\b|\bsre\b|\btooling\b|\bdevops\b|\bplatform\b|\bota\b|\bqa\b|\btest automation\b/.test(text);
   const physicalQualityContext = /\b(?:supplier|manufacturing|production|process|product|hardware|device|component|semiconductor|silicon|wafer|materials?|mechanical|electrical|industrial|factory)\b|\bquality systems?\b|\bquality control\b|\bfailure analysis\b/.test(text);
+  const customerFacingContext = /\b(?:customer-facing|client-facing|work(?:ing)? (?:directly )?with (?:our )?(?:customers|clients)|support(?:ing)? (?:our )?(?:customers|clients)|customer deployments?|client implementations?|pre[- ]sales|post[- ]sales|technical sales|field applications?)\b/.test(rawText);
 
+  const internalPeopleRole = /\b(?:talent acquisition|recruiting|human resources?|people operations?)\b/.test(title);
+  if (!internalPeopleRole) addTitle("solutions-support", /^\s*(?:(?:associate|junior) )?support engineer(?:ing)?\b|\b(?:product|software) support\b|\b(?:technical|application|cloud|platform) support (?:engineer(?:ing)?|specialist|analyst)\b|\bcustomer support engineer(?:ing)?\b|^\s*(?:(?:associate|junior) )?solutions? engineer(?:ing)?\b|\b(?:technical|customer) solutions? engineer(?:ing)?\b|\bimplementation engineer(?:ing)?\b|\bcustomer engineer(?:ing)?\b|\bfield applications? engineer(?:ing)?\b|\bsales engineer(?:ing)?\b|\bdeployment engineer(?:ing)?\b|\bforward deployed (?:software |infrastructure |ai )?engineer(?:ing)?\b|\btechnical account manager\b/);
+  const contextualSolutionsTitle = /\bsolutions? engineer(?:ing)?\b/.test(title);
+  if (!internalPeopleRole && contextualSolutionsTitle && customerFacingContext) tags.add("solutions-support");
+  const genericApplicationsTitle = /^\s*(?:(?:associate|junior) )?applications? engineer(?:ing)?(?:\s+(?:i|1))?\b/.test(title);
+  if (genericApplicationsTitle && customerFacingContext) tags.add("solutions-support");
   add("product", /\bproduct\s+(?:manager|management)\b|\bproduct (?:intern|owner)\b|\bassociate product manager\b|\bapm\b/);
-  add("quant", /\bquant(?:itative)?\b|\btrader\b|\btrading\b|\bsystematic\b|\balgorithmic trading\b/);
+  if (!/\b(?:customer experience|customer support|customer service)\b/.test(title)) add("quant", /\bquant(?:itative)?\b|\btrader\b|\btrading\b|\bsystematic\b|\balgorithmic trading\b/);
   add("data-science", /\bdata scien(?:ce|tist)\b|\bdecision scientist\b|\bmachine learning scientist\b|\bapplied scientist\b|\bstatistician\b/);
   add("data-engineering", /\bdata engineer(?:ing)?\b|\banalytics engineer(?:ing)?\b|\bdata platform engineer(?:ing)?\b|\bdata infrastructure\b/);
   add("analytics", /\bdata analyst\b|\banalytics?\b|\bstrategy\s*(?:&|and)\s*analyt|\bbusiness intelligence\b|\bbi analyst\b/);
@@ -116,8 +136,12 @@ export function classifyRoleTags(job: Pick<PublicJob, "title" | "category">): Ro
   add("materials-chemical", /\bchemical engineer(?:ing)?\b|\bmaterials? (?:engineer(?:ing)?|science|scientist|and process engineering)\b|\bpolymer\b|\bmetallurg(?:y|ical|ist)\b|\bchemistry\b|\bchemical process\b/);
   if (!softwareContext && physicalQualityContext) add("quality-reliability", /\bquality engineer(?:ing)?\b|\breliability engineer(?:ing)?\b|\bfailure analysis\b|\bquality control\b|\bquality systems?\b|\bvalidation engineer(?:ing)?\b/);
   if (!/\b(?:technical )?program manager\b/.test(text)) add("hardware-electrical", /\bhardware (?:design |development |systems? |test |validation |verification |applications? )?engineer(?:ing)?\b|\bdevice engineer(?:ing)?\b|\belectrical engineer(?:ing)?\b|\belectronics engineer(?:ing)?\b|\bembedded systems? engineer(?:ing)?\b|\bfpga\b|\b(?:asic|rtl) (?:design|verification|validation|engineer(?:ing)?)\b|\bsilicon (?:design|validation|verification|engineer(?:ing)?)\b|\b(?:pre|post)[ -]?silicon\b|\bsemiconductor (?:design|test|process|product|engineer(?:ing)?)\b|\b(?:analog|mixed[ -]?signal|digital|logic|circuit|board|pcb|chip) design engineer(?:ing)?\b|\bdesign verification engineer(?:ing)?\b|\bsignal integrity engineer(?:ing)?\b|\bpower electronics engineer(?:ing)?\b|\brf engineer(?:ing)?\b|\brobotics hardware\b/);
-  add("mechanical", /\bmechanical(?: [a-z&/-]+){0,3} engineer(?:ing)?\b|\bmechatronics?\b|\bthermal engineer(?:ing)?\b|\bstructural engineer(?:ing)?\b|\bpropulsion engineer(?:ing)?\b|\baerodynamics?\b/);
+  const structuralTitle = /\bstructural engineer(?:ing)?\b/.test(title);
+  const civilStructuralContext = structuralTitle && /\b(?:bridge|building|facilities|rail|construction|infrastructure|civil|industrial)\b/.test(title);
+  add("mechanical", /\bmechanical(?: [a-z&/-]+){0,3} engineer(?:ing)?\b|\bmechatronics?\b|\bthermal engineer(?:ing)?\b|\bpropulsion engineer(?:ing)?\b|\baerodynamics?\b/);
+  if (structuralTitle && !civilStructuralContext) tags.add("mechanical");
   add("civil-infrastructure", /\bcivil engineer(?:ing)?\b|\btransportation engineer(?:ing)?\b|\bgeotechnical\b|\bwater resources?\b|\bconstruction engineer(?:ing)?\b|\binfrastructure design\b/);
+  if (civilStructuralContext) tags.add("civil-infrastructure");
   if (!softwareContext) add("systems-test", /\bsystems? engineer(?:ing)?\b|\bintegration (?:and|&) test\b|\bintegration engineer(?:ing)?\b|\btest engineer(?:ing)?\b|\bverification engineer(?:ing)?\b|\bvalidation engineer(?:ing)?\b/);
 
   add("cybersecurity", /\bcyber ?security\b|\binformation security\b|\bsecurity operations\b|\bsoc analyst\b|\bred team\b|\bpenetration test(?:er|ing)?\b|\bapplication security\b/);
@@ -125,14 +149,14 @@ export function classifyRoleTags(job: Pick<PublicJob, "title" | "category">): Ro
 
   add("ai-ml-engineering", /\bmachine learning engineer(?:ing)?\b|\bml engineer(?:ing)?\b|\bai(?:\/ml)?\b.*\bengineer\b|\bllm\b.*\bengineer\b|\bcomputer vision engineer\b|\bnlp engineer\b|\bmlops\b/);
   add("cloud-infrastructure", /\bdevops\b|\bsite reliability\b|\bsre\b|\bcloud engineer\b|\bcloud validation engineer\b|\binfrastructure engineer\b|\bplatform engineer\b/);
-  add("software-engineering", /\bsoftware\b|\bdeveloper\b|\bdevelopment engineer\b|\bfront[ -]?end\b|\bback[ -]?end\b|\bfull[ -]?stack\b|\bweb engineer\b|\bmobile engineer\b|\bios engineer\b|\bandroid engineer\b|\bfirmware\b|\bembedded software\b|\bmachine learning engineer\b|\bml engineer\b|\bai(?:\/ml)?\b.*\bengineer\b|\bllm\b.*\bengineer\b|\bcomputer vision engineer\b|\bqa engineer\b|\bquality assurance\b|\btest automation\b|\btester\b|\bprogrammer\b/);
+  add("software-engineering", /\bsoftware\b|\bdeveloper\b|\bdevelopment engineer\b|\bfront[ -]?end\b|\bback[ -]?end\b|\bfull[ -]?stack\b|\bweb engineer\b|\bmobile engineer\b|\bios engineer\b|\bandroid engineer\b|\bfirmware\b|\bembedded software\b|\bmachine learning engineer\b|\bml engineer\b|\bai(?:\/ml)?\b.*\bengineer\b|\bllm\b.*\bengineer\b|\bcomputer vision engineer\b|\bqa engineer\b|\bquality assurance\b|\btest automation\b|\btester\b|\bprogrammer\b|\bforward deployed (?:ai |infrastructure )?engineer\b/);
 
   return ROLE_TAGS.map((role) => role.value).filter((tag) => tags.has(tag));
 }
 
 export function getJobRoleTags(job: RoleCandidate): RoleTag[] {
   const stored = (job.roleTags ?? []).filter((tag): tag is RoleTag => isRoleTag(tag));
-  return stored.length > 0 ? [...new Set(stored)] : classifyRoleTags(job);
+  return [...new Set([...stored, ...classifyRoleTags(job)])];
 }
 
 export function matchesRoleSelection(job: RoleCandidate, selection: RoleSelection): boolean {

@@ -1,12 +1,14 @@
 .role-tabs {
   display:flex;
-  flex-wrap:wrap;
+  flex-wrap:nowrap;
   gap:8px;
+  width:max-content;
   margin:0;
 }
 
 .role-toolbar { display:flex; align-items:flex-start; gap:10px; margin:0 0 10px; }
-.role-navigation { min-width:0; }
+.role-navigation { flex:1 1 auto; min-width:0; overflow-x:auto; scrollbar-width:none; }
+.role-navigation::-webkit-scrollbar { display:none; }
 .role-toolbar .saved-filter { flex:0 0 auto; }
 
 .role-tabs a {
@@ -287,9 +289,7 @@
 @media (max-width:620px) {
   body.mobile-filters-open { overflow:hidden; }
   .role-toolbar { min-width:0; width:100%; overflow:hidden; }
-  .role-navigation { width:100%; max-width:100%; overflow-x:auto; scrollbar-width:none; }
-  .role-navigation::-webkit-scrollbar { display:none; }
-  .role-tabs { width:max-content; flex-wrap:nowrap; }
+  .role-navigation { width:100%; max-width:100%; }
   .role-tabs a { flex:0 0 auto; min-height:44px; }
   .filters { grid-template-columns:minmax(0,1fr) auto; align-items:end; }
   .search-field input { height:44px; }

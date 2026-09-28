@@ -407,6 +407,15 @@ test("supported ATS links reveal stable company board identifiers", () => {
   assert.equal(isEarlyCareerTitle("Senior Software Engineer"), false);
   assert.equal(isEarlyCareerTitle("Senior Mechanical Engineer I"), false);
   assert.equal(isEarlyCareerTitle("Product Manager Intern"), true);
+  assert.equal(isEarlyCareerTitle("Technical Support Engineer", "This role requires 1-3 years of relevant experience."), true);
+  assert.equal(isEarlyCareerTitle("Technical Support Engineer", "This role requires 1–3 years of relevant experience."), true);
+  assert.equal(isEarlyCareerTitle("Product Support Engineer", "Candidates should have 0 to 2 years of professional experience."), true);
+  assert.equal(isEarlyCareerTitle("Product Manager", "Candidates should have 0 to 2 years of professional experience."), true);
+  assert.equal(isEarlyCareerTitle("Associate Solutions Engineer"), true);
+  assert.equal(isEarlyCareerTitle("Support Engineer Tier 1"), true);
+  assert.equal(isEarlyCareerTitle("Software Engineer", "This role requires 4-6 years of experience."), false);
+  assert.equal(isEarlyCareerTitle("Senior Support Engineer", "This role requires 1-3 years of experience."), false);
+  assert.equal(isEarlyCareerTitle("Sales Operations Manager", "This role requires 1-3 years of experience."), false);
 });
 
 test("role taxonomy supports multiple tags, broad families, and legacy links", () => {
@@ -422,12 +431,36 @@ test("role taxonomy supports multiple tags, broad families, and legacy links", (
   assert.deepEqual(classifyRoleTags({ title: "Device Engineer I", category: "New grad" }), ["hardware-electrical"]);
   assert.deepEqual(classifyRoleTags({ title: "Senior Mechanical Engineer I", category: "New grad" }), []);
   assert.deepEqual(classifyRoleTags({ title: "Product Manager Intern", category: "Internship" }), ["product"]);
+  assert.deepEqual(classifyRoleTags({ title: "Technical Support Engineer - University Graduate 2027", category: "New grad" }), ["solutions-support", "it-support-network"]);
+  assert.deepEqual(classifyRoleTags({ title: "Software Support Engineer Internship", category: "Internship" }), ["software-engineering", "solutions-support", "it-support-network"]);
+  assert.deepEqual(classifyRoleTags({ title: "Forward Deployed Engineer - New Grad", category: "New grad" }), ["software-engineering", "solutions-support"]);
+  assert.deepEqual(classifyRoleTags({ title: "Field Applications Engineer I", category: "New grad" }), ["solutions-support"]);
+  assert.deepEqual(classifyRoleTags({ title: "Applications Engineering Internship", category: "Internship", rawText: "Build internal systems, data pipelines, and company processes." }), []);
+  assert.deepEqual(classifyRoleTags({ title: "Applications Engineer", category: "New grad", rawText: "Work directly with customers on technical deployments." }), ["solutions-support"]);
+  assert.deepEqual(classifyRoleTags({ title: "AI Solutions Engineer, Talent Acquisition", category: "New grad" }), ["software-engineering", "ai-ml-engineering"]);
+  assert.deepEqual(classifyRoleTags({ title: "Data Solution Engineer Intern", category: "Internship", rawText: "Build internal reporting tools and data pipelines." }), []);
+  assert.deepEqual(classifyRoleTags({ title: "Data Solution Engineer Intern", category: "Internship", rawText: "Work directly with clients on technical implementations." }), ["solutions-support"]);
+  assert.deepEqual(classifyRoleTags({ title: "Sales Operations Manager", category: "New grad" }), []);
+  assert.deepEqual(classifyRoleTags({ title: "Product Support Specialist", category: "New grad" }), ["solutions-support"]);
+  assert.deepEqual(classifyRoleTags({ title: "Product Engineer I", category: "New grad" }), []);
+  assert.deepEqual(classifyRoleTags({ title: "Product Design Engineer Intern", category: "Internship" }), ["design"]);
+  assert.deepEqual(classifyRoleTags({ title: "Production Support Engineer I", category: "New grad" }), []);
+  assert.deepEqual(classifyRoleTags({ title: "IT Help Desk Intern", category: "Internship" }), ["it-support-network"]);
+  assert.deepEqual(classifyRoleTags({ title: "Vehicle Integration Engineer I", category: "New grad" }), ["systems-test"]);
+  assert.deepEqual(classifyRoleTags({ title: "Structural Engineering Internship - Bridge", category: "Internship" }), ["civil-infrastructure"]);
+  assert.deepEqual(classifyRoleTags({ title: "Structural Engineer I - Spacecraft", category: "New grad" }), ["mechanical"]);
+  assert.deepEqual(classifyRoleTags({ title: "Customer Experience Representative, Active Trader", category: "New grad" }), []);
+  assert.deepEqual(classifyRoleTags({ title: "Fullstack Engineer - Applications Engineering", category: "Internship" }), ["software-engineering"]);
+  assert.deepEqual(getRoleSelection("product", null), { family: "product", specialty: null });
+  assert.deepEqual(getRoleSelection("solutions-support", null), { family: "solutions-support", specialty: null });
   assert.deepEqual(getRoleSelection("process-manufacturing", null), { family: "engineering", specialty: "process-manufacturing" });
   assert.deepEqual(getRoleSelection("engineering", "mechanical"), { family: "engineering", specialty: "mechanical" });
   assert.deepEqual(getRoleSelection("data", "mechanical"), { family: "data", specialty: null });
   assert.equal(matchesRoleSelection(semiconductor, { family: "engineering", specialty: null }), true);
   assert.equal(matchesRoleSelection(semiconductor, { family: "engineering", specialty: "materials-chemical" }), true);
   assert.equal(matchesRoleSelection(semiconductor, { family: "software", specialty: null }), false);
+  assert.equal(matchesRoleSelection({ title: "Associate Product Manager", category: "New grad", roleTags: ["product"] }, { family: "product", specialty: null }), true);
+  assert.equal(matchesRoleSelection({ title: "Forward Deployed Engineer", category: "New grad", roleTags: ["software-engineering"] }, { family: "solutions-support", specialty: null }), true);
 });
 
 test("pinned ATS boards produce stable public endpoints", () => {

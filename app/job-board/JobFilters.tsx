@@ -36,8 +36,10 @@ export function RoleTabs({ selection, type }: { selection: RoleSelection; type: 
   const activeTabRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-    if (!window.matchMedia("(max-width: 620px)").matches) return;
-    activeTabRef.current?.scrollIntoView({ behavior: "auto", block: "nearest", inline: "center" });
+    const activeTab = activeTabRef.current;
+    const navigation = activeTab?.closest<HTMLElement>(".role-navigation");
+    if (!activeTab || !navigation || navigation.scrollWidth <= navigation.clientWidth) return;
+    activeTab.scrollIntoView({ behavior: "auto", block: "nearest", inline: "center" });
   }, [selection.family]);
 
   return (
