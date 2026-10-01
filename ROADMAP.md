@@ -22,7 +22,7 @@ The reviewed-source expansion, ingestion foundation, and opt-in Vercel analytics
 ## Application tracker and owned analytics sequence
 
 1. [x] Record the revised sequence: retain existing page views, polish local saved jobs, then assess a backend for personal tracking and aggregate analytics.
-2. [ ] Polish browser-local application tracking. Completed first increment: explicit Saved, Applied, Interviewing, Offered and Rejected statuses, plus visible storage failures. Remaining work: expired/unavailable saved listings, status filtering, dates and export/recovery.
+2. [ ] Polish browser-local application tracking. Completed: explicit Saved, Applied, Interviewing, Offered and Rejected statuses, visible storage failures, and status filtering within saved jobs. Remaining work: expired/unavailable saved listings, dates and export/recovery.
 3. [ ] Define fixed analytics event names and daily counters for collection selection, filter usage, Apply, Save and Unsave; exclude personal identifiers, job IDs, search text, notes and URL parameters. Apply means outbound click only.
 4. [ ] Select backend hosting and storage with no payment method, automatic paid conversion or billable overages. Document behavior at every included limit before adding services.
 5. [ ] Build a Go backend with GraphQL for optional personal records and a separate small HTTP endpoint for aggregate events. Separate tables and access rules.

@@ -3,6 +3,10 @@ export const APPLICATION_STATUSES = ["Saved", "Applied", "Interviewing", "Offere
 export type ApplicationStatus = typeof APPLICATION_STATUSES[number];
 export const EMPTY_STATUSES: Readonly<Record<string, ApplicationStatus>> = {};
 
+export function matchesApplicationStatus(id: string, statuses: Readonly<Record<string, ApplicationStatus>>, filter: ApplicationStatus | "All") {
+  return filter === "All" || (Object.prototype.hasOwnProperty.call(statuses, id) ? statuses[id] : "Saved") === filter;
+}
+
 export function isApplicationStatus(value: unknown): value is ApplicationStatus {
   return APPLICATION_STATUSES.some((status) => status === value);
 }

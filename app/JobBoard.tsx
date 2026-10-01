@@ -11,6 +11,8 @@ import { JobFilters, RoleTabs } from "./job-board/JobFilters";
 import { JobResults } from "./job-board/JobResults";
 import { getPaginationState, LAYOUT_TRANSITION_MS, PAGE_SIZE, type ViewMode } from "./job-board/job-board-utils";
 import { useSavedJobs } from "./useSavedJobs";
+import { useApplicationStatuses } from "./useApplicationStatuses";
+import { APPLICATION_STATUSES, isApplicationStatus, matchesApplicationStatus, type ApplicationStatus } from "@/lib/application-status";
 
 type JobBoardProps = {
   type: "internships" | "fulltime";
@@ -32,6 +34,8 @@ export function JobBoard({ type }: JobBoardProps) {
   const [selectedTerms, setSelectedTerms] = useState<string[]>([]);
   const [companyTiers, setCompanyTiers] = useState<CompanyTier[]>([]);
   const [savedOnly, setSavedOnly] = useState(false);
+  const [statusFilter, setStatusFilter] = useState<ApplicationStatus | "All">("All");
+  const { statuses } = useApplicationStatuses();
   const [viewMode, setViewMode] = useState<ViewMode>("compact");
   const [activeView, setActiveView] = useState<ViewMode>("compact");
   const [exitingView, setExitingView] = useState<ViewMode | null>(null);
@@ -83,8 +87,8 @@ export function JobBoard({ type }: JobBoardProps) {
       companyTiers: roleSelection.family === "engineering" ? [] : companyTiers,
       savedOnly,
       savedJobIds,
-    }),
-    [sourceJobs, type, roleSelection, query, regions, metros, modes, selectedTerms, companyTiers, savedOnly, savedJobIds],
+    }).filter((job) => !savedOnly || matchesApplicationStatus(job.id, statuses, statusFilter)),
+    [sourceJobs, type, roleSelection, query, regions, metros, modes, selectedTerms, companyTiers, savedOnly, savedJobIds, statuses, statusFilter],
   );
 
   if (error) return <p className="state-card">The latest job snapshot could not be loaded. Please try again shortly.</p>;
@@ -123,6 +127,10 @@ export function JobBoard({ type }: JobBoardProps) {
       </div>
       {storageError ? <p role="alert" className="state-card">Could not save your change. Check that browser storage is available.</p> : null}
       {savedOnly ? <p className="saved-jobs-notice">Saved jobs and application statuses stay in this browser. Set statuses yourself after applying. Opening Apply does not mark a job as applied. Removing a saved job keeps its status if you save it again. Clearing site storage removes both.</p> : null}
+      {savedOnly ? <label className="saved-status-filter">Application status <select value={statusFilter} onChange={(event) => {
+        const value = event.target.value;
+        if (value === "All" || isApplicationStatus(value)) { setStatusFilter(value); resetPage(); }
+      }}><option value="All">All statuses</option>{APPLICATION_STATUSES.map((status) => <option key={status}>{status}</option>)}</select></label> : null}
       <div className="board-stats" title={new Date(snapshot.generatedAt).toLocaleString()}>
         <span className="live-status"><i />Live</span>
         <span className="refresh-age">· refreshed {formatSnapshotAge(snapshot.generatedAt, now)}</span>

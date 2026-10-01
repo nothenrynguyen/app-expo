@@ -1,6 +1,16 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { parseApplicationStatuses } from "../lib/application-status";
+import { matchesApplicationStatus, parseApplicationStatuses } from "../lib/application-status";
+
+test("legacy saved IDs default to Saved and status filters match only the chosen status", () => {
+  const statuses = { tracked: "Applied" as const };
+  assert.equal(matchesApplicationStatus("legacy", statuses, "Saved"), true);
+  assert.equal(matchesApplicationStatus("legacy", statuses, "Applied"), false);
+  assert.equal(matchesApplicationStatus("tracked", statuses, "Applied"), true);
+  assert.equal(matchesApplicationStatus("tracked", statuses, "All"), true);
+  assert.equal(matchesApplicationStatus("tracked", statuses, "Rejected"), false);
+  assert.equal(matchesApplicationStatus("constructor", statuses, "Saved"), true);
+});
 
 test("application status storage rejects malformed and unsupported records", () => {
   for (const raw of [null, "bad", "[]", "42"]) assert.deepEqual(parseApplicationStatuses(raw), {});
