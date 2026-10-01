@@ -10,6 +10,8 @@ The reviewed-source expansion, ingestion foundation, opt-in Vercel analytics and
 
 ## Next milestone
 
+- [x] Ship the reviewed frontend redesign: rocket logo, category typewriter and dot gravity hero, simplified About and Feedback pages, consistent footer typography, and a compact Applications table with location, colored editable statuses and Mark applied from saved jobs. Existing browser records and legacy backups remain supported; no backend added.
+
 - [x] Consolidate header information under About, add a simple LinkedIn feedback page, and place analytics preferences in the footer row.
 
 - [x] Simplify My applications with a closed editor and backup controls, visible saved jobs with verified current Apply links, and compact first-visit analytics choices with persistent preferences access.

@@ -2,8 +2,13 @@ import { isApplicationStatus, type ApplicationStatus } from "./application-statu
 import type { SavedJobDetails } from "./saved-job-details";
 
 export const APPLICATIONS_KEY = "app-expo:applications:v1";
-export type Application = { id: string; company: string; title: string; url: string; status: ApplicationStatus; appliedOn: string; notes: string; origin: "manual" | "app-expo"; jobId?: string };
+export type Application = { id: string; company: string; title: string; location?: string; url: string; status: ApplicationStatus; appliedOn: string; notes: string; origin: "manual" | "app-expo"; jobId?: string };
 export const EMPTY_APPLICATIONS: readonly Application[] = [];
+export function markSavedJobApplied(existing: readonly Application[], job: { id: string; company: string; title: string; location?: string; applyUrl?: string }): readonly Application[] {
+  const found = existing.some((record) => record.jobId === job.id);
+  if (found) return existing.map((record) => record.jobId === job.id ? { ...record, status: "Applied" } : record);
+  return [...existing, { id: `board:${job.id}`, jobId: job.id, company: job.company.slice(0, 1000), title: job.title.slice(0, 2000), ...(job.location ? { location: job.location.slice(0, 500) } : {}), url: safeApplicationUrl(job.applyUrl ?? "") ?? "", status: "Applied", appliedOn: "", notes: "", origin: "app-expo" }];
+}
 export function safeApplicationUrl(value: string): string | null {
   if (!value.trim()) return "";
   try {
@@ -21,9 +26,10 @@ export function parseApplications(raw: string | null): readonly Application[] {
     const records = new Map<string, Application>();
     for (const item of items) {
       if (!item || typeof item !== "object") continue;
-      const { id, company, title, url, status, appliedOn, notes, origin, jobId } = item;
-      if (typeof id !== "string" || !id || id.length > 506 || typeof company !== "string" || !company.trim() || company.length > 1000 || typeof title !== "string" || !title.trim() || title.length > 2000 || typeof url !== "string" || url.length > 2000 || safeApplicationUrl(url) === null || !isApplicationStatus(status) || typeof appliedOn !== "string" || !validApplicationDate(appliedOn) || typeof notes !== "string" || notes.length > 5000 || (origin !== "manual" && origin !== "app-expo")) continue;
-      records.set(id, { id, company, title, url: safeApplicationUrl(url)!, status, appliedOn, notes, origin, ...(origin === "app-expo" && typeof jobId === "string" ? { jobId } : {}) });
+      const { id, company, title, location, url, status, appliedOn, notes, origin, jobId } = item;
+      if (location !== undefined && (typeof location !== "string" || location.length > 500)) continue;
+      if (typeof id !== "string" || !id || id.length > 506 || typeof company !== "string" || !company.trim() || company.length > 1000 || typeof title !== "string" || title.length > 2000 || typeof url !== "string" || url.length > 2000 || safeApplicationUrl(url) === null || !isApplicationStatus(status) || typeof appliedOn !== "string" || !validApplicationDate(appliedOn) || typeof notes !== "string" || notes.length > 5000 || (origin !== "manual" && origin !== "app-expo")) continue;
+      records.set(id, { id, company, title, ...(location !== undefined ? { location } : {}), url: safeApplicationUrl(url)!, status, appliedOn, notes, origin, ...(origin === "app-expo" && typeof jobId === "string" ? { jobId } : {}) });
     }
     return [...records.values()];
   } catch { return EMPTY_APPLICATIONS; }

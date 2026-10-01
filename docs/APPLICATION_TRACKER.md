@@ -1,15 +1,17 @@
 # Local application tracker
 
-Open **My applications** in the site navigation. The default view shows saved jobs and application lists. Choose **Add application** to open the editor, or Edit on an existing record. Cancel closes the editor without saving. Saved jobs have direct Apply links when their current listings load, status controls and Unsave. Missing listings retain available details without an unverified Apply link. Opening Apply never marks a job as applied.
+Open **Applications** in the site navigation. The default view shows a table with Company, Location, an inline Status selector and Edit, plus status filters. Switch to **Saved jobs** to see your shortlist. Choose Edit to change fields, access dates and notes, or delete the record. Existing records without a location show Not set. Location is included in backups; legacy backups without it remain supported. Choose **Add application** to open the editor, or Edit on an existing record. Cancel closes the editor without saving. Saved jobs have direct Apply links when their current listings load, status controls and Unsave. Missing listings retain available details without an unverified Apply link. Opening Apply never marks a job as applied.
 
-Expand **Import saved jobs into applications**, then use **Add saved jobs to tracker** to create independent records from retained saved-job details. Repeated saved-job imports skip existing board identities. Legacy saved IDs without listing details cannot yet be imported.
+Expand **Manage records**, then use **Import saved jobs** to create independent records from retained saved-job details. Repeated saved-job imports skip existing board identities. Legacy saved IDs without listing details cannot yet be imported.
 
 Records belong to this site's browser profile on this device, not an account. People sharing a browser profile share the records. There is no backend syncing. Clearing site storage removes records. Notes, dates and links are excluded from site analytics.
 
 ## Backup and recovery
 
-1. Expand **Backup and restore**, then choose **Download backup**. Store the JSON file privately; it contains links and notes in plain text.
-2. In the destination browser, open **My applications**, expand **Backup and restore** and choose the backup file.
+Saved jobs also offer **Mark applied**. This creates a tracker record once, or updates the existing board-linked record, and keeps the job saved. Current listing location and link are included when available. The action does not invent an application date or overwrite existing notes. Opening an employer link alone never marks a job applied. Unknown locations remain unset. The application table shows company, position, location, a colored editable status and Edit; deletion is inside the editor.
+
+1. Expand **Manage records**, then choose **Download backup**. Store the JSON file privately; it contains links and notes in plain text.
+2. In the destination browser, open **Applications**, expand **Manage records** and choose the backup file.
 3. Review the new-record and duplicate counts plus the sample entries.
 4. Choose **Import new records**, or cancel without changing storage.
 

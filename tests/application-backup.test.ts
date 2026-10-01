@@ -5,6 +5,8 @@ import type { Application } from "../lib/applications";
 const record: Application = { id: "one", company: "Example", title: "Engineer", url: "https://example.com/job", status: "Applied", appliedOn: "2026-09-20", notes: "Private note", origin: "manual" };
 test("backups round-trip all tracker fields and reject unsupported formats without partial imports", () => {
   assert.deepEqual(readApplicationBackup(createApplicationBackup([record])), [record]);
+  const located = { ...record, location: "Los Angeles, CA" };
+  assert.deepEqual(readApplicationBackup(createApplicationBackup([located])), [located]);
   assert.throws(() => readApplicationBackup("bad"), /valid JSON/);
   assert.throws(() => readApplicationBackup(JSON.stringify({ format: "app-expo-applications", version: 2, applications: [record] })), /version 1/);
   assert.throws(() => readApplicationBackup(createApplicationBackup([record, { ...record, id: "two", url: "javascript:bad" }])), /invalid records/);

@@ -2,14 +2,19 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { PublicJob, JobsSnapshot } from "@/lib/jobs";
-import { safeApplicationUrl } from "@/lib/applications";
+import { markSavedJobApplied, safeApplicationUrl } from "@/lib/applications";
 import { useSavedJobs } from "../useSavedJobs";
 import { useSavedJobDetails } from "../useSavedJobDetails";
 import { ApplicationStatusSelect } from "../job-board/ApplicationStatusSelect";
+import { useApplications } from "../useApplications";
+import { useApplicationStatuses } from "../useApplicationStatuses";
 
 const EMPTY_JOBS: readonly PublicJob[] = [];
 export function TrackerSavedJobs() {
   const { ids, toggle, storageError } = useSavedJobs();
+  const { applications, change } = useApplications();
+  const { statuses, update } = useApplicationStatuses();
+  const [message, setMessage] = useState("");
   const { details, storageError: detailsError } = useSavedJobDetails(ids, EMPTY_JOBS, "internships", true);
   const [jobs, setJobs] = useState<readonly PublicJob[]>(EMPTY_JOBS);
   const [loaded, setLoaded] = useState(false);
@@ -36,8 +41,17 @@ export function TrackerSavedJobs() {
       const live = current.get(id);
       const job = live ?? retained.get(id);
       const url = live ? safeApplicationUrl(live.applyUrl) : null;
-      return <article className="tracker-saved-row" key={id}><div><h3>{job?.title ?? "Saved listing"}</h3><p>{job?.company ?? "Details are not available for this older save."}</p>{!live && loaded ? <small>Not in the current feed. Availability is unverified.</small> : null}</div><div className="tracker-row-actions">{url ? <a className="button primary" href={url} target="_blank" rel="noreferrer">Apply<span className="sr-only"> for {job?.title} at {job?.company}</span></a> : null}<ApplicationStatusSelect jobId={id} title={job?.title ?? "Saved listing"} /><button type="button" className="button secondary" onClick={() => toggle(id)}>Unsave<span className="sr-only"> {job?.title}</span></button></div></article>;
+      const record = applications.find((item) => item.jobId === id);
+      const status = statuses[id] ?? record?.status ?? "Saved";
+      const tracked = !!record && status !== "Saved";
+      return <article className="tracker-saved-row" key={id}><div><h3>{job?.title ?? "Saved listing"}</h3><p>{job?.company ?? "Details are not available for this older save."}</p>{!live && loaded ? <small>Not in the current feed. Availability is unverified.</small> : null}</div><div className="tracker-row-actions">{url ? <a className="button primary" href={url} target="_blank" rel="noreferrer">Apply<span className="sr-only"> for {job?.title} at {job?.company}</span></a> : null}<button type="button" className="button secondary" disabled={!job || tracked} onClick={() => {
+        if (!job) return;
+        if (!change((existing) => markSavedJobApplied(existing, job))) { setMessage("Could not save the application. Check browser storage."); return; }
+        const synced = update(id, "Applied");
+        setMessage(synced ? "Marked applied. You can find it in Applications. The job remains saved." : "Application saved, but the saved-job status could not update. Try again.");
+      }}>{tracked ? status === "Applied" ? "Marked applied" : "In applications" : "Mark applied"}<span className="sr-only"> {job?.title}</span></button><ApplicationStatusSelect jobId={id} title={job?.title ?? "Saved listing"} /><button type="button" className="button secondary" onClick={() => toggle(id)}>Unsave<span className="sr-only"> {job?.title}</span></button></div></article>;
     })}
     {storageError || detailsError ? <p role="alert">Could not update saved jobs or retained details. Check browser storage.</p> : null}
+    <p role="status">{message}</p>
   </section>;
 }

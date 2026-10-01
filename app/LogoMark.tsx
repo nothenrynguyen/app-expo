@@ -1,16 +1,5 @@
+import Image from "next/image";
+
 export function LogoMark() {
-  return (
-    <svg
-      aria-hidden="true"
-      className="logo-mark"
-      viewBox="0 0 64 64"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M25 8h14l19 34H47L32 17 22 36h12l-9 19H12L7 42 25 8Z"
-        fill="#B08BFF"
-      />
-      <path d="M47 42h11l-5 13-6-13Z" fill="#57E389" />
-    </svg>
-  );
+  return <Image aria-hidden="true" className="logo-mark" src="/app-expo-logo.png" alt="" width={44} height={44} loading="eager" unoptimized />;
 }
