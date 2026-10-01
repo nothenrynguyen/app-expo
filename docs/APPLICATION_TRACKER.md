@@ -1,13 +1,15 @@
 # Local application tracker
 
-Open **My applications** in the site navigation. Add applications from any source, or use **Add saved jobs to tracker** to create independent records from retained saved-job details. Repeated saved-job imports skip existing board identities. Legacy saved IDs without listing details cannot yet be imported.
+Open **My applications** in the site navigation. The default view shows saved jobs and application lists. Choose **Add application** to open the editor, or Edit on an existing record. Cancel closes the editor without saving. Saved jobs have direct Apply links when their current listings load, status controls and Unsave. Missing listings retain available details without an unverified Apply link. Opening Apply never marks a job as applied.
+
+Expand **Import saved jobs into applications**, then use **Add saved jobs to tracker** to create independent records from retained saved-job details. Repeated saved-job imports skip existing board identities. Legacy saved IDs without listing details cannot yet be imported.
 
 Records belong to this site's browser profile on this device, not an account. People sharing a browser profile share the records. There is no backend syncing. Clearing site storage removes records. Notes, dates and links are excluded from site analytics.
 
 ## Backup and recovery
 
-1. Choose **Download backup**. Store the JSON file privately; it contains links and notes in plain text.
-2. In the destination browser, open **My applications** and choose the backup file.
+1. Expand **Backup and restore**, then choose **Download backup**. Store the JSON file privately; it contains links and notes in plain text.
+2. In the destination browser, open **My applications**, expand **Backup and restore** and choose the backup file.
 3. Review the new-record and duplicate counts plus the sample entries.
 4. Choose **Import new records**, or cancel without changing storage.
 
