@@ -11,6 +11,9 @@ import { JobFilters, RoleTabs } from "./job-board/JobFilters";
 import { JobResults } from "./job-board/JobResults";
 import { getPaginationState, LAYOUT_TRANSITION_MS, PAGE_SIZE, type ViewMode } from "./job-board/job-board-utils";
 import { useSavedJobs } from "./useSavedJobs";
+import { useSavedJobDetails } from "./useSavedJobDetails";
+import { missingSavedDetails } from "@/lib/saved-job-details";
+import { UnavailableSavedJobs } from "./job-board/UnavailableSavedJobs";
 import { useApplicationStatuses } from "./useApplicationStatuses";
 import { APPLICATION_STATUSES, isApplicationStatus, matchesApplicationStatus, type ApplicationStatus } from "@/lib/application-status";
 
@@ -66,6 +69,8 @@ export function JobBoard({ type }: JobBoardProps) {
   }, [exitingView]);
 
   const sourceJobs = snapshot?.jobs ?? EMPTY_JOBS;
+  const { details: savedDetails, storageError: detailsError } = useSavedJobDetails(savedJobIds, sourceJobs, type, snapshot !== null);
+  const unavailableSaved = missingSavedDetails(savedDetails, savedJobIds, sourceJobs, type);
   const engineeringSpecialties = useMemo(() => {
     const availableTags = new Set(sourceJobs.flatMap((job) => getJobRoleTags(job)));
     return getRoleTagsForFamily("engineering").filter((specialty) => availableTags.has(specialty.value));
@@ -122,10 +127,11 @@ export function JobBoard({ type }: JobBoardProps) {
           aria-pressed={savedOnly}
           title="Saved in this browser"
         >
-          <span aria-hidden="true">★</span> Saved {savedInCollectionCount}
+          <span aria-hidden="true">★</span> Saved {savedInCollectionCount + unavailableSaved.length}
         </button>
       </div>
       {storageError ? <p role="alert" className="state-card">Could not save your change. Check that browser storage is available.</p> : null}
+      {detailsError ? <p role="alert" className="state-card">Your saved IDs are retained, but listing details could not be stored. Missing listings may not remain readable after a refresh.</p> : null}
       {savedOnly ? <p className="saved-jobs-notice">Saved jobs and application statuses stay in this browser. Set statuses yourself after applying. Opening Apply does not mark a job as applied. Removing a saved job keeps its status if you save it again. Clearing site storage removes both.</p> : null}
       {savedOnly ? <label className="saved-status-filter">Application status <select value={statusFilter} onChange={(event) => {
         const value = event.target.value;
@@ -175,6 +181,7 @@ export function JobBoard({ type }: JobBoardProps) {
           <button disabled={safePage + 1 === pageCount} onClick={() => setPage(safePage + 1)}>Next</button>
         </nav>
       ) : null}
+      {savedOnly ? <UnavailableSavedJobs jobs={unavailableSaved} onRemove={toggleSavedJob} /> : null}
     </>
   );
 }
