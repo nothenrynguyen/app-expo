@@ -7,6 +7,7 @@ App Expo is a free early-career job board that collects and checks internships a
 ## Project commitments
 
 - [Zero-cost policy](COST_POLICY.md)
+- [Analytics setup, privacy, and provider limits](docs/ANALYTICS.md)
 - [Third-party notices](THIRD_PARTY_NOTICES.md)
 - [Machine-readable source license review](data/source-licenses.json)
 

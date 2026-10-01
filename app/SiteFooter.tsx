@@ -2,6 +2,7 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <span>App Expo · Free, direct, and intentionally selective.</span>
+      <a href="/privacy">Privacy and analytics</a>
       <a
         className="feedback-link"
         href="https://www.linkedin.com/posts/henrynguyen02_no-sign-up-no-bs-here-are-the-jobs-share-7494661754723921921-i2kj/"

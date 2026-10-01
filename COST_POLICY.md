@@ -41,3 +41,7 @@ Before adding an external service, verify and document:
 5. The service's terms permit App Expo's current use.
 
 If any answer is unknown, do not add the service.
+
+## Reviewed analytics decision (September 30, 2026)
+
+Vercel Hobby Web Analytics is approved for this personal, non-commercial project with affirmative visitor consent. It requires no payment method or paid trial. The allowance is 50,000 events/month shared across team projects; extra events cannot be purchased or billed on Hobby and collection pauses at the limit. The reporting window is one month, not a guaranteed deletion deadline. Custom click events and UTM reporting are not included. Scripts and intake requests also consume included hosting resources. Keep the project on Hobby, do not enable upgrades/add-ons, and leave analytics disabled in preview/development. Detailed official evidence, cap/resumption documentation differences, privacy safeguards, and owner activation steps are in [docs/ANALYTICS.md](docs/ANALYTICS.md).

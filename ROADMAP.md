@@ -6,12 +6,16 @@ This is the living list of ideas and future work for App Expo. Update it wheneve
 
 App Expo covers early-career software, data, engineering, product, solutions and support, business, finance, quant, IT, and security roles across internship and full-time collections.
 
-The reviewed-source expansion and ingestion-foundation milestones are complete. The immediate goal is to choose and design the first server-backed feature while continuing to operate the no-sign-up public board.
+The reviewed-source expansion, ingestion foundation, and analytics implementation are complete. Analytics activation remains an owner dashboard step. The next development priority is polishing browser-local saved jobs, followed by optional cross-device saved jobs through a Go backend with a GraphQL API. Preserve the no-sign-up public board throughout.
 
 ## Next milestone
 
-- [ ] Decide the first server-backed feature, with saved searches and job alerts or a personal application tracker as the leading options
-- [ ] If a server-backed feature is selected, replace static export with the Next.js Node runtime before adding authentication or a database
+- [x] Audit and implement opt-in Vercel Hobby page views, safe available referrals, and collection visits within the zero-cost policy. Custom interaction events are unavailable on this plan. See [analytics limits and setup](docs/ANALYTICS.md).
+- [ ] Owner: enable included Web Analytics, set the production analytics switch, deploy, and confirm private dashboard receipt
+- [ ] Audit and polish browser-local saved jobs, including discoverability and handling unavailable listings
+- [ ] Design optional cross-device saved jobs using Go and GraphQL after measuring usage
+- [ ] Review authentication, persistent storage, and hosting against the cost policy before deploying the backend
+- [ ] Retain static export when calling a separate backend; introduce the Next.js Node runtime only if a frontend feature requires it
 - [ ] Preserve the no-sign-up public board even if optional accounts are introduced for personal features
 
 ## Completed ingestion milestone
