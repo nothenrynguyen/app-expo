@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
+import { ApplicationStatusSelect } from "./ApplicationStatusSelect";
 import { companyTierLabel } from "@/lib/company-tiers";
 import { normalizeJobLocation } from "@/lib/job-locations";
 import { daysAgo, type PublicJob } from "@/lib/jobs";
@@ -176,10 +177,12 @@ function SaveButton({ compact = false, isSaved, job, onToggle }: { compact?: boo
   };
 
   return (
-    <button className={`button save-button ${compact ? "compact-save" : "secondary"} ${isSaved ? "saved" : ""}`} type="button" onClick={handleToggle} aria-pressed={isSaved} aria-label={`${action}: ${job.title} at ${job.company}`} title={action}>
+    <div className="saved-job-controls"><button className={`button save-button ${compact ? "compact-save" : "secondary"} ${isSaved ? "saved" : ""}`} type="button" onClick={handleToggle} aria-pressed={isSaved} aria-label={`${action}: ${job.title} at ${job.company}`} title={action}>
       <span className={sparkleBurst > 0 ? "save-star sparkling" : "save-star"} aria-hidden="true" key={`star-${sparkleBurst}`}>★</span>
       {sparkleBurst > 0 ? <span className="save-sparkles" aria-hidden="true" key={`sparkles-${sparkleBurst}`}><span /><span /><span /><span /><span /><span /></span> : null}
       {compact ? <span className="sr-only">{isSaved ? "Saved" : "Save"}</span> : isSaved ? "Saved" : "Save"}
     </button>
+    {isSaved ? <ApplicationStatusSelect jobId={job.id} title={`${job.title} at ${job.company}`} /> : null}
+    </div>
   );
 }

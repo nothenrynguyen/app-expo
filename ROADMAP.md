@@ -6,10 +6,11 @@ This is the living list of ideas and future work for App Expo. Update it wheneve
 
 App Expo covers early-career software, data, engineering, product, solutions and support, business, finance, quant, IT, and security roles across internship and full-time collections.
 
-The reviewed-source expansion, ingestion foundation, and analytics implementation are complete. Analytics activation remains an owner dashboard step. The next development priority is polishing browser-local saved jobs, followed by optional cross-device saved jobs through a Go backend with a GraphQL API. Preserve the no-sign-up public board throughout.
+The reviewed-source expansion, ingestion foundation, and opt-in Vercel analytics implementation are complete. Keep the current analytics integration. The current development priority is polishing browser-local saved jobs and explicit application statuses. Custom aggregate analytics will be assessed alongside the optional Go backend with a GraphQL API. Preserve the no-sign-up public board throughout.
 
 ## Next milestone
 
+- [x] Assess free aggregate action analytics and a potential default-on audience-measurement exemption. GoatCounter is the leading candidate; provider limit behavior and privacy evidence remain unresolved. See [reassessment](docs/ANALYTICS_ASSESSMENT.md). Keep the approved opt-in setup until those checks are resolved.
 - [x] Audit and implement opt-in Vercel Hobby page views, safe available referrals, and collection visits within the zero-cost policy. Custom interaction events are unavailable on this plan. See [analytics limits and setup](docs/ANALYTICS.md).
 - [ ] Owner: enable included Web Analytics, set the production analytics switch, deploy, and confirm private dashboard receipt
 - [ ] Audit and polish browser-local saved jobs, including discoverability and handling unavailable listings
@@ -18,7 +19,22 @@ The reviewed-source expansion, ingestion foundation, and analytics implementatio
 - [ ] Retain static export when calling a separate backend; introduce the Next.js Node runtime only if a frontend feature requires it
 - [ ] Preserve the no-sign-up public board even if optional accounts are introduced for personal features
 
-## Completed ingestion milestone
+## Application tracker and owned analytics sequence
+
+1. [x] Record the revised sequence: retain existing page views, polish local saved jobs, then assess a backend for personal tracking and aggregate analytics.
+2. [ ] Polish browser-local application tracking. Completed first increment: explicit Saved, Applied, Interviewing, Offered and Rejected statuses, plus visible storage failures. Remaining work: expired/unavailable saved listings, status filtering, dates and export/recovery.
+3. [ ] Define fixed analytics event names and daily counters for collection selection, filter usage, Apply, Save and Unsave; exclude personal identifiers, job IDs, search text, notes and URL parameters. Apply means outbound click only.
+4. [ ] Select backend hosting and storage with no payment method, automatic paid conversion or billable overages. Document behavior at every included limit before adding services.
+5. [ ] Build a Go backend with GraphQL for optional personal records and a separate small HTTP endpoint for aggregate events. Separate tables and access rules.
+6. [ ] Validate and rate-limit analytics intake, increment aggregate counters without retaining visitor event histories, and define retention and abuse handling.
+7. [ ] Build an owner dashboard locally first. Keep its access credential only on the owner's computer; display daily totals, safe referral origins and action counts.
+8. [ ] Review free authentication, then add optional accounts, local-record migration, record ownership checks and deletion for cross-device tracking. Keep public browsing account-free.
+9. [ ] Review actual collection and audience applicability, update privacy information and necessary consent/opt-out controls, and keep personal application records out of analytics.
+10. [ ] Verify privacy controls, account isolation, deletion, private report access, sensitive-data exclusion and free-limit behavior before deployment. Preserve static export; remove Vercel analytics only after the replacement is verified.
+
+GoatCounter remains an assessed alternative, not an active replacement. No provider message has been sent. Backend hosting, storage and authentication remain subject to COST_POLICY.md.
+
+## Completed ingestion work
 
 - [x] Extract provider orchestration from `scripts/sync-jobs.ts` into typed ingestion modules
 - [x] Add mocked HTTP integration tests for pagination, retries, partial detail failures, and last-known-good behavior

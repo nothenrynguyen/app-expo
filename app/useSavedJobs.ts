@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useSyncExternalStore } from "react";
+import { useMemo, useState, useSyncExternalStore } from "react";
 import { EMPTY_SAVED_JOB_IDS, parseSavedJobIds, SAVED_JOBS_STORAGE_KEY, toggleSavedJobId } from "@/lib/saved-jobs";
 
 const CHANGE_EVENT = "app-expo:saved-jobs-change";
@@ -26,7 +26,7 @@ function readSavedJobIds(): readonly string[] {
 
 function subscribe(onChange: () => void) {
   const handleStorage = (event: StorageEvent) => {
-    if (event.key === SAVED_JOBS_STORAGE_KEY) onChange();
+    if (event.key === SAVED_JOBS_STORAGE_KEY || event.key === null) onChange();
   };
   window.addEventListener("storage", handleStorage);
   window.addEventListener(CHANGE_EVENT, onChange);
@@ -41,19 +41,21 @@ function writeSavedJobIds(ids: readonly string[]) {
   try {
     window.localStorage.setItem(SAVED_JOBS_STORAGE_KEY, raw);
   } catch {
-    return;
+    return false;
   }
   cachedRaw = undefined;
   window.dispatchEvent(new Event(CHANGE_EVENT));
+  return true;
 }
 
 export function useSavedJobs() {
+  const [storageError, setStorageError] = useState(false);
   const ids = useSyncExternalStore(subscribe, readSavedJobIds, () => EMPTY_SAVED_JOB_IDS);
   const idSet = useMemo(() => new Set(ids), [ids]);
 
   const toggle = (jobId: string) => {
-    writeSavedJobIds(toggleSavedJobId(readSavedJobIds(), jobId));
+    setStorageError(!writeSavedJobIds(toggleSavedJobId(readSavedJobIds(), jobId)));
   };
 
-  return { ids: idSet, toggle };
+  return { ids: idSet, toggle, storageError };
 }

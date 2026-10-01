@@ -38,7 +38,7 @@ export function JobBoard({ type }: JobBoardProps) {
   const [page, setPage] = useState(0);
   const [expandedJobId, setExpandedJobId] = useState<string | null>(null);
   const [now, setNow] = useState(() => new Date());
-  const { ids: savedJobIds, toggle: toggleSavedJob } = useSavedJobs();
+  const { ids: savedJobIds, toggle: toggleSavedJob, storageError } = useSavedJobs();
 
   useEffect(() => {
     fetch(`/${type}.json`, { cache: "no-store" })
@@ -121,6 +121,8 @@ export function JobBoard({ type }: JobBoardProps) {
           <span aria-hidden="true">★</span> Saved {savedInCollectionCount}
         </button>
       </div>
+      {storageError ? <p role="alert" className="state-card">Could not save your change. Check that browser storage is available.</p> : null}
+      {savedOnly ? <p className="saved-jobs-notice">Saved jobs and application statuses stay in this browser. Set statuses yourself after applying. Opening Apply does not mark a job as applied. Removing a saved job keeps its status if you save it again. Clearing site storage removes both.</p> : null}
       <div className="board-stats" title={new Date(snapshot.generatedAt).toLocaleString()}>
         <span className="live-status"><i />Live</span>
         <span className="refresh-age">· refreshed {formatSnapshotAge(snapshot.generatedAt, now)}</span>
