@@ -22,7 +22,7 @@ export function parseApplications(raw: string | null): readonly Application[] {
     for (const item of items) {
       if (!item || typeof item !== "object") continue;
       const { id, company, title, url, status, appliedOn, notes, origin, jobId } = item;
-      if (typeof id !== "string" || !id || id.length > 500 || typeof company !== "string" || !company.trim() || company.length > 300 || typeof title !== "string" || !title.trim() || title.length > 500 || typeof url !== "string" || url.length > 2000 || safeApplicationUrl(url) === null || !isApplicationStatus(status) || typeof appliedOn !== "string" || !validApplicationDate(appliedOn) || typeof notes !== "string" || notes.length > 5000 || (origin !== "manual" && origin !== "app-expo")) continue;
+      if (typeof id !== "string" || !id || id.length > 506 || typeof company !== "string" || !company.trim() || company.length > 1000 || typeof title !== "string" || !title.trim() || title.length > 2000 || typeof url !== "string" || url.length > 2000 || safeApplicationUrl(url) === null || !isApplicationStatus(status) || typeof appliedOn !== "string" || !validApplicationDate(appliedOn) || typeof notes !== "string" || notes.length > 5000 || (origin !== "manual" && origin !== "app-expo")) continue;
       records.set(id, { id, company, title, url: safeApplicationUrl(url)!, status, appliedOn, notes, origin, ...(origin === "app-expo" && typeof jobId === "string" ? { jobId } : {}) });
     }
     return [...records.values()];
@@ -30,5 +30,5 @@ export function parseApplications(raw: string | null): readonly Application[] {
 }
 export function importSavedApplications(existing: readonly Application[], details: readonly SavedJobDetails[], ids: ReadonlySet<string>, statuses: Readonly<Record<string, ApplicationStatus>>) {
   const known = new Set(existing.map((record) => record.jobId).filter(Boolean));
-  return [...existing, ...details.filter((job) => ids.has(job.id) && !known.has(job.id)).map((job): Application => ({ id: `board:${job.id}`, jobId: job.id, company: job.company, title: job.title, url: "", status: statuses[job.id] ?? "Saved", appliedOn: "", notes: "", origin: "app-expo" }))];
+  return [...existing, ...details.filter((job) => ids.has(job.id) && !known.has(job.id)).map((job): Application => ({ id: `board:${job.id}`, jobId: job.id, company: job.company, title: job.title, url: "", status: isApplicationStatus(statuses[job.id]) ? statuses[job.id] : "Saved", appliedOn: "", notes: "", origin: "app-expo" }))];
 }

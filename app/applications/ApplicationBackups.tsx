@@ -19,10 +19,13 @@ export function ApplicationBackups() {
       try {
         const records = applications.map((record) => ({ ...record, status: record.jobId ? statuses[record.jobId] ?? record.status : record.status }));
         const backup = createApplicationBackup(records);
+        if (records.length > 10000) { setMessage("Backup exceeds the 10,000 application import limit."); return; }
         if (new TextEncoder().encode(backup).length > MAX_BACKUP_BYTES) { setMessage("Backup exceeds the 5 MB import limit. Shorten large notes before exporting."); return; }
         const url = URL.createObjectURL(new Blob([backup], { type: "application/json" }));
         const link = document.createElement("a");
-        link.href = url; link.download = `app-expo-applications-${new Date().toISOString().slice(0, 10)}.json`;
+        const now = new Date();
+        const date = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+        link.href = url; link.download = `app-expo-applications-${date}.json`;
         document.body.append(link); link.click(); link.remove();
         setTimeout(() => URL.revokeObjectURL(url), 1000);
         setMessage("Backup download requested. Keep the file somewhere safe.");

@@ -6,14 +6,14 @@ This is the living list of ideas and future work for App Expo. Update it wheneve
 
 App Expo covers early-career software, data, engineering, product, solutions and support, business, finance, quant, IT, and security roles across internship and full-time collections.
 
-The reviewed-source expansion, ingestion foundation, and opt-in Vercel analytics implementation are complete. Keep the current analytics integration. The current development priority is polishing browser-local saved jobs and explicit application statuses. Custom aggregate analytics will be assessed alongside the optional Go backend with a GraphQL API. Preserve the no-sign-up public board throughout.
+The reviewed-source expansion, ingestion foundation, opt-in Vercel analytics and browser-local application tracker are complete. Keep the current analytics integration. The next development milestone starts with the optional backend cost and architecture review in a new chat. No backend resources, accounts or database have been added. See [backend handoff](docs/BACKEND_HANDOFF.md). Preserve the no-sign-up public board throughout.
 
 ## Next milestone
 
 - [x] Assess free aggregate action analytics and a potential default-on audience-measurement exemption. GoatCounter is the leading candidate; provider limit behavior and privacy evidence remain unresolved. See [reassessment](docs/ANALYTICS_ASSESSMENT.md). Keep the approved opt-in setup until those checks are resolved.
 - [x] Audit and implement opt-in Vercel Hobby page views, safe available referrals, and collection visits within the zero-cost policy. Custom interaction events are unavailable on this plan. See [analytics limits and setup](docs/ANALYTICS.md).
 - [ ] Owner: enable included Web Analytics, set the production analytics switch, deploy, and confirm private dashboard receipt
-- [ ] Audit and polish browser-local saved jobs, including discoverability and handling unavailable listings
+- [x] Audit and polish browser-local saved jobs, including discoverability and handling unavailable listings
 - [ ] Design optional cross-device saved jobs using Go and GraphQL after measuring usage
 - [ ] Review authentication, persistent storage, and hosting against the cost policy before deploying the backend
 - [ ] Retain static export when calling a separate backend; introduce the Next.js Node runtime only if a frontend feature requires it
@@ -23,7 +23,7 @@ The reviewed-source expansion, ingestion foundation, and opt-in Vercel analytics
 
 1. [x] Record the revised sequence: retain existing page views, polish local saved jobs, then assess a backend for personal tracking and aggregate analytics.
 2. [x] Deliver the browser-local tracker: explicit statuses, storage-error feedback, filtering, retained missing-listing details, manual records from any source, dates, notes, editing, saved-job import and JSON backup/recovery with preview and duplicate handling. Missing listings have unverified availability; older missing IDs cannot reconstruct historical details. Profile migration remains part of the future backend milestone.
-3. [ ] Define fixed analytics event names and daily counters for collection selection, filter usage, Apply, Save and Unsave; exclude personal identifiers, job IDs, search text, notes and URL parameters. Apply means outbound click only.
+3. [x] Define proposed fixed analytics event names, bounded dimensions and daily counters in [backend handoff](docs/BACKEND_HANDOFF.md). These are requirements only; intake and custom tracking are not implemented. Apply means outbound click only.
 4. [ ] Select backend hosting and storage with no payment method, automatic paid conversion or billable overages. Document behavior at every included limit before adding services.
 5. [ ] Build a Go backend with GraphQL for optional personal records and a separate small HTTP endpoint for aggregate events. Separate tables and access rules.
 6. [ ] Validate and rate-limit analytics intake, increment aggregate counters without retaining visitor event histories, and define retention and abuse handling.
