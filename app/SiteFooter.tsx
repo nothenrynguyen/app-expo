@@ -1,16 +1,13 @@
+import Link from "next/link";
+import { AnalyticsPreferencesButton } from "./AnalyticsControls";
+
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <span>App Expo · Free, direct, and intentionally selective.</span>
-      <a href="/privacy">Privacy and analytics</a>
-      <a
-        className="feedback-link"
-        href="https://www.linkedin.com/posts/henrynguyen02_no-sign-up-no-bs-here-are-the-jobs-share-7494661754723921921-i2kj/"
-        target="_blank"
-        rel="noreferrer"
-      >
-        Have feedback? Comment on LinkedIn
-      </a>
+      <span>App Expo · Free and direct.</span>
+      <Link href="/privacy">Privacy</Link>
+      <AnalyticsPreferencesButton />
+      <Link className="feedback-link" href="/feedback">Feedback</Link>
       <span className="creator-credit">
         <span>made by</span>
         <a href="https://henwoo.dev" target="_blank" rel="noreferrer">

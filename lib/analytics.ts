@@ -3,7 +3,7 @@ import type { BeforeSendEvent } from "@vercel/analytics/react";
 export const ANALYTICS_CONSENT_KEY = "app-expo.analytics-consent.v1";
 export const CONSENT_LIFETIME_MS = 180 * 24 * 60 * 60 * 1000;
 export type AnalyticsConsent = "unset" | "allowed" | "denied";
-const PUBLIC_PATHS = new Set(["/", "/internships", "/jobs", "/methodology", "/sources", "/privacy"]);
+const PUBLIC_PATHS = new Set(["/", "/internships", "/jobs", "/methodology", "/sources", "/privacy", "/about", "/feedback"]);
 
 export function parseAnalyticsConsent(raw: string | null, now = Date.now()): AnalyticsConsent {
   try {

@@ -109,7 +109,14 @@ footer { max-width:1064px; margin:auto; padding:25px 0 42px; border-top:1px soli
 .application-backups p { font-size: .85rem; line-height: 1.6; color: var(--muted); }
 .application-backups .button { margin: .5rem .5rem .5rem 0; }
 .backup-file { display: flex; flex-direction: column; gap: .5rem; margin: 1rem 0; }
-.analytics-preferences-link { max-width:1064px; margin:0 auto 24px; font-size:12px; }
+.footer-preferences { font-size:12px; white-space:nowrap; }
+.info-page { max-width:900px; }
+.info-intro { margin:24px 0 36px; color:var(--muted); font-size:18px; line-height:1.6; }
+.info-section { padding:24px 0; border-top:1px solid var(--line); }
+.info-section h2 { margin:0 0 12px; font-size:24px; }
+.info-section p { color:var(--muted); line-height:1.7; }
+.info-section a { color:var(--accent-bright); }
+.info-links { display:flex; flex-wrap:wrap; gap:20px; }
 .analytics-prompt { position:fixed; right:20px; bottom:20px; z-index:100; width:min(520px,calc(100vw - 40px)); max-height:calc(100dvh - 40px); overflow:auto; margin:0; border:1px solid var(--line); border-radius:14px; background:var(--paper); box-shadow:0 12px 48px #0008; padding:20px; gap:8px; }
 .tracker-toolbar { display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between; gap:16px; margin:24px 0; }
 .tracker-backup-menu { max-width:100%; }
@@ -127,4 +134,4 @@ footer { max-width:1064px; margin:auto; padding:25px 0 42px; border-top:1px soli
 .tracker-row-actions { display:flex; align-items:center; flex-wrap:wrap; gap:12px; }
 .tracker-editor { margin:24px 0; padding:24px; border:1px solid var(--line); border-radius:12px; }
 .tracker-record { overflow-wrap:anywhere; }
-@media(max-width:560px) { .analytics-preferences-link { margin-left:18px; }.tracker-editor { padding:16px; }.analytics-prompt { right:12px; bottom:12px; width:calc(100vw - 24px); }.tracker-toolbar { align-items:center; } }
+@media(max-width:560px) { .tracker-editor { padding:16px; }.analytics-prompt { right:12px; bottom:12px; width:calc(100vw - 24px); }.tracker-toolbar { align-items:center; } }

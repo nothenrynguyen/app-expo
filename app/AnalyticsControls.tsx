@@ -3,7 +3,7 @@
 import { Analytics } from "@vercel/analytics/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import {
   beforeAnalyticsSend, browserPrivacySignalEnabled, getAnalyticsConsent,
   setAnalyticsConsent, subscribeAnalyticsConsent,
@@ -13,6 +13,11 @@ const enabled = process.env.NEXT_PUBLIC_ANALYTICS_ENABLED === "true" && process.
 const serverConsent = () => "unset" as const;
 const serverSignal = () => false;
 const subscribeReady = () => () => {};
+const OPEN_PREFERENCES = "app-expo:open-analytics-preferences";
+
+export function AnalyticsPreferencesButton() {
+  return <button className="button secondary footer-preferences" type="button" aria-controls="analytics-preferences" onClick={() => window.dispatchEvent(new Event(OPEN_PREFERENCES))}>Analytics preferences</button>;
+}
 
 export function AnalyticsControls() {
   const consent = useSyncExternalStore(subscribeAnalyticsConsent, getAnalyticsConsent, serverConsent);
@@ -20,13 +25,17 @@ export function AnalyticsControls() {
   const pathname = usePathname();
   const ready = useSyncExternalStore(subscribeReady, () => true, serverSignal);
   const [preferencesOpen, setPreferencesOpen] = useState(false);
+  useEffect(() => {
+    const open = () => setPreferencesOpen(true);
+    window.addEventListener(OPEN_PREFERENCES, open);
+    return () => window.removeEventListener(OPEN_PREFERENCES, open);
+  }, []);
   const showChoice = preferencesOpen || (ready && enabled && consent === "unset" && !privacySignal);
   return (
     <>
       {enabled && consent === "allowed" && !privacySignal ? (
         <Analytics mode="production" debug={false} route={pathname} path={pathname} beforeSend={beforeAnalyticsSend} />
       ) : null}
-      <div className="analytics-preferences-link"><button className="button secondary" type="button" aria-expanded={showChoice} aria-controls="analytics-preferences" onClick={() => setPreferencesOpen(!preferencesOpen)}>Analytics preferences</button></div>
       {showChoice ? <section id="analytics-preferences" className="analytics-controls analytics-prompt" aria-label="Analytics preferences">
         <div>
           <strong>Optional analytics</strong>

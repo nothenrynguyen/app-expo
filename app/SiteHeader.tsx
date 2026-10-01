@@ -8,8 +8,7 @@ export function SiteHeader() {
       <nav className="header-links" aria-label="Primary navigation">
         <Link className="header-home-link" href="/">Home</Link>
         <Link href="/applications">My applications</Link>
-        <Link href="/methodology">Methodology</Link>
-        <Link href="/sources"><span className="desktop-nav-label">Data sources</span><span className="mobile-nav-label">Sources</span></Link>
+        <Link href="/about">About</Link>
       </nav>
     </header>
   );

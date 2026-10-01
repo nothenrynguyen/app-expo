@@ -10,6 +10,8 @@ The reviewed-source expansion, ingestion foundation, opt-in Vercel analytics and
 
 ## Next milestone
 
+- [x] Consolidate header information under About, add a simple LinkedIn feedback page, and place analytics preferences in the footer row.
+
 - [x] Simplify My applications with a closed editor and backup controls, visible saved jobs with verified current Apply links, and compact first-visit analytics choices with persistent preferences access.
 
 - [x] Assess free aggregate action analytics and a potential default-on audience-measurement exemption. GoatCounter is the leading candidate; provider limit behavior and privacy evidence remain unresolved. See [reassessment](docs/ANALYTICS_ASSESSMENT.md). Keep the approved opt-in setup until those checks are resolved.
