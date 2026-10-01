@@ -20,7 +20,9 @@ export function useApplications() {
   const applications = useSyncExternalStore(subscribe, read, () => EMPTY_APPLICATIONS);
   function change(transform: (current: readonly Application[]) => readonly Application[]) {
     try {
-      const next = transform(read());
+      // A failed storage read must abort a write rather than treating existing
+      // records as empty and overwriting them.
+      const next = transform(parseApplications(window.localStorage.getItem(APPLICATIONS_KEY)));
       window.localStorage.setItem(APPLICATIONS_KEY, JSON.stringify(next));
       window.dispatchEvent(new Event(EVENT));
       return true;

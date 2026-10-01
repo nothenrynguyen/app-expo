@@ -6,6 +6,7 @@ import { parseSavedJobDetails, SAVED_DETAILS_KEY } from "@/lib/saved-job-details
 import { parseSavedJobIds, SAVED_JOBS_STORAGE_KEY } from "@/lib/saved-jobs";
 import { useApplications } from "../useApplications";
 import { useApplicationStatuses } from "../useApplicationStatuses";
+import { ApplicationBackups } from "./ApplicationBackups";
 
 const blank = () => ({ company: "", title: "", url: "", status: "Applied" as ApplicationStatus, appliedOn: "", notes: "" });
 export function ApplicationTracker() {
@@ -17,6 +18,7 @@ export function ApplicationTracker() {
   const [filter, setFilter] = useState("All");
   const effectiveStatus = (record: Application) => record.jobId ? statuses[record.jobId] ?? record.status : record.status;
   return <section className="application-tracker">
+    <ApplicationBackups />
     <button type="button" className="button secondary" onClick={() => {
       try {
         const details = parseSavedJobDetails(window.localStorage.getItem(SAVED_DETAILS_KEY));
