@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "../SiteFooter";
+import { HeroGravity } from "../HeroGravity";
 
 export const metadata: Metadata = { title: "Privacy | App Expo" };
 
 export default function PrivacyPage() {
-  return <main>
+  return <main className="board-page"><HeroGravity variant="board" />
     <section className="methodology-shell privacy-notice">
       <p className="eyebrow">Privacy notice</p>
       <h1>Your browsing, your choice.</h1>

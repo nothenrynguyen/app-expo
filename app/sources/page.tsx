@@ -5,6 +5,7 @@ import workdayBoards from "@/data/workday-boards.json";
 import { MIT_LICENSE_TEXT, sourceLicenseReview } from "@/lib/source-licenses";
 import { AnimatedCount } from "../AnimatedCount";
 import { PageTransition } from "../PageTransition";
+import { HeroGravity } from "../HeroGravity";
 import { SiteFooter } from "../SiteFooter";
 
 export const metadata: Metadata = {
@@ -25,7 +26,7 @@ const unresolvedCount = licenses.length - licensedCount;
 
 export default function SourcesPage() {
   return <PageTransition>
-    <main>
+    <main className="board-page"><HeroGravity variant="board" />
       <section className="sources-shell">
         <div className="sources-hero">
           <h1 className="sr-only">Data sources</h1>

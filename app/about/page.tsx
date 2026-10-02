@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "../SiteFooter";
+import { HeroGravity } from "../HeroGravity";
 
 export const metadata: Metadata = { title: "About | App Expo", description: "How App Expo works, where listings come from, and how your data is handled." };
 
 export default function AboutPage() {
-  return <><main className="about-page">
+  return <><main className="about-page board-page"><HeroGravity variant="board" />
     <section className="about-page-hero"><p className="eyebrow">About App Expo</p><h1>Less searching.<br /><span>More possibilities.</span></h1><p>A simpler place to find your next internship or full-time role.<br />Free to browse, with a direct route to the employer.</p></section>
     <section className="about-story"><div><p className="eyebrow">Why it exists</p><h2>Job hunting already<br />has enough steps.</h2></div><div><p>I built App Expo because I was tired of checking different job lists and wondering what I&apos;d missed.</p><p>I wanted one place to browse, save interesting roles and open the employer&apos;s application. No account needed to get started. No extra application page to click through.</p><p className="about-story-signature">Built by Henry, for my own search and yours.</p></div></section>
     <section className="about-process" aria-labelledby="about-process-title"><div className="about-section-heading"><div><p className="eyebrow">Behind each listing</p><h2 id="about-process-title">From source to opportunity.</h2></div><Link href="/methodology">The full methodology <span aria-hidden="true">↗</span></Link></div><ol className="about-process-grid"><li><span className="about-step-number" aria-hidden="true">01</span><h3>Gather</h3><p>Bring together openings from reviewed public job lists and employer career boards.</p></li><li><span className="about-step-number" aria-hidden="true">02</span><h3>Check</h3><p>Screen companies and roles, remove duplicates and prefer direct employer links.</p></li><li><span className="about-step-number" aria-hidden="true">03</span><h3>Keep current</h3><p>Refresh throughout the day. Always check the employer&apos;s page, because roles can change between updates.</p></li></ol></section>
