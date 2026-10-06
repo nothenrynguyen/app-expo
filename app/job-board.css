@@ -406,3 +406,43 @@
   .layout-stage.is-switching .panel-enter,
   .layout-stage.is-switching .panel-exit { animation:none; clip-path:none; }
 }
+
+.hidden-companies-panel { margin-top: 12px; padding: 16px; border: 1px solid var(--line); border-radius: 12px; max-width: 560px; background: var(--surface); }
+.hidden-companies-panel p { font-size: .85rem; line-height: 1.6; }
+.hidden-companies-panel label { display: grid; gap: 8px; font-size: .85rem; }
+.hidden-companies-panel input { width: 100%; padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: transparent; color: inherit; }
+.hidden-companies-panel ul { list-style: none; padding: 0; max-height: 260px; overflow-y: auto; }
+.hidden-companies-panel li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 8px 0; }
+.hidden-companies-panel li span { overflow-wrap: anywhere; }
+.hidden-company-notice { margin: 12px 0; font-size: .9rem; }
+.hidden-company-notice button { background: transparent; border: 0; color: inherit; font-weight: 700; cursor: pointer; padding: 8px; }
+
+.job-table-head.with-more-actions, .job-table-row.with-more-actions { grid-template-columns:minmax(100px,.8fr) minmax(180px,1.55fr) minmax(120px,.9fr) 48px 78px 92px 24px; }
+.company-actions { position:relative; flex:0 0 auto; }
+.company-actions summary { display:flex; align-items:center; justify-content:center; width:24px; height:32px; border-radius:7px; color:var(--muted); cursor:pointer; list-style:none; font-size:24px; line-height:1; }
+.company-actions summary::-webkit-details-marker { display:none; }
+.company-actions summary:hover, .company-actions[open] summary { background:var(--surface-hover); color:var(--ink); }
+.company-actions summary:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+.company-actions-panel { position:absolute; right:0; top:calc(100% + 4px); z-index:10; min-width:150px; padding:5px; border:1px solid var(--line); border-radius:9px; background:var(--surface); box-shadow:0 8px 24px rgba(0,0,0,.35); }
+.company-actions-panel button { width:100%; padding:10px 12px; border:0; border-radius:5px; background:transparent; color:var(--ink); text-align:left; font:inherit; font-size:13px; cursor:pointer; }
+.company-actions-panel button:hover { background:var(--surface-hover); }
+.job-table-row:has(.company-actions[open]), .job-card:has(.company-actions[open]) { position:relative; z-index:3; }
+@media (min-width:761px) and (max-width:1000px) {
+  .job-table-head.with-more-actions, .job-table-row.with-more-actions { grid-template-columns:minmax(90px,.75fr) minmax(150px,1.35fr) minmax(100px,.85fr) 42px 72px 82px 24px; column-gap:8px; }
+}
+@media (max-width:760px) {
+  .job-table-row.with-more-actions { grid-template-columns:repeat(3,minmax(0,1fr)) 24px; grid-template-areas:"company company company company" "title title title title" "location location location location" "save apply linkedin more"; }
+  .job-table-action[data-label="More"] { grid-area:more; align-self:end; }
+}
+
+.hidden-companies-toggle { white-space:nowrap; padding:3px 0; border:0; background:transparent; color:var(--muted); font:inherit; font-size:12px; cursor:pointer; }
+.hidden-companies-toggle:hover { color:var(--ink); text-decoration:underline; }
+.hidden-companies-toggle:focus-visible { outline:2px solid var(--accent); outline-offset:4px; border-radius:2px; }
+.hidden-companies-panel { margin:0 0 14px; }
+.hidden-companies-panel h2 { margin:0 0 8px; font-size:15px; }
+@media (max-width:520px) {
+  .role-toolbar { flex-direction:row; flex-wrap:wrap; overflow:visible; }
+  .role-toolbar .role-navigation { flex-basis:100%; }
+}
+
+.hidden-companies-toolbar { margin:0 0 12px; }

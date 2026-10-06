@@ -11,6 +11,9 @@ import { JobFilters, RoleTabs } from "./job-board/JobFilters";
 import { JobResults } from "./job-board/JobResults";
 import { getPaginationState, LAYOUT_TRANSITION_MS, PAGE_SIZE, type ViewMode } from "./job-board/job-board-utils";
 import { useSavedJobs } from "./useSavedJobs";
+import { useHiddenCompanies } from "./useHiddenCompanies";
+import { companyPreferenceKey } from "@/lib/hidden-companies";
+import { HiddenCompanies } from "./job-board/HiddenCompanies";
 import { useSavedJobDetails } from "./useSavedJobDetails";
 import { missingSavedDetails } from "@/lib/saved-job-details";
 import { UnavailableSavedJobs } from "./job-board/UnavailableSavedJobs";
@@ -39,6 +42,10 @@ export function JobBoard({ type }: JobBoardProps) {
   const [savedOnly, setSavedOnly] = useState(false);
   const [statusFilter, setStatusFilter] = useState<ApplicationStatus | "All">("All");
   const { statuses } = useApplicationStatuses();
+  const { companies: hiddenCompanies, update: updateHiddenCompany, storageError: hiddenError } = useHiddenCompanies();
+  const hiddenKeys = useMemo(() => new Set(hiddenCompanies.map((company) => company.key)), [hiddenCompanies]);
+  const [hiddenCompaniesOpen, setHiddenCompaniesOpen] = useState(false);
+  const [lastHidden, setLastHidden] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>("compact");
   const [activeView, setActiveView] = useState<ViewMode>("compact");
   const [exitingView, setExitingView] = useState<ViewMode | null>(null);
@@ -92,8 +99,8 @@ export function JobBoard({ type }: JobBoardProps) {
       companyTiers: roleSelection.family === "engineering" ? [] : companyTiers,
       savedOnly,
       savedJobIds,
-    }).filter((job) => !savedOnly || matchesApplicationStatus(job.id, statuses, statusFilter)),
-    [sourceJobs, type, roleSelection, query, regions, metros, modes, selectedTerms, companyTiers, savedOnly, savedJobIds, statuses, statusFilter],
+    }).filter((job) => savedOnly ? matchesApplicationStatus(job.id, statuses, statusFilter) : !hiddenKeys.has(companyPreferenceKey(job.company))),
+    [sourceJobs, type, roleSelection, query, regions, metros, modes, selectedTerms, companyTiers, savedOnly, savedJobIds, statuses, statusFilter, hiddenKeys],
   );
 
   if (error) return <p className="state-card">The latest job snapshot could not be loaded. Please try again shortly.</p>;
@@ -130,6 +137,10 @@ export function JobBoard({ type }: JobBoardProps) {
           <span aria-hidden="true">★</span> Saved {savedInCollectionCount + unavailableSaved.length}
         </button>
       </div>
+      <div className="hidden-companies-toolbar"><button className="hidden-companies-toggle" type="button" aria-expanded={hiddenCompaniesOpen} aria-controls="hidden-companies-panel" title="Companies hidden in this browser" onClick={() => setHiddenCompaniesOpen((open) => !open)}>{hiddenCompaniesOpen ? "Hide company list" : "Show hidden companies"} ({hiddenCompanies.length})</button></div>
+      {hiddenCompaniesOpen ? <HiddenCompanies companies={hiddenCompanies} onRestore={(name) => { if (updateHiddenCompany(name, false)) { setLastHidden(null); resetPage(); } }} /> : null}
+      {lastHidden && hiddenKeys.has(companyPreferenceKey(lastHidden)) ? <div className="hidden-company-notice" role="status">{lastHidden} hidden from your feed. <button type="button" onClick={() => { if (updateHiddenCompany(lastHidden, false)) { setLastHidden(null); resetPage(); } }}>Undo</button></div> : null}
+      {hiddenError ? <p role="alert" className="state-card">Could not save your hidden-company preference. Check that browser storage is available and try again.</p> : null}
       {storageError ? <p role="alert" className="state-card">Could not save your change. Check that browser storage is available.</p> : null}
       {detailsError ? <p role="alert" className="state-card">Your saved IDs are retained, but listing details could not be stored. Missing listings may not remain readable after a refresh.</p> : null}
       {savedOnly ? <p className="saved-jobs-notice">Saved jobs and application statuses stay in this browser. Set statuses yourself after applying. Opening Apply does not mark a job as applied. Removing a saved job keeps its status if you save it again. Clearing site storage removes both.</p> : null}
@@ -168,10 +179,11 @@ export function JobBoard({ type }: JobBoardProps) {
         exitingView={exitingView}
         jobs={visibleJobs}
         totalJobCount={jobs.length}
-        emptyMessage={emptyMessage}
+        emptyMessage={!savedOnly && hiddenCompanies.length ? `${emptyMessage} Some companies are hidden. Open Show hidden companies above to restore them.` : emptyMessage}
         savedJobIds={savedJobIds}
         expandedJobId={expandedJobId}
         onToggleSaved={toggleSavedJob}
+        onHideCompany={savedOnly ? undefined : (name) => { if (updateHiddenCompany(name, true)) { setLastHidden(name); resetPage(); } }}
         onToggleExpanded={(jobId) => setExpandedJobId((current) => current === jobId ? null : jobId)}
       />
       {jobs.length > PAGE_SIZE ? (

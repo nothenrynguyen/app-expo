@@ -18,6 +18,7 @@ type JobResultsProps = {
   savedJobIds: ReadonlySet<string>;
   expandedJobId: string | null;
   onToggleSaved: (jobId: string) => void;
+  onHideCompany?: (name: string) => void;
   onToggleExpanded: (jobId: string) => void;
 };
 
@@ -30,6 +31,7 @@ export function JobResults({
   savedJobIds,
   expandedJobId,
   onToggleSaved,
+  onHideCompany,
   onToggleExpanded,
 }: JobResultsProps) {
   const isSwitching = exitingView !== null;
@@ -41,6 +43,7 @@ export function JobResults({
       emptyMessage={emptyMessage}
       savedJobIds={savedJobIds}
       onToggleSaved={onToggleSaved}
+      onHideCompany={onHideCompany}
     />
   );
   const renderCards = (className = "") => (
@@ -52,6 +55,7 @@ export function JobResults({
       savedJobIds={savedJobIds}
       expandedJobId={expandedJobId}
       onToggleSaved={onToggleSaved}
+      onHideCompany={onHideCompany}
       onToggleExpanded={onToggleExpanded}
     />
   );
@@ -67,29 +71,31 @@ export function JobResults({
   );
 }
 
-function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJobIds, onToggleSaved }: {
+function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJobIds, onToggleSaved, onHideCompany }: {
   className: string;
   jobs: readonly PublicJob[];
   totalJobCount: number;
   emptyMessage: string;
   savedJobIds: ReadonlySet<string>;
   onToggleSaved: (jobId: string) => void;
+  onHideCompany?: (name: string) => void;
 }) {
   return (
     <div className={`layout-panel compact-panel ${className}`}>
       <div className="job-table" role="table" aria-label="Verified jobs">
-        <div className="job-table-head" role="row">
+        <div className={`job-table-head ${onHideCompany ? "with-more-actions" : ""}`} role="row">
           <span role="columnheader">Company</span>
           <span role="columnheader">Position</span>
           <span role="columnheader">Location</span>
           <span role="columnheader">Save</span>
           <span role="columnheader">Apply</span>
           <span role="columnheader">LinkedIn</span>
+          {onHideCompany ? <span role="columnheader" aria-label="More actions" /> : null}
         </div>
         {jobs.map((job) => {
           const location = getLocationDisplay(job.location);
           return (
-            <article className="job-table-row" role="row" key={job.id}>
+            <article className={`job-table-row ${onHideCompany ? "with-more-actions" : ""}`} role="row" key={job.id}>
               <div className="job-table-company" role="cell" data-label="Company">{displayText(job.company)}</div>
               <div className="job-table-title" role="cell" data-label="Position">{displayText(job.title)}</div>
               <div className="job-table-location" role="cell" data-label="Location">
@@ -100,6 +106,7 @@ function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJob
               <div className="job-table-action" role="cell" data-label="Save"><SaveButton compact isSaved={savedJobIds.has(job.id)} job={job} onToggle={() => onToggleSaved(job.id)} /></div>
               <div className="job-table-action" role="cell" data-label="Apply"><a className="button table-button primary" href={job.applyUrl} target="_blank" rel="noreferrer">Apply</a></div>
               <div className="job-table-action" role="cell" data-label="LinkedIn"><a className="button table-button secondary" href={getLinkedInUrl(job)} target="_blank" rel="noreferrer">LinkedIn</a></div>
+              {onHideCompany ? <div className="job-table-action" role="cell" data-label="More"><CompanyActions company={job.company} onHide={onHideCompany} /></div> : null}
             </article>
           );
         })}
@@ -109,7 +116,7 @@ function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJob
   );
 }
 
-function CardJobView({ className, jobs, totalJobCount, emptyMessage, savedJobIds, expandedJobId, onToggleSaved, onToggleExpanded }: {
+function CardJobView({ className, jobs, totalJobCount, emptyMessage, savedJobIds, expandedJobId, onToggleSaved, onToggleExpanded, onHideCompany }: {
   className: string;
   jobs: readonly PublicJob[];
   totalJobCount: number;
@@ -117,6 +124,7 @@ function CardJobView({ className, jobs, totalJobCount, emptyMessage, savedJobIds
   savedJobIds: ReadonlySet<string>;
   expandedJobId: string | null;
   onToggleSaved: (jobId: string) => void;
+  onHideCompany?: (name: string) => void;
   onToggleExpanded: (jobId: string) => void;
 }) {
   return (
@@ -140,6 +148,7 @@ function CardJobView({ className, jobs, totalJobCount, emptyMessage, savedJobIds
               <a className="button secondary" href={getLinkedInUrl(job)} target="_blank" rel="noreferrer">LinkedIn</a>
               <button className="button secondary" type="button" onClick={() => onToggleExpanded(job.id)} aria-expanded={expandedJobId === job.id}>Info</button>
               <a className="button primary" href={job.applyUrl} target="_blank" rel="noreferrer">Apply</a>
+              {onHideCompany ? <CompanyActions company={job.company} onHide={onHideCompany} /> : null}
             </div>
             {expandedJobId === job.id ? (
               <div className="job-info">
@@ -185,4 +194,18 @@ function SaveButton({ compact = false, isSaved, job, onToggle }: { compact?: boo
     {isSaved ? <ApplicationStatusSelect jobId={job.id} title={`${job.title} at ${job.company}`} /> : null}
     </div>
   );
+}
+
+function CompanyActions({ company, onHide }: { company: string; onHide: (name: string) => void }) {
+  return <details className="company-actions" onBlur={(event) => {
+    if (!event.currentTarget.contains(event.relatedTarget)) event.currentTarget.open = false;
+  }} onKeyDown={(event) => {
+    if (event.key === "Escape") {
+      event.currentTarget.open = false;
+      event.currentTarget.querySelector("summary")?.focus();
+    }
+  }}>
+    <summary aria-label={`More actions for ${company}`} title="More actions"><span aria-hidden="true">&#8942;</span></summary>
+    <div className="company-actions-panel"><button type="button" onClick={() => onHide(company)}>Hide company<span className="sr-only"> {company}</span></button></div>
+  </details>;
 }

@@ -8,6 +8,11 @@ App Expo covers early-career software, data, engineering, product, solutions and
 
 The reviewed-source expansion, ingestion foundation, opt-in Vercel analytics and browser-local application tracker are complete. Keep the current analytics integration. The next development milestone starts with the optional backend cost and architecture review in a new chat. No backend resources, accounts or database have been added. See [backend handoff](docs/BACKEND_HANDOFF.md). Preserve the no-sign-up public board throughout.
 
+## Personal company preferences
+
+- [x] Add browser-local hidden companies across all discovery boards, with Undo and searchable restore controls. Saved jobs and application records remain visible. Exact normalized company names match legal suffix variants; subsidiaries are not inferred.
+- [ ] Offer optional account import and cross-device synchronization for hidden companies alongside saved jobs and application records after the backend cost review.
+
 ## Next milestone
 
 - [x] Ship the reviewed frontend redesign: rocket logo, category typewriter and dot gravity hero, simplified About and Feedback pages, consistent footer typography, and a compact Applications table with location, colored editable statuses and Mark applied from saved jobs. Existing browser records and legacy backups remain supported; no backend added.
