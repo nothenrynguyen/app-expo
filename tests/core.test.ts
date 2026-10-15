@@ -26,7 +26,53 @@ import { displayText, getLocationDisplay, getPaginationState } from "../app/job-
 import { createWorkdayBoard, fetchWorkdayBoard, parseWorkdayJob, parseWorkdayPostedAt } from "../lib/workday";
 import { buildRefreshReport } from "../lib/ingestion/refresh-report";
 import { preserveLastKnownGoodJobs } from "../lib/ingestion/last-known-good";
+import { getJobLocationMetadata } from "../lib/job-location-policy";
 
+test("foreign cities cannot inherit a contradictory US suffix or stale snapshot tag", () => {
+  for (const location of ["Shanghai, 200335, United States", "Shanghai, 200335", "Prague, United States", "Prague"]) {
+    assert.equal(getSupportedJobRegions(location).includes("us"), false, location);
+    assert.equal(getJobLocationMetadata({ location }).eligible, false, location);
+  }
+  assert.deepEqual(getSupportedJobRegions("London, United Kingdom; New York, NY"), ["uk", "us"]);
+  assert.deepEqual(getSupportedJobRegions("San Diego, California, 92128"), ["us"]);
+  assert.deepEqual(getSupportedJobRegions("Remote in India"), []);
+  assert.equal(normalizeJobLocation("Remote, United States"), "Remote, United States");
+  assert.equal(normalizeJobLocation("Shanghai, 200335, United States"), "Shanghai, 200335, United States");
+  const job = {
+    id: "bad-location", company: "Apple", title: "Software Engineering Intern",
+    location: "Shanghai, 200335", regions: ["us" as const], metros: ["sf-bay-area" as const],
+    category: "Internship", term: "Not stated", workMode: "unknown" as const,
+    postedAt: "2026-10-15T00:00:00Z", postedAtSource: "exact" as const,
+    applyUrl: "https://example.com/bad-location", linkedInUrl: null, salary: null,
+    sources: ["Test"], verifiedCompany: true,
+  };
+  const filters = {
+    type: "internships" as const, roleSelection: { family: "software" as const, specialty: null },
+    query: "", regions: [], metros: [], modes: [], terms: [], companyTiers: [],
+    savedOnly: false, savedJobIds: new Set<string>(),
+  };
+  assert.deepEqual(filterJobs([job], filters), []);
+  assert.deepEqual(getAvailableMetroOptions([job], "internships", []), []);
+  const current = new Map();
+  const closed = { ...job, id: "closed", location: "Austin, TX", applyUrl: "https://example.com/closed" };
+  assert.equal(preserveLastKnownGoodJobs(current, [job, closed], (prior) => prior, (prior) => prior.id === "closed"), 0);
+});
+
+test("country policy keeps nationwide US Canada and UK coverage without a metro requirement", () => {
+  for (const location of ["San Diego, CA", "Raleigh, NC", "Phoenix, AZ", "Toronto, ON, Canada", "Calgary, Canada", "Cambridge, UK", "Edinburgh, Scotland", "Cardiff, Wales", "Belfast, Northern Ireland", "London, ON, Canada", "United States", "Remote, United States", "Remote in US", "Remote (Remote - United States)", "Canada", "United Kingdom"]) {
+    assert.equal(getJobLocationMetadata({ location }).eligible, true, location);
+  }
+  for (const location of ["Prague", "Prague, United States", "Shanghai, 200335", "Berlin, Germany", "Paris, France", "Dublin, Ireland", "Remote, Europe", "Location not stated"]) {
+    assert.equal(getJobLocationMetadata({ location }).eligible, false, location);
+  }
+  assert.deepEqual(getSupportedJobRegions("Belfast, Northern Ireland"), ["uk"]);
+  assert.deepEqual(getSupportedJobRegions("London, ON, Canada"), ["canada"]);
+  for (const location of ["Paris, TX", "Berlin, NJ", "Vancouver, WA", "Melbourne, FL"]) {
+    assert.deepEqual(getSupportedJobRegions(location), ["us"], location);
+  }
+  assert.deepEqual(getSupportedJobRegions("Halifax, NS"), ["canada"]);
+  assert.deepEqual(getJobLocationMetadata({ location: "Prague; Austin, TX" }).regions, ["us"]);
+});
 const registry: VerifiedCompany[] = [{
   name: "Figma",
   usPresence: "headquartered",
@@ -62,13 +108,13 @@ test("job locations are normalized and limited to supported regions", () => {
   assert.deepEqual(classifyJobRegions("Chicago"), ["us"]);
   assert.deepEqual(classifyJobRegions("Toronto"), ["canada"]);
   assert.deepEqual(classifyJobRegions("Auckland, NZ"), ["australia_nz"]);
-  assert.deepEqual(classifyJobRegions("London, United Kingdom; New York, NY"), ["europe", "us"]);
+  assert.deepEqual(classifyJobRegions("London, United Kingdom; New York, NY"), ["uk", "us"]);
   assert.deepEqual(getSupportedJobRegions("Auckland, NZ"), []);
   assert.deepEqual(getSupportedJobRegions("Singapore"), []);
   assert.deepEqual(getSupportedJobRegions("Location not stated"), []);
   assert.deepEqual(getSupportedJobRegions("In, IN"), []);
   assert.deepEqual(getSupportedJobRegions("Il, IL"), []);
-  assert.deepEqual(getSupportedJobRegions("London, United Kingdom; New York, NY"), ["europe", "us"]);
+  assert.deepEqual(getSupportedJobRegions("London, United Kingdom; New York, NY"), ["uk", "us"]);
 });
 
 test("job locations are grouped into useful metro areas", () => {

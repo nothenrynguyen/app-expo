@@ -1,11 +1,11 @@
 export const JOB_REGIONS = [
   ["us", "United States"],
   ["canada", "Canada"],
-  ["europe", "Europe"],
+  ["uk", "United Kingdom"],
 ] as const;
 
 export type JobRegion = (typeof JOB_REGIONS)[number][0];
-type DetectedJobRegion = JobRegion | "asia" | "australia_nz" | "latin_america" | "other_unknown";
+type DetectedJobRegion = JobRegion | "europe" | "asia" | "australia_nz" | "latin_america" | "other_unknown";
 
 export const JOB_METROS = [
   ["sf-bay-area", "SF Bay Area"],
@@ -31,18 +31,18 @@ const METRO_PATTERNS: ReadonlyArray<readonly [JobMetro, RegExp]> = [
   ["sf-bay-area", /\b(san francisco|south san francisco|oakland|berkeley|emeryville|san jose|santa clara|sunnyvale|mountain view|palo alto|redwood city|menlo park|cupertino|fremont|san mateo|foster city|pleasanton),?\s*(?:ca|california)?\b/i],
   ["new-york-city", /\b(new york(?: city)?|nyc|manhattan|brooklyn|queens|bronx|staten island),?\s*(?:ny|new york)?\b|\b(jersey city|newark|hoboken),?\s*(?:nj|new jersey)?\b/i],
   ["seattle", /\b(seattle|bellevue|redmond|kirkland|renton),?\s*(?:wa|washington)?\b/i],
-  ["boston", /\b(boston|cambridge|somerville|waltham|needham),?\s*(?:ma|massachusetts)?\b/i],
-  ["los-angeles", /\b(los angeles|santa monica|culver city|pasadena|el segundo|irvine|costa mesa|newport beach|anaheim),?\s*(?:ca|california)?\b/i],
-  ["austin", /\b(austin|round rock),?\s*(?:tx|texas)?\b/i],
+  ["boston", /\b(boston|cambridge|somerville|waltham|needham|tewksbury|dedham),?\s*(?:ma|massachusetts)?\b/i],
+  ["los-angeles", /\b(los angeles|long beach|burbank|santa monica|culver city|pasadena|el segundo|hawthorne|irvine|costa mesa|newport beach|anaheim|santa ana),?\s*(?:ca|california)?\b/i],
+  ["austin", /\b(austin|round rock|bastrop),?\s*(?:tx|texas)?\b/i],
   ["chicago", /\b(chicago|evanston),?\s*(?:il|illinois)?\b/i],
-  ["washington-dc", /\bwashington,?\s*(?:dc|d\.c\.|district of columbia)\b|\b(arlington|alexandria|mclean|reston|herndon|fairfax|falls church|tysons),?\s*(?:va|virginia)\b/i],
+  ["washington-dc", /\bwashington,?\s*(?:dc|d\.c\.|district of columbia)\b|\b(arlington|alexandria|mclean|reston|herndon|fairfax|falls church|tysons),?\s*(?:va|virginia)\b|\b(bethesda|rockville|silver spring),?\s*(?:md|maryland)\b/i],
   ["dallas-fort-worth", /\b(dallas|fort worth|plano|frisco|irving|richardson),?\s*(?:tx|texas)?\b/i],
   ["atlanta", /\b(atlanta|alpharetta|sandy springs),?\s*(?:ga|georgia)?\b/i],
   ["denver-boulder", /\b(denver|boulder|broomfield),?\s*(?:co|colorado)?\b|\baurora,?\s*(?:co|colorado)\b/i],
   ["raleigh-durham", /\b(raleigh|durham|cary|research triangle park),?\s*(?:nc|north carolina)?\b/i],
   ["toronto", /\b(toronto|mississauga|markham|brampton),?\s*(?:on|ontario)(?:,?\s*canada)?\b/i],
   ["vancouver", /\b(vancouver|burnaby|richmond),?\s*(?:bc|british columbia)(?:,?\s*canada)?\b/i],
-  ["london", /\blondon,?\s*(?:united kingdom|england|uk)(?:\s*;|$)/i],
+  ["london", /\blondon,?\s*(?:united kingdom|england|uk)(?=\s*[,;]|$)/i],
 ];
 
 const US_STATE_CODES = new Set([
@@ -63,6 +63,7 @@ const CITY_NORMALIZATIONS: Array<[RegExp, string]> = [
   [/^(?:new york|nyc)$/i, "New York, NY"],
   [/^san francisco$/i, "San Francisco, CA"],
   [/^sf$/i, "San Francisco, CA"],
+  [/^la$/i, "Los Angeles, CA"],
   [/^palo alto$/i, "Palo Alto, CA"],
   [/^mountain view$/i, "Mountain View, CA"],
   [/^toronto$/i, "Toronto, ON, Canada"],
@@ -75,8 +76,9 @@ const CITY_NORMALIZATIONS: Array<[RegExp, string]> = [
 
 const REGION_PATTERNS: Array<[DetectedJobRegion, RegExp]> = [
   ["canada", /\b(canada|canadian|toronto|montreal|vancouver|ottawa|calgary|edmonton|quebec|ontario)\b/i],
-  ["europe", /\b(united kingdom|england|scotland|wales|ireland|germany|france|spain|italy|netherlands|switzerland|sweden|norway|denmark|finland|poland|portugal|belgium|austria|czechia|romania|greece|london|amsterdam|berlin|paris|dublin|madrid|barcelona|munich|zurich|stockholm|oslo|copenhagen|helsinki|warsaw|lisbon|brussels|vienna|prague)\b/i],
-  ["asia", /\b(india|singapore|china|japan|south korea|korea|taiwan|hong kong|indonesia|malaysia|philippines|thailand|vietnam|israel|uae|united arab emirates|bangalore|bengaluru|hyderabad|mumbai|delhi|tokyo|seoul|tel aviv|dubai)\b/i],
+  ["uk", /\b(united kingdom|uk|great britain|england|scotland|wales|northern ireland)\b/i],
+  ["europe", /\b(europe|germany|france|spain|italy|netherlands|switzerland|sweden|norway|denmark|finland|poland|portugal|belgium|austria|czechia|czech republic|romania|greece|amsterdam|berlin|paris|dublin|madrid|barcelona|munich|zurich|stockholm|oslo|copenhagen|helsinki|warsaw|lisbon|brussels|vienna|prague)\b|(?<!northern )\bireland\b/i],
+  ["asia", /\b(india|singapore|china|shanghai|beijing|shenzhen|japan|south korea|korea|taiwan|hong kong|indonesia|malaysia|philippines|thailand|vietnam|israel|uae|united arab emirates|bangalore|bengaluru|hyderabad|mumbai|delhi|tokyo|seoul|tel aviv|dubai)\b/i],
   ["australia_nz", /\b(australia|australian|new zealand|auckland|wellington|sydney|melbourne|brisbane|perth)\b|\bNZ\b/i],
   ["latin_america", /\b(mexico|brazil|argentina|chile|colombia|peru|costa rica|panama|uruguay|guatemala|mexico city|sao paulo|rio de janeiro|buenos aires|bogota|santiago)\b/i],
 ];
@@ -97,7 +99,6 @@ export function normalizeJobLocation(location: string): string {
     if (pattern.test(clean)) return replacement;
   }
   return clean
-    .replace(/,?\s+(?:United States of America|United States|USA|US)$/i, "")
     .replace(/,\s*(Alabama|Alaska|Arizona|Arkansas|California|Colorado|Connecticut|Delaware|Florida|Georgia|Hawaii|Idaho|Illinois|Indiana|Iowa|Kansas|Kentucky|Louisiana|Maine|Maryland|Massachusetts|Michigan|Minnesota|Mississippi|Missouri|Montana|Nebraska|Nevada|New Hampshire|New Jersey|New Mexico|New York|North Carolina|North Dakota|Ohio|Oklahoma|Oregon|Pennsylvania|Rhode Island|South Carolina|South Dakota|Tennessee|Texas|Utah|Vermont|Virginia|Washington|West Virginia|Wisconsin|Wyoming)$/i, (match, state: string) => {
       const entry = Object.entries(STATE_NAMES).find(([name]) => name.toLowerCase() === state.toLowerCase());
       return entry ? `, ${entry[1]}` : match;
@@ -105,20 +106,36 @@ export function normalizeJobLocation(location: string): string {
 }
 
 export function classifyJobRegions(location: string): DetectedJobRegion[] {
-  const normalized = normalizeJobLocation(location);
   const regions = new Set<DetectedJobRegion>();
-  for (const [region, pattern] of REGION_PATTERNS) {
-    if (pattern.test(normalized)) regions.add(region);
+  // A country suffix cannot override a foreign city in the same location.
+  // Separate locations may still legitimately span more than one country.
+  for (const rawPart of location.split(/\s*[;|/]\s*/)) {
+    const part = normalizeJobLocation(rawPart);
+    // These US cities share names with overseas cities or Canadian places.
+    // Require their state, rather than treating the city name alone as foreign.
+    if (/^(?:paris,\s*TX|berlin,\s*(?:NJ|CT|NH|WI)|melbourne,\s*FL|vancouver,\s*WA|london,\s*(?:KY|OH)|ontario,\s*CA)(?:\s*,?\s*\d{5}(?:-\d{4})?)?(?:,?\s*(?:United States(?: of America)?|USA|US))?$/i.test(part)) {
+      regions.add("us");
+      continue;
+    }
+    const foreign = REGION_PATTERNS.filter(([, pattern]) => pattern.test(part));
+    for (const [region] of foreign) regions.add(region);
+    if (foreign.length > 0) continue;
+    if (/,\s*(?:AB|BC|MB|NB|NL|NS|NT|NU|ON|PE|QC|SK|YT)\b/.test(part)) {
+      regions.add("canada");
+      continue;
+    }
+    const hasCountry = /\b(united states(?: of america)?|usa|u\.s\.|remote\s*(?:-|in)?\s*us)\b/i.test(rawPart);
+    const hasState = (part.match(/\b[A-Z]{2}\b/g) ?? []).some((code) => US_STATE_CODES.has(code));
+    const hasStateName = Object.keys(STATE_NAMES).some((name) => new RegExp(`(?:^|,\\s*)${name}(?=\\s*(?:,|\\d|$))`, "i").test(part));
+    const hasUsMetro = classifyJobMetros(part).some((metro) => !["toronto", "vancouver", "london"].includes(metro));
+    if (hasCountry || hasState || hasStateName || hasUsMetro) regions.add("us");
   }
-  if (/\b(united states|usa|u\.s\.|remote\s*(?:-|in)?\s*(?:us|united states))\b/i.test(location)) regions.add("us");
-  const codes = normalized.toUpperCase().match(/\b[A-Z]{2}\b/g) ?? [];
-  if (codes.some((code) => US_STATE_CODES.has(code))) regions.add("us");
   if (regions.size === 0) regions.add("other_unknown");
   return [...regions];
 }
 
 export function getSupportedJobRegions(location: string): JobRegion[] {
-  return classifyJobRegions(location).filter((region): region is JobRegion => region === "us" || region === "canada" || region === "europe");
+  return classifyJobRegions(location).filter((region): region is JobRegion => region === "us" || region === "canada" || region === "uk");
 }
 
 export function classifyJobMetros(location: string): JobMetro[] {

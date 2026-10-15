@@ -47,7 +47,7 @@ export function buildJobInsightsDay(
 
   for (const job of snapshot.jobs) {
     workModes[job.workMode] += 1;
-    for (const region of job.regions ?? getSupportedJobRegions(job.location)) regions[region] += 1;
+    for (const region of getSupportedJobRegions(job.location)) regions[region] += 1;
     for (const metro of job.metros ?? classifyJobMetros(job.location)) metros[metro] += 1;
     const roleArea = classifyRoleArea(job);
     if (roleArea) roleAreas[roleArea] += 1;

@@ -1,8 +1,7 @@
 import { hasCompanyTier, type CompanyTier } from "./company-tiers";
 import { isInCollection } from "./job-collections";
+import { getJobLocationMetadata } from "./job-location-policy";
 import {
-  classifyJobMetros,
-  getSupportedJobRegions,
   JOB_METROS,
   type JobMetro,
   type JobRegion,
@@ -31,10 +30,10 @@ export function filterJobs(jobs: readonly PublicJob[], filters: JobBoardFilters)
   return jobs
     .filter((job) => {
       const search = `${job.company} ${job.title} ${job.location}`.toLowerCase();
-      const jobRegions = job.regions ?? getSupportedJobRegions(job.location);
-      const jobMetros = job.metros ?? classifyJobMetros(job.location);
+      const { eligible, regions: jobRegions, metros: jobMetros } = getJobLocationMetadata(job);
 
       return isInCollection(job, filters.type)
+        && eligible
         && (!normalizedQuery || search.includes(normalizedQuery))
         && matchesRoleSelection(job, filters.roleSelection)
         && (filters.regions.length === 0 || filters.regions.some((region) => jobRegions.includes(region)))
@@ -55,8 +54,11 @@ export function getAvailableMetroOptions(jobs: readonly PublicJob[], type: JobCo
   const available = new Set(
     jobs
       .filter((job) => isInCollection(job, type))
-      .filter((job) => regions.length === 0 || regions.some((region) => (job.regions ?? getSupportedJobRegions(job.location)).includes(region)))
-      .flatMap((job) => job.metros ?? classifyJobMetros(job.location)),
+      .filter((job) => {
+        const metadata = getJobLocationMetadata(job);
+        return metadata.eligible && (regions.length === 0 || regions.some((region) => metadata.regions.includes(region)));
+      })
+      .flatMap((job) => getJobLocationMetadata(job).metros),
   );
 
   return JOB_METROS.filter(([metro]) => metro !== "raleigh-durham" && available.has(metro));

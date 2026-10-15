@@ -11,7 +11,8 @@ import { isInCollection } from "../lib/job-collections";
 import { deduplicateCrossSourceJobs } from "../lib/job-dedup";
 import { getFreshnessRejection } from "../lib/job-freshness";
 import { buildJobInsightsDay, updateJobInsightsHistory, type JobInsightsHistory } from "../lib/job-insights";
-import { classifyJobMetros, getSupportedJobRegions, normalizeJobLocation } from "../lib/job-locations";
+import { normalizeJobLocation } from "../lib/job-locations";
+import { getJobLocationMetadata } from "../lib/job-location-policy";
 import { buildJobsSummary } from "../lib/job-summary";
 import type { JobsSnapshot, PublicJob } from "../lib/jobs";
 import { needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
@@ -75,8 +76,8 @@ async function main() {
   }
 
   for (const candidate of candidates) {
-    const supportedRegions = getSupportedJobRegions(candidate.location);
-    if (supportedRegions.length === 0) {
+    const locationMetadata = getJobLocationMetadata(candidate);
+    if (!locationMetadata.eligible) {
       rejectedCount += 1;
       continue;
     }
@@ -154,8 +155,8 @@ async function main() {
       title: normalizeDisplayText(candidate.title),
       term: candidate.term,
       location: normalizeJobLocation(candidate.location),
-      regions: supportedRegions,
-      metros: classifyJobMetros(candidate.location),
+      regions: locationMetadata.regions,
+      metros: locationMetadata.metros,
       workMode: candidate.workMode,
       postedAt: keepPriorDate ? prior.postedAt : candidate.postedAt,
       postedAtSource: keepPriorDate ? prior.postedAtSource : candidate.postedAtSource,
@@ -176,16 +177,18 @@ async function main() {
       const freshnessRejection = getFreshnessRejection(prior);
       const roleTags = classifyRoleTags(prior);
       if (roleTags.length === 0 || decision.status === "rejected" || freshnessRejection) return null;
+      const locationMetadata = getJobLocationMetadata(prior);
+      if (!locationMetadata.eligible) return null;
       const location = normalizeJobLocation(prior.location);
       return {
         ...prior,
         company: normalizeCompanyDisplayName(prior.company, prior.applyUrl),
         location,
-        regions: getSupportedJobRegions(location),
-        metros: classifyJobMetros(location),
+        regions: locationMetadata.regions,
+        metros: locationMetadata.metros,
         roleTags,
       };
-    });
+    }, (prior) => listingHealth[jobIdentity(prior.applyUrl) ?? ""]?.status === "closed");
   }
 
   const jobs = deduplicateCrossSourceJobs([...merged.values()])

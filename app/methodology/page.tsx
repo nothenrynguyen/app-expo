@@ -28,7 +28,7 @@ const steps = [
   {
     number: "04",
     title: "Screen obvious risk",
-    copy: "Listings that explicitly appear unpaid, volunteer, fee-based, equity-only, or commission-only are rejected. Locations are normalized and limited to the United States, Canada, and Europe, with United States selected by default.",
+    copy: "Listings that explicitly appear unpaid, volunteer, fee-based, equity-only, or commission-only are rejected. Locations are normalized and limited to the United States, Canada, and United Kingdom, with United States selected by default. Coverage is nationwide, and metro filters are optional.",
   },
   {
     number: "05",
