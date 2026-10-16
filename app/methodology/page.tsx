@@ -38,7 +38,7 @@ const steps = [
   {
     number: "06",
     title: "Check freshness",
-    copy: "The job snapshot refreshes hourly from 5 a.m. through 5 p.m. in the America/New_York timezone. Direct ATS boards confirm whether roles still appear on the employer board, transient source failures receive bounded retries, generic links rotate through daily checks, and the last healthy snapshot is preserved when a source fails.",
+    copy: "The job snapshot refreshes hourly, around the clock. Refreshes are scheduled for 17 minutes past every hour. Direct ATS boards confirm whether roles still appear on the employer board, transient source failures receive bounded retries, generic links rotate through daily checks, and the last healthy snapshot is preserved when a source fails.",
   },
 ];
 
