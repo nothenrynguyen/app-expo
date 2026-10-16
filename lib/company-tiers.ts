@@ -8,7 +8,7 @@ const FAANG_PLUS = new Set([
   "Microsoft", "Nvidia", "NVIDIA", "Adobe", "Oracle", "Salesforce", "Tesla", "Uber",
 ].map(normalizeCompanyName));
 
-// Current 2026 Fortune 500 employers represented in the App Expo source snapshot.
+// Current 2026 Fortune 500 employers represented in the empluzzed source snapshot.
 // This list is maintained against Fortune's annual U.S. revenue ranking.
 const FORTUNE_500 = new Set([
   "Allstate", "Amazon", "American Express", "Ameren", "Analog Devices", "Apple",

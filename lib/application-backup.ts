@@ -8,7 +8,7 @@ export function readApplicationBackup(raw: string): readonly Application[] {
   if (new TextEncoder().encode(raw).length > MAX_BACKUP_BYTES) throw new Error("Backup is too large. The limit is 5 MB.");
   let value;
   try { value = JSON.parse(raw); } catch { throw new Error("This file is not valid JSON."); }
-  if (!value || value.format !== "app-expo-applications" || value.version !== 1 || !Array.isArray(value.applications)) throw new Error("Choose an App Expo application backup with version 1.");
+  if (!value || value.format !== "app-expo-applications" || value.version !== 1 || !Array.isArray(value.applications)) throw new Error("Choose an empluzzed application backup with version 1.");
   if (value.applications.length > 10000) throw new Error("Backup exceeds the 10,000 application limit.");
   const applications = parseApplications(JSON.stringify(value.applications));
   if (applications.length !== value.applications.length) throw new Error("Backup contains invalid records or repeated IDs. Nothing was imported.");

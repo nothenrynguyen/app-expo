@@ -1,10 +1,10 @@
-# App Expo Roadmap
+# empluzzed Roadmap
 
-This is the living list of ideas and future work for App Expo. Update it whenever priorities change, an idea comes up, or a feature ships.
+This is the living list of ideas and future work for empluzzed. Update it whenever priorities change, an idea comes up, or a feature ships.
 
 ## Current focus
 
-App Expo covers early-career software, data, engineering, product, solutions and support, business, finance, quant, IT, and security roles across internship and full-time collections.
+empluzzed covers early-career software, data, engineering, product, solutions and support, business, finance, quant, IT, and security roles across internship and full-time collections.
 
 The reviewed-source expansion, ingestion foundation, opt-in Vercel analytics and browser-local application tracker are complete. Keep the current analytics integration. The next development milestone starts with the optional backend cost and architecture review in a new chat. No backend resources, accounts or database have been added. See [backend handoff](docs/BACKEND_HANDOFF.md). Preserve the no-sign-up public board throughout.
 

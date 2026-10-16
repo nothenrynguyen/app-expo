@@ -1,4 +1,4 @@
-# App Expo analytics
+# empluzzed analytics
 
 Reviewed against official sources on September 30, 2026. Implementation is complete; production activation is an owner step.
 
@@ -6,7 +6,7 @@ Reviewed against official sources on September 30, 2026. Implementation is compl
 
 The app exports static HTML, uses client-side collection JSON and filters, and stores saved job IDs in browser localStorage. It has no visitor account or application submission flow. Analytics must not ingest those IDs, search strings, notes, or employer URLs. The existing approved Vercel Hobby hosting account is the smallest dependency change.
 
-Use Vercel Web Analytics on Hobby, through pinned `@vercel/analytics` 2.0.1. No account, authentication, database, Go, or GraphQL is added to App Expo. Owner access uses the existing hosting dashboard.
+Use Vercel Web Analytics on Hobby, through pinned `@vercel/analytics` 2.0.1. No account, authentication, database, Go, or GraphQL is added to empluzzed. Owner access uses the existing hosting dashboard.
 
 | Requirement | Verified behavior |
 | --- | --- |
@@ -16,7 +16,7 @@ Use Vercel Web Analytics on Hobby, through pinned `@vercel/analytics` 2.0.1. No 
 | Retention | One month of guaranteed reporting history. This is not a deletion guarantee: Vercel says it may retain data longer to support a later upgrade. |
 | Interaction events | Custom events are unavailable on Hobby. Collection-selection clicks, filter changes, Apply clicks, and Save/Unsave clicks are deliberately not instrumented or billed. |
 | Traffic sources | Available initial referrer information, subject to browser/referring-site restrictions and the safety exclusions below. UTM reporting is unavailable on Hobby and all query strings are removed anyway. |
-| Permitted use | Hobby is for personal, non-commercial projects. App Expo's non-monetized personal job board matches that scope. Any future monetization needs a new policy review. |
+| Permitted use | Hobby is for personal, non-commercial projects. empluzzed's non-monetized personal job board matches that scope. Any future monetization needs a new policy review. |
 
 Umami Cloud was considered because its official FAQ confirms a free Hobby plan and custom event metering. However, its pricing page could not be extracted during review and its official usage/subscription pages did not establish the required Hobby cap behavior and no-payment-method guarantee. Its paid trials explicitly become paid. It was not added; third-party pricing claims were not accepted as policy evidence. Self-hosting would also introduce infrastructure outside this milestone.
 
@@ -35,7 +35,7 @@ Owner activation and live dashboard receipt have not been performed from this wo
 
 - Page views and approximate visitors for the known public pages only. `/internships` and `/jobs` measure collection visits, not collection button clicks. Query-only role/specialty changes are not separately counted, and the controls do not subscribe to search parameters.
 - Available referral origins, plus provider-derived browser, OS, device and approximate geography information. Browser settings and `noreferrer` links can remove the source, so missing source information is not proof of a direct visit.
-- No event totals for filters, Apply, Save or Unsave. An Apply click would only mean opening an employer link, never a completed application. App Expo cannot observe employer-side submission or hiring outcomes.
+- No event totals for filters, Apply, Save or Unsave. An Apply click would only mean opening an employer link, never a completed application. empluzzed cannot observe employer-side submission or hiring outcomes.
 - No raw search, role/filter values, job IDs, employers, employer destinations, application notes, identity traits, or campaign parameters. No historical backfill, cross-device saved jobs, or cross-site visitor tracking.
 - Opt-in visitors are a biased subset, not total traffic. Blockers, privacy signals, blocked scripts, rejected initial referrers, and cap pauses also undercount. Vercel's visitor hash/session is temporary, not a count of distinct people over long periods.
 
@@ -43,7 +43,7 @@ Owner activation and live dashboard receipt have not been performed from this wo
 
 Reviewed the installed SDK's injection/queue and React pageview effects, plus the official production tracker from `https://va.vercel-scripts.com/v1/script.js`. The SDK injects a deferred script and queues the privacy hook before pageviews. The tracker uses POST fetch requests, derives the current URL, reads `document.referrer` for the initial view, and has optional attribution localStorage and identity/cookie commands. This integration never calls identity, group, cookie-enable, custom event, or flag APIs. Vercel's official guidance describes a request-derived hash and a visitor session discarded after 24 hours. Network processing still involves request metadata such as IP and browser headers.
 
-Cookie-free alone does not determine consent requirements. CNIL's audience-measurement exemption has purpose, data-use, and configuration conditions. The ICO's current statistical-purpose exception also has conditions, aggregation requirements, and an objection requirement, and is not a universal exemption. Rather than asserting this deployment satisfies every jurisdiction's exemption, App Expo requires affirmative consent everywhere. No analytics script or event is loaded/sent before permission. A compact, non-blocking first-visit panel presents Allow and Decline choices. Continue without analytics also records a decline. The panel closes after a choice; Analytics preferences at the bottom of every page reopens the controls for withdrawal or a changed choice. Existing choices remain valid until their existing expiry. The privacy notice explains the provider and processing before consent. DNT=1 and GPC=true override permission.
+Cookie-free alone does not determine consent requirements. CNIL's audience-measurement exemption has purpose, data-use, and configuration conditions. The ICO's current statistical-purpose exception also has conditions, aggregation requirements, and an objection requirement, and is not a universal exemption. Rather than asserting this deployment satisfies every jurisdiction's exemption, empluzzed requires affirmative consent everywhere. No analytics script or event is loaded/sent before permission. A compact, non-blocking first-visit panel presents Allow and Decline choices. Continue without analytics also records a decline. The panel closes after a choice; Analytics preferences at the bottom of every page reopens the controls for withdrawal or a changed choice. Existing choices remain valid until their existing expiry. The privacy notice explains the provider and processing before consent. DNT=1 and GPC=true override permission.
 
 The sole preference record contains choice and expiry, lasts 180 days, and is separate from saved jobs. Expired/malformed/missing consent fails closed. Blocked storage uses page-lifetime memory. Withdrawal and changes in another tab are checked at every send, even if the provider script is already loaded. Withdrawal cannot undo previously sent aggregate data. The script can remain in memory after withdrawal, but the hook rejects subsequent sends. Clearing storage removes permission. No preference is transmitted to a server or used for another purpose.
 

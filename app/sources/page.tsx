@@ -9,8 +9,8 @@ import { HeroGravity } from "../HeroGravity";
 import { SiteFooter } from "../SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Data Sources | App Expo",
-  description: "Where App Expo finds listings and how those sources are checked and credited.",
+  title: "Data Sources | empluzzed",
+  description: "Where empluzzed finds listings and how those sources are checked and credited.",
 };
 
 const sourcesByRepository = new Map<string, string[]>();
@@ -31,7 +31,7 @@ export default function SourcesPage() {
         <div className="sources-hero">
           <h1 className="sr-only">Data sources</h1>
           <p className="eyebrow">Data sources</p>
-          <p>App Expo combines maintained community job lists, removes duplicates, and checks listings against employer career pages before sending you to the original application.</p>
+          <p>empluzzed combines maintained community job lists, removes duplicates, and checks listings against employer career pages before sending you to the original application.</p>
         </div>
 
         <section className="source-audit" aria-label="Community data sources">
@@ -46,7 +46,7 @@ export default function SourcesPage() {
           <div className="pinned-source-note">
             <p className="eyebrow">Direct employer coverage</p>
             <h2>Public ATS boards checked every refresh.</h2>
-            <p>App Expo keeps a small reviewed registry of public Greenhouse, Lever, Ashby, and Workday career sites. Their qualifying early-career roles can enter any matching job category, even when a community feed does not currently link to them.</p>
+            <p>empluzzed keeps a small reviewed registry of public Greenhouse, Lever, Ashby, and Workday career sites. Their qualifying early-career roles can enter any matching job category, even when a community feed does not currently link to them.</p>
             <ul aria-label="Pinned employer boards">
               {pinnedBoards.map((board) => <li key={`${board.provider}:${board.key}`}>{board.company}</li>)}
               {workdayBoards.map((board) => <li key={`workday:${board.tenant}:${board.site}`}>{board.company}</li>)}
@@ -95,7 +95,7 @@ export default function SourcesPage() {
             <div>
               <p className="eyebrow">Credits</p>
               <h2 id="source-notices-title">Attribution, kept accessible.</h2>
-              <p>App Expo credits each community project above. Copyright and permission notices are preserved in the repository&apos;s third-party notices file.</p>
+              <p>empluzzed credits each community project above. Copyright and permission notices are preserved in the repository&apos;s third-party notices file.</p>
             </div>
             <details>
               <summary>View MIT permission notice</summary>
@@ -109,7 +109,7 @@ export default function SourcesPage() {
               <h2 id="source-disclaimer-title">Credit is not endorsement.</h2>
             </div>
             <div>
-              <p>Upstream maintainers do not sponsor, operate, or endorse App Expo. Company names and trademarks belong to their respective owners.</p>
+              <p>Upstream maintainers do not sponsor, operate, or endorse empluzzed. Company names and trademarks belong to their respective owners.</p>
               <p>Job links lead to third-party employer or recruiting sites. Listings can change or close at any time, so confirm the details on the employer&apos;s page before applying.</p>
             </div>
           </section>

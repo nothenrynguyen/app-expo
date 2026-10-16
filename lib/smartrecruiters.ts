@@ -33,7 +33,7 @@ export async function fetchSmartRecruitersPosting(value: string): Promise<SmartR
   const reference = parseSmartRecruitersJobUrl(value);
   if (!reference) return null;
   const response = await fetch(reference.endpoint, {
-    headers: { accept: "application/json", "user-agent": "App-Expo/0.3" },
+    headers: { accept: "application/json", "user-agent": "empluzzed/0.3" },
     signal: AbortSignal.timeout(12_000),
   });
   if (response.status === 404 || response.status === 410) return { active: false };

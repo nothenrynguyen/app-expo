@@ -1,8 +1,8 @@
-# App Expo Public Job Aggregator Milestone
+# empluzzed Public Job Aggregator Milestone
 
 ## Goal
 
-Launch App Expo as a standalone public job aggregator that presents fresh, deduplicated, verified U.S.
+Launch empluzzed as a standalone public job aggregator that presents fresh, deduplicated, verified U.S.
 early-career roles with direct employer application links and no account gate.
 
 ## Non-goals
@@ -14,7 +14,7 @@ early-career roles with direct employer application links and no account gate.
 
 ## Safety and quality constraints
 
-- App Expo has its own folder, Git repository, GitHub repository, and Vercel project.
+- empluzzed has its own folder, Git repository, GitHub repository, and Vercel project.
 - The existing local ApplyOS auto-applier remains separate and unchanged.
 - Unknown companies are quarantined by default.
 - Explicitly unpaid, volunteer, commission-only, fee-based, or equity-only roles are rejected.

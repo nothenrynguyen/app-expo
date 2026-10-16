@@ -82,7 +82,7 @@ async function requestWorkdayJson<T>(url: string, options: WorkdayRequestOptions
           accept: "application/json",
           connection: "close",
           ...(options.body ? { "content-type": "application/json" } : {}),
-          "user-agent": "App-Expo/0.4",
+          "user-agent": "empluzzed/0.4",
         },
         body: options.body,
         signal: AbortSignal.timeout(options.timeoutMs),

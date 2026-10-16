@@ -33,7 +33,7 @@ export async function verifyListing(url: string, now = new Date()): Promise<[str
   try {
     const response = await fetch(url, {
       redirect: "follow",
-      headers: { accept: "text/html,application/xhtml+xml", "user-agent": "App-Expo-Link-Check/0.2" },
+      headers: { accept: "text/html,application/xhtml+xml", "user-agent": "empluzzed-Link-Check/0.2" },
       signal: AbortSignal.timeout(10_000),
     });
     const body = response.ok ? await response.text() : "";

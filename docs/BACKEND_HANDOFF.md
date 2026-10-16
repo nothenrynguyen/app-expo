@@ -18,7 +18,7 @@ Keep reporting private, initially through a local owner dashboard. Never put an 
 
 ## Next chat prompt
 
-Continue App Expo in C:\Users\Henry\Documents\Projects\app-expo at the backend boundary. Read AGENTS.md, COST_POLICY.md, ROADMAP.md, docs/BACKEND_HANDOFF.md, docs/APPLICATION_TRACKER.md, docs/ANALYTICS.md and relevant installed Next.js docs first. Explain progress in plain language and commit coherent verified milestones. Do not use em dashes in user-facing copy.
+Continue empluzzed in C:\Users\Henry\Documents\Projects\app-expo at the backend boundary. Read AGENTS.md, COST_POLICY.md, ROADMAP.md, docs/BACKEND_HANDOFF.md, docs/APPLICATION_TRACKER.md, docs/ANALYTICS.md and relevant installed Next.js docs first. Explain progress in plain language and commit coherent verified milestones. Do not use em dashes in user-facing copy.
 
 First assess Go hosting, persistent storage and optional authentication using current official documentation. No payment method, billable overages, automatic paid trial conversion or paid upgrades. Document included limits, retention, pauses and recovery. Unknown limit behavior disqualifies a service. Complete a concrete architecture and cost review for owner approval before adding hosted database/authentication resources, as COST_POLICY.md requires.
 

@@ -5,7 +5,7 @@ import { SiteHeader } from "./SiteHeader";
 import { AnalyticsControls } from "./AnalyticsControls";
 
 export const metadata: Metadata = {
-  title: "App Expo",
+  title: "empluzzed",
   description: "Fresh, verified early-career jobs with direct application links.",
   referrer: "strict-origin",
 };

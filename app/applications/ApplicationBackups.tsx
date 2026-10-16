@@ -25,7 +25,7 @@ export function ApplicationBackups() {
         const link = document.createElement("a");
         const now = new Date();
         const date = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
-        link.href = url; link.download = `app-expo-applications-${date}.json`;
+        link.href = url; link.download = `empluzzed-applications-${date}.json`;
         document.body.append(link); link.click(); link.remove();
         setTimeout(() => URL.revokeObjectURL(url), 1000);
         setMessage("Backup download requested. Keep the file somewhere safe.");
@@ -45,7 +45,7 @@ export function ApplicationBackups() {
     }} /></label>
     {preview && incoming ? <div>
       <h3>Import preview</h3>
-      <p>{preview.added} new records. {preview.skipped} duplicates skipped. Existing records win when record IDs or App Expo job IDs match. Different manual IDs are kept, even if company and position match. Existing board statuses also take precedence.</p>
+      <p>{preview.added} new records. {preview.skipped} duplicates skipped. Existing records win when record IDs or empluzzed job IDs match. Different manual IDs are kept, even if company and position match. Existing board statuses also take precedence.</p>
       <ul>{incoming.slice(0, 10).map((record) => <li key={record.id}>{record.company}: {record.title} ({record.status})</li>)}</ul>
       {incoming.length > 10 ? <p>Showing the first 10 of {incoming.length} records.</p> : null}
       <button type="button" className="button primary" disabled={!preview.added} onClick={() => {

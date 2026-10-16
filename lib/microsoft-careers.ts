@@ -79,7 +79,7 @@ export async function fetchMicrosoftCareersPosting(value: string): Promise<Micro
   const job = parseMicrosoftCareersJobUrl(value);
   if (!job) return null;
   const response = await fetch(job.endpoint, {
-    headers: { accept: "text/html,application/xhtml+xml", "user-agent": "App-Expo/0.4" },
+    headers: { accept: "text/html,application/xhtml+xml", "user-agent": "empluzzed/0.4" },
     signal: AbortSignal.timeout(15_000),
   });
   if (!response.ok) return null;

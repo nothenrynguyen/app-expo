@@ -39,7 +39,7 @@ export function AnalyticsControls() {
       {showChoice ? <section id="analytics-preferences" className="analytics-controls analytics-prompt" aria-label="Analytics preferences">
         <div>
           <strong>Optional analytics</strong>
-          <p>Allow Vercel to measure page visits, available referrals, and device and approximate location statistics to help improve App Expo. No search text or saved jobs are sent. Your choice is stored in this browser for 180 days. <Link href="/privacy">Privacy notice</Link></p>
+          <p>Allow Vercel to measure page visits, available referrals, and device and approximate location statistics to help improve empluzzed. No search text or saved jobs are sent. Your choice is stored in this browser for 180 days. <Link href="/privacy">Privacy notice</Link></p>
           <p role="status">{!enabled ? "Analytics is not activated on this deployment. " : ""}{privacySignal ? "Your browser privacy signal blocks analytics." : consent === "allowed" ? "Analytics allowed. You can decline at any time." : consent === "denied" ? "Analytics declined." : "Analytics stays off unless you allow it."}</p>
         </div>
         <div className="analytics-actions">

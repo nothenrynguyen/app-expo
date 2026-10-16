@@ -5,8 +5,8 @@ import { HeroGravity } from "../HeroGravity";
 import { SiteFooter } from "../SiteFooter";
 
 export const metadata: Metadata = {
-  title: "Methodology | App Expo",
-  description: "How App Expo finds, checks, filters, and refreshes job listings.",
+  title: "Methodology | empluzzed",
+  description: "How empluzzed finds, checks, filters, and refreshes job listings.",
 };
 
 const steps = [
@@ -49,7 +49,7 @@ export default function MethodologyPage() {
         <div className="methodology-hero">
           <p className="eyebrow">How the board works</p>
           <h1>Broad coverage.<br />Clear rules.</h1>
-          <p>The short version: App Expo tries to find a lot without pretending every source is perfect. These are the rules between a scraped listing and the job you actually see.</p>
+          <p>The short version: empluzzed tries to find a lot without pretending every source is perfect. These are the rules between a scraped listing and the job you actually see.</p>
         </div>
         <MethodologyStats />
         <section className="methodology-grid" aria-label="Listing methodology">
@@ -67,7 +67,7 @@ export default function MethodologyPage() {
           <div>
             <p>I filter out a lot of obvious junk, but I&apos;m not personally investigating every company and every job. Some listings come from sources I trust, while others come directly from employer job boards that pass the project&apos;s checks. That still does not mean I can guarantee every company is amazing, trustworthy, or even real.</p>
             <p>Jobs also close randomly, career pages break, and some companies make it weirdly difficult to tell when something was posted. I refresh and recheck listings regularly, but a dead link or outdated opening might still sneak through.</p>
-            <p>Basically, use App Expo to find opportunities faster. Do your own research before applying, and definitely do not send anyone money. I&apos;m still tightening the filters and improving the company checks as I go. If something looks off, trust your gut.</p>
+            <p>Basically, use empluzzed to find opportunities faster. Do your own research before applying, and definitely do not send anyone money. I&apos;m still tightening the filters and improving the company checks as I go. If something looks off, trust your gut.</p>
           </div>
         </section>
       </section>

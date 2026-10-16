@@ -6,7 +6,7 @@ Subject: Free hosted analytics, usage enforcement and minimal data configuration
 
 Hello,
 
-I run App Expo, a public, non-commercial job board at https://app-expo-one.vercel.app/. I operate it from the US and promote it mainly to US job seekers. It is a personal project shared with my LinkedIn connections, potentially hundreds of people. Browsing requires no account. I would like to use GoatCounter's hosted service for page counts and aggregate counts of collection selection, filter usage, outbound Apply clicks, and Save/Unsave clicks.
+I run empluzzed, a public, non-commercial job board at https://app-expo-one.vercel.app/. I operate it from the US and promote it mainly to US job seekers. It is a personal project shared with my LinkedIn connections, potentially hundreds of people. Browsing requires no account. I would like to use GoatCounter's hosted service for page counts and aggregate counts of collection selection, filter usage, outbound Apply clicks, and Save/Unsave clicks.
 
 The project has a strict zero-cost policy: no payment method, automatic paid upgrade, paid trial conversion, invoice or billable overage. Your terms say reasonable public usage is free, and your FAQ says you prefer contacting high-volume users before shutting down their accounts. Could you confirm what happens if usage becomes excessive, and that collection would only be restricted or stopped unless I explicitly enter a separate paid agreement? Is there a practical numerical allowance or request-rate limit I should plan around for page views plus custom events?
 

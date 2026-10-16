@@ -15,11 +15,11 @@ const DISCOVERY_PATHS = ["README.md", "README-Off-Season.md", "OFFSEASON_README.
 
 function githubHeaders(): HeadersInit {
   const token = process.env.GITHUB_TOKEN;
-  return { accept: "application/vnd.github+json", "user-agent": "App-Expo-Source-Maintenance/0.1", ...(token ? { authorization: `Bearer ${token}` } : {}) };
+  return { accept: "application/vnd.github+json", "user-agent": "empluzzed-Source-Maintenance/0.1", ...(token ? { authorization: `Bearer ${token}` } : {}) };
 }
 
 async function fetchText(url: string, github = false): Promise<string> {
-  const response = await fetch(url, { headers: github ? githubHeaders() : { "user-agent": "App-Expo-Source-Maintenance/0.1" }, signal: AbortSignal.timeout(15_000) });
+  const response = await fetch(url, { headers: github ? githubHeaders() : { "user-agent": "empluzzed-Source-Maintenance/0.1" }, signal: AbortSignal.timeout(15_000) });
   if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
   return response.text();
 }
@@ -179,7 +179,7 @@ function report(catalog: SourceCatalog, state: SourceHealthState): string {
     const catalogStatus = source.active ? "Active" : health.status === "retired" ? "Retired" : "Pending review";
     return `| ${catalogStatus} | ${source.name.replace(/\|/g, "/")} | ${source.cycle ?? "Unknown"} | ${health.status} | ${health.lastRows} | ${health.lastSuccessAt ?? "Never"} |`;
   });
-  return ["# App Expo source report", "", `Generated ${new Date().toISOString()}.`, "", "| Catalog | Source | Cycle | Health | Parsed jobs | Last success |", "| --- | --- | ---: | --- | ---: | --- |", ...rows, "", "Sources are retired only after sustained failures, repeated empty results, or replacement by a newer maintained cycle.", ""].join("\n");
+  return ["# empluzzed source report", "", `Generated ${new Date().toISOString()}.`, "", "| Catalog | Source | Cycle | Health | Parsed jobs | Last success |", "| --- | --- | ---: | --- | ---: | --- |", ...rows, "", "Sources are retired only after sustained failures, repeated empty results, or replacement by a newer maintained cycle.", ""].join("\n");
 }
 
 async function main() {

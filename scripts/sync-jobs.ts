@@ -86,7 +86,7 @@ async function main() {
       quarantined.push({
         company: normalizeDisplayText(candidate.company),
         title: normalizeDisplayText(candidate.title),
-        reason: "The role does not confidently match a supported App Expo category.",
+        reason: "The role does not confidently match a supported empluzzed category.",
         source: candidate.source,
         applyUrl: candidate.applyUrl,
       });

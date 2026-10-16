@@ -142,7 +142,7 @@ function parseBoardJobs(board: AtsBoard, payload: unknown): BoardJob[] {
 
 export async function fetchAtsBoard(board: AtsBoard, now = new Date()): Promise<AtsBoardResult> {
   const response = await fetch(board.endpoint, {
-    headers: { accept: "application/json", "user-agent": "App-Expo/0.2" },
+    headers: { accept: "application/json", "user-agent": "empluzzed/0.2" },
     signal: AbortSignal.timeout(12_000),
   });
   if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);

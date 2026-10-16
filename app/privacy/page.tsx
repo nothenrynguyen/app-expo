@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { SiteFooter } from "../SiteFooter";
 import { HeroGravity } from "../HeroGravity";
 
-export const metadata: Metadata = { title: "Privacy | App Expo" };
+export const metadata: Metadata = { title: "Privacy | empluzzed" };
 
 export default function PrivacyPage() {
   return <main className="board-page"><HeroGravity variant="board" />
     <section className="methodology-shell privacy-notice">
       <p className="eyebrow">Privacy notice</p>
       <h1>Your browsing, your choice.</h1>
-      <p>App Expo is a free job board with account-free browsing. This notice describes optional site analytics and browser-local saved jobs.</p>
+      <p>empluzzed is a free job board with account-free browsing. This notice describes optional site analytics and browser-local saved jobs.</p>
       <h2>Optional site analytics</h2>
       <p>When analytics is activated on the deployment, we use Vercel Web Analytics only after you choose Allow analytics in the first-visit panel or Analytics preferences. Declining or choosing Continue without analytics does not affect browsing, filtering, saving jobs, or opening employer application links. You can withdraw consent by opening Analytics preferences at the bottom of any page and choosing Decline analytics. Do Not Track and Global Privacy Control signals also block analytics.</p>
       <p>The site owner uses private aggregate reports to understand page visits and available traffic sources, plus device, browser, operating system, and approximate location statistics. We remove all page URL query strings and fragments, and allow only known public page paths. No raw search text, personal information entered on the site, saved job IDs, application notes, employer application URLs, or click events are sent by this integration.</p>
@@ -24,7 +24,7 @@ export default function PrivacyPage() {
       <p>We store only your analytics choice and its expiry in localStorage for 180 days, solely to remember this preference. Clearing site storage resets the choice to off. If storage is unavailable, the choice lasts only for the current page. Saved jobs are stored separately in your browser and are not uploaded through analytics.</p>
       <h2>External services</h2>
       <p>Employer links, LinkedIn, and any enabled company-logo service follow their own privacy practices. Hosting requests may also be processed by Vercel independently of optional analytics.</p>
-      <p>Read <a href="https://vercel.com/docs/analytics/privacy-policy" target="_blank" rel="noreferrer">Vercel&apos;s analytics privacy documentation</a> and <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noreferrer">Vercel&apos;s privacy policy</a>. For questions about App Expo, contact <a href="https://henwoo.dev" target="_blank" rel="noreferrer">the site owner</a>.</p>
+      <p>Read <a href="https://vercel.com/docs/analytics/privacy-policy" target="_blank" rel="noreferrer">Vercel&apos;s analytics privacy documentation</a> and <a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noreferrer">Vercel&apos;s privacy policy</a>. For questions about empluzzed, contact <a href="https://henwoo.dev" target="_blank" rel="noreferrer">the site owner</a>.</p>
     </section>
     <SiteFooter />
   </main>;

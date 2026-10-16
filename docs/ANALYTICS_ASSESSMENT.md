@@ -2,7 +2,7 @@
 
 Reviewed September 30, 2026. Research only: the deployed opt-in Vercel integration has not been replaced.
 
-The goal is counts of site use for improving App Expo, without identifying people, joining their actions, or making browsing conditional on agreement. Being non-commercial does not itself exempt analytics from privacy requirements.
+The goal is counts of site use for improving empluzzed, without identifying people, joining their actions, or making browsing conditional on agreement. Being non-commercial does not itself exempt analytics from privacy requirements.
 
 ## Recommendation
 
@@ -59,9 +59,9 @@ The official FAQ adds that the operator prefers contacting users sending million
 
 The upstream changelog also documents a 30-day bot-record table. Confirm its hosted behavior and fields before describing all provider storage as aggregate-only. Disabled individual visitor records do not establish that operational or bot logs are absent. See the [official changelog](https://github.com/arp242/goatcounter/blob/main/CHANGELOG.md).
 
-The [ICO territorial guidance](https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guidance-on-the-use-of-storage-and-access-technologies/what-are-the-pecr-rules/) distinguishes a service merely accessible in the UK from offering services to, or monitoring people in, the UK. The previous exemption discussion is conditional, not a finding that UK rules necessarily govern App Expo. Owner location and intended audience still need confirmation; neither visitor citizenship nor a public URL alone settles applicability.
+The [ICO territorial guidance](https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/guidance-on-the-use-of-storage-and-access-technologies/what-are-the-pecr-rules/) distinguishes a service merely accessible in the UK from offering services to, or monitoring people in, the UK. The previous exemption discussion is conditional, not a finding that UK rules necessarily govern empluzzed. Owner location and intended audience still need confirmation; neither visitor citizenship nor a public URL alone settles applicability.
 
-The owner subsequently confirmed operating from the US and promoting App Expo mainly to US job seekers. Assess it as US-focused; do not assume UK/EU requirements apply merely because the site is accessible there. This does not itself decide every applicable US rule or establish that particular tracking never constitutes monitoring abroad. Reassess if audience targeting or personal tracking changes. A default-on, minimal aggregate setup remains the proposed direction, pending provider evidence and final implementation review.
+The owner subsequently confirmed operating from the US and promoting empluzzed mainly to US job seekers. Assess it as US-focused; do not assume UK/EU requirements apply merely because the site is accessible there. This does not itself decide every applicable US rule or establish that particular tracking never constitutes monitoring abroad. Reassess if audience targeting or personal tracking changes. A default-on, minimal aggregate setup remains the proposed direction, pending provider evidence and final implementation review.
 
 A [ready-to-send provider inquiry](GOATCOUNTER_PROVIDER_QUESTIONS.md) captures the unresolved questions. No email or support form has been submitted. Provider answers are necessary to close the unknown-limit condition in COST_POLICY.md, which says: "If any answer is unknown, do not add the service."
 

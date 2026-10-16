@@ -46,7 +46,7 @@ function errorMessage(reason: unknown): string {
 
 async function fetchText(url: string): Promise<string> {
   const response = await fetch(url, {
-    headers: { "user-agent": "App-Expo/0.5" },
+    headers: { "user-agent": "empluzzed/0.5" },
     signal: AbortSignal.timeout(15_000),
   });
   if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);

@@ -4,7 +4,7 @@ import { AnalyticsPreferencesButton } from "./AnalyticsControls";
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <span>App Expo · Free and direct.</span>
+      <span>empluzzed · Free and direct.</span>
       <Link href="/privacy">Privacy</Link>
       <AnalyticsPreferencesButton />
       <Link className="feedback-link" href="/feedback">Feedback</Link>

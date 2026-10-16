@@ -39,7 +39,7 @@ export function ApplicationTracker() {
     <div className="tracker-toolbar"><div className="tracker-view-switch" role="group" aria-label="Record list"><button type="button" aria-pressed={view === "applications"} onClick={() => setView("applications")}>Applications <span>{applications.length}</span></button><button type="button" aria-pressed={view === "saved"} onClick={() => setView("saved")}>Saved jobs</button></div><div className="tracker-toolbar-actions"><button type="button" className="button primary" aria-expanded={editorOpen} aria-controls="application-editor" onClick={() => { setEditing(null); setForm(blank()); setEditorOpen(true); }}>Add application</button><details className="tracker-backup-menu"><summary>Manage records</summary><ApplicationBackups /><button type="button" className="button secondary" onClick={importSaved}>Import saved jobs</button></details></div></div>
     {editorOpen ? <div id="application-editor" ref={editor} className="tracker-editor">
     <h2>{editing ? "Edit application" : "Add an application"}</h2>
-    <p>Add existing applications or jobs you found outside App Expo. An application date is optional; enter the date you actually applied.</p>
+    <p>Add existing applications or jobs you found outside empluzzed. An application date is optional; enter the date you actually applied.</p>
     <form className="application-form" onSubmit={(event) => {
       event.preventDefault();
       const url = safeApplicationUrl(form.url);
