@@ -1,23 +1,23 @@
 {
   "version": 1,
-  "startedAt": "2026-10-18T11:14:38.697Z",
-  "completedAt": "2026-10-18T11:16:48.922Z",
-  "durationMs": 130225,
+  "startedAt": "2026-10-18T14:39:40.917Z",
+  "completedAt": "2026-10-18T14:41:22.778Z",
+  "durationMs": 101861,
   "status": "degraded",
   "sources": {
     "total": 21,
-    "healthy": 21,
-    "failed": 0,
+    "healthy": 20,
+    "failed": 1,
     "empty": 0,
-    "requestCount": 664,
-    "durationMs": 99725,
+    "requestCount": 727,
+    "durationMs": 82696,
     "records": [
       {
         "name": "Internship Engine",
         "kind": "engine_json",
         "status": "ok",
-        "rows": 1152,
-        "durationMs": 93,
+        "rows": 1151,
+        "durationMs": 80,
         "requestCount": 1
       },
       {
@@ -33,7 +33,7 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 771,
-        "durationMs": 287,
+        "durationMs": 225,
         "requestCount": 1
       },
       {
@@ -41,15 +41,15 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 575,
-        "durationMs": 514,
+        "durationMs": 275,
         "requestCount": 1
       },
       {
         "name": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
         "kind": "markdown",
         "status": "ok",
-        "rows": 560,
-        "durationMs": 536,
+        "rows": 559,
+        "durationMs": 299,
         "requestCount": 1
       },
       {
@@ -57,15 +57,15 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 475,
-        "durationMs": 556,
+        "durationMs": 321,
         "requestCount": 1
       },
       {
         "name": "Dreamwork New Grad US",
         "kind": "markdown",
         "status": "ok",
-        "rows": 1398,
-        "durationMs": 724,
+        "rows": 1376,
+        "durationMs": 601,
         "requestCount": 1
       },
       {
@@ -73,7 +73,7 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 1220,
-        "durationMs": 378,
+        "durationMs": 672,
         "requestCount": 1
       },
       {
@@ -81,7 +81,7 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 511,
-        "durationMs": 129,
+        "durationMs": 489,
         "requestCount": 1
       },
       {
@@ -89,15 +89,15 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 1865,
-        "durationMs": 455,
+        "durationMs": 393,
         "requestCount": 1
       },
       {
         "name": "Simplify Off-Season 2027",
         "kind": "markdown",
         "status": "ok",
-        "rows": 1104,
-        "durationMs": 1679,
+        "rows": 1106,
+        "durationMs": 1618,
         "requestCount": 1
       },
       {
@@ -105,7 +105,7 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 1821,
-        "durationMs": 1121,
+        "durationMs": 1066,
         "requestCount": 1
       },
       {
@@ -113,7 +113,7 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 878,
-        "durationMs": 597,
+        "durationMs": 444,
         "requestCount": 1
       },
       {
@@ -121,7 +121,7 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 942,
-        "durationMs": 649,
+        "durationMs": 526,
         "requestCount": 1
       },
       {
@@ -129,7 +129,7 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 100,
-        "durationMs": 197,
+        "durationMs": 107,
         "requestCount": 1
       },
       {
@@ -137,7 +137,7 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 166,
-        "durationMs": 182,
+        "durationMs": 93,
         "requestCount": 1
       },
       {
@@ -145,7 +145,7 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 333,
-        "durationMs": 299,
+        "durationMs": 141,
         "requestCount": 1
       },
       {
@@ -153,7 +153,7 @@
         "kind": "workday",
         "status": "ok",
         "rows": 99,
-        "durationMs": 16203,
+        "durationMs": 16537,
         "requestCount": 105
       },
       {
@@ -161,35 +161,36 @@
         "kind": "workday",
         "status": "ok",
         "rows": 385,
-        "durationMs": 52629,
-        "requestCount": 501
+        "durationMs": 46566,
+        "requestCount": 577
       },
       {
         "name": "Workday: Medtronic",
         "kind": "workday",
-        "status": "ok",
-        "rows": 115,
-        "durationMs": 11650,
-        "requestCount": 13
+        "status": "failed",
+        "rows": 0,
+        "durationMs": 848,
+        "requestCount": 0,
+        "message": "429 Too Many Requests"
       },
       {
         "name": "Workday: Abbott",
         "kind": "workday",
         "status": "ok",
         "rows": 102,
-        "durationMs": 10808,
+        "durationMs": 11356,
         "requestCount": 28
       }
     ]
   },
   "boards": {
     "total": 598,
-    "healthy": 589,
-    "failed": 9,
-    "requestCount": 1241,
-    "retryRequests": 94,
-    "detailFailures": 37,
-    "durationMs": 256951,
+    "healthy": 591,
+    "failed": 7,
+    "requestCount": 1305,
+    "retryRequests": 170,
+    "detailFailures": 79,
+    "durationMs": 189567,
     "records": [
       {
         "provider": "ashby",
@@ -197,7 +198,7 @@
         "company": "AgZen",
         "status": "ok",
         "rows": 5,
-        "durationMs": 145
+        "durationMs": 38
       },
       {
         "provider": "greenhouse",
@@ -205,7 +206,7 @@
         "company": "Aidashinc",
         "status": "ok",
         "rows": 17,
-        "durationMs": 256
+        "durationMs": 100
       },
       {
         "provider": "greenhouse",
@@ -213,7 +214,7 @@
         "company": "Inversion Space",
         "status": "ok",
         "rows": 87,
-        "durationMs": 386
+        "durationMs": 127
       },
       {
         "provider": "greenhouse",
@@ -221,7 +222,7 @@
         "company": "Duolingo",
         "status": "ok",
         "rows": 5,
-        "durationMs": 240
+        "durationMs": 83
       },
       {
         "provider": "greenhouse",
@@ -229,7 +230,7 @@
         "company": "General Matter",
         "status": "ok",
         "rows": 126,
-        "durationMs": 369
+        "durationMs": 395
       },
       {
         "provider": "greenhouse",
@@ -237,7 +238,7 @@
         "company": "Muon Space",
         "status": "ok",
         "rows": 144,
-        "durationMs": 479
+        "durationMs": 206
       },
       {
         "provider": "greenhouse",
@@ -245,7 +246,7 @@
         "company": "National Life",
         "status": "ok",
         "rows": 99,
-        "durationMs": 421
+        "durationMs": 235
       },
       {
         "provider": "greenhouse",
@@ -253,7 +254,7 @@
         "company": "Point72",
         "status": "ok",
         "rows": 221,
-        "durationMs": 557
+        "durationMs": 268
       },
       {
         "provider": "greenhouse",
@@ -261,7 +262,7 @@
         "company": "Tenstorrent",
         "status": "ok",
         "rows": 12,
-        "durationMs": 245
+        "durationMs": 146
       },
       {
         "provider": "ashby",
@@ -269,7 +270,7 @@
         "company": "Skydio",
         "status": "ok",
         "rows": 160,
-        "durationMs": 450
+        "durationMs": 350
       },
       {
         "provider": "lever",
@@ -277,7 +278,7 @@
         "company": "Rhombus",
         "status": "ok",
         "rows": 7,
-        "durationMs": 322
+        "durationMs": 633
       },
       {
         "provider": "greenhouse",
@@ -285,7 +286,7 @@
         "company": "Anduril",
         "status": "ok",
         "rows": 2536,
-        "durationMs": 5369
+        "durationMs": 3544
       },
       {
         "provider": "lever",
@@ -293,7 +294,7 @@
         "company": "Field AI",
         "status": "ok",
         "rows": 104,
-        "durationMs": 1640
+        "durationMs": 1604
       },
       {
         "provider": "lever",
@@ -301,7 +302,7 @@
         "company": "Azul Systems",
         "status": "ok",
         "rows": 17,
-        "durationMs": 153
+        "durationMs": 720
       },
       {
         "provider": "greenhouse",
@@ -309,7 +310,7 @@
         "company": "Astera Labs",
         "status": "ok",
         "rows": 93,
-        "durationMs": 257
+        "durationMs": 216
       },
       {
         "provider": "greenhouse",
@@ -317,7 +318,7 @@
         "company": "RF-SMART",
         "status": "ok",
         "rows": 26,
-        "durationMs": 68
+        "durationMs": 51
       },
       {
         "provider": "lever",
@@ -325,7 +326,7 @@
         "company": "Acron Aviation",
         "status": "ok",
         "rows": 53,
-        "durationMs": 310
+        "durationMs": 3829
       },
       {
         "provider": "greenhouse",
@@ -333,7 +334,7 @@
         "company": "Arcesium",
         "status": "ok",
         "rows": 50,
-        "durationMs": 202
+        "durationMs": 148
       },
       {
         "provider": "greenhouse",
@@ -341,7 +342,7 @@
         "company": "GCM Grosvenor",
         "status": "ok",
         "rows": 14,
-        "durationMs": 92
+        "durationMs": 74
       },
       {
         "provider": "greenhouse",
@@ -349,7 +350,7 @@
         "company": "Perpay",
         "status": "ok",
         "rows": 22,
-        "durationMs": 133
+        "durationMs": 51
       },
       {
         "provider": "lever",
@@ -357,7 +358,7 @@
         "company": "GenBio AI",
         "status": "ok",
         "rows": 5,
-        "durationMs": 34
+        "durationMs": 601
       },
       {
         "provider": "lever",
@@ -365,7 +366,7 @@
         "company": "Viget",
         "status": "ok",
         "rows": 4,
-        "durationMs": 89
+        "durationMs": 591
       },
       {
         "provider": "greenhouse",
@@ -373,7 +374,7 @@
         "company": "Rugged Robotics",
         "status": "ok",
         "rows": 4,
-        "durationMs": 84
+        "durationMs": 40
       },
       {
         "provider": "greenhouse",
@@ -381,7 +382,7 @@
         "company": "DoorDash",
         "status": "ok",
         "rows": 456,
-        "durationMs": 881
+        "durationMs": 734
       },
       {
         "provider": "greenhouse",
@@ -389,7 +390,7 @@
         "company": "State Affairs",
         "status": "ok",
         "rows": 10,
-        "durationMs": 59
+        "durationMs": 33
       },
       {
         "provider": "greenhouse",
@@ -397,7 +398,7 @@
         "company": "Sigma Computing",
         "status": "ok",
         "rows": 75,
-        "durationMs": 125
+        "durationMs": 101
       },
       {
         "provider": "greenhouse",
@@ -405,7 +406,7 @@
         "company": "DRW",
         "status": "ok",
         "rows": 2,
-        "durationMs": 62
+        "durationMs": 52
       },
       {
         "provider": "ashby",
@@ -413,7 +414,7 @@
         "company": "Niantic Spatial",
         "status": "ok",
         "rows": 16,
-        "durationMs": 76
+        "durationMs": 54
       },
       {
         "provider": "greenhouse",
@@ -421,7 +422,7 @@
         "company": "Courier Health",
         "status": "ok",
         "rows": 20,
-        "durationMs": 61
+        "durationMs": 37
       },
       {
         "provider": "greenhouse",
@@ -429,7 +430,7 @@
         "company": "MEMX",
         "status": "ok",
         "rows": 11,
-        "durationMs": 58
+        "durationMs": 40
       },
       {
         "provider": "greenhouse",
@@ -437,7 +438,7 @@
         "company": "Pure Storage",
         "status": "ok",
         "rows": 370,
-        "durationMs": 911
+        "durationMs": 387
       },
       {
         "provider": "greenhouse",
@@ -445,7 +446,7 @@
         "company": "Found Energy",
         "status": "ok",
         "rows": 3,
-        "durationMs": 40
+        "durationMs": 187
       },
       {
         "provider": "ashby",
@@ -453,7 +454,7 @@
         "company": "TensorWave",
         "status": "ok",
         "rows": 62,
-        "durationMs": 118
+        "durationMs": 36
       },
       {
         "provider": "greenhouse",
@@ -461,7 +462,7 @@
         "company": "Affirm",
         "status": "ok",
         "rows": 214,
-        "durationMs": 192
+        "durationMs": 267
       },
       {
         "provider": "greenhouse",
@@ -469,7 +470,7 @@
         "company": "Arc",
         "status": "ok",
         "rows": 49,
-        "durationMs": 60
+        "durationMs": 165
       },
       {
         "provider": "greenhouse",
@@ -477,7 +478,7 @@
         "company": "xAI",
         "status": "ok",
         "rows": 304,
-        "durationMs": 564
+        "durationMs": 302
       },
       {
         "provider": "ashby",
@@ -485,7 +486,7 @@
         "company": "Bedrock Robotics",
         "status": "ok",
         "rows": 57,
-        "durationMs": 140
+        "durationMs": 50
       },
       {
         "provider": "ashby",
@@ -493,7 +494,7 @@
         "company": "Harvey",
         "status": "ok",
         "rows": 345,
-        "durationMs": 473
+        "durationMs": 232
       },
       {
         "provider": "lever",
@@ -501,7 +502,7 @@
         "company": "ShopBack",
         "status": "ok",
         "rows": 87,
-        "durationMs": 120
+        "durationMs": 1031
       },
       {
         "provider": "greenhouse",
@@ -509,7 +510,7 @@
         "company": "Profluent",
         "status": "ok",
         "rows": 16,
-        "durationMs": 56
+        "durationMs": 96
       },
       {
         "provider": "ashby",
@@ -517,7 +518,7 @@
         "company": "Range",
         "status": "ok",
         "rows": 64,
-        "durationMs": 296
+        "durationMs": 262
       },
       {
         "provider": "greenhouse",
@@ -525,7 +526,7 @@
         "company": "Walleye Capital",
         "status": "ok",
         "rows": 5,
-        "durationMs": 52
+        "durationMs": 73
       },
       {
         "provider": "greenhouse",
@@ -533,7 +534,7 @@
         "company": "Datacor",
         "status": "ok",
         "rows": 15,
-        "durationMs": 84
+        "durationMs": 126
       },
       {
         "provider": "greenhouse",
@@ -541,7 +542,7 @@
         "company": "Varda Space",
         "status": "ok",
         "rows": 110,
-        "durationMs": 374
+        "durationMs": 327
       },
       {
         "provider": "ashby",
@@ -549,7 +550,7 @@
         "company": "Allen Control Systems",
         "status": "ok",
         "rows": 36,
-        "durationMs": 245
+        "durationMs": 72
       },
       {
         "provider": "greenhouse",
@@ -557,7 +558,7 @@
         "company": "GenScript",
         "status": "ok",
         "rows": 73,
-        "durationMs": 227
+        "durationMs": 218
       },
       {
         "provider": "ashby",
@@ -565,7 +566,7 @@
         "company": "Dandy",
         "status": "ok",
         "rows": 77,
-        "durationMs": 234
+        "durationMs": 246
       },
       {
         "provider": "ashby",
@@ -573,7 +574,7 @@
         "company": "Clay",
         "status": "ok",
         "rows": 58,
-        "durationMs": 239
+        "durationMs": 236
       },
       {
         "provider": "ashby",
@@ -581,7 +582,7 @@
         "company": "Plot Technologies",
         "status": "ok",
         "rows": 5,
-        "durationMs": 34
+        "durationMs": 130
       },
       {
         "provider": "greenhouse",
@@ -589,7 +590,7 @@
         "company": "AMCA",
         "status": "ok",
         "rows": 51,
-        "durationMs": 210
+        "durationMs": 160
       },
       {
         "provider": "ashby",
@@ -597,7 +598,7 @@
         "company": "Perchwell",
         "status": "ok",
         "rows": 6,
-        "durationMs": 133
+        "durationMs": 19
       },
       {
         "provider": "greenhouse",
@@ -605,7 +606,7 @@
         "company": "Enova",
         "status": "ok",
         "rows": 37,
-        "durationMs": 204
+        "durationMs": 78
       },
       {
         "provider": "lever",
@@ -613,7 +614,7 @@
         "company": "Hermeus",
         "status": "ok",
         "rows": 81,
-        "durationMs": 154
+        "durationMs": 858
       },
       {
         "provider": "greenhouse",
@@ -621,7 +622,7 @@
         "company": "GITAI",
         "status": "ok",
         "rows": 16,
-        "durationMs": 147
+        "durationMs": 63
       },
       {
         "provider": "greenhouse",
@@ -629,7 +630,7 @@
         "company": "Formlabsinternships",
         "status": "ok",
         "rows": 14,
-        "durationMs": 98
+        "durationMs": 38
       },
       {
         "provider": "greenhouse",
@@ -637,7 +638,7 @@
         "company": "QuEra Computing",
         "status": "ok",
         "rows": 78,
-        "durationMs": 105
+        "durationMs": 249
       },
       {
         "provider": "greenhouse",
@@ -645,7 +646,7 @@
         "company": "Mach Industries",
         "status": "ok",
         "rows": 154,
-        "durationMs": 601
+        "durationMs": 390
       },
       {
         "provider": "greenhouse",
@@ -653,7 +654,7 @@
         "company": "Mill",
         "status": "ok",
         "rows": 29,
-        "durationMs": 65
+        "durationMs": 83
       },
       {
         "provider": "ashby",
@@ -661,7 +662,7 @@
         "company": "Reflect Orbital",
         "status": "ok",
         "rows": 21,
-        "durationMs": 199
+        "durationMs": 30
       },
       {
         "provider": "greenhouse",
@@ -669,7 +670,7 @@
         "company": "EQT Corporation",
         "status": "ok",
         "rows": 59,
-        "durationMs": 74
+        "durationMs": 202
       },
       {
         "provider": "greenhouse",
@@ -677,7 +678,7 @@
         "company": "Voloridge",
         "status": "ok",
         "rows": 11,
-        "durationMs": 55
+        "durationMs": 51
       },
       {
         "provider": "greenhouse",
@@ -685,7 +686,7 @@
         "company": "Wurl",
         "status": "ok",
         "rows": 2,
-        "durationMs": 43
+        "durationMs": 40
       },
       {
         "provider": "ashby",
@@ -693,7 +694,7 @@
         "company": "Ramp",
         "status": "ok",
         "rows": 167,
-        "durationMs": 476
+        "durationMs": 277
       },
       {
         "provider": "greenhouse",
@@ -701,7 +702,7 @@
         "company": "ZipRecruiter",
         "status": "ok",
         "rows": 44,
-        "durationMs": 242
+        "durationMs": 167
       },
       {
         "provider": "greenhouse",
@@ -709,7 +710,7 @@
         "company": "Figma",
         "status": "ok",
         "rows": 139,
-        "durationMs": 526
+        "durationMs": 226
       },
       {
         "provider": "greenhouse",
@@ -717,7 +718,7 @@
         "company": "Klaviyo",
         "status": "ok",
         "rows": 10,
-        "durationMs": 140
+        "durationMs": 146
       },
       {
         "provider": "greenhouse",
@@ -725,7 +726,7 @@
         "company": "Haigroup",
         "status": "ok",
         "rows": 10,
-        "durationMs": 141
+        "durationMs": 37
       },
       {
         "provider": "ashby",
@@ -733,7 +734,7 @@
         "company": "Grow Therapy",
         "status": "ok",
         "rows": 27,
-        "durationMs": 139
+        "durationMs": 38
       },
       {
         "provider": "greenhouse",
@@ -741,7 +742,7 @@
         "company": "Astranis",
         "status": "ok",
         "rows": 181,
-        "durationMs": 508
+        "durationMs": 263
       },
       {
         "provider": "ashby",
@@ -749,7 +750,7 @@
         "company": "Cowboy Space",
         "status": "ok",
         "rows": 81,
-        "durationMs": 403
+        "durationMs": 197
       },
       {
         "provider": "ashby",
@@ -757,7 +758,7 @@
         "company": "G2",
         "status": "ok",
         "rows": 52,
-        "durationMs": 142
+        "durationMs": 146
       },
       {
         "provider": "ashby",
@@ -765,7 +766,7 @@
         "company": "Collinear AI",
         "status": "ok",
         "rows": 14,
-        "durationMs": 253
+        "durationMs": 48
       },
       {
         "provider": "greenhouse",
@@ -773,7 +774,7 @@
         "company": "SingleStore",
         "status": "ok",
         "rows": 44,
-        "durationMs": 90
+        "durationMs": 102
       },
       {
         "provider": "greenhouse",
@@ -781,7 +782,7 @@
         "company": "Viking Global",
         "status": "ok",
         "rows": 7,
-        "durationMs": 170
+        "durationMs": 38
       },
       {
         "provider": "greenhouse",
@@ -789,7 +790,7 @@
         "company": "MetOx International",
         "status": "ok",
         "rows": 13,
-        "durationMs": 172
+        "durationMs": 67
       },
       {
         "provider": "greenhouse",
@@ -797,7 +798,7 @@
         "company": "Bot Auto",
         "status": "ok",
         "rows": 24,
-        "durationMs": 156
+        "durationMs": 59
       },
       {
         "provider": "greenhouse",
@@ -805,7 +806,7 @@
         "company": "IEX",
         "status": "ok",
         "rows": 12,
-        "durationMs": 167
+        "durationMs": 32
       },
       {
         "provider": "greenhouse",
@@ -813,7 +814,7 @@
         "company": "XPENG Motors",
         "status": "ok",
         "rows": 22,
-        "durationMs": 158
+        "durationMs": 54
       },
       {
         "provider": "ashby",
@@ -821,7 +822,7 @@
         "company": "ConductorAI",
         "status": "ok",
         "rows": 7,
-        "durationMs": 144
+        "durationMs": 37
       },
       {
         "provider": "greenhouse",
@@ -829,7 +830,7 @@
         "company": "SharkNinja",
         "status": "ok",
         "rows": 150,
-        "durationMs": 450
+        "durationMs": 297
       },
       {
         "provider": "greenhouse",
@@ -837,7 +838,7 @@
         "company": "Amperesand",
         "status": "ok",
         "rows": 58,
-        "durationMs": 271
+        "durationMs": 170
       },
       {
         "provider": "greenhouse",
@@ -845,7 +846,7 @@
         "company": "CoVar",
         "status": "ok",
         "rows": 6,
-        "durationMs": 107
+        "durationMs": 30
       },
       {
         "provider": "greenhouse",
@@ -853,7 +854,7 @@
         "company": "Nanopath",
         "status": "ok",
         "rows": 9,
-        "durationMs": 95
+        "durationMs": 77
       },
       {
         "provider": "greenhouse",
@@ -861,7 +862,7 @@
         "company": "Clockwork Systems",
         "status": "ok",
         "rows": 9,
-        "durationMs": 94
+        "durationMs": 73
       },
       {
         "provider": "greenhouse",
@@ -869,7 +870,7 @@
         "company": "Rendezvous Robotics",
         "status": "ok",
         "rows": 24,
-        "durationMs": 69
+        "durationMs": 74
       },
       {
         "provider": "lever",
@@ -877,7 +878,7 @@
         "company": "Kitware",
         "status": "ok",
         "rows": 19,
-        "durationMs": 39
+        "durationMs": 365
       },
       {
         "provider": "ashby",
@@ -885,7 +886,7 @@
         "company": "Gecko Robotics",
         "status": "ok",
         "rows": 21,
-        "durationMs": 50
+        "durationMs": 34
       },
       {
         "provider": "greenhouse",
@@ -893,7 +894,7 @@
         "company": "Cartesian",
         "status": "ok",
         "rows": 11,
-        "durationMs": 57
+        "durationMs": 36
       },
       {
         "provider": "greenhouse",
@@ -901,7 +902,7 @@
         "company": "Relay",
         "status": "ok",
         "rows": 26,
-        "durationMs": 94
+        "durationMs": 46
       },
       {
         "provider": "greenhouse",
@@ -909,7 +910,7 @@
         "company": "Brevium",
         "status": "ok",
         "rows": 3,
-        "durationMs": 47
+        "durationMs": 29
       },
       {
         "provider": "lever",
@@ -917,7 +918,7 @@
         "company": "CSC Generation",
         "status": "ok",
         "rows": 513,
-        "durationMs": 868
+        "durationMs": 2177
       },
       {
         "provider": "greenhouse",
@@ -925,7 +926,7 @@
         "company": "Workshop",
         "status": "ok",
         "rows": 6,
-        "durationMs": 160
+        "durationMs": 28
       },
       {
         "provider": "ashby",
@@ -933,7 +934,7 @@
         "company": "Base Power",
         "status": "ok",
         "rows": 192,
-        "durationMs": 152
+        "durationMs": 102
       },
       {
         "provider": "ashby",
@@ -941,7 +942,7 @@
         "company": "AI Intern to the CEO",
         "status": "ok",
         "rows": 16,
-        "durationMs": 104
+        "durationMs": 46
       },
       {
         "provider": "lever",
@@ -949,7 +950,7 @@
         "company": "AnaVation",
         "status": "ok",
         "rows": 68,
-        "durationMs": 360
+        "durationMs": 810
       },
       {
         "provider": "greenhouse",
@@ -957,7 +958,7 @@
         "company": "Axon",
         "status": "ok",
         "rows": 9,
-        "durationMs": 87
+        "durationMs": 46
       },
       {
         "provider": "ashby",
@@ -965,7 +966,7 @@
         "company": "MegazoneCloud",
         "status": "ok",
         "rows": 13,
-        "durationMs": 89
+        "durationMs": 32
       },
       {
         "provider": "lever",
@@ -973,7 +974,7 @@
         "company": "Xcimer Energy",
         "status": "ok",
         "rows": 53,
-        "durationMs": 67
+        "durationMs": 1348
       },
       {
         "provider": "greenhouse",
@@ -981,7 +982,7 @@
         "company": "NewsBreak",
         "status": "ok",
         "rows": 66,
-        "durationMs": 113
+        "durationMs": 143
       },
       {
         "provider": "greenhouse",
@@ -989,7 +990,7 @@
         "company": "Businessolver",
         "status": "ok",
         "rows": 4,
-        "durationMs": 63
+        "durationMs": 42
       },
       {
         "provider": "greenhouse",
@@ -997,7 +998,7 @@
         "company": "DV Trading",
         "status": "ok",
         "rows": 74,
-        "durationMs": 96
+        "durationMs": 109
       },
       {
         "provider": "lever",
@@ -1005,7 +1006,7 @@
         "company": "SEP",
         "status": "ok",
         "rows": 8,
-        "durationMs": 46
+        "durationMs": 92
       },
       {
         "provider": "greenhouse",
@@ -1013,7 +1014,7 @@
         "company": "Tanium",
         "status": "ok",
         "rows": 72,
-        "durationMs": 230
+        "durationMs": 127
       },
       {
         "provider": "greenhouse",
@@ -1021,7 +1022,7 @@
         "company": "National Information Solutions Cooperative (NISC)",
         "status": "ok",
         "rows": 38,
-        "durationMs": 170
+        "durationMs": 109
       },
       {
         "provider": "greenhouse",
@@ -1029,7 +1030,7 @@
         "company": "Schonfeld",
         "status": "ok",
         "rows": 69,
-        "durationMs": 154
+        "durationMs": 114
       },
       {
         "provider": "ashby",
@@ -1037,7 +1038,7 @@
         "company": "Sequence Holdings",
         "status": "ok",
         "rows": 5,
-        "durationMs": 137
+        "durationMs": 42
       },
       {
         "provider": "greenhouse",
@@ -1045,7 +1046,7 @@
         "company": "Pacific Fusion",
         "status": "ok",
         "rows": 25,
-        "durationMs": 54
+        "durationMs": 49
       },
       {
         "provider": "lever",
@@ -1053,7 +1054,7 @@
         "company": "Immuta",
         "status": "ok",
         "rows": 13,
-        "durationMs": 189
+        "durationMs": 171
       },
       {
         "provider": "greenhouse",
@@ -1061,7 +1062,7 @@
         "company": "Rocket Lab",
         "status": "ok",
         "rows": 585,
-        "durationMs": 1428
+        "durationMs": 722
       },
       {
         "provider": "ashby",
@@ -1069,7 +1070,7 @@
         "company": "Internship",
         "status": "ok",
         "rows": 18,
-        "durationMs": 115
+        "durationMs": 33
       },
       {
         "provider": "ashby",
@@ -1077,7 +1078,7 @@
         "company": "Saronic",
         "status": "ok",
         "rows": 231,
-        "durationMs": 285
+        "durationMs": 122
       },
       {
         "provider": "lever",
@@ -1085,7 +1086,7 @@
         "company": "Crest Industries",
         "status": "ok",
         "rows": 113,
-        "durationMs": 265
+        "durationMs": 706
       },
       {
         "provider": "greenhouse",
@@ -1093,7 +1094,7 @@
         "company": "K2 Space",
         "status": "ok",
         "rows": 250,
-        "durationMs": 799
+        "durationMs": 235
       },
       {
         "provider": "lever",
@@ -1101,7 +1102,7 @@
         "company": "Shield AI",
         "status": "ok",
         "rows": 641,
-        "durationMs": 1444
+        "durationMs": 2741
       },
       {
         "provider": "greenhouse",
@@ -1109,7 +1110,7 @@
         "company": "Viam",
         "status": "ok",
         "rows": 8,
-        "durationMs": 47
+        "durationMs": 84
       },
       {
         "provider": "greenhouse",
@@ -1117,7 +1118,7 @@
         "company": "Eudia",
         "status": "ok",
         "rows": 22,
-        "durationMs": 48
+        "durationMs": 42
       },
       {
         "provider": "ashby",
@@ -1125,7 +1126,7 @@
         "company": "Talos",
         "status": "ok",
         "rows": 16,
-        "durationMs": 103
+        "durationMs": 23
       },
       {
         "provider": "greenhouse",
@@ -1133,7 +1134,7 @@
         "company": "Flagship Pioneering",
         "status": "ok",
         "rows": 28,
-        "durationMs": 85
+        "durationMs": 53
       },
       {
         "provider": "greenhouse",
@@ -1141,7 +1142,7 @@
         "company": "Syska Hennessy Group",
         "status": "ok",
         "rows": 168,
-        "durationMs": 228
+        "durationMs": 169
       },
       {
         "provider": "greenhouse",
@@ -1149,7 +1150,7 @@
         "company": "Garner Health",
         "status": "ok",
         "rows": 79,
-        "durationMs": 157
+        "durationMs": 123
       },
       {
         "provider": "greenhouse",
@@ -1157,7 +1158,7 @@
         "company": "Scale AI",
         "status": "ok",
         "rows": 182,
-        "durationMs": 539
+        "durationMs": 164
       },
       {
         "provider": "lever",
@@ -1165,7 +1166,7 @@
         "company": "Neighbor",
         "status": "ok",
         "rows": 13,
-        "durationMs": 70
+        "durationMs": 111
       },
       {
         "provider": "greenhouse",
@@ -1173,7 +1174,7 @@
         "company": "ID.me",
         "status": "ok",
         "rows": 7,
-        "durationMs": 63
+        "durationMs": 44
       },
       {
         "provider": "ashby",
@@ -1181,7 +1182,7 @@
         "company": "The Exploration Company",
         "status": "ok",
         "rows": 100,
-        "durationMs": 197
+        "durationMs": 74
       },
       {
         "provider": "ashby",
@@ -1189,7 +1190,7 @@
         "company": "Hadrian",
         "status": "ok",
         "rows": 131,
-        "durationMs": 163
+        "durationMs": 106
       },
       {
         "provider": "greenhouse",
@@ -1197,7 +1198,7 @@
         "company": "Stokespacetechnologies",
         "status": "ok",
         "rows": 71,
-        "durationMs": 231
+        "durationMs": 117
       },
       {
         "provider": "lever",
@@ -1205,7 +1206,7 @@
         "company": "FOTH",
         "status": "ok",
         "rows": 70,
-        "durationMs": 183
+        "durationMs": 1647
       },
       {
         "provider": "greenhouse",
@@ -1213,7 +1214,7 @@
         "company": "HP IQ",
         "status": "ok",
         "rows": 35,
-        "durationMs": 86
+        "durationMs": 59
       },
       {
         "provider": "ashby",
@@ -1221,7 +1222,7 @@
         "company": "Sierra",
         "status": "ok",
         "rows": 186,
-        "durationMs": 439
+        "durationMs": 112
       },
       {
         "provider": "greenhouse",
@@ -1229,7 +1230,7 @@
         "company": "Olsson",
         "status": "ok",
         "rows": 392,
-        "durationMs": 697
+        "durationMs": 423
       },
       {
         "provider": "greenhouse",
@@ -1237,7 +1238,7 @@
         "company": "Awetomaton",
         "status": "ok",
         "rows": 12,
-        "durationMs": 203
+        "durationMs": 75
       },
       {
         "provider": "ashby",
@@ -1245,7 +1246,7 @@
         "company": "Northwood Space",
         "status": "ok",
         "rows": 74,
-        "durationMs": 236
+        "durationMs": 201
       },
       {
         "provider": "greenhouse",
@@ -1253,7 +1254,7 @@
         "company": "Charles River Associates (CRA)",
         "status": "ok",
         "rows": 90,
-        "durationMs": 264
+        "durationMs": 218
       },
       {
         "provider": "greenhouse",
@@ -1261,7 +1262,7 @@
         "company": "WhiteWater Midstream",
         "status": "ok",
         "rows": 31,
-        "durationMs": 138
+        "durationMs": 164
       },
       {
         "provider": "greenhouse",
@@ -1269,7 +1270,7 @@
         "company": "Verkada",
         "status": "ok",
         "rows": 319,
-        "durationMs": 621
+        "durationMs": 329
       },
       {
         "provider": "greenhouse",
@@ -1277,7 +1278,7 @@
         "company": "Sage",
         "status": "ok",
         "rows": 8,
-        "durationMs": 67
+        "durationMs": 31
       },
       {
         "provider": "greenhouse",
@@ -1285,7 +1286,7 @@
         "company": "Advanced Space",
         "status": "ok",
         "rows": 21,
-        "durationMs": 69
+        "durationMs": 61
       },
       {
         "provider": "ashby",
@@ -1293,7 +1294,7 @@
         "company": "Phoebe",
         "status": "ok",
         "rows": 10,
-        "durationMs": 118
+        "durationMs": 33
       },
       {
         "provider": "greenhouse",
@@ -1301,7 +1302,7 @@
         "company": "Xantium",
         "status": "ok",
         "rows": 8,
-        "durationMs": 44
+        "durationMs": 41
       },
       {
         "provider": "ashby",
@@ -1309,7 +1310,7 @@
         "company": "The Voleon Group",
         "status": "ok",
         "rows": 58,
-        "durationMs": 105
+        "durationMs": 35
       },
       {
         "provider": "greenhouse",
@@ -1317,7 +1318,7 @@
         "company": "Freeform",
         "status": "ok",
         "rows": 84,
-        "durationMs": 265
+        "durationMs": 193
       },
       {
         "provider": "greenhouse",
@@ -1325,7 +1326,7 @@
         "company": "The Nuclear Company",
         "status": "ok",
         "rows": 64,
-        "durationMs": 175
+        "durationMs": 120
       },
       {
         "provider": "ashby",
@@ -1333,7 +1334,7 @@
         "company": "Notion",
         "status": "ok",
         "rows": 128,
-        "durationMs": 212
+        "durationMs": 154
       },
       {
         "provider": "lever",
@@ -1341,7 +1342,7 @@
         "company": "Belvedere Trading",
         "status": "ok",
         "rows": 20,
-        "durationMs": 195
+        "durationMs": 320
       },
       {
         "provider": "greenhouse",
@@ -1349,7 +1350,7 @@
         "company": "HPR (Hyannis Port Research)",
         "status": "ok",
         "rows": 10,
-        "durationMs": 69
+        "durationMs": 44
       },
       {
         "provider": "ashby",
@@ -1357,7 +1358,7 @@
         "company": "Melius",
         "status": "ok",
         "rows": 6,
-        "durationMs": 53
+        "durationMs": 40
       },
       {
         "provider": "ashby",
@@ -1365,15 +1366,15 @@
         "company": "Heliux",
         "status": "ok",
         "rows": 11,
-        "durationMs": 20
+        "durationMs": 36
       },
       {
         "provider": "greenhouse",
         "key": "appian",
         "company": "Appian",
         "status": "ok",
-        "rows": 161,
-        "durationMs": 577
+        "rows": 160,
+        "durationMs": 175
       },
       {
         "provider": "greenhouse",
@@ -1381,7 +1382,7 @@
         "company": "PDT Partners",
         "status": "ok",
         "rows": 12,
-        "durationMs": 55
+        "durationMs": 90
       },
       {
         "provider": "ashby",
@@ -1389,7 +1390,7 @@
         "company": "Quadrillion",
         "status": "ok",
         "rows": 6,
-        "durationMs": 38
+        "durationMs": 23
       },
       {
         "provider": "greenhouse",
@@ -1397,7 +1398,7 @@
         "company": "Virtu Financial",
         "status": "ok",
         "rows": 49,
-        "durationMs": 92
+        "durationMs": 81
       },
       {
         "provider": "greenhouse",
@@ -1405,7 +1406,7 @@
         "company": "Chicago Trading Company",
         "status": "ok",
         "rows": 6,
-        "durationMs": 75
+        "durationMs": 69
       },
       {
         "provider": "greenhouse",
@@ -1413,7 +1414,7 @@
         "company": "Five Rings",
         "status": "ok",
         "rows": 17,
-        "durationMs": 71
+        "durationMs": 35
       },
       {
         "provider": "greenhouse",
@@ -1421,7 +1422,7 @@
         "company": "Flow Traders",
         "status": "ok",
         "rows": 47,
-        "durationMs": 65
+        "durationMs": 48
       },
       {
         "provider": "greenhouse",
@@ -1429,7 +1430,7 @@
         "company": "Quantiq",
         "status": "ok",
         "rows": 11,
-        "durationMs": 46
+        "durationMs": 28
       },
       {
         "provider": "ashby",
@@ -1437,7 +1438,7 @@
         "company": "Beacon Software",
         "status": "ok",
         "rows": 50,
-        "durationMs": 138
+        "durationMs": 97
       },
       {
         "provider": "ashby",
@@ -1445,7 +1446,7 @@
         "company": "Ellipsis Labs",
         "status": "ok",
         "rows": 13,
-        "durationMs": 105
+        "durationMs": 14
       },
       {
         "provider": "greenhouse",
@@ -1453,7 +1454,7 @@
         "company": "Glean",
         "status": "ok",
         "rows": 134,
-        "durationMs": 593
+        "durationMs": 707
       },
       {
         "provider": "ashby",
@@ -1461,7 +1462,7 @@
         "company": "Rivian",
         "status": "ok",
         "rows": 144,
-        "durationMs": 527
+        "durationMs": 653
       },
       {
         "provider": "greenhouse",
@@ -1469,7 +1470,7 @@
         "company": "Angel City Football Club",
         "status": "ok",
         "rows": 4,
-        "durationMs": 74
+        "durationMs": 51
       },
       {
         "provider": "lever",
@@ -1477,7 +1478,7 @@
         "company": "Commonwealth Fusion Systems",
         "status": "ok",
         "rows": 129,
-        "durationMs": 378
+        "durationMs": 969
       },
       {
         "provider": "greenhouse",
@@ -1485,7 +1486,7 @@
         "company": "Mirakl",
         "status": "ok",
         "rows": 30,
-        "durationMs": 82
+        "durationMs": 530
       },
       {
         "provider": "ashby",
@@ -1493,7 +1494,7 @@
         "company": "Brain Co.",
         "status": "ok",
         "rows": 38,
-        "durationMs": 54
+        "durationMs": 507
       },
       {
         "provider": "greenhouse",
@@ -1501,7 +1502,7 @@
         "company": "Later",
         "status": "ok",
         "rows": 43,
-        "durationMs": 94
+        "durationMs": 539
       },
       {
         "provider": "greenhouse",
@@ -1509,7 +1510,7 @@
         "company": "Faire",
         "status": "ok",
         "rows": 79,
-        "durationMs": 418
+        "durationMs": 546
       },
       {
         "provider": "ashby",
@@ -1517,7 +1518,7 @@
         "company": "Bobyard",
         "status": "ok",
         "rows": 41,
-        "durationMs": 234
+        "durationMs": 42
       },
       {
         "provider": "ashby",
@@ -1525,7 +1526,7 @@
         "company": "Pangram Labs",
         "status": "ok",
         "rows": 15,
-        "durationMs": 26
+        "durationMs": 36
       },
       {
         "provider": "ashby",
@@ -1533,7 +1534,7 @@
         "company": "Brightstar.AI",
         "status": "ok",
         "rows": 1,
-        "durationMs": 187
+        "durationMs": 25
       },
       {
         "provider": "greenhouse",
@@ -1541,7 +1542,7 @@
         "company": "Geneva Trading",
         "status": "ok",
         "rows": 14,
-        "durationMs": 195
+        "durationMs": 44
       },
       {
         "provider": "ashby",
@@ -1549,7 +1550,7 @@
         "company": "OnePay",
         "status": "ok",
         "rows": 42,
-        "durationMs": 201
+        "durationMs": 63
       },
       {
         "provider": "lever",
@@ -1557,7 +1558,7 @@
         "company": "Toyota Research Institute",
         "status": "ok",
         "rows": 12,
-        "durationMs": 138
+        "durationMs": 110
       },
       {
         "provider": "ashby",
@@ -1565,7 +1566,7 @@
         "company": "AfterQuery",
         "status": "ok",
         "rows": 40,
-        "durationMs": 249
+        "durationMs": 104
       },
       {
         "provider": "greenhouse",
@@ -1573,7 +1574,7 @@
         "company": "Beam Therapeutics",
         "status": "ok",
         "rows": 46,
-        "durationMs": 261
+        "durationMs": 239
       },
       {
         "provider": "greenhouse",
@@ -1581,7 +1582,7 @@
         "company": "Kodiak Robotics",
         "status": "ok",
         "rows": 67,
-        "durationMs": 274
+        "durationMs": 257
       },
       {
         "provider": "ashby",
@@ -1589,7 +1590,7 @@
         "company": "Pluralis Research",
         "status": "ok",
         "rows": 12,
-        "durationMs": 43
+        "durationMs": 172
       },
       {
         "provider": "greenhouse",
@@ -1597,7 +1598,7 @@
         "company": "Xaira Therapeutics",
         "status": "ok",
         "rows": 28,
-        "durationMs": 159
+        "durationMs": 182
       },
       {
         "provider": "ashby",
@@ -1605,7 +1606,7 @@
         "company": "GrayMatter Robotics",
         "status": "ok",
         "rows": 12,
-        "durationMs": 145
+        "durationMs": 129
       },
       {
         "provider": "greenhouse",
@@ -1613,7 +1614,7 @@
         "company": "MORSE Corp Co-op Opportunities",
         "status": "ok",
         "rows": 20,
-        "durationMs": 96
+        "durationMs": 127
       },
       {
         "provider": "greenhouse",
@@ -1621,7 +1622,7 @@
         "company": "Audax Group",
         "status": "ok",
         "rows": 13,
-        "durationMs": 125
+        "durationMs": 129
       },
       {
         "provider": "ashby",
@@ -1629,7 +1630,7 @@
         "company": "Mercor",
         "status": "ok",
         "rows": 112,
-        "durationMs": 194
+        "durationMs": 101
       },
       {
         "provider": "ashby",
@@ -1637,7 +1638,7 @@
         "company": "Pear VC",
         "status": "ok",
         "rows": 101,
-        "durationMs": 153
+        "durationMs": 80
       },
       {
         "provider": "ashby",
@@ -1645,7 +1646,7 @@
         "company": "OpusClip",
         "status": "ok",
         "rows": 7,
-        "durationMs": 76
+        "durationMs": 34
       },
       {
         "provider": "greenhouse",
@@ -1653,7 +1654,7 @@
         "company": "Chicago Trading Company",
         "status": "ok",
         "rows": 8,
-        "durationMs": 97
+        "durationMs": 34
       },
       {
         "provider": "ashby",
@@ -1661,7 +1662,7 @@
         "company": "Yotta Labs",
         "status": "ok",
         "rows": 4,
-        "durationMs": 99
+        "durationMs": 49
       },
       {
         "provider": "ashby",
@@ -1669,7 +1670,7 @@
         "company": "Persona AI",
         "status": "ok",
         "rows": 27,
-        "durationMs": 163
+        "durationMs": 124
       },
       {
         "provider": "ashby",
@@ -1677,7 +1678,7 @@
         "company": "Modal",
         "status": "ok",
         "rows": 43,
-        "durationMs": 133
+        "durationMs": 81
       },
       {
         "provider": "greenhouse",
@@ -1685,7 +1686,7 @@
         "company": "DRW",
         "status": "ok",
         "rows": 168,
-        "durationMs": 196
+        "durationMs": 225
       },
       {
         "provider": "greenhouse",
@@ -1693,7 +1694,7 @@
         "company": "Point C",
         "status": "ok",
         "rows": 3,
-        "durationMs": 64
+        "durationMs": 55
       },
       {
         "provider": "ashby",
@@ -1701,7 +1702,7 @@
         "company": "Prior Labs",
         "status": "ok",
         "rows": 23,
-        "durationMs": 97
+        "durationMs": 60
       },
       {
         "provider": "greenhouse",
@@ -1709,7 +1710,7 @@
         "company": "Artefact",
         "status": "ok",
         "rows": 127,
-        "durationMs": 194
+        "durationMs": 152
       },
       {
         "provider": "ashby",
@@ -1717,7 +1718,7 @@
         "company": "Quora",
         "status": "ok",
         "rows": 8,
-        "durationMs": 71
+        "durationMs": 33
       },
       {
         "provider": "greenhouse",
@@ -1725,7 +1726,7 @@
         "company": "HeyGen",
         "status": "ok",
         "rows": 21,
-        "durationMs": 57
+        "durationMs": 59
       },
       {
         "provider": "ashby",
@@ -1733,7 +1734,7 @@
         "company": "Barnes & Thornburg",
         "status": "ok",
         "rows": 123,
-        "durationMs": 193
+        "durationMs": 138
       },
       {
         "provider": "lever",
@@ -1741,7 +1742,7 @@
         "company": "Brillio",
         "status": "ok",
         "rows": 226,
-        "durationMs": 96
+        "durationMs": 623
       },
       {
         "provider": "greenhouse",
@@ -1749,7 +1750,7 @@
         "company": "Via Transportation",
         "status": "ok",
         "rows": 179,
-        "durationMs": 212
+        "durationMs": 188
       },
       {
         "provider": "greenhouse",
@@ -1757,7 +1758,7 @@
         "company": "66degrees",
         "status": "ok",
         "rows": 24,
-        "durationMs": 64
+        "durationMs": 83
       },
       {
         "provider": "ashby",
@@ -1765,7 +1766,7 @@
         "company": "Handshake",
         "status": "ok",
         "rows": 88,
-        "durationMs": 136
+        "durationMs": 155
       },
       {
         "provider": "ashby",
@@ -1773,7 +1774,7 @@
         "company": "Petra Security",
         "status": "ok",
         "rows": 13,
-        "durationMs": 117
+        "durationMs": 50
       },
       {
         "provider": "lever",
@@ -1781,7 +1782,7 @@
         "company": "PointClickCare",
         "status": "ok",
         "rows": 79,
-        "durationMs": 962
+        "durationMs": 571
       },
       {
         "provider": "greenhouse",
@@ -1789,7 +1790,7 @@
         "company": "SpaceX",
         "status": "ok",
         "rows": 2765,
-        "durationMs": 3232
+        "durationMs": 2088
       },
       {
         "provider": "lever",
@@ -1797,7 +1798,7 @@
         "company": "Artera",
         "status": "ok",
         "rows": 6,
-        "durationMs": 159
+        "durationMs": 89
       },
       {
         "provider": "lever",
@@ -1805,7 +1806,7 @@
         "company": "Palantir",
         "status": "ok",
         "rows": 310,
-        "durationMs": 277
+        "durationMs": 506
       },
       {
         "provider": "lever",
@@ -1813,7 +1814,7 @@
         "company": "DataLab USA",
         "status": "ok",
         "rows": 16,
-        "durationMs": 36
+        "durationMs": 128
       },
       {
         "provider": "greenhouse",
@@ -1821,7 +1822,7 @@
         "company": "NIH-NCBI",
         "status": "ok",
         "rows": 80,
-        "durationMs": 113
+        "durationMs": 104
       },
       {
         "provider": "lever",
@@ -1829,7 +1830,7 @@
         "company": "SteerBridge",
         "status": "ok",
         "rows": 41,
-        "durationMs": 96
+        "durationMs": 337
       },
       {
         "provider": "greenhouse",
@@ -1837,7 +1838,7 @@
         "company": "Zest AI",
         "status": "ok",
         "rows": 3,
-        "durationMs": 47
+        "durationMs": 39
       },
       {
         "provider": "lever",
@@ -1845,7 +1846,7 @@
         "company": "Deep Genomics",
         "status": "ok",
         "rows": 4,
-        "durationMs": 42
+        "durationMs": 90
       },
       {
         "provider": "ashby",
@@ -1853,7 +1854,7 @@
         "company": "Switchboard Hiring",
         "status": "ok",
         "rows": 10,
-        "durationMs": 94
+        "durationMs": 28
       },
       {
         "provider": "greenhouse",
@@ -1861,7 +1862,7 @@
         "company": "edmentum",
         "status": "ok",
         "rows": 31,
-        "durationMs": 67
+        "durationMs": 48
       },
       {
         "provider": "greenhouse",
@@ -1869,7 +1870,7 @@
         "company": "Recidiviz",
         "status": "ok",
         "rows": 6,
-        "durationMs": 68
+        "durationMs": 34
       },
       {
         "provider": "ashby",
@@ -1877,7 +1878,7 @@
         "company": "Collaborative Robotics",
         "status": "ok",
         "rows": 14,
-        "durationMs": 86
+        "durationMs": 18
       },
       {
         "provider": "ashby",
@@ -1885,7 +1886,7 @@
         "company": "Jerry",
         "status": "ok",
         "rows": 33,
-        "durationMs": 101
+        "durationMs": 37
       },
       {
         "provider": "greenhouse",
@@ -1893,7 +1894,7 @@
         "company": "EvolutionIQ",
         "status": "ok",
         "rows": 18,
-        "durationMs": 147
+        "durationMs": 43
       },
       {
         "provider": "greenhouse",
@@ -1901,15 +1902,15 @@
         "company": "OneImaging",
         "status": "ok",
         "rows": 14,
-        "durationMs": 52
+        "durationMs": 38
       },
       {
         "provider": "greenhouse",
         "key": "reformation",
         "company": "Reformation",
         "status": "ok",
-        "rows": 174,
-        "durationMs": 256
+        "rows": 172,
+        "durationMs": 144
       },
       {
         "provider": "greenhouse",
@@ -1917,7 +1918,7 @@
         "company": "AppLovin",
         "status": "ok",
         "rows": 42,
-        "durationMs": 137
+        "durationMs": 58
       },
       {
         "provider": "ashby",
@@ -1925,7 +1926,7 @@
         "company": "Iambic Therapeutics",
         "status": "ok",
         "rows": 32,
-        "durationMs": 29
+        "durationMs": 22
       },
       {
         "provider": "greenhouse",
@@ -1933,7 +1934,7 @@
         "company": "Tubi",
         "status": "ok",
         "rows": 28,
-        "durationMs": 116
+        "durationMs": 48
       },
       {
         "provider": "ashby",
@@ -1941,7 +1942,7 @@
         "company": "Arizent",
         "status": "ok",
         "rows": 2,
-        "durationMs": 91
+        "durationMs": 14
       },
       {
         "provider": "lever",
@@ -1949,7 +1950,7 @@
         "company": "ERG",
         "status": "ok",
         "rows": 37,
-        "durationMs": 80
+        "durationMs": 284
       },
       {
         "provider": "greenhouse",
@@ -1957,7 +1958,7 @@
         "company": "Striveworks",
         "status": "ok",
         "rows": 30,
-        "durationMs": 93
+        "durationMs": 41
       },
       {
         "provider": "lever",
@@ -1965,7 +1966,7 @@
         "company": "Alloy.ai",
         "status": "ok",
         "rows": 10,
-        "durationMs": 51
+        "durationMs": 687
       },
       {
         "provider": "greenhouse",
@@ -1973,7 +1974,7 @@
         "company": "Lila Sciences",
         "status": "ok",
         "rows": 111,
-        "durationMs": 194
+        "durationMs": 113
       },
       {
         "provider": "greenhouse",
@@ -1981,7 +1982,7 @@
         "company": "UASI",
         "status": "ok",
         "rows": 23,
-        "durationMs": 52
+        "durationMs": 78
       },
       {
         "provider": "greenhouse",
@@ -1989,7 +1990,7 @@
         "company": "Podium",
         "status": "ok",
         "rows": 60,
-        "durationMs": 156
+        "durationMs": 81
       },
       {
         "provider": "greenhouse",
@@ -1997,7 +1998,7 @@
         "company": "Bertram Capital Management",
         "status": "ok",
         "rows": 5,
-        "durationMs": 42
+        "durationMs": 39
       },
       {
         "provider": "greenhouse",
@@ -2005,7 +2006,7 @@
         "company": "True Anomaly",
         "status": "ok",
         "rows": 206,
-        "durationMs": 394
+        "durationMs": 309
       },
       {
         "provider": "lever",
@@ -2013,7 +2014,7 @@
         "company": "Vitana Pediatric & Orthodontic Partners",
         "status": "ok",
         "rows": 29,
-        "durationMs": 30
+        "durationMs": 1271
       },
       {
         "provider": "ashby",
@@ -2021,7 +2022,7 @@
         "company": "Concourse",
         "status": "ok",
         "rows": 7,
-        "durationMs": 125
+        "durationMs": 29
       },
       {
         "provider": "ashby",
@@ -2029,7 +2030,7 @@
         "company": "Snowflake",
         "status": "ok",
         "rows": 359,
-        "durationMs": 236
+        "durationMs": 123
       },
       {
         "provider": "ashby",
@@ -2037,7 +2038,7 @@
         "company": "Zefr",
         "status": "ok",
         "rows": 5,
-        "durationMs": 96
+        "durationMs": 29
       },
       {
         "provider": "lever",
@@ -2045,7 +2046,7 @@
         "company": "Wintermute",
         "status": "ok",
         "rows": 18,
-        "durationMs": 89
+        "durationMs": 821
       },
       {
         "provider": "lever",
@@ -2053,7 +2054,7 @@
         "company": "GMO",
         "status": "ok",
         "rows": 11,
-        "durationMs": 113
+        "durationMs": 1840
       },
       {
         "provider": "greenhouse",
@@ -2061,7 +2062,7 @@
         "company": "MyFunded Futures",
         "status": "ok",
         "rows": 11,
-        "durationMs": 75
+        "durationMs": 96
       },
       {
         "provider": "greenhouse",
@@ -2069,7 +2070,7 @@
         "company": "Giftogram",
         "status": "ok",
         "rows": 4,
-        "durationMs": 67
+        "durationMs": 70
       },
       {
         "provider": "ashby",
@@ -2077,7 +2078,7 @@
         "company": "Solace",
         "status": "ok",
         "rows": 31,
-        "durationMs": 140
+        "durationMs": 45
       },
       {
         "provider": "lever",
@@ -2085,7 +2086,7 @@
         "company": "Global Lending Services",
         "status": "ok",
         "rows": 52,
-        "durationMs": 53
+        "durationMs": 160
       },
       {
         "provider": "lever",
@@ -2093,7 +2094,7 @@
         "company": "hatch I.T.",
         "status": "ok",
         "rows": 26,
-        "durationMs": 40
+        "durationMs": 247
       },
       {
         "provider": "ashby",
@@ -2101,7 +2102,7 @@
         "company": "Idler",
         "status": "ok",
         "rows": 7,
-        "durationMs": 108
+        "durationMs": 20
       },
       {
         "provider": "ashby",
@@ -2109,7 +2110,7 @@
         "company": "2ndWave",
         "status": "ok",
         "rows": 4,
-        "durationMs": 161
+        "durationMs": 64
       },
       {
         "provider": "ashby",
@@ -2117,7 +2118,7 @@
         "company": "Astera Institute",
         "status": "ok",
         "rows": 40,
-        "durationMs": 149
+        "durationMs": 123
       },
       {
         "provider": "ashby",
@@ -2125,7 +2126,7 @@
         "company": "Embedding VC",
         "status": "ok",
         "rows": 42,
-        "durationMs": 118
+        "durationMs": 60
       },
       {
         "provider": "greenhouse",
@@ -2133,7 +2134,7 @@
         "company": "Torc Robotics",
         "status": "ok",
         "rows": 50,
-        "durationMs": 126
+        "durationMs": 141
       },
       {
         "provider": "greenhouse",
@@ -2141,7 +2142,7 @@
         "company": "Wilson Elser",
         "status": "ok",
         "rows": 71,
-        "durationMs": 102
+        "durationMs": 116
       },
       {
         "provider": "ashby",
@@ -2149,16 +2150,15 @@
         "company": "Deeter Analytics",
         "status": "ok",
         "rows": 3,
-        "durationMs": 143
+        "durationMs": 70
       },
       {
         "provider": "lever",
         "key": "openx",
         "company": "OpenX Technologies",
-        "status": "failed",
-        "rows": 0,
-        "durationMs": 12002,
-        "message": "The operation was aborted due to timeout"
+        "status": "ok",
+        "rows": 8,
+        "durationMs": 89
       },
       {
         "provider": "lever",
@@ -2166,7 +2166,7 @@
         "company": "Redhorse Corporation",
         "status": "ok",
         "rows": 66,
-        "durationMs": 56
+        "durationMs": 264
       },
       {
         "provider": "ashby",
@@ -2174,7 +2174,7 @@
         "company": "Applied Intuition",
         "status": "ok",
         "rows": 329,
-        "durationMs": 247
+        "durationMs": 183
       },
       {
         "provider": "greenhouse",
@@ -2182,7 +2182,7 @@
         "company": "Dark Wolf Solutions",
         "status": "ok",
         "rows": 67,
-        "durationMs": 108
+        "durationMs": 83
       },
       {
         "provider": "greenhouse",
@@ -2190,7 +2190,7 @@
         "company": "Precision AQ",
         "status": "ok",
         "rows": 38,
-        "durationMs": 106
+        "durationMs": 64
       },
       {
         "provider": "greenhouse",
@@ -2198,7 +2198,7 @@
         "company": "Precision Medicine Group",
         "status": "ok",
         "rows": 168,
-        "durationMs": 261
+        "durationMs": 184
       },
       {
         "provider": "lever",
@@ -2206,7 +2206,7 @@
         "company": "National Journal",
         "status": "ok",
         "rows": 5,
-        "durationMs": 60
+        "durationMs": 1326
       },
       {
         "provider": "lever",
@@ -2214,7 +2214,7 @@
         "company": "Regal.io",
         "status": "ok",
         "rows": 12,
-        "durationMs": 58
+        "durationMs": 164
       },
       {
         "provider": "greenhouse",
@@ -2222,7 +2222,7 @@
         "company": "RVO Health",
         "status": "ok",
         "rows": 20,
-        "durationMs": 69
+        "durationMs": 108
       },
       {
         "provider": "greenhouse",
@@ -2230,7 +2230,7 @@
         "company": "MediaAlpha",
         "status": "ok",
         "rows": 8,
-        "durationMs": 44
+        "durationMs": 87
       },
       {
         "provider": "greenhouse",
@@ -2238,7 +2238,7 @@
         "company": "Instawork",
         "status": "ok",
         "rows": 54,
-        "durationMs": 81
+        "durationMs": 91
       },
       {
         "provider": "lever",
@@ -2246,7 +2246,7 @@
         "company": "Simulmedia",
         "status": "ok",
         "rows": 6,
-        "durationMs": 29
+        "durationMs": 92
       },
       {
         "provider": "lever",
@@ -2254,7 +2254,7 @@
         "company": "Artera",
         "status": "ok",
         "rows": 9,
-        "durationMs": 136
+        "durationMs": 95
       },
       {
         "provider": "ashby",
@@ -2262,7 +2262,7 @@
         "company": "LiteLLM",
         "status": "ok",
         "rows": 10,
-        "durationMs": 22
+        "durationMs": 17
       },
       {
         "provider": "greenhouse",
@@ -2270,7 +2270,7 @@
         "company": "Amira Learning",
         "status": "ok",
         "rows": 3,
-        "durationMs": 54
+        "durationMs": 44
       },
       {
         "provider": "greenhouse",
@@ -2278,7 +2278,7 @@
         "company": "PMG",
         "status": "ok",
         "rows": 88,
-        "durationMs": 250
+        "durationMs": 92
       },
       {
         "provider": "greenhouse",
@@ -2286,7 +2286,7 @@
         "company": "Bottomline Technologies",
         "status": "ok",
         "rows": 35,
-        "durationMs": 210
+        "durationMs": 72
       },
       {
         "provider": "ashby",
@@ -2294,7 +2294,7 @@
         "company": "Parafin",
         "status": "ok",
         "rows": 5,
-        "durationMs": 94
+        "durationMs": 23
       },
       {
         "provider": "greenhouse",
@@ -2302,7 +2302,7 @@
         "company": "The Brattle Group",
         "status": "ok",
         "rows": 62,
-        "durationMs": 193
+        "durationMs": 52
       },
       {
         "provider": "greenhouse",
@@ -2310,7 +2310,7 @@
         "company": "Bracebridge Capital",
         "status": "ok",
         "rows": 5,
-        "durationMs": 71
+        "durationMs": 37
       },
       {
         "provider": "greenhouse",
@@ -2318,7 +2318,7 @@
         "company": "Accenture Federal Services",
         "status": "ok",
         "rows": 686,
-        "durationMs": 1311
+        "durationMs": 610
       },
       {
         "provider": "greenhouse",
@@ -2326,7 +2326,7 @@
         "company": "Jumio",
         "status": "ok",
         "rows": 18,
-        "durationMs": 95
+        "durationMs": 112
       },
       {
         "provider": "lever",
@@ -2334,7 +2334,7 @@
         "company": "Pattern",
         "status": "ok",
         "rows": 98,
-        "durationMs": 52
+        "durationMs": 1091
       },
       {
         "provider": "greenhouse",
@@ -2342,7 +2342,7 @@
         "company": "AtriCure",
         "status": "ok",
         "rows": 58,
-        "durationMs": 155
+        "durationMs": 63
       },
       {
         "provider": "lever",
@@ -2350,7 +2350,7 @@
         "company": "SingerLewak",
         "status": "ok",
         "rows": 47,
-        "durationMs": 51
+        "durationMs": 93
       },
       {
         "provider": "greenhouse",
@@ -2358,7 +2358,7 @@
         "company": "Groma",
         "status": "ok",
         "rows": 8,
-        "durationMs": 73
+        "durationMs": 29
       },
       {
         "provider": "greenhouse",
@@ -2366,7 +2366,7 @@
         "company": "Gusto",
         "status": "ok",
         "rows": 103,
-        "durationMs": 208
+        "durationMs": 87
       },
       {
         "provider": "lever",
@@ -2374,7 +2374,7 @@
         "company": "Allegiant Air",
         "status": "ok",
         "rows": 61,
-        "durationMs": 90
+        "durationMs": 1044
       },
       {
         "provider": "greenhouse",
@@ -2382,7 +2382,7 @@
         "company": "Heven AeroTech",
         "status": "ok",
         "rows": 26,
-        "durationMs": 96
+        "durationMs": 60
       },
       {
         "provider": "greenhouse",
@@ -2390,7 +2390,7 @@
         "company": "Robinhood",
         "status": "ok",
         "rows": 152,
-        "durationMs": 808
+        "durationMs": 118
       },
       {
         "provider": "greenhouse",
@@ -2398,7 +2398,7 @@
         "company": "Faradayfuture",
         "status": "ok",
         "rows": 82,
-        "durationMs": 133
+        "durationMs": 77
       },
       {
         "provider": "lever",
@@ -2406,7 +2406,7 @@
         "company": "Standtogether",
         "status": "ok",
         "rows": 112,
-        "durationMs": 99
+        "durationMs": 136
       },
       {
         "provider": "ashby",
@@ -2414,7 +2414,7 @@
         "company": "Ibotta",
         "status": "ok",
         "rows": 51,
-        "durationMs": 64
+        "durationMs": 36
       },
       {
         "provider": "lever",
@@ -2422,7 +2422,7 @@
         "company": "Protective",
         "status": "ok",
         "rows": 50,
-        "durationMs": 73
+        "durationMs": 133
       },
       {
         "provider": "greenhouse",
@@ -2430,7 +2430,7 @@
         "company": "Smartlyio",
         "status": "ok",
         "rows": 61,
-        "durationMs": 117
+        "durationMs": 51
       },
       {
         "provider": "greenhouse",
@@ -2438,7 +2438,7 @@
         "company": "Integrainterns",
         "status": "ok",
         "rows": 8,
-        "durationMs": 48
+        "durationMs": 104
       },
       {
         "provider": "greenhouse",
@@ -2446,7 +2446,7 @@
         "company": "Phoenixcontact",
         "status": "ok",
         "rows": 51,
-        "durationMs": 614
+        "durationMs": 79
       },
       {
         "provider": "lever",
@@ -2454,7 +2454,7 @@
         "company": "Woven",
         "status": "ok",
         "rows": 147,
-        "durationMs": 557
+        "durationMs": 1213
       },
       {
         "provider": "greenhouse",
@@ -2462,7 +2462,7 @@
         "company": "SimpliSafe",
         "status": "ok",
         "rows": 36,
-        "durationMs": 596
+        "durationMs": 51
       },
       {
         "provider": "greenhouse",
@@ -2470,7 +2470,7 @@
         "company": "Twitch",
         "status": "ok",
         "rows": 46,
-        "durationMs": 599
+        "durationMs": 70
       },
       {
         "provider": "ashby",
@@ -2478,7 +2478,7 @@
         "company": "Zip",
         "status": "ok",
         "rows": 117,
-        "durationMs": 607
+        "durationMs": 90
       },
       {
         "provider": "ashby",
@@ -2486,7 +2486,7 @@
         "company": "Lambda",
         "status": "ok",
         "rows": 92,
-        "durationMs": 599
+        "durationMs": 97
       },
       {
         "provider": "ashby",
@@ -2494,7 +2494,7 @@
         "company": "Anyscale",
         "status": "ok",
         "rows": 20,
-        "durationMs": 506
+        "durationMs": 21
       },
       {
         "provider": "ashby",
@@ -2502,7 +2502,7 @@
         "company": "Persona",
         "status": "ok",
         "rows": 12,
-        "durationMs": 56
+        "durationMs": 39
       },
       {
         "provider": "ashby",
@@ -2510,7 +2510,7 @@
         "company": "Interaction",
         "status": "failed",
         "rows": 0,
-        "durationMs": 84,
+        "durationMs": 28,
         "message": "404 Not Found"
       },
       {
@@ -2519,7 +2519,7 @@
         "company": "Eventual",
         "status": "ok",
         "rows": 5,
-        "durationMs": 124
+        "durationMs": 38
       },
       {
         "provider": "ashby",
@@ -2527,7 +2527,7 @@
         "company": "Anima",
         "status": "ok",
         "rows": 8,
-        "durationMs": 129
+        "durationMs": 23
       },
       {
         "provider": "ashby",
@@ -2535,7 +2535,7 @@
         "company": "EliseAI",
         "status": "ok",
         "rows": 131,
-        "durationMs": 168
+        "durationMs": 840
       },
       {
         "provider": "ashby",
@@ -2543,7 +2543,7 @@
         "company": "Decagon",
         "status": "ok",
         "rows": 143,
-        "durationMs": 126
+        "durationMs": 762
       },
       {
         "provider": "ashby",
@@ -2551,7 +2551,7 @@
         "company": "Pylon",
         "status": "ok",
         "rows": 15,
-        "durationMs": 79
+        "durationMs": 188
       },
       {
         "provider": "ashby",
@@ -2559,7 +2559,7 @@
         "company": "N1",
         "status": "ok",
         "rows": 10,
-        "durationMs": 62
+        "durationMs": 182
       },
       {
         "provider": "ashby",
@@ -2567,7 +2567,7 @@
         "company": "Luma",
         "status": "failed",
         "rows": 0,
-        "durationMs": 90,
+        "durationMs": 15,
         "message": "404 Not Found"
       },
       {
@@ -2576,7 +2576,7 @@
         "company": "Cape",
         "status": "ok",
         "rows": 26,
-        "durationMs": 151
+        "durationMs": 549
       },
       {
         "provider": "ashby",
@@ -2584,7 +2584,7 @@
         "company": "Commure",
         "status": "failed",
         "rows": 0,
-        "durationMs": 90,
+        "durationMs": 481,
         "message": "404 Not Found"
       },
       {
@@ -2593,7 +2593,7 @@
         "company": "Citizen Health",
         "status": "ok",
         "rows": 3,
-        "durationMs": 105
+        "durationMs": 498
       },
       {
         "provider": "greenhouse",
@@ -2601,7 +2601,7 @@
         "company": "Canonical",
         "status": "ok",
         "rows": 309,
-        "durationMs": 460
+        "durationMs": 803
       },
       {
         "provider": "ashby",
@@ -2609,7 +2609,7 @@
         "company": "Suno",
         "status": "ok",
         "rows": 69,
-        "durationMs": 75
+        "durationMs": 123
       },
       {
         "provider": "ashby",
@@ -2617,16 +2617,15 @@
         "company": "BRM",
         "status": "ok",
         "rows": 3,
-        "durationMs": 81
+        "durationMs": 53
       },
       {
         "provider": "lever",
         "key": "ranger",
         "company": "Ranger",
-        "status": "failed",
-        "rows": 0,
-        "durationMs": 12001,
-        "message": "The operation was aborted due to timeout"
+        "status": "ok",
+        "rows": 3,
+        "durationMs": 3837
       },
       {
         "provider": "ashby",
@@ -2634,7 +2633,7 @@
         "company": "Candid Health",
         "status": "ok",
         "rows": 36,
-        "durationMs": 98
+        "durationMs": 56
       },
       {
         "provider": "ashby",
@@ -2642,7 +2641,7 @@
         "company": "Sentry",
         "status": "ok",
         "rows": 46,
-        "durationMs": 35
+        "durationMs": 99
       },
       {
         "provider": "ashby",
@@ -2650,7 +2649,7 @@
         "company": "Mandolin",
         "status": "ok",
         "rows": 4,
-        "durationMs": 87
+        "durationMs": 31
       },
       {
         "provider": "ashby",
@@ -2658,7 +2657,7 @@
         "company": "Pylon",
         "status": "ok",
         "rows": 18,
-        "durationMs": 63
+        "durationMs": 46
       },
       {
         "provider": "ashby",
@@ -2666,7 +2665,7 @@
         "company": "Credit Genie",
         "status": "ok",
         "rows": 13,
-        "durationMs": 88
+        "durationMs": 46
       },
       {
         "provider": "ashby",
@@ -2674,7 +2673,7 @@
         "company": "Assort Health",
         "status": "ok",
         "rows": 35,
-        "durationMs": 93
+        "durationMs": 57
       },
       {
         "provider": "greenhouse",
@@ -2682,7 +2681,7 @@
         "company": "Vestmark",
         "status": "ok",
         "rows": 7,
-        "durationMs": 42
+        "durationMs": 52
       },
       {
         "provider": "greenhouse",
@@ -2690,7 +2689,7 @@
         "company": "Hasbro",
         "status": "ok",
         "rows": 108,
-        "durationMs": 418
+        "durationMs": 174
       },
       {
         "provider": "greenhouse",
@@ -2698,7 +2697,7 @@
         "company": "Gallup",
         "status": "ok",
         "rows": 43,
-        "durationMs": 74
+        "durationMs": 89
       },
       {
         "provider": "lever",
@@ -2706,7 +2705,7 @@
         "company": "Solopulseco",
         "status": "ok",
         "rows": 10,
-        "durationMs": 244
+        "durationMs": 92
       },
       {
         "provider": "greenhouse",
@@ -2714,7 +2713,7 @@
         "company": "Tenet3",
         "status": "ok",
         "rows": 7,
-        "durationMs": 48
+        "durationMs": 54
       },
       {
         "provider": "ashby",
@@ -2722,7 +2721,7 @@
         "company": "Stradahq",
         "status": "ok",
         "rows": 6,
-        "durationMs": 229
+        "durationMs": 46
       },
       {
         "provider": "greenhouse",
@@ -2730,7 +2729,7 @@
         "company": "Guidepointsecurity",
         "status": "ok",
         "rows": 63,
-        "durationMs": 300
+        "durationMs": 105
       },
       {
         "provider": "ashby",
@@ -2738,7 +2737,7 @@
         "company": "Happyrobot.Ai",
         "status": "ok",
         "rows": 75,
-        "durationMs": 314
+        "durationMs": 87
       },
       {
         "provider": "greenhouse",
@@ -2746,7 +2745,7 @@
         "company": "Clenera",
         "status": "ok",
         "rows": 19,
-        "durationMs": 207
+        "durationMs": 86
       },
       {
         "provider": "greenhouse",
@@ -2754,7 +2753,7 @@
         "company": "Khan Academy",
         "status": "ok",
         "rows": 6,
-        "durationMs": 188
+        "durationMs": 71
       },
       {
         "provider": "greenhouse",
@@ -2762,7 +2761,7 @@
         "company": "Roboforce",
         "status": "ok",
         "rows": 18,
-        "durationMs": 101
+        "durationMs": 73
       },
       {
         "provider": "greenhouse",
@@ -2770,7 +2769,7 @@
         "company": "Voyagertechnologiesinc",
         "status": "ok",
         "rows": 181,
-        "durationMs": 321
+        "durationMs": 484
       },
       {
         "provider": "ashby",
@@ -2778,7 +2777,7 @@
         "company": "Govsignals",
         "status": "ok",
         "rows": 7,
-        "durationMs": 160
+        "durationMs": 43
       },
       {
         "provider": "greenhouse",
@@ -2786,7 +2785,7 @@
         "company": "Aevexaerospace",
         "status": "ok",
         "rows": 58,
-        "durationMs": 152
+        "durationMs": 190
       },
       {
         "provider": "ashby",
@@ -2794,7 +2793,7 @@
         "company": "Qumulo",
         "status": "ok",
         "rows": 24,
-        "durationMs": 81
+        "durationMs": 33
       },
       {
         "provider": "ashby",
@@ -2802,7 +2801,7 @@
         "company": "Leantechniques",
         "status": "ok",
         "rows": 4,
-        "durationMs": 92
+        "durationMs": 44
       },
       {
         "provider": "greenhouse",
@@ -2810,7 +2809,7 @@
         "company": "Judi Health",
         "status": "ok",
         "rows": 107,
-        "durationMs": 293
+        "durationMs": 340
       },
       {
         "provider": "greenhouse",
@@ -2818,7 +2817,7 @@
         "company": "Rebuildmanufacturing",
         "status": "ok",
         "rows": 127,
-        "durationMs": 161
+        "durationMs": 249
       },
       {
         "provider": "greenhouse",
@@ -2826,7 +2825,7 @@
         "company": "Nisc",
         "status": "ok",
         "rows": 33,
-        "durationMs": 113
+        "durationMs": 119
       },
       {
         "provider": "greenhouse",
@@ -2834,7 +2833,7 @@
         "company": "Lightmatter",
         "status": "ok",
         "rows": 65,
-        "durationMs": 112
+        "durationMs": 152
       },
       {
         "provider": "ashby",
@@ -2842,7 +2841,7 @@
         "company": "Exegy",
         "status": "ok",
         "rows": 3,
-        "durationMs": 88
+        "durationMs": 27
       },
       {
         "provider": "greenhouse",
@@ -2850,7 +2849,7 @@
         "company": "Compeerfinancial",
         "status": "ok",
         "rows": 77,
-        "durationMs": 197
+        "durationMs": 175
       },
       {
         "provider": "ashby",
@@ -2858,7 +2857,7 @@
         "company": "Semgrep",
         "status": "ok",
         "rows": 12,
-        "durationMs": 98
+        "durationMs": 70
       },
       {
         "provider": "greenhouse",
@@ -2866,7 +2865,7 @@
         "company": "Vercel",
         "status": "ok",
         "rows": 93,
-        "durationMs": 174
+        "durationMs": 148
       },
       {
         "provider": "lever",
@@ -2874,7 +2873,7 @@
         "company": "Dynamiccatholic",
         "status": "ok",
         "rows": 23,
-        "durationMs": 150
+        "durationMs": 96
       },
       {
         "provider": "ashby",
@@ -2882,7 +2881,7 @@
         "company": "Apex Technology",
         "status": "ok",
         "rows": 140,
-        "durationMs": 226
+        "durationMs": 198
       },
       {
         "provider": "greenhouse",
@@ -2890,7 +2889,7 @@
         "company": "Eulerity",
         "status": "ok",
         "rows": 14,
-        "durationMs": 44
+        "durationMs": 46
       },
       {
         "provider": "greenhouse",
@@ -2898,7 +2897,7 @@
         "company": "Northmarq",
         "status": "ok",
         "rows": 30,
-        "durationMs": 138
+        "durationMs": 87
       },
       {
         "provider": "ashby",
@@ -2906,7 +2905,7 @@
         "company": "Telus Digital",
         "status": "ok",
         "rows": 65,
-        "durationMs": 151
+        "durationMs": 122
       },
       {
         "provider": "ashby",
@@ -2914,7 +2913,7 @@
         "company": "Ambrook",
         "status": "ok",
         "rows": 12,
-        "durationMs": 145
+        "durationMs": 56
       },
       {
         "provider": "ashby",
@@ -2922,7 +2921,7 @@
         "company": "H3x Technologies",
         "status": "ok",
         "rows": 9,
-        "durationMs": 96
+        "durationMs": 45
       },
       {
         "provider": "lever",
@@ -2930,7 +2929,7 @@
         "company": "E-Space",
         "status": "ok",
         "rows": 112,
-        "durationMs": 235
+        "durationMs": 169
       },
       {
         "provider": "greenhouse",
@@ -2938,7 +2937,7 @@
         "company": "Gardacp",
         "status": "ok",
         "rows": 14,
-        "durationMs": 45
+        "durationMs": 37
       },
       {
         "provider": "ashby",
@@ -2946,7 +2945,7 @@
         "company": "Composio",
         "status": "ok",
         "rows": 30,
-        "durationMs": 29
+        "durationMs": 43
       },
       {
         "provider": "greenhouse",
@@ -2954,7 +2953,7 @@
         "company": "Cssmerge",
         "status": "ok",
         "rows": 326,
-        "durationMs": 175
+        "durationMs": 389
       },
       {
         "provider": "ashby",
@@ -2962,7 +2961,7 @@
         "company": "Terranova",
         "status": "ok",
         "rows": 11,
-        "durationMs": 29
+        "durationMs": 40
       },
       {
         "provider": "ashby",
@@ -2970,7 +2969,7 @@
         "company": "Gritt",
         "status": "ok",
         "rows": 17,
-        "durationMs": 31
+        "durationMs": 38
       },
       {
         "provider": "greenhouse",
@@ -2978,7 +2977,7 @@
         "company": "Sevenresearch",
         "status": "ok",
         "rows": 9,
-        "durationMs": 57
+        "durationMs": 31
       },
       {
         "provider": "ashby",
@@ -2986,7 +2985,7 @@
         "company": "Ctgt",
         "status": "ok",
         "rows": 3,
-        "durationMs": 44
+        "durationMs": 15
       },
       {
         "provider": "greenhouse",
@@ -2994,7 +2993,7 @@
         "company": "Instead",
         "status": "ok",
         "rows": 11,
-        "durationMs": 70
+        "durationMs": 64
       },
       {
         "provider": "ashby",
@@ -3002,7 +3001,7 @@
         "company": "Zettabyte Space",
         "status": "ok",
         "rows": 9,
-        "durationMs": 91
+        "durationMs": 19
       },
       {
         "provider": "ashby",
@@ -3010,7 +3009,7 @@
         "company": "Odys Aviation",
         "status": "ok",
         "rows": 14,
-        "durationMs": 92
+        "durationMs": 83
       },
       {
         "provider": "greenhouse",
@@ -3018,7 +3017,7 @@
         "company": "Haizelabs",
         "status": "ok",
         "rows": 6,
-        "durationMs": 37
+        "durationMs": 52
       },
       {
         "provider": "greenhouse",
@@ -3026,7 +3025,7 @@
         "company": "Defenseunicorns",
         "status": "ok",
         "rows": 58,
-        "durationMs": 136
+        "durationMs": 172
       },
       {
         "provider": "ashby",
@@ -3034,7 +3033,7 @@
         "company": "Firetiger",
         "status": "ok",
         "rows": 4,
-        "durationMs": 119
+        "durationMs": 43
       },
       {
         "provider": "ashby",
@@ -3042,7 +3041,7 @@
         "company": "Constellationspace",
         "status": "ok",
         "rows": 4,
-        "durationMs": 115
+        "durationMs": 35
       },
       {
         "provider": "lever",
@@ -3050,7 +3049,7 @@
         "company": "Layup",
         "status": "ok",
         "rows": 32,
-        "durationMs": 30
+        "durationMs": 849
       },
       {
         "provider": "ashby",
@@ -3058,7 +3057,7 @@
         "company": "Auctor",
         "status": "ok",
         "rows": 11,
-        "durationMs": 92
+        "durationMs": 47
       },
       {
         "provider": "ashby",
@@ -3066,7 +3065,7 @@
         "company": "Allium",
         "status": "ok",
         "rows": 11,
-        "durationMs": 596
+        "durationMs": 58
       },
       {
         "provider": "ashby",
@@ -3074,7 +3073,7 @@
         "company": "Uncountable",
         "status": "ok",
         "rows": 31,
-        "durationMs": 582
+        "durationMs": 51
       },
       {
         "provider": "greenhouse",
@@ -3082,7 +3081,7 @@
         "company": "Neuralink",
         "status": "ok",
         "rows": 80,
-        "durationMs": 622
+        "durationMs": 159
       },
       {
         "provider": "lever",
@@ -3090,7 +3089,7 @@
         "company": "Drivetrain",
         "status": "ok",
         "rows": 35,
-        "durationMs": 503
+        "durationMs": 796
       },
       {
         "provider": "ashby",
@@ -3098,7 +3097,7 @@
         "company": "Vendelux",
         "status": "ok",
         "rows": 15,
-        "durationMs": 510
+        "durationMs": 32
       },
       {
         "provider": "ashby",
@@ -3106,7 +3105,7 @@
         "company": "Anthelioncap",
         "status": "ok",
         "rows": 1,
-        "durationMs": 500
+        "durationMs": 19
       },
       {
         "provider": "greenhouse",
@@ -3114,7 +3113,7 @@
         "company": "Cresta",
         "status": "ok",
         "rows": 87,
-        "durationMs": 578
+        "durationMs": 144
       },
       {
         "provider": "greenhouse",
@@ -3122,7 +3121,7 @@
         "company": "Together AI",
         "status": "ok",
         "rows": 78,
-        "durationMs": 540
+        "durationMs": 95
       },
       {
         "provider": "ashby",
@@ -3130,7 +3129,7 @@
         "company": "Eightsleep",
         "status": "ok",
         "rows": 40,
-        "durationMs": 512
+        "durationMs": 75
       },
       {
         "provider": "lever",
@@ -3138,7 +3137,7 @@
         "company": "Tevora",
         "status": "ok",
         "rows": 17,
-        "durationMs": 63
+        "durationMs": 161
       },
       {
         "provider": "greenhouse",
@@ -3146,7 +3145,7 @@
         "company": "Ensco",
         "status": "ok",
         "rows": 31,
-        "durationMs": 100
+        "durationMs": 108
       },
       {
         "provider": "greenhouse",
@@ -3154,7 +3153,7 @@
         "company": "Labelbox",
         "status": "ok",
         "rows": 7,
-        "durationMs": 66
+        "durationMs": 35
       },
       {
         "provider": "lever",
@@ -3162,7 +3161,7 @@
         "company": "Certik",
         "status": "ok",
         "rows": 31,
-        "durationMs": 168
+        "durationMs": 102
       },
       {
         "provider": "lever",
@@ -3170,7 +3169,7 @@
         "company": "Wadetrim",
         "status": "ok",
         "rows": 130,
-        "durationMs": 2715
+        "durationMs": 506
       },
       {
         "provider": "ashby",
@@ -3178,7 +3177,7 @@
         "company": "Rilla",
         "status": "ok",
         "rows": 29,
-        "durationMs": 98
+        "durationMs": 37
       },
       {
         "provider": "greenhouse",
@@ -3186,7 +3185,7 @@
         "company": "Maesa",
         "status": "ok",
         "rows": 8,
-        "durationMs": 63
+        "durationMs": 57
       },
       {
         "provider": "ashby",
@@ -3194,7 +3193,7 @@
         "company": "Pebl",
         "status": "ok",
         "rows": 30,
-        "durationMs": 102
+        "durationMs": 37
       },
       {
         "provider": "ashby",
@@ -3202,7 +3201,7 @@
         "company": "Rundoo",
         "status": "ok",
         "rows": 10,
-        "durationMs": 94
+        "durationMs": 25
       },
       {
         "provider": "ashby",
@@ -3210,7 +3209,7 @@
         "company": "Qualified Health",
         "status": "ok",
         "rows": 23,
-        "durationMs": 92
+        "durationMs": 33
       },
       {
         "provider": "greenhouse",
@@ -3218,7 +3217,7 @@
         "company": "Rise8",
         "status": "ok",
         "rows": 8,
-        "durationMs": 44
+        "durationMs": 26
       },
       {
         "provider": "ashby",
@@ -3226,7 +3225,7 @@
         "company": "Sweatpals",
         "status": "ok",
         "rows": 5,
-        "durationMs": 84
+        "durationMs": 16
       },
       {
         "provider": "ashby",
@@ -3234,7 +3233,7 @@
         "company": "Creatify",
         "status": "ok",
         "rows": 5,
-        "durationMs": 93
+        "durationMs": 13
       },
       {
         "provider": "lever",
@@ -3242,7 +3241,7 @@
         "company": "Kepler Communications",
         "status": "ok",
         "rows": 21,
-        "durationMs": 35
+        "durationMs": 121
       },
       {
         "provider": "greenhouse",
@@ -3250,7 +3249,7 @@
         "company": "Wikimedia Foundation",
         "status": "ok",
         "rows": 13,
-        "durationMs": 47
+        "durationMs": 87
       },
       {
         "provider": "greenhouse",
@@ -3258,7 +3257,7 @@
         "company": "Atoms",
         "status": "ok",
         "rows": 156,
-        "durationMs": 265
+        "durationMs": 147
       },
       {
         "provider": "lever",
@@ -3266,7 +3265,7 @@
         "company": "Magnet Forensics",
         "status": "ok",
         "rows": 39,
-        "durationMs": 613
+        "durationMs": 569
       },
       {
         "provider": "ashby",
@@ -3274,7 +3273,7 @@
         "company": "Replit",
         "status": "ok",
         "rows": 65,
-        "durationMs": 39
+        "durationMs": 94
       },
       {
         "provider": "lever",
@@ -3282,7 +3281,7 @@
         "company": "Equitable Bank",
         "status": "ok",
         "rows": 85,
-        "durationMs": 69
+        "durationMs": 2344
       },
       {
         "provider": "greenhouse",
@@ -3290,7 +3289,7 @@
         "company": "Figure",
         "status": "ok",
         "rows": 100,
-        "durationMs": 79
+        "durationMs": 96
       },
       {
         "provider": "greenhouse",
@@ -3298,7 +3297,7 @@
         "company": "Moment Energy",
         "status": "ok",
         "rows": 26,
-        "durationMs": 62
+        "durationMs": 105
       },
       {
         "provider": "ashby",
@@ -3306,7 +3305,7 @@
         "company": "Solink",
         "status": "ok",
         "rows": 24,
-        "durationMs": 93
+        "durationMs": 37
       },
       {
         "provider": "greenhouse",
@@ -3314,7 +3313,7 @@
         "company": "Sony Interactive Entertainment",
         "status": "ok",
         "rows": 208,
-        "durationMs": 182
+        "durationMs": 212
       },
       {
         "provider": "ashby",
@@ -3322,7 +3321,7 @@
         "company": "Rhoda AI",
         "status": "ok",
         "rows": 43,
-        "durationMs": 100
+        "durationMs": 51
       },
       {
         "provider": "greenhouse",
@@ -3330,7 +3329,7 @@
         "company": "Bluestaq",
         "status": "ok",
         "rows": 9,
-        "durationMs": 58
+        "durationMs": 38
       },
       {
         "provider": "ashby",
@@ -3338,7 +3337,7 @@
         "company": "Envoy",
         "status": "ok",
         "rows": 23,
-        "durationMs": 98
+        "durationMs": 34
       },
       {
         "provider": "ashby",
@@ -3346,7 +3345,7 @@
         "company": "Vital Lyfe",
         "status": "ok",
         "rows": 12,
-        "durationMs": 90
+        "durationMs": 23
       },
       {
         "provider": "ashby",
@@ -3354,7 +3353,7 @@
         "company": "Hippocratic AI",
         "status": "ok",
         "rows": 38,
-        "durationMs": 156
+        "durationMs": 43
       },
       {
         "provider": "greenhouse",
@@ -3362,7 +3361,7 @@
         "company": "Emergent Labs",
         "status": "ok",
         "rows": 49,
-        "durationMs": 52
+        "durationMs": 57
       },
       {
         "provider": "greenhouse",
@@ -3370,7 +3369,7 @@
         "company": "InterSystems",
         "status": "ok",
         "rows": 116,
-        "durationMs": 173
+        "durationMs": 88
       },
       {
         "provider": "greenhouse",
@@ -3378,7 +3377,7 @@
         "company": "Hometap",
         "status": "ok",
         "rows": 2,
-        "durationMs": 81
+        "durationMs": 32
       },
       {
         "provider": "ashby",
@@ -3386,7 +3385,7 @@
         "company": "Fanvue",
         "status": "ok",
         "rows": 9,
-        "durationMs": 102
+        "durationMs": 21
       },
       {
         "provider": "ashby",
@@ -3394,7 +3393,7 @@
         "company": "Charta Health",
         "status": "ok",
         "rows": 19,
-        "durationMs": 93
+        "durationMs": 22
       },
       {
         "provider": "ashby",
@@ -3402,7 +3401,7 @@
         "company": "SPAICE Technology",
         "status": "ok",
         "rows": 4,
-        "durationMs": 85
+        "durationMs": 24
       },
       {
         "provider": "greenhouse",
@@ -3410,7 +3409,7 @@
         "company": "Baidu USA",
         "status": "ok",
         "rows": 29,
-        "durationMs": 51
+        "durationMs": 54
       },
       {
         "provider": "ashby",
@@ -3418,7 +3417,7 @@
         "company": "Bree",
         "status": "ok",
         "rows": 13,
-        "durationMs": 91
+        "durationMs": 41
       },
       {
         "provider": "greenhouse",
@@ -3426,7 +3425,7 @@
         "company": "Brave",
         "status": "ok",
         "rows": 10,
-        "durationMs": 52
+        "durationMs": 35
       },
       {
         "provider": "greenhouse",
@@ -3434,7 +3433,7 @@
         "company": "Geotab",
         "status": "ok",
         "rows": 20,
-        "durationMs": 55
+        "durationMs": 48
       },
       {
         "provider": "ashby",
@@ -3442,7 +3441,7 @@
         "company": "Armadin",
         "status": "ok",
         "rows": 26,
-        "durationMs": 89
+        "durationMs": 69
       },
       {
         "provider": "ashby",
@@ -3450,7 +3449,7 @@
         "company": "Cheiron",
         "status": "ok",
         "rows": 12,
-        "durationMs": 153
+        "durationMs": 63
       },
       {
         "provider": "ashby",
@@ -3458,7 +3457,7 @@
         "company": "Dedalus Labs",
         "status": "ok",
         "rows": 4,
-        "durationMs": 90
+        "durationMs": 22
       },
       {
         "provider": "ashby",
@@ -3466,7 +3465,7 @@
         "company": "Valon",
         "status": "ok",
         "rows": 26,
-        "durationMs": 92
+        "durationMs": 65
       },
       {
         "provider": "ashby",
@@ -3474,7 +3473,7 @@
         "company": "Fab2",
         "status": "ok",
         "rows": 56,
-        "durationMs": 33
+        "durationMs": 58
       },
       {
         "provider": "ashby",
@@ -3482,7 +3481,7 @@
         "company": "Realm",
         "status": "ok",
         "rows": 10,
-        "durationMs": 93
+        "durationMs": 62
       },
       {
         "provider": "ashby",
@@ -3490,7 +3489,7 @@
         "company": "Abundant",
         "status": "ok",
         "rows": 9,
-        "durationMs": 93
+        "durationMs": 26
       },
       {
         "provider": "lever",
@@ -3498,7 +3497,7 @@
         "company": "Behaviour Interactive",
         "status": "ok",
         "rows": 25,
-        "durationMs": 28
+        "durationMs": 99
       },
       {
         "provider": "ashby",
@@ -3506,7 +3505,7 @@
         "company": "Faculte",
         "status": "ok",
         "rows": 1,
-        "durationMs": 85
+        "durationMs": 17
       },
       {
         "provider": "ashby",
@@ -3514,7 +3513,7 @@
         "company": "1Password",
         "status": "ok",
         "rows": 75,
-        "durationMs": 130
+        "durationMs": 57
       },
       {
         "provider": "lever",
@@ -3522,7 +3521,7 @@
         "company": "Elk Valley Resources",
         "status": "ok",
         "rows": 58,
-        "durationMs": 36
+        "durationMs": 498
       },
       {
         "provider": "ashby",
@@ -3530,7 +3529,7 @@
         "company": "Mach9",
         "status": "ok",
         "rows": 18,
-        "durationMs": 94
+        "durationMs": 18
       },
       {
         "provider": "ashby",
@@ -3538,7 +3537,7 @@
         "company": "Humanoid",
         "status": "ok",
         "rows": 107,
-        "durationMs": 133
+        "durationMs": 66
       },
       {
         "provider": "lever",
@@ -3546,7 +3545,7 @@
         "company": "Brooks Running",
         "status": "ok",
         "rows": 35,
-        "durationMs": 41
+        "durationMs": 100
       },
       {
         "provider": "greenhouse",
@@ -3554,7 +3553,7 @@
         "company": "BGE",
         "status": "ok",
         "rows": 56,
-        "durationMs": 53
+        "durationMs": 33
       },
       {
         "provider": "greenhouse",
@@ -3562,7 +3561,7 @@
         "company": "BGE",
         "status": "ok",
         "rows": 122,
-        "durationMs": 113
+        "durationMs": 83
       },
       {
         "provider": "ashby",
@@ -3570,16 +3569,15 @@
         "company": "Bracket Bot",
         "status": "ok",
         "rows": 12,
-        "durationMs": 141
+        "durationMs": 19
       },
       {
         "provider": "lever",
         "key": "ekimetrics",
         "company": "Ekimetrics",
-        "status": "failed",
-        "rows": 0,
-        "durationMs": 12000,
-        "message": "The operation was aborted due to timeout"
+        "status": "ok",
+        "rows": 36,
+        "durationMs": 1321
       },
       {
         "provider": "greenhouse",
@@ -3587,7 +3585,7 @@
         "company": "DiDi Global",
         "status": "ok",
         "rows": 9,
-        "durationMs": 57
+        "durationMs": 35
       },
       {
         "provider": "ashby",
@@ -3595,7 +3593,7 @@
         "company": "Inferact",
         "status": "ok",
         "rows": 34,
-        "durationMs": 90
+        "durationMs": 31
       },
       {
         "provider": "lever",
@@ -3603,7 +3601,7 @@
         "company": "GoMaterials",
         "status": "ok",
         "rows": 7,
-        "durationMs": 31
+        "durationMs": 287
       },
       {
         "provider": "greenhouse",
@@ -3611,7 +3609,7 @@
         "company": "Integra FEC",
         "status": "ok",
         "rows": 11,
-        "durationMs": 46
+        "durationMs": 31
       },
       {
         "provider": "ashby",
@@ -3619,7 +3617,7 @@
         "company": "AMI",
         "status": "ok",
         "rows": 6,
-        "durationMs": 84
+        "durationMs": 28
       },
       {
         "provider": "greenhouse",
@@ -3627,7 +3625,7 @@
         "company": "Harbinger Motors",
         "status": "ok",
         "rows": 93,
-        "durationMs": 107
+        "durationMs": 86
       },
       {
         "provider": "lever",
@@ -3635,7 +3633,7 @@
         "company": "Cirrus Logic",
         "status": "ok",
         "rows": 124,
-        "durationMs": 1830
+        "durationMs": 999
       },
       {
         "provider": "lever",
@@ -3643,7 +3641,7 @@
         "company": "Quantinuum",
         "status": "ok",
         "rows": 121,
-        "durationMs": 4889
+        "durationMs": 1098
       },
       {
         "provider": "ashby",
@@ -3651,7 +3649,7 @@
         "company": "Physical Intelligence",
         "status": "ok",
         "rows": 41,
-        "durationMs": 26
+        "durationMs": 29
       },
       {
         "provider": "lever",
@@ -3659,7 +3657,7 @@
         "company": "Rigetti",
         "status": "ok",
         "rows": 17,
-        "durationMs": 26
+        "durationMs": 202
       },
       {
         "provider": "lever",
@@ -3667,7 +3665,7 @@
         "company": "Thea Energy",
         "status": "ok",
         "rows": 51,
-        "durationMs": 176
+        "durationMs": 98
       },
       {
         "provider": "ashby",
@@ -3675,7 +3673,7 @@
         "company": "Abridge",
         "status": "ok",
         "rows": 43,
-        "durationMs": 44
+        "durationMs": 29
       },
       {
         "provider": "ashby",
@@ -3683,7 +3681,7 @@
         "company": "Tessera Labs",
         "status": "ok",
         "rows": 24,
-        "durationMs": 99
+        "durationMs": 24
       },
       {
         "provider": "ashby",
@@ -3691,7 +3689,7 @@
         "company": "Goodlord",
         "status": "ok",
         "rows": 10,
-        "durationMs": 93
+        "durationMs": 26
       },
       {
         "provider": "greenhouse",
@@ -3699,7 +3697,7 @@
         "company": "Capstone Investment Advisors",
         "status": "ok",
         "rows": 16,
-        "durationMs": 48
+        "durationMs": 45
       },
       {
         "provider": "greenhouse",
@@ -3707,15 +3705,15 @@
         "company": "Cadence Solutions",
         "status": "ok",
         "rows": 19,
-        "durationMs": 55
+        "durationMs": 34
       },
       {
         "provider": "greenhouse",
         "key": "cloudflare",
         "company": "Cloudflare",
         "status": "ok",
-        "rows": 435,
-        "durationMs": 292
+        "rows": 434,
+        "durationMs": 326
       },
       {
         "provider": "greenhouse",
@@ -3723,7 +3721,7 @@
         "company": "Signifyd",
         "status": "ok",
         "rows": 16,
-        "durationMs": 42
+        "durationMs": 44
       },
       {
         "provider": "ashby",
@@ -3731,7 +3729,7 @@
         "company": "Flint",
         "status": "ok",
         "rows": 8,
-        "durationMs": 116
+        "durationMs": 19
       },
       {
         "provider": "greenhouse",
@@ -3739,7 +3737,7 @@
         "company": "Apera AI",
         "status": "ok",
         "rows": 10,
-        "durationMs": 52
+        "durationMs": 42
       },
       {
         "provider": "greenhouse",
@@ -3747,7 +3745,7 @@
         "company": "DoorDash",
         "status": "ok",
         "rows": 40,
-        "durationMs": 71
+        "durationMs": 54
       },
       {
         "provider": "ashby",
@@ -3755,7 +3753,7 @@
         "company": "Pace",
         "status": "ok",
         "rows": 38,
-        "durationMs": 87
+        "durationMs": 23
       },
       {
         "provider": "ashby",
@@ -3763,7 +3761,7 @@
         "company": "Revel",
         "status": "ok",
         "rows": 29,
-        "durationMs": 29
+        "durationMs": 26
       },
       {
         "provider": "ashby",
@@ -3771,7 +3769,7 @@
         "company": "incident.io",
         "status": "ok",
         "rows": 34,
-        "durationMs": 94
+        "durationMs": 42
       },
       {
         "provider": "ashby",
@@ -3779,7 +3777,7 @@
         "company": "Primer",
         "status": "ok",
         "rows": 26,
-        "durationMs": 21
+        "durationMs": 28
       },
       {
         "provider": "greenhouse",
@@ -3787,7 +3785,7 @@
         "company": "Maven Securities",
         "status": "ok",
         "rows": 40,
-        "durationMs": 47
+        "durationMs": 40
       },
       {
         "provider": "ashby",
@@ -3795,7 +3793,7 @@
         "company": "WhatNot",
         "status": "failed",
         "rows": 0,
-        "durationMs": 14,
+        "durationMs": 15,
         "message": "404 Not Found"
       },
       {
@@ -3804,7 +3802,7 @@
         "company": "Waabi",
         "status": "ok",
         "rows": 93,
-        "durationMs": 152
+        "durationMs": 237
       },
       {
         "provider": "ashby",
@@ -3812,7 +3810,7 @@
         "company": "Helion Energy",
         "status": "ok",
         "rows": 68,
-        "durationMs": 29
+        "durationMs": 32
       },
       {
         "provider": "greenhouse",
@@ -3820,7 +3818,7 @@
         "company": "The MJ Companies",
         "status": "ok",
         "rows": 19,
-        "durationMs": 155
+        "durationMs": 36
       },
       {
         "provider": "greenhouse",
@@ -3828,7 +3826,7 @@
         "company": "Rothesay",
         "status": "ok",
         "rows": 5,
-        "durationMs": 40
+        "durationMs": 34
       },
       {
         "provider": "greenhouse",
@@ -3836,7 +3834,7 @@
         "company": "AXQ Capital",
         "status": "ok",
         "rows": 16,
-        "durationMs": 127
+        "durationMs": 29
       },
       {
         "provider": "greenhouse",
@@ -3844,7 +3842,7 @@
         "company": "Marshall Wace",
         "status": "ok",
         "rows": 8,
-        "durationMs": 105
+        "durationMs": 34
       },
       {
         "provider": "ashby",
@@ -3852,7 +3850,7 @@
         "company": "Lendable",
         "status": "ok",
         "rows": 67,
-        "durationMs": 117
+        "durationMs": 43
       },
       {
         "provider": "lever",
@@ -3860,7 +3858,7 @@
         "company": "CesiumAstro",
         "status": "ok",
         "rows": 340,
-        "durationMs": 256
+        "durationMs": 360
       },
       {
         "provider": "ashby",
@@ -3868,7 +3866,7 @@
         "company": "Antares Nuclear",
         "status": "ok",
         "rows": 89,
-        "durationMs": 149
+        "durationMs": 70
       },
       {
         "provider": "ashby",
@@ -3876,7 +3874,7 @@
         "company": "OpenGov",
         "status": "ok",
         "rows": 85,
-        "durationMs": 120
+        "durationMs": 76
       },
       {
         "provider": "greenhouse",
@@ -3892,7 +3890,7 @@
         "company": "Vestmark Internship Program",
         "status": "ok",
         "rows": 1,
-        "durationMs": 59
+        "durationMs": 29
       },
       {
         "provider": "greenhouse",
@@ -3900,7 +3898,7 @@
         "company": "Wasabi",
         "status": "ok",
         "rows": 13,
-        "durationMs": 48
+        "durationMs": 133
       },
       {
         "provider": "ashby",
@@ -3908,7 +3906,7 @@
         "company": "Juicebox",
         "status": "ok",
         "rows": 31,
-        "durationMs": 118
+        "durationMs": 29
       },
       {
         "provider": "ashby",
@@ -3916,7 +3914,7 @@
         "company": "Metaphor",
         "status": "ok",
         "rows": 56,
-        "durationMs": 34
+        "durationMs": 119
       },
       {
         "provider": "ashby",
@@ -3924,7 +3922,7 @@
         "company": "Kognitos",
         "status": "ok",
         "rows": 3,
-        "durationMs": 17
+        "durationMs": 99
       },
       {
         "provider": "ashby",
@@ -3932,7 +3930,7 @@
         "company": "Maximor AI",
         "status": "failed",
         "rows": 0,
-        "durationMs": 15,
+        "durationMs": 71,
         "message": "404 Not Found"
       },
       {
@@ -3940,8 +3938,8 @@
         "key": "kastle",
         "company": "Kastle",
         "status": "ok",
-        "rows": 15,
-        "durationMs": 28
+        "rows": 16,
+        "durationMs": 32
       },
       {
         "provider": "ashby",
@@ -3949,7 +3947,7 @@
         "company": "Bild AI",
         "status": "ok",
         "rows": 4,
-        "durationMs": 85
+        "durationMs": 34
       },
       {
         "provider": "ashby",
@@ -3957,7 +3955,7 @@
         "company": "Netic",
         "status": "ok",
         "rows": 30,
-        "durationMs": 35
+        "durationMs": 27
       },
       {
         "provider": "ashby",
@@ -3965,7 +3963,7 @@
         "company": "Serval",
         "status": "ok",
         "rows": 57,
-        "durationMs": 56
+        "durationMs": 36
       },
       {
         "provider": "ashby",
@@ -3973,7 +3971,7 @@
         "company": "WindBorne Systems",
         "status": "ok",
         "rows": 18,
-        "durationMs": 94
+        "durationMs": 22
       },
       {
         "provider": "ashby",
@@ -3981,7 +3979,7 @@
         "company": "OpenAI",
         "status": "ok",
         "rows": 813,
-        "durationMs": 330
+        "durationMs": 436
       },
       {
         "provider": "ashby",
@@ -3989,7 +3987,7 @@
         "company": "AnySignal",
         "status": "ok",
         "rows": 24,
-        "durationMs": 99
+        "durationMs": 31
       },
       {
         "provider": "greenhouse",
@@ -3997,7 +3995,7 @@
         "company": "Exadel",
         "status": "ok",
         "rows": 44,
-        "durationMs": 81
+        "durationMs": 61
       },
       {
         "provider": "greenhouse",
@@ -4005,7 +4003,7 @@
         "company": "i360technologies",
         "status": "ok",
         "rows": 47,
-        "durationMs": 68
+        "durationMs": 49
       },
       {
         "provider": "ashby",
@@ -4013,7 +4011,7 @@
         "company": "Binance.US",
         "status": "ok",
         "rows": 9,
-        "durationMs": 90
+        "durationMs": 34
       },
       {
         "provider": "greenhouse",
@@ -4021,7 +4019,7 @@
         "company": "Cayuse",
         "status": "ok",
         "rows": 6,
-        "durationMs": 81
+        "durationMs": 40
       },
       {
         "provider": "greenhouse",
@@ -4029,7 +4027,7 @@
         "company": "CLEAR",
         "status": "ok",
         "rows": 64,
-        "durationMs": 64
+        "durationMs": 62
       },
       {
         "provider": "greenhouse",
@@ -4037,7 +4035,7 @@
         "company": "Exadel",
         "status": "ok",
         "rows": 38,
-        "durationMs": 70
+        "durationMs": 56
       },
       {
         "provider": "greenhouse",
@@ -4045,7 +4043,7 @@
         "company": "Justworks",
         "status": "ok",
         "rows": 100,
-        "durationMs": 268
+        "durationMs": 155
       },
       {
         "provider": "greenhouse",
@@ -4053,7 +4051,7 @@
         "company": "Arc Institute",
         "status": "ok",
         "rows": 24,
-        "durationMs": 178
+        "durationMs": 101
       },
       {
         "provider": "greenhouse",
@@ -4061,7 +4059,7 @@
         "company": "STR",
         "status": "ok",
         "rows": 143,
-        "durationMs": 226
+        "durationMs": 167
       },
       {
         "provider": "greenhouse",
@@ -4069,7 +4067,7 @@
         "company": "ALTEN Technology USA",
         "status": "ok",
         "rows": 202,
-        "durationMs": 256
+        "durationMs": 193
       },
       {
         "provider": "lever",
@@ -4077,7 +4075,7 @@
         "company": "Galatea Associates",
         "status": "ok",
         "rows": 1,
-        "durationMs": 157
+        "durationMs": 86
       },
       {
         "provider": "ashby",
@@ -4085,7 +4083,7 @@
         "company": "Triumph Arcade",
         "status": "ok",
         "rows": 24,
-        "durationMs": 181
+        "durationMs": 27
       },
       {
         "provider": "ashby",
@@ -4093,7 +4091,7 @@
         "company": "Aurelian",
         "status": "ok",
         "rows": 8,
-        "durationMs": 104
+        "durationMs": 21
       },
       {
         "provider": "ashby",
@@ -4101,7 +4099,7 @@
         "company": "Chalk",
         "status": "ok",
         "rows": 18,
-        "durationMs": 97
+        "durationMs": 38
       },
       {
         "provider": "lever",
@@ -4109,7 +4107,7 @@
         "company": "Significance",
         "status": "ok",
         "rows": 25,
-        "durationMs": 53
+        "durationMs": 252
       },
       {
         "provider": "greenhouse",
@@ -4117,7 +4115,7 @@
         "company": "Assyst",
         "status": "ok",
         "rows": 8,
-        "durationMs": 42
+        "durationMs": 33
       },
       {
         "provider": "ashby",
@@ -4125,7 +4123,7 @@
         "company": "Spruce",
         "status": "ok",
         "rows": 5,
-        "durationMs": 90
+        "durationMs": 24
       },
       {
         "provider": "ashby",
@@ -4141,7 +4139,7 @@
         "company": "Aurora Innovation",
         "status": "ok",
         "rows": 102,
-        "durationMs": 50
+        "durationMs": 270
       },
       {
         "provider": "greenhouse",
@@ -4149,7 +4147,7 @@
         "company": "TaxRise",
         "status": "ok",
         "rows": 9,
-        "durationMs": 53
+        "durationMs": 61
       },
       {
         "provider": "greenhouse",
@@ -4157,7 +4155,7 @@
         "company": "Twilio",
         "status": "ok",
         "rows": 133,
-        "durationMs": 130
+        "durationMs": 320
       },
       {
         "provider": "ashby",
@@ -4165,7 +4163,7 @@
         "company": "WHOOP",
         "status": "ok",
         "rows": 171,
-        "durationMs": 157
+        "durationMs": 267
       },
       {
         "provider": "greenhouse",
@@ -4173,7 +4171,7 @@
         "company": "Alo Yoga",
         "status": "ok",
         "rows": 771,
-        "durationMs": 755
+        "durationMs": 1514
       },
       {
         "provider": "greenhouse",
@@ -4181,7 +4179,7 @@
         "company": "ID.me",
         "status": "ok",
         "rows": 47,
-        "durationMs": 100
+        "durationMs": 171
       },
       {
         "provider": "greenhouse",
@@ -4189,7 +4187,7 @@
         "company": "Apptronik",
         "status": "ok",
         "rows": 81,
-        "durationMs": 85
+        "durationMs": 97
       },
       {
         "provider": "greenhouse",
@@ -4197,7 +4195,7 @@
         "company": "OppFi",
         "status": "ok",
         "rows": 3,
-        "durationMs": 58
+        "durationMs": 39
       },
       {
         "provider": "greenhouse",
@@ -4205,7 +4203,7 @@
         "company": "TerraClear",
         "status": "ok",
         "rows": 4,
-        "durationMs": 63
+        "durationMs": 58
       },
       {
         "provider": "greenhouse",
@@ -4213,7 +4211,7 @@
         "company": "Commvault",
         "status": "ok",
         "rows": 49,
-        "durationMs": 85
+        "durationMs": 122
       },
       {
         "provider": "greenhouse",
@@ -4221,7 +4219,7 @@
         "company": "Yugabyte",
         "status": "ok",
         "rows": 16,
-        "durationMs": 47
+        "durationMs": 56
       },
       {
         "provider": "ashby",
@@ -4229,7 +4227,7 @@
         "company": "Teleskope",
         "status": "ok",
         "rows": 2,
-        "durationMs": 85
+        "durationMs": 30
       },
       {
         "provider": "greenhouse",
@@ -4237,7 +4235,7 @@
         "company": "Freedom Technology Solutions Group",
         "status": "ok",
         "rows": 100,
-        "durationMs": 130
+        "durationMs": 154
       },
       {
         "provider": "lever",
@@ -4245,7 +4243,7 @@
         "company": "Laminar",
         "status": "ok",
         "rows": 18,
-        "durationMs": 1028
+        "durationMs": 197
       },
       {
         "provider": "greenhouse",
@@ -4253,7 +4251,7 @@
         "company": "Via Logic",
         "status": "ok",
         "rows": 14,
-        "durationMs": 60
+        "durationMs": 79
       },
       {
         "provider": "greenhouse",
@@ -4261,7 +4259,7 @@
         "company": "Yext",
         "status": "ok",
         "rows": 25,
-        "durationMs": 104
+        "durationMs": 56
       },
       {
         "provider": "ashby",
@@ -4269,7 +4267,7 @@
         "company": "Commure",
         "status": "ok",
         "rows": 82,
-        "durationMs": 37
+        "durationMs": 91
       },
       {
         "provider": "greenhouse",
@@ -4277,7 +4275,7 @@
         "company": "Graphcore",
         "status": "ok",
         "rows": 2,
-        "durationMs": 60
+        "durationMs": 47
       },
       {
         "provider": "greenhouse",
@@ -4285,7 +4283,7 @@
         "company": "Graphcore",
         "status": "ok",
         "rows": 176,
-        "durationMs": 131
+        "durationMs": 203
       },
       {
         "provider": "greenhouse",
@@ -4293,7 +4291,7 @@
         "company": "Parallel",
         "status": "ok",
         "rows": 15,
-        "durationMs": 49
+        "durationMs": 48
       },
       {
         "provider": "ashby",
@@ -4301,7 +4299,7 @@
         "company": "webAI",
         "status": "ok",
         "rows": 19,
-        "durationMs": 100
+        "durationMs": 35
       },
       {
         "provider": "ashby",
@@ -4309,7 +4307,7 @@
         "company": "REGENT",
         "status": "ok",
         "rows": 32,
-        "durationMs": 122
+        "durationMs": 41
       },
       {
         "provider": "greenhouse",
@@ -4317,7 +4315,7 @@
         "company": "Relativity Space",
         "status": "ok",
         "rows": 369,
-        "durationMs": 571
+        "durationMs": 503
       },
       {
         "provider": "ashby",
@@ -4325,7 +4323,7 @@
         "company": "Anori",
         "status": "ok",
         "rows": 7,
-        "durationMs": 406
+        "durationMs": 51
       },
       {
         "provider": "greenhouse",
@@ -4333,7 +4331,7 @@
         "company": "Assured Guaranty",
         "status": "ok",
         "rows": 11,
-        "durationMs": 46
+        "durationMs": 47
       },
       {
         "provider": "greenhouse",
@@ -4341,7 +4339,7 @@
         "company": "TeleTracking Technologies",
         "status": "ok",
         "rows": 13,
-        "durationMs": 43
+        "durationMs": 61
       },
       {
         "provider": "ashby",
@@ -4349,7 +4347,7 @@
         "company": "Valency Systems",
         "status": "ok",
         "rows": 9,
-        "durationMs": 356
+        "durationMs": 46
       },
       {
         "provider": "ashby",
@@ -4357,7 +4355,7 @@
         "company": "Meow",
         "status": "ok",
         "rows": 6,
-        "durationMs": 327
+        "durationMs": 63
       },
       {
         "provider": "ashby",
@@ -4365,7 +4363,7 @@
         "company": "Radiant",
         "status": "ok",
         "rows": 108,
-        "durationMs": 183
+        "durationMs": 124
       },
       {
         "provider": "ashby",
@@ -4373,7 +4371,7 @@
         "company": "Crusoe",
         "status": "ok",
         "rows": 350,
-        "durationMs": 221
+        "durationMs": 285
       },
       {
         "provider": "greenhouse",
@@ -4381,7 +4379,7 @@
         "company": "ICONIQ Capital",
         "status": "ok",
         "rows": 215,
-        "durationMs": 253
+        "durationMs": 188
       },
       {
         "provider": "ashby",
@@ -4389,7 +4387,7 @@
         "company": "Miter",
         "status": "ok",
         "rows": 13,
-        "durationMs": 126
+        "durationMs": 48
       },
       {
         "provider": "ashby",
@@ -4397,7 +4395,7 @@
         "company": "Superhuman",
         "status": "ok",
         "rows": 67,
-        "durationMs": 143
+        "durationMs": 114
       },
       {
         "provider": "lever",
@@ -4405,7 +4403,7 @@
         "company": "Modern Intelligence",
         "status": "ok",
         "rows": 7,
-        "durationMs": 31
+        "durationMs": 146
       },
       {
         "provider": "lever",
@@ -4413,7 +4411,7 @@
         "company": "Rover.com",
         "status": "ok",
         "rows": 36,
-        "durationMs": 4178
+        "durationMs": 103
       },
       {
         "provider": "greenhouse",
@@ -4421,7 +4419,7 @@
         "company": "Lexington Medical",
         "status": "ok",
         "rows": 18,
-        "durationMs": 130
+        "durationMs": 63
       },
       {
         "provider": "ashby",
@@ -4429,7 +4427,7 @@
         "company": "AiPrise",
         "status": "ok",
         "rows": 18,
-        "durationMs": 25
+        "durationMs": 31
       },
       {
         "provider": "greenhouse",
@@ -4437,7 +4435,7 @@
         "company": "New Relic",
         "status": "ok",
         "rows": 56,
-        "durationMs": 119
+        "durationMs": 98
       },
       {
         "provider": "ashby",
@@ -4445,7 +4443,7 @@
         "company": "Ontic",
         "status": "ok",
         "rows": 16,
-        "durationMs": 98
+        "durationMs": 38
       },
       {
         "provider": "lever",
@@ -4453,7 +4451,7 @@
         "company": "The Battery Network",
         "status": "ok",
         "rows": 2,
-        "durationMs": 3851
+        "durationMs": 90
       },
       {
         "provider": "ashby",
@@ -4461,7 +4459,7 @@
         "company": "Valinor",
         "status": "ok",
         "rows": 9,
-        "durationMs": 102
+        "durationMs": 51
       },
       {
         "provider": "lever",
@@ -4469,7 +4467,7 @@
         "company": "Kobie",
         "status": "ok",
         "rows": 34,
-        "durationMs": 304
+        "durationMs": 132
       },
       {
         "provider": "greenhouse",
@@ -4477,7 +4475,7 @@
         "company": "Minitab",
         "status": "ok",
         "rows": 15,
-        "durationMs": 46
+        "durationMs": 43
       },
       {
         "provider": "ashby",
@@ -4485,7 +4483,7 @@
         "company": "Sift",
         "status": "ok",
         "rows": 35,
-        "durationMs": 94
+        "durationMs": 31
       },
       {
         "provider": "lever",
@@ -4493,7 +4491,7 @@
         "company": "Zoox",
         "status": "ok",
         "rows": 240,
-        "durationMs": 1350
+        "durationMs": 138
       },
       {
         "provider": "ashby",
@@ -4501,7 +4499,7 @@
         "company": "Build AI",
         "status": "ok",
         "rows": 30,
-        "durationMs": 30
+        "durationMs": 28
       },
       {
         "provider": "lever",
@@ -4509,7 +4507,7 @@
         "company": "Delta Solutions & Strategies",
         "status": "ok",
         "rows": 35,
-        "durationMs": 187
+        "durationMs": 99
       },
       {
         "provider": "greenhouse",
@@ -4517,7 +4515,7 @@
         "company": "Impact",
         "status": "ok",
         "rows": 77,
-        "durationMs": 79
+        "durationMs": 137
       },
       {
         "provider": "greenhouse",
@@ -4525,7 +4523,7 @@
         "company": "Archer",
         "status": "ok",
         "rows": 141,
-        "durationMs": 92
+        "durationMs": 245
       },
       {
         "provider": "greenhouse",
@@ -4533,7 +4531,7 @@
         "company": "Alarm.com",
         "status": "ok",
         "rows": 86,
-        "durationMs": 94
+        "durationMs": 223
       },
       {
         "provider": "greenhouse",
@@ -4541,7 +4539,7 @@
         "company": "Metron",
         "status": "ok",
         "rows": 18,
-        "durationMs": 72
+        "durationMs": 71
       },
       {
         "provider": "ashby",
@@ -4549,7 +4547,7 @@
         "company": "Greptile",
         "status": "ok",
         "rows": 18,
-        "durationMs": 17
+        "durationMs": 30
       },
       {
         "provider": "ashby",
@@ -4557,7 +4555,7 @@
         "company": "Koah Labs",
         "status": "ok",
         "rows": 9,
-        "durationMs": 93
+        "durationMs": 19
       },
       {
         "provider": "ashby",
@@ -4565,7 +4563,7 @@
         "company": "BAGS",
         "status": "ok",
         "rows": 11,
-        "durationMs": 89
+        "durationMs": 57
       },
       {
         "provider": "greenhouse",
@@ -4573,7 +4571,7 @@
         "company": "Blend",
         "status": "ok",
         "rows": 15,
-        "durationMs": 50
+        "durationMs": 57
       },
       {
         "provider": "ashby",
@@ -4581,7 +4579,7 @@
         "company": "Nova Talent",
         "status": "ok",
         "rows": 5,
-        "durationMs": 88
+        "durationMs": 46
       },
       {
         "provider": "lever",
@@ -4589,7 +4587,7 @@
         "company": "WeRide.ai",
         "status": "ok",
         "rows": 15,
-        "durationMs": 101
+        "durationMs": 118
       },
       {
         "provider": "lever",
@@ -4597,7 +4595,7 @@
         "company": "Ketch",
         "status": "ok",
         "rows": 4,
-        "durationMs": 3032
+        "durationMs": 94
       },
       {
         "provider": "ashby",
@@ -4605,7 +4603,7 @@
         "company": "Nooks",
         "status": "ok",
         "rows": 56,
-        "durationMs": 28
+        "durationMs": 141
       },
       {
         "provider": "ashby",
@@ -4613,7 +4611,7 @@
         "company": "Pariveda",
         "status": "ok",
         "rows": 27,
-        "durationMs": 26
+        "durationMs": 131
       },
       {
         "provider": "greenhouse",
@@ -4621,7 +4619,7 @@
         "company": "The Weather Company",
         "status": "ok",
         "rows": 24,
-        "durationMs": 48
+        "durationMs": 121
       },
       {
         "provider": "ashby",
@@ -4629,7 +4627,7 @@
         "company": "Blissway",
         "status": "ok",
         "rows": 12,
-        "durationMs": 87
+        "durationMs": 111
       },
       {
         "provider": "greenhouse",
@@ -4637,7 +4635,7 @@
         "company": "MyKargo",
         "status": "ok",
         "rows": 10,
-        "durationMs": 41
+        "durationMs": 45
       },
       {
         "provider": "lever",
@@ -4645,7 +4643,7 @@
         "company": "Riverdale Country School",
         "status": "ok",
         "rows": 14,
-        "durationMs": 2999
+        "durationMs": 1237
       },
       {
         "provider": "ashby",
@@ -4653,7 +4651,7 @@
         "company": "Lightfield",
         "status": "ok",
         "rows": 22,
-        "durationMs": 85
+        "durationMs": 47
       },
       {
         "provider": "ashby",
@@ -4661,7 +4659,7 @@
         "company": "Neon",
         "status": "ok",
         "rows": 4,
-        "durationMs": 14
+        "durationMs": 19
       },
       {
         "provider": "greenhouse",
@@ -4669,7 +4667,7 @@
         "company": "Path Robotics",
         "status": "ok",
         "rows": 45,
-        "durationMs": 58
+        "durationMs": 47
       },
       {
         "provider": "greenhouse",
@@ -4677,7 +4675,7 @@
         "company": "Ascend",
         "status": "ok",
         "rows": 8,
-        "durationMs": 44
+        "durationMs": 32
       },
       {
         "provider": "ashby",
@@ -4685,7 +4683,7 @@
         "company": "Faros",
         "status": "ok",
         "rows": 12,
-        "durationMs": 88
+        "durationMs": 32
       },
       {
         "provider": "lever",
@@ -4693,7 +4691,7 @@
         "company": "Sonar",
         "status": "ok",
         "rows": 117,
-        "durationMs": 76
+        "durationMs": 227
       },
       {
         "provider": "greenhouse",
@@ -4701,7 +4699,7 @@
         "company": "Waymark",
         "status": "ok",
         "rows": 20,
-        "durationMs": 140
+        "durationMs": 60
       },
       {
         "provider": "greenhouse",
@@ -4709,7 +4707,7 @@
         "company": "Obsidian Security",
         "status": "ok",
         "rows": 13,
-        "durationMs": 42
+        "durationMs": 75
       },
       {
         "provider": "greenhouse",
@@ -4717,7 +4715,7 @@
         "company": "Mercury",
         "status": "ok",
         "rows": 77,
-        "durationMs": 98
+        "durationMs": 97
       },
       {
         "provider": "ashby",
@@ -4725,7 +4723,7 @@
         "company": "Wealth.com",
         "status": "ok",
         "rows": 16,
-        "durationMs": 109
+        "durationMs": 21
       },
       {
         "provider": "lever",
@@ -4733,7 +4731,7 @@
         "company": "Agile Defense",
         "status": "ok",
         "rows": 147,
-        "durationMs": 1360
+        "durationMs": 293
       },
       {
         "provider": "greenhouse",
@@ -4741,7 +4739,7 @@
         "company": "Civis Analytics",
         "status": "ok",
         "rows": 2,
-        "durationMs": 39
+        "durationMs": 23
       },
       {
         "provider": "ashby",
@@ -4749,7 +4747,7 @@
         "company": "Cylake",
         "status": "ok",
         "rows": 16,
-        "durationMs": 97
+        "durationMs": 19
       },
       {
         "provider": "greenhouse",
@@ -4757,7 +4755,7 @@
         "company": "The Trade Desk",
         "status": "ok",
         "rows": 102,
-        "durationMs": 140
+        "durationMs": 132
       },
       {
         "provider": "greenhouse",
@@ -4765,7 +4763,7 @@
         "company": "Databricks",
         "status": "ok",
         "rows": 1,
-        "durationMs": 355
+        "durationMs": 759
       },
       {
         "provider": "greenhouse",
@@ -4773,7 +4771,7 @@
         "company": "Old Mission",
         "status": "ok",
         "rows": 1,
-        "durationMs": 47
+        "durationMs": 45
       },
       {
         "provider": "greenhouse",
@@ -4781,7 +4779,7 @@
         "company": "Tower Research Capital",
         "status": "ok",
         "rows": 1,
-        "durationMs": 101
+        "durationMs": 79
       },
       {
         "provider": "greenhouse",
@@ -4789,7 +4787,7 @@
         "company": "Aquatic Capital",
         "status": "ok",
         "rows": 9,
-        "durationMs": 159
+        "durationMs": 33
       },
       {
         "provider": "greenhouse",
@@ -4797,7 +4795,7 @@
         "company": "TransMarket Group",
         "status": "ok",
         "rows": 18,
-        "durationMs": 42
+        "durationMs": 49
       },
       {
         "provider": "lever",
@@ -4805,7 +4803,7 @@
         "company": "ShyftLabs",
         "status": "ok",
         "rows": 23,
-        "durationMs": 191
+        "durationMs": 124
       },
       {
         "provider": "ashby",
@@ -4813,7 +4811,7 @@
         "company": "Phonely",
         "status": "ok",
         "rows": 19,
-        "durationMs": 21
+        "durationMs": 40
       },
       {
         "provider": "ashby",
@@ -4821,7 +4819,7 @@
         "company": "Etched",
         "status": "ok",
         "rows": 115,
-        "durationMs": 117
+        "durationMs": 57
       },
       {
         "provider": "ashby",
@@ -4829,7 +4827,7 @@
         "company": "Atomic Semi",
         "status": "failed",
         "rows": 0,
-        "durationMs": 105,
+        "durationMs": 24,
         "message": "404 Not Found"
       },
       {
@@ -4838,7 +4836,7 @@
         "company": "ETHGlobal",
         "status": "ok",
         "rows": 0,
-        "durationMs": 90
+        "durationMs": 22
       },
       {
         "provider": "greenhouse",
@@ -4846,7 +4844,7 @@
         "company": "Kensington",
         "status": "ok",
         "rows": 25,
-        "durationMs": 59
+        "durationMs": 75
       },
       {
         "provider": "ashby",
@@ -4854,7 +4852,7 @@
         "company": "Hypercubic",
         "status": "ok",
         "rows": 1,
-        "durationMs": 15
+        "durationMs": 58
       },
       {
         "provider": "greenhouse",
@@ -4862,7 +4860,7 @@
         "company": "Stevens Capital Management",
         "status": "ok",
         "rows": 29,
-        "durationMs": 40
+        "durationMs": 62
       },
       {
         "provider": "greenhouse",
@@ -4870,7 +4868,7 @@
         "company": "Radix Trading",
         "status": "ok",
         "rows": 8,
-        "durationMs": 68
+        "durationMs": 58
       },
       {
         "provider": "ashby",
@@ -4878,7 +4876,7 @@
         "company": "Deepgram",
         "status": "ok",
         "rows": 88,
-        "durationMs": 48
+        "durationMs": 81
       },
       {
         "provider": "ashby",
@@ -4886,7 +4884,7 @@
         "company": "Homebase",
         "status": "ok",
         "rows": 17,
-        "durationMs": 31
+        "durationMs": 28
       },
       {
         "provider": "ashby",
@@ -4894,7 +4892,7 @@
         "company": "Ether.fi",
         "status": "ok",
         "rows": 13,
-        "durationMs": 91
+        "durationMs": 27
       },
       {
         "provider": "ashby",
@@ -4902,7 +4900,7 @@
         "company": "Poshmark",
         "status": "ok",
         "rows": 34,
-        "durationMs": 26
+        "durationMs": 33
       },
       {
         "provider": "greenhouse",
@@ -4910,7 +4908,7 @@
         "company": "Bandwidth",
         "status": "ok",
         "rows": 23,
-        "durationMs": 127
+        "durationMs": 412
       },
       {
         "provider": "greenhouse",
@@ -4918,7 +4916,7 @@
         "company": "Iterable",
         "status": "ok",
         "rows": 0,
-        "durationMs": 35
+        "durationMs": 46
       },
       {
         "provider": "greenhouse",
@@ -4926,7 +4924,7 @@
         "company": "Redwood Materials",
         "status": "ok",
         "rows": 144,
-        "durationMs": 147
+        "durationMs": 118
       },
       {
         "provider": "greenhouse",
@@ -4934,7 +4932,7 @@
         "company": "Sila",
         "status": "ok",
         "rows": 41,
-        "durationMs": 52
+        "durationMs": 46
       },
       {
         "provider": "greenhouse",
@@ -4942,7 +4940,7 @@
         "company": "SmartBear",
         "status": "ok",
         "rows": 21,
-        "durationMs": 86
+        "durationMs": 69
       },
       {
         "provider": "ashby",
@@ -4950,7 +4948,7 @@
         "company": "Twelve",
         "status": "ok",
         "rows": 6,
-        "durationMs": 81
+        "durationMs": 30
       },
       {
         "provider": "workday",
@@ -4963,33 +4961,29 @@
         "detailRequests": 99,
         "detailFailures": 0,
         "retryRequests": 0,
-        "durationMs": 16203
+        "durationMs": 16537
       },
       {
         "provider": "workday",
         "key": "micron/External",
         "company": "Micron",
         "status": "ok",
-        "rows": 87,
+        "rows": 83,
         "searchedRows": 385,
         "listRequests": 22,
         "detailRequests": 385,
-        "detailFailures": 37,
-        "retryRequests": 94,
-        "durationMs": 52629
+        "detailFailures": 79,
+        "retryRequests": 170,
+        "durationMs": 46566
       },
       {
         "provider": "workday",
         "key": "medtronic/MedtronicCareers",
         "company": "Medtronic",
-        "status": "ok",
-        "rows": 5,
-        "searchedRows": 115,
-        "listRequests": 8,
-        "detailRequests": 5,
-        "detailFailures": 0,
-        "retryRequests": 0,
-        "durationMs": 11650
+        "status": "failed",
+        "rows": 0,
+        "durationMs": 848,
+        "message": "429 Too Many Requests"
       },
       {
         "provider": "workday",
@@ -5002,7 +4996,7 @@
         "detailRequests": 20,
         "detailFailures": 0,
         "retryRequests": 0,
-        "durationMs": 10808
+        "durationMs": 11356
       }
     ]
   },
@@ -5019,13 +5013,13 @@
     }
   ],
   "listings": {
-    "candidates": 19971,
-    "accepted": 5782,
-    "quarantined": 11921,
-    "rejected": 1524,
-    "preservedFromLastHealthySnapshot": 0,
+    "candidates": 19952,
+    "accepted": 5787,
+    "quarantined": 11903,
+    "rejected": 1525,
+    "preservedFromLastHealthySnapshot": 7,
     "checksAttempted": 250,
     "checksCompleted": 250,
-    "knownClosed": 562
+    "knownClosed": 565
   }
 }
