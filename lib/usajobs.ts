@@ -57,6 +57,7 @@ export function reviewUsaJobsPosting(seed: UsaJobsSeed, html: string, now = new 
   if (/\b(supervisory|supervisor|senior|chief|director)\b/i.test(title)) return hold("seniority");
   if (/public notice|may or may not|vacancies as they occur|resume (?:pool|bank)|register of eligibles/i.test(main)) return hold("standing-recruitment-notice");
   if (/unpaid|without compensation|student volunteer/i.test(summary)) return hold("unpaid");
+  if ((new Date(closes).getTime() - new Date(posted).getTime()) / 86_400_000 > 180) return hold("extended-recruitment-window");
   const pay = job.baseSalary?.value;
   const min = Number(pay?.minValue ?? pay?.value);
   const max = Number(pay?.maxValue ?? pay?.value);
@@ -78,7 +79,7 @@ export function reviewUsaJobsPosting(seed: UsaJobsSeed, html: string, now = new 
     category: /intern|student trainee/i.test(title) || /summer scholar/i.test(summary) ? "Internship" : "New grad",
     salary: `USD ${min.toLocaleString("en-US")}${max === min ? "" : ` - ${max.toLocaleString("en-US")}`} / ${String(pay.unitText ?? "unspecified")}`,
     source: "USAJOBS selective review", rawText: `${title} ${summary}`,
-    federal: { retrievedAt: now.toISOString(), closes, citizenshipRequired: /u\.?s\.? citizen(?:ship)?|united states citizen/i.test(requirements) ? true : null,
+    federal: { qualifications: `${text(job.qualifications)} ${text(job.educationRequirements)}`.trim().slice(0, 4000), retrievedAt: now.toISOString(), closes, citizenshipRequired: /u\.?s\.? citizen(?:ship)?|united states citizen/i.test(requirements) ? true : null,
       eligibility: `${/intern|student trainee/i.test(title) || /summer scholar/i.test(summary) ? "Student" : "Recent-graduate"} eligibility applies. Check grade, education, clearance and application requirements on the official announcement.` },
   };
   candidate.roleTags = classifyRoleTags(candidate);

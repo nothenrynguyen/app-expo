@@ -31,12 +31,20 @@ export default function SourcesPage() {
         <div className="sources-hero">
           <h1 className="sr-only">Data sources</h1>
           <p className="eyebrow">Data sources</p>
-          <p>empluzzed combines maintained community job lists, removes duplicates, and checks listings against employer career pages before sending you to the original application.</p>
+          <p>empluzzed combines maintained community job lists and official federal job data, removes duplicates, and checks listings against employer career pages before sending you to the original application.</p>
         </div>
+
+        <section className="pinned-source-note" aria-labelledby="federal-source-title">
+          <p className="eyebrow">Federal jobs</p>
+          <h2 id="federal-source-title">USAJOBS</h2>
+          <p>We search official federal postings for paid student and recent-graduate opportunities, then check the current announcement. Unpaid roles and standing recruiting notices are held out. Each federal listing links to its official application instructions and shows retrieval dates and eligibility information.</p>
+          <p>empluzzed is independent and is not operated, sponsored, approved or endorsed by the U.S. Office of Personnel Management or another federal agency.</p>
+          <a href="https://developer.usajobs.gov/guides/terms-of-service" target="_blank" rel="noreferrer">USAJOBS public-data terms</a>
+        </section>
 
         <section className="source-audit" aria-label="Community data sources">
           <div className="source-summary" aria-label="Data source summary">
-            <div><AnimatedCount value={sourceCatalog.sources.length} /><span>active feed entries</span></div>
+            <div><AnimatedCount value={sourceCatalog.sources.length} /><span>community feed entries</span></div>
             <div><AnimatedCount value={licenses.length} /><span>unique repositories</span></div>
             <div><AnimatedCount value={licensedCount} /><span>MIT licensed</span></div>
             <div><AnimatedCount value={unresolvedCount} /><span>no license detected</span></div>

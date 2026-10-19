@@ -94,3 +94,11 @@ Keep this list current as work progresses. Include a short next-actions list in 
 - Both announcements were admitted locally into full-time only; metadata and both board layouts verified. Citizenship, eligibility, dates, attribution and official requirements are available before Apply. Evidence: [local refresh](usajobs-local-refresh-result.json). Test-generated public snapshots restored after recording evidence; no publication.
 - All 69 tests, lint, TypeScript, static export and desktop compact/card browser checks pass. Six broad-category holds intentionally remain rather than assigning inaccurate tags.
 - Next: review activation/publication of the narrow source; add bounded API discovery after accepted-feed behavior is approved; prioritize the existing duplicate and role/location leakage queue to improve overall quality.
+
+## Approved complete source-expansion release batch
+
+Owner approved all four steps together: automatic discovery, quality filters, measured coverage, and one complete local release review. Implementation details do not require repeated approval. Commit coherent validated tasks; final push/deployment remains pending explicit approval.
+
+- Automatic USAJOBS discovery implemented across eleven searches with bounded pagination, current official-page checks and safe failures. Initial complete measurement: 82 unique postings and ten filtered candidates after the extended-window hold. Full release comparison is in progress.
+- Replaced manual posting/employer allowlists with fresh authenticated official provenance. Added qualifications text, source attribution and workflow secret references. No remote secrets changed.
+- Next: finish full refresh, quantify Keryx/USAJOBS additions against live production, verify representative local listings, then present one release approval checkpoint.

@@ -955,6 +955,7 @@ test("USAJOBS selective review requires paid current vacancies and preserves age
   assert.deepEqual(review(page({}, "Unpaid student volunteer opportunity.")), { status: "held", reason: "unpaid" });
   assert.deepEqual(review(page({}, undefined, "There may or may not be actual vacancies.")), { status: "held", reason: "standing-recruitment-notice" });
   assert.deepEqual(review(page({ baseSalary: { currency: "USD", value: { value: 0 } } })), { status: "held", reason: "unverified-paid-compensation" });
+  assert.deepEqual(review(page({ validThrough: "2027-09-30" })), { status: "held", reason: "extended-recruitment-window" });
   assert.deepEqual(review(page({ validThrough: "2026-10-19" })), { status: "held", reason: "closed-or-closing-today" });
   assert.deepEqual(review(page({ datePosted: "11/01/2026" })), { status: "held", reason: "unverified-posting-dates" });
   assert.deepEqual(review(page({ datePosted: "02/30/2026" })), { status: "held", reason: "unverified-posting-dates" });
@@ -971,10 +972,10 @@ test("USAJOBS selective review requires paid current vacancies and preserves age
   assert.deepEqual(review(page({ jobLocation: [{ address: { addressLocality: "Denver", addressRegion: "CO" } }, { address: { addressLocality: "Berlin", addressCountry: "Germany" } }] })), { status: "held", reason: "unverified-or-ineligible-location" });
 });
 
-test("USAJOBS local admission is opt-in, exact and never recovers stale federal records", async () => {
+test("USAJOBS admission requires fresh authenticated provenance and never recovers stale records", async () => {
   assert.equal(await loadReviewedUsaJobs(false), null);
   const candidate: CandidateJob = { company: "Bureau of Reclamation", title: "Civil Engineer (Recent Graduate)", applyUrl: "https://www.usajobs.gov/job/888900400", location: "Lakewood, CO", category: "New grad", term: "Not stated", workMode: "unknown", postedAt: "2026-10-15T00:00:00Z", postedAtSource: "date_only", salary: null, source: "USAJOBS selective review", rawText: "Paid civil engineering position", federal: { retrievedAt: "2026-10-19T12:00:00Z", closes: "2026-10-29", citizenshipRequired: true, eligibility: "Recent-graduate eligibility applies." } };
-  assert.equal(reviewedFederalCoverage(candidate), true);
+  assert.equal(reviewedFederalCoverage(candidate), false);
   for (const altered of [{ ...candidate, source: "Unreviewed feed" }, { ...candidate, company: "Different Agency" }, { ...candidate, applyUrl: "https://www.usajobs.gov/job/999999999" }, { ...candidate, federal: undefined }]) assert.equal(reviewedFederalCoverage(altered), false);
   const job = { ...candidate, id: "federal", sources: [candidate.source], linkedInUrl: null, verifiedCompany: true };
   assert.equal(isInCollection(job, "fulltime"), true);
@@ -984,4 +985,46 @@ test("USAJOBS local admission is opt-in, exact and never recovers stale federal 
   assert.equal(preserveLastKnownGoodJobs(new Map(), [job], prior => prior), 0);
   assert.equal(preserveLastKnownGoodJobs(new Map(), [{ ...job, federal: undefined }], prior => prior), 0);
   assert.equal(evaluateCompanyQuality({ name: candidate.company }, candidate.rawText, [], [{ name: candidate.company, status: "blocked", reviewedAt: "2026-10-19", reason: "Manual hold" }]).status, "rejected");
+});
+
+test("USAJOBS discovery paginates within caps, deduplicates and keeps credentials off detail requests", async () => {
+  const now = new Date();
+  const posted = now.toISOString().slice(0, 10);
+  const closes = new Date(now.getTime() + 30 * 86_400_000).toISOString().slice(0, 10);
+  const seed = { PositionURI: "https://www.usajobs.gov/job/123456789", PositionTitle: "Civil Engineer (Recent Graduate)", OrganizationName: "Example Federal Agency" };
+  const structured = { "@type": "JobPosting", title: seed.PositionTitle, hiringOrganization: seed.OrganizationName, datePosted: posted, validThrough: closes, baseSalary: { currency: "USD", value: { value: 50000, unitText: "YEAR" } }, jobLocation: [{ address: { addressLocality: "Denver", addressRegion: "CO" } }] };
+  const html = `<main>Accepting applications. 2 vacancies.<div id="joa-summary">Paid recent graduate job.</div><div id="joa-requirements">U.S. Citizenship required.</div></main><script type="application/ld+json">${JSON.stringify(structured)}</script>`;
+  let searchCalls = 0;
+  let detailCalls = 0;
+  const fetcher: typeof fetch = async (input, init) => {
+    const url = new URL(String(input));
+    const headers = new Headers(init?.headers);
+    assert.equal(init?.redirect, "error");
+    if (url.hostname === "data.usajobs.gov") {
+      searchCalls++;
+      assert.equal(headers.get("Authorization-Key"), "fixture-key");
+      assert.ok(Number(url.searchParams.get("Page")) <= 2);
+      return Response.json({ SearchResult: { SearchResultCountAll: 10000, SearchResultItems: [{ MatchedObjectDescriptor: seed }, { MatchedObjectDescriptor: { ...seed, PositionURI: "https://untrusted.example/job/123456789" } }] } });
+    }
+    detailCalls++;
+    assert.equal(headers.get("Authorization-Key"), null);
+    assert.equal(url.hostname, "www.usajobs.gov");
+    return new Response(html);
+  };
+  const result = await loadReviewedUsaJobs(true, { fetcher, apiKey: "fixture-key", email: "test@example.invalid", costReviewed: true });
+  assert.ok(result);
+  assert.equal(result.failed, false);
+  assert.equal(searchCalls, 22);
+  assert.equal(detailCalls, 1);
+  assert.equal(result.truncated, true);
+  assert.equal(result.discovered, 1);
+  assert.equal(result.candidates.length, 1);
+  assert.equal(reviewedFederalCoverage(result.candidates[0]), true);
+  assert.equal(reviewedFederalCoverage({ ...result.candidates[0] }), false);
+  const denied = await loadReviewedUsaJobs(true, { fetcher: async () => new Response(null, { status: 429 }), apiKey: "fixture-key", email: "test@example.invalid", costReviewed: true });
+  assert.equal(denied?.requests, 1);
+  assert.equal(denied?.failed, true);
+  assert.deepEqual(denied?.candidates, []);
+  const missing = await loadReviewedUsaJobs(true, { fetcher: async () => { throw Error("Must not request"); }, apiKey: "", email: "", costReviewed: false });
+  assert.equal(missing?.requests, 0);
 });

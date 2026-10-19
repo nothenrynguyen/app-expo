@@ -19,7 +19,7 @@ export type PublicJob = {
   sources: string[];
   verifiedCompany: boolean;
   employeeCount?: number | null;
-  federal?: { retrievedAt: string; closes: string; citizenshipRequired: true | null; eligibility: string };
+  federal?: { retrievedAt: string; closes: string; citizenshipRequired: true | null; eligibility: string; qualifications?: string };
 };
 
 export type JobsSnapshot = {

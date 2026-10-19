@@ -26,6 +26,10 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run sync:jobs
+        env:
+          USAJOBS_API_KEY: ${{ secrets.USAJOBS_API_KEY }}
+          USAJOBS_EMAIL: ${{ secrets.USAJOBS_EMAIL }}
+          USAJOBS_PILOT_COST_REVIEWED: "true"
       - name: Publish changed snapshot
         run: |
           if git diff --quiet -- public/jobs.json public/internships.json public/fulltime.json public/summary.json public/insights-history.json data/quarantine.json data/listing-health.json data/company-boards.json data/refresh-report.json; then

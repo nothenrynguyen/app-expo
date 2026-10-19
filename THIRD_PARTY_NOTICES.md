@@ -46,3 +46,7 @@ No license file was detected for these repositories at review time:
 No general reuse permission is inferred from public availability. Their license status is retained here as part of empluzzed's source record.
 
 Company names and trademarks belong to their respective owners. Job links lead to third-party employer or recruiting sites; empluzzed is not affiliated with or endorsed by those employers or upstream maintainers.
+
+## USAJOBS public federal job data
+
+USAJOBS supplies public federal job data under the open public-data terms at https://developer.usajobs.gov/guides/terms-of-service, reviewed October 19, 2026. This is separate from repository MIT licenses. empluzzed filters and combines public postings, links to the current official announcement, and records retrieval dates. empluzzed is independent and is not operated, sponsored, approved or endorsed by OPM or another federal agency. Applications follow the official announcement instructions. API credentials remain private and are not included in published data.

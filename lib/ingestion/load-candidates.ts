@@ -78,6 +78,7 @@ export async function loadCandidates(root: string, sources: JobSource[]): Promis
   const health: CandidateLoadResult["health"] = [];
   const sourceDiagnostics: SourceRefreshDiagnostic[] = [];
   const candidates: CandidateJob[] = [];
+  const preScreened: NonNullable<CandidateLoadResult["preScreened"]> = [];
 
   for (const source of sources.filter((candidate) => candidate.kind === "engine_json")) {
     const result = await runTimed(async () => JSON.parse(await fetchText(source.url)) as { jobs: EngineJob[] });
@@ -120,8 +121,13 @@ export async function loadCandidates(root: string, sources: JobSource[]): Promis
   const federal = await loadReviewedUsaJobs();
   if (federal) {
     candidates.push(...federal.candidates);
-    health.push({ name: "USAJOBS selective review", status: federal.failed ? "failed" : "ok", rows: federal.candidates.length });
-    sourceDiagnostics.push({ name: "USAJOBS selective review", kind: "usajobs", status: federal.failed ? "failed" : "ok", rows: federal.candidates.length, durationMs: federal.durationMs, requestCount: federal.requests, message: JSON.stringify({ holds: federal.holds }) });
+    for (const held of federal.holds) {
+      if (!held.url) continue;
+      const outcome = held.reason === "unpaid" ? "employer" : ["seniority", "unverified-role-category"].includes(held.reason) ? "role" : ["not-accepting-applications", "closed-or-closing-today"].includes(held.reason) ? "closed" : "pendingVerification";
+      preScreened.push({ url: held.url, outcome });
+    }
+    health.push({ name: "USAJOBS selective review", status: federal.failed ? "failed" : "ok", rows: federal.discovered });
+    sourceDiagnostics.push({ name: "USAJOBS selective review", kind: "usajobs", status: federal.failed ? "failed" : "ok", rows: federal.candidates.length, durationMs: federal.durationMs, requestCount: federal.requests, message: JSON.stringify({ accepted: federal.candidates.length, holds: federal.holds, discovered: federal.discovered, searchRequests: federal.searchRequests, detailRequests: federal.detailRequests, truncated: federal.truncated, searches: federal.searches }) });
   }
 
   const boards = new Map<string, NonNullable<ReturnType<typeof discoverAtsBoard>>>();
@@ -220,6 +226,7 @@ export async function loadCandidates(root: string, sources: JobSource[]): Promis
   }
 
   return {
+    preScreened,
     candidates,
     health,
     sourceDiagnostics,

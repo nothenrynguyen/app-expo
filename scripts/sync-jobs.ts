@@ -40,6 +40,7 @@ async function main() {
     .catch(() => ({} as ListingHealthFile));
   const {
     candidates,
+    preScreened = [],
     health,
     sourceDiagnostics,
     boardResults,
@@ -52,6 +53,7 @@ async function main() {
   const quarantined: Array<{ company: string; title: string; reason: string; source: string; applyUrl: string }> = [];
   let rejectedCount = 0;
   const screening = createScreeningTracker();
+  for (const record of preScreened) screening.record(record.url, record.outcome);
   let preservedFromLastHealthySnapshot = 0;
 
   const trustedCompanies = new Set([

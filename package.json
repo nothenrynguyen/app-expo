@@ -8,9 +8,10 @@
     "build": "next build",
     "lint": "eslint .",
     "verify": "npm test && npm run lint && npm run build",
-    "sync:jobs": "tsx scripts/sync-jobs.ts",
+    "sync:jobs": "node --env-file-if-exists=.env.local --import tsx scripts/sync-jobs.ts",
     "maintain:sources": "tsx scripts/maintain-sources.ts",
-    "test": "tsx --test tests/core.test.ts tests/analytics.test.ts tests/application-status.test.ts tests/saved-job-details.test.ts tests/applications.test.ts tests/application-backup.test.ts tests/hidden-companies.test.ts"
+    "test": "tsx --test tests/core.test.ts tests/analytics.test.ts tests/application-status.test.ts tests/saved-job-details.test.ts tests/applications.test.ts tests/application-backup.test.ts tests/hidden-companies.test.ts",
+    "measure:usajobs": "node --env-file-if-exists=.env.local --import tsx scripts/measure-usajobs.ts"
   },
   "dependencies": {
     "@vercel/analytics": "2.0.1",

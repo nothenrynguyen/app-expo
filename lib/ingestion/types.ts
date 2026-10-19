@@ -34,6 +34,7 @@ export type VerificationDiagnostic = {
 };
 
 export type CandidateLoadResult = {
+  preScreened?: Array<{ url: string; outcome: "employer" | "role" | "closed" | "pendingVerification" }>;
   candidates: CandidateJob[];
   health: JobsSnapshot["sourceHealth"];
   sourceDiagnostics: SourceRefreshDiagnostic[];
