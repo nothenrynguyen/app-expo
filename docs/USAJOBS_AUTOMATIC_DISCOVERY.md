@@ -1,6 +1,6 @@
 # Automatic USAJOBS discovery
 
-Release candidate prepared October 19, 2026. Local only until publication approval. Supersedes the earlier two-announcement allowlist in the pilot history.
+Release published October 19, 2026 at 7ab69a1. Repository Actions secrets are configured; live refresh run 39315578545 passed and its snapshot deployed successfully. Supersedes the earlier two-announcement allowlist in the pilot history.
 
 ## Automatic operation
 

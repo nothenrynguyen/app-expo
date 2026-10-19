@@ -38,7 +38,7 @@ USAJOBS processing excludes unpaid, closed and senior roles. Standing notices an
 
 Federal listings include citizenship, eligibility, closing/retrieval dates, qualifications/education excerpts and direct official requirements/application links. Source attribution and non-affiliation text are also on the Sources page. Full official instructions remain authoritative, including education, grade, clearance and application requirements. No promise that every visitor qualifies.
 
-API keys remain server-side. The proposed scheduled workflow reads USAJOBS_API_KEY and USAJOBS_EMAIL from GitHub Actions secrets, with the completed cost review flag set in workflow configuration. These secrets still need installation before publication using the existing local values. The key/email must never appear in public snapshots or NEXT_PUBLIC variables. No new paid resource, payment method or runtime backend.
+API keys remain server-side. The scheduled workflow reads USAJOBS_API_KEY and USAJOBS_EMAIL from GitHub Actions secrets, with the completed cost review flag set in workflow configuration. The existing local values were securely installed as repository Actions secrets after owner approval. The key/email must never appear in public snapshots or NEXT_PUBLIC variables. No new paid resource, payment method or runtime backend.
 
 ## Validation
 
@@ -52,8 +52,8 @@ Detailed measurement: [release result](source-expansion-release-result.json). Re
 
 ## Single publication checkpoint
 
-After owner approval: securely install the existing USAJOBS key/email as repository Actions secrets, synchronize the branch with any automated upstream data commits, push the completed batch, then verify the scheduled/manual refresh and deployed snapshot end to end. Until that approval, this remains a local release candidate.
+The owner approved publication. Existing USAJOBS key/email were securely installed as repository Actions secrets, automated upstream data changes were incorporated, all 70 tests passed again, and release 7ab69a1 was pushed. Manual refresh run 39315578545 passed, published snapshot 17bda91, and Vercel deployed it successfully. Live summary generatedAt advanced to 2026-10-19T20:02:57.268Z. The fresh run has 5,491 jobs, including 11 USAJOBS listings. All 24 source feeds succeeded; overall diagnostics remain degraded with 14 employer-board failures. Counts differ from the earlier local review snapshot above. Audit missing destinations and source variability next; the entire decrease has not been attributed to specific causes.
 
 Next milestone after publication: prioritize duplicate/requisition review and remaining role/location leakage, then evaluate additional broad non-software sources using measured unique eligible yield. Avoid returning to manual posting-by-posting discovery as the main strategy.
 
-Final safeguards: private key/email scan found neither value in tracked publishable files. Source attribution page verified in the browser. No credentials have been uploaded remotely; GitHub Actions setup is part of the proposed publication action.
+Final safeguards: private key/email scan found neither value in tracked publishable files. Source attribution page verified in the browser. Credentials were uploaded only as encrypted repository Actions secrets, never as tracked files or public frontend variables.

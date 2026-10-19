@@ -4,7 +4,7 @@ This is the living list of ideas and future work for empluzzed. Update it whenev
 
 ## Source expansion release candidate
 
-The October 19 local release candidate adds Keryx coverage and bounded automatic USAJOBS discovery. All implementation and measurement steps are complete; publication approval is pending. See [release review](docs/SOURCE_EXPANSION_RELEASE.md) and [active tasks](docs/ACTIVE_TASKS.md). After publication, prioritize listing quality and duplicate/requisition review before further backend work.
+The October 19 release adds Keryx coverage and bounded automatic USAJOBS discovery. Implementation and measurement are complete; publication was approved and release 7ab69a1 was pushed. Live refresh run 39315578545 passed and its snapshot deployed successfully. See [release review](docs/SOURCE_EXPANSION_RELEASE.md) and [active tasks](docs/ACTIVE_TASKS.md). After publication, prioritize listing quality and duplicate/requisition review before further backend work.
 
 ## Current focus
 
