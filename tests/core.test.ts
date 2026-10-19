@@ -471,6 +471,23 @@ test("supported ATS links reveal stable company board identifiers", () => {
   assert.equal(isEarlyCareerTitle("Sales Operations Manager", "This role requires 1-3 years of experience."), false);
 });
 
+test("store-floor retail roles cannot inherit professional sales tags", () => {
+  for (const title of [
+    "Seasonal Sales Associate (Part-Time) - City Creek Centre",
+    "Retail Sales Associate", "Sales Associate - Seasonal", "Store Associate - Operations", "Cashier",
+  ]) {
+    const job = { title, category: "New grad", roleTags: ["marketing-sales", "operations-supply-chain"] };
+    assert.deepEqual(classifyRoleTags(job), [], title);
+    assert.deepEqual(getJobRoleTags(job), [], title);
+    assert.equal(matchesRoleSelection(job, { family: "all", specialty: null }), false, title);
+  }
+  for (const title of ["Sales Development Representative", "Sales Operations Analyst", "Sales Associate", "Account Executive", "Customer Success Associate", "Retail Sales Analyst", "Retail Marketing Intern"]) {
+    assert.ok(classifyRoleTags({ title, category: "New grad" }).includes("marketing-sales"), title);
+  }
+  assert.ok(classifyRoleTags({ title: "Software Engineer - Retail", category: "New grad" }).includes("software-engineering"));
+  assert.ok(classifyRoleTags({ title: "Retail Data Analyst", category: "New grad" }).includes("analytics"));
+});
+
 test("role taxonomy supports multiple tags, broad families, and legacy links", () => {
   const semiconductor = { title: "Materials and Process Engineering Intern", category: "Internship" };
   assert.deepEqual(classifyRoleTags(semiconductor), ["process-manufacturing", "materials-chemical"]);
