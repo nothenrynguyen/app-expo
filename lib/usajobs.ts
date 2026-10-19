@@ -73,13 +73,15 @@ export function reviewUsaJobsPosting(seed: UsaJobsSeed, html: string, now = new 
     return [address.addressLocality, address.addressRegion, country].filter(Boolean).join(", ").trim();
   });
   if (!locations.length || locations.some(location => !location || !getJobLocationMetadata({ location }).eligible)) return hold("unverified-or-ineligible-location");
+  const qualificationText = `${text(job.qualifications)} ${text(job.educationRequirements)}`.trim();
+  const qualifications = qualificationText.length > 4000 ? `${qualificationText.slice(0, 4000).replace(/\s+\S*$/, "")}…` : qualificationText;
   const candidate: CandidateJob = {
     company: namedAgency, title, term: inferTerm(`${title} ${summary}`), location: [...new Set(locations)].join("; "),
     workMode: "unknown", postedAt: `${posted}T00:00:00.000Z`, postedAtSource: "date_only", applyUrl: url,
     category: /intern|student trainee/i.test(title) || /summer scholar/i.test(summary) ? "Internship" : "New grad",
     salary: `USD ${min.toLocaleString("en-US")}${max === min ? "" : ` - ${max.toLocaleString("en-US")}`} / ${String(pay.unitText ?? "unspecified")}`,
     source: "USAJOBS selective review", rawText: `${title} ${summary}`,
-    federal: { qualifications: `${text(job.qualifications)} ${text(job.educationRequirements)}`.trim().slice(0, 4000), retrievedAt: now.toISOString(), closes, citizenshipRequired: /u\.?s\.? citizen(?:ship)?|united states citizen/i.test(requirements) ? true : null,
+    federal: { qualifications, retrievedAt: now.toISOString(), closes, citizenshipRequired: /u\.?s\.? citizen(?:ship)?|united states citizen/i.test(requirements) ? true : null,
       eligibility: `${/intern|student trainee/i.test(title) || /summer scholar/i.test(summary) ? "Student" : "Recent-graduate"} eligibility applies. Check grade, education, clearance and application requirements on the official announcement.` },
   };
   candidate.roleTags = classifyRoleTags(candidate);

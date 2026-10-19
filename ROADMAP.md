@@ -2,11 +2,15 @@
 
 This is the living list of ideas and future work for empluzzed. Update it whenever priorities change, an idea comes up, or a feature ships.
 
+## Source expansion release candidate
+
+The October 19 local release candidate adds Keryx coverage and bounded automatic USAJOBS discovery. All implementation and measurement steps are complete; publication approval is pending. See [release review](docs/SOURCE_EXPANSION_RELEASE.md) and [active tasks](docs/ACTIVE_TASKS.md). After publication, prioritize listing quality and duplicate/requisition review before further backend work.
+
 ## Current focus
 
 empluzzed covers early-career software, data, engineering, product, solutions and support, business, finance, quant, IT, and security roles across internship and full-time collections.
 
-The reviewed-source expansion, ingestion foundation, opt-in Vercel analytics and browser-local application tracker are complete. Keep the current analytics integration. The next development milestone starts with the optional backend cost and architecture review in a new chat. No backend resources, accounts or database have been added. See [backend handoff](docs/BACKEND_HANDOFF.md). Preserve the no-sign-up public board throughout.
+The reviewed-source expansion, ingestion foundation, opt-in Vercel analytics and browser-local application tracker are complete. Keep the current analytics integration. The current milestone is the source-expansion release above. After publication, prioritize listing quality; optional backend cost and architecture work remains a later review in a new chat. No backend resources, accounts or database have been added. See [backend handoff](docs/BACKEND_HANDOFF.md). Preserve the no-sign-up public board throughout.
 
 ## Personal company preferences
 

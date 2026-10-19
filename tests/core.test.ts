@@ -1025,6 +1025,14 @@ test("USAJOBS discovery paginates within caps, deduplicates and keeps credential
   assert.equal(denied?.requests, 1);
   assert.equal(denied?.failed, true);
   assert.deepEqual(denied?.candidates, []);
+  let blockedDetails = 0;
+  const partial = await loadReviewedUsaJobs(true, { fetcher: async input => {
+    if (String(input).startsWith("https://data.usajobs.gov/")) return Response.json({ SearchResult: { SearchResultCountAll: 2, SearchResultItems: [{ MatchedObjectDescriptor: seed }, { MatchedObjectDescriptor: { ...seed, PositionURI: "https://www.usajobs.gov/job/987654321" } }] } });
+    blockedDetails++;
+    return blockedDetails === 1 ? new Response(html) : new Response(null, { status: 429 });
+  }, apiKey: "fixture-key", email: "test@example.invalid", costReviewed: true });
+  assert.equal(partial?.failed, true);
+  assert.deepEqual(partial?.candidates, []);
   const missing = await loadReviewedUsaJobs(true, { fetcher: async () => { throw Error("Must not request"); }, apiKey: "", email: "", costReviewed: false });
   assert.equal(missing?.requests, 0);
 });

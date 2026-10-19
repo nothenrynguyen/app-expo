@@ -217,7 +217,7 @@ function FederalEligibility({ job }: { job: PublicJob }) {
     <details className="federal-eligibility">
       <summary>{job.federal.citizenshipRequired ? "U.S. citizenship required" : "Federal eligibility requirements"}</summary>
       <p>{job.federal.eligibility}</p>
-      {job.federal.qualifications ? <details><summary>Qualifications and education</summary><p>{job.federal.qualifications} Read the official announcement for the complete requirements.</p></details> : null}
+      {job.federal.qualifications ? <details><summary>Qualifications and education (excerpt)</summary><p>{job.federal.qualifications} Read the official announcement for the complete requirements.</p></details> : null}
       <p>USAJOBS · Retrieved {job.federal.retrievedAt.slice(0, 10)} · Closes {job.federal.closes}</p>
       <p>empluzzed is independent and is not endorsed by the U.S. government.</p>
       <a href={job.applyUrl} target="_blank" rel="noreferrer">Read official requirements</a>
