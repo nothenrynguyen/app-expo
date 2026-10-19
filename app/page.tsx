@@ -8,12 +8,15 @@ export default function Home() {
   return <PageTransition>
     <main className="home-page">
       <section className="landing-shell">
-        <div className="landing-hero"><HeroGravity /><p className="eyebrow">Your next opportunity</p>
+        <div className="landing-intro">
+        <HeroGravity />
+        <div className="landing-hero"><p className="eyebrow">Your next opportunity</p>
         <LandingHeadline />
         <p className="landing-copy">Direct applications. No sign-up. No detours.<br />Refreshed hourly from reviewed sources.</p>
         <div className="live-line"><i />Currently live</div>
         </div>
         <LandingCollections />
+        </div>
         <section id="about" className="about-section">
           <div className="about-intro">
             <p className="eyebrow">About empluzzed</p>

@@ -30,6 +30,7 @@ Keep this list current as work progresses. Make reasonable local implementation 
 
 ## Completed actions and decisions
 
+- October 18: Extended the homepage gravity canvas to a shared wrapper around the headline and collection cards, with a soft fade beneath the screening line. Canvas coverage follows both stacked mobile cards through the existing ResizeObserver. Desktop and 390px browser checks confirmed coverage and no horizontal overflow; lint passed. No changes to board-page effects, animation logic or reduced-motion handling. Local commit checkpoint; no push or deployment.
 - October 18: Audited the production snapshot and checked 19 employer links. Added `scripts/audit-listing-quality.ts` and `docs/LISTING_QUALITY_AUDIT.md` locally.
 - October 18: Identified closure-detection and retail-role leakage as the first fixes.
 - October 18: Recommended explaining screening on the homepage, with numerical claims deferred until counts represent unique excluded listings accurately.
