@@ -4,7 +4,7 @@ Updated October 18, 2026.
 
 ## Working agreement
 
-Keep this list current as work progresses. Make reasonable local implementation changes and record new findings here. Show concrete results and validation for review. Commit each coherent completed task after its relevant checks pass, as authorized by the owner. Obtain explicit approval before pushing or deploying. New hosted resources require the cost review and approval described in COST_POLICY.md.
+Keep this list current as work progresses. Include a short next-actions list in every iteration report. Make reasonable local implementation changes and record new findings here. Show concrete results and validation for review. Commit each coherent completed task after its relevant checks pass, as authorized by the owner. Obtain explicit approval before pushing or deploying. New hosted resources require the cost review and approval described in COST_POLICY.md.
 
 ## Current queue
 
@@ -17,7 +17,7 @@ Keep this list current as work progresses. Make reasonable local implementation 
 | Repair screening-count semantics | Committed locally: `98c791e`, data `8d92dae` | Unique final destination counts exclude accepted aliases and recovered jobs from exclusions, separate pending verification, and expose reason buckets. Legacy snapshots show no guessed counts. All 65 tests, lint and static build pass. Real-data consistency checks passed. See [metric contract](SCREENING_METRICS.md). |
 | Add homepage screening explanation | Simplified per owner feedback | One small line below the cards: "✦ 15,995 total job links screened", with a four-point text star and the number in the existing purple accent, using the reviewed total rather than exclusions alone. No timestamp, extra explanation or link. Detailed breakdown stays on Methodology. Lint and browser visual checks passed. Preview: http://127.0.0.1:3001. Push/deployment approval pending. |
 | Review possible duplicate listings | Queued | Review the 164 matching groups using employer requisitions and descriptions. Matching title/location alone is insufficient for removal. Preserve saved-job compatibility. |
-| Review employer-verification false negatives | Queued | Prioritize unique eligible jobs not already accepted, then verify employer aliases and official evidence. |
+| Review employer-verification false negatives | First evidence batch implemented locally | Verified DLR Group, Olsson, STV and FOTH using official company size and U.S. presence evidence. See [review](EMPLOYER_EVIDENCE_REVIEW.md). All 67 tests, lint and static export pass. Live refresh: 6,080 jobs, 842 Keryx-linked listings, 209 remaining Keryx employer holds. All 23 feeds healthy; employer-board diagnostics remain degraded. Local only. |
 | Add browser-local hide-reviewed jobs | Later | Define reviewed/hide/restore behavior and show a local implementation after the quality work. |
 | Review optional backend architecture and cost | Later | Assess Go, GraphQL, storage and authentication under COST_POLICY.md. Present a concrete review before adding resources. |
 
@@ -49,3 +49,9 @@ Keep this list current as work progresses. Make reasonable local implementation 
 - October 18: Implemented unique screening metrics in ingestion, summary and refresh diagnostics, plus a Methodology breakdown with refresh time. Verified 65 tests, lint and static export. Metrics changes are a separate local checkpoint before homepage work. A local source refresh is running; no publication authorized.
 - October 18: Committed metrics as `98c791e`, then refreshed and checked actual data: 5,532 jobs, 6,151 excluded application destinations, 4,293 awaiting verification. All 21 feeds returned data; six employer boards failed. The degraded status is preserved. Snapshot, collections, summary and diagnostic totals agree. Data committed as `8d92dae`.
 - October 18: Added the homepage explanation with real counts, a refresh timestamp, an honest legacy-data fallback and a Methodology anchor. All 65 tests, lint and static build pass. Browser checks confirmed the count, link and expandable breakdown; mobile wrapping at 390px has no horizontal overflow. Console warnings/errors: none. React review: reuse existing fetch/state, type-only data imports, native links/details, no new dependencies or tracking. Local preview remains running for owner review. No push or deployment.
+
+## Next actions after this iteration
+
+1. Review the measured employer-evidence results and remaining holds, prioritizing finance/business coverage.
+2. Resolve USAJOBS access and zero-cost requirements, then measure a bounded pilot before integration.
+3. Review the accumulated local source changes for publication approval, then verify the deployed refresh.
