@@ -4,7 +4,7 @@ import type { CandidateJob } from "../source-normalization";
 
 export type SourceRefreshDiagnostic = {
   name: string;
-  kind: "engine_json" | "applyguy_json" | "markdown" | "workday";
+  kind: "engine_json" | "applyguy_json" | "markdown" | "keryx_markdown" | "workday";
   status: "ok" | "failed";
   rows: number;
   durationMs: number;

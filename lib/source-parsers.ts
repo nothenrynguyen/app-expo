@@ -1,5 +1,7 @@
 import { load } from "cheerio";
 import type { JobSource } from "./source-catalog";
+import { classifyRoleTags, ROLE_TAGS } from "./role-areas";
+import { isEarlyCareerTitle } from "./ats-boards";
 import {
   canonicalizeUrl,
   inferTerm,
@@ -182,4 +184,37 @@ export function parseApplyGuySource(payload: string, source: string, categories:
 
 export function sourceAllowsAtsExpansion(sourceName: string, sources: JobSource[]): boolean {
   return sources.find((source) => source.name === sourceName)?.expandAtsBoards !== false;
+}
+
+export function parseKeryxSource(markdown: string, source: string, now = new Date()): CandidateJob[] {
+  const jobs: CandidateJob[] = [];
+  for (const line of markdown.split("\n")) {
+    if (!line.trim().startsWith("|")) continue;
+    const cells = splitRow(line);
+    if (cells.length !== 7 || !/(?:workday|greenhouse|lever|ashby|smartrecruiters) direct/i.test(cleanText(cells[5]))) continue;
+    const applyUrl = extractUrl(cells[6]);
+    if (!applyUrl) continue;
+    const url = new URL(applyUrl);
+    const directAts = url.hostname.endsWith(".myworkdayjobs.com") || ["boards.greenhouse.io", "job-boards.greenhouse.io", "job-boards.eu.greenhouse.io", "jobs.lever.co", "jobs.eu.lever.co", "jobs.ashbyhq.com", "jobs.smartrecruiters.com"].includes(url.hostname);
+    if (!directAts || url.protocol !== "https:" || url.username || url.password) continue;
+    const company = cleanText(cells[0]);
+    const title = cleanText(cells[1]);
+    const category = /new grad/i.test(source) ? "New grad" : "Internship";
+    const rawText = `${company} ${title} ${cleanText(cells[2])}`;
+    const families = classifyRoleTags({ title, category, rawText }).map(tag => ROLE_TAGS.find(role => role.value === tag)?.family);
+    if (!company || !title || !isEarlyCareerTitle(title, "") || families.includes("software") || !families.some(family => ["engineering", "business", "finance-quant", "it-security"].includes(family ?? ""))) continue;
+    // Academic hints and discovery sources are not employer statements. Keep
+    // them out of eligibility and risk classification. Missing dates are first
+    // observed here, never invented as employer posting dates.
+    const dateText = cleanText(cells[4]);
+    const missingDate = /^(?:—|-|not (?:stated|available)|unknown|date unknown)?$/i.test(dateText);
+    if (!missingDate && !/^\d{4}-\d{2}-\d{2}$/.test(dateText)) continue;
+    const posted = missingDate ? null : parsePostedAt(dateText, now);
+    if (!missingDate && (!posted || posted.postedAt.slice(0, 10) !== dateText)) continue;
+    jobs.push({ company, title, category, location: cleanText(cells[2]) || "Location not stated",
+      term: inferTerm(`${title} ${source}`), workMode: inferWorkMode(rawText),
+      postedAt: posted?.postedAt ?? now.toISOString(), postedAtSource: posted?.source ?? "first_seen",
+      applyUrl, salary: null, source, rawText });
+  }
+  return jobs;
 }

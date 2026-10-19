@@ -2,7 +2,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import type { JobSource, SourceCatalog, SourceHealthRecord, SourceHealthState } from "../lib/source-catalog";
-import { parseMarkdownSource } from "../lib/source-parsers";
+import { parseKeryxSource, parseMarkdownSource } from "../lib/source-parsers";
 
 type MaintenanceMode = "daily" | "weekly" | "monthly";
 type GithubRepository = { full_name: string; default_branch: string; archived: boolean; pushed_at: string | null; name: string };
@@ -40,7 +40,7 @@ async function countRows(source: JobSource): Promise<number> {
     const allowed = new Set((source.categories ?? []).map((category) => category.toLowerCase()));
     return allowed.size === 0 ? jobs.length : jobs.filter((job) => allowed.has(String(job.category ?? "").toLowerCase())).length;
   }
-  return parseMarkdownSource(text, source.name).length;
+  return (source.kind === "keryx_markdown" ? parseKeryxSource : parseMarkdownSource)(text, source.name).length;
 }
 
 async function repositoryDetails(repository: string, cache: Map<string, GithubRepository | null>): Promise<GithubRepository | null> {

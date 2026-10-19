@@ -13,6 +13,10 @@ The following upstream repositories declared the MIT License when reviewed on Se
 - vanshb03/Summer2027-Internships — Copyright (c) 2025 Vansh Bataviya
 - zshah101/Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships — Copyright (c) 2026 Shah Zain
 
+Additionally reviewed October 18, 2026:
+
+- GodlyDonuts/keryx: Copyright (c) 2026 Saicharan Ramineni. MIT License. Only reviewed direct ATS provenance and employer ATS destinations are imported; upstream eligibility hints and aggregator fallback links are not imported.
+
 The following MIT license text applies to each repository listed above:
 
 > Permission is hereby granted, free of charge, to any person obtaining a copy

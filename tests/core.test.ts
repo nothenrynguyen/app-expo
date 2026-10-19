@@ -15,7 +15,7 @@ import { createAtsBoard, discoverAtsBoard, isEarlyCareerTitle, type AtsBoardSeed
 import { classifyListingResponse, needsListingCheck } from "../lib/listing-health";
 import { applyMicrosoftCareersPosting, parseMicrosoftCareersJobUrl, parseMicrosoftCareersPosting } from "../lib/microsoft-careers";
 import { applySmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
-import { parseApplyGuySource, parseMarkdownSource, sourceAllowsAtsExpansion } from "../lib/source-parsers";
+import { parseApplyGuySource, parseKeryxSource, parseMarkdownSource, sourceAllowsAtsExpansion } from "../lib/source-parsers";
 import { classifyJobMetros, classifyJobRegions, formatSnapshotAge, getSupportedJobRegions, normalizeJobLocation } from "../lib/job-locations";
 import { isDiscoverableYearlyRepository } from "../scripts/maintain-sources";
 import sourceCatalog from "../data/sources.json";
@@ -28,6 +28,7 @@ import { buildRefreshReport } from "../lib/ingestion/refresh-report";
 import { preserveLastKnownGoodJobs } from "../lib/ingestion/last-known-good";
 import { getJobLocationMetadata } from "../lib/job-location-policy";
 import { createScreeningTracker } from "../lib/ingestion/screening";
+import type { SourceCatalog } from "../lib/source-catalog";
 
 test("foreign cities cannot inherit a contradictory US suffix or stale snapshot tag", () => {
   for (const location of ["Shanghai, 200335, United States", "Shanghai, 200335", "Prague, United States", "Prague"]) {
@@ -241,6 +242,42 @@ test("job collections distinguish 2027 internships from full-time new-grad roles
   assert.equal(isInCollection({ ...base, title: "Software Engineer Intern", term: "Summer 2027", category: "Internship" }, "internships"), true);
   assert.equal(isInCollection({ ...base, title: "Software Engineer Summer Analyst", term: "Not stated", category: "Internship" }, "internships"), true);
   assert.equal(isInCollection({ ...base, title: "Software Engineer, New Grad", term: "Not stated", category: "New grad" }, "fulltime"), true);
+});
+
+test("Keryx imports only early-career non-software rows with direct ATS provenance", () => {
+  const header = "| Company | Role | Location | Academic eligibility | Posted | Seen in | Apply |\n|---|---|---|---|---|---|---|";
+  const row = (title: string, url: string, provenance = "Workday direct", date = "2026-10-18") => `| Example | ${title} | Boston, MA | Preferred PhD, not required | ${date} | ${provenance} | [apply](${url}) |`;
+  const direct = "https://example.wd1.myworkdayjobs.com/Careers/job/Boston/Mechanical-Engineering-Intern_JR12345";
+  const now = new Date("2026-10-19T05:00:00Z");
+  const parsed = parseKeryxSource([header,
+    row("Mechanical Engineering Intern", direct),
+    row("Finance Intern", "https://jobs.lever.co/example/abc", "Lever direct", "—"),
+    row("Software Engineering Intern", direct),
+    row("Mechanical Engineering Intern", "https://jobright.ai/jobs/info/123"),
+    row("Mechanical Engineering Intern", direct, "Jobright Engineering"),
+    row("Mechanical Engineering Intern", "https://boards.greenhouse.io.evil.example/jobs/123"),
+    row("Mechanical Engineering Intern", "https://user:pass@jobs.lever.co/example/abc"),
+    row("Mechanical Engineering Intern", "http://jobs.lever.co/example/abc"),
+    row("Senior Mechanical Engineer", direct),
+    row("Mechanical Engineering Intern", direct, "Workday direct", "invalid date"),
+  ].join("\n"), "Keryx Non-Software Summer 2027", now);
+  assert.equal(parsed.length, 2);
+  assert.equal(parsed[0].term, "Summer 2027");
+  assert.equal(parsed[0].postedAtSource, "date_only");
+  assert.equal(parsed[1].postedAtSource, "first_seen");
+  assert.equal(parsed[1].postedAt, now.toISOString());
+  for (const date of ["", "-", "not stated", "unknown", "date unknown"]) {
+    const missing = parseKeryxSource([header, row("Finance Intern", "https://jobs.lever.co/example/abc", "Lever direct", date)].join("\n"), "Keryx Non-Software Summer 2027", now);
+    assert.equal(missing[0].postedAtSource, "first_seen", date);
+    assert.equal(missing[0].postedAt, now.toISOString(), date);
+  }
+  assert.equal(parsed[0].rawText.includes("PhD"), false);
+  const grad = parseKeryxSource([header, row("Mechanical Engineer I", direct)].join("\n"), "Keryx Non-Software New Grad 2027", now);
+  assert.equal(grad[0].category, "New grad");
+  const reviewedCatalog = sourceCatalog as SourceCatalog;
+  const sources = reviewedCatalog.sources.filter(source => source.repository === "GodlyDonuts/keryx");
+  assert.equal(sources.length, 2);
+  assert.ok(sources.every(source => !source.trustedCoverage && !sourceAllowsAtsExpansion(source.name, reviewedCatalog.sources)));
 });
 
 test("job summary keeps homepage counts aligned with the published collections", () => {

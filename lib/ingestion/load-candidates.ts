@@ -5,7 +5,7 @@ import { applyMicrosoftCareersPosting, fetchMicrosoftCareersPosting, parseMicros
 import { applySmartRecruitersPosting, fetchSmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../smartrecruiters";
 import type { JobSource } from "../source-catalog";
 import { canonicalizeUrl, inferTerm, inferWorkMode, jobIdentity, type CandidateJob } from "../source-normalization";
-import { parseApplyGuySource, parseMarkdownSource, sourceAllowsAtsExpansion } from "../source-parsers";
+import { parseApplyGuySource, parseKeryxSource, parseMarkdownSource, sourceAllowsAtsExpansion } from "../source-parsers";
 import { createWorkdayBoard, fetchWorkdayBoard, type WorkdayBoardSeed } from "../workday";
 import { inBatches } from "./concurrency";
 import type { BoardRefreshDiagnostic, CandidateLoadResult, SourceRefreshDiagnostic } from "./types";
@@ -102,8 +102,8 @@ export async function loadCandidates(root: string, sources: JobSource[]): Promis
     }
   }
 
-  const markdownSources = sources.filter((source) => source.kind === "markdown");
-  const markdownResults = await Promise.all(markdownSources.map((source) => runTimed(async () => parseMarkdownSource(await fetchText(source.url), source.name))));
+  const markdownSources = sources.filter((source) => source.kind === "markdown" || source.kind === "keryx_markdown");
+  const markdownResults = await Promise.all(markdownSources.map((source) => runTimed(async () => (source.kind === "keryx_markdown" ? parseKeryxSource : parseMarkdownSource)(await fetchText(source.url), source.name))));
   markdownResults.forEach((result, index) => {
     const source = markdownSources[index];
     if (result.status === "fulfilled") {
