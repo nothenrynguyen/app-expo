@@ -196,7 +196,8 @@ async function main() {
       const decision = evaluateCompanyQuality({ name: prior.company }, "", registry, trustRegistry);
       const freshnessRejection = getFreshnessRejection(prior);
       const roleTags = classifyRoleTags(prior);
-      if (roleTags.length === 0 || decision.status === "rejected" || freshnessRejection) return null;
+      if (roleTags.length === 0 || decision.status === "rejected"
+        || (decision.status === "quarantined" && !decision.coverageExceptionAllowed) || freshnessRejection) return null;
       const locationMetadata = getJobLocationMetadata(prior);
       if (!locationMetadata.eligible) return null;
       const location = normalizeJobLocation(prior.location);
