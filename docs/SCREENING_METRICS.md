@@ -24,3 +24,9 @@ Legacy `snapshot.quarantinedCount`, quarantine rows, refresh-report raw rejected
 ## Validation
 
 Regression coverage checks cross-source acceptance, canonical tracking-parameter variants, duplicate rows, recovered destinations, reason conflicts, pending verification, invalid links and legacy/null snapshots. Run `npm run verify` for tests, lint and static export. A normal source refresh generates the new metrics; until then, the homepage and Methodology show an honest fallback rather than a guessed count.
+
+## First real-data verification
+
+Local refresh at 2026-10-19T05:23:53.639Z (October 18, 10:23 p.m. Pacific): 5,532 published jobs, 5,551 accepted destinations before semantic deduplication, 6,151 excluded destinations and 4,293 awaiting employer verification. The 15,995 reviewed destinations partition exactly into those outcomes; all exclusion reason buckets sum to 6,151. Zero uncounted records.
+
+All 21 feeds returned data. Six employer boards failed, so the report is degraded and these totals reflect available inputs. Collection sizes, public summary, snapshot metrics and refresh diagnostics were checked for agreement. No roleless listings remained under the current role classifier. This refresh changes local snapshots only.
