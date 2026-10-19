@@ -22,6 +22,7 @@ export type PublicJob = {
 };
 
 export type JobsSnapshot = {
+  screening?: import("./ingestion/screening").ScreeningMetrics | null;
   generatedAt: string;
   jobs: PublicJob[];
   quarantinedCount: number;

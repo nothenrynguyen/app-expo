@@ -7,6 +7,7 @@ import { inBatches } from "../lib/ingestion/concurrency";
 import { preserveLastKnownGoodJobs } from "../lib/ingestion/last-known-good";
 import { loadCandidates } from "../lib/ingestion/load-candidates";
 import { buildRefreshReport } from "../lib/ingestion/refresh-report";
+import { createScreeningTracker } from "../lib/ingestion/screening";
 import { isInCollection } from "../lib/job-collections";
 import { deduplicateCrossSourceJobs } from "../lib/job-dedup";
 import { getFreshnessRejection } from "../lib/job-freshness";
@@ -48,6 +49,7 @@ async function main() {
   const merged = new Map<string, PublicJob>();
   const quarantined: Array<{ company: string; title: string; reason: string; source: string; applyUrl: string }> = [];
   let rejectedCount = 0;
+  const screening = createScreeningTracker();
   let preservedFromLastHealthySnapshot = 0;
 
   const trustedCompanies = new Set([
@@ -78,11 +80,13 @@ async function main() {
   for (const candidate of candidates) {
     const locationMetadata = getJobLocationMetadata(candidate);
     if (!locationMetadata.eligible) {
+      screening.record(candidate.applyUrl, "location");
       rejectedCount += 1;
       continue;
     }
     const roleTags = classifyRoleTags(candidate);
     if (roleTags.length === 0) {
+      screening.record(candidate.applyUrl, "role");
       quarantined.push({
         company: normalizeDisplayText(candidate.company),
         title: normalizeDisplayText(candidate.title),
@@ -94,6 +98,7 @@ async function main() {
     }
     const freshnessRejection = getFreshnessRejection(candidate);
     if (freshnessRejection) {
+      screening.record(candidate.applyUrl, candidate.sourceActive === false ? "closed" : "expired");
       quarantined.push({
         company: normalizeDisplayText(candidate.company),
         title: normalizeDisplayText(candidate.title),
@@ -111,6 +116,7 @@ async function main() {
       trustRegistry,
     );
     if (decision.status === "rejected") {
+      screening.record(candidate.applyUrl, "employer");
       rejectedCount += 1;
       continue;
     }
@@ -118,6 +124,7 @@ async function main() {
       if (trustedCuratedSources.has(candidate.source) || (candidate.source.startsWith("Direct ATS") && trustedCompanies.has(normalizeCompanyName(candidate.company)))) {
         // Reviewed community lists and pinned employer boards are the explicit coverage baseline.
       } else {
+        screening.record(candidate.applyUrl, "pendingVerification");
         quarantined.push({ company: normalizeDisplayText(candidate.company), title: normalizeDisplayText(candidate.title), reason: decision.reason, source: candidate.source, applyUrl: candidate.applyUrl });
         continue;
       }
@@ -128,10 +135,12 @@ async function main() {
     const board = discoverAtsBoard(canonical, candidate.company, candidate.source);
     const authoritativeBoard = board ? boardResults.get(board.id) : null;
     if (authoritativeBoard && !authoritativeBoard.liveIdentities.has(identity)) {
+      screening.record(candidate.applyUrl, "closed");
       rejectedCount += 1;
       continue;
     }
     if (!authoritativeBoard && listingHealth[identity]?.status === "closed") {
+      screening.record(candidate.applyUrl, "closed");
       rejectedCount += 1;
       continue;
     }
@@ -197,6 +206,9 @@ async function main() {
   if (jobs.length < 10) throw new Error(`Refusing to publish anomalous snapshot with only ${jobs.length} approved jobs.`);
   const allSourcesUnhealthy = health.length > 0 && unhealthySources.length === health.length;
   const snapshot: JobsSnapshot = {
+    // Include accepted aliases before cross-source deduplication and recovered
+    // jobs so neither can be counted as excluded through another source.
+    screening: allSourcesUnhealthy ? null : screening.summarize([...merged.values()].map((job) => job.applyUrl)),
     generatedAt: new Date().toISOString(),
     jobs,
     quarantinedCount: allSourcesUnhealthy && previous ? previous.quarantinedCount : quarantined.length,
@@ -225,6 +237,7 @@ async function main() {
     checksAttempted: dueChecks.length,
     checksCompleted: completedListingChecks,
     knownClosed: closedPostingsCaught,
+    screening: snapshot.screening,
   });
   await writeFile(path.join(root, "data/refresh-report.json"), `${JSON.stringify(refreshReport, null, 2)}\n`);
 
@@ -236,10 +249,10 @@ async function main() {
   const nextInsightsHistory = updateJobInsightsHistory(insightsHistory, buildJobInsightsDay(snapshot, { closedPostingsCaught }));
   await writeFile(insightsHistoryPath, `${JSON.stringify(nextInsightsHistory, null, 2)}\n`);
 
-  const materialSnapshot = { jobs: snapshot.jobs, quarantinedCount: snapshot.quarantinedCount, sourceHealth: snapshot.sourceHealth };
-  const previousMaterial = previous && { jobs: previous.jobs, quarantinedCount: previous.quarantinedCount, sourceHealth: previous.sourceHealth };
+  const materialSnapshot = { jobs: snapshot.jobs, quarantinedCount: snapshot.quarantinedCount, sourceHealth: snapshot.sourceHealth, screening: snapshot.screening };
+  const previousMaterial = previous && { jobs: previous.jobs, quarantinedCount: previous.quarantinedCount, sourceHealth: previous.sourceHealth, screening: previous.screening };
   if (previousMaterial && JSON.stringify(materialSnapshot) === JSON.stringify(previousMaterial)) {
-    await writeFile(path.join(root, "public/summary.json"), `${JSON.stringify(buildJobsSummary(previous, { closedPostingsCaught }), null, 2)}\n`);
+    await writeFile(path.join(root, "public/summary.json"), `${JSON.stringify(buildJobsSummary(snapshot), null, 2)}\n`);
     console.log(`No material changes; retained ${jobs.length} published jobs.`);
     return;
   }
@@ -252,7 +265,7 @@ async function main() {
   const fulltime = { ...snapshot, jobs: snapshot.jobs.filter((job) => isInCollection(job, "fulltime")) };
   await writeFile(path.join(root, "public/internships.json"), `${JSON.stringify(internships, null, 2)}\n`);
   await writeFile(path.join(root, "public/fulltime.json"), `${JSON.stringify(fulltime, null, 2)}\n`);
-  await writeFile(path.join(root, "public/summary.json"), `${JSON.stringify(buildJobsSummary(snapshot, { closedPostingsCaught }), null, 2)}\n`);
+  await writeFile(path.join(root, "public/summary.json"), `${JSON.stringify(buildJobsSummary(snapshot), null, 2)}\n`);
   console.log(`Published ${jobs.length} jobs; quarantined ${quarantined.length}; rejected ${rejectedCount}.`);
 }
 

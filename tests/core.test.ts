@@ -27,6 +27,7 @@ import { createWorkdayBoard, fetchWorkdayBoard, parseWorkdayJob, parseWorkdayPos
 import { buildRefreshReport } from "../lib/ingestion/refresh-report";
 import { preserveLastKnownGoodJobs } from "../lib/ingestion/last-known-good";
 import { getJobLocationMetadata } from "../lib/job-location-policy";
+import { createScreeningTracker } from "../lib/ingestion/screening";
 
 test("foreign cities cannot inherit a contradictory US suffix or stale snapshot tag", () => {
   for (const location of ["Shanghai, 200335, United States", "Shanghai, 200335", "Prague, United States", "Prague"]) {
@@ -253,16 +254,49 @@ test("job summary keeps homepage counts aligned with the published collections",
     quarantinedCount: 4,
     sourceHealth: [{ name: "Healthy", status: "ok" as const, rows: 2 }, { name: "Failed", status: "failed" as const, rows: 0 }],
   };
-  assert.deepEqual(buildJobsSummary(snapshot, { closedPostingsCaught: 3 }), {
+  assert.deepEqual(buildJobsSummary(snapshot), {
     generatedAt: snapshot.generatedAt,
     totalJobs: 2,
     internships: 1,
     fulltime: 1,
-    screenedOut: 4,
-    closedPostingsCaught: 3,
+    screenedOut: null,
+    closedPostingsCaught: null,
+    screening: null,
     activeSources: 2,
     healthySources: 1,
   });
+});
+
+test("screening uses exclusive final destinations, with acceptance winning across sources", () => {
+  const tracker = createScreeningTracker();
+  tracker.record("https://example.com/accepted?utm_source=one", "pendingVerification");
+  tracker.record("https://example.com/accepted", "role");
+  tracker.record("https://example.com/closed?utm_source=one", "closed");
+  tracker.record("https://example.com/closed", "pendingVerification");
+  tracker.record("https://example.com/closed", "role");
+  tracker.record("https://example.com/pending", "pendingVerification");
+  tracker.record("https://example.com/pending", "pendingVerification");
+  tracker.record("https://example.com/expired", "expired");
+  tracker.record("https://example.com/location", "location");
+  tracker.record("https://example.com/role", "role");
+  tracker.record("https://example.com/employer", "employer");
+  tracker.record("not a url", "role");
+  const metrics = tracker.summarize(["https://example.com/accepted", "https://example.com/accepted?utm_source=two", "https://example.com/recovered"]);
+  assert.deepEqual(metrics, {
+    version: 1, unit: "application_destinations", reviewed: 8, accepted: 2, excluded: 5,
+    pendingVerification: 1, uncountedRecords: 1,
+    reasons: { closed: 1, expired: 1, location: 1, role: 1, employer: 1 },
+  });
+  const snapshot = { generatedAt: "2026-10-19T05:00:00Z", jobs: [], quarantinedCount: 999, sourceHealth: [], screening: metrics };
+  const summary = buildJobsSummary(snapshot);
+  assert.equal(summary.screenedOut, 5);
+  assert.equal(summary.closedPostingsCaught, 1);
+  assert.deepEqual(summary.screening, metrics);
+  assert.equal(buildJobsSummary({ ...snapshot, screening: null }).screenedOut, null);
+  const reverse = createScreeningTracker();
+  reverse.record("https://example.com/closed", "pendingVerification");
+  reverse.record("https://example.com/closed", "closed");
+  assert.equal(reverse.summarize([]).reasons.closed, 1);
 });
 
 test("daily insights capture aggregates without storing individual jobs", () => {

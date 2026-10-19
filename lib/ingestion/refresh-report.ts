@@ -14,6 +14,7 @@ type RefreshReportInput = {
   checksAttempted: number;
   checksCompleted: number;
   knownClosed: number;
+  screening?: import("./screening").ScreeningMetrics | null;
 };
 
 export function buildRefreshReport(input: RefreshReportInput): RefreshReport {
@@ -58,6 +59,7 @@ export function buildRefreshReport(input: RefreshReportInput): RefreshReport {
       checksAttempted: input.checksAttempted,
       checksCompleted: input.checksCompleted,
       knownClosed: input.knownClosed,
+      screening: input.screening ?? null,
     },
   };
 }

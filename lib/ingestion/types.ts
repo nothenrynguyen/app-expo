@@ -78,5 +78,6 @@ export type RefreshReport = {
     checksAttempted: number;
     checksCompleted: number;
     knownClosed: number;
+    screening?: import("./screening").ScreeningMetrics | null;
   };
 };
