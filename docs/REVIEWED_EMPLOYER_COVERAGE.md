@@ -20,8 +20,16 @@ All of Keryx's own location, role, freshness, unpaid-risk, company-block and clo
 
 The former source exception could also bypass an explicitly pending trust entry. `QualityDecision.coverageExceptionAllowed` is now set only for missing employer evidence. Manual pending/blocked records and unpaid/fee-based postings never qualify, including through reviewed feeds or direct ATS coverage exceptions.
 
+The last-known-good recovery path also respects explicit pending records. This refresh had all 23 source records healthy/nonempty, so recovery was not needed.
+
 ## Verification
 
 All 67 tests, lint, TypeScript and static export pass. Regression cases cover order-independent current evidence, no self-approval, unreviewed seeds, different employers, different Workday tenants/sites, closure/ineligible anchors, manual aliases and holds, unpaid postings, Greenhouse region separation, malformed URLs and credentials.
 
 A local source refresh measures admitted Keryx jobs after all remaining checks. Source evidence resolves employer coverage only; it is not a claim that every listing has a live application page or that a company is independently vetted beyond the documented admission standard. No push or production release is included in this task.
+
+## Measured local result
+
+Refresh at 2026-10-19T06:52:57.957Z (October 18, 11:52 p.m. Pacific): 751 jobs carry Keryx as a source, up from four. Of these, 489 normalized application destinations were absent from the previous snapshot; others overlap existing jobs and retain merged source credits. Employer-verification quarantine rows fell from 1,049 to 300, while five closed-posting quarantine rows remain. These are source rows, not unique-job screening totals.
+
+The total board grew from 5,526 to 6,012 jobs. The net change differs from Keryx's added destinations because other sources changed during the refresh. Both Keryx files were healthy; the full refresh remains degraded due to employer-board diagnostics. Duration: 131,203 ms. Public summary, snapshot screening metrics and refresh report were checked for agreement. See [result evidence](reviewed-employer-refresh-result.json).
