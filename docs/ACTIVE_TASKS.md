@@ -68,3 +68,9 @@ Keep this list current as work progresses. Include a short next-actions list in 
 - No API key or registered email is configured. Missing-credential and missing-cost-review gates both verified to stop before requests. Lint and TypeScript checks pass. Live API, schema and yield remain unverified until owner setup.
 - Setup and cost-review instructions: [USAJOBS pilot](USAJOBS_PILOT.md). Blank secret settings are in .env.example; real values belong only in ignored .env.local.
 - Next: owner obtains API access and completes cost/limit review; run the bounded pilot; assess eligibility/unique coverage before implementing or publishing a source.
+
+## USAJOBS authenticated pilot result
+
+- Owner saved credentials locally and authorized the pilot. Completed four requests successfully: 12 rows, eight unique announcements absent from the board. Credentials remain ignored; no public listings changed.
+- Seniority leakage: Supervisory Accountant. Five of the seven Air Force announcements have verified standing-public-notice language; two need further qualification review. Do not count these as eight confirmed current early-career vacancies.
+- Next: broaden a bounded sample to engineering/IT/analysis and student trainee series; classify standing notices versus actual vacancies and verify eligibility; activate only if measured suitable coverage justifies it, then request publication approval.
