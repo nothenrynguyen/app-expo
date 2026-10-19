@@ -21,6 +21,13 @@ Keep this list current as work progresses. Make reasonable local implementation 
 | Add browser-local hide-reviewed jobs | Later | Define reviewed/hide/restore behavior and show a local implementation after the quality work. |
 | Review optional backend architecture and cost | Later | Assess Go, GraphQL, storage and authentication under COST_POLICY.md. Present a concrete review before adding resources. |
 
+## Source expansion decisions
+
+- Broad non-software source audit: complete locally. Compared seven new source families and a Dreamwork overlap control against 5,532 production listings. See [ranked audit](SOURCE_EXPANSION_AUDIT.md) and [evidence](source-audit-evidence.json). Research tool executed successfully and passed lint. No public listing/configuration changes.
+- Recommended next task, awaiting approval: Keryx direct-link shadow pilot, initially Summer 2027. Audit found 651 unmatched summer and 17 unmatched new-grad direct-link candidates after role/location/freshness checks. These are not verified new vacancies; 667 currently await employer verification. Review date parsing, upstream provenance, availability and a justified admission strategy before proposing public activation. Do not bypass company holds or trust the whole feed automatically.
+- USAJOBS: conditional second option. Official API requires registration/key; no account or key application submitted and no authenticated yield measured. CareerOneStop, Zapply, Hiring-Now, Jobright and Adzuna have documented permission/access/product-fit questions in the audit.
+- Release status: all previously completed site changes were pushed at `470155a`, and production was verified ready. This new research checkpoint is local only; no source activation or additional publication approved.
+
 ## Review checkpoints
 
 - Present coherent changes with what changed, why, validation, and remaining limits.
