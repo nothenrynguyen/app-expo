@@ -29,6 +29,8 @@ import { preserveLastKnownGoodJobs } from "../lib/ingestion/last-known-good";
 import { getJobLocationMetadata } from "../lib/job-location-policy";
 import { createScreeningTracker } from "../lib/ingestion/screening";
 import type { SourceCatalog } from "../lib/source-catalog";
+import { buildReviewedEmployerCoverage, employerBoardIdentity } from "../lib/ingestion/reviewed-employer-coverage";
+import type { CandidateJob } from "../lib/source-normalization";
 
 test("foreign cities cannot inherit a contradictory US suffix or stale snapshot tag", () => {
   for (const location of ["Shanghai, 200335, United States", "Shanghai, 200335", "Prague, United States", "Prague"]) {
@@ -278,6 +280,36 @@ test("Keryx imports only early-career non-software rows with direct ATS provenan
   const sources = reviewedCatalog.sources.filter(source => source.repository === "GodlyDonuts/keryx");
   assert.equal(sources.length, 2);
   assert.ok(sources.every(source => !source.trustedCoverage && !sourceAllowsAtsExpansion(source.name, reviewedCatalog.sources)));
+});
+
+test("reviewed employer coverage requires current eligible source evidence on the same ATS site", () => {
+  const seed: CandidateJob = { company: "Example Inc.", title: "Mechanical Engineering Intern", category: "Internship", term: "Summer 2027", location: "Boston, MA", workMode: "unknown", postedAt: "2026-10-18T00:00:00Z", postedAtSource: "date_only", applyUrl: "https://example.wd1.myworkdayjobs.com/en-US/Careers/job/Boston/Intern_JR10000", source: "Reviewed", rawText: "Paid mechanical engineering internship", salary: null };
+  const target = { ...seed, company: "Example Corporation", source: "Keryx", applyUrl: "https://example.wd1.myworkdayjobs.com/Careers/job/Seattle/Intern_JR10001" };
+  const trusted = new Set(["Reviewed"]);
+  const build = (candidates: CandidateJob[], trust: CompanyTrustEntry[] = [], closed = false) => buildReviewedEmployerCoverage(candidates, trusted, [], trust, () => closed);
+  assert.ok(build([seed])(target));
+  assert.ok(build([target, seed])(target));
+  assert.equal(build([target])(target), undefined);
+  assert.equal(build([seed])({ ...target, company: "Example Subsidiary" }), undefined);
+  assert.equal(build([seed])({ ...target, applyUrl: target.applyUrl.replace("/Careers/", "/OtherSite/") }), undefined);
+  assert.equal(build([seed])({ ...target, applyUrl: target.applyUrl.replace("example.wd1", "other.wd1") }), undefined);
+  assert.equal(build([seed])({ ...target, rawText: "Unpaid internship" }), undefined);
+  for (const status of ["blocked", "pending"] as const) {
+    const trust: CompanyTrustEntry[] = [{ name: "Example", aliases: ["Example Corp"], status, reason: "Manual review", reviewedAt: "2026-10-18" }];
+    assert.equal(build([seed], trust)(target), undefined);
+    assert.equal(evaluateCompanyQuality({ name: "Example" }, "paid internship", [], trust).coverageExceptionAllowed, undefined);
+  }
+  for (const invalid of [{ ...seed, location: "Shanghai" }, { ...seed, term: "Summer 2020" }, { ...seed, sourceActive: false }, { ...seed, title: "Senior Mechanical Engineer" }, { ...seed, rawText: "unpaid internship" }, { ...seed, source: "Unreviewed" }]) {
+    assert.equal(build([invalid])(target), undefined);
+  }
+  assert.equal(build([seed], [], true)(target), undefined);
+  assert.equal(employerBoardIdentity("https://jobs.lever.co.evil.example/example/job"), null);
+  assert.equal(employerBoardIdentity("https://example.wd1.myworkdayjobs.com/Careers"), null);
+  assert.equal(employerBoardIdentity("http://jobs.lever.co/example/job"), null);
+  assert.equal(employerBoardIdentity("https://user:password@jobs.lever.co/example/job"), null);
+  assert.equal(employerBoardIdentity("https://jobs.lever.co/%ZZ/job"), null);
+  assert.equal(employerBoardIdentity("https://boards.greenhouse.io/example/jobs/100"), employerBoardIdentity("https://job-boards.greenhouse.io/example/jobs/200"));
+  assert.notEqual(employerBoardIdentity("https://job-boards.eu.greenhouse.io/example/jobs/100"), employerBoardIdentity("https://job-boards.greenhouse.io/example/jobs/200"));
 });
 
 test("job summary keeps homepage counts aligned with the published collections", () => {

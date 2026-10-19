@@ -23,6 +23,7 @@ export type CompanyTrustEntry = {
 };
 
 export type QualityDecision = {
+  coverageExceptionAllowed?: boolean;
   status: "approved" | "rejected" | "quarantined";
   reason: string;
   linkedInUrl: string | null;
@@ -124,6 +125,7 @@ export function evaluateCompanyQuality(
 
   return {
     status: "quarantined",
+    coverageExceptionAllowed: true,
     reason: "Company size and substantial U.S. operating presence have not been verified.",
     linkedInUrl: null,
     minimumEmployees: null,

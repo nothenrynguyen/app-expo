@@ -8,6 +8,7 @@ import { preserveLastKnownGoodJobs } from "../lib/ingestion/last-known-good";
 import { loadCandidates } from "../lib/ingestion/load-candidates";
 import { buildRefreshReport } from "../lib/ingestion/refresh-report";
 import { createScreeningTracker } from "../lib/ingestion/screening";
+import { buildReviewedEmployerCoverage } from "../lib/ingestion/reviewed-employer-coverage";
 import { isInCollection } from "../lib/job-collections";
 import { deduplicateCrossSourceJobs } from "../lib/job-dedup";
 import { getFreshnessRejection } from "../lib/job-freshness";
@@ -77,6 +78,14 @@ async function main() {
     }
   }
 
+  const reviewedCoverageSources = new Set(activeSources.filter(source => source.kind === "keryx_markdown").map(source => source.name));
+  const reviewedCoverage = buildReviewedEmployerCoverage(candidates, trustedCuratedSources, registry, trustRegistry, candidate => {
+    const identity = jobIdentity(candidate.applyUrl);
+    const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
+    const authoritative = board ? boardResults.get(board.id) : null;
+    return !!identity && (authoritative ? !authoritative.liveIdentities.has(identity) : listingHealth[identity]?.status === "closed");
+  });
+
   for (const candidate of candidates) {
     const locationMetadata = getJobLocationMetadata(candidate);
     if (!locationMetadata.eligible) {
@@ -109,7 +118,7 @@ async function main() {
       continue;
     }
     const displayCompany = normalizeCompanyDisplayName(candidate.company, candidate.applyUrl);
-    const decision = evaluateCompanyQuality(
+    let decision = evaluateCompanyQuality(
       { name: candidate.company, h1bApprovals: candidate.h1bApprovals },
       candidate.rawText,
       registry,
@@ -121,8 +130,10 @@ async function main() {
       continue;
     }
     if (decision.status === "quarantined") {
-      if (trustedCuratedSources.has(candidate.source) || (candidate.source.startsWith("Direct ATS") && trustedCompanies.has(normalizeCompanyName(candidate.company)))) {
+      const inherited = reviewedCoverageSources.has(candidate.source) ? reviewedCoverage(candidate) : undefined;
+      if (decision.coverageExceptionAllowed && (inherited || trustedCuratedSources.has(candidate.source) || (candidate.source.startsWith("Direct ATS") && trustedCompanies.has(normalizeCompanyName(candidate.company))))) {
         // Reviewed community lists and pinned employer boards are the explicit coverage baseline.
+        if (inherited) decision = { ...inherited, status: "approved", reason: "Matched current reviewed employer coverage on the same ATS board." };
       } else {
         screening.record(candidate.applyUrl, "pendingVerification");
         quarantined.push({ company: normalizeDisplayText(candidate.company), title: normalizeDisplayText(candidate.title), reason: decision.reason, source: candidate.source, applyUrl: candidate.applyUrl });
