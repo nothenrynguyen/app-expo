@@ -74,3 +74,9 @@ Keep this list current as work progresses. Include a short next-actions list in 
 - Owner saved credentials locally and authorized the pilot. Completed four requests successfully: 12 rows, eight unique announcements absent from the board. Credentials remain ignored; no public listings changed.
 - Seniority leakage: Supervisory Accountant. Five of the seven Air Force announcements have verified standing-public-notice language; two need further qualification review. Do not count these as eight confirmed current early-career vacancies.
 - Next: broaden a bounded sample to engineering/IT/analysis and student trainee series; classify standing notices versus actual vacancies and verify eligibility; activate only if measured suitable coverage justifies it, then request publication approval.
+
+## Expanded USAJOBS iteration
+
+- Seven-query mode added for engineering, IT/data, analysis and student trainee series. Two bounded runs (14 requests total) completed successfully: 54 unique announcements across 15 agencies, all absent from the local board. Trainee results are truncated at 25 of 45.
+- Five unpaid review signals and three standing-notice hints; flags are not exhaustive. Confirmed official examples of paid summer engineering and recent-graduate civil engineering vacancies. Full findings in [pilot notes](USAJOBS_PILOT.md). Lint and TypeScript pass. No public source/listing changes.
+- Next: finish detailed qualification/location/notice review and semantic duplicate checks; build a selective adapter with regression cases for unpaid and standing notices; review measured accepted jobs before publication approval.

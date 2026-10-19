@@ -39,3 +39,23 @@ Four successful searches returned 12 rows representing eight distinct announceme
 One result is titled Supervisory Accountant and requires exclusion or seniority review despite matching both hiring paths. The remaining seven are Air Force Civilian Career Training announcements. Official pages for auditor (887758500), cost analyst (888515400), acquisition program management specialist (888601400) and both contract specialist notices (888632500, 888633100) explicitly state that actual/projected vacancies may not exist at application time. Such recruiting pools should not inflate current-job counts. The auditor page also requires U.S. citizenship and directs applicants to the Air Force recent-graduates site. Budget analyst (888516200) and financial management specialist (888514800) remain subject to detailed qualification/public-notice review.
 
 Recommendation: do not activate this narrow sample yet. Expand a bounded research sample to engineering, IT and analysis plus student trainee occupational series, then separate actual vacancies from standing public notices. Preserve citizenship, grade/qualification and application instructions. Hiring-path filters alone do not establish early-career fit. Authentication and four-request access worked; no monetary charge was displayed by the API, which is not a contractual cost guarantee.
+
+## Expanded pilot, October 19
+
+Use --expanded for seven searches (maximum 175 rows, no pagination or retries): student trainee series 0399/0599/0899/1199/1599/2299, engineering 0801/0810/0830/0850/0854/0855, IT/data 2210/1550/1560 and analysis 0343/1515/1530. Professional series are queried separately for students and recent graduates. The original four-search mode is unchanged.
+
+The expanded run completed all seven requests, returning 72 rows and 54 unique announcement URLs across 15 agencies, all absent from the baseline board. The trainee query matched 45 but sampled only 25; the other queries fit within their first page. This is a bounded sample, not complete coverage. A second seven-request run after adding unpaid detection reproduced 54 unique announcements. Fourteen requests were made in this iteration. See [expanded sample](usajobs-expanded-pilot-result.json).
+
+Five announcements have unpaid review signals; three have possible standing-notice signals in the API summary/qualification fields. These flags are incomplete review aids, not reliable absence-of-risk tests: full official pages may contain additional conditions. Citizenship-mentioned counts likewise do not identify every citizenship restriction. The payPlans field contains GS/GG/etc., not numeric grade levels.
+
+### Official-page spot checks
+
+- [General Engineer (Developmental)](https://www.usajobs.gov/job/888903800): two Washington, DC vacancies, paid summer May-August 2027 internship seeking undergraduate juniors, U.S. citizenship and minimum 3.4 GPA. Strong candidate for inclusion after normal admission/location/closure checks.
+- [Civil Engineer (Recent Graduate)](https://www.usajobs.gov/job/888900400): four Lakewood, CO vacancies and salary range, GS 9-11. Promising recent-graduate candidate; degree/grade qualifications must remain visible and require final review.
+- [Business Process Design & Automation](https://www.usajobs.gov/job/888901900): explicitly unpaid volunteer project with zero compensation. Exclude under the existing paid-job policy even though it is a real student opportunity.
+- [Statistician](https://www.usajobs.gov/job/888849400): recent-graduate pathway confirmed; remaining qualifications and vacancy details still require review.
+- Two attempted trainee page lookups were unavailable through the web tool. Their API results are retained as unverified rather than silently approved.
+
+Recommendation: proceed toward a selective integration, beginning with paid student/graduate announcements whose official details establish suitable career level and actual hiring. Preserve agency identity, citizenship/clearance, eligibility and official application links. Hold unpaid roles, standing notices, ambiguous locations and unverified qualifications. The sample does not establish 54 publishable jobs, nor semantic uniqueness across differently numbered announcements.
+
+Validation: script lint and TypeScript pass; both live expanded runs completed, public data/source configuration unchanged. No credentials in the reports. No publication or scheduled activation.
