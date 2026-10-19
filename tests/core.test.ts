@@ -788,6 +788,21 @@ test("listing checks only remove confirmed closed pages", () => {
   assert.equal(needsListingCheck({ url: "https://example.com/job", status: "live", checkedAt: "2026-08-12T00:00:00Z", httpStatus: 200 }, new Date("2026-08-12T12:00:00Z")), false);
 });
 
+test("listing health reads visible vacancy content instead of scripts and shared chrome", () => {
+  assert.equal(classifyListingResponse(200, '<main><h1>Page not found.</h1><p>Sorry, this role does not exist or is no longer available.</p></main>'), "closed");
+  assert.equal(classifyListingResponse(200, '<main><p>This role is no longer available.</p></main>'), "closed");
+  assert.equal(classifyListingResponse(200, '<script>const translations = {closed: "This position has been filled."}</script><nav>Applications closed</nav><main><h1>Software Engineer</h1><button>Apply now</button></main><footer>This job has expired</footer>'), "live");
+  assert.equal(classifyListingResponse(200, '<main><template>This job has expired</template><p hidden>This position has been filled.</p><p aria-hidden="true">Applications closed</p><h2>Job description</h2><p>Build software.</p></main>'), "live");
+  assert.equal(classifyListingResponse(200, '<div id="root"></div><script>startApp()</script>'), "unknown");
+  assert.equal(classifyListingResponse(200, '<main>Explore our careers and teams</main>'), "unknown");
+  assert.equal(classifyListingResponse(200, '<main>Access denied. Apply now</main>'), "unknown");
+  assert.equal(classifyListingResponse(200, '<main>Verify you are human</main>'), "unknown");
+  assert.equal(classifyListingResponse(302, 'Apply now'), "unknown");
+  assert.equal(classifyListingResponse(410, ''), "closed");
+  assert.equal(classifyListingResponse(429, 'This job has expired'), "unknown");
+  assert.equal(classifyListingResponse(503, 'This job has expired'), "unknown");
+});
+
 test("every active upstream repository has explicit license review metadata", () => {
   const catalogRepositories = [...new Set(sourceCatalog.sources.filter((source) => source.active).map((source) => source.repository))].sort();
   const reviewedRepositories = sourceLicenseReview.repositories.map((record) => record.repository).sort();
