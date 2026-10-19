@@ -1,3 +1,4 @@
+import { reviewedFederalCoverage } from "../lib/ingestion/usajobs";
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
@@ -131,8 +132,8 @@ async function main() {
     }
     if (decision.status === "quarantined") {
       const inherited = reviewedCoverageSources.has(candidate.source) ? reviewedCoverage(candidate) : undefined;
-      if (decision.coverageExceptionAllowed && (inherited || trustedCuratedSources.has(candidate.source) || (candidate.source.startsWith("Direct ATS") && trustedCompanies.has(normalizeCompanyName(candidate.company))))) {
-        // Reviewed community lists and pinned employer boards are the explicit coverage baseline.
+      if (decision.coverageExceptionAllowed && (inherited || reviewedFederalCoverage(candidate) || trustedCuratedSources.has(candidate.source) || (candidate.source.startsWith("Direct ATS") && trustedCompanies.has(normalizeCompanyName(candidate.company))))) {
+        // Reviewed feeds/boards and exact reviewed federal announcements provide coverage evidence.
         if (inherited) decision = { ...inherited, status: "approved", reason: "Matched current reviewed employer coverage on the same ATS board." };
       } else {
         screening.record(candidate.applyUrl, "pendingVerification");
@@ -157,6 +158,7 @@ async function main() {
     }
     const existing = merged.get(identity);
     if (existing) {
+      if (candidate.federal) existing.federal = candidate.federal;
       if (!existing.sources.includes(candidate.source)) existing.sources.push(candidate.source);
       existing.roleTags = [...new Set([...(existing.roleTags ?? []), ...roleTags])];
       const precision = { first_seen: 0, relative_derived: 1, date_only: 2, exact: 3 } as const;
@@ -188,6 +190,7 @@ async function main() {
       sources: [candidate.source],
       verifiedCompany: true,
       employeeCount: decision.minimumEmployees,
+      ...(candidate.federal ? { federal: candidate.federal } : {}),
     });
   }
 

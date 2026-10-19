@@ -97,7 +97,7 @@ function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJob
           return (
             <article className={`job-table-row ${onHideCompany ? "with-more-actions" : ""}`} role="row" key={job.id}>
               <div className="job-table-company" role="cell" data-label="Company">{displayText(job.company)}</div>
-              <div className="job-table-title" role="cell" data-label="Position">{displayText(job.title)}</div>
+              <div className="job-table-title" role="cell" data-label="Position">{displayText(job.title)}<FederalEligibility job={job} /></div>
               <div className="job-table-location" role="cell" data-label="Location">
                 {location.hasMore
                   ? <span className="location-with-more" tabIndex={0}><span className="location-label">{location.compact}</span><span className="location-popover" role="tooltip">{location.full}</span></span>
@@ -136,6 +136,7 @@ function CardJobView({ className, jobs, totalJobCount, emptyMessage, savedJobIds
             <div className="job-main">
               <p className="company">{displayText(job.company)}</p>
               <h2>{displayText(job.title)}</h2>
+              <FederalEligibility job={job} />
               <div className="job-meta">
                 <span>{displayText(normalizeJobLocation(job.location))}</span>
                 {modeLabels[job.workMode] ? <span>{modeLabels[job.workMode]}</span> : null}
@@ -208,4 +209,17 @@ function CompanyActions({ company, onHide }: { company: string; onHide: (name: s
     <summary aria-label={`More actions for ${company}`} title="More actions"><span aria-hidden="true">&#8942;</span></summary>
     <div className="company-actions-panel"><button type="button" onClick={() => onHide(company)}>Hide company<span className="sr-only"> {company}</span></button></div>
   </details>;
+}
+
+function FederalEligibility({ job }: { job: PublicJob }) {
+  if (!job.federal) return null;
+  return (
+    <details className="federal-eligibility">
+      <summary>{job.federal.citizenshipRequired ? "U.S. citizenship required" : "Federal eligibility requirements"}</summary>
+      <p>{job.federal.eligibility}</p>
+      <p>USAJOBS · Retrieved {job.federal.retrievedAt.slice(0, 10)} · Closes {job.federal.closes}</p>
+      <p>empluzzed is independent and is not endorsed by the U.S. government.</p>
+      <a href={job.applyUrl} target="_blank" rel="noreferrer">Read official requirements</a>
+    </details>
+  );
 }

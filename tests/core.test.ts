@@ -1,3 +1,4 @@
+import { loadReviewedUsaJobs, reviewedFederalCoverage } from "../lib/ingestion/usajobs";
 import { reviewUsaJobsPosting } from "../lib/usajobs";
 import assert from "node:assert/strict";
 import test from "node:test";
@@ -950,7 +951,7 @@ test("USAJOBS selective review requires paid current vacancies and preserves age
   const review = (html: string, input = seed) => reviewUsaJobsPosting(input, html, now);
   const valid = review(page());
   assert.equal(valid.status, "candidate");
-  if (valid.status === "candidate") { assert.equal(valid.candidate.company, seed.agency); assert.equal(valid.candidate.category, "Full-time"); assert.equal(valid.citizenshipRequired, true); }
+  if (valid.status === "candidate") { assert.equal(valid.candidate.company, seed.agency); assert.equal(valid.candidate.category, "New grad"); assert.equal(valid.citizenshipRequired, true); }
   assert.deepEqual(review(page({}, "Unpaid student volunteer opportunity.")), { status: "held", reason: "unpaid" });
   assert.deepEqual(review(page({}, undefined, "There may or may not be actual vacancies.")), { status: "held", reason: "standing-recruitment-notice" });
   assert.deepEqual(review(page({ baseSalary: { currency: "USD", value: { value: 0 } } })), { status: "held", reason: "unverified-paid-compensation" });
@@ -968,4 +969,19 @@ test("USAJOBS selective review requires paid current vacancies and preserves age
   assert.equal(office.status, "candidate");
   if (office.status === "candidate") assert.equal(office.candidate.company, seed.agency);
   assert.deepEqual(review(page({ jobLocation: [{ address: { addressLocality: "Denver", addressRegion: "CO" } }, { address: { addressLocality: "Berlin", addressCountry: "Germany" } }] })), { status: "held", reason: "unverified-or-ineligible-location" });
+});
+
+test("USAJOBS local admission is opt-in, exact and never recovers stale federal records", async () => {
+  assert.equal(await loadReviewedUsaJobs(false), null);
+  const candidate: CandidateJob = { company: "Bureau of Reclamation", title: "Civil Engineer (Recent Graduate)", applyUrl: "https://www.usajobs.gov/job/888900400", location: "Lakewood, CO", category: "New grad", term: "Not stated", workMode: "unknown", postedAt: "2026-10-15T00:00:00Z", postedAtSource: "date_only", salary: null, source: "USAJOBS selective review", rawText: "Paid civil engineering position", federal: { retrievedAt: "2026-10-19T12:00:00Z", closes: "2026-10-29", citizenshipRequired: true, eligibility: "Recent-graduate eligibility applies." } };
+  assert.equal(reviewedFederalCoverage(candidate), true);
+  for (const altered of [{ ...candidate, source: "Unreviewed feed" }, { ...candidate, company: "Different Agency" }, { ...candidate, applyUrl: "https://www.usajobs.gov/job/999999999" }, { ...candidate, federal: undefined }]) assert.equal(reviewedFederalCoverage(altered), false);
+  const job = { ...candidate, id: "federal", sources: [candidate.source], linkedInUrl: null, verifiedCompany: true };
+  assert.equal(isInCollection(job, "fulltime"), true);
+  assert.equal(isInCollection(job, "internships"), false);
+  assert.equal(getFreshnessRejection(candidate, new Date("2026-10-28T12:00:00Z")), null);
+  assert.match(getFreshnessRejection(candidate, new Date("2026-10-29T12:00:00Z")) ?? "", /closed/);
+  assert.equal(preserveLastKnownGoodJobs(new Map(), [job], prior => prior), 0);
+  assert.equal(preserveLastKnownGoodJobs(new Map(), [{ ...job, federal: undefined }], prior => prior), 0);
+  assert.equal(evaluateCompanyQuality({ name: candidate.company }, candidate.rawText, [], [{ name: candidate.company, status: "blocked", reviewedAt: "2026-10-19", reason: "Manual hold" }]).status, "rejected");
 });

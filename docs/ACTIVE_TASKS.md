@@ -87,3 +87,10 @@ Keep this list current as work progresses. Include a short next-actions list in 
 - Both candidates require U.S. citizenship and have no detected destination/semantic overlap with the baseline. Agency admission and eligibility presentation remain pending. No automated source activation or public listing changes.
 - All 68 tests, lint, TypeScript and static export pass. Research fixtures moved to ignored .cache so builds do not erase them. Local checkpoint only.
 - Next: resolve category/evidence holds, define narrow agency admission, then integrate a disabled-by-default refresh path and review eligible accepted listings before publication approval.
+
+## Optional USAJOBS refresh and eligibility UI
+
+- Implemented disabled-by-default local refresh integration for two exact reviewed announcements and agencies. Fresh official-page checks each run; explicit employer holds remain authoritative. No stale federal recovery.
+- Both announcements were admitted locally into full-time only; metadata and both board layouts verified. Citizenship, eligibility, dates, attribution and official requirements are available before Apply. Evidence: [local refresh](usajobs-local-refresh-result.json). Test-generated public snapshots restored after recording evidence; no publication.
+- All 69 tests, lint, TypeScript, static export and desktop compact/card browser checks pass. Six broad-category holds intentionally remain rather than assigning inaccurate tags.
+- Next: review activation/publication of the narrow source; add bounded API discovery after accepted-feed behavior is approved; prioritize the existing duplicate and role/location leakage queue to improve overall quality.

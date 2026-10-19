@@ -10,6 +10,8 @@ export function preserveLastKnownGoodJobs(
 ): number {
   let preserved = 0;
   for (const prior of previous) {
+    // Federal announcements require a fresh official-page check each run.
+    if (prior.federal || /(?:^|\.)usajobs\.gov\//i.test(prior.applyUrl.replace(/^https?:\/\//, ""))) continue;
     const identity = jobIdentity(prior.applyUrl);
     if (!identity || current.has(identity) || isClosed(prior)) continue;
     const job = prepare(prior);

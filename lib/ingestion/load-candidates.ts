@@ -1,3 +1,4 @@
+import { loadReviewedUsaJobs } from "./usajobs";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { createAtsBoard, discoverAtsBoard, fetchAtsBoard, type AtsBoardSeed } from "../ats-boards";
@@ -115,6 +116,13 @@ export async function loadCandidates(root: string, sources: JobSource[]): Promis
       sourceDiagnostics.push({ name: source.name, kind: source.kind, status: "failed", rows: 0, durationMs: result.durationMs, requestCount: 1, message: errorMessage(result.reason) });
     }
   });
+
+  const federal = await loadReviewedUsaJobs();
+  if (federal) {
+    candidates.push(...federal.candidates);
+    health.push({ name: "USAJOBS selective review", status: federal.failed ? "failed" : "ok", rows: federal.candidates.length });
+    sourceDiagnostics.push({ name: "USAJOBS selective review", kind: "usajobs", status: federal.failed ? "failed" : "ok", rows: federal.candidates.length, durationMs: federal.durationMs, requestCount: federal.requests, message: JSON.stringify({ holds: federal.holds }) });
+  }
 
   const boards = new Map<string, NonNullable<ReturnType<typeof discoverAtsBoard>>>();
   for (const candidate of candidates) {

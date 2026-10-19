@@ -3,9 +3,10 @@ import type { CandidateJob } from "./source-normalization";
 export const MAX_EXACT_INTERNSHIP_AGE_DAYS = 180;
 
 export function getFreshnessRejection(
-  candidate: Pick<CandidateJob, "title" | "category" | "term" | "postedAt" | "postedAtSource" | "sourceActive">,
+  candidate: Pick<CandidateJob, "title" | "category" | "term" | "postedAt" | "postedAtSource" | "sourceActive" | "federal">,
   now = new Date(),
 ): string | null {
+  if (candidate.federal && (!/^\d{4}-\d{2}-\d{2}$/.test(candidate.federal.closes) || candidate.federal.closes <= now.toISOString().slice(0, 10))) return "The federal announcement is closed or closing today.";
   if (candidate.sourceActive === false) return "The employer career system marks this posting as closed.";
   const isInternship = /\bintern(ship)?\b|\bco-?op\b/i.test(`${candidate.title} ${candidate.category}`);
   if (!isInternship) return null;
