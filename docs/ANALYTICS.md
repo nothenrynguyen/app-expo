@@ -1,6 +1,6 @@
 # empluzzed analytics
 
-Reviewed against official sources on September 30, 2026. Implementation is complete; production activation is an owner step.
+Reviewed against official sources on September 30, 2026. Implementation is complete. Production dashboard receipt was confirmed on October 5, 2026.
 
 ## Decision and audit
 
@@ -29,7 +29,7 @@ Umami Cloud was considered because its official FAQ confirms a free Hobby plan a
 5. Open the production site, use the first-visit panel or **Analytics preferences** in the footer, choose **Allow analytics**, and visit `/`, `/internships`, and `/jobs`. Allow a few minutes, then return to **Project > Analytics > Web Analytics**. Use **Pages** for collection visits and **Referrers** for available sources. Use the team's **Usage > Observability** to monitor the shared allowance. If you decline again, future analytics sends stop immediately.
 6. Keep report access inside your personal Vercel account. Do not publish a dashboard, create a sharing link, grant report access to others, or expose an analytics API/token in the site. The site has only a privacy page and preference controls, no report endpoint or embedded dashboard.
 
-Owner activation and live dashboard receipt have not been performed from this workspace. Local tests can verify gating and payloads, but the production intake is supplied by Vercel after dashboard activation. On another static host, leave the switch false; no analytics backend is bundled into the export.
+On October 5, 2026, the signed-in Hobby production dashboard was confirmed to show 234 page views and 71 visitors over the last seven days, including visits to /, /internships and /jobs. Activation was already complete, so no configuration change or redeployment was performed. Environment-variable values and Preview/Development settings were not independently inspected. Local tests can verify gating and payloads, but the production intake is supplied by Vercel after dashboard activation. On another static host, leave the switch false; no analytics backend is bundled into the export.
 
 ## What the reports mean
 

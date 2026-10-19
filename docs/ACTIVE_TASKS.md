@@ -26,7 +26,7 @@ Keep this list current as work progresses. Make reasonable local implementation 
 - Present coherent changes with what changed, why, validation, and remaining limits.
 - Record each approval here with its exact scope. Approval for one batch does not approve publication of later batches.
 - Keep unrelated existing working-tree changes out of proposed commits.
-- No publication approval has been granted for this queue.
+- October 18: Owner approved pushing all completed work. Queued future tasks remain unimplemented.
 
 ## Completed actions and decisions
 

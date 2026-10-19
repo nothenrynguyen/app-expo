@@ -23,7 +23,7 @@ The reviewed-source expansion, ingestion foundation, opt-in Vercel analytics and
 
 - [x] Assess free aggregate action analytics and a potential default-on audience-measurement exemption. GoatCounter is the leading candidate; provider limit behavior and privacy evidence remain unresolved. See [reassessment](docs/ANALYTICS_ASSESSMENT.md). Keep the approved opt-in setup until those checks are resolved.
 - [x] Audit and implement opt-in Vercel Hobby page views, safe available referrals, and collection visits within the zero-cost policy. Custom interaction events are unavailable on this plan. See [analytics limits and setup](docs/ANALYTICS.md).
-- [ ] Owner: enable included Web Analytics, set the production analytics switch, deploy, and confirm private dashboard receipt
+- [x] Confirm production Web Analytics dashboard receipt (October 5, 2026): existing Hobby production dashboard showed 234 page views and 71 visitors over the last seven days. Activation was already complete; no configuration change or redeployment was needed.
 - [x] Audit and polish browser-local saved jobs, including discoverability and handling unavailable listings
 - [ ] Design optional cross-device saved jobs using Go and GraphQL after measuring usage
 - [ ] Review authentication, persistent storage, and hosting against the cost policy before deploying the backend
