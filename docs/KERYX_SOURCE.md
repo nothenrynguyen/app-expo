@@ -27,3 +27,5 @@ Parser inputs are discovery candidates, not proof that every employer page is cu
 ## Next milestone
 
 Review the employer-verification bottleneck with evidence, particularly company aliases and legitimate engineering employers already found by broad feeds. Then evaluate another broad source specifically for finance/business/operations, with USAJOBS remaining a conditional option requiring owner-managed API registration and a measured sample. Do not expand the number of employers individually as the primary discovery strategy.
+
+Of the 1,049 held Keryx rows, 810 have a normalized company name already present on the board. The holds span 226 normalized employers. Existing board presence is a review signal, not automatic proof of employer legitimacy or authority to approve every new listing.
