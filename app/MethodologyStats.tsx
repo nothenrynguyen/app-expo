@@ -28,7 +28,7 @@ export function MethodologyStats() {
       </>}
       <div><strong>{summary.healthySources}/{summary.activeSources}</strong><span>sources healthy</span></div>
     </div>
-    {summary.screening?.version === 1 ? <details className="screening-details">
+    {summary.screening?.version === 1 ? <details id="screening" className="screening-details">
       <summary>What the screening counts mean</summary>
       <p>Unique application links assessed from available sources. A link accepted onto the board is never counted as excluded. Employers awaiting verification are counted separately.</p>
       <ul>
@@ -40,6 +40,6 @@ export function MethodologyStats() {
       </ul>
       <p>Each excluded link appears in one category. Closed counts are exclusions in this refresh, not a running total of past closures. Separate application links can refer to the same opening.</p>
       <p>Refresh: <time dateTime={summary.generatedAt}>{new Date(summary.generatedAt).toLocaleString()}</time></p>
-    </details> : <p className="methodology-status">Unique screening counts will appear after the next refresh. Older snapshots do not contain that breakdown.</p>}
+    </details> : <p id="screening" className="methodology-status">Unique screening counts will appear after the next refresh. Older snapshots do not contain that breakdown.</p>}
   </>;
 }

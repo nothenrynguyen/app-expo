@@ -28,5 +28,10 @@ export function LandingCollections() {
         <span className="collection-link">Browse Full-Time Jobs <b>→</b></span>
       </Link>
     </div>
+    <div className="landing-screening">
+      <p>Focused on early-career roles. Filtered for relevance, location, and employer checks.</p>
+      <p><span aria-hidden="true">* </span>{summary?.screening?.version === 1 && <>{summary.screening.excluded.toLocaleString()} unique application links screened out in the latest refresh. </>}<Link href="/methodology#screening">How we screen <span aria-hidden="true">→</span></Link></p>
+      {summary?.screening?.version === 1 && <p className="screening-refresh">As of <time dateTime={summary.generatedAt}>{new Date(summary.generatedAt).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}</time></p>}
+    </div>
   </>;
 }
