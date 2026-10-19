@@ -61,3 +61,10 @@ Keep this list current as work progresses. Include a short next-actions list in 
 - Verified Brevan Howard, Charles River Associates (including its explicit parenthetical CRA name) and Virtu Financial using official size and U.S. presence evidence. No blanket source trust or board expansion. Compeer remains unresolved.
 - All 67 tests, lint and static export pass. Refresh: 6100 total jobs, 854 Keryx-linked jobs and 197 remaining Keryx employer holds. All 23 feeds returned data; overall refresh remains degraded. See [review](FINANCE_EMPLOYER_REVIEW.md). Local only.
 - Next: owner-managed USAJOBS access and cost-limit confirmation, a bounded pilot to measure new finance/business coverage, then publication review of the accumulated local batch. Review remaining employer holds as evidence becomes available rather than making manual employer discovery the main strategy.
+
+## October 19 USAJOBS pilot preparation
+
+- Prepared a research-only four-request, 100-row maximum finance/business pilot with separate student/graduate searches, no automatic retries, redirect refusal and stop-on-error behavior. No public source or scheduled job enabled.
+- No API key or registered email is configured. Missing-credential and missing-cost-review gates both verified to stop before requests. Lint and TypeScript checks pass. Live API, schema and yield remain unverified until owner setup.
+- Setup and cost-review instructions: [USAJOBS pilot](USAJOBS_PILOT.md). Blank secret settings are in .env.example; real values belong only in ignored .env.local.
+- Next: owner obtains API access and completes cost/limit review; run the bounded pilot; assess eligibility/unique coverage before implementing or publishing a source.
