@@ -80,3 +80,10 @@ Keep this list current as work progresses. Include a short next-actions list in 
 - Seven-query mode added for engineering, IT/data, analysis and student trainee series. Two bounded runs (14 requests total) completed successfully: 54 unique announcements across 15 agencies, all absent from the local board. Trainee results are truncated at 25 of 45.
 - Five unpaid review signals and three standing-notice hints; flags are not exhaustive. Confirmed official examples of paid summer engineering and recent-graduate civil engineering vacancies. Full findings in [pilot notes](USAJOBS_PILOT.md). Lint and TypeScript pass. No public source/listing changes.
 - Next: finish detailed qualification/location/notice review and semantic duplicate checks; build a selective adapter with regression cases for unpaid and standing notices; review measured accepted jobs before publication approval.
+
+## USAJOBS selective adapter iteration
+
+- Built a conservative official-page-to-candidate adapter with regression cases. Reviewed 54 pages: two candidates, 20 standing notices, 15 closed/not-accepting/closing-day holds, five unpaid, six category holds, three career-level holds, three location holds. Detailed [adapter review](USAJOBS_SELECTIVE_ADAPTER.md).
+- Both candidates require U.S. citizenship and have no detected destination/semantic overlap with the baseline. Agency admission and eligibility presentation remain pending. No automated source activation or public listing changes.
+- All 68 tests, lint, TypeScript and static export pass. Research fixtures moved to ignored .cache so builds do not erase them. Local checkpoint only.
+- Next: resolve category/evidence holds, define narrow agency admission, then integrate a disabled-by-default refresh path and review eligible accepted listings before publication approval.

@@ -1,3 +1,4 @@
+import { reviewUsaJobsPosting } from "../lib/usajobs";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { evaluateCompanyQuality, normalizeCompanyDisplayName, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
@@ -939,4 +940,32 @@ test("every active upstream repository has explicit license review metadata", ()
       assert.match(record.note, /not treated as permission/i);
     }
   }
+});
+
+test("USAJOBS selective review requires paid current vacancies and preserves agency identity", () => {
+  const seed = { url: "https://www.usajobs.gov/job/123456789", title: "Civil Engineer (Recent Graduate)", agency: "Example Federal Agency" };
+  const data = { "@type": "JobPosting", title: seed.title, hiringOrganization: seed.agency, datePosted: "10/01/2026", validThrough: "2026-11-30", baseSalary: { currency: "USD", value: { value: 50000, unitText: "YEAR" } }, jobLocation: [{ address: { addressLocality: "Denver", addressRegion: "CO" } }], qualifications: "Bachelor degree in civil engineering." };
+  const page = (overrides = {}, summary = "Paid recent graduate opportunity.", extra = "") => `<main>Accepting applications. 2 vacancies.<div id="joa-summary">${summary}</div><div id="joa-requirements">U.S. Citizenship required. Prior volunteer experience may be credited.</div>${extra}</main><script type="application/ld+json">${JSON.stringify({ ...data, ...overrides })}</script>`;
+  const now = new Date("2026-10-19T12:00:00Z");
+  const review = (html: string, input = seed) => reviewUsaJobsPosting(input, html, now);
+  const valid = review(page());
+  assert.equal(valid.status, "candidate");
+  if (valid.status === "candidate") { assert.equal(valid.candidate.company, seed.agency); assert.equal(valid.candidate.category, "Full-time"); assert.equal(valid.citizenshipRequired, true); }
+  assert.deepEqual(review(page({}, "Unpaid student volunteer opportunity.")), { status: "held", reason: "unpaid" });
+  assert.deepEqual(review(page({}, undefined, "There may or may not be actual vacancies.")), { status: "held", reason: "standing-recruitment-notice" });
+  assert.deepEqual(review(page({ baseSalary: { currency: "USD", value: { value: 0 } } })), { status: "held", reason: "unverified-paid-compensation" });
+  assert.deepEqual(review(page({ validThrough: "2026-10-19" })), { status: "held", reason: "closed-or-closing-today" });
+  assert.deepEqual(review(page({ datePosted: "11/01/2026" })), { status: "held", reason: "unverified-posting-dates" });
+  assert.deepEqual(review(page({ datePosted: "02/30/2026" })), { status: "held", reason: "unverified-posting-dates" });
+  assert.deepEqual(review(page({ jobLocation: [{ address: { addressLocality: "Berlin", addressCountry: "Germany" } }] })), { status: "held", reason: "unverified-or-ineligible-location" });
+  assert.deepEqual(review(page({ title: "Supervisory Civil Engineer" }), { ...seed, title: "Supervisory Civil Engineer" }), { status: "held", reason: "seniority" });
+  assert.deepEqual(review(page(), { ...seed, agency: "Different Agency" }), { status: "held", reason: "posting-identity-mismatch" });
+  assert.deepEqual(review(page(), { ...seed, url: "https://www.usajobs.gov.evil.example/job/123456789" }), { status: "held", reason: "untrusted-url" });
+  assert.deepEqual(review("<main>Access denied</main>"), { status: "held", reason: "missing-official-posting-structure" });
+  assert.equal(review(page({}, undefined, '<script>There may or may not be vacancies</script>')).status, "candidate");
+  const officePage = page({ hiringOrganization: "Engineering Office" }, undefined, `<div id="joa-header">${seed.agency} Engineering Office</div>`);
+  const office = review(officePage);
+  assert.equal(office.status, "candidate");
+  if (office.status === "candidate") assert.equal(office.candidate.company, seed.agency);
+  assert.deepEqual(review(page({ jobLocation: [{ address: { addressLocality: "Denver", addressRegion: "CO" } }, { address: { addressLocality: "Berlin", addressCountry: "Germany" } }] })), { status: "held", reason: "unverified-or-ineligible-location" });
 });
