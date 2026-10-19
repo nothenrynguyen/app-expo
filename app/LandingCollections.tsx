@@ -28,6 +28,6 @@ export function LandingCollections() {
         <span className="collection-link">Browse Full-Time Jobs <b>→</b></span>
       </Link>
     </div>
-    {summary?.screening?.version === 1 && <p className="landing-screening">{summary.screening.reviewed.toLocaleString()} total job links screened</p>}
+    {summary?.screening?.version === 1 && <p className="landing-screening"><span aria-hidden="true">* </span><span className="screening-total">{summary.screening.reviewed.toLocaleString()}</span> total job links screened</p>}
   </>;
 }
