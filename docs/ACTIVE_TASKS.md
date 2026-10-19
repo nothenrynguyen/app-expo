@@ -1,6 +1,6 @@
 # Active project tasks
 
-Updated October 18, 2026.
+Updated October 19, 2026.
 
 ## Working agreement
 
@@ -55,3 +55,9 @@ Keep this list current as work progresses. Include a short next-actions list in 
 1. Review the measured employer-evidence results and remaining holds, prioritizing finance/business coverage.
 2. Resolve USAJOBS access and zero-cost requirements, then measure a bounded pilot before integration.
 3. Review the accumulated local source changes for publication approval, then verify the deployed refresh.
+
+## October 19 finance/consulting iteration
+
+- Verified Brevan Howard, Charles River Associates (including its explicit parenthetical CRA name) and Virtu Financial using official size and U.S. presence evidence. No blanket source trust or board expansion. Compeer remains unresolved.
+- All 67 tests, lint and static export pass. Refresh: 6100 total jobs, 854 Keryx-linked jobs and 197 remaining Keryx employer holds. All 23 feeds returned data; overall refresh remains degraded. See [review](FINANCE_EMPLOYER_REVIEW.md). Local only.
+- Next: owner-managed USAJOBS access and cost-limit confirmation, a bounded pilot to measure new finance/business coverage, then publication review of the accumulated local batch. Review remaining employer holds as evidence becomes available rather than making manual employer discovery the main strategy.
