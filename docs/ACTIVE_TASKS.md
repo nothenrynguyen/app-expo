@@ -34,12 +34,24 @@ Final closure refresh 39358416742 passed and snapshot 82034d1 deployed successfu
 
 Evidence and limitations: [refresh quality review](REFRESH_QUALITY_REVIEW.md).
 
+## Approved cleanup and source research iteration
+
+Owner approved tasks 1 (listing cleanup) and 2 (research broad non-software sources). Both are complete for this iteration, with uncertainty retained explicitly.
+
+- Checked 192 official URLs for all 85 previously unresolved groups plus the two iPipeline groups. Found 18 groups with distinct official requisitions, 15 containing confirmed same-requisition aliases, five containing unavailable destinations, and 49 inconclusive groups on that baseline.
+- Local refreshed snapshot: 6,077 jobs, including 11 federal listings. Removed 18 redundant entries, five confirmed-closed links and four non-job privacy-page links; added one new destination.
+- Added a bounded per-refresh removal report and timestamp-matched audit evidence. All 27 removals are explained. The new artifact is included in workflow publication.
+- 76 tests, lint, TypeScript and snapshot data audits pass. Remaining semantic groups after cleanup: 118 recognized distinct-token groups and 44 needing more official evidence. No speculative removals.
+- Researched nine broad-source options. Recommend CareerOneStop access/license verification first, Adzuna publisher-access verification second. Jobicy's complete USA-filtered seven-day sample returned 446 rows with only eight broad early-career signals; accepted unique yield is not established. No new source was enabled or account created.
+
+Evidence: [cleanup review](LISTING_CLEANUP_REVIEW.md), [source shortlist](NON_SOFTWARE_SOURCE_SHORTLIST.md), and data/listing-changes.json. Changes are committed locally after validation and remain unpublished until owner approval.
+
 ## Next actions
 
-1. Verify employer identity/coverage for Cognition and Hyphenate before activating their migration leads.
-2. Resolve the two privacy-gated iPipeline requisition pairs and the inaccessible Whatnot API. Atomic Semi already links to pinned fab2. Keep legacy failures visible.
-3. Obtain official evidence for the 85 unresolved groups from the reviewed snapshot. Retain the 94 groups with distinct recognized requisition tokens. Improve per-destination removal explanations.
-4. Reassess other broad non-software sources using measured eligible unique yield.
+1. Publish the tested cleanup after owner approval and verify the next automatic refresh.
+2. Approve preparing a CareerOneStop access application for owner review, confirming job-data rights, filtered static snapshots, rate limits and zero-cost behavior before submission or integration. Adzuna is the fallback.
+3. Continue the 44 inconclusive groups when stronger official identifiers are available. Keep distinct requisitions visible.
+4. Lower-priority maintenance: verify Cognition/Hyphenate employer coverage and resolve Whatnot's inaccessible API. These are not the main coverage-growth strategy.
 
 ## Later queue
 

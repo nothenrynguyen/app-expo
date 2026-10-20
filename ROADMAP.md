@@ -8,6 +8,8 @@ The October 19 release adds Keryx coverage and bounded automatic USAJOBS discove
 
 Published follow-up: outage retries/recovery, corrected Luma/Commure boards and conservative Workday duplicate handling are deployed. Production refreshes 39358051059 and 39358416742 passed. The final live snapshot has 6,103 jobs and 11 federal listings, with two directly verified closed destinations removed. See [quality review](docs/REFRESH_QUALITY_REVIEW.md). Requisition review separates 94 distinct-token groups from three alias groups and 85 groups needing official evidence.
 
+Approved cleanup/research follow-up is complete locally: 6,077 jobs, 76 passing tests, evidence-backed duplicate/availability cleanup and per-refresh removal reasons. Broad-source research recommends CareerOneStop access verification, with Adzuna as fallback; no new source enabled. See [cleanup](docs/LISTING_CLEANUP_REVIEW.md) and [shortlist](docs/NON_SOFTWARE_SOURCE_SHORTLIST.md). Publication awaits approval.
+
 ## Current focus
 
 empluzzed covers early-career software, data, engineering, product, solutions and support, business, finance, quant, IT, and security roles across internship and full-time collections.
