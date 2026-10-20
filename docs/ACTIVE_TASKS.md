@@ -54,13 +54,13 @@ Published with owner approval at 18fc484: the purple screened-links number links
 
 Complete: reviewed access and measured 2,142 rows from Jobr, YubHub, OnJob and Remote OK against a captured 5,990-job production baseline. No accounts, payments, outreach or source activation. Jobr has 59 employer-held leads and one possible overlap, but all 60 application checks hit an access challenge before reaching employers. Zero additions are confirmed publishable. YubHub has four employer holds, OnJob one, and Remote OK none after initial screening. Counts are samples, not inventory sizes or promised additions.
 
-Recommendation: a local Jobr validation pilot before any integration, with a concrete acceptance threshold and a stop condition if application paths cannot be verified. See [pilot review](SELF_SERVICE_SOURCE_PILOT_REVIEW.md) and [measurement](self-service-source-measurement.json). Jobr is a separate aggregator from Jobright.
+Follow-up validation complete with owner approval: normal-browser links reveal a paid-service/free-manual-application choice. Verified three official employer postings, but the automated direct-application gate failed. Do not enable Jobr under its current feed contract. The conditional adapter was not built; publication review concludes no release and zero approved additions. See [validation decision](JOBR_PILOT_VALIDATION.md), [initial pilot review](SELF_SERVICE_SOURCE_PILOT_REVIEW.md) and [measurement](self-service-source-measurement.json). Jobr is a separate aggregator from Jobright.
 
 ## Next actions
 
 1. Complete: discover self-service non-software sources, verify feed-specific publication permission and measure bounded samples. NLx remains deferred without outreach.
-2. Recommended next approval: validate Jobr's held leads against official listings and employer evidence, including its application-link behavior. Target at least ten confirmed unique jobs in three non-software role areas before adapter work; close the candidate if verification fails.
-3. Conditional later step: prepare a disabled Jobr adapter and local publication review only after step 2 succeeds. Do not enable or push without approval. Preserve existing quality rules, attribution and zero-cost limits.
+2. Complete: validate Jobr and review publication. Three official job pages verified; direct automated application links remain unavailable. Candidate closed under the current feed contract, conditional adapter skipped and no release prepared.
+3. Recommended next approval: measure Keryx's Spring 2027 internship collection using the existing parser and direct employer links. Recheck collection permission scope, report actual unique eligible non-software additions, then prepare a local collection expansion only if useful. Current Keryx sources cover Summer 2027 and 2027 new grads, not Spring 2027.
 4. Continue the 44 inconclusive duplicate groups when stronger official identifiers become available; retain separate requisitions without proof of duplication.
 
 The NLx draft is historical research only. Do not contact providers or submit applications without explicit authorization. Individual-employer migrations remain lower-priority maintenance.

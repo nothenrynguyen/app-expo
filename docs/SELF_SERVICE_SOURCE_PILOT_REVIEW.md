@@ -2,6 +2,8 @@
 
 Checked October 20, 2026. Scope: research and measurement only, with no accounts, outreach, payments or source activation.
 
+Follow-up: the owner approved the conditional validation batch. The [completed Jobr validation](JOBR_PILOT_VALIDATION.md) supersedes the recommendation below: normal-browser links work through an upsell page, but the automatic direct-application gate failed. Do not enable Jobr under the current feed contract. The initial sample counts below are retained as historical evidence.
+
 ## Decision
 
 Jobr is the strongest candidate for a **local validation pilot**, but no candidate is ready to enable. Across 2,142 sampled rows, **zero additions are confirmed publishable** under the complete current policy. This is an evidence limit, not a claim that these providers have no useful jobs.
