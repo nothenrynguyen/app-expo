@@ -9,6 +9,7 @@ import { boardRecoveryPolicy, preserveLastKnownGoodJobs } from "../lib/ingestion
 import { loadCandidates } from "../lib/ingestion/load-candidates";
 import { buildRefreshReport } from "../lib/ingestion/refresh-report";
 import { createScreeningTracker } from "../lib/ingestion/screening";
+import { buildListingChanges } from "../lib/ingestion/listing-changes";
 import { buildReviewedEmployerCoverage } from "../lib/ingestion/reviewed-employer-coverage";
 import { isInCollection } from "../lib/job-collections";
 import { deduplicateCrossSourceJobs } from "../lib/job-dedup";
@@ -18,7 +19,7 @@ import { normalizeJobLocation } from "../lib/job-locations";
 import { getJobLocationMetadata } from "../lib/job-location-policy";
 import { buildJobsSummary } from "../lib/job-summary";
 import type { JobsSnapshot, PublicJob } from "../lib/jobs";
-import { needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
+import { isListingUnavailable, needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
 import { classifyRoleTags, getJobRoleTags } from "../lib/role-areas";
 import type { SourceCatalog } from "../lib/source-catalog";
 import { canonicalizeUrl, jobIdentity, normalizeDisplayText, stableJobId } from "../lib/source-normalization";
@@ -86,7 +87,7 @@ async function main() {
     const identity = jobIdentity(candidate.applyUrl);
     const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
     const authoritative = board ? boardResults.get(board.id) : null;
-    return !!identity && (authoritative ? !authoritative.liveIdentities.has(identity) : listingHealth[identity]?.status === "closed");
+    return !!identity && (authoritative ? !authoritative.liveIdentities.has(identity) : isListingUnavailable(listingHealth[identity]));
   });
 
   for (const candidate of candidates) {
@@ -153,7 +154,7 @@ async function main() {
       rejectedCount += 1;
       continue;
     }
-    if (!authoritativeBoard && listingHealth[identity]?.status === "closed") {
+    if (!authoritativeBoard && isListingUnavailable(listingHealth[identity])) {
       screening.record(candidate.applyUrl, "closed");
       rejectedCount += 1;
       continue;
@@ -218,7 +219,7 @@ async function main() {
         roleTags,
       };
     }, (prior) => {
-      return recovery.confirmedClosed(prior) || listingHealth[jobIdentity(prior.applyUrl) ?? ""]?.status === "closed";
+      return recovery.confirmedClosed(prior) || isListingUnavailable(listingHealth[jobIdentity(prior.applyUrl) ?? ""]);
     });
   }
 
@@ -262,6 +263,20 @@ async function main() {
     screening: snapshot.screening,
   });
   await writeFile(path.join(root, "data/refresh-report.json"), `${JSON.stringify(refreshReport, null, 2)}\n`);
+  const listingChanges = buildListingChanges({
+    generatedAt: snapshot.generatedAt, previousGeneratedAt: previous?.generatedAt ?? null,
+    previous: previous?.jobs ?? [], current: jobs, acceptedBeforeDedup: [...merged.values()],
+    candidateUrls: candidates.map(candidate => candidate.applyUrl),
+    outcomeFor: url => listingHealth[jobIdentity(url) ?? ""]?.status === "unavailable" ? "application-unavailable" : screening.outcomeFor(url),
+    boardState(prior) {
+      const board = discoverAtsBoard(prior.applyUrl, prior.company, "audit");
+      if (!board) return null;
+      const currentBoard = boardResults.get(board.id);
+      if (currentBoard) return currentBoard.liveIdentities.has(jobIdentity(prior.applyUrl) ?? "") ? null : "absent";
+      return boardRegistry.some(record => record.status === "failed" && record.provider === board.provider && record.key.toLowerCase() === board.key.toLowerCase()) ? "unavailable" : null;
+    },
+  });
+  await writeFile(path.join(root, "data/listing-changes.json"), `${JSON.stringify(listingChanges, null, 2)}\n`);
 
   await mkdir(path.join(root, "public"), { recursive: true });
   const insightsHistoryPath = path.join(root, "public/insights-history.json");

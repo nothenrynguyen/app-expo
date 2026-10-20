@@ -20,6 +20,10 @@ export function createScreeningTracker() {
   const destinations = new Map<string, ScreeningReason>();
   let uncountedRecords = 0;
   return {
+    outcomeFor(url: string): ScreeningReason | undefined {
+      const identity = jobIdentity(url);
+      return identity ? destinations.get(identity) : undefined;
+    },
     record(url: string, reason: ScreeningReason) {
       const identity = jobIdentity(url);
       if (!identity) { uncountedRecords += 1; return; }

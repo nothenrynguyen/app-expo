@@ -1,7 +1,7 @@
 import { jobIdentity } from "./source-normalization";
 import { load } from "cheerio";
 
-export type ListingStatus = "live" | "closed" | "unknown";
+export type ListingStatus = "live" | "closed" | "unavailable" | "unknown";
 
 export type ListingHealthRecord = {
   url: string;
@@ -11,6 +11,10 @@ export type ListingHealthRecord = {
 };
 
 export type ListingHealthFile = Record<string, ListingHealthRecord>;
+
+export function isListingUnavailable(record: ListingHealthRecord | undefined): boolean {
+  return record?.status === "closed" || record?.status === "unavailable";
+}
 
 const CLOSED_TEXT = [
   /job (?:is |has been )?no longer available/i,
@@ -26,6 +30,12 @@ export function classifyListingResponse(status: number, body: string): ListingSt
   if (status === 404 || status === 410) return "closed";
   if (status < 200 || status >= 300) return "unknown";
   const $ = load(body);
+  // Some retired ATS links serve an employer privacy page with HTTP 200.
+  // Hold that destination without claiming the underlying vacancy is filled.
+  const canonical = $("link[rel='canonical']").attr("href") ?? "";
+  const title = $("title").text().trim();
+  const structuredJob = $("script[type='application/ld+json']").toArray().some(node => /"@type"\s*:\s*"JobPosting"/.test($(node).text()));
+  if (!structuredJob && /^privacy (?:notice|policy)\b/i.test(title) && /^https?:\/\/[^/]+\/privacy(?:-notice|-policy)?\/?(?:[?#].*)?$/i.test(canonical)) return "unavailable";
   // Translation bundles, navigation and hidden templates can mention closure on
   // an open listing. Inspect the visible main content rather than raw HTML.
   $("script, style, template, noscript, nav, header, footer, aside, [hidden], [aria-hidden='true']").remove();

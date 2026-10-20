@@ -3,7 +3,8 @@ import { reviewUsaJobsPosting } from "../lib/usajobs";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { evaluateCompanyQuality, normalizeCompanyDisplayName, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
-import { deduplicateCrossSourceJobs } from "../lib/job-dedup";
+import { deduplicateCrossSourceJobs, workdayRequisitionIdentity } from "../lib/job-dedup";
+import { buildListingChanges } from "../lib/ingestion/listing-changes";
 import { isProcessManufacturingRole } from "../lib/process-manufacturing";
 import { getFreshnessRejection } from "../lib/job-freshness";
 import { buildJobInsightsDay, updateJobInsightsHistory } from "../lib/job-insights";
@@ -14,7 +15,7 @@ import { canonicalizeUrl, inferTerm, inferWorkMode, jobIdentity, normalizeDispla
 import { isInCollection } from "../lib/job-collections";
 import { classifyRoleArea, classifyRoleTags, getJobRoleTags, getRoleSelection, matchesRoleSelection } from "../lib/role-areas";
 import { createAtsBoard, discoverAtsBoard, isEarlyCareerTitle, type AtsBoardSeed } from "../lib/ats-boards";
-import { classifyListingResponse, needsListingCheck } from "../lib/listing-health";
+import { classifyListingResponse, isListingUnavailable, needsListingCheck } from "../lib/listing-health";
 import { applyMicrosoftCareersPosting, parseMicrosoftCareersJobUrl, parseMicrosoftCareersPosting } from "../lib/microsoft-careers";
 import { applySmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
 import { parseApplyGuySource, parseKeryxSource, parseMarkdownSource, sourceAllowsAtsExpansion } from "../lib/source-parsers";
@@ -503,6 +504,36 @@ test("cross-source dedup prefers direct employer applications without merging se
   assert.equal(jobs[0]?.applyUrl, "https://www.amazon.jobs/en/jobs/123/product-manager-intern");
   assert.deepEqual(jobs[0]?.sources, ["Open Tech", "Dreamwork"]);
   assert.equal(jobs[0]?.postedAtSource, "exact");
+});
+
+test("verified Workday requisition formats preserve distinct IDs and reject lookalike hosts", () => {
+  for (const id of ["R0020843", "DT-20066", "REF086121W", "R26-7706", "REQ165849", "RQ229655", "Q426SWEA2", "REQ-10082523"]) {
+    const base = `https://example.wd1.myworkdayjobs.com/external/job/City/Role_${id}`;
+    assert.equal(workdayRequisitionIdentity(base), workdayRequisitionIdentity(base + "-1"));
+    assert.notEqual(workdayRequisitionIdentity(base),workdayRequisitionIdentity(base.replace(id,id + "9")));
+    assert.equal(workdayRequisitionIdentity(base.replace(".com/", ".com.evil.test/")),null);
+  }
+  assert.notEqual(workdayRequisitionIdentity("https://example.wd1.myworkdayjobs.com/site/job/City/Role_R26-7706"),workdayRequisitionIdentity("https://example.wd1.myworkdayjobs.com/site/job/City/Role_R26-7707"));
+});
+
+test("privacy notices are unavailable destinations, not proof of filled vacancies", () => {
+  const notice = '<html><head><title>Privacy Notice | Employer</title><link rel="canonical" href="https://employer.example/privacy-notice/"></head><body><h1>Privacy notice</h1><p>How we use information.</p></body></html>';
+  assert.equal(classifyListingResponse(200,notice),"unavailable");
+  assert.equal(classifyListingResponse(403,notice),"unknown");
+  const job = '<title>Engineer</title><link rel="canonical" href="https://jobs.example/123"><main><h1>Engineer</h1><button>Apply now</button><a href="/privacy-notice">Privacy Notice</a></main>';
+  assert.equal(classifyListingResponse(200,job),"live");
+  assert.equal(isListingUnavailable({url:"https://example.test",status:"unavailable",checkedAt:"2026-10-20",httpStatus:200}),true);
+  assert.equal(isListingUnavailable(undefined),false);
+});
+
+test("listing changes distinguish deduplication, screening, board outages and upstream absence", () => {
+  const base = {company:"Example",title:"Engineer Intern",term:"Summer 2027",location:"Austin, TX",regions:["us" as const],workMode:"unknown" as const,postedAt:"2026-10-19T00:00:00Z",postedAtSource:"exact" as const,category:"Internship",linkedInUrl:null,salary:null,sources:["Test"],verifiedCompany:true};
+  const jobs = ["kept","alias","screened","outage","absent","upstream","unknown","privacy"].map(id=>({...base,id,applyUrl:`https://example.test/${id}`}));
+  const tracker = createScreeningTracker(); tracker.record(jobs[2].applyUrl,"closed"); tracker.record(jobs[1].applyUrl,"role");
+  const report = buildListingChanges({generatedAt:"2026-10-20",previousGeneratedAt:"2026-10-19",previous:jobs,current:[jobs[0]],acceptedBeforeDedup:[jobs[0],jobs[1]],candidateUrls:jobs.filter(j=>j.id!=="upstream").map(j=>j.applyUrl),outcomeFor:url=>url.endsWith("/privacy")?"application-unavailable":tracker.outcomeFor(url),boardState:j=>j.id==="outage"?"unavailable":j.id==="absent"?"absent":null});
+  assert.deepEqual(report.counts,{deduplicated:1,closed:1,"employer-board-unavailable":1,"absent-from-employer-board":1,"not-returned-by-sources":1,"reason-unavailable":1,"application-unavailable":1});
+  assert.equal(report.removedCount,7);
+  assert.equal(report.added,0);
 });
 
 test("Workday duplicate career-site URLs merge only matching requisitions and semantic fields", () => {

@@ -5,7 +5,7 @@ import { getFreshnessRejection } from "../lib/job-freshness";
 import { getJobLocationMetadata } from "../lib/job-location-policy";
 import type { JobsSnapshot, PublicJob } from "../lib/jobs";
 import type { ListingHealthFile } from "../lib/listing-health";
-import { classifyListingResponse } from "../lib/listing-health";
+import { classifyListingResponse, isListingUnavailable } from "../lib/listing-health";
 import { load } from "cheerio";
 
 // Read-only audit. Cached health belongs to the local checkout, not a live probe.
@@ -36,7 +36,7 @@ const freshnessFailures = snapshot.jobs.filter((job) => getFreshnessRejection(jo
 const invalidUrls = snapshot.jobs.filter((job) => {
   try { return !["https:", "http:"].includes(new URL(job.applyUrl).protocol); } catch { return true; }
 });
-const cachedClosed = snapshot.jobs.filter((job) => health[jobIdentity(job.applyUrl) ?? ""]?.status === "closed");
+const cachedClosed = snapshot.jobs.filter((job) => isListingUnavailable(health[jobIdentity(job.applyUrl) ?? ""]));
 const acceptedIdentities = new Set(snapshot.jobs.map((job) => jobIdentity(job.applyUrl)));
 const probes: Array<Record<string, unknown>> = [];
 if (process.argv.includes("--probe")) {
