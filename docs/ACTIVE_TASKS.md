@@ -46,14 +46,18 @@ Owner approved tasks 1 (listing cleanup) and 2 (research broad non-software sour
 
 Evidence: [cleanup review](LISTING_CLEANUP_REVIEW.md), [source shortlist](NON_SOFTWARE_SOURCE_SHORTLIST.md), and data/listing-changes.json. Publication was approved and release 12f1318 was pushed. All 76 tests passed again. Production refresh 39367465734 passed and snapshot 2e1c661 deployed successfully. Live generatedAt: 2026-10-20T04:05:47.590Z, 6,077 jobs and 11 federal listings. All 24 feeds succeeded; four legacy board 404s remain. The new removal report records one confirmed closure and one addition in this refresh.
 
+## Homepage screened-count link
+
+Completed locally: the purple screened-links number links to /about and underlines on hover or keyboard focus. Browser navigation verified. Lint and TypeScript pass. Detailed statistics remain on /methodology, linked from About. Publication awaits approval.
+
 ## Next actions
 
-1. Review the corrected NLx public-feed request draft and authorize clarification outreach if desired. The standard research license is not a public-job-board permission.
-2. If no suitable free public-feed route is available, assess Adzuna publisher permission and hard request caps before proposing a pilot.
-3. Continue the 44 inconclusive groups when stronger official identifiers are available. Keep distinct requisitions visible.
-4. Lower-priority maintenance: verify Cognition/Hyphenate employer coverage and resolve Whatnot's inaccessible API. These are not the main coverage-growth strategy.
+1. Discover broad non-software sources with self-service access, explicit job-board publishing rights, no payment method and no outreach requirement. NLx is deferred at the owner's request.
+2. Measure bounded samples against current job destinations and semantic identities. Report unique eligible additions separately from raw counts.
+3. Present one concrete pilot recommendation with attribution, link requirements, request limits and implementation effort before integration approval.
+4. Continue the 44 inconclusive duplicate groups when stronger official identifiers become available; retain separate requisitions without proof of duplication.
 
-Prepared access review: [corrected NLx request draft](NLX_ACCESS_REQUEST_DRAFT.md). No form submitted, message sent, agreement accepted or source enabled.
+The NLx draft is historical research only. Do not contact providers or submit applications without explicit authorization. Individual-employer migrations remain lower-priority maintenance.
 
 ## Later queue
 
