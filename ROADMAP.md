@@ -12,6 +12,8 @@ Approved cleanup/research follow-up was pushed at 12f1318 and deployed: 6,077 jo
 
 ## Current focus
 
+October 20 self-service discovery batch: 2,142 sampled rows across four new feeds; no source enabled and zero additions confirmed publishable. Jobr is the strongest validation candidate, with 59 employer-held leads and one possible overlap, but its application redirects blocked automated verification. Next approval should cover local official-listing and application-path validation before any adapter or publication. See [pilot review](docs/SELF_SERVICE_SOURCE_PILOT_REVIEW.md) and [active tasks](docs/ACTIVE_TASKS.md). NLx outreach remains deferred.
+
 empluzzed covers early-career software, data, engineering, product, solutions and support, business, finance, quant, IT, and security roles across internship and full-time collections.
 
 The reviewed-source expansion, ingestion foundation, opt-in Vercel analytics and browser-local application tracker are complete. Keep the current analytics integration. The current milestone is the source-expansion release above. After publication, prioritize listing quality; optional backend cost and architecture work remains a later review in a new chat. No backend resources, accounts or database have been added. See [backend handoff](docs/BACKEND_HANDOFF.md). Preserve the no-sign-up public board throughout.

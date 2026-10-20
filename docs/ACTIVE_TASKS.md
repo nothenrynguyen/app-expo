@@ -1,6 +1,6 @@
 # Active project tasks
 
-Updated October 19, 2026. Earlier task-by-task notes are preserved in [task history](TASK_HISTORY.md).
+Updated October 20, 2026. Earlier task-by-task notes are preserved in [task history](TASK_HISTORY.md).
 
 ## Working agreement
 
@@ -48,13 +48,19 @@ Evidence: [cleanup review](LISTING_CLEANUP_REVIEW.md), [source shortlist](NON_SO
 
 ## Homepage screened-count link
 
-Completed locally: the purple screened-links number links to /about and underlines on hover or keyboard focus. Browser navigation verified. Lint and TypeScript pass. Detailed statistics remain on /methodology, linked from About. Publication awaits approval.
+Published with owner approval at 18fc484: the purple screened-links number links to /about and underlines on hover or keyboard focus. Browser navigation verified. Lint and TypeScript pass. Detailed statistics remain on /methodology, linked from About.
+
+## Self-service source discovery, batch 1
+
+Complete: reviewed access and measured 2,142 rows from Jobr, YubHub, OnJob and Remote OK against a captured 5,990-job production baseline. No accounts, payments, outreach or source activation. Jobr has 59 employer-held leads and one possible overlap, but all 60 application checks hit an access challenge before reaching employers. Zero additions are confirmed publishable. YubHub has four employer holds, OnJob one, and Remote OK none after initial screening. Counts are samples, not inventory sizes or promised additions.
+
+Recommendation: a local Jobr validation pilot before any integration, with a concrete acceptance threshold and a stop condition if application paths cannot be verified. See [pilot review](SELF_SERVICE_SOURCE_PILOT_REVIEW.md) and [measurement](self-service-source-measurement.json). Jobr is a separate aggregator from Jobright.
 
 ## Next actions
 
-1. Discover broad non-software sources with self-service access, explicit job-board publishing rights, no payment method and no outreach requirement. NLx is deferred at the owner's request.
-2. Measure bounded samples against current job destinations and semantic identities. Report unique eligible additions separately from raw counts.
-3. Present one concrete pilot recommendation with attribution, link requirements, request limits and implementation effort before integration approval.
+1. Complete: discover self-service non-software sources, verify feed-specific publication permission and measure bounded samples. NLx remains deferred without outreach.
+2. Recommended next approval: validate Jobr's held leads against official listings and employer evidence, including its application-link behavior. Target at least ten confirmed unique jobs in three non-software role areas before adapter work; close the candidate if verification fails.
+3. Conditional later step: prepare a disabled Jobr adapter and local publication review only after step 2 succeeds. Do not enable or push without approval. Preserve existing quality rules, attribution and zero-cost limits.
 4. Continue the 44 inconclusive duplicate groups when stronger official identifiers become available; retain separate requisitions without proof of duplication.
 
 The NLx draft is historical research only. Do not contact providers or submit applications without explicit authorization. Individual-employer migrations remain lower-priority maintenance.
