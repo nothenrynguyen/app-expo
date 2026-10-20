@@ -36,4 +36,4 @@ The [sanitized validation receipt](jobr-pilot-validation.json) records the three
 
 Measure **Keryx's Spring 2027 internship collection** before hunting another provider. Keryx is already integrated, but `data/sources.json` currently enables only its Summer 2027 internships and 2027 new-grad collection. The [Spring collection](https://github.com/GodlyDonuts/keryx/blob/main/internships/spring-2027.md) already exposes direct employer links, including the independently verified Four Hands operations role above. Recheck the existing license scope, deduplicate against current jobs, and measure eligible non-software yield before adding another collection. No promised job count and no source change in this batch.
 
-Keep Jobr closed under the current feed contract. Revisit only if a supported, reliable direct-employer path becomes available; no outreach is planned.
+The owner subsequently excluded paid-service involvement permanently for our source selection. Jobr is recorded in [the source exclusion register](SOURCE_EXCLUSIONS.md). Do not reconsider it unless the owner explicitly requests a new review; no outreach is planned.

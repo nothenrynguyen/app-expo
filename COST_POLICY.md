@@ -10,6 +10,7 @@ empluzzed is intentionally operated without a billing account or payment method.
 - A free-tier limit must stop, pause, or degrade gracefully. It must never create a charge.
 - Core browsing, filtering, and direct application links remain free and do not require an account.
 - Monetization is out of scope for empluzzed.
+- Do not integrate paid job-source products or application services. Do not route applicants through a paid-service upsell to reach a free employer application. Record rejected candidates in [the source exclusion register](docs/SOURCE_EXCLUSIONS.md) and do not reconsider them unless the owner explicitly requests it.
 
 ## Approved architecture
 
