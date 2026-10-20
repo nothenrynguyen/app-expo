@@ -2,7 +2,7 @@
 
 Added locally October 18, 2026 after owner approval. Source activation on production still requires publication approval.
 
-Three public MIT-licensed repository files are configured locally: `GodlyDonuts/keryx/internships/summer-2027.md`, `GodlyDonuts/keryx/new-grad/2027.md` and the owner-approved October 20 addition, `GodlyDonuts/keryx/internships/spring-2027.md`. Spring publication is pending release approval. Attribution is recorded in `data/source-licenses.json` and `THIRD_PARTY_NOTICES.md`; the Sources page uses the shared license registry. Earlier measurements below describe the initial two-file integration.
+Three public MIT-licensed repository files are configured: `GodlyDonuts/keryx/internships/summer-2027.md`, `GodlyDonuts/keryx/new-grad/2027.md` and the owner-approved October 20 addition, `GodlyDonuts/keryx/internships/spring-2027.md`. Spring publication and production refresh were verified October 20 in [the release review](KERYX_SPRING_RELEASE.md). Attribution is recorded in `data/source-licenses.json` and `THIRD_PARTY_NOTICES.md`; the Sources page uses the shared license registry. Earlier measurements below describe the initial two-file integration.
 
 ## Admission boundaries
 
@@ -22,7 +22,7 @@ Each new collection is pending review (`active: false`), without source trust or
 
 Repository metadata refresh repairs raw URLs and default branches for ordinary Markdown and Keryx sources. It retains internal source IDs and health history. For an ordinary year-named repository repurposed for a new year, the cycle and generated source label follow the repository's current year. Canonical repository/path matching prevents rediscovery under duplicate IDs after a rename. No logic relies on the star count. GitHub normally redirects renamed repository addresses, but deleted repositories, changed file layouts, missing redirects and reused old names are not guaranteed recoverable. Daily health checks expose those failures instead of inventing a replacement.
 
-This is bounded discovery within configured owners/repositories, not an internet-wide finder or automatic activation of every future season. It takes effect in scheduled maintenance only after the code is published.
+This is bounded discovery within configured owners/repositories, not an internet-wide finder or automatic activation of every future season. The code is included in the published October 20 release; pending discoveries appear when weekly maintenance runs.
 
 Existing license references follow GitHub-reported repository renames without changing license status or granting permissions to a new repository. Weekly workflow publication includes those attribution-reference changes. The completed Spring measurement and release checks are in [the October 20 review](KERYX_SPRING_RELEASE.md).
 

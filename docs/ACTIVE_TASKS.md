@@ -67,9 +67,10 @@ The NLx draft is historical research only. Do not contact providers or submit ap
 
 Publication queue:
 
-1. Owner reviews and approves the Spring/season-maintenance release for publication.
-2. After approval, push and verify a successful production refresh and deployed snapshot with Spring-source records.
-3. Review future seasonal files when weekly maintenance finds them. Do not activate pending files automatically or reconsider sources in [the exclusion register](SOURCE_EXCLUSIONS.md).
+1. Complete: release 0c3af79 pushed and deployed. Production refresh 39501464029 passed and published snapshot 57629bd, also deployed successfully. Live generatedAt 2026-10-20T21:37:14.617Z, 6,017 jobs, 107 Spring-credited listings and Sources-page attribution verified. Spring feed healthy; Medtronic returned 429, alongside three existing board 404s. [Production receipt](keryx-spring-production-result.json).
+2. Winter measurement complete: 53 parsed candidates, 20 existing destinations, two within-sample aliases, one possible existing requisition and 30 employer-held leads across four companies. Eighteen leads are Canada-coded. Winter remains inactive. [Winter review](KERYX_WINTER_REVIEW.md).
+3. Recommended next approval: validate the Winter employer groups and official listings, resolve the overlap and prepare a local Winter-inclusive refresh only if useful. Review actual additions before publishing.
+4. Review future seasonal files when weekly maintenance finds them. Do not activate pending files automatically or reconsider sources in [the exclusion register](SOURCE_EXCLUSIONS.md).
 
 ## Later queue
 

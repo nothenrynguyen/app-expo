@@ -1,6 +1,8 @@
 # Keryx Spring 2027 release review
 
-Prepared October 20, 2026 after owner approval to measure the collection, add it locally if useful, and review the additions. No push or deployment has occurred.
+Prepared October 20, 2026 after owner approval to measure the collection, add it locally if useful, and review the additions. Publication was subsequently approved and verified as follows.
+
+Publication follow-up: release 0c3af79 was pushed and deployed successfully. Production refresh [39501464029](https://github.com/nothenrynguyen/app-expo/actions/runs/39501464029) passed, published snapshot 57629bd, and that snapshot's Vercel deployment succeeded. Live generatedAt advanced to `2026-10-20T21:37:14.617Z`: **6,017 jobs and 107 Spring-credited listings**. Sources-page attribution is present. Spring parsed 170 rows successfully during the fresh run. Medtronic returned HTTP 429; 24 of 25 feeds succeeded, with three existing employer-board 404s plus that rate-limited board. No immediate rate-limit retry or policy change was made. See [production receipt](keryx-spring-production-result.json). The original local review follows.
 
 ## Result
 
@@ -41,6 +43,6 @@ GitHub documents that [repository renames retain stars and redirect repository r
 
 ## Next actions
 
-1. Owner reviews this local release and approves publication if desired.
-2. After publication approval, push, run the production refresh and verify its deployed timestamp, Spring source credit and actual additions. Do not treat a successful push alone as refresh proof.
-3. Review future inactive seasonal candidates when discovered. Keep employer holds and the existing duplicate-review queue separate from publication of this collection.
+1. Complete: owner approved publication and release 0c3af79 deployed.
+2. Complete: successful production refresh 39501464029 published snapshot 57629bd; its deployment and advanced live timestamp were verified.
+3. Winter measurement complete without activation. Recommended next approval: review its four employer groups and official postings before a local integration refresh. Keep employer holds and the existing duplicate-review queue separate from publication of a new collection.
