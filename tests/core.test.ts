@@ -20,7 +20,7 @@ import { applyMicrosoftCareersPosting, parseMicrosoftCareersJobUrl, parseMicroso
 import { applySmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
 import { parseApplyGuySource, parseKeryxSource, parseMarkdownSource, sourceAllowsAtsExpansion } from "../lib/source-parsers";
 import { classifyJobMetros, classifyJobRegions, formatSnapshotAge, getSupportedJobRegions, normalizeJobLocation } from "../lib/job-locations";
-import { isDiscoverableYearlyRepository } from "../scripts/maintain-sources";
+import { isDiscoverableYearlyRepository, keryxCollectionSource, refreshGithubSource, runWeekly } from "../scripts/maintain-sources";
 import sourceCatalog from "../data/sources.json";
 import pinnedBoards from "../data/pinned-boards.json";
 import { sourceLicenseReview } from "../lib/source-licenses";
@@ -242,6 +242,102 @@ test("yearly source discovery accepts maintained future internship repositories"
   assert.equal(isDiscoverableYearlyRepository({ archived: false, name: "Tech-Internships-2026" }, 2027), false);
 });
 
+test("Keryx season discovery queues bounded collections without granting ingestion trust", () => {
+  const repository = { full_name: "Example/renamed-keryx", name: "renamed-keryx", default_branch: "stable", archived: false, pushed_at: null };
+  for (const file of ["internships/spring-2027.md", "internships/winter-2028.md", "new-grad/2028.md"]) {
+    const source = keryxCollectionSource(repository, file, 2026)!;
+    assert.equal(source.kind, "keryx_markdown");
+    assert.equal(source.active, false);
+    assert.equal(source.trustedCoverage, false);
+    assert.equal(source.expandAtsBoards, false);
+    assert.equal(source.url, `https://raw.githubusercontent.com/Example/renamed-keryx/stable/${file}`);
+  }
+  for (const file of ["archive/internships/spring-2027.md", "internships/unscheduled.md", "internships/spring-2025.md", "internships/spring-2029.md", "internships/spring-2027.md/extra", "README.md"]) {
+    assert.equal(keryxCollectionSource(repository, file, 2026), null, file);
+  }
+  assert.equal(keryxCollectionSource({ ...repository, archived: true }, "new-grad/2028.md", 2026), null);
+});
+
+test("repository renames repair raw URLs while retaining source IDs and review boundaries", () => {
+  const repository = { full_name: "Example/renamed-keryx", name: "renamed-keryx", default_branch: "stable", archived: false, pushed_at: null };
+  const source = keryxCollectionSource(repository, "internships/spring-2027.md", 2026)!;
+  source.repository = "Example/old-name";
+  source.id = "stable-health-key";
+  source.url = "https://raw.githubusercontent.com/Example/old-name/main/internships/spring-2027.md";
+  refreshGithubSource(source, repository);
+  assert.equal(source.id, "stable-health-key");
+  assert.equal(source.repository, repository.full_name);
+  assert.equal(source.branch, "stable");
+  assert.equal(source.url, "https://raw.githubusercontent.com/Example/renamed-keryx/stable/internships/spring-2027.md");
+  assert.equal(source.active, false);
+  assert.equal(source.expandAtsBoards, false);
+  const yearly = { ...source, kind: "markdown" as const, path: "README.md", cycle: 2027 };
+  refreshGithubSource(yearly, { ...repository, full_name: "Example/Internships-2028", name: "Internships-2028" });
+  assert.equal(yearly.cycle, 2028);
+  assert.equal(yearly.name, "Internships-2028 2028");
+  assert.equal(yearly.id, "stable-health-key");
+});
+
+test("weekly discovery follows a renamed Keryx repository and queues each new season only once", async (t) => {
+  const year = new Date().getUTCFullYear();
+  const repository = { full_name: "Example/renamed", name: "renamed", default_branch: "stable", archived: false, pushed_at: null };
+  const seed = keryxCollectionSource({ ...repository, full_name: "Example/old" }, `internships/summer-${year + 1}.md`, year)!;
+  seed.active = true;
+  const catalog: SourceCatalog = { trustedOwners: [], sources: [seed] };
+  const licenses = [{ repository: "Example/old", licenseUrl: "https://github.com/Example/old/blob/main/LICENSE", status: "licensed" }];
+  let feedRequests = 0;
+  const date = new Date().toISOString().slice(0, 10);
+  const markdown = Array.from({ length: 5 }, (_, i) => `| Example | Finance Intern | Boston, MA | Not stated | ${date} | Greenhouse direct | [apply](https://job-boards.greenhouse.io/example/jobs/${i + 1}) |`).join("\n");
+  t.mock.method(globalThis, "fetch", async (input: string | URL | Request) => {
+    const url = String(input);
+    if (url.includes("/git/trees/")) return Response.json({ truncated: false, tree: [
+      { path: seed.path, type: "blob" },
+      { path: `internships/spring-${year + 1}.md`, type: "blob" },
+      { path: "internships/unscheduled.md", type: "blob" },
+    ] });
+    if (url.startsWith("https://api.github.com/repos/")) return Response.json(repository);
+    assert.equal(url, `https://raw.githubusercontent.com/Example/renamed/stable/internships/spring-${year + 1}.md`);
+    feedRequests++;
+    return new Response(markdown);
+  });
+  await runWeekly(catalog, licenses);
+  await runWeekly(catalog, licenses);
+  assert.equal(catalog.sources.length, 2);
+  assert.equal(feedRequests, 1);
+  assert.equal(seed.id.includes("Example/old"), true);
+  assert.equal(seed.url.includes("Example/renamed/stable"), true);
+  assert.equal(licenses[0].repository, "Example/renamed");
+  assert.equal(licenses[0].licenseUrl, "https://github.com/Example/renamed/blob/main/LICENSE");
+  assert.equal(licenses[0].status, "licensed");
+  const found = catalog.sources.find(source => source.path?.includes("spring"))!;
+  assert.equal(found.active, false);
+  assert.equal(found.trustedCoverage, false);
+  assert.equal(found.expandAtsBoards, false);
+});
+
+test("unavailable or truncated repository trees do not remove or activate collections", async (t) => {
+  const year = new Date().getUTCFullYear();
+  const repository = { full_name: "Example/keryx", name: "keryx", default_branch: "main", archived: false, pushed_at: null };
+  const seed = keryxCollectionSource(repository, `internships/summer-${year + 1}.md`, year)!;
+  seed.active = true;
+  const catalog: SourceCatalog = { trustedOwners: [], sources: [seed] };
+  let unavailable = true;
+  t.mock.method(globalThis, "fetch", async (input: string | URL | Request) => {
+    const url = String(input);
+    if (url.includes("/git/trees/")) return unavailable
+      ? new Response("Rate limited", { status: 429 })
+      : Response.json({ truncated: true, tree: [{ path: `internships/winter-${year + 1}.md`, type: "blob" }] });
+    assert.ok(url.startsWith("https://api.github.com/repos/"));
+    return Response.json(repository);
+  });
+  await runWeekly(catalog);
+  unavailable = false;
+  await runWeekly(catalog);
+  assert.deepEqual(catalog.sources, [seed]);
+  assert.equal(seed.active, true);
+  assert.equal(seed.trustedCoverage, false);
+});
+
 test("job collections distinguish 2027 internships from full-time new-grad roles", () => {
   const base = { id: "job", company: "Example", location: "New York, NY", workMode: "unknown" as const, postedAt: "2026-08-12T00:00:00Z", postedAtSource: "exact" as const, applyUrl: "https://example.com/job", linkedInUrl: null, salary: null, sources: ["Test"], verifiedCompany: true };
   assert.equal(isInCollection({ ...base, title: "Software Engineer Intern", term: "Summer 2027", category: "Internship" }, "internships"), true);
@@ -281,7 +377,9 @@ test("Keryx imports only early-career non-software rows with direct ATS provenan
   assert.equal(grad[0].category, "New grad");
   const reviewedCatalog = sourceCatalog as SourceCatalog;
   const sources = reviewedCatalog.sources.filter(source => source.repository === "GodlyDonuts/keryx");
-  assert.equal(sources.length, 2);
+  for (const file of ["internships/summer-2027.md", "internships/spring-2027.md", "new-grad/2027.md"]) {
+    assert.ok(sources.some(source => source.path === file && source.active), file);
+  }
   assert.ok(sources.every(source => !source.trustedCoverage && !sourceAllowsAtsExpansion(source.name, reviewedCatalog.sources)));
 });
 

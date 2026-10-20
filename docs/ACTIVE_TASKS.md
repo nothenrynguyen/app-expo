@@ -60,10 +60,16 @@ Follow-up validation complete with owner approval: normal-browser links reveal a
 
 1. Complete: discover self-service non-software sources, verify feed-specific publication permission and measure bounded samples. NLx remains deferred without outreach.
 2. Complete: validate Jobr and review publication. Three official job pages verified; direct automated application links remain unavailable. Candidate closed under the current feed contract, conditional adapter skipped and no release prepared.
-3. Recommended next approval: measure Keryx's Spring 2027 internship collection using the existing parser and direct employer links. Recheck collection permission scope, report actual unique eligible non-software additions, then prepare a local collection expansion only if useful. Current Keryx sources cover Summer 2027 and 2027 new grads, not Spring 2027.
+3. Complete locally with owner approval: Keryx Spring 2027 added using the existing direct-ATS reader. 169 parsed candidates, 107 admitted listings carrying Spring credit, 48 new after destination/semantic/Workday overlap checks, 57 employer holds retained. Full board: 6,008 jobs versus 5,990 baseline, net +18 after ordinary churn. Future-season discovery and rename/attribution maintenance repaired; new discoveries stay inactive. Paid-service exclusion recorded, with Jobr permanently excluded unless the owner requests review. All 80 tests, lint, TypeScript and static export pass; data audits pass. Interactive preview unavailable due browser policy/local connection limits. [Release review](KERYX_SPRING_RELEASE.md).
 4. Continue the 44 inconclusive duplicate groups when stronger official identifiers become available; retain separate requisitions without proof of duplication.
 
 The NLx draft is historical research only. Do not contact providers or submit applications without explicit authorization. Individual-employer migrations remain lower-priority maintenance.
+
+Publication queue:
+
+1. Owner reviews and approves the Spring/season-maintenance release for publication.
+2. After approval, push and verify a successful production refresh and deployed snapshot with Spring-source records.
+3. Review future seasonal files when weekly maintenance finds them. Do not activate pending files automatically or reconsider sources in [the exclusion register](SOURCE_EXCLUSIONS.md).
 
 ## Later queue
 

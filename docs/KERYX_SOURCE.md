@@ -2,17 +2,29 @@
 
 Added locally October 18, 2026 after owner approval. Source activation on production still requires publication approval.
 
-Two public MIT-licensed repository files are configured: `GodlyDonuts/keryx/internships/summer-2027.md` and `GodlyDonuts/keryx/new-grad/2027.md`. Attribution is recorded in `data/source-licenses.json` and `THIRD_PARTY_NOTICES.md`; the Sources page uses the shared license registry.
+Three public MIT-licensed repository files are configured locally: `GodlyDonuts/keryx/internships/summer-2027.md`, `GodlyDonuts/keryx/new-grad/2027.md` and the owner-approved October 20 addition, `GodlyDonuts/keryx/internships/spring-2027.md`. Spring publication is pending release approval. Attribution is recorded in `data/source-licenses.json` and `THIRD_PARTY_NOTICES.md`; the Sources page uses the shared license registry. Earlier measurements below describe the initial two-file integration.
 
 ## Admission boundaries
 
 - Only rows with explicit direct Workday/Greenhouse/Lever/Ashby/SmartRecruiters provenance and an allowlisted HTTPS employer ATS destination are parsed. Aggregator fallback pages and arbitrary employer-domain links are excluded from this initial integration.
 - Titles must have an early-career signal and supported engineering, business, finance/quant or IT/security classification, without a software-family tag.
 - Academic eligibility hints and upstream discovery labels are not imported as employer requirements or company-quality evidence.
-- Source trust is not automatically granted: both feeds have `trustedCoverage: false`. Existing company holds and country, freshness, duplicate, listing-check and recovery rules remain in effect.
-- Both feeds disable full employer-board expansion. Only feed-listed candidates enter ingestion. The two public source files need no account, API key or paid resource.
+- Source trust is not automatically granted: all feeds have `trustedCoverage: false`. Existing company holds and country, freshness, duplicate, listing-check and recovery rules remain in effect.
+- All feeds disable full employer-board expansion. Only feed-listed candidates enter ingestion. The public source files need no account, API key or paid resource.
 - Valid source posting dates retain date-only provenance. Missing dates use `first_seen`; the shared refresh preserves prior dates for already published identities. Malformed/future dates are rejected. No dates are invented as employer posting dates.
 - The existing daily maintenance path uses the same dedicated reader, so its row counts reflect the admitted source format rather than all upstream rows.
+
+## Future seasons and repository renames
+
+Weekly maintenance already discovers year-named repositories among the configured trusted owners. The October 20 local update also lists collection files inside repositories already configured with the Keryx reader. It considers only `internships/{spring,summer,fall,winter}-YYYY.md` and `new-grad/YYYY.md`, from the current year through two years ahead, with at least five parseable rows. Unscheduled files, archive paths and unknown layouts are ignored.
+
+Each new collection is pending review (`active: false`), without source trust or employer-board expansion. Discovery does not grant license clearance or publication approval. It uses one public GitHub tree request per known Keryx repository and at most fifteen candidate-file checks. Failed/truncated tree responses leave existing sources intact. Weekly maintenance refreshes the source report so pending files are visible there.
+
+Repository metadata refresh repairs raw URLs and default branches for ordinary Markdown and Keryx sources. It retains internal source IDs and health history. For an ordinary year-named repository repurposed for a new year, the cycle and generated source label follow the repository's current year. Canonical repository/path matching prevents rediscovery under duplicate IDs after a rename. No logic relies on the star count. GitHub normally redirects renamed repository addresses, but deleted repositories, changed file layouts, missing redirects and reused old names are not guaranteed recoverable. Daily health checks expose those failures instead of inventing a replacement.
+
+This is bounded discovery within configured owners/repositories, not an internet-wide finder or automatic activation of every future season. It takes effect in scheduled maintenance only after the code is published.
+
+Existing license references follow GitHub-reported repository renames without changing license status or granting permissions to a new repository. Weekly workflow publication includes those attribution-reference changes. The completed Spring measurement and release checks are in [the October 20 review](KERYX_SPRING_RELEASE.md).
 
 ## Verification
 

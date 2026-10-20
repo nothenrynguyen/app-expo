@@ -28,13 +28,13 @@ jobs:
       - run: npm test
       - name: Publish maintenance changes
         run: |
-          if git diff --quiet -- data/sources.json data/source-health.json data/source-report.md; then
+          if git diff --quiet -- data/sources.json data/source-health.json data/source-report.md data/source-licenses.json; then
             echo "No source maintenance changes."
             exit 0
           fi
           git config user.name "app-expo-bot"
           git config user.email "app-expo-bot@users.noreply.github.com"
-          git add data/sources.json data/source-health.json data/source-report.md
+          git add data/sources.json data/source-health.json data/source-report.md data/source-licenses.json
           git commit -m "data: maintain job sources"
           git pull --rebase origin main
           git push

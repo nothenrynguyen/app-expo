@@ -6,12 +6,14 @@ import { parseKeryxSource, parseMarkdownSource } from "../lib/source-parsers";
 
 type MaintenanceMode = "daily" | "weekly" | "monthly";
 type GithubRepository = { full_name: string; default_branch: string; archived: boolean; pushed_at: string | null; name: string };
+type GithubTree = { truncated: boolean; tree: Array<{ path: string; type: string }> };
 
 const ROOT = path.resolve(import.meta.dirname, "..");
 const CATALOG_PATH = path.join(ROOT, "data/sources.json");
 const HEALTH_PATH = path.join(ROOT, "data/source-health.json");
 const REPORT_PATH = path.join(ROOT, "data/source-report.md");
 const DISCOVERY_PATHS = ["README.md", "README-Off-Season.md", "OFFSEASON_README.md", "NEW_GRAD_USA.md"];
+type RepositoryLicenseReference = { repository: string; licenseUrl: string | null };
 
 function githubHeaders(): HeadersInit {
   const token = process.env.GITHUB_TOKEN;
@@ -97,18 +99,77 @@ function sourceName(repository: GithubRepository, sourcePath: string, cycle: num
   return `${repository.name} ${cycle}`;
 }
 
-async function runWeekly(catalog: SourceCatalog) {
-  const existing = new Set(catalog.sources.map((source) => source.id.toLowerCase()));
+export function refreshGithubSource(source: JobSource, repository: GithubRepository): void {
+  source.repository = repository.full_name;
+  if ((source.kind === "markdown" || source.kind === "keryx_markdown") && source.path) {
+    source.branch = repository.default_branch;
+    source.url = `https://raw.githubusercontent.com/${repository.full_name}/${repository.default_branch}/${source.path}`;
+    const cycle = Number(repository.name.match(/20\d{2}/)?.[0] ?? 0);
+    if (source.kind === "markdown" && cycle && cycle !== source.cycle) {
+      source.cycle = cycle;
+      source.name = sourceName(repository, source.path, cycle);
+    }
+  }
+  // Keep the internal ID stable so repository renames retain health history.
+}
+
+export function keryxCollectionSource(repository: GithubRepository, sourcePath: string, year: number): JobSource | null {
+  const match = sourcePath.match(/^(?:internships\/(spring|summer|fall|winter)-(20\d{2})|new-grad\/(20\d{2}))\.md$/);
+  if (repository.archived || !match) return null;
+  const cycle = Number(match[2] ?? match[3]);
+  if (cycle < year || cycle > year + 2) return null;
+  const season = match[1];
+  return {
+    id: `github:${repository.full_name}:${sourcePath}`,
+    name: `Keryx Non-Software ${season ? season[0].toUpperCase() + season.slice(1) : "New Grad"} ${cycle}`,
+    kind: "keryx_markdown",
+    url: `https://raw.githubusercontent.com/${repository.full_name}/${repository.default_branch}/${sourcePath}`,
+    repository: repository.full_name, path: sourcePath, branch: repository.default_branch, cycle,
+    expandAtsBoards: false, active: false, trustedCoverage: false,
+  };
+}
+
+export async function runWeekly(catalog: SourceCatalog, licenses: RepositoryLicenseReference[] = []) {
   const highestCycle = Math.max(new Date().getUTCFullYear(), ...catalog.sources.map((source) => source.cycle ?? 0));
   const repositoryCache = new Map<string, GithubRepository | null>();
   for (const source of catalog.sources) {
     const repository = await repositoryDetails(source.repository, repositoryCache);
     if (!repository) continue;
-    source.repository = repository.full_name;
-    if (source.kind === "markdown" && source.path) {
-      source.branch = repository.default_branch;
-      source.url = `https://raw.githubusercontent.com/${repository.full_name}/${repository.default_branch}/${source.path}`;
+    const priorRepository = source.repository;
+    refreshGithubSource(source, repository);
+    if (priorRepository.toLowerCase() !== repository.full_name.toLowerCase()) {
+      // Follow the same GitHub-reported repository rename, not a new license grant.
+      for (const record of licenses.filter(record => record.repository.toLowerCase() === priorRepository.toLowerCase())) {
+        record.repository = repository.full_name;
+        if (record.licenseUrl?.startsWith(`https://github.com/${priorRepository}/`)) {
+          record.licenseUrl = record.licenseUrl.replace(`https://github.com/${priorRepository}/`, `https://github.com/${repository.full_name}/`);
+        }
+      }
     }
+  }
+  // Compare canonical repository/path pairs, not IDs that predate a rename.
+  const existing = new Set(catalog.sources.map(source => `${source.repository}:${source.path ?? ""}`.toLowerCase()));
+  const keryxRepositories = new Set(catalog.sources.filter(source => source.kind === "keryx_markdown").map(source => source.repository));
+  for (const name of keryxRepositories) {
+    const repository = await repositoryDetails(name, repositoryCache);
+    if (!repository || repository.archived) continue;
+    try {
+      const tree = await fetchGithub<GithubTree>(`/repos/${repository.full_name}/git/trees/${encodeURIComponent(repository.default_branch)}?recursive=1`);
+      if (tree.truncated) continue;
+      // Only season/year collections in this already reviewed repository.
+      const paths = tree.tree.filter(entry => entry.type === "blob").map(entry => entry.path).sort();
+      let requests = 0;
+      for (const sourcePath of paths) {
+        const source = keryxCollectionSource(repository, sourcePath, new Date().getUTCFullYear());
+        if (!source || existing.has(`${source.repository}:${sourcePath}`.toLowerCase())) continue;
+        if (requests++ >= 15) break;
+        try {
+          if (parseKeryxSource(await fetchText(source.url), source.name).length < 5) continue;
+          catalog.sources.push(source);
+          existing.add(`${source.repository}:${sourcePath}`.toLowerCase());
+        } catch { /* Unavailable collections remain undiscovered, never activated. */ }
+      }
+    } catch { /* Keep current sources intact when repository discovery is unavailable. */ }
   }
   for (const owner of catalog.trustedOwners) {
     let repositories: GithubRepository[] = [];
@@ -122,7 +183,8 @@ async function runWeekly(catalog: SourceCatalog) {
       if (!isDiscoverableYearlyRepository(repository, highestCycle)) continue;
       for (const sourcePath of DISCOVERY_PATHS) {
         const id = `github:${repository.full_name}:${sourcePath}`;
-        if (existing.has(id.toLowerCase())) continue;
+        const key = `${repository.full_name}:${sourcePath}`.toLowerCase();
+        if (existing.has(key)) continue;
         const rawUrl = `https://raw.githubusercontent.com/${repository.full_name}/${repository.default_branch}/${sourcePath}`;
         try {
           const jobs = parseMarkdownSource(await fetchText(rawUrl), id);
@@ -139,7 +201,7 @@ async function runWeekly(catalog: SourceCatalog) {
             active: false,
             trustedCoverage: false,
           });
-          existing.add(id.toLowerCase());
+          existing.add(key);
         } catch {
           // Missing and non-job README files are expected during discovery.
         }
@@ -189,7 +251,14 @@ async function main() {
   const catalog = JSON.parse(await readFile(CATALOG_PATH, "utf8")) as SourceCatalog;
   const state = await readFile(HEALTH_PATH, "utf8").then((value) => JSON.parse(value) as SourceHealthState).catch(() => ({ updatedAt: new Date(0).toISOString(), sources: {} } as SourceHealthState));
   if (mode === "daily") await runDaily(catalog, state);
-  if (mode === "weekly") await runWeekly(catalog);
+  if (mode === "weekly") {
+    const licensePath = path.join(ROOT, "data/source-licenses.json");
+    const licenses = JSON.parse(await readFile(licensePath, "utf8")) as { repositories: RepositoryLicenseReference[] };
+    const before = JSON.stringify(licenses);
+    await runWeekly(catalog, licenses.repositories);
+    if (JSON.stringify(licenses) !== before) await writeFile(licensePath, `${JSON.stringify(licenses, null, 2)}\n`);
+    await writeFile(REPORT_PATH, report(catalog, state));
+  }
   if (mode === "monthly") {
     runMonthly(catalog, state);
     await writeFile(REPORT_PATH, report(catalog, state));

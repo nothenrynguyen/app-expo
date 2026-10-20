@@ -12,6 +12,8 @@ Approved cleanup/research follow-up was pushed at 12f1318 and deployed: 6,077 jo
 
 ## Current focus
 
+Owner-approved Keryx Spring 2027 expansion is complete locally: 107 admitted Spring-credited listings, including 48 new after overlap checks. The refreshed board has 6,008 jobs (net +18 versus the captured production snapshot). Future season-file discovery and repository rename/attribution maintenance are repaired; new discoveries remain inactive. Paid job-source/application services are excluded and Jobr is recorded for no reconsideration. Publication awaits owner approval. See [release review](docs/KERYX_SPRING_RELEASE.md) and [exclusion register](docs/SOURCE_EXCLUSIONS.md).
+
 October 20 self-service discovery batch: 2,142 sampled rows across four new feeds; no source enabled. Approved Jobr validation verified three official postings, but the feed routes applicants through a paid-service/free-manual-choice page and automated direct-employer resolution remains blocked. Decision: close the candidate under the current feed contract, skip the conditional adapter, and publish no additions. Next recommendation is measuring Keryx's Spring 2027 internship collection, which is not in our current source catalog. See [validation decision](docs/JOBR_PILOT_VALIDATION.md), [initial pilot review](docs/SELF_SERVICE_SOURCE_PILOT_REVIEW.md) and [active tasks](docs/ACTIVE_TASKS.md). NLx outreach remains deferred.
 
 empluzzed covers early-career software, data, engineering, product, solutions and support, business, finance, quant, IT, and security roles across internship and full-time collections.
