@@ -6,7 +6,7 @@ This is the living list of ideas and future work for empluzzed. Update it whenev
 
 The October 19 release adds Keryx coverage and bounded automatic USAJOBS discovery. Implementation and measurement are complete; publication was approved and release 7ab69a1 was pushed. Live refresh run 39315578545 passed and its snapshot deployed successfully. See [release review](docs/SOURCE_EXPANSION_RELEASE.md) and [active tasks](docs/ACTIVE_TASKS.md). After publication, prioritize listing quality and duplicate/requisition review before further backend work.
 
-Local follow-up: outage retries/recovery, corrected Luma/Commure boards and conservative Workday duplicate handling are implemented and tested. See [quality review](docs/REFRESH_QUALITY_REVIEW.md). The local snapshot has 6,104 jobs; follow-up publication remains pending.
+Published follow-up: outage retries/recovery, corrected Luma/Commure boards and conservative Workday duplicate handling are deployed. Production refreshes 39358051059 and 39358416742 passed. The final live snapshot has 6,103 jobs and 11 federal listings, with two directly verified closed destinations removed. See [quality review](docs/REFRESH_QUALITY_REVIEW.md). Requisition review separates 94 distinct-token groups from three alias groups and 85 groups needing official evidence.
 
 ## Current focus
 

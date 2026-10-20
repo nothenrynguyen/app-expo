@@ -18,25 +18,27 @@ The owner approved all four development steps as one batch. All four are complet
 | Prepare one local release review | Complete | Tests, lint, TypeScript, static export, data audit and compact/card browser checks pass. [Release review](SOURCE_EXPANSION_RELEASE.md) |
 | Publish and verify production | Complete | Release 7ab69a1 and automatic snapshot 17bda91 deployed successfully. Run 39315578545 passed. Live generatedAt advanced to 2026-10-19T20:02:57.268Z: 5,491 jobs, 11 federal listings. |
 
-Known limits: refresh is degraded by six existing employer-board 404s and two timeouts (both timeout endpoints responded on targeted follow-up). 208 possible semantic duplicate groups remain unconfirmed. Source/category counts can overlap and must not be added to net board growth.
+Historical release-review limits included six employer-board 404s, two timeouts and 208 possible semantic duplicate groups. The published follow-up below supersedes those counts. Source/category counts can overlap and must not be added to net board growth.
 
 ## Refresh quality follow-up
 
-Completed locally after owner approval to investigate all three next actions:
+Completed and published after owner approval to investigate all three next actions:
 
 - Traced the initial 615 net drop: 671 removed and 56 added, with 611 missing destinations on timed-out employer boards.
 - Added one bounded retry and scoped outage recovery, preserving confirmed closures, freshness and federal verification rules.
 - Repaired Luma and Commure board addresses from official career links.
 - Reviewed duplicate groups and added conservative same-requisition Workday merging. A fresh local refresh has 6,104 jobs, 11 federal listings, all 24 feeds healthy, four unresolved legacy board 404s and 182 remaining semantic review groups.
-- 73 tests, lint, TypeScript and snapshot location/freshness/identity audits pass. Code committed locally; publication was approved and release d4577c9 was pushed. Its production refresh is being verified.
+- 73 tests, lint, TypeScript and snapshot location/freshness/identity audits pass. Code committed locally; publication was approved and release d4577c9 was pushed. Production refresh 39358051059 passed and deployed successfully: 6,106 jobs, 11 federal listings, four legacy board 404s, and two successful retries.
+
+Final closure refresh 39358416742 passed and snapshot 82034d1 deployed successfully. Live generatedAt: 2026-10-20T02:23:32.235Z. The board has 6,103 jobs and 11 federal listings; both confirmed-closed H&R Block URLs are absent. Four legacy board 404s remain.
 
 Evidence and limitations: [refresh quality review](REFRESH_QUALITY_REVIEW.md).
 
 ## Next actions
 
-1. Finish verifying production refresh 39358051059 for the published follow-up.
-2. Verify employer identity/coverage for the Cognition and Hyphenate migration leads. Atomic Semi already links to pinned fab2; Whatnot remains inaccessible to the checker. Keep legacy failures visible.
-3. Resolve three iCIMS same-token groups (two privacy-gated iPipeline pairs and one closed H&R Block pair), then obtain official evidence for 85 unresolved groups. Retain the 94 groups with distinct recognized requisition tokens. Improve removal explanations.
+1. Verify employer identity/coverage for Cognition and Hyphenate before activating their migration leads.
+2. Resolve the two privacy-gated iPipeline requisition pairs and the inaccessible Whatnot API. Atomic Semi already links to pinned fab2. Keep legacy failures visible.
+3. Obtain official evidence for the 85 unresolved groups from the reviewed snapshot. Retain the 94 groups with distinct recognized requisition tokens. Improve per-destination removal explanations.
 4. Reassess other broad non-software sources using measured eligible unique yield.
 
 ## Later queue

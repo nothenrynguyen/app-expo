@@ -44,12 +44,12 @@ Run `node --import tsx scripts/audit-refresh-changes.ts 7ab69a1 17bda91`. Detail
 
 73 tests, lint and TypeScript pass. The complete local refresh finished at 2026-10-20T00:42:32.213Z (October 19 local time) with 6,104 jobs, including 11 federal listings. All 24 source feeds succeeded. Employer-board failures fell from 14 in the first production run to four legacy 404s. One transient failure was retried successfully. Luma returned 35 rows and Commure 80. No last-known-good recovery was needed in this run because all transient boards succeeded; recovery behavior is covered by regression tests.
 
-The refreshed snapshot has zero duplicate job IDs/application identities, zero location-policy violations and zero freshness failures. There are 182 remaining semantic review groups. Inventory changes and duplicate normalization mean this is not a controlled claim of a specific net source yield. Changes and generated data remain local pending publication approval.
+The refreshed snapshot has zero duplicate job IDs/application identities, zero location-policy violations and zero freshness failures. There are 182 remaining semantic review groups. Inventory changes and duplicate normalization mean this is not a controlled claim of a specific net source yield. This validation preceded the approved publication recorded below.
 
 
 ## Publication and further review
 
-Owner approved publication of the tested follow-up. Release d4577c9 was pushed and Vercel reports a successful deployment. Production refresh run 39358051059 is being verified.
+Owner approved publication of the tested follow-up. Release d4577c9 was pushed and Vercel reports a successful deployment. Production refresh run 39358051059 passed and its snapshot 34a8357 deployed successfully. Live generatedAt advanced to 2026-10-20T02:20:05.093Z, with 6,106 jobs and 11 federal listings. Two transient boards recovered on retry. Four legacy 404s remain.
 
 A reproducible read-only review (`node --import tsx scripts/review-requisition-groups.ts`) classifies the 182 groups from the tested snapshot:
 
@@ -65,3 +65,5 @@ Further official-page checks establish migration leads, not automatic employer a
 - Whatnot's public careers destination returned HTTP 403 to the checker.
 
 No broad alias between different employer names or unsupported replacement integration was activated. The old 404 diagnostics remain visible. New employer identity/coverage evidence must precede activating migration leads.
+
+Both H&R Block 410 responses were recorded in listing-health at commit 01675b4. Final refresh 39358416742 passed and published snapshot 82034d1. Vercel deployed it successfully. Live generatedAt advanced to 2026-10-20T02:23:32.235Z, with 6,103 jobs and 11 federal listings. Both confirmed-closed destinations are absent from live jobs.json. Four legacy 404s remain. Cognition and Hyphenate public board APIs were separately checked and returned HTTP 200 (104 and 13 rows respectively); this establishes endpoint availability, not employer approval or eligible yield.
