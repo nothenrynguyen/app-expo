@@ -28,15 +28,15 @@ Completed locally after owner approval to investigate all three next actions:
 - Added one bounded retry and scoped outage recovery, preserving confirmed closures, freshness and federal verification rules.
 - Repaired Luma and Commure board addresses from official career links.
 - Reviewed duplicate groups and added conservative same-requisition Workday merging. A fresh local refresh has 6,104 jobs, 11 federal listings, all 24 feeds healthy, four unresolved legacy board 404s and 182 remaining semantic review groups.
-- 73 tests, lint, TypeScript and snapshot location/freshness/identity audits pass. Code committed locally; publication has not been requested for this follow-up.
+- 73 tests, lint, TypeScript and snapshot location/freshness/identity audits pass. Code committed locally; publication was approved and release d4577c9 was pushed. Its production refresh is being verified.
 
 Evidence and limitations: [refresh quality review](REFRESH_QUALITY_REVIEW.md).
 
 ## Next actions
 
-1. Publish the tested follow-up after owner approval and verify its next GitHub refresh.
-2. Resolve the four legacy board addresses using confirmed current integrations, or document retirement without hiding failures.
-3. Review the remaining 182 semantic groups using requisition evidence, and improve per-destination removal explanations for future refresh comparisons.
+1. Finish verifying production refresh 39358051059 for the published follow-up.
+2. Verify employer identity/coverage for the Cognition and Hyphenate migration leads. Atomic Semi already links to pinned fab2; Whatnot remains inaccessible to the checker. Keep legacy failures visible.
+3. Resolve three iCIMS same-token groups (two privacy-gated iPipeline pairs and one closed H&R Block pair), then obtain official evidence for 85 unresolved groups. Retain the 94 groups with distinct recognized requisition tokens. Improve removal explanations.
 4. Reassess other broad non-software sources using measured eligible unique yield.
 
 ## Later queue

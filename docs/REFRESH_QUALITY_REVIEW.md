@@ -45,3 +45,23 @@ Run `node --import tsx scripts/audit-refresh-changes.ts 7ab69a1 17bda91`. Detail
 73 tests, lint and TypeScript pass. The complete local refresh finished at 2026-10-20T00:42:32.213Z (October 19 local time) with 6,104 jobs, including 11 federal listings. All 24 source feeds succeeded. Employer-board failures fell from 14 in the first production run to four legacy 404s. One transient failure was retried successfully. Luma returned 35 rows and Commure 80. No last-known-good recovery was needed in this run because all transient boards succeeded; recovery behavior is covered by regression tests.
 
 The refreshed snapshot has zero duplicate job IDs/application identities, zero location-policy violations and zero freshness failures. There are 182 remaining semantic review groups. Inventory changes and duplicate normalization mean this is not a controlled claim of a specific net source yield. Changes and generated data remain local pending publication approval.
+
+
+## Publication and further review
+
+Owner approved publication of the tested follow-up. Release d4577c9 was pushed and Vercel reports a successful deployment. Production refresh run 39358051059 is being verified.
+
+A reproducible read-only review (`node --import tsx scripts/review-requisition-groups.ts`) classifies the 182 groups from the tested snapshot:
+
+- 94 groups have distinct recognized requisition tokens within one employer/platform namespace. Keep these listings; matching titles do not establish duplication.
+- Three groups share a recognized token across iCIMS portals: iPipeline requisitions 1730 and 1718, and H&R Block 76907. iPipeline returned privacy notices, so its job content could not be verified. Both H&R Block destinations returned HTTP 410 on direct checks.
+- 85 groups lack enough recognized requisition evidence for a safe automated decision. They remain visible and are not labeled confirmed duplicates.
+
+Further official-page checks establish migration leads, not automatic employer approvals:
+
+- Interaction's /jobs page links to https://cognition.com/careers, which links to the cognition Ashby board.
+- Maximor's official domain redirects to https://hyphenate.ai/. Its /jobs page embeds https://jobs.ashbyhq.com/hyphenate.
+- Atomic Semi's official site links to fab2, already pinned.
+- Whatnot's public careers destination returned HTTP 403 to the checker.
+
+No broad alias between different employer names or unsupported replacement integration was activated. The old 404 diagnostics remain visible. New employer identity/coverage evidence must precede activating migration leads.
