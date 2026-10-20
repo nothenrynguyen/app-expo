@@ -5,7 +5,7 @@ import { pathToFileURL } from "node:url";
 import { discoverAtsBoard } from "../lib/ats-boards";
 import { evaluateCompanyQuality, normalizeCompanyDisplayName, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
 import { inBatches } from "../lib/ingestion/concurrency";
-import { preserveLastKnownGoodJobs } from "../lib/ingestion/last-known-good";
+import { boardRecoveryPolicy, preserveLastKnownGoodJobs } from "../lib/ingestion/last-known-good";
 import { loadCandidates } from "../lib/ingestion/load-candidates";
 import { buildRefreshReport } from "../lib/ingestion/refresh-report";
 import { createScreeningTracker } from "../lib/ingestion/screening";
@@ -196,8 +196,11 @@ async function main() {
     });
   }
 
-  if (unhealthySources.length > 0 && previous) {
+  const recovery = boardRecoveryPolicy(boardRegistry, boardResults);
+  if ((unhealthySources.length > 0 || recovery.hasFailures) && previous) {
     preservedFromLastHealthySnapshot = preserveLastKnownGoodJobs(merged, previous.jobs, (prior) => {
+      // A board outage recovers only that board, not unrelated missing inputs.
+      if (unhealthySources.length === 0 && !recovery.affected(prior)) return null;
       const decision = evaluateCompanyQuality({ name: prior.company }, "", registry, trustRegistry);
       const freshnessRejection = getFreshnessRejection(prior);
       const roleTags = classifyRoleTags(prior);
@@ -214,7 +217,9 @@ async function main() {
         metros: locationMetadata.metros,
         roleTags,
       };
-    }, (prior) => listingHealth[jobIdentity(prior.applyUrl) ?? ""]?.status === "closed");
+    }, (prior) => {
+      return recovery.confirmedClosed(prior) || listingHealth[jobIdentity(prior.applyUrl) ?? ""]?.status === "closed";
+    });
   }
 
   const jobs = deduplicateCrossSourceJobs([...merged.values()])

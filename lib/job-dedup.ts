@@ -45,6 +45,17 @@ export function isAggregatorJobUrl(value: string): boolean {
   }
 }
 
+export function workdayRequisitionIdentity(value: string): string | null {
+  try {
+    const url = new URL(value);
+    if (!/^[a-z0-9-]+\.wd\d+\.myworkdayjobs\.com$/i.test(url.hostname)) return null;
+    const match = url.pathname.match(/_((?:JR\d+|\d{2}WD\d+|\d{6,}|R-\d+))(?:-\d+)?$/i);
+    return match ? `${url.hostname.split(".")[0].toLowerCase()}:${match[1].toLowerCase()}` : null;
+  } catch {
+    return null;
+  }
+}
+
 function mergeJobs(preferred: PublicJob, other: PublicJob): PublicJob {
   const result = { ...preferred, sources: [...new Set([...preferred.sources, ...other.sources])] };
   if (DATE_PRECISION[other.postedAtSource] > DATE_PRECISION[result.postedAtSource]) {
@@ -66,6 +77,8 @@ export function deduplicateCrossSourceJobs(jobs: PublicJob[]): PublicJob[] {
     const possibleMatches = bySemanticIdentity.get(key) ?? [];
     const matchIndex = possibleMatches.find((index) => {
       const existing = results[index];
+      const requisition = workdayRequisitionIdentity(job.applyUrl);
+      if (requisition && requisition === workdayRequisitionIdentity(existing.applyUrl)) return true;
       const sharesSource = existing.sources.some((source) => job.sources.includes(source));
       return !sharesSource && (isAggregatorJobUrl(existing.applyUrl) || isAggregatorJobUrl(job.applyUrl));
     });

@@ -27,7 +27,7 @@ import { parseSavedJobIds, toggleSavedJobId } from "../lib/saved-jobs";
 import { displayText, getLocationDisplay, getPaginationState } from "../app/job-board/job-board-utils";
 import { createWorkdayBoard, fetchWorkdayBoard, parseWorkdayJob, parseWorkdayPostedAt } from "../lib/workday";
 import { buildRefreshReport } from "../lib/ingestion/refresh-report";
-import { preserveLastKnownGoodJobs } from "../lib/ingestion/last-known-good";
+import { boardRecoveryPolicy, preserveLastKnownGoodJobs } from "../lib/ingestion/last-known-good";
 import { getJobLocationMetadata } from "../lib/job-location-policy";
 import { createScreeningTracker } from "../lib/ingestion/screening";
 import type { SourceCatalog } from "../lib/source-catalog";
@@ -503,6 +503,42 @@ test("cross-source dedup prefers direct employer applications without merging se
   assert.equal(jobs[0]?.applyUrl, "https://www.amazon.jobs/en/jobs/123/product-manager-intern");
   assert.deepEqual(jobs[0]?.sources, ["Open Tech", "Dreamwork"]);
   assert.equal(jobs[0]?.postedAtSource, "exact");
+});
+
+test("Workday duplicate career-site URLs merge only matching requisitions and semantic fields", () => {
+  const base = { company: "Autodesk", title: "Software Engineer Intern", term: "Summer 2027", location: "Birmingham, UK", regions: ["uk" as const], workMode: "unknown" as const, postedAt: "2026-10-19T00:00:00Z", postedAtSource: "exact" as const, linkedInUrl: null, category: "Internship", salary: null, verifiedCompany: true, sources: ["Same feed"] };
+  const url = "https://autodesk.wd1.myworkdayjobs.com/uni/job/Birmingham/Intern_26WD101472";
+  const result = deduplicateCrossSourceJobs([
+    { ...base, id: "original", applyUrl: url },
+    { ...base, id: "alias", applyUrl: url.replace("/uni/", "/Ext/") + "-1" },
+    { ...base, id: "different", applyUrl: url.replace("101472", "101473") },
+    { ...base, id: "different-location", location: "London, UK", applyUrl: url + "-2" },
+    { ...base, id: "different-tenant", applyUrl: url.replace("autodesk.", "other.") },
+  ]);
+  assert.equal(result.length, 4);
+  assert.equal(result[0].id, "original");
+});
+
+test("board outage recovery excludes permanent failures and respects healthy-board closures", () => {
+  const board = createAtsBoard({provider:"greenhouse",key:"example",company:"Example"});
+  const base = { id:"prior", company:"Example", title:"Engineer Intern", category:"Internship", location:"Seattle, WA", regions:["us" as const], term:"Summer 2027", workMode:"unknown" as const, postedAt:"2026-10-19T00:00:00Z", postedAtSource:"exact" as const, applyUrl:"https://boards.greenhouse.io/example/jobs/1234567", linkedInUrl:null, salary:null, sources:["Direct ATS"], verifiedCompany:true };
+  const failed = boardRecoveryPolicy([{provider:"greenhouse",key:"example",company:"Example",status:"failed",rows:0,durationMs:12000,message:"timeout"}], new Map());
+  assert.equal(failed.affected(base),true);
+  assert.equal(failed.affected({...base,applyUrl:base.applyUrl.replace("example/","other/")}),false);
+  const permanent = boardRecoveryPolicy([{provider:"greenhouse",key:"example",company:"Example",status:"failed",rows:0,durationMs:1,message:"404 Not Found"}],new Map());
+  assert.equal(permanent.hasFailures,false);
+  const healthy = boardRecoveryPolicy([], new Map([[board.id,{board,jobs:[],liveIdentities:new Set<string>()}]]));
+  assert.equal(healthy.confirmedClosed(base),true);
+  assert.equal(preserveLastKnownGoodJobs(new Map(),[base],j=>j,j=>healthy.confirmedClosed(j)),0);
+});
+
+test("reviewed Ashby board migrations apply consistently to seeds and discovered links", () => {
+  const luma = discoverAtsBoard("https://jobs.ashbyhq.com/luma-ai/12345678", "Luma", "feed");
+  assert.equal(luma?.key,"lumaai");
+  assert.equal(luma?.endpoint,"https://api.ashbyhq.com/posting-api/job-board/lumaai");
+  const commure = createAtsBoard({provider:"ashby",key:"Commure-Athelas",company:"Commure"});
+  assert.equal(commure.id,"ashby:commure");
+  assert.equal(createAtsBoard({provider:"lever",key:"luma-ai",company:"Other"}).key,"luma-ai");
 });
 
 test("completed internship terms are removed after a conservative season cutoff", () => {

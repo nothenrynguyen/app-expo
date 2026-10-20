@@ -28,8 +28,12 @@ export type AtsBoardResult = {
   liveIdentities: Set<string>;
 };
 
+const ASHBY_BOARD_ALIASES: Record<string, string> = { "luma-ai": "lumaai", "commure-athelas": "Commure" };
+
 export function createAtsBoard(seed: AtsBoardSeed, source = "Pinned ATS"): AtsBoard {
-  const key = seed.key.trim();
+  // Current board links verified on the employers' official careers pages.
+  const originalKey = seed.key.trim();
+  const key = seed.provider === "ashby" ? ASHBY_BOARD_ALIASES[originalKey.toLowerCase()] ?? originalKey : originalKey;
   const normalizedKey = key.toLowerCase();
   const endpoint = seed.provider === "greenhouse"
     ? `https://boards-api.greenhouse.io/v1/boards/${encodeURIComponent(key)}/jobs?content=true`

@@ -1,6 +1,26 @@
 import type { PublicJob } from "../jobs";
 import { jobIdentity } from "../source-normalization";
 import { getJobLocationMetadata } from "../job-location-policy";
+import { createAtsBoard, discoverAtsBoard, type AtsBoardResult } from "../ats-boards";
+import type { BoardRefreshDiagnostic } from "./types";
+
+export function boardRecoveryPolicy(records: BoardRefreshDiagnostic[], results: Map<string, AtsBoardResult>) {
+  const failed = new Set(records.filter(board => board.status === "failed" && board.provider !== "workday" && !/^(?:404|410)\b/.test(board.message ?? ""))
+    .map(board => createAtsBoard({ ...board, provider: board.provider as "greenhouse" | "lever" | "ashby" }).id));
+  return {
+    hasFailures: failed.size > 0,
+    affected(job: PublicJob) {
+      const board = discoverAtsBoard(job.applyUrl, job.company, "recovery");
+      return !!board && failed.has(board.id);
+    },
+    confirmedClosed(job: PublicJob) {
+      const board = discoverAtsBoard(job.applyUrl, job.company, "recovery");
+      const result = board && results.get(board.id);
+      const identity = jobIdentity(job.applyUrl);
+      return !!result && !!identity && !result.liveIdentities.has(identity);
+    },
+  };
+}
 
 export function preserveLastKnownGoodJobs(
   current: Map<string, PublicJob>,

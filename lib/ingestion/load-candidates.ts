@@ -147,15 +147,26 @@ export async function loadCandidates(root: string, sources: JobSource[]): Promis
   const boardList = [...boards.values()];
   const settledBoardFetches = await inBatches(boardList, 12, (board) => runTimed(() => fetchAtsBoard(board)));
   const boardFetches = settledBoardFetches.map((result) => result.status === "fulfilled" ? result.value : ({ status: "rejected", reason: result.reason, durationMs: 0 } as const));
+  // Retry transient failures once, after the main pass, with lower concurrency.
+  // Missing boards and rate limits remain visible without repeated requests.
+  const retryIndexes = boardFetches.flatMap((result, index) => result.status === "rejected" && /timeout|aborted|fetch failed|^5\d\d\b/i.test(errorMessage(result.reason)) ? [index] : []);
+  const retried = await inBatches(retryIndexes, 4, async index => ({ index, result: await runTimed(() => fetchAtsBoard(boardList[index])) }));
+  const retryCounts = new Set<number>();
+  for (const retry of retried) {
+    if (retry.status !== "fulfilled") continue;
+    const { index, result } = retry.value;
+    retryCounts.add(index);
+    boardFetches[index] = { ...result, durationMs: result.durationMs + boardFetches[index].durationMs };
+  }
   const boardResults = new Map<string, Awaited<ReturnType<typeof fetchAtsBoard>>>();
   const boardRegistry: BoardRefreshDiagnostic[] = boardFetches.map((result, index) => {
     const board = boardList[index];
     if (result.status === "fulfilled") {
       boardResults.set(board.id, result.value);
       candidates.push(...result.value.jobs);
-      return { provider: board.provider, key: board.key, company: board.company, status: "ok", rows: result.value.liveIdentities.size, durationMs: result.durationMs };
+      return { provider: board.provider, key: board.key, company: board.company, status: "ok", rows: result.value.liveIdentities.size, retryRequests: retryCounts.has(index) ? 1 : 0, durationMs: result.durationMs };
     }
-    return { provider: board.provider, key: board.key, company: board.company, status: "failed", rows: 0, durationMs: result.durationMs, message: errorMessage(result.reason) };
+    return { provider: board.provider, key: board.key, company: board.company, status: "failed", rows: 0, retryRequests: retryCounts.has(index) ? 1 : 0, durationMs: result.durationMs, message: errorMessage(result.reason) };
   });
 
   const workdaySeeds = await readFile(path.join(root, "data/workday-boards.json"), "utf8")

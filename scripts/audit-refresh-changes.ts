@@ -1,0 +1,35 @@
+import { execFileSync } from "node:child_process";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { jobIdentity } from "../lib/source-normalization";
+import { semanticJobIdentity } from "../lib/job-dedup";
+import { discoverAtsBoard } from "../lib/ats-boards";
+import { getFreshnessRejection } from "../lib/job-freshness";
+import type { JobsSnapshot } from "../lib/jobs";
+
+const beforeRef = process.argv[2] ?? "7ab69a1";
+const git = (file: string) => execFileSync("git", ["-c", `safe.directory=${process.cwd().replace(/\\/g, "/")}`, "show", file], { maxBuffer: 50_000_000 }).toString();
+const before = JSON.parse(git(`${beforeRef}:public/jobs.json`)) as JobsSnapshot;
+const afterRef = process.argv[3];
+const readAfter = async (file: string) => JSON.parse(afterRef ? git(`${afterRef}:${file}`) : await readFile(file, "utf8"));
+const after = await readAfter("public/jobs.json") as JobsSnapshot;
+const report = await readAfter("data/refresh-report.json");
+const quarantine = await readAfter("data/quarantine.json");
+const health = await readAfter("data/listing-health.json");
+const quarantineById = new Map((quarantine.jobs as {applyUrl:string;reason:string}[]).map(r => [jobIdentity(r.applyUrl),r]));
+const ids = new Set(after.jobs.map(j => jobIdentity(j.applyUrl)));
+const groups = Map.groupBy(after.jobs, semanticJobIdentity);
+const reasons: Record<string, number> = {};
+const removed = before.jobs.filter(j => !ids.has(jobIdentity(j.applyUrl))).map(job => {
+  const board = discoverAtsBoard(job.applyUrl, job.company, "audit");
+  const diagnostic = board && report.boards.records.find((r: {provider: string; key: string}) => r.provider === board.provider && r.key.toLowerCase() === board.key.toLowerCase());
+  const q = quarantineById.get(jobIdentity(job.applyUrl));
+  const reason = q?.reason ?? getFreshnessRejection(job, new Date(after.generatedAt)) ?? (health[jobIdentity(job.applyUrl)!]?.status === "closed" ? "Listing check: closed" : diagnostic?.status === "failed" ? "Employer board failed" : "Absent from current accepted inputs; requires source investigation");
+  reasons[reason] = (reasons[reason] ?? 0) + 1;
+  return { company: job.company, title: job.title, applyUrl: job.applyUrl, reason, boardStatus: diagnostic?.status, sources: job.sources };
+});
+const priorIds = new Set(before.jobs.map(j => jobIdentity(j.applyUrl)));
+const duplicateGroups = [...groups.values()].filter(g => g.length > 1).map(g => g.map(j => ({ id:j.id, company:j.company,title:j.title,location:j.location,applyUrl:j.applyUrl,sources:j.sources })));
+const result = { beforeRef, beforeGeneratedAt: before.generatedAt, afterGeneratedAt:after.generatedAt, before:before.jobs.length, after:after.jobs.length, removed:removed.length, added:after.jobs.filter(j=>!priorIds.has(jobIdentity(j.applyUrl))).length, reasons, missing:removed, duplicateGroups };
+await mkdir(".cache/refresh-audit", {recursive:true});
+await writeFile(".cache/refresh-audit/comparison.json", JSON.stringify(result,null,2)+"\n");
+console.log(JSON.stringify({...result,missing:undefined,duplicateGroups:duplicateGroups.length},null,2));
