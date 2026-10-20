@@ -2,9 +2,11 @@
 
 This is the living list of ideas and future work for empluzzed. Update it whenever priorities change, an idea comes up, or a feature ships.
 
-## Source expansion release candidate
+## Source expansion release
 
 The October 19 release adds Keryx coverage and bounded automatic USAJOBS discovery. Implementation and measurement are complete; publication was approved and release 7ab69a1 was pushed. Live refresh run 39315578545 passed and its snapshot deployed successfully. See [release review](docs/SOURCE_EXPANSION_RELEASE.md) and [active tasks](docs/ACTIVE_TASKS.md). After publication, prioritize listing quality and duplicate/requisition review before further backend work.
+
+Local follow-up: outage retries/recovery, corrected Luma/Commure boards and conservative Workday duplicate handling are implemented and tested. See [quality review](docs/REFRESH_QUALITY_REVIEW.md). The local snapshot has 6,104 jobs; follow-up publication remains pending.
 
 ## Current focus
 

@@ -20,12 +20,24 @@ The owner approved all four development steps as one batch. All four are complet
 
 Known limits: refresh is degraded by six existing employer-board 404s and two timeouts (both timeout endpoints responded on targeted follow-up). 208 possible semantic duplicate groups remain unconfirmed. Source/category counts can overlap and must not be added to net board growth.
 
+## Refresh quality follow-up
+
+Completed locally after owner approval to investigate all three next actions:
+
+- Traced the initial 615 net drop: 671 removed and 56 added, with 611 missing destinations on timed-out employer boards.
+- Added one bounded retry and scoped outage recovery, preserving confirmed closures, freshness and federal verification rules.
+- Repaired Luma and Commure board addresses from official career links.
+- Reviewed duplicate groups and added conservative same-requisition Workday merging. A fresh local refresh has 6,104 jobs, 11 federal listings, all 24 feeds healthy, four unresolved legacy board 404s and 182 remaining semantic review groups.
+- 73 tests, lint, TypeScript and snapshot location/freshness/identity audits pass. Code committed locally; publication has not been requested for this follow-up.
+
+Evidence and limitations: [refresh quality review](REFRESH_QUALITY_REVIEW.md).
+
 ## Next actions
 
-1. Investigate refresh variability: the first GitHub refresh has 5,491 jobs versus the earlier local 6,106, with 14 employer-board failures. All 24 source feeds succeeded, including USAJOBS (11 accepted). Audit missing destinations before attributing the full count change to failures.
-2. Repair confirmed retired employer-board endpoints and improve handling of transient failures.
-3. Review possible duplicate requisitions and remaining role/location leakage, preserving saved-job compatibility.
-4. Reassess other broad non-software sources using measured eligible unique yield. USAJOBS is a modest complement, not the main bulk source.
+1. Publish the tested follow-up after owner approval and verify its next GitHub refresh.
+2. Resolve the four legacy board addresses using confirmed current integrations, or document retirement without hiding failures.
+3. Review the remaining 182 semantic groups using requisition evidence, and improve per-destination removal explanations for future refresh comparisons.
+4. Reassess other broad non-software sources using measured eligible unique yield.
 
 ## Later queue
 

@@ -1,0 +1,47 @@
+# Refresh reliability and duplicate review
+
+October 19, 2026. Follow-up to the approved source expansion.
+
+## Count investigation
+
+Comparing release 7ab69a1 (6,106 jobs, generated 08:34 UTC) with automatic snapshot 17bda91 (5,491 jobs, generated 20:02 UTC): 671 application destinations disappeared and 56 appeared, a net decrease of 615.
+
+- 611 missing destinations belong to employer boards that timed out: SpaceX, Olsson, Anduril and others. All eight timed-out endpoints returned HTTP 200 on targeted follow-up.
+- 11 were quarantined for missing employer evidence, one failed role classification, one had a confirmed closed listing, and one had an ended internship term.
+- 46 were absent from accepted inputs without a definitive reason in the stored diagnostics. These can include upstream removals, changed employer descriptions and destination aliases. They have not been reinstated blindly.
+
+All 24 source feeds succeeded. The actual recovery gap was that only feed failures, not employer-board failures, enabled last-known-good preservation.
+
+## Implemented safeguards
+
+Transient employer-board failures now receive one retry after the main pass at reduced concurrency. HTTP 404/410 and rate limits are not retried. Diagnostics include retry counts.
+
+If a board still fails transiently, only its eligible prior listings can be recovered when feeds are healthy. Existing location, employer, role and freshness rules still apply. Confirmed closed listings and jobs absent from a healthy authoritative board stay excluded. USAJOBS always requires fresh verification. HTTP 404/410 boards do not trigger board-only recovery.
+
+## Board addresses
+
+- Luma: official https://lumalabs.ai/careers links to Ashby lumaai, not luma-ai. Replacement API returned HTTP 200.
+- Commure: official https://www.commure.com/careers includes the current Commure embed alongside legacy Commure-Athelas markup. Current Commure API returned HTTP 200; legacy API returned 404.
+- Atomic Semi's official https://atomicsemi.com links to fab2, which is already a pinned board. No speculative alias or employer rename was applied.
+- Whatnot's official jobs URL redirects to its careers site, which returned 403 to this checker. Maximor's site redirects to Hyphenate. Interaction's careers page redirects to /jobs without a supported ATS link. Those legacy endpoints remain visible as unresolved diagnostics.
+
+## Duplicate review
+
+The automatic snapshot contains 209 groups with identical normalized company/title/location/collection. A matching title is insufficient evidence for deletion: for example, Accenture Federal Services and Leidos have distinct requisition IDs within matching groups.
+
+Two pairs were checked against official Workday JSON endpoints:
+
+- Autodesk uni and Ext URLs both report jobReqId 26WD101472.
+- Marvell MarvellCareers2 and MarvellCareers URLs both report jobReqId 2603846.
+
+Deduplication now merges recognizable identical Workday requisition tokens across career-site URL variants only when the existing semantic fields also match and the tenant is identical. It preserves the retained ID and merges source attribution. It does not change global job identity or local storage keys. Applied to snapshot 17bda91, this rule removes 36 redundant entries. Remaining groups require evidence before further merging.
+
+## Reproduce
+
+Run `node --import tsx scripts/audit-refresh-changes.ts 7ab69a1 17bda91`. Detailed public-listing evidence is written under ignored .cache/refresh-audit. Without the second revision, the script compares against the local working snapshot.
+
+## Validation
+
+73 tests, lint and TypeScript pass. The complete local refresh finished at 2026-10-20T00:42:32.213Z (October 19 local time) with 6,104 jobs, including 11 federal listings. All 24 source feeds succeeded. Employer-board failures fell from 14 in the first production run to four legacy 404s. One transient failure was retried successfully. Luma returned 35 rows and Commure 80. No last-known-good recovery was needed in this run because all transient boards succeeded; recovery behavior is covered by regression tests.
+
+The refreshed snapshot has zero duplicate job IDs/application identities, zero location-policy violations and zero freshness failures. There are 182 remaining semantic review groups. Inventory changes and duplicate normalization mean this is not a controlled claim of a specific net source yield. Changes and generated data remain local pending publication approval.
