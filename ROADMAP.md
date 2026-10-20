@@ -8,7 +8,7 @@ The October 19 release adds Keryx coverage and bounded automatic USAJOBS discove
 
 Published follow-up: outage retries/recovery, corrected Luma/Commure boards and conservative Workday duplicate handling are deployed. Production refreshes 39358051059 and 39358416742 passed. The final live snapshot has 6,103 jobs and 11 federal listings, with two directly verified closed destinations removed. See [quality review](docs/REFRESH_QUALITY_REVIEW.md). Requisition review separates 94 distinct-token groups from three alias groups and 85 groups needing official evidence.
 
-Approved cleanup/research follow-up is complete locally: 6,077 jobs, 76 passing tests, evidence-backed duplicate/availability cleanup and per-refresh removal reasons. Broad-source research recommends CareerOneStop access verification, with Adzuna as fallback; no new source enabled. See [cleanup](docs/LISTING_CLEANUP_REVIEW.md) and [shortlist](docs/NON_SOFTWARE_SOURCE_SHORTLIST.md). Publication awaits approval.
+Approved cleanup/research follow-up was pushed at 12f1318 and deployed: 6,077 jobs, 76 passing tests, evidence-backed duplicate/availability cleanup and per-refresh removal reasons. Production refresh 39367465734 passed and deployed snapshot 2e1c661, with 6,077 jobs and 11 federal listings. Access review corrected the source route: CareerOneStop now directs new job API requests to NLx, whose standard research terms do not permit public identifiable listings by default. A [public-feed request draft](docs/NLX_ACCESS_REQUEST_DRAFT.md) is prepared for owner review; nothing submitted and no new source enabled. See [cleanup](docs/LISTING_CLEANUP_REVIEW.md) and [shortlist](docs/NON_SOFTWARE_SOURCE_SHORTLIST.md).
 
 ## Current focus
 

@@ -44,14 +44,16 @@ Owner approved tasks 1 (listing cleanup) and 2 (research broad non-software sour
 - 76 tests, lint, TypeScript and snapshot data audits pass. Remaining semantic groups after cleanup: 118 recognized distinct-token groups and 44 needing more official evidence. No speculative removals.
 - Researched nine broad-source options. Recommend CareerOneStop access/license verification first, Adzuna publisher-access verification second. Jobicy's complete USA-filtered seven-day sample returned 446 rows with only eight broad early-career signals; accepted unique yield is not established. No new source was enabled or account created.
 
-Evidence: [cleanup review](LISTING_CLEANUP_REVIEW.md), [source shortlist](NON_SOFTWARE_SOURCE_SHORTLIST.md), and data/listing-changes.json. Changes are committed locally after validation and remain unpublished until owner approval.
+Evidence: [cleanup review](LISTING_CLEANUP_REVIEW.md), [source shortlist](NON_SOFTWARE_SOURCE_SHORTLIST.md), and data/listing-changes.json. Publication was approved and release 12f1318 was pushed. All 76 tests passed again. Production refresh 39367465734 passed and snapshot 2e1c661 deployed successfully. Live generatedAt: 2026-10-20T04:05:47.590Z, 6,077 jobs and 11 federal listings. All 24 feeds succeeded; four legacy board 404s remain. The new removal report records one confirmed closure and one addition in this refresh.
 
 ## Next actions
 
-1. Publish the tested cleanup after owner approval and verify the next automatic refresh.
-2. Approve preparing a CareerOneStop access application for owner review, confirming job-data rights, filtered static snapshots, rate limits and zero-cost behavior before submission or integration. Adzuna is the fallback.
+1. Review the corrected NLx public-feed request draft and authorize clarification outreach if desired. The standard research license is not a public-job-board permission.
+2. If no suitable free public-feed route is available, assess Adzuna publisher permission and hard request caps before proposing a pilot.
 3. Continue the 44 inconclusive groups when stronger official identifiers are available. Keep distinct requisitions visible.
 4. Lower-priority maintenance: verify Cognition/Hyphenate employer coverage and resolve Whatnot's inaccessible API. These are not the main coverage-growth strategy.
+
+Prepared access review: [corrected NLx request draft](NLX_ACCESS_REQUEST_DRAFT.md). No form submitted, message sent, agreement accepted or source enabled.
 
 ## Later queue
 

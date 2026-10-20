@@ -1,6 +1,6 @@
 # Listing cleanup and removal explanations
 
-October 19, 2026 (Pacific). Owner approved task 1 (cleanup) and task 2 (source research). This follow-up is local until publication approval.
+October 19, 2026 (Pacific). Owner approved task 1 (cleanup) and task 2 (source research). The owner approved publication. Release 12f1318 was pushed and deployed; production refresh 39367465734 passed and snapshot 2e1c661 deployed successfully.
 
 ## Scope and findings
 
@@ -37,4 +37,4 @@ Data checks found zero invalid URLs, duplicate IDs/destinations, location-policy
 
 ## Next
 
-Publish the tested cleanup after approval. Continue investigating the 49 inconclusive groups when official identifiers become available; no blanket same-title deduplication. New-source research and its separate approval checkpoint are documented in [the shortlist](NON_SOFTWARE_SOURCE_SHORTLIST.md).
+Production verification is complete: live generatedAt advanced to 2026-10-20T04:05:47.590Z, with 6,077 jobs and 11 federal listings. All 24 feeds succeeded; four legacy board 404s remain. The per-refresh report recorded one confirmed closure and one addition. Continue investigating the 49 inconclusive groups when official identifiers become available; no blanket same-title deduplication. New-source research and its separate approval checkpoint are documented in [the shortlist](NON_SOFTWARE_SOURCE_SHORTLIST.md).
