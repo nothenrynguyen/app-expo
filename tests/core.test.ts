@@ -5,6 +5,7 @@ import test from "node:test";
 import { evaluateCompanyQuality, normalizeCompanyDisplayName, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
 import { deduplicateCrossSourceJobs, workdayRequisitionIdentity } from "../lib/job-dedup";
 import { buildListingChanges } from "../lib/ingestion/listing-changes";
+import { partitionSourceReviewHolds } from "../lib/ingestion/source-review-holds";
 import { isProcessManufacturingRole } from "../lib/process-manufacturing";
 import { getFreshnessRejection } from "../lib/job-freshness";
 import { buildJobInsightsDay, updateJobInsightsHistory } from "../lib/job-insights";
@@ -240,6 +241,35 @@ test("yearly source discovery accepts maintained future internship repositories"
   assert.equal(isDiscoverableYearlyRepository({ archived: false, name: "Tech-Internships-2028" }, 2027), true);
   assert.equal(isDiscoverableYearlyRepository({ archived: true, name: "Tech-Internships-2028" }, 2027), false);
   assert.equal(isDiscoverableYearlyRepository({ archived: false, name: "Tech-Internships-2026" }, 2027), false);
+});
+
+test("Canadian employer country-province codes cannot become California or building-state matches", () => {
+  for (const location of ["CA-QC-LONGUEUIL-MD 1000 Blvd Marie-Victorin", "CA-QC-MIRABEL-M01", "CA-ON-OAKVILLE", "ca_bc_burnaby"]) {
+    assert.deepEqual(getSupportedJobRegions(location), ["canada"], location);
+    assert.equal(getJobLocationMetadata({ location }).eligible, true);
+  }
+  assert.deepEqual(getSupportedJobRegions("CA-QC-LONGUEUIL; Irvine, CA"), ["canada", "us"]);
+  assert.deepEqual(getSupportedJobRegions("Irvine, CA"), ["us"]);
+});
+
+test("explicit destination review holds survive another feed and tracking aliases without blocking other jobs", () => {
+  const row = { company: "Example", title: "Finance Intern", category: "Internship", term: "Winter 2027", location: "Boston, MA", workMode: "unknown" as const, postedAt: "2026-10-20T00:00:00Z", postedAtSource: "date_only" as const, salary: null, source: "Winter", rawText: "Paid internship", applyUrl: "https://jobs.lever.co/example/abc" };
+  const same = { ...row, source: "Another feed", applyUrl: row.applyUrl + "?utm_source=other" };
+  const other = { ...row, applyUrl: "https://jobs.lever.co/example/def" };
+  const holds = [{ url: row.applyUrl, reason: "Official job details unavailable", reviewedAt: "2026-10-20" }, { url: "not a URL", reason: "Invalid", reviewedAt: "2026-10-20" }];
+  const result = partitionSourceReviewHolds([row, same, other], holds);
+  assert.deepEqual(result.accepted, [other]);
+  assert.equal(result.held.length, 2);
+  assert.ok(result.held.every(entry => entry.reason === "Official job details unavailable"));
+  assert.deepEqual(partitionSourceReviewHolds([row], []).accepted, [row]);
+  const workday = { ...row, applyUrl: "https://example.wd1.myworkdayjobs.com/Careers/job/Boston/Finance-Intern_01864403" };
+  const alias = { ...workday, applyUrl: "https://example.wd1.myworkdayjobs.com/OtherSite/job/Boston/Finance-Intern_01864403-1", source: "Another feed" };
+  const workdayHolds = [{ url: workday.applyUrl, reason: "Detail access blocked", reviewedAt: "2026-10-20" }];
+  assert.equal(partitionSourceReviewHolds([workday, alias], workdayHolds).held.length, 2);
+  const yearly = { ...row, applyUrl: "https://insulet.wd5.myworkdayjobs.com/site/job/Acton/Role_REQ-2026-18618" };
+  const distinct = { ...yearly, applyUrl: yearly.applyUrl.replace("18618", "17966") };
+  const scoped = partitionSourceReviewHolds([yearly, distinct], [{ url: yearly.applyUrl, reason: "Pending", reviewedAt: "2026-10-20" }]);
+  assert.deepEqual(scoped.accepted, [distinct]);
 });
 
 test("Keryx season discovery queues bounded collections without granting ingestion trust", () => {
@@ -605,13 +635,15 @@ test("cross-source dedup prefers direct employer applications without merging se
 });
 
 test("verified Workday requisition formats preserve distinct IDs and reject lookalike hosts", () => {
-  for (const id of ["R0020843", "DT-20066", "REF086121W", "R26-7706", "REQ165849", "RQ229655", "Q426SWEA2", "REQ-10082523"]) {
+  for (const id of ["R0020843", "DT-20066", "REF086121W", "R26-7706", "REQ165849", "RQ229655", "Q426SWEA2", "REQ-10082523", "REQ-2026-18618"]) {
     const base = `https://example.wd1.myworkdayjobs.com/external/job/City/Role_${id}`;
     assert.equal(workdayRequisitionIdentity(base), workdayRequisitionIdentity(base + "-1"));
     assert.notEqual(workdayRequisitionIdentity(base),workdayRequisitionIdentity(base.replace(id,id + "9")));
     assert.equal(workdayRequisitionIdentity(base.replace(".com/", ".com.evil.test/")),null);
   }
   assert.notEqual(workdayRequisitionIdentity("https://example.wd1.myworkdayjobs.com/site/job/City/Role_R26-7706"),workdayRequisitionIdentity("https://example.wd1.myworkdayjobs.com/site/job/City/Role_R26-7707"));
+  assert.equal(workdayRequisitionIdentity("https://insulet.wd5.myworkdayjobs.com/site/job/City/Role_REQ-2026-18618"), "insulet:req-2026-18618");
+  assert.notEqual(workdayRequisitionIdentity("https://insulet.wd5.myworkdayjobs.com/site/job/City/Role_REQ-2026-18618"),workdayRequisitionIdentity("https://insulet.wd5.myworkdayjobs.com/site/job/City/Role_REQ-2026-17966"));
 });
 
 test("privacy notices are unavailable destinations, not proof of filled vacancies", () => {
@@ -646,6 +678,13 @@ test("Workday duplicate career-site URLs merge only matching requisitions and se
   ]);
   assert.equal(result.length, 4);
   assert.equal(result[0].id, "original");
+  const insulet = "https://insulet.wd5.myworkdayjobs.com/site/job/Acton/Role_REQ-2026-18618";
+  const yearlyIds = deduplicateCrossSourceJobs([
+    { ...base, id: "first", applyUrl: insulet },
+    { ...base, id: "alias", applyUrl: insulet + "-1" },
+    { ...base, id: "distinct", applyUrl: insulet.replace("18618", "17966") },
+  ]);
+  assert.equal(yearlyIds.length, 2);
 });
 
 test("board outage recovery excludes permanent failures and respects healthy-board closures", () => {

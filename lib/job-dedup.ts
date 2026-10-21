@@ -49,7 +49,7 @@ export function workdayRequisitionIdentity(value: string): string | null {
   try {
     const url = new URL(value);
     if (!/^[a-z0-9-]+\.wd\d+\.myworkdayjobs\.com$/i.test(url.hostname)) return null;
-    const match = url.pathname.match(/_((?:JR-?\d+|\d{2}WD\d+|\d{6,}|R-\d+|R\d{2}-\d{4,}|R\d{5,}|RQ\d+|REQ-?\d+|REF\d+[A-Z]|DT-\d+|HR\d+|J\d+|Q\d{3}[A-Z]{2,}\d+))(?:-\d+)?$/i);
+    const match = url.pathname.match(/_((?:JR-?\d+|\d{2}WD\d+|\d{6,}|R-\d+|R\d{2}-\d{4,}|R\d{5,}|RQ\d+|REQ-\d{4}-\d+|REQ-?\d+|REF\d+[A-Z]|DT-\d+|HR\d+|J\d+|Q\d{3}[A-Z]{2,}\d+))(?:-\d+)?$/i);
     return match ? `${url.hostname.split(".")[0].toLowerCase()}:${match[1].toLowerCase()}` : null;
   } catch {
     return null;

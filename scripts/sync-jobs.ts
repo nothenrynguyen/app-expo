@@ -7,6 +7,7 @@ import { evaluateCompanyQuality, normalizeCompanyDisplayName, normalizeCompanyNa
 import { inBatches } from "../lib/ingestion/concurrency";
 import { boardRecoveryPolicy, preserveLastKnownGoodJobs } from "../lib/ingestion/last-known-good";
 import { loadCandidates } from "../lib/ingestion/load-candidates";
+import { sourceReviewHoldIdentity } from "../lib/ingestion/source-review-holds";
 import { buildRefreshReport } from "../lib/ingestion/refresh-report";
 import { createScreeningTracker } from "../lib/ingestion/screening";
 import { buildListingChanges } from "../lib/ingestion/listing-changes";
@@ -29,6 +30,7 @@ async function main() {
   const root = path.resolve(import.meta.dirname, "..");
   const catalog = JSON.parse(await readFile(path.join(root, "data/sources.json"), "utf8")) as SourceCatalog;
   const activeSources = catalog.sources.filter((source) => source.active);
+  const reviewHoldIds = new Set(activeSources.flatMap(source => source.reviewHolds ?? []).map(hold => sourceReviewHoldIdentity(hold.url)).filter(Boolean));
   const trustedCuratedSources = new Set(activeSources.filter((source) => source.trustedCoverage).map((source) => source.name));
   const output = path.join(root, "public/jobs.json");
   const previous = await readFile(output, "utf8").then((value) => JSON.parse(value) as JobsSnapshot).catch(() => null);
@@ -200,6 +202,7 @@ async function main() {
   const recovery = boardRecoveryPolicy(boardRegistry, boardResults);
   if ((unhealthySources.length > 0 || recovery.hasFailures) && previous) {
     preservedFromLastHealthySnapshot = preserveLastKnownGoodJobs(merged, previous.jobs, (prior) => {
+      if (reviewHoldIds.has(sourceReviewHoldIdentity(prior.applyUrl))) return null;
       // A board outage recovers only that board, not unrelated missing inputs.
       if (unhealthySources.length === 0 && !recovery.affected(prior)) return null;
       const decision = evaluateCompanyQuality({ name: prior.company }, "", registry, trustRegistry);

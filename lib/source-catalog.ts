@@ -11,6 +11,7 @@ export type JobSource = {
   expandAtsBoards?: boolean;
   active: boolean;
   trustedCoverage: boolean;
+  reviewHolds?: Array<{ url: string; reason: string; reviewedAt: string }>;
 };
 
 export type SourceCatalog = {

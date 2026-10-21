@@ -9,6 +9,7 @@ import { canonicalizeUrl, inferTerm, inferWorkMode, jobIdentity, type CandidateJ
 import { parseApplyGuySource, parseKeryxSource, parseMarkdownSource, sourceAllowsAtsExpansion } from "../source-parsers";
 import { createWorkdayBoard, fetchWorkdayBoard, type WorkdayBoardSeed } from "../workday";
 import { inBatches } from "./concurrency";
+import { partitionSourceReviewHolds } from "./source-review-holds";
 import type { BoardRefreshDiagnostic, CandidateLoadResult, SourceRefreshDiagnostic } from "./types";
 
 type EngineJob = {
@@ -236,9 +237,15 @@ export async function loadCandidates(root: string, sources: JobSource[]): Promis
     if (posting) candidates[index] = applyMicrosoftCareersPosting(candidates[index], posting);
   }
 
+  const reviewed = partitionSourceReviewHolds(candidates, sources.flatMap(source => source.reviewHolds ?? []));
+  preScreened.push(...reviewed.held.map(({ candidate }) => ({ url: candidate.applyUrl, outcome: "pendingVerification" as const })));
+  for (const source of sources.filter(source => source.reviewHolds?.length)) {
+    const diagnostic = sourceDiagnostics.find(record => record.name === source.name);
+    if (diagnostic) diagnostic.message = JSON.stringify({ reviewHoldsConfigured: source.reviewHolds!.length, heldCandidateRowsAcrossSources: reviewed.held.length });
+  }
   return {
     preScreened,
-    candidates,
+    candidates: reviewed.accepted,
     health,
     sourceDiagnostics,
     boardResults,

@@ -117,6 +117,12 @@ export function classifyJobRegions(location: string): DetectedJobRegion[] {
       regions.add("us");
       continue;
     }
+    // Employer location codes such as CA-QC-LONGUEUIL use CA as the
+    // country, not California. Site/building suffixes can also resemble US states.
+    if (/^CA[-_](?:AB|BC|MB|NB|NL|NS|NT|NU|ON|PE|QC|SK|YT)(?=[-_\s,]|$)/i.test(part)) {
+      regions.add("canada");
+      continue;
+    }
     const foreign = REGION_PATTERNS.filter(([, pattern]) => pattern.test(part));
     for (const [region] of foreign) regions.add(region);
     if (foreign.length > 0) continue;
