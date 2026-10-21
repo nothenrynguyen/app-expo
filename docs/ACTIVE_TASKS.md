@@ -68,9 +68,15 @@ The NLx draft is historical research only. Do not contact providers or submit ap
 Publication queue:
 
 1. Complete: release 0c3af79 pushed and deployed. Production refresh 39501464029 passed and published snapshot 57629bd, also deployed successfully. Live generatedAt 2026-10-20T21:37:14.617Z, 6,017 jobs, 107 Spring-credited listings and Sources-page attribution verified. Spring feed healthy; Medtronic returned 429, alongside three existing board 404s. [Production receipt](keryx-spring-production-result.json).
-2. Winter measurement complete: 53 parsed candidates, 20 existing destinations, two within-sample aliases, one possible existing requisition and 30 employer-held leads across four companies. Eighteen leads are Canada-coded. Winter remains inactive. [Winter review](KERYX_WINTER_REVIEW.md).
-3. Recommended next approval: validate the Winter employer groups and official listings, resolve the overlap and prepare a local Winter-inclusive refresh only if useful. Review actual additions before publishing.
+2. Initial Winter measurement complete, superseded by task 3: 53 parsed candidates, 20 existing destinations, two within-sample aliases, one suspected requisition overlap and 30 employer-held leads. The overlap was later resolved as distinct IDs. The collection remains unpublished. [Initial Winter review](KERYX_WINTER_REVIEW.md).
+3. Complete locally with owner approval: four employer reviews, official posting checks and Winter-inclusive refresh. Fifteen new Winter listings (11 US, four Canada), 34 Winter-credited listings total, 16 unresolved destinations held across feeds/aliases/recovery, and 6,105 board jobs versus 6,014 captured live baseline. Corrected a false Workday requisition collision, a stale Insulet closure and Canadian country-code classification. All 82 tests, lint, TypeScript, data audits and static export pass. [Winter release review](KERYX_WINTER_RELEASE.md).
 4. Review future seasonal files when weekly maintenance finds them. Do not activate pending files automatically or reconsider sources in [the exclusion register](SOURCE_EXCLUSIONS.md).
+
+Next approvals:
+
+1. Publish the reviewed Winter/employer-quality release.
+2. After approval, verify production refresh, deployed timestamp, Winter records, Canadian labels and hold exclusions.
+3. Review held destinations later if official evidence improves; preserve holds without outreach or paid workarounds.
 
 ## Later queue
 

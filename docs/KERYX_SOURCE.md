@@ -4,6 +4,8 @@ Added locally October 18, 2026 after owner approval. Source activation on produc
 
 Three public MIT-licensed repository files are configured: `GodlyDonuts/keryx/internships/summer-2027.md`, `GodlyDonuts/keryx/new-grad/2027.md` and the owner-approved October 20 addition, `GodlyDonuts/keryx/internships/spring-2027.md`. Spring publication and production refresh were verified October 20 in [the release review](KERYX_SPRING_RELEASE.md). Attribution is recorded in `data/source-licenses.json` and `THIRD_PARTY_NOTICES.md`; the Sources page uses the shared license registry. Earlier measurements below describe the initial two-file integration.
 
+Winter 2027 is a fourth locally configured collection, awaiting publication approval. Its completed review admits fifteen new jobs while retaining sixteen unresolved-destination holds. See [Winter release review](KERYX_WINTER_RELEASE.md). Known review holds apply across sources, recognized Workday aliases and outage recovery; they are not cleared merely by another feed supplying the URL.
+
 ## Admission boundaries
 
 - Only rows with explicit direct Workday/Greenhouse/Lever/Ashby/SmartRecruiters provenance and an allowlisted HTTPS employer ATS destination are parsed. Aggregator fallback pages and arbitrary employer-domain links are excluded from this initial integration.

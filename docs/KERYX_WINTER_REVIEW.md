@@ -1,6 +1,8 @@
 # Keryx Winter 2027 measurement
 
-Measured October 20, 2026. Read-only review approved by the owner. The Winter collection is not activated.
+Initial read-only measurement on October 20, 2026. The Winter collection was inactive at that stage.
+
+Follow-up: the owner approved employer and official-listing review plus a local refresh. The collection is now configured **locally**, with sixteen explicit unresolved-destination holds, and is not published. The [completed release review](KERYX_WINTER_RELEASE.md) supersedes the initial counts and zero-ready conclusion below: fifteen new Winter listings were admitted. The suspected Insulet overlap was a parser collision between distinct complete requisition numbers.
 
 ## Result
 
