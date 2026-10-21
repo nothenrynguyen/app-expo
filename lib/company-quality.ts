@@ -1,4 +1,4 @@
-export type CompanyEvidence = {
+type CompanyEvidence = {
   name: string;
   h1bApprovals?: number | null;
   linkedInUrl?: string | null;

@@ -18,7 +18,7 @@ export type WorkdayBoard = WorkdayBoardSeed & {
   careerBaseUrl: string;
 };
 
-export type WorkdayBoardResult = {
+type WorkdayBoardResult = {
   board: WorkdayBoard;
   jobs: CandidateJob[];
   liveIdentities: Set<string>;
@@ -220,7 +220,7 @@ async function inBatches<T, R>(items: T[], concurrency: number, task: (item: T) 
   return results;
 }
 
-export type WorkdayFetchOptions = {
+type WorkdayFetchOptions = {
   fetchImpl?: typeof fetch;
   retryDelayMs?: number;
 };

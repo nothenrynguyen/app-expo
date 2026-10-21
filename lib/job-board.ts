@@ -11,7 +11,7 @@ import { matchesRoleSelection, type RoleSelection } from "./role-areas";
 
 export type JobCollection = "internships" | "fulltime";
 
-export type JobBoardFilters = {
+type JobBoardFilters = {
   type: JobCollection;
   roleSelection: RoleSelection;
   query: string;

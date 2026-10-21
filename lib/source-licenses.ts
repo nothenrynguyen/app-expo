@@ -1,8 +1,8 @@
 import licenseData from "@/data/source-licenses.json";
 
-export type SourceLicenseStatus = "licensed" | "no_license_detected";
+type SourceLicenseStatus = "licensed" | "no_license_detected";
 
-export type SourceLicenseRecord = {
+type SourceLicenseRecord = {
   repository: string;
   status: SourceLicenseStatus;
   spdxId: "MIT" | null;

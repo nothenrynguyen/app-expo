@@ -1,3 +1,4 @@
+import { parseEngineJobs } from "../lib/ingestion/engine-source";
 import { loadReviewedUsaJobs, reviewedFederalCoverage } from "../lib/ingestion/usajobs";
 import { reviewUsaJobsPosting } from "../lib/usajobs";
 import assert from "node:assert/strict";
@@ -1239,4 +1240,21 @@ test("USAJOBS discovery paginates within caps, deduplicates and keeps credential
   assert.deepEqual(partial?.candidates, []);
   const missing = await loadReviewedUsaJobs(true, { fetcher: async () => { throw Error("Must not request"); }, apiKey: "", email: "", costReviewed: false });
   assert.equal(missing?.requests, 0);
+});
+
+
+test("engine feeds reject malformed input before candidate conversion", () => {
+  const job = { company: "Example", title: "Engineering Intern", season: "Summer 2027", category: "Internship", location: "Austin, TX", url: "https://example.com/jobs/1", posted_at: "2026-10-20", posted_at_source: "date_only" };
+  assert.deepEqual(parseEngineJobs(JSON.stringify({ jobs: [job] })), [job]);
+  assert.deepEqual(parseEngineJobs('{"jobs":[]}'), []);
+  for (const payload of [null, [], {}, { jobs: {} }, { jobs: [null] },
+    { jobs: [{ ...job, posted_at: "invalid" }] },
+    { jobs: [{ ...job, title: 42 }] },
+    { jobs: [{ ...job, skills: "TypeScript" }] },
+    { jobs: [{ ...job, posted_at_source: "guessed" }] },
+    { jobs: [{ ...job, posted_at_source: ["exact"] }] },
+    { jobs: [{ ...job, remote: "false" }] },
+    { jobs: [{ ...job, h1b_approvals: "10" }] },
+  ]) assert.throws(() => parseEngineJobs(JSON.stringify(payload)), /Invalid engine feed/);
+  assert.throws(() => parseEngineJobs("not json"), SyntaxError);
 });

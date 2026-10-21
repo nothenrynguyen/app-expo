@@ -3,7 +3,7 @@ import { classifyJobMetros, getSupportedJobRegions, JOB_METROS, JOB_REGIONS, typ
 import type { JobsSnapshot, PublicJob } from "./jobs";
 import { classifyRoleArea, ROLE_AREAS, type RoleArea } from "./role-areas";
 
-export const INSIGHTS_HISTORY_LIMIT = 365;
+const INSIGHTS_HISTORY_LIMIT = 365;
 
 type WorkMode = PublicJob["workMode"];
 type TrackedRoleArea = Exclude<RoleArea, "all">;

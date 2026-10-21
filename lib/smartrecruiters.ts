@@ -1,6 +1,6 @@
 import type { CandidateJob } from "./source-normalization";
 
-export type SmartRecruitersJobReference = {
+type SmartRecruitersJobReference = {
   companyIdentifier: string;
   jobId: string;
   endpoint: string;

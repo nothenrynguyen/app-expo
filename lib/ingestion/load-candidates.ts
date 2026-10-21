@@ -1,3 +1,4 @@
+import { parseEngineJobs } from "./engine-source";
 import { loadReviewedUsaJobs } from "./usajobs";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
@@ -11,23 +12,6 @@ import { createWorkdayBoard, fetchWorkdayBoard, type WorkdayBoardSeed } from "..
 import { inBatches } from "./concurrency";
 import { partitionSourceReviewHolds } from "./source-review-holds";
 import type { BoardRefreshDiagnostic, CandidateLoadResult, SourceRefreshDiagnostic } from "./types";
-
-type EngineJob = {
-  company: string;
-  title: string;
-  season: string;
-  category: string;
-  location: string;
-  url: string;
-  posted_at: string;
-  posted_at_source: "exact" | "date_only" | "relative_derived";
-  sponsorship?: string | null;
-  salary?: string | null;
-  skills?: string[] | null;
-  source: string;
-  h1b_approvals?: number | null;
-  remote?: boolean;
-};
 
 type TimedResult<T> =
   | { status: "fulfilled"; value: T; durationMs: number }
@@ -55,7 +39,7 @@ async function fetchText(url: string): Promise<string> {
   return response.text();
 }
 
-function engineCandidate(job: EngineJob, source: JobSource): CandidateJob | null {
+function engineCandidate(job: ReturnType<typeof parseEngineJobs>[number], source: JobSource): CandidateJob | null {
   const url = canonicalizeUrl(job.url);
   if (!url || !job.posted_at) return null;
   return {
@@ -82,11 +66,14 @@ export async function loadCandidates(root: string, sources: JobSource[]): Promis
   const preScreened: NonNullable<CandidateLoadResult["preScreened"]> = [];
 
   for (const source of sources.filter((candidate) => candidate.kind === "engine_json")) {
-    const result = await runTimed(async () => JSON.parse(await fetchText(source.url)) as { jobs: EngineJob[] });
+    const result = await runTimed(async () => {
+      const jobs = parseEngineJobs(await fetchText(source.url));
+      return { rows: jobs.length, candidates: jobs.map(job => engineCandidate(job, source)).filter((job): job is CandidateJob => Boolean(job)) };
+    });
     if (result.status === "fulfilled") {
-      candidates.push(...result.value.jobs.map((job) => engineCandidate(job, source)).filter((job): job is CandidateJob => Boolean(job)));
-      health.push({ name: source.name, status: "ok", rows: result.value.jobs.length });
-      sourceDiagnostics.push({ name: source.name, kind: source.kind, status: "ok", rows: result.value.jobs.length, durationMs: result.durationMs, requestCount: 1 });
+      candidates.push(...result.value.candidates);
+      health.push({ name: source.name, status: "ok", rows: result.value.rows });
+      sourceDiagnostics.push({ name: source.name, kind: source.kind, status: "ok", rows: result.value.rows, durationMs: result.durationMs, requestCount: 1 });
     } else {
       health.push({ name: source.name, status: "failed", rows: 0 });
       sourceDiagnostics.push({ name: source.name, kind: source.kind, status: "failed", rows: 0, durationMs: result.durationMs, requestCount: 1, message: errorMessage(result.reason) });

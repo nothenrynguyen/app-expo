@@ -2,6 +2,10 @@
 
 Updated October 20, 2026. Earlier task-by-task notes are preserved in [task history](TASK_HISTORY.md).
 
+## Local codebase cleanup
+
+The owner approved the seven-step codebase cleanup plan. Local changes remove an unused role helper, narrow module-local exports, align lint exclusions with disposable research output, and validate engine-feed input within source failure handling. Script lifecycles and data contracts are recorded in [the cleanup inventory](CODEBASE_CLEANUP.md). All 83 tests, whole-repository lint, strict TypeScript with unused checks, static export and the offline location audit pass. The Windows build required execution outside the sandbox after generated-folder EPERM errors. All 6,091 snapshot jobs pass the supported-country policy. Final diff review found no public snapshot or storage-contract changes. The owner approved commit and push after validation. Publication is in progress.
+
 ## Working agreement
 
 Keep this list current and report next actions after every iteration. Make reasonable local changes within approved scope. Commit coherent tasks after relevant checks pass. Obtain explicit approval before pushing/deploying. New services must satisfy COST_POLICY.md. Keep browsing free and account-free.

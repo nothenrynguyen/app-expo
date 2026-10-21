@@ -76,7 +76,7 @@ const roleTagValues = new Set<RoleTag>(ROLE_TAGS.map((role) => role.value));
 const roleFamilyValues = new Set<RoleFamily>(ROLE_FAMILIES.map((family) => family.value));
 const roleDefinitionByTag = new Map(ROLE_TAGS.map((role) => [role.value, role]));
 
-export function isRoleFamily(value: string | null): value is RoleFamily {
+function isRoleFamily(value: string | null): value is RoleFamily {
   return value !== null && roleFamilyValues.has(value as RoleFamily);
 }
 
@@ -198,9 +198,4 @@ export function classifyRoleArea(job: Pick<PublicJob, "title" | "category">): Ex
   if (tags.some((tag) => tag === "it-support-network" || tag === "cybersecurity")) return "it-network";
   if (tags.some((tag) => tag === "software-engineering" || tag === "ai-ml-engineering" || tag === "cloud-infrastructure")) return "software";
   return null;
-}
-
-export function matchesRoleArea(job: Pick<PublicJob, "title" | "category">, roleArea: RoleArea): boolean {
-  const classified = classifyRoleArea(job);
-  return classified !== null && (roleArea === "all" || classified === roleArea);
 }
