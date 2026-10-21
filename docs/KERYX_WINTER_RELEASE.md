@@ -27,14 +27,14 @@ The [official-check receipt](keryx-winter-official-review.json) contains sanitiz
 - **82 tests pass**, including hold aliases across feeds, distinct requisitions sharing a year, and Canadian province-coded locations.
 - Lint, TypeScript and static export pass. Windows initially blocked Next build-cache directory creation; the isolated rerun with required filesystem permission succeeded.
 - Zero invalid URLs, location failures, freshness failures, duplicate IDs or duplicate destinations in the snapshot audits.
-- Exported internship data contains all 34 Winter-credited records with the matching snapshot timestamp. Exported Sources HTML includes Winter attribution. Canadian-coded Winter records are tagged Canada.
+- The original reviewed export contained all 34 then-current Winter-credited records with the matching snapshot timestamp. Exported Sources HTML includes Winter attribution. Canadian-coded Winter records are tagged Canada.
 - All **26 feeds succeeded**. The three existing employer-board 404s remain: Interaction, WhatNot and Atomic Semi. No new source failure was introduced.
 - Interactive browser verification was not repeated because the app browser URL policy previously blocked preview access. Static build, artifact checks and shared filter/location regression tests provide this batch's validation; no browser rendering pass is claimed.
 
 ## Publication and next actions
 
-1. Recommended next approval: publish this reviewed local release.
-2. After approval, push and verify the production refresh, new snapshot timestamp, Winter source credit, country labels and continued exclusion of held destinations.
+1. Publication approved and release c248726 pushed. Deployment succeeded; the initial live snapshot has 6,092 jobs and 35 Winter-credited records.
+2. Automatic refresh 39549427823 passed and snapshot 4b30025 deployed successfully. Live has 6,091 jobs, 35 Winter records, all 26 feeds healthy and zero held identities. [Production receipt](keryx-winter-production-result.json).
 3. Revisit the sixteen held destinations only when official access or evidence improves. No outreach, paid workaround or automatic hold clearing is planned. Future seasonal collection discovery remains pending review by default.
 
 ## Approved publication reconciliation

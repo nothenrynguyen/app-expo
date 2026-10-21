@@ -72,11 +72,17 @@ Publication queue:
 3. Complete locally with owner approval: four employer reviews, official posting checks and Winter-inclusive refresh. Fifteen new Winter listings (11 US, four Canada), 34 Winter-credited listings total, 16 unresolved destinations held across feeds/aliases/recovery, and 6,105 board jobs versus 6,014 captured live baseline. Corrected a false Workday requisition collision, a stale Insulet closure and Canadian country-code classification. All 82 tests, lint, TypeScript, data audits and static export pass. [Winter release review](KERYX_WINTER_RELEASE.md).
 4. Review future seasonal files when weekly maintenance finds them. Do not activate pending files automatically or reconsider sources in [the exclusion register](SOURCE_EXCLUSIONS.md).
 
-Next approvals:
+Latest approved iteration:
 
-1. Publish the reviewed Winter/employer-quality release.
-2. After approval, verify production refresh, deployed timestamp, Winter records, Canadian labels and hold exclusions.
-3. Review held destinations later if official evidence improves; preserve holds without outreach or paid workarounds.
+1. Publication approved and pushed: release c248726 includes the reconciled Winter snapshot, 6,092 jobs and 35 Winter-credited records. All 82 tests and data audits pass.
+2. Production verification complete: refresh run 39549427823 passed and snapshot 4b30025 deployed successfully. Live generatedAt 2026-10-21T05:28:15.052Z, 6,091 jobs, 35 Winter-credited records, all 26 feeds healthy, correct Canadian labels and zero held identities present. [Production receipt](keryx-winter-production-result.json).
+3. Hold recheck complete: all 16 unresolved official detail endpoints still return 403. Holds remain. [Recheck receipt](keryx-winter-hold-recheck.json).
+
+Recommended next batch after production verification:
+
+1. Define an explicit early-career experience rule, measure current listings against it, and present examples before enabling broader exclusions.
+2. Review the largest remaining duplicate groups only where official requisition evidence is available.
+3. Review future seasonal discoveries when maintenance finds a new file. Leave pending files inactive and blocked destinations held.
 
 ## Later queue
 
