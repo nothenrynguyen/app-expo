@@ -1,6 +1,10 @@
 # Active project tasks
 
-Updated October 20, 2026. Earlier task-by-task notes are preserved in [task history](TASK_HISTORY.md).
+Updated October 22, 2026. Earlier task-by-task notes are preserved in [task history](TASK_HISTORY.md).
+
+## Homepage methodology link and engine-feed correction
+
+The homepage screened-link count now points to `/methodology`, with a matching accessible label. Live investigation of the 25/26 source-health count identified Internship Engine: the cleanup validator rejected an undated row at index 1181 and failed the whole feed. The endpoint is online. The parser now preserves the earlier skip behavior for null, absent or empty posting dates; other malformed dated rows still fail validation. Regression coverage includes mixed dated/undated input. Live parser verification accepted 1,181 dated rows from 1,190 upstream rows and skipped nine undated rows. This is parsing verification, not a count of publishable jobs. All 83 tests pass. The owner approved publication. No local snapshot refresh was run; verify source recovery on the next scheduled refresh after publication.
 
 ## Local codebase cleanup
 

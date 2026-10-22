@@ -25,7 +25,10 @@ export function parseEngineJobs(text: string): EngineJob[] {
     throw new Error("Invalid engine feed: expected a jobs array");
   }
   const required = ["company", "title", "season", "category", "location", "url", "posted_at"];
+  const jobs: EngineJob[] = [];
   for (const [index, row] of payload.jobs.entries()) {
+    // Undated upstream listings were skipped by engineCandidate before validation existed.
+    if (isRecord(row) && (row.posted_at == null || row.posted_at === "")) continue;
     if (!isRecord(row) || required.some(key => typeof row[key] !== "string") ||
         (typeof row.posted_at_source !== "string" || !["exact", "date_only", "relative_derived"].includes(row.posted_at_source)) ||
         ["sponsorship", "salary"].some(key => row[key] != null && typeof row[key] !== "string") ||
@@ -35,6 +38,7 @@ export function parseEngineJobs(text: string): EngineJob[] {
         (row.posted_at !== "" && !Number.isFinite(Date.parse(String(row.posted_at))))) {
       throw new Error(`Invalid engine feed: malformed job at index ${index}`);
     }
+    jobs.push(row as EngineJob);
   }
-  return payload.jobs as EngineJob[];
+  return jobs;
 }

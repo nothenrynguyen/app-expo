@@ -1247,6 +1247,12 @@ test("engine feeds reject malformed input before candidate conversion", () => {
   const job = { company: "Example", title: "Engineering Intern", season: "Summer 2027", category: "Internship", location: "Austin, TX", url: "https://example.com/jobs/1", posted_at: "2026-10-20", posted_at_source: "date_only" };
   assert.deepEqual(parseEngineJobs(JSON.stringify({ jobs: [job] })), [job]);
   assert.deepEqual(parseEngineJobs('{"jobs":[]}'), []);
+  assert.deepEqual(parseEngineJobs(JSON.stringify({ jobs: [
+    { ...job, posted_at: null, posted_at_source: null },
+    job,
+    { ...job, posted_at: "", posted_at_source: null },
+    { ...job, posted_at: undefined, posted_at_source: undefined },
+  ] })), [job]);
   for (const payload of [null, [], {}, { jobs: {} }, { jobs: [null] },
     { jobs: [{ ...job, posted_at: "invalid" }] },
     { jobs: [{ ...job, title: 42 }] },
