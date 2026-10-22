@@ -19,6 +19,7 @@ import { missingSavedDetails } from "@/lib/saved-job-details";
 import { UnavailableSavedJobs } from "./job-board/UnavailableSavedJobs";
 import { useApplicationStatuses } from "./useApplicationStatuses";
 import { APPLICATION_STATUSES, isApplicationStatus, matchesApplicationStatus, type ApplicationStatus } from "@/lib/application-status";
+import { useBoardActivity } from "./ActivityTracking";
 
 type JobBoardProps = {
   type: "internships" | "fulltime";
@@ -103,8 +104,14 @@ export function JobBoard({ type }: JobBoardProps) {
     [sourceJobs, type, roleSelection, query, regions, metros, modes, selectedTerms, companyTiers, savedOnly, savedJobIds, statuses, statusFilter, hiddenKeys],
   );
 
+  useBoardActivity(snapshot !== null, jobs.length, {
+    search: query, region: regions.join(","), metro: metros.join(","), workplace: modes.join(","),
+    term: selectedTerms.join(","), company_tier: companyTiers.join(","), role: `${roleParam ?? ""}:${specialtyParam ?? ""}`,
+    saved: String(savedOnly), status: statusFilter,
+  });
+
   if (error) return <p className="state-card">The latest job snapshot could not be loaded. Please try again shortly.</p>;
-  if (!snapshot) return <p className="state-card">Loading verified jobs…</p>;
+  if (!snapshot) return <p className="state-card">Loading verified jobs.</p>;
 
   const { pageCount, safePage, startIndex, endIndex } = getPaginationState(jobs.length, page);
   const visibleJobs = jobs.slice(startIndex, endIndex);
@@ -134,7 +141,7 @@ export function JobBoard({ type }: JobBoardProps) {
           aria-pressed={savedOnly}
           title="Saved in this browser"
         >
-          <span aria-hidden="true">★</span> Saved {savedInCollectionCount + unavailableSaved.length}
+          <span aria-hidden="true">?</span> Saved {savedInCollectionCount + unavailableSaved.length}
         </button>
       </div>
       <div className="hidden-companies-toolbar"><button className="hidden-companies-toggle" type="button" aria-expanded={hiddenCompaniesOpen} aria-controls="hidden-companies-panel" title="Companies hidden in this browser" onClick={() => setHiddenCompaniesOpen((open) => !open)}>{hiddenCompaniesOpen ? "Hide company list" : "Show hidden companies"} ({hiddenCompanies.length})</button></div>
@@ -150,7 +157,7 @@ export function JobBoard({ type }: JobBoardProps) {
       }}><option value="All">All statuses</option>{APPLICATION_STATUSES.map((status) => <option key={status}>{status}</option>)}</select></label> : null}
       <div className="board-stats" title={new Date(snapshot.generatedAt).toLocaleString()}>
         <span className="live-status"><i />Live</span>
-        <span className="refresh-age">· refreshed {formatSnapshotAge(snapshot.generatedAt, now)}</span>
+        <span className="refresh-age">� refreshed {formatSnapshotAge(snapshot.generatedAt, now)}</span>
         <span className="matching-count"><strong>{jobs.length}</strong> matching roles</span>
       </div>
       <JobFilters

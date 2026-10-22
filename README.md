@@ -8,6 +8,7 @@ empluzzed is a free early-career job board that collects and checks internships 
 
 - [Zero-cost policy](COST_POLICY.md)
 - [Analytics setup, privacy, and provider limits](docs/ANALYTICS.md)
+- [Owned activity dashboard, metric definitions and activation](docs/OWNED_ANALYTICS.md)
 - [Third-party notices](THIRD_PARTY_NOTICES.md)
 - [Machine-readable source license review](data/source-licenses.json)
 - [Script lifecycle and cleanup inventory](docs/CODEBASE_CLEANUP.md)
