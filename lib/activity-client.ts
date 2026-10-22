@@ -10,8 +10,10 @@ const controllers = new Set<AbortController>();
 let memoryId: { id: string; expiresAt: number } | null = null;
 let count = 0;
 let countDay = "";
+let ownerExcludedInMemory = false;
 
 export function setOwnerExclusion(exclude: boolean) {
+  ownerExcludedInMemory = exclude;
   try { if (exclude) window.localStorage.setItem(OWNER_EXCLUSION_KEY, "true"); else window.localStorage.removeItem(OWNER_EXCLUSION_KEY); } catch { /* No persistent exclusion when storage is unavailable. */ }
   if (exclude) stopActivityCollection();
 }
@@ -55,7 +57,7 @@ function deviceType(): ActivityEvent["device"] {
 // No job object, record, query, URL, or arbitrary properties can enter this API.
 export function trackActivity(name: ActivityEventName, filter?: FilterCategory, resultCount?: number): void {
   try {
-    if (!enabled || getAnalyticsConsent() !== "allowed" || browserPrivacySignalEnabled()) return;
+    if (!enabled || ownerExcludedInMemory || getAnalyticsConsent() !== "allowed" || browserPrivacySignalEnabled()) return;
     try { if (window.localStorage.getItem(OWNER_EXCLUSION_KEY) === "true") return; } catch { /* Continue without exclusion storage. */ }
     const page = window.location.pathname.replace(/\/$/, "") || "/";
     if (!([...ACTIVITY_PAGES, "/applications"] as readonly string[]).includes(page)) return;

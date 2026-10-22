@@ -38,6 +38,11 @@ test("activity requires fresh consent, excludes private values, and stops after 
     navigator.globalPrivacyControl = false;
     client.setOwnerExclusion(true); client.trackActivity("apply_click"); assert.equal(sent.length, 3);
     client.setOwnerExclusion(false);
+    const storageDescriptor = Object.getOwnPropertyDescriptor(window, "localStorage")!;
+    Object.defineProperty(window, "localStorage", { configurable: true, get() { throw new Error("Storage blocked"); } });
+    client.setOwnerExclusion(true); client.trackActivity("apply_click"); assert.equal(sent.length, 3);
+    client.setOwnerExclusion(false);
+    Object.defineProperty(window, "localStorage", storageDescriptor);
     location.pathname = "/analytics"; client.trackActivity("page_view"); assert.equal(sent.length, 3);
     location.pathname = "/applications"; client.trackActivity("page_view"); assert.equal(sent.length, 3);
     client.trackActivity("application_add"); assert.equal(sent.length, 4);
