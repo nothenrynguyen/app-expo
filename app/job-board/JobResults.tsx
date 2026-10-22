@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
+import { trackActivity } from "@/lib/activity-client";
 import { ApplicationStatusSelect } from "./ApplicationStatusSelect";
 import { companyTierLabel } from "@/lib/company-tiers";
 import { normalizeJobLocation } from "@/lib/job-locations";
@@ -104,7 +105,7 @@ function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJob
                   : <span className="location-label" title={location.full}>{location.compact}</span>}
               </div>
               <div className="job-table-action" role="cell" data-label="Save"><SaveButton compact isSaved={savedJobIds.has(job.id)} job={job} onToggle={() => onToggleSaved(job.id)} /></div>
-              <div className="job-table-action" role="cell" data-label="Apply"><a className="button table-button primary" href={job.applyUrl} target="_blank" rel="noreferrer">Apply</a></div>
+              <div className="job-table-action" role="cell" data-label="Apply"><a className="button table-button primary" href={job.applyUrl} target="_blank" rel="noreferrer" onClick={() => trackActivity("apply_click")}>Apply</a></div>
               <div className="job-table-action" role="cell" data-label="LinkedIn"><a className="button table-button secondary" href={getLinkedInUrl(job)} target="_blank" rel="noreferrer">LinkedIn</a></div>
               {onHideCompany ? <div className="job-table-action" role="cell" data-label="More"><CompanyActions company={job.company} onHide={onHideCompany} /></div> : null}
             </article>
@@ -148,7 +149,7 @@ function CardJobView({ className, jobs, totalJobCount, emptyMessage, savedJobIds
               <SaveButton isSaved={savedJobIds.has(job.id)} job={job} onToggle={() => onToggleSaved(job.id)} />
               <a className="button secondary" href={getLinkedInUrl(job)} target="_blank" rel="noreferrer">LinkedIn</a>
               <button className="button secondary" type="button" onClick={() => onToggleExpanded(job.id)} aria-expanded={expandedJobId === job.id}>Info</button>
-              <a className="button primary" href={job.applyUrl} target="_blank" rel="noreferrer">Apply</a>
+              <a className="button primary" href={job.applyUrl} target="_blank" rel="noreferrer" onClick={() => trackActivity("apply_click")}>Apply</a>
               {onHideCompany ? <CompanyActions company={job.company} onHide={onHideCompany} /> : null}
             </div>
             {expandedJobId === job.id ? (
@@ -188,7 +189,7 @@ function SaveButton({ compact = false, isSaved, job, onToggle }: { compact?: boo
 
   return (
     <div className="saved-job-controls"><button className={`button save-button ${compact ? "compact-save" : "secondary"} ${isSaved ? "saved" : ""}`} type="button" onClick={handleToggle} aria-pressed={isSaved} aria-label={`${action}: ${job.title} at ${job.company}`} title={action}>
-      <span className={sparkleBurst > 0 ? "save-star sparkling" : "save-star"} aria-hidden="true" key={`star-${sparkleBurst}`}>★</span>
+      <span className={sparkleBurst > 0 ? "save-star sparkling" : "save-star"} aria-hidden="true" key={`star-${sparkleBurst}`}>?</span>
       {sparkleBurst > 0 ? <span className="save-sparkles" aria-hidden="true" key={`sparkles-${sparkleBurst}`}><span /><span /><span /><span /><span /><span /></span> : null}
       {compact ? <span className="sr-only">{isSaved ? "Saved" : "Save"}</span> : isSaved ? "Saved" : "Save"}
     </button>
@@ -218,7 +219,7 @@ function FederalEligibility({ job }: { job: PublicJob }) {
       <summary>{job.federal.citizenshipRequired ? "U.S. citizenship required" : "Federal eligibility requirements"}</summary>
       <p>{job.federal.eligibility}</p>
       {job.federal.qualifications ? <details><summary>Qualifications and education (excerpt)</summary><p>{job.federal.qualifications} Read the official announcement for the complete requirements.</p></details> : null}
-      <p>USAJOBS · Retrieved {job.federal.retrievedAt.slice(0, 10)} · Closes {job.federal.closes}</p>
+      <p>USAJOBS � Retrieved {job.federal.retrievedAt.slice(0, 10)} � Closes {job.federal.closes}</p>
       <p>empluzzed is independent and is not endorsed by the U.S. government.</p>
       <a href={job.applyUrl} target="_blank" rel="noreferrer">Read official requirements</a>
     </details>

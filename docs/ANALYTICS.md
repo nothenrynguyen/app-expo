@@ -1,5 +1,7 @@
 # empluzzed analytics
 
+October 22, 2026: an owner-approved activity collector and private `/analytics` dashboard are implemented, with production activation pending. This document describes the existing Vercel fallback. See [owned analytics](OWNED_ANALYTICS.md) for the expanded event contract, free-tier review, fresh consent, setup and verification. Do not combine old daily-reset Vercel visitor estimates with the new browser-identity totals.
+
 Reviewed against official sources on September 30, 2026. Implementation is complete. Production dashboard receipt was confirmed on October 5, 2026.
 
 ## Decision and audit

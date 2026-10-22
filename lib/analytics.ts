@@ -1,6 +1,9 @@
 import type { BeforeSendEvent } from "@vercel/analytics/react";
+import { validActivityEndpoint } from "./activity-contract";
 
-export const ANALYTICS_CONSENT_KEY = "app-expo.analytics-consent.v1";
+// Existing page-view consent does not authorize persistent activity measurement.
+export const ANALYTICS_CONSENT_KEY = validActivityEndpoint(process.env.NEXT_PUBLIC_ACTIVITY_ENDPOINT ?? "")
+  ? "app-expo.analytics-consent.v2" : "app-expo.analytics-consent.v1";
 export const CONSENT_LIFETIME_MS = 180 * 24 * 60 * 60 * 1000;
 export type AnalyticsConsent = "unset" | "allowed" | "denied";
 const PUBLIC_PATHS = new Set(["/", "/internships", "/jobs", "/methodology", "/sources", "/privacy", "/about", "/feedback"]);
@@ -48,7 +51,12 @@ const listeners = new Set<() => void>();
 export function getAnalyticsConsent(): AnalyticsConsent {
   if (typeof window === "undefined") return "unset";
   if (memoryOnly) return parseAnalyticsConsent(memoryPreference);
-  try { return parseAnalyticsConsent(window.localStorage.getItem(ANALYTICS_CONSENT_KEY)); }
+  try {
+    const current = parseAnalyticsConsent(window.localStorage.getItem(ANALYTICS_CONSENT_KEY));
+    if (current === "unset" && ANALYTICS_CONSENT_KEY.endsWith("v2") &&
+      parseAnalyticsConsent(window.localStorage.getItem("app-expo.analytics-consent.v1")) === "denied") return "denied";
+    return current;
+  }
   catch { return parseAnalyticsConsent(memoryPreference); }
 }
 export function setAnalyticsConsent(choice: "allowed" | "denied") {

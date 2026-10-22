@@ -12,6 +12,8 @@ Approved cleanup/research follow-up was pushed at 12f1318 and deployed: 6,077 jo
 
 ## Current focus
 
+Owner-approved analytics milestone (October 22): implement consent-based anonymous-browser activity measurement and an owner-only `/analytics` reporting UI without visitor accounts or charges. The implementation, strict event validation, D1 migration, private report authentication and dashboard are ready for release. Actual Cloudflare provisioning, production activation and browser receipt remain pending account/deployment access. Keep Vercel analytics active as the fallback until verified. See [implementation and activation review](docs/OWNED_ANALYTICS.md).
+
 Owner-approved Winter review and local refresh are complete: fifteen new Winter listings (11 US/four Canada), 34 Winter-credited listings and 6,105 jobs overall. Four evidence-based employer approvals also affect existing sources. Sixteen unresolved destinations remain held across feeds and Workday aliases, including recovery. Complete requisition parsing, a stale Insulet closure and Canadian province-code labels were corrected. All 82 tests, lint, TypeScript, data audits and static export pass. Publication awaits approval. See [Winter release review](docs/KERYX_WINTER_RELEASE.md).
 
 Spring publication completed at release 0c3af79 and generated snapshot 57629bd. Refresh 39501464029 passed; the verified live snapshot then contained 6,017 jobs and 107 Spring-credited listings. The subsequent Winter review is complete locally as described above. See [Spring production receipt](docs/keryx-spring-production-result.json) and [original Winter measurement](docs/KERYX_WINTER_REVIEW.md). Medtronic's earlier 429 is historical; all 26 feeds succeeded in the final local Winter refresh.
@@ -47,6 +49,8 @@ The reviewed-source expansion, ingestion foundation, opt-in Vercel analytics and
 - [ ] Preserve the no-sign-up public board even if optional accounts are introduced for personal features
 
 ## Application tracker and owned analytics sequence
+
+The October 22 analytics milestone supersedes the older aggregate-only/no-visitor-ID proposal for analytics. It uses explicit renewed consent, a persistent random browser ID and a Cloudflare Worker with D1, separate from any future Go/GraphQL backend for personal records. Visitor accounts and cross-device records remain deferred. See [owned analytics](docs/OWNED_ANALYTICS.md).
 
 1. [x] Record the revised sequence: retain existing page views, polish local saved jobs, then assess a backend for personal tracking and aggregate analytics.
 2. [x] Deliver the browser-local tracker: explicit statuses, storage-error feedback, filtering, retained missing-listing details, manual records from any source, dates, notes, editing, saved-job import and JSON backup/recovery with preview and duplicate handling. Missing listings have unverified availability; older missing IDs cannot reconstruct historical details. Profile migration remains part of the future backend milestone.
