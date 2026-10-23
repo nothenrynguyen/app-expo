@@ -1,6 +1,6 @@
 # Owned activity analytics
 
-Status: implementation complete locally on October 22, 2026. Collector provisioning, activation, browser verification and production receipt remain pending. Do not describe this milestone as live until the activation checklist is completed.
+Status: live collector and Production frontend integration verified October 23, 2026. Private API reports, consent, filtering, withdrawal and replay protection passed. See ANALYTICS_ACTION_LOG.md for release receipts, test-traffic baseline and remaining owner walkthrough/cron observations.
 
 ## Approved scope and architecture
 
@@ -23,7 +23,7 @@ Official documentation checked October 22, 2026:
 | Individual D1 Free database | 500MB; 10 databases/account | This collector uses one database. Capacity exhaustion stops analytics; it does not require changing frontend hosting. |
 | D1 Free recovery | Seven-day Time Travel window | Expired visitor-day/receipt data can remain in recovery history temporarily. Recovery is not a separate paid add-on. |
 
-Cloudflare's official D1 product page explicitly says no credit card is required to start free. Verify the actual account is on Workers Free with no payment method before provisioning; do not select a trial, paid Workers plan, R2 or another resource that asks for billing details. No Cloudflare account or actual billing state was accessible during local implementation, so eligibility is documented, not falsely recorded as provisioned.
+Cloudflare's official D1 product page explicitly says no credit card is required to start free. Verify the actual account is on Workers Free with no payment method before provisioning; do not select a trial, paid Workers plan, R2 or another resource that asks for billing details. The initial implementation had no account access; subsequent provisioning verified Workers Free and no payment method. See the action log for the actual resource receipt.
 
 There are additional application safeguards: at most 4,000 accepted events/day, 120 events/browser/day, and 250,000 stored browser hashes. The database enforces these inside the same transaction as counting. These caps are deliberately below platform maxima but do not reserve quotas: shared account usage, reads, pruning, failed requests and abuse can still exhaust free allowances. Daily write estimates are not guarantees. Reports fail closed when unavailable; normal job browsing and local records are independent.
 
