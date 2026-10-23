@@ -39,3 +39,9 @@ One test browser generated four events on UTC day 2026-10-23: three page views (
 Open https://empluzzed.fyi/analytics and enter the locally retained .cache/activity-owner-key.txt value. It stays in tab memory. Keep a private password-manager copy. To stop intake, set COLLECTION_ENABLED=false in Cloudflare and deploy. Future Worker deployments should preserve the live flag deliberately; wrangler.jsonc keeps false as the safe default.
 
 Implementation, definitions and maintenance: [OWNED_ANALYTICS.md](OWNED_ANALYTICS.md).
+
+## Report credential rotation required
+
+- A final runtime-import error included an encoded owner report key in this conversation tool output. No key was committed or published to the site. Treat the old report key as exposed within the transcript.
+- Generated a replacement owner key in ignored .cache/activity-owner-key.txt and its digest in ignored .cache/activity-report-digest.txt; updated REPORT_TOKEN_SHA256 in ignored workers/activity/.dev.vars. VISITOR_HMAC_KEY was unchanged.
+- Owner must replace Cloudflare Production REPORT_TOKEN_SHA256 with the new digest and deploy. Until then the old remote key remains valid and the new local key will not authenticate. Afterward verify the new key succeeds and old key is rejected. Do not claim credential rotation is deployed yet.
