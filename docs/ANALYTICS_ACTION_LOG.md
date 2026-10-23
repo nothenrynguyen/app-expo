@@ -45,3 +45,12 @@ Implementation, definitions and maintenance: [OWNED_ANALYTICS.md](OWNED_ANALYTIC
 - A final runtime-import error included an encoded owner report key in this conversation tool output. No key was committed or published to the site. Treat the old report key as exposed within the transcript.
 - Generated a replacement owner key in ignored .cache/activity-owner-key.txt and its digest in ignored .cache/activity-report-digest.txt; updated REPORT_TOKEN_SHA256 in ignored workers/activity/.dev.vars. VISITOR_HMAC_KEY was unchanged.
 - Owner must replace Cloudflare Production REPORT_TOKEN_SHA256 with the new digest and deploy. Until then the old remote key remains valid and the new local key will not authenticate. Afterward verify the new key succeeds and old key is rejected. Do not claim credential rotation is deployed yet.
+
+
+## Report credential rotation verified
+
+- Owner deployed the replacement REPORT_TOKEN_SHA256. Verified the replacement local owner key returns 200 with a valid report schema and no-store headers; unauthenticated access returns 401. The Worker accepts only one configured report-key digest, so replacing it invalidates the previous distinct key. No credential values were printed.
+
+## Owner walkthrough confirmed
+
+- Owner confirmed the production dashboard opens successfully with the replacement key. Credential rotation and owner walkthrough are complete. Only observation of the first successful scheduled cleanup remains open.
