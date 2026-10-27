@@ -55,4 +55,10 @@ Booz Allen requires explicit handling of existing jobs and URL variants before a
 
 ## Release status
 
-The scoped verification implementation and Rocket Lab record are included with this release. The first production refresh and deployed site data still require verification. Booz Allen, RTX and other employer proposals remain inactive.
+The scoped verification implementation and Rocket Lab record are included with this release. The first production refresh and deployed site data were verified as recorded below. Booz Allen, RTX and other employer proposals remain inactive.
+
+## Production verification
+
+On October 27 at 23:03 UTC, the first production refresh after commit `d501ab2627dce58eee5962b27552a6ae817b8152` completed successfully and produced snapshot commit `e8eeffe`. The live site served the same snapshot timestamp and 5,796 jobs as the repository. It contained 52 Rocket Lab listings, 51 with destinations absent from the 22:20 UTC baseline. All 52 had current cached positive employer evidence; three distinct inconclusive destinations were held and none appeared in accepted results. Scoped checks attempted 57 and verified 54. These counts are point-in-time observations, not permanent yield figures. [Production workflow run](https://github.com/nothenrynguyen/app-expo/actions/runs/40598938112).
+
+The refresh report was degraded because the WhatNot and Old Mission boards returned 404, matching the pre-release production report. The pilot is complete for Rocket Lab. Broader backlog review and the Booz Allen and RTX issues remain separate work.

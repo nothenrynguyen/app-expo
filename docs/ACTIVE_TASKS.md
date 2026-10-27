@@ -4,11 +4,12 @@ Reviewed October 26, 2026. This file tracks concrete active work, follow-up, and
 
 ## Active milestone
 
-Rocket Lab employer-verification pilot: validate the first production refresh and monitor the bounded verification queue. Booz Allen and RTX remain held for separate review. See [employer verification review](EMPLOYER_VERIFICATION_REVIEW.md).
+No new development milestone is currently active. The Rocket Lab employer-verification pilot was published and production-verified; see [employer verification review](EMPLOYER_VERIFICATION_REVIEW.md).
 
 ## Operational follow-up
 
 - Analytics: the owner confirmed dashboard access and report credential rotation. Cleanup cron was configured, but the first successful scheduled execution was not observed in the latest [action log](ANALYTICS_ACTION_LOG.md). Check current evidence before marking it complete.
+- Employer verification: monitor the bounded verification queue and review the remaining employer backlog. Booz Allen and RTX pilot proposals remain on hold pending review of existing jobs and URL variants.
 - Source maintenance: review newly discovered seasonal files and official evidence for held destinations as needed. Keep unreviewed feeds inactive and uncertain destinations on hold. The last documented Winter hold recheck returned 403 for all 16 endpoints; this is a historical result, not a current count.
 - Listing quality: revisit inconclusive duplicate groups when reliable official requisition evidence is available. Historical counts require a fresh measurement.
 - Local checkout: the Updates page was pushed on top of a newer remote main while the local checkout retained unrelated uncommitted changes. Reconcile carefully before future Git operations, preserving those changes and current remote work.
