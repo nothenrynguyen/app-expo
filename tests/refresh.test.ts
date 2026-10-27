@@ -42,7 +42,7 @@ test("stale snapshot triggers only the fixed repository workflow and slot", asyn
   const dispatch = f.calls.at(-1)!;
   assert.equal(dispatch.url, "https://api.github.com/repos/nothenrynguyen/app-expo/actions/workflows/sync-jobs.yml/dispatches");
   assert.deepEqual(JSON.parse(String(dispatch.init?.body)), { ref: "main", inputs: { refresh_slot: slot } });
-  assert.equal(dispatch.init?.redirect, "error");
+  assert.equal(dispatch.init?.redirect, "manual");
   for (const call of f.calls.filter((c) => !c.url.startsWith("https://api.github.com/"))) {
     assert.equal(new Headers(call.init?.headers).has("Authorization"), false);
   }
@@ -87,6 +87,16 @@ test("dependency errors and bad timestamps fail closed without exposing response
     await assert.rejects(checkRefresh(env, now, f.fetcher), /Invalid snapshot/);
     assert.equal(f.calls.length, 1);
   }
+});
+
+test("redirects are rejected without forwarding a GitHub credential", async () => {
+  let calls = 0;
+  await assert.rejects(checkRefresh(env, now, async (_url, init) => {
+    calls++;
+    assert.equal(init?.redirect, "manual");
+    return new Response(null, { status: 302, headers: { Location: "https://untrusted.example" } });
+  }), { message: "Refresh dependency returned HTTP 302" });
+  assert.equal(calls, 1);
 });
 
 function snapshot(generatedAt: string): JobsSnapshot {

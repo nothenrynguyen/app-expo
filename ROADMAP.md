@@ -128,7 +128,7 @@ Continue expanding and refining the source coverage behind each role filter whil
 - [x] Separate internship and full-time boards
 - [x] Direct employer application links without sign-up gates
 - [x] Hourly job refreshes
-- [ ] Activate and verify the Cloudflare Free hourly trigger, bounded retry, production freshness checks, and automatic open-tab snapshot updates. See [hourly refresh operations](docs/HOURLY_REFRESH.md).
+- [x] Activate and verify the Cloudflare Free hourly trigger, bounded retry, production freshness checks, and automatic open-tab snapshot updates. See [hourly refresh operations](docs/HOURLY_REFRESH.md).
 - [x] Chronological ordering and 100-job pagination
 - [x] Multi-select filters for term, workplace, and company tier
 - [x] FAANG+ and Fortune 500 company filters

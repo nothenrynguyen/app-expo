@@ -18,7 +18,7 @@ export function refreshSlot(now: number): string {
 
 async function request(fetcher: Fetcher, url: string, init: RequestInit = {}): Promise<Response> {
   const response = await fetcher(url, {
-    ...init, redirect: "error", signal: AbortSignal.timeout(15_000),
+    ...init, redirect: "manual", signal: AbortSignal.timeout(15_000),
   });
   if (!response.ok) throw new Error(`Refresh dependency returned HTTP ${response.status}`);
   return response;

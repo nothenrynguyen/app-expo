@@ -97,13 +97,51 @@ Official references:
    observe a real scheduled Cloudflare invocation and its GitHub run.
 7. Record activation receipts below. Code/tests alone do not prove live activation.
 
-Monitor token expiration in GitHub. Replace it before expiry through the same
-secret upload; revoke the old token after testing. Never add broader permissions
+If a replacement token has an expiration, replace it before expiry through the
+same secret upload; revoke superseded tokens after testing. The owner selected
+a non-expiring token for this activation, so no monthly renewal is required.
+Never add broader permissions
 to work around an authentication error. To stop external dispatches, change
 `SCHEDULER_ENABLED` to `false` and redeploy. GitHub's backup schedule continues.
 
 ## Activation receipt
 
-Implementation and local verification are in progress. Account billing, credential
-installation, production deployment and a live Cron invocation must be verified
-before this section can report activation.
+- October 26, 2026: implementation commit `bf10067` published on `main`. All 107
+  tests, ESLint, the production static-export build, and Wrangler's dry run passed.
+- Vercel reported deployment success for `bf10067`. The production internship
+  page serves the bundle containing summary polling, tab-visibility handling,
+  request cleanup, and the corrected separator.
+- Worker `empluzzed-refresh` uploaded with version
+  `6878f67e-4919-4ec3-b594-e74e97cd9432`; remote Cron is
+  `17,37,57 * * * *`. `SCHEDULER_ENABLED=false` keeps dispatches disabled pending
+  the dedicated GitHub Actions secret.
+- The owner confirmed that no credit card was added. Wrangler authenticated to
+  the intended personal Cloudflare account. Its OAuth token cannot inspect
+  billing subscriptions (403); no billing change, paid plan, or payment method
+  was enabled by this implementation.
+- The owner supplied a non-expiring, dedicated fine-grained token. The GitHub
+  API reported no expiration and accepted a real workflow dispatch (204).
+  `GITHUB_ACTIONS_TOKEN` was uploaded directly to Cloudflare's Worker secret
+  storage without appearing in source, command arguments, or output.
+- The scheduler is now enabled. Active Worker version:
+  `cfc9a2a0-ca58-4d41-8b03-96fe9abf1752`. A local Cloudflare scheduled-handler
+  invocation completed with HTTP 200 against the live freshness dependencies.
+  This runtime check caught and corrected Workers' unsupported `redirect:error`
+  mode; manual redirects plus explicit non-2xx rejection preserve the credential
+  boundary. All 108 tests and the production build pass after the correction.
+- Verification dispatch [40431166860](https://github.com/nothenrynguyen/app-expo/actions/runs/40431166860)
+  completed successfully with an already-generated slot, testing the workflow
+  input and duplicate-suppression path without repeating employer ingestion.
+- Cloudflare's automatic :17 invocation on October 26 at approximately 6:17 p.m.
+  Pacific completed with `outcome=ok`, no exceptions, and 3 ms CPU time. It
+  dispatched [40431713022](https://github.com/nothenrynguyen/app-expo/actions/runs/40431713022)
+  for slot `2026-10-27T01:17:00.000Z`; GitHub created the run at 01:17:40 UTC.
+  The run completed successfully at 01:20:50 UTC and published data commit
+  `ebd10248ca150f0bdd749cc3d0e28d3a5322e545`.
+- Both production `/summary.json` and `/internships.json` advanced to
+  `generatedAt=2026-10-27T01:20:43.398Z` (October 26, 6:20 p.m. Pacific).
+  A subsequent local scheduled-handler check returned 200 without creating
+  another workflow run, confirming fresh-hour suppression against live data.
+- Activation is verified from Cloudflare Cron through GitHub ingestion and
+  publication to the production snapshots. Provider outages and free caps can
+  still delay future runs; no exact hourly completion SLA is implied.
