@@ -9,7 +9,10 @@ export function SiteHeader() {
         <Link className="header-home-link" href="/">Home</Link>
         <Link href="/applications">Applications</Link>
         <Link href="/about">About</Link>
+        <Link href="/updates">Updates</Link>
       </nav>
     </header>
   );
 }
+
+
