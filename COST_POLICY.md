@@ -52,3 +52,14 @@ Vercel Hobby Web Analytics is approved for this personal, non-commercial project
 The owner explicitly approved implementing and deploying free activity analytics and protected reports while preserving account-free browsing. The scoped design permits one Cloudflare Workers Free collector and one D1 Free database for analytics only, subject to verifying the actual account is Free with no payment method. Paid Workers, paid storage, visitor authentication and personal-record hosting remain excluded. Official limits, no-card evidence, cap behavior, privacy changes and production activation requirements are documented in [owned analytics](docs/OWNED_ANALYTICS.md).
 
 The public app remains a static export. The new collector stays disabled until provisioned and verified, and Vercel page views remain the fallback. No owner key or reporting data may be placed in frontend builds or public repository snapshots. The application safety limits supplement provider caps; neither is an authorization to upgrade.
+
+## Owner-approved hourly scheduler (October 26, 2026)
+
+The owner approved a separate Cloudflare Workers Free scheduler to trigger the
+existing GitHub Actions job refresh hourly, with one bounded retry and freshness
+checks. It requires no database, paid plan or payment method. Deployment remains
+conditional on verifying Workers Free and no payment method on the actual
+account. Keep the repository public on standard runners and Vercel on Hobby.
+The scheduler's repository-scoped GitHub Actions credential is a Worker secret
+and must never appear in frontend builds or public files. See
+[hourly refresh operations and cost review](docs/HOURLY_REFRESH.md).

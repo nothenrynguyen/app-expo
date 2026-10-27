@@ -20,6 +20,7 @@ import { UnavailableSavedJobs } from "./job-board/UnavailableSavedJobs";
 import { useApplicationStatuses } from "./useApplicationStatuses";
 import { APPLICATION_STATUSES, isApplicationStatus, matchesApplicationStatus, type ApplicationStatus } from "@/lib/application-status";
 import { useBoardActivity } from "./ActivityTracking";
+import { createSnapshotPoller, SNAPSHOT_POLL_MS } from "@/lib/snapshot-polling";
 
 type JobBoardProps = {
   type: "internships" | "fulltime";
@@ -56,13 +57,20 @@ export function JobBoard({ type }: JobBoardProps) {
   const { ids: savedJobIds, toggle: toggleSavedJob, storageError } = useSavedJobs();
 
   useEffect(() => {
-    fetch(`/${type}.json`, { cache: "no-store" })
-      .then((response) => {
-        if (!response.ok) throw new Error("Could not load jobs");
-        return response.json() as Promise<JobsSnapshot>;
-      })
-      .then(setSnapshot)
-      .catch(() => setError(true));
+    const poller = createSnapshotPoller({
+      type,
+      onSnapshot: (next) => { setSnapshot(next); setError(false); },
+      onInitialError: () => setError(true),
+    });
+    void poller.refresh();
+    const timer = window.setInterval(() => { void poller.refresh(); }, SNAPSHOT_POLL_MS);
+    const onVisible = () => { void poller.refresh(); };
+    document.addEventListener("visibilitychange", onVisible);
+    return () => {
+      poller.stop();
+      window.clearInterval(timer);
+      document.removeEventListener("visibilitychange", onVisible);
+    };
   }, [type]);
 
   useEffect(() => {
