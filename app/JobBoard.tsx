@@ -150,7 +150,7 @@ export function JobBoard({ type }: JobBoardProps) {
       }}><option value="All">All statuses</option>{APPLICATION_STATUSES.map((status) => <option key={status}>{status}</option>)}</select></label> : null}
       <div className="board-stats" title={new Date(snapshot.generatedAt).toLocaleString()}>
         <span className="live-status"><i />Live</span>
-        <span className="refresh-age">· refreshed {formatSnapshotAge(snapshot.generatedAt, now)}</span>
+        <span className="refresh-age">&middot; refreshed {formatSnapshotAge(snapshot.generatedAt, now)}</span>
         <span className="matching-count"><strong>{jobs.length}</strong> matching roles</span>
       </div>
       <JobFilters
