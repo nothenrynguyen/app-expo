@@ -18,6 +18,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      - run: npm run build
       - run: cp public/jobs.json /tmp/employer-pilot-baseline.json
       - run: npm run sync:jobs
         env:
