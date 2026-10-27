@@ -1,7 +1,13 @@
 name: Sync verified jobs
+run-name: ${{ inputs.refresh_slot && format('Hourly refresh {0}', inputs.refresh_slot) || 'Sync verified jobs' }}
 
 on:
   workflow_dispatch:
+    inputs:
+      refresh_slot:
+        description: "Hourly scheduler slot (ISO UTC); leave empty for a manual refresh"
+        required: false
+        type: string
   schedule:
     - cron: "17 * * * *"
       timezone: "America/New_York"
@@ -19,26 +25,38 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Skip a redundant scheduled refresh
+        id: freshness
+        env:
+          REFRESH_SLOT: ${{ inputs.refresh_slot }}
+        run: node scripts/check-refresh-needed.mjs
       - uses: actions/setup-node@v4
+        if: steps.freshness.outputs.needed == 'true'
         with:
           node-version: 22
           cache: npm
       - run: npm ci
+        if: steps.freshness.outputs.needed == 'true'
       - run: npm test
+        if: steps.freshness.outputs.needed == 'true'
       - run: npm run sync:jobs
+        if: steps.freshness.outputs.needed == 'true'
         env:
           USAJOBS_API_KEY: ${{ secrets.USAJOBS_API_KEY }}
           USAJOBS_EMAIL: ${{ secrets.USAJOBS_EMAIL }}
           USAJOBS_PILOT_COST_REVIEWED: "true"
       - name: Publish changed snapshot
+        if: steps.freshness.outputs.needed == 'true'
         run: |
-          if git diff --quiet -- public/jobs.json public/internships.json public/fulltime.json public/summary.json public/insights-history.json data/quarantine.json data/listing-health.json data/company-boards.json data/refresh-report.json data/listing-changes.json; then
+          if [ -z "$(git status --porcelain -- public/jobs.json public/internships.json public/fulltime.json public/summary.json public/insights-history.json data/quarantine.json data/listing-health.json data/scoped-listing-health.json data/company-boards.json data/refresh-report.json data/listing-changes.json)" ]; then
             echo "No material job changes."
             exit 0
           fi
           git config user.name "app-expo-bot"
           git config user.email "app-expo-bot@users.noreply.github.com"
-          git add public/jobs.json public/internships.json public/fulltime.json public/summary.json public/insights-history.json data/quarantine.json data/listing-health.json data/company-boards.json data/refresh-report.json data/listing-changes.json
+          git add public/jobs.json public/internships.json public/fulltime.json public/summary.json public/insights-history.json data/quarantine.json data/listing-health.json data/scoped-listing-health.json data/company-boards.json data/refresh-report.json data/listing-changes.json
           git commit -m "data: refresh verified jobs"
           git pull --rebase origin main
           git push

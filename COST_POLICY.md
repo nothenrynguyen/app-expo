@@ -26,7 +26,7 @@ empluzzed is intentionally operated without a billing account or payment method.
 Do not add any of the following without revisiting this policy and obtaining the project owner's explicit approval:
 
 - Hosted databases or authentication
-- Email, SMS, push-notification, AI, résumé-processing, or payment APIs
+- Email, SMS, push-notification, AI, r�sum�-processing, or payment APIs
 - Paid analytics, monitoring, queues, storage, or background workers
 - Any monetization feature, including employer payments, advertisements, subscriptions, affiliate revenue, or sponsored listings
 - Any hosting change that could introduce charges
@@ -46,3 +46,20 @@ If any answer is unknown, do not add the service.
 ## Reviewed analytics decision (September 30, 2026)
 
 Vercel Hobby Web Analytics is approved for this personal, non-commercial project with affirmative visitor consent. It requires no payment method or paid trial. The allowance is 50,000 events/month shared across team projects; extra events cannot be purchased or billed on Hobby and collection pauses at the limit. The reporting window is one month, not a guaranteed deletion deadline. Custom click events and UTM reporting are not included. Scripts and intake requests also consume included hosting resources. Keep the project on Hobby, do not enable upgrades/add-ons, and leave analytics disabled in preview/development. Detailed official evidence, cap/resumption documentation differences, privacy safeguards, and owner activation steps are in [docs/ANALYTICS.md](docs/ANALYTICS.md).
+
+## Owner-approved activity milestone (October 22, 2026)
+
+The owner explicitly approved implementing and deploying free activity analytics and protected reports while preserving account-free browsing. The scoped design permits one Cloudflare Workers Free collector and one D1 Free database for analytics only, subject to verifying the actual account is Free with no payment method. Paid Workers, paid storage, visitor authentication and personal-record hosting remain excluded. Official limits, no-card evidence, cap behavior, privacy changes and production activation requirements are documented in [owned analytics](docs/OWNED_ANALYTICS.md).
+
+The public app remains a static export. The new collector stays disabled until provisioned and verified, and Vercel page views remain the fallback. No owner key or reporting data may be placed in frontend builds or public repository snapshots. The application safety limits supplement provider caps; neither is an authorization to upgrade.
+
+## Owner-approved hourly scheduler (October 26, 2026)
+
+The owner approved a separate Cloudflare Workers Free scheduler to trigger the
+existing GitHub Actions job refresh hourly, with one bounded retry and freshness
+checks. It requires no database, paid plan or payment method. Deployment remains
+conditional on verifying Workers Free and no payment method on the actual
+account. Keep the repository public on standard runners and Vercel on Hobby.
+The scheduler's repository-scoped GitHub Actions credential is a Worker secret
+and must never appear in frontend builds or public files. See
+[hourly refresh operations and cost review](docs/HOURLY_REFRESH.md).

@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { trackActivity } from "@/lib/activity-client";
 import Link from "next/link";
 import type { PublicJob, JobsSnapshot } from "@/lib/jobs";
 import { markSavedJobApplied, safeApplicationUrl } from "@/lib/applications";
@@ -44,7 +45,7 @@ export function TrackerSavedJobs() {
       const record = applications.find((item) => item.jobId === id);
       const status = statuses[id] ?? record?.status ?? "Saved";
       const tracked = !!record && status !== "Saved";
-      return <article className="tracker-saved-row" key={id}><div><h3>{job?.title ?? "Saved listing"}</h3><p>{job?.company ?? "Details are not available for this older save."}</p>{!live && loaded ? <small>Not in the current feed. Availability is unverified.</small> : null}</div><div className="tracker-row-actions">{url ? <a className="button primary" href={url} target="_blank" rel="noreferrer">Apply<span className="sr-only"> for {job?.title} at {job?.company}</span></a> : null}<button type="button" className="button secondary" disabled={!job || tracked} onClick={() => {
+      return <article className="tracker-saved-row" key={id}><div><h3>{job?.title ?? "Saved listing"}</h3><p>{job?.company ?? "Details are not available for this older save."}</p>{!live && loaded ? <small>Not in the current feed. Availability is unverified.</small> : null}</div><div className="tracker-row-actions">{url ? <a className="button primary" href={url} target="_blank" rel="noreferrer" onClick={() => trackActivity("apply_click")}>Apply<span className="sr-only"> for {job?.title} at {job?.company}</span></a> : null}<button type="button" className="button secondary" disabled={!job || tracked} onClick={() => {
         if (!job) return;
         if (!change((existing) => markSavedJobApplied(existing, job))) { setMessage("Could not save the application. Check browser storage."); return; }
         const synced = update(id, "Applied");

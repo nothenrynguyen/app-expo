@@ -2,6 +2,7 @@
 
 import { useMemo, useState, useSyncExternalStore } from "react";
 import { EMPTY_SAVED_JOB_IDS, parseSavedJobIds, SAVED_JOBS_STORAGE_KEY, toggleSavedJobId } from "@/lib/saved-jobs";
+import { trackActivity } from "@/lib/activity-client";
 
 const CHANGE_EVENT = "app-expo:saved-jobs-change";
 
@@ -54,7 +55,10 @@ export function useSavedJobs() {
   const idSet = useMemo(() => new Set(ids), [ids]);
 
   const toggle = (jobId: string) => {
-    setStorageError(!writeSavedJobIds(toggleSavedJobId(readSavedJobIds(), jobId)));
+    const current = readSavedJobIds();
+    const success = writeSavedJobIds(toggleSavedJobId(current, jobId));
+    setStorageError(!success);
+    if (success) trackActivity(current.includes(jobId) ? "unsave_click" : "save_click");
   };
 
   return { ids: idSet, toggle, storageError };

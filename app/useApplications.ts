@@ -1,6 +1,7 @@
 "use client";
 import { useSyncExternalStore } from "react";
 import { APPLICATIONS_KEY, EMPTY_APPLICATIONS, parseApplications, type Application } from "@/lib/applications";
+import { trackActivity } from "@/lib/activity-client";
 const EVENT = "app-expo:applications-change";
 let rawCache: string | null | undefined;
 let cache = EMPTY_APPLICATIONS;
@@ -22,9 +23,12 @@ export function useApplications() {
     try {
       // A failed storage read must abort a write rather than treating existing
       // records as empty and overwriting them.
-      const next = transform(parseApplications(window.localStorage.getItem(APPLICATIONS_KEY)));
+      const current = parseApplications(window.localStorage.getItem(APPLICATIONS_KEY));
+      const next = transform(current);
       window.localStorage.setItem(APPLICATIONS_KEY, JSON.stringify(next));
       window.dispatchEvent(new Event(EVENT));
+      const existingIds = new Set(current.map((item) => item.id));
+      if (next.some((item) => !existingIds.has(item.id))) trackActivity("application_add");
       return true;
     } catch { return false; }
   }
