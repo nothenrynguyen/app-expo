@@ -1,7 +1,11 @@
+import { isEarlyCareerTitle } from "./ats-boards";
+
 type CompanyEvidence = {
   name: string;
   h1bApprovals?: number | null;
   linkedInUrl?: string | null;
+  title?: string;
+  applyUrl?: string;
 };
 
 export type VerifiedCompany = {
@@ -17,6 +21,9 @@ export type CompanyTrustEntry = {
   status: "approved" | "pending" | "blocked";
   reason: string;
   reviewedAt: string;
+  allowedDestinations?: Array<{ hostname: string; pathPrefix: string }>;
+  requireEarlyCareerTitle?: boolean;
+  requireLiveListing?: boolean;
   minimumEmployees?: number | null;
   usPresence?: "headquartered" | "major" | null;
   linkedInUrl?: string | null;
@@ -24,6 +31,7 @@ export type CompanyTrustEntry = {
 
 export type QualityDecision = {
   coverageExceptionAllowed?: boolean;
+  requireLiveListing?: boolean;
   status: "approved" | "rejected" | "quarantined";
   reason: string;
   linkedInUrl: string | null;
@@ -97,9 +105,22 @@ export function evaluateCompanyQuality(
     };
   }
   if (trustEntry?.status === "approved") {
+    if (trustEntry.requireEarlyCareerTitle && !isEarlyCareerTitle(company.title ?? "", "")) {
+      return { status: "quarantined", reason: "The employer approval requires an explicit early-career title.", linkedInUrl: null, minimumEmployees: null };
+    }
+    if (trustEntry.allowedDestinations) {
+      let allowed = false;
+      try {
+        const url = new URL(company.applyUrl ?? "");
+        allowed = url.protocol === "https:" && !url.username && !url.password && trustEntry.allowedDestinations.some(destination =>
+          url.hostname.toLowerCase() === destination.hostname.toLowerCase() && url.pathname.toLowerCase().startsWith(destination.pathPrefix.toLowerCase()));
+      } catch { /* An invalid or missing destination cannot pass a scoped approval. */ }
+      if (!allowed) return { status: "quarantined", reason: "The employer approval requires a reviewed direct application destination.", linkedInUrl: null, minimumEmployees: null };
+    }
     return {
       status: "approved",
       reason: `Approved company trust record: ${trustEntry.reason}`,
+      requireLiveListing: trustEntry.requireLiveListing,
       linkedInUrl: trustEntry.linkedInUrl ?? null,
       minimumEmployees: trustEntry.minimumEmployees ?? null,
     };

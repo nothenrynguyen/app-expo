@@ -73,3 +73,28 @@ export function needsListingCheck(record: ListingHealthRecord | undefined, now =
   const checked = new Date(record.checkedAt).getTime();
   return !Number.isFinite(checked) || now.getTime() - checked >= 24 * 60 * 60 * 1000;
 }
+
+
+// These employer-detail APIs provide job-specific evidence. Every non-positive
+// response, including access denial and malformed content, remains unknown.
+export async function verifyScopedListing(url: string, fetchImpl: typeof fetch = fetch): Promise<boolean> {
+  try {
+    const target = new URL(url);
+    if (target.protocol !== "https:" || target.username || target.password) return false;
+    const parts = target.pathname.split("/").filter(Boolean);
+    let endpoint: string;
+    let provider: "greenhouse" | "workday";
+    if (target.hostname === "job-boards.greenhouse.io" && parts.length === 3 && parts[1] === "jobs" && /^\d+$/.test(parts[2])) {
+      provider = "greenhouse";
+      endpoint = `https://boards-api.greenhouse.io/v1/boards/${encodeURIComponent(parts[0])}/jobs/${parts[2]}`;
+    } else if (/^[a-z0-9-]+\.wd\d+\.myworkdayjobs\.com$/i.test(target.hostname) && parts.length >= 4 && parts[1].toLowerCase() === "job") {
+      provider = "workday";
+      endpoint = `${target.origin}/wday/cxs/${encodeURIComponent(target.hostname.split(".")[0])}/${parts.map(encodeURIComponent).join("/")}`;
+    } else return false;
+    const response = await fetchImpl(endpoint, { headers: { accept: "application/json", "user-agent": "empluzzed-Link-Check/0.2" }, signal: AbortSignal.timeout(10_000) });
+    if (!response.ok) return false;
+    const data = await response.json();
+    if (provider === "workday") return data?.jobPostingInfo?.posted === true && data.jobPostingInfo.canApply === true && typeof data.jobPostingInfo.title === "string" && !!data.jobPostingInfo.title.trim();
+    return String(data?.id ?? "") === parts[2] && typeof data?.title === "string" && !!data.title.trim();
+  } catch { return false; }
+}

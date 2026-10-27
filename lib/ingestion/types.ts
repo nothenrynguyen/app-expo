@@ -28,7 +28,7 @@ export type BoardRefreshDiagnostic = {
 };
 
 export type VerificationDiagnostic = {
-  provider: "smartrecruiters" | "microsoft";
+  provider: "smartrecruiters" | "microsoft" | "scoped_employer";
   attempted: number;
   verified: number;
 };

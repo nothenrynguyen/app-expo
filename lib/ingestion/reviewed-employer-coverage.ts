@@ -39,13 +39,13 @@ export function buildReviewedEmployerCoverage(
     const identity = key(candidate);
     if (!identity || !getJobLocationMetadata(candidate).eligible || getFreshnessRejection(candidate)
       || !classifyRoleTags(candidate).length || isKnownClosed(candidate)) continue;
-    const decision = evaluateCompanyQuality({ name: candidate.company, h1bApprovals: candidate.h1bApprovals }, candidate.rawText, registry, trust);
+    const decision = evaluateCompanyQuality({ name: candidate.company, h1bApprovals: candidate.h1bApprovals, title: candidate.title, applyUrl: candidate.applyUrl }, candidate.rawText, registry, trust);
     if (decision.status === "approved" || decision.coverageExceptionAllowed) evidence.set(identity, decision);
   }
   return (candidate: CandidateJob): QualityDecision | undefined => {
     // Re-evaluate this row: employer evidence never overrides a posting's risk
     // signals, a pending/blocked review or its own independent eligibility checks.
-    const decision = evaluateCompanyQuality({ name: candidate.company, h1bApprovals: candidate.h1bApprovals }, candidate.rawText, registry, trust);
+    const decision = evaluateCompanyQuality({ name: candidate.company, h1bApprovals: candidate.h1bApprovals, title: candidate.title, applyUrl: candidate.applyUrl }, candidate.rawText, registry, trust);
     if (!decision.coverageExceptionAllowed) return undefined;
     const identity = key(candidate);
     return identity ? evidence.get(identity) : undefined;

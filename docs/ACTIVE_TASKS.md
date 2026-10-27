@@ -4,7 +4,7 @@ Reviewed October 26, 2026. This file tracks concrete active work, follow-up, and
 
 ## Active milestone
 
-No new development milestone is currently recorded as active. Select and scope a batch with the owner before treating roadmap ideas as committed work.
+Rocket Lab employer-verification pilot: validate the first production refresh and monitor the bounded verification queue. Booz Allen and RTX remain held for separate review. See [employer verification review](EMPLOYER_VERIFICATION_REVIEW.md).
 
 ## Operational follow-up
 

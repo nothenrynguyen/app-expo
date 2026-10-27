@@ -5,6 +5,7 @@ import { pathToFileURL } from "node:url";
 import { discoverAtsBoard } from "../lib/ats-boards";
 import { evaluateCompanyQuality, normalizeCompanyDisplayName, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
 import { inBatches } from "../lib/ingestion/concurrency";
+import { scopedListingIsLive, selectScopedChecks, type ScopedListingCache } from "../lib/ingestion/scoped-listing-cache";
 import { boardRecoveryPolicy, preserveLastKnownGoodJobs } from "../lib/ingestion/last-known-good";
 import { loadCandidates } from "../lib/ingestion/load-candidates";
 import { sourceReviewHoldIdentity } from "../lib/ingestion/source-review-holds";
@@ -20,7 +21,7 @@ import { normalizeJobLocation } from "../lib/job-locations";
 import { getJobLocationMetadata } from "../lib/job-location-policy";
 import { buildJobsSummary } from "../lib/job-summary";
 import type { JobsSnapshot, PublicJob } from "../lib/jobs";
-import { isListingUnavailable, needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
+import { isListingUnavailable, needsListingCheck, verifyListing, verifyScopedListing, type ListingHealthFile } from "../lib/listing-health";
 import { classifyRoleTags, getJobRoleTags } from "../lib/role-areas";
 import type { SourceCatalog } from "../lib/source-catalog";
 import { canonicalizeUrl, jobIdentity, normalizeDisplayText, stableJobId } from "../lib/source-normalization";
@@ -84,6 +85,24 @@ async function main() {
     }
   }
 
+  // Persist recent positive employer evidence separately from generic HTTP checks.
+  // Failed checks immediately invalidate older positive evidence; unchecked or stale
+  // candidates remain pending. The oldest attempts receive the next bounded slots.
+  const scopedCachePath = path.join(root, "data/scoped-listing-health.json");
+  const scopedCache: ScopedListingCache = await readFile(scopedCachePath, "utf8").then(value => JSON.parse(value) as ScopedListingCache).catch(() => ({}));
+  const scopedUrls = new Map<string, string>();
+  for (const candidate of candidates) {
+    const decision = evaluateCompanyQuality({ name: candidate.company, h1bApprovals: candidate.h1bApprovals, title: candidate.title, applyUrl: candidate.applyUrl }, candidate.rawText, registry, trustRegistry);
+    const identity = jobIdentity(candidate.applyUrl);
+    if (decision.status === "approved" && decision.requireLiveListing && identity && getJobLocationMetadata(candidate).eligible && classifyRoleTags(candidate).length > 0 && !getFreshnessRejection(candidate)) scopedUrls.set(identity, candidate.applyUrl);
+  }
+  for (const identity of scopedUrls.keys()) if (!scopedCache[identity]) scopedCache[identity] = { status: "unknown", checkedAt: null, firstSeenAt: startedAt.toISOString() };
+  const scopedChecks = selectScopedChecks([...scopedUrls], scopedCache, startedAt);
+  const scopedResults = await inBatches(scopedChecks, 8, async ([identity, url]) => ({ identity, live: await verifyScopedListing(url) }));
+  for (const result of scopedResults) if (result.status === "fulfilled") scopedCache[result.value.identity] = { status: result.value.live ? "live" : "unknown", checkedAt: startedAt.toISOString(), firstSeenAt: scopedCache[result.value.identity].firstSeenAt };
+  const verifiedScopedIds = new Set([...scopedUrls.keys()].filter(identity => scopedListingIsLive(scopedCache[identity], startedAt)));
+  if (scopedUrls.size) verificationDiagnostics.push({ provider: "scoped_employer", attempted: scopedChecks.length, verified: scopedResults.filter(result => result.status === "fulfilled" && result.value.live).length });
+
   const reviewedCoverageSources = new Set(activeSources.filter(source => source.kind === "keryx_markdown").map(source => source.name));
   const reviewedCoverage = buildReviewedEmployerCoverage(candidates, trustedCuratedSources, registry, trustRegistry, candidate => {
     const identity = jobIdentity(candidate.applyUrl);
@@ -125,7 +144,7 @@ async function main() {
     }
     const displayCompany = normalizeCompanyDisplayName(candidate.company, candidate.applyUrl);
     let decision = evaluateCompanyQuality(
-      { name: candidate.company, h1bApprovals: candidate.h1bApprovals },
+      { name: candidate.company, h1bApprovals: candidate.h1bApprovals, title: candidate.title, applyUrl: candidate.applyUrl },
       candidate.rawText,
       registry,
       trustRegistry,
@@ -149,6 +168,11 @@ async function main() {
 
     const canonical = canonicalizeUrl(candidate.applyUrl)!;
     const identity = jobIdentity(canonical)!;
+    if (scopedUrls.has(identity) && !verifiedScopedIds.has(identity)) {
+      screening.record(candidate.applyUrl, "pendingVerification");
+      quarantined.push({ company: candidate.company, title: candidate.title, reason: "Current employer listing availability could not be verified.", source: candidate.source, applyUrl: candidate.applyUrl });
+      continue;
+    }
     const board = discoverAtsBoard(canonical, candidate.company, candidate.source);
     const authoritativeBoard = board ? boardResults.get(board.id) : null;
     if (authoritativeBoard && !authoritativeBoard.liveIdentities.has(identity)) {
@@ -205,7 +229,8 @@ async function main() {
       if (reviewHoldIds.has(sourceReviewHoldIdentity(prior.applyUrl))) return null;
       // A board outage recovers only that board, not unrelated missing inputs.
       if (unhealthySources.length === 0 && !recovery.affected(prior)) return null;
-      const decision = evaluateCompanyQuality({ name: prior.company }, "", registry, trustRegistry);
+      const decision = evaluateCompanyQuality({ name: prior.company, title: prior.title, applyUrl: prior.applyUrl }, "", registry, trustRegistry);
+      if (decision.requireLiveListing && !scopedListingIsLive(scopedCache[jobIdentity(prior.applyUrl) ?? ""], startedAt)) return null;
       const freshnessRejection = getFreshnessRejection(prior);
       const roleTags = classifyRoleTags(prior);
       if (roleTags.length === 0 || decision.status === "rejected"
@@ -248,6 +273,10 @@ async function main() {
     if (!currentIdentities.has(identity) && age > 30 * 86_400_000) delete listingHealth[identity];
   }
   await mkdir(path.join(root, "data"), { recursive: true });
+  for (const [identity, record] of Object.entries(scopedCache)) {
+    if (!scopedUrls.has(identity) && startedAt.getTime() - Date.parse(record.checkedAt ?? record.firstSeenAt) > 30 * 86_400_000) delete scopedCache[identity];
+  }
+  if (Object.keys(scopedCache).length) await writeFile(scopedCachePath, `${JSON.stringify(scopedCache, null, 2)}\n`);
   await writeFile(listingHealthPath, `${JSON.stringify(listingHealth, null, 2)}\n`);
   await writeFile(path.join(root, "data/company-boards.json"), `${JSON.stringify(boardRegistry, null, 2)}\n`);
   const refreshReport = buildRefreshReport({
