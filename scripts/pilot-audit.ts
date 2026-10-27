@@ -1,0 +1,16 @@
+import { readFileSync } from "node:fs";
+import { jobIdentity } from "../lib/source-normalization";
+import { normalizeCompanyName } from "../lib/company-quality";
+const b=JSON.parse(readFileSync("/tmp/employer-pilot-baseline.json","utf8"));
+const a=JSON.parse(readFileSync("public/jobs.json","utf8"));
+const q=JSON.parse(readFileSync("data/quarantine.json","utf8"));
+const report=JSON.parse(readFileSync("data/refresh-report.json","utf8"));
+const ids=new Set(b.jobs.map((j:any)=>jobIdentity(j.applyUrl)));
+const accepted=new Set(a.jobs.map((j:any)=>jobIdentity(j.applyUrl)));
+const names=new Set(["rocket lab","booz allen","booz allen hamilton","rtx raytheon"]);
+const rows=a.jobs.filter((j:any)=>names.has(normalizeCompanyName(j.company))&&!ids.has(jobIdentity(j.applyUrl)));
+const held=q.jobs.filter((j:any)=>j.reason==="Current employer listing availability could not be verified.");
+const collision=held.filter((j:any)=>accepted.has(jobIdentity(j.applyUrl)));
+const counts:Record<string,number>={};for(const j of rows)counts[j.company]=(counts[j.company]??0)+1;
+console.log(JSON.stringify({baseline:b.generatedAt,trial:a.generatedAt,baselineJobs:b.jobs.length,trialJobs:a.jobs.length,sourceStatus:report.status,verification:report.verification,apparentlyNew:rows.length,companies:counts,heldObservations:held.length,heldDestinations:new Set(held.map((j:any)=>jobIdentity(j.applyUrl))).size,heldAlsoAccepted:collision.length,samples:rows.slice(0,8).map((j:any)=>({company:j.company,title:j.title,location:j.location,url:j.applyUrl}))},null,2));
+if(collision.length)process.exitCode=1;

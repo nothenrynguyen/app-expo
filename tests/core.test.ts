@@ -1,3 +1,4 @@
+import { scopedListingIsLive, selectScopedChecks } from "../lib/ingestion/scoped-listing-cache";
 import { parseEngineJobs } from "../lib/ingestion/engine-source";
 import { loadReviewedUsaJobs, reviewedFederalCoverage } from "../lib/ingestion/usajobs";
 import { reviewUsaJobsPosting } from "../lib/usajobs";
@@ -17,7 +18,7 @@ import { canonicalizeUrl, inferTerm, inferWorkMode, jobIdentity, normalizeDispla
 import { isInCollection } from "../lib/job-collections";
 import { classifyRoleArea, classifyRoleTags, getJobRoleTags, getRoleSelection, matchesRoleSelection } from "../lib/role-areas";
 import { createAtsBoard, discoverAtsBoard, isEarlyCareerTitle, type AtsBoardSeed } from "../lib/ats-boards";
-import { classifyListingResponse, isListingUnavailable, needsListingCheck } from "../lib/listing-health";
+import { classifyListingResponse, isListingUnavailable, needsListingCheck, verifyScopedListing } from "../lib/listing-health";
 import { applyMicrosoftCareersPosting, parseMicrosoftCareersJobUrl, parseMicrosoftCareersPosting } from "../lib/microsoft-careers";
 import { applySmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
 import { parseApplyGuySource, parseKeryxSource, parseMarkdownSource, sourceAllowsAtsExpansion } from "../lib/source-parsers";
@@ -1263,4 +1264,59 @@ test("engine feeds reject malformed input before candidate conversion", () => {
     { jobs: [{ ...job, h1b_approvals: "10" }] },
   ]) assert.throws(() => parseEngineJobs(JSON.stringify(payload)), /Invalid engine feed/);
   assert.throws(() => parseEngineJobs("not json"), SyntaxError);
+});
+
+
+test("scoped employer approvals require an early-career title and reviewed destination", () => {
+  const trust: CompanyTrustEntry[] = [{ name: "Example", status: "approved", reason: "review", reviewedAt: "2026-10-27", requireEarlyCareerTitle: true, allowedDestinations: [{ hostname: "jobs.ashbyhq.com", pathPrefix: "/example/" }] }];
+  const check = (title: string, applyUrl: string) => evaluateCompanyQuality({ name: "Example", title, applyUrl }, "", [], trust).status;
+  assert.equal(check("Software Engineer Intern", "https://jobs.ashbyhq.com/example/123"), "approved");
+  assert.equal(check("Accountant II", "https://jobs.ashbyhq.com/example/123"), "quarantined");
+  assert.equal(check("Software Engineer Intern", "https://jobs.ashbyhq.com/another/123"), "quarantined");
+  assert.equal(check("Software Engineer Intern", "https://go.example.com/123"), "quarantined");
+});
+
+
+test("scoped listing verification requires positive employer detail and holds failures", async () => {
+  const workday = "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/VA/Intern_R123456";
+  const greenhouse = "https://job-boards.greenhouse.io/rocketlab/jobs/123";
+  const response = (status: number, body: unknown) => (async () => new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } })) as typeof fetch;
+  assert.equal(await verifyScopedListing(workday, response(200, { jobPostingInfo: { title: "Intern", posted: true, canApply: true } })), true);
+  assert.equal(await verifyScopedListing(workday, response(200, { jobPostingInfo: { title: "Intern", posted: true, canApply: false } })), false);
+  assert.equal(await verifyScopedListing(workday, response(403, {})), false);
+  assert.equal(await verifyScopedListing(greenhouse, response(200, { id: 123, title: "Intern" })), true);
+  assert.equal(await verifyScopedListing(greenhouse, response(200, { id: 456, title: "Intern" })), false);
+  assert.equal(await verifyScopedListing("https://example.com/job/123", response(200, { id: 123, title: "Intern" })), false);
+});
+
+
+test("scoped listing cache expires positive evidence and queues attempts fairly", () => {
+  const now = new Date("2026-10-27T12:00:00Z");
+  const cache: import("../lib/ingestion/scoped-listing-cache").ScopedListingCache = {
+    old: { status: "live", checkedAt: "2026-10-25T12:00:00Z", firstSeenAt: "2026-10-25T12:00:00Z" },
+    failed: { status: "unknown", checkedAt: "2026-10-26T10:00:00Z", firstSeenAt: "2026-10-25T12:00:00Z" },
+    recent: { status: "live", checkedAt: "2026-10-27T11:00:00Z", firstSeenAt: "2026-10-25T12:00:00Z" },
+    new: { status: "unknown", checkedAt: null, firstSeenAt: "2026-10-27T12:00:00Z" },
+  };
+  assert.equal(scopedListingIsLive(cache.recent, now), true);
+  assert.equal(scopedListingIsLive(cache.old, now), false);
+  assert.equal(scopedListingIsLive(cache.failed, now), false);
+  assert.deepEqual(selectScopedChecks([["recent", "r"], ["failed", "f"], ["old", "o"], ["new", "n"]], cache, now, 2).map(([id]) => id), ["old", "failed"]);
+  cache.old = { status: "unknown", checkedAt: now.toISOString(), firstSeenAt: cache.old.firstSeenAt };
+  assert.deepEqual(selectScopedChecks([["failed", "f"], ["old", "o"], ["new", "n"]], cache, now, 2).map(([id]) => id), ["failed", "new"]);
+});
+
+
+test("bounded scoped queue reaches candidates across refreshes", () => {
+  const first = new Date("2026-10-27T12:00:00Z");
+  const next = new Date("2026-10-27T13:00:00Z");
+  const cache: import("../lib/ingestion/scoped-listing-cache").ScopedListingCache = {};
+  const entries: Array<[string, string]> = Array.from({ length: 320 }, (_, i) => [`job-${String(i).padStart(3, "0")}`, `url-${i}`]);
+  for (const [id] of entries) cache[id] = { status: "unknown", checkedAt: null, firstSeenAt: first.toISOString() };
+  const firstBatch = selectScopedChecks(entries, cache, first);
+  assert.equal(firstBatch.length, 150);
+  for (const [id] of firstBatch) cache[id] = { ...cache[id], status: "live", checkedAt: first.toISOString() };
+  const secondBatch = selectScopedChecks(entries, cache, next);
+  assert.equal(secondBatch.length, 150);
+  assert.equal(secondBatch.some(([id]) => firstBatch.some(([previous]) => previous === id)), false);
 });

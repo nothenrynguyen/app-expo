@@ -1,0 +1,36 @@
+name: Employer pilot isolated trial
+on:
+  push:
+    branches: [codex/employer-verification-pilot]
+permissions:
+  contents: read
+jobs:
+  trial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: cp public/jobs.json /tmp/employer-pilot-baseline.json
+      - run: npm run sync:jobs
+        env:
+          USAJOBS_API_KEY: ${{ secrets.USAJOBS_API_KEY }}
+          USAJOBS_EMAIL: ${{ secrets.USAJOBS_EMAIL }}
+          USAJOBS_PILOT_COST_REVIEWED: "true"
+      - run: node --import tsx scripts/pilot-audit.ts
+      - uses: actions/upload-artifact@v4
+        with:
+          name: employer-pilot-results
+          retention-days: 1
+          path: |
+            public/jobs.json
+            data/quarantine.json
+            data/refresh-report.json
+            data/scoped-listing-health.json
