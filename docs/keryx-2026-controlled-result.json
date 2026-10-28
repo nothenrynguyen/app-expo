@@ -1,0 +1,1982 @@
+{
+  "reviewedAt": "2026-10-28T00:01:27.919Z",
+  "frozenAt": "2026-10-27T23:52:43.501Z",
+  "baselineGeneratedAt": "2026-10-27T23:20:26.706Z",
+  "baselineJobs": 5807,
+  "method": "Unmodified ingestion pipeline in isolated copies, identical initial data and baseline, shared immutable HTTP response cache, fixed Date construction; Date.now retained for runtime timeouts. Captured network failures replayed consistently. No active catalog or publication changes.",
+  "reports": [
+    {
+      "name": "control",
+      "jobs": 5802,
+      "generatedAt": "2026-10-27T23:52:43.501Z",
+      "replay": {
+        "frozenRequests": 1634,
+        "uniqueRequests": 1633,
+        "missingFrozenInputs": 0
+      },
+      "sourceHealth": [
+        {
+          "name": "Internship Engine",
+          "status": "ok",
+          "rows": 1195
+        },
+        {
+          "name": "ApplyGuy Product Internships 2027",
+          "status": "ok",
+          "rows": 49
+        },
+        {
+          "name": "2027-AI-College-Jobs 2027",
+          "status": "ok",
+          "rows": 791
+        },
+        {
+          "name": "2027-AI-College-Jobs New Grad 2027",
+          "status": "ok",
+          "rows": 520
+        },
+        {
+          "name": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
+          "status": "ok",
+          "rows": 555
+        },
+        {
+          "name": "Dreamwork Business Internships 2027",
+          "status": "ok",
+          "rows": 392
+        },
+        {
+          "name": "Dreamwork New Grad US",
+          "status": "ok",
+          "rows": 1366
+        },
+        {
+          "name": "Dreamwork Tech Internships 2027",
+          "status": "ok",
+          "rows": 1309
+        },
+        {
+          "name": "Keryx Non-Software New Grad 2027",
+          "status": "ok",
+          "rows": 57
+        },
+        {
+          "name": "Keryx Non-Software Spring 2027",
+          "status": "ok",
+          "rows": 174
+        },
+        {
+          "name": "Keryx Non-Software Summer 2027",
+          "status": "ok",
+          "rows": 1058
+        },
+        {
+          "name": "Keryx Non-Software Winter 2027",
+          "status": "ok",
+          "rows": 58
+        },
+        {
+          "name": "New-Grad-2027 2027",
+          "status": "ok",
+          "rows": 626
+        },
+        {
+          "name": "Open-Tech-Internships-2027 2027",
+          "status": "ok",
+          "rows": 1804
+        },
+        {
+          "name": "Simplify Off-Season 2027",
+          "status": "ok",
+          "rows": 922
+        },
+        {
+          "name": "Simplify Summer 2027",
+          "status": "ok",
+          "rows": 1793
+        },
+        {
+          "name": "SpeedyApply Internships",
+          "status": "ok",
+          "rows": 843
+        },
+        {
+          "name": "SpeedyApply New Grad USA",
+          "status": "ok",
+          "rows": 878
+        },
+        {
+          "name": "Summer 2027 Tech Internships",
+          "status": "ok",
+          "rows": 100
+        },
+        {
+          "name": "Vansh Off-Season 2027",
+          "status": "ok",
+          "rows": 346
+        },
+        {
+          "name": "Vansh Summer 2027",
+          "status": "ok",
+          "rows": 1210
+        },
+        {
+          "name": "USAJOBS selective review",
+          "status": "ok",
+          "rows": 96
+        },
+        {
+          "name": "Workday: Applied Materials",
+          "status": "ok",
+          "rows": 100
+        },
+        {
+          "name": "Workday: Micron",
+          "status": "ok",
+          "rows": 373
+        },
+        {
+          "name": "Workday: Medtronic",
+          "status": "ok",
+          "rows": 117
+        },
+        {
+          "name": "Workday: Abbott",
+          "status": "ok",
+          "rows": 99
+        }
+      ],
+      "screening": {
+        "version": 1,
+        "unit": "application_destinations",
+        "reviewed": 16673,
+        "accepted": 5912,
+        "excluded": 5835,
+        "pendingVerification": 4926,
+        "uncountedRecords": 0,
+        "reasons": {
+          "closed": 84,
+          "expired": 302,
+          "location": 1114,
+          "role": 4274,
+          "employer": 61
+        }
+      },
+      "added": [],
+      "removed": [],
+      "heldPublished": [],
+      "quarantineRows": null,
+      "refreshReport": {
+        "status": "degraded",
+        "sources": {
+          "total": 26,
+          "healthy": 26,
+          "failed": 0,
+          "empty": 0
+        },
+        "boards": {
+          "total": 547,
+          "healthy": 544,
+          "failed": 3,
+          "failures": [
+            {
+              "provider": "greenhouse",
+              "key": "andurilindustries",
+              "company": "Anduril",
+              "status": "failed",
+              "rows": 0,
+              "retryRequests": 1,
+              "durationMs": 65,
+              "message": "timeout"
+            },
+            {
+              "provider": "ashby",
+              "key": "whatnot",
+              "company": "WhatNot",
+              "status": "failed",
+              "rows": 0,
+              "retryRequests": 0,
+              "durationMs": 125,
+              "message": "404 Not Found"
+            },
+            {
+              "provider": "greenhouse",
+              "key": "oldmissioncapital",
+              "company": "Old Mission",
+              "status": "failed",
+              "rows": 0,
+              "retryRequests": 0,
+              "durationMs": 351,
+              "message": "404 Not Found"
+            }
+          ]
+        },
+        "verification": [
+          {
+            "provider": "smartrecruiters",
+            "attempted": 140,
+            "verified": 140
+          },
+          {
+            "provider": "microsoft",
+            "attempted": 30,
+            "verified": 30
+          },
+          {
+            "provider": "scoped_employer",
+            "attempted": 0,
+            "verified": 0
+          }
+        ],
+        "listings": {
+          "candidates": 21320,
+          "accepted": 5802,
+          "quarantined": 12904,
+          "rejected": 1456,
+          "preservedFromLastHealthySnapshot": 35,
+          "checksAttempted": 250,
+          "checksCompleted": 250,
+          "knownClosed": 628,
+          "screening": {
+            "version": 1,
+            "unit": "application_destinations",
+            "reviewed": 16673,
+            "accepted": 5912,
+            "excluded": 5835,
+            "pendingVerification": 4926,
+            "uncountedRecords": 0,
+            "reasons": {
+              "closed": 84,
+              "expired": 302,
+              "location": 1114,
+              "role": 4274,
+              "employer": 61
+            }
+          }
+        }
+      },
+      "listingChangesSummary": null
+    },
+    {
+      "name": "fall",
+      "jobs": 5819,
+      "generatedAt": "2026-10-27T23:52:43.501Z",
+      "replay": {
+        "frozenRequests": 1640,
+        "uniqueRequests": 1639,
+        "missingFrozenInputs": 0
+      },
+      "sourceHealth": [
+        {
+          "name": "Internship Engine",
+          "status": "ok",
+          "rows": 1195
+        },
+        {
+          "name": "ApplyGuy Product Internships 2027",
+          "status": "ok",
+          "rows": 49
+        },
+        {
+          "name": "2027-AI-College-Jobs 2027",
+          "status": "ok",
+          "rows": 791
+        },
+        {
+          "name": "2027-AI-College-Jobs New Grad 2027",
+          "status": "ok",
+          "rows": 520
+        },
+        {
+          "name": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
+          "status": "ok",
+          "rows": 555
+        },
+        {
+          "name": "Dreamwork Business Internships 2027",
+          "status": "ok",
+          "rows": 392
+        },
+        {
+          "name": "Dreamwork New Grad US",
+          "status": "ok",
+          "rows": 1366
+        },
+        {
+          "name": "Dreamwork Tech Internships 2027",
+          "status": "ok",
+          "rows": 1309
+        },
+        {
+          "name": "Keryx Non-Software New Grad 2027",
+          "status": "ok",
+          "rows": 57
+        },
+        {
+          "name": "Keryx Non-Software Spring 2027",
+          "status": "ok",
+          "rows": 174
+        },
+        {
+          "name": "Keryx Non-Software Summer 2027",
+          "status": "ok",
+          "rows": 1058
+        },
+        {
+          "name": "Keryx Non-Software Winter 2027",
+          "status": "ok",
+          "rows": 58
+        },
+        {
+          "name": "New-Grad-2027 2027",
+          "status": "ok",
+          "rows": 626
+        },
+        {
+          "name": "Open-Tech-Internships-2027 2027",
+          "status": "ok",
+          "rows": 1804
+        },
+        {
+          "name": "Simplify Off-Season 2027",
+          "status": "ok",
+          "rows": 922
+        },
+        {
+          "name": "Simplify Summer 2027",
+          "status": "ok",
+          "rows": 1793
+        },
+        {
+          "name": "SpeedyApply Internships",
+          "status": "ok",
+          "rows": 843
+        },
+        {
+          "name": "SpeedyApply New Grad USA",
+          "status": "ok",
+          "rows": 878
+        },
+        {
+          "name": "Summer 2027 Tech Internships",
+          "status": "ok",
+          "rows": 100
+        },
+        {
+          "name": "Vansh Off-Season 2027",
+          "status": "ok",
+          "rows": 346
+        },
+        {
+          "name": "Vansh Summer 2027",
+          "status": "ok",
+          "rows": 1210
+        },
+        {
+          "name": "Keryx Non-Software Fall 2026",
+          "status": "ok",
+          "rows": 35
+        },
+        {
+          "name": "USAJOBS selective review",
+          "status": "ok",
+          "rows": 96
+        },
+        {
+          "name": "Workday: Applied Materials",
+          "status": "ok",
+          "rows": 100
+        },
+        {
+          "name": "Workday: Micron",
+          "status": "ok",
+          "rows": 373
+        },
+        {
+          "name": "Workday: Medtronic",
+          "status": "ok",
+          "rows": 117
+        },
+        {
+          "name": "Workday: Abbott",
+          "status": "ok",
+          "rows": 99
+        }
+      ],
+      "screening": {
+        "version": 1,
+        "unit": "application_destinations",
+        "reviewed": 16697,
+        "accepted": 5929,
+        "excluded": 5838,
+        "pendingVerification": 4930,
+        "uncountedRecords": 0,
+        "reasons": {
+          "closed": 86,
+          "expired": 303,
+          "location": 1114,
+          "role": 4274,
+          "employer": 61
+        }
+      },
+      "added": [
+        {
+          "id": "cf5bff6fb7c880530fc0e63e",
+          "company": "Applied Materials",
+          "title": "2026 Fall Materials Engineering Co-op (TCAD Modeling) - Doctorate (Gloucester, MA)",
+          "term": "Fall 2026",
+          "location": "Gloucester,MA",
+          "regions": [
+            "us"
+          ],
+          "metros": [],
+          "workMode": "unknown",
+          "postedAt": "2026-10-27T23:52:43.501Z",
+          "postedAtSource": "first_seen",
+          "applyUrl": "https://amat.wd1.myworkdayjobs.com/External/job/GloucesterMA/XMLNAME-2026-Fall-Materials-Engineering-Co-op---Doctorate--Gloucester--MA-_R2611503",
+          "linkedInUrl": null,
+          "category": "Internship",
+          "roleTags": [
+            "process-manufacturing",
+            "materials-chemical"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software Fall 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": null,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:10.566Z",
+            "endpoint": "https://amat.wd1.myworkdayjobs.com/wday/cxs/amat/External/job/GloucesterMA/XMLNAME-2026-Fall-Materials-Engineering-Co-op---Doctorate--Gloucester--MA-_R2611503",
+            "httpStatus": 200,
+            "status": "live",
+            "title": "2026 Fall Materials Engineering Co-op (TCAD Modeling) - Doctorate (Gloucester, MA)",
+            "posted": true,
+            "canApply": true,
+            "jobReqId": "R2611503",
+            "employerLocationEligible": true,
+            "employerFreshnessRejection": null,
+            "reviewFlags": [
+              "doctoral-requirement-review"
+            ],
+            "normalizedCandidate": {
+              "title": "2026 Fall Materials Engineering Co-op (TCAD Modeling) - Doctorate (Gloucester, MA)",
+              "location": "Gloucester,MA",
+              "term": "Not stated",
+              "postedAt": "2026-09-02T00:00:00.000Z",
+              "postedAtSource": "date_only"
+            },
+            "smartRecruiters": null
+          }
+        },
+        {
+          "id": "4146a649ed8f159904379a1f",
+          "company": "Itron",
+          "title": "Intern - Electrical Engineer (Fall 2026/Winter 2027)",
+          "term": "Fall 2026",
+          "location": "United States of America, North Carolina, Raleigh",
+          "regions": [
+            "us"
+          ],
+          "metros": [
+            "raleigh-durham"
+          ],
+          "workMode": "unknown",
+          "postedAt": "2026-10-27T23:52:43.501Z",
+          "postedAtSource": "first_seen",
+          "applyUrl": "https://itron.wd5.myworkdayjobs.com/Early_Careers/job/United-States-of-America-North-Carolina-Raleigh/Intern---Electrical-Engineer_JR102930",
+          "linkedInUrl": null,
+          "category": "Internship",
+          "roleTags": [
+            "hardware-electrical"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software Fall 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": null,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:10.577Z",
+            "endpoint": "https://itron.wd5.myworkdayjobs.com/wday/cxs/itron/Early_Careers/job/United-States-of-America-North-Carolina-Raleigh/Intern---Electrical-Engineer_JR102930",
+            "httpStatus": 200,
+            "status": "live",
+            "title": "Intern - Electrical Engineer (Fall 2026/Winter 2027)",
+            "posted": true,
+            "canApply": true,
+            "jobReqId": "JR102930",
+            "employerLocationEligible": null,
+            "employerFreshnessRejection": null,
+            "reviewFlags": [
+              "workday-normalizer-rejected-candidate",
+              "explicit-part-time"
+            ],
+            "followupHttpStatus": 200,
+            "timeType": "Part time",
+            "employerLocation": "United States of America, North Carolina, Raleigh",
+            "employerCountry": {
+              "descriptor": "United States of America",
+              "id": "bc33aa3152ec42d4995f4791a106ed09"
+            },
+            "normalizedCandidate": null,
+            "smartRecruiters": null
+          }
+        },
+        {
+          "id": "bae21d845907c21d23fcf7e4",
+          "company": "Louisiana Blue",
+          "title": "CW Security Operation Center Engineer Intern (Fall 2026- Starting in December)",
+          "term": "Fall 2026",
+          "location": "Corporate - Baton Rouge, LA",
+          "regions": [
+            "us"
+          ],
+          "metros": [],
+          "workMode": "unknown",
+          "postedAt": "2026-10-27T23:52:43.501Z",
+          "postedAtSource": "first_seen",
+          "applyUrl": "https://bcbsla.wd1.myworkdayjobs.com/Generation_Blue/job/Corporate---Baton-Rouge-LA/CW-Security-Operation-Center-Engineer-Intern--Fall-2026--Starting-in-December-_R12127",
+          "linkedInUrl": null,
+          "category": "Internship",
+          "roleTags": [
+            "operations-supply-chain"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software Fall 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": null,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:10.578Z",
+            "endpoint": "https://bcbsla.wd1.myworkdayjobs.com/wday/cxs/bcbsla/Generation_Blue/job/Corporate---Baton-Rouge-LA/CW-Security-Operation-Center-Engineer-Intern--Fall-2026--Starting-in-December-_R12127",
+            "httpStatus": 200,
+            "status": "live",
+            "title": "CW Security Operation Center Engineer Intern (Fall 2026- Starting in December)",
+            "posted": true,
+            "canApply": true,
+            "jobReqId": "R12127",
+            "employerLocationEligible": null,
+            "employerFreshnessRejection": null,
+            "reviewFlags": [
+              "workday-normalizer-rejected-candidate",
+              "explicit-part-time"
+            ],
+            "followupHttpStatus": 200,
+            "timeType": "Part time",
+            "employerLocation": "Corporate - Baton Rouge, LA",
+            "employerCountry": {
+              "descriptor": "United States of America",
+              "id": "bc33aa3152ec42d4995f4791a106ed09"
+            },
+            "normalizedCandidate": null,
+            "smartRecruiters": null
+          }
+        },
+        {
+          "id": "10d05a07494299603365c40e",
+          "company": "Northrop Grumman",
+          "title": "2026 Fall Co-op Manufacturing Engineering - Baltimore MD",
+          "term": "Fall 2026",
+          "location": "United States-Maryland-Linthicum",
+          "regions": [
+            "us"
+          ],
+          "metros": [],
+          "workMode": "unknown",
+          "postedAt": "2026-10-27T23:52:43.501Z",
+          "postedAtSource": "first_seen",
+          "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Maryland-Linthicum/XMLNAME-2026-Fall-Co-op-Manufacturing-Engineering---Baltimore-MD_R10243390-1",
+          "linkedInUrl": null,
+          "category": "Internship",
+          "roleTags": [
+            "process-manufacturing"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software Fall 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": null,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:10.579Z",
+            "endpoint": "https://ngc.wd1.myworkdayjobs.com/wday/cxs/ngc/Northrop_Grumman_External_Site/job/United-States-Maryland-Linthicum/XMLNAME-2026-Fall-Co-op-Manufacturing-Engineering---Baltimore-MD_R10243390-1",
+            "httpStatus": 403,
+            "status": "unknown",
+            "normalizedCandidate": null,
+            "smartRecruiters": null
+          }
+        },
+        {
+          "id": "90c2537ef4d9c69436ff4167",
+          "company": "RTX",
+          "title": "Industrial Engineering Intern (Fall 2026) (Remote)",
+          "term": "Fall 2026",
+          "location": "US-KS-LENEXA-885 15701 W 95Th St KIN01 W 95TH 885",
+          "regions": [
+            "us"
+          ],
+          "metros": [],
+          "workMode": "remote",
+          "postedAt": "2026-10-27T23:52:43.501Z",
+          "postedAtSource": "first_seen",
+          "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/Private_Posting_No_TMP/job/US-KS-LENEXA-885--15701-W-95Th-St--KIN01-W-95TH-885/Industrial-Engineering-Intern--Fall-2026---Remote-_01881164",
+          "linkedInUrl": null,
+          "category": "Internship",
+          "roleTags": [
+            "process-manufacturing"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software Fall 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": 60000,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:10.580Z",
+            "endpoint": "https://globalhr.wd5.myworkdayjobs.com/wday/cxs/globalhr/Private_Posting_No_TMP/job/US-KS-LENEXA-885--15701-W-95Th-St--KIN01-W-95TH-885/Industrial-Engineering-Intern--Fall-2026---Remote-_01881164",
+            "httpStatus": 403,
+            "status": "unknown",
+            "normalizedCandidate": null,
+            "smartRecruiters": null
+          }
+        },
+        {
+          "id": "e1b48f2359718b9b55bf6aca",
+          "company": "The Walt Disney Company",
+          "title": "Disneyland Resort Industrial Engineering Intern, Fall 2026",
+          "term": "Fall 2026",
+          "location": "Anaheim, CA, USA",
+          "regions": [
+            "us"
+          ],
+          "metros": [
+            "los-angeles"
+          ],
+          "workMode": "unknown",
+          "postedAt": "2026-10-27T23:52:43.501Z",
+          "postedAtSource": "first_seen",
+          "applyUrl": "https://disney.wd5.myworkdayjobs.com/disneycareerdc/job/Anaheim-CA-USA/Disneyland-Resort-Industrial-Engineering-Intern--Fall-2026_10143785-2",
+          "linkedInUrl": null,
+          "category": "Internship",
+          "roleTags": [
+            "process-manufacturing"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software Fall 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": 100000,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:17.430Z",
+            "endpoint": "https://disney.wd5.myworkdayjobs.com/wday/cxs/disney/disneycareerdc/job/Anaheim-CA-USA/Disneyland-Resort-Industrial-Engineering-Intern--Fall-2026_10143785-2",
+            "httpStatus": 403,
+            "status": "unknown",
+            "normalizedCandidate": null,
+            "smartRecruiters": null
+          }
+        },
+        {
+          "id": "261fd14d59081e7d114d2f9d",
+          "company": "The Walt Disney Company",
+          "title": "Walt Disney World Alumni Industrial Engineering Intern, Fall 2026",
+          "term": "Fall 2026",
+          "location": "Lake Buena Vista, FL, USA",
+          "regions": [
+            "us"
+          ],
+          "metros": [],
+          "workMode": "unknown",
+          "postedAt": "2026-10-27T23:52:43.501Z",
+          "postedAtSource": "first_seen",
+          "applyUrl": "https://disney.wd5.myworkdayjobs.com/disneycareerdc/job/Lake-Buena-Vista-FL-USA/Walt-Disney-World-Alumni-Industrial-Engineering-Intern--Fall-2026_10120930",
+          "linkedInUrl": null,
+          "category": "Internship",
+          "roleTags": [
+            "process-manufacturing"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software Fall 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": 100000,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:17.431Z",
+            "endpoint": "https://disney.wd5.myworkdayjobs.com/wday/cxs/disney/disneycareerdc/job/Lake-Buena-Vista-FL-USA/Walt-Disney-World-Alumni-Industrial-Engineering-Intern--Fall-2026_10120930",
+            "httpStatus": 403,
+            "status": "unknown",
+            "normalizedCandidate": null,
+            "smartRecruiters": null
+          }
+        },
+        {
+          "id": "748f16085b3087ba49e63de8",
+          "company": "Micron Technology",
+          "title": "Product Test Engineer Intern - DRAM",
+          "term": "Fall 2026",
+          "location": "Boise, ID",
+          "regions": [
+            "us"
+          ],
+          "metros": [],
+          "workMode": "unknown",
+          "postedAt": "2026-08-30T00:00:00.000Z",
+          "postedAtSource": "date_only",
+          "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/DRAM-Prodcut-Test-Engineer-Intern_JR109996",
+          "linkedInUrl": null,
+          "category": "Internship",
+          "roleTags": [
+            "systems-test"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software Fall 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": null,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:17.433Z",
+            "endpoint": "https://micron.wd1.myworkdayjobs.com/wday/cxs/micron/External/job/Boise-ID---Main-Site/DRAM-Prodcut-Test-Engineer-Intern_JR109996",
+            "httpStatus": 403,
+            "status": "unknown",
+            "normalizedCandidate": null,
+            "smartRecruiters": null
+          }
+        },
+        {
+          "id": "314eb0ff459f1d92b015cd23",
+          "company": "Micron Technology",
+          "title": "Marketing Analytics Intern - Global Communications & Marketing",
+          "term": "Fall 2026",
+          "location": "Meridian, ID",
+          "regions": [
+            "us"
+          ],
+          "metros": [],
+          "workMode": "unknown",
+          "postedAt": "2026-08-27T00:00:00.000Z",
+          "postedAtSource": "date_only",
+          "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Meridian-ID/Intern---Marketing-Analytics_JR109458",
+          "linkedInUrl": null,
+          "category": "Internship",
+          "roleTags": [
+            "analytics",
+            "marketing-sales"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software Fall 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": null,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:17.434Z",
+            "endpoint": "https://micron.wd1.myworkdayjobs.com/wday/cxs/micron/External/job/Meridian-ID/Intern---Marketing-Analytics_JR109458",
+            "httpStatus": 403,
+            "status": "unknown",
+            "normalizedCandidate": null,
+            "smartRecruiters": null
+          }
+        },
+        {
+          "id": "755110897c8a174810065669",
+          "company": "Johnson & Johnson",
+          "title": "Data Operations & Analytics Co-op",
+          "term": "Fall 2026",
+          "location": "Somerset County, NJ, Hopewell Township, NJ",
+          "regions": [
+            "us"
+          ],
+          "metros": [],
+          "workMode": "unknown",
+          "postedAt": "2026-08-24T00:00:00.000Z",
+          "postedAtSource": "date_only",
+          "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Somerset-New-Jersey-United-States-of-America/Data-Operations---Analytics-Spring-Co-op_R-091978",
+          "linkedInUrl": null,
+          "category": "Internship",
+          "roleTags": [
+            "analytics",
+            "operations-supply-chain"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software Fall 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": null,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:17.436Z",
+            "endpoint": "https://jj.wd5.myworkdayjobs.com/wday/cxs/jj/JJ/job/Somerset-New-Jersey-United-States-of-America/Data-Operations---Analytics-Spring-Co-op_R-091978",
+            "httpStatus": 403,
+            "status": "unknown",
+            "normalizedCandidate": null,
+            "smartRecruiters": null
+          }
+        },
+        {
+          "id": "0a1cc0c6ffe4c3eb5653dfb3",
+          "company": "Micron Technology",
+          "title": "Realtime Defect Analysis Intern - Yield Technology",
+          "term": "Fall 2026",
+          "location": "Boise, ID",
+          "regions": [
+            "us"
+          ],
+          "metros": [],
+          "workMode": "unknown",
+          "postedAt": "2026-08-24T00:00:00.000Z",
+          "postedAtSource": "date_only",
+          "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---Realtime-Defect-Analysis--RDA--Yield-Technology_JR109054",
+          "linkedInUrl": null,
+          "category": "Internship",
+          "roleTags": [
+            "process-manufacturing"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software Fall 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": null,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:17.832Z",
+            "endpoint": "https://micron.wd1.myworkdayjobs.com/wday/cxs/micron/External/job/Boise-ID---Main-Site/Intern---Realtime-Defect-Analysis--RDA--Yield-Technology_JR109054",
+            "httpStatus": 200,
+            "status": "live",
+            "title": "Intern - Realtime Defect Analysis (RDA) Yield Technology",
+            "posted": true,
+            "canApply": true,
+            "jobReqId": "JR109054",
+            "employerLocationEligible": true,
+            "employerFreshnessRejection": null,
+            "reviewFlags": [],
+            "normalizedCandidate": {
+              "title": "Intern - Realtime Defect Analysis (RDA) Yield Technology",
+              "location": "Boise, ID - Main Site",
+              "term": "Not stated",
+              "postedAt": "2026-08-24T00:00:00.000Z",
+              "postedAtSource": "date_only"
+            },
+            "smartRecruiters": null
+          }
+        },
+        {
+          "id": "3fb20f1e0a5fcebaaa7a1612",
+          "company": "Micron Technology",
+          "title": "Thin Films Equipment Engineering Intern - EDE",
+          "term": "Fall 2026",
+          "location": "Boise, ID",
+          "regions": [
+            "us"
+          ],
+          "metros": [],
+          "workMode": "unknown",
+          "postedAt": "2026-08-24T00:00:00.000Z",
+          "postedAtSource": "date_only",
+          "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---EDE-Thin-Films-Equipment-Engineering_JR108977",
+          "linkedInUrl": null,
+          "category": "Internship",
+          "roleTags": [
+            "process-manufacturing",
+            "materials-chemical"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software Fall 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": null,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:17.834Z",
+            "endpoint": "https://micron.wd1.myworkdayjobs.com/wday/cxs/micron/External/job/Boise-ID---Main-Site/Intern---EDE-Thin-Films-Equipment-Engineering_JR108977",
+            "httpStatus": 403,
+            "status": "unknown",
+            "normalizedCandidate": null,
+            "smartRecruiters": null
+          }
+        },
+        {
+          "id": "6f87841193ac5ad356c91b04",
+          "company": "Micron Technology",
+          "title": "Yield Enhancement Intern - Data Analysis",
+          "term": "Fall 2026",
+          "location": "Boise, ID",
+          "regions": [
+            "us"
+          ],
+          "metros": [],
+          "workMode": "unknown",
+          "postedAt": "2026-08-21T00:00:00.000Z",
+          "postedAtSource": "date_only",
+          "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---Yield-Enhancement--Data-Analysis_JR109076",
+          "linkedInUrl": null,
+          "category": "Internship",
+          "roleTags": [
+            "process-manufacturing"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software Fall 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": null,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:17.835Z",
+            "endpoint": "https://micron.wd1.myworkdayjobs.com/wday/cxs/micron/External/job/Boise-ID---Main-Site/Intern---Yield-Enhancement--Data-Analysis_JR109076",
+            "httpStatus": 403,
+            "status": "unknown",
+            "normalizedCandidate": null,
+            "smartRecruiters": null
+          }
+        },
+        {
+          "id": "08b6c0c100cd5459a60e3372",
+          "company": "Micron Technology",
+          "title": "SoC RTL Design Engineer Intern - HBM",
+          "term": "Fall 2026",
+          "location": "Folsom, CA",
+          "regions": [
+            "us"
+          ],
+          "metros": [],
+          "workMode": "unknown",
+          "postedAt": "2026-08-20T00:00:00.000Z",
+          "postedAtSource": "date_only",
+          "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Folsom-CA/Intern---HBM-SoC-RTL-Design-Engineer_JR109290",
+          "linkedInUrl": null,
+          "category": "Internship",
+          "roleTags": [
+            "hardware-electrical"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software Fall 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": null,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:17.837Z",
+            "endpoint": "https://micron.wd1.myworkdayjobs.com/wday/cxs/micron/External/job/Folsom-CA/Intern---HBM-SoC-RTL-Design-Engineer_JR109290",
+            "httpStatus": 403,
+            "status": "unknown",
+            "normalizedCandidate": null,
+            "smartRecruiters": null
+          }
+        },
+        {
+          "id": "c564dcf4c5142f5733e97ca4",
+          "company": "Bosch",
+          "title": "Manufacturing Engineering/Operations Co-op - Fall 2026",
+          "term": "Fall 2026",
+          "location": "Pineville, NC, us",
+          "regions": [
+            "us"
+          ],
+          "metros": [],
+          "workMode": "unknown",
+          "postedAt": "2026-08-14T14:04:54.250Z",
+          "postedAtSource": "exact",
+          "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000143527019",
+          "linkedInUrl": null,
+          "category": "Internship",
+          "roleTags": [
+            "process-manufacturing",
+            "operations-supply-chain"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software Fall 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": null,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:17.837Z",
+            "page": {
+              "url": "https://jobs.smartrecruiters.com/BoschGroup/744000143527019",
+              "status": "live",
+              "checkedAt": "2026-10-28T00:00:18.552Z",
+              "httpStatus": 200
+            },
+            "status": "live",
+            "employerLocation": {
+              "city": "Pineville",
+              "region": "NC",
+              "country": "us",
+              "address": "Carolina Logistics Drive",
+              "postalCode": "28134",
+              "remote": false,
+              "hybrid": false,
+              "latitude": "35.0991429",
+              "longitude": "-80.9116044",
+              "fullLocation": "Pineville, NC, United States"
+            },
+            "employerTitle": "Manufacturing Engineering/Operations Co-op - Fall 2026",
+            "sourceEmployerTitleDiffers": false,
+            "normalizedCandidate": null,
+            "smartRecruiters": {
+              "name": "Manufacturing Engineering/Operations Co-op - Fall 2026",
+              "active": true,
+              "releasedDate": "2026-08-14T14:04:54.250Z",
+              "location": {
+                "city": "Pineville",
+                "region": "NC",
+                "country": "us",
+                "address": "Carolina Logistics Drive",
+                "postalCode": "28134",
+                "remote": false,
+                "hybrid": false,
+                "latitude": "35.0991429",
+                "longitude": "-80.9116044",
+                "fullLocation": "Pineville, NC, United States"
+              }
+            }
+          }
+        },
+        {
+          "id": "f12652729e3db0938b761b29",
+          "company": "RTX",
+          "title": "Electro-Optical Systems Technician Intern - AN/ZSQ-2",
+          "term": "Fall 2026",
+          "location": "Fort Campbell, KY",
+          "regions": [
+            "us"
+          ],
+          "metros": [],
+          "workMode": "unknown",
+          "postedAt": "2026-08-11T00:00:00.000Z",
+          "postedAtSource": "date_only",
+          "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/rec_rtx_ext_gateway/job/US-KY-FORT-CAMPBELL-7228NS-CUST--7228-Nightstalker-Wy--BLDG-6882-Rm-210-External-Site/SkillBridge--AN-ZSQ-2-Electro-Optical-Systems-Depot-Technician-Intern_01865923",
+          "linkedInUrl": null,
+          "category": "Internship",
+          "roleTags": [
+            "it-support-network"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software Fall 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": 60000,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:19.163Z",
+            "endpoint": "https://globalhr.wd5.myworkdayjobs.com/wday/cxs/globalhr/rec_rtx_ext_gateway/job/US-KY-FORT-CAMPBELL-7228NS-CUST--7228-Nightstalker-Wy--BLDG-6882-Rm-210-External-Site/SkillBridge--AN-ZSQ-2-Electro-Optical-Systems-Depot-Technician-Intern_01865923",
+            "httpStatus": 403,
+            "status": "unknown",
+            "reviewFlags": [
+              "skillbridge-url-needs-military-eligibility-review"
+            ],
+            "normalizedCandidate": null,
+            "smartRecruiters": null
+          }
+        },
+        {
+          "id": "3e867b37d9ccf30ee758ec9c",
+          "company": "Western Digital",
+          "title": "Fall 2026 PhD Intern - Hardware Development Engineering",
+          "term": "Fall 2026",
+          "location": "Fremont, CA",
+          "regions": [
+            "us"
+          ],
+          "metros": [
+            "sf-bay-area"
+          ],
+          "workMode": "unknown",
+          "postedAt": "2026-07-16T20:09:54.795Z",
+          "postedAtSource": "exact",
+          "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000138191379",
+          "linkedInUrl": null,
+          "category": "Internship",
+          "roleTags": [
+            "hardware-electrical"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software Fall 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": null,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:19.164Z",
+            "page": {
+              "url": "https://jobs.smartrecruiters.com/WesternDigital/744000138191379",
+              "status": "live",
+              "checkedAt": "2026-10-28T00:00:19.656Z",
+              "httpStatus": 200
+            },
+            "status": "live",
+            "employerLocation": {
+              "city": "Fremont",
+              "region": "CA",
+              "country": "us",
+              "remote": false,
+              "hybrid": false,
+              "latitude": "37.5485396",
+              "longitude": "-121.988583",
+              "fullLocation": "Fremont, CA, United States"
+            },
+            "employerTitle": "Fall 2026 PhD Intern - Hardware Development Engineering",
+            "sourceEmployerTitleDiffers": false,
+            "normalizedCandidate": null,
+            "smartRecruiters": {
+              "name": "Fall 2026 PhD Intern - Hardware Development Engineering",
+              "active": true,
+              "releasedDate": "2026-07-16T20:09:54.795Z",
+              "location": {
+                "city": "Fremont",
+                "region": "CA",
+                "country": "us",
+                "remote": false,
+                "hybrid": false,
+                "latitude": "37.5485396",
+                "longitude": "-121.988583",
+                "fullLocation": "Fremont, CA, United States"
+              }
+            }
+          }
+        }
+      ],
+      "removed": [],
+      "heldPublished": [],
+      "quarantineRows": null,
+      "refreshReport": {
+        "status": "degraded",
+        "sources": {
+          "total": 27,
+          "healthy": 27,
+          "failed": 0,
+          "empty": 0
+        },
+        "boards": {
+          "total": 547,
+          "healthy": 544,
+          "failed": 3,
+          "failures": [
+            {
+              "provider": "greenhouse",
+              "key": "andurilindustries",
+              "company": "Anduril",
+              "status": "failed",
+              "rows": 0,
+              "retryRequests": 1,
+              "durationMs": 43,
+              "message": "timeout"
+            },
+            {
+              "provider": "ashby",
+              "key": "whatnot",
+              "company": "WhatNot",
+              "status": "failed",
+              "rows": 0,
+              "retryRequests": 0,
+              "durationMs": 145,
+              "message": "404 Not Found"
+            },
+            {
+              "provider": "greenhouse",
+              "key": "oldmissioncapital",
+              "company": "Old Mission",
+              "status": "failed",
+              "rows": 0,
+              "retryRequests": 0,
+              "durationMs": 348,
+              "message": "404 Not Found"
+            }
+          ]
+        },
+        "verification": [
+          {
+            "provider": "smartrecruiters",
+            "attempted": 145,
+            "verified": 145
+          },
+          {
+            "provider": "microsoft",
+            "attempted": 30,
+            "verified": 30
+          },
+          {
+            "provider": "scoped_employer",
+            "attempted": 0,
+            "verified": 0
+          }
+        ],
+        "listings": {
+          "candidates": 21355,
+          "accepted": 5819,
+          "quarantined": 12917,
+          "rejected": 1456,
+          "preservedFromLastHealthySnapshot": 35,
+          "checksAttempted": 250,
+          "checksCompleted": 250,
+          "knownClosed": 630,
+          "screening": {
+            "version": 1,
+            "unit": "application_destinations",
+            "reviewed": 16697,
+            "accepted": 5929,
+            "excluded": 5838,
+            "pendingVerification": 4930,
+            "uncountedRecords": 0,
+            "reasons": {
+              "closed": 86,
+              "expired": 303,
+              "location": 1114,
+              "role": 4274,
+              "employer": 61
+            }
+          }
+        }
+      },
+      "listingChangesSummary": null
+    },
+    {
+      "name": "newgrad",
+      "jobs": 5804,
+      "generatedAt": "2026-10-27T23:52:43.501Z",
+      "replay": {
+        "frozenRequests": 1636,
+        "uniqueRequests": 1635,
+        "missingFrozenInputs": 0
+      },
+      "sourceHealth": [
+        {
+          "name": "Internship Engine",
+          "status": "ok",
+          "rows": 1195
+        },
+        {
+          "name": "ApplyGuy Product Internships 2027",
+          "status": "ok",
+          "rows": 49
+        },
+        {
+          "name": "2027-AI-College-Jobs 2027",
+          "status": "ok",
+          "rows": 791
+        },
+        {
+          "name": "2027-AI-College-Jobs New Grad 2027",
+          "status": "ok",
+          "rows": 520
+        },
+        {
+          "name": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
+          "status": "ok",
+          "rows": 555
+        },
+        {
+          "name": "Dreamwork Business Internships 2027",
+          "status": "ok",
+          "rows": 392
+        },
+        {
+          "name": "Dreamwork New Grad US",
+          "status": "ok",
+          "rows": 1366
+        },
+        {
+          "name": "Dreamwork Tech Internships 2027",
+          "status": "ok",
+          "rows": 1309
+        },
+        {
+          "name": "Keryx Non-Software New Grad 2027",
+          "status": "ok",
+          "rows": 57
+        },
+        {
+          "name": "Keryx Non-Software Spring 2027",
+          "status": "ok",
+          "rows": 174
+        },
+        {
+          "name": "Keryx Non-Software Summer 2027",
+          "status": "ok",
+          "rows": 1058
+        },
+        {
+          "name": "Keryx Non-Software Winter 2027",
+          "status": "ok",
+          "rows": 58
+        },
+        {
+          "name": "New-Grad-2027 2027",
+          "status": "ok",
+          "rows": 626
+        },
+        {
+          "name": "Open-Tech-Internships-2027 2027",
+          "status": "ok",
+          "rows": 1804
+        },
+        {
+          "name": "Simplify Off-Season 2027",
+          "status": "ok",
+          "rows": 922
+        },
+        {
+          "name": "Simplify Summer 2027",
+          "status": "ok",
+          "rows": 1793
+        },
+        {
+          "name": "SpeedyApply Internships",
+          "status": "ok",
+          "rows": 843
+        },
+        {
+          "name": "SpeedyApply New Grad USA",
+          "status": "ok",
+          "rows": 878
+        },
+        {
+          "name": "Summer 2027 Tech Internships",
+          "status": "ok",
+          "rows": 100
+        },
+        {
+          "name": "Vansh Off-Season 2027",
+          "status": "ok",
+          "rows": 346
+        },
+        {
+          "name": "Vansh Summer 2027",
+          "status": "ok",
+          "rows": 1210
+        },
+        {
+          "name": "Keryx Non-Software New Grad 2026",
+          "status": "ok",
+          "rows": 14
+        },
+        {
+          "name": "USAJOBS selective review",
+          "status": "ok",
+          "rows": 96
+        },
+        {
+          "name": "Workday: Applied Materials",
+          "status": "ok",
+          "rows": 100
+        },
+        {
+          "name": "Workday: Micron",
+          "status": "ok",
+          "rows": 373
+        },
+        {
+          "name": "Workday: Medtronic",
+          "status": "ok",
+          "rows": 117
+        },
+        {
+          "name": "Workday: Abbott",
+          "status": "ok",
+          "rows": 99
+        }
+      ],
+      "screening": {
+        "version": 1,
+        "unit": "application_destinations",
+        "reviewed": 16678,
+        "accepted": 5914,
+        "excluded": 5836,
+        "pendingVerification": 4928,
+        "uncountedRecords": 0,
+        "reasons": {
+          "closed": 85,
+          "expired": 302,
+          "location": 1114,
+          "role": 4274,
+          "employer": 61
+        }
+      },
+      "added": [
+        {
+          "id": "63b53faf1b52968604a72c2d",
+          "company": "GlobalFoundries",
+          "title": "3D Heterogeneous Integration Engineer (2026 New College Graduate)",
+          "term": "Not stated",
+          "location": "USA - New York - Malta",
+          "regions": [
+            "us"
+          ],
+          "metros": [
+            "new-york-city"
+          ],
+          "workMode": "unknown",
+          "postedAt": "2026-10-27T23:52:43.501Z",
+          "postedAtSource": "first_seen",
+          "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---New-York---Malta/XMLNAME-3D-Heterogeneous-Integration-Design-Enablement-Engineer--2025-New-College-Graduate-_JR-2501678",
+          "linkedInUrl": null,
+          "category": "New grad",
+          "roleTags": [
+            "systems-test"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software New Grad 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": null,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:19.165Z",
+            "endpoint": "https://globalfoundries.wd1.myworkdayjobs.com/wday/cxs/globalfoundries/External/job/USA---New-York---Malta/XMLNAME-3D-Heterogeneous-Integration-Design-Enablement-Engineer--2025-New-College-Graduate-_JR-2501678",
+            "httpStatus": 200,
+            "status": "live",
+            "title": "3D Heterogeneous Integration Engineer (2026 New College Graduate)",
+            "posted": true,
+            "canApply": true,
+            "jobReqId": "JR-2501678",
+            "employerLocationEligible": true,
+            "employerFreshnessRejection": null,
+            "reviewFlags": [
+              "masters-or-phd-required"
+            ],
+            "yearNote": "URL slug contains 2025; current employer title confirms 2026, so this is not a confirmed title mismatch.",
+            "normalizedCandidate": {
+              "title": "3D Heterogeneous Integration Engineer (2026 New College Graduate)",
+              "location": "USA - New York - Malta",
+              "term": "Not stated",
+              "postedAt": "2026-10-19T00:00:00.000Z",
+              "postedAtSource": "date_only"
+            },
+            "smartRecruiters": null
+          }
+        },
+        {
+          "id": "a3cfde307baba08373ae5059",
+          "company": "NVIDIA",
+          "title": "ASIC Design Verification Engineer - New College Grad 2026",
+          "term": "Not stated",
+          "location": "US, TX, Austin",
+          "regions": [
+            "us"
+          ],
+          "metros": [
+            "austin"
+          ],
+          "workMode": "unknown",
+          "postedAt": "2026-10-27T23:52:43.501Z",
+          "postedAtSource": "first_seen",
+          "applyUrl": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-TX-Austin/ASIC-Design-Verification-Engineer---New-College-Grad-2026_JR2010391",
+          "linkedInUrl": "https://www.linkedin.com/company/nvidia",
+          "category": "New grad",
+          "roleTags": [
+            "hardware-electrical",
+            "systems-test"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software New Grad 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": 10000,
+          "alreadyInProduction": false,
+          "semanticControlMatch": false,
+          "workdayRequisitionControlMatch": false,
+          "locationEligible": true,
+          "employerAudit": {
+            "checkedAt": "2026-10-28T00:00:19.166Z",
+            "endpoint": "https://nvidia.wd5.myworkdayjobs.com/wday/cxs/nvidia/NVIDIAExternalCareerSite/job/US-TX-Austin/ASIC-Design-Verification-Engineer---New-College-Grad-2026_JR2010391",
+            "httpStatus": 200,
+            "status": "live",
+            "title": "ASIC Design Verification Engineer - New College Grad 2026",
+            "posted": true,
+            "canApply": true,
+            "jobReqId": "JR2010391",
+            "employerLocationEligible": true,
+            "employerFreshnessRejection": null,
+            "reviewFlags": [],
+            "normalizedCandidate": {
+              "title": "ASIC Design Verification Engineer - New College Grad 2026",
+              "location": "US, TX, Austin",
+              "term": "Not stated",
+              "postedAt": "2026-01-09T00:00:00.000Z",
+              "postedAtSource": "date_only"
+            },
+            "smartRecruiters": null
+          }
+        }
+      ],
+      "removed": [],
+      "heldPublished": [],
+      "quarantineRows": null,
+      "refreshReport": {
+        "status": "degraded",
+        "sources": {
+          "total": 27,
+          "healthy": 27,
+          "failed": 0,
+          "empty": 0
+        },
+        "boards": {
+          "total": 547,
+          "healthy": 544,
+          "failed": 3,
+          "failures": [
+            {
+              "provider": "greenhouse",
+              "key": "andurilindustries",
+              "company": "Anduril",
+              "status": "failed",
+              "rows": 0,
+              "retryRequests": 1,
+              "durationMs": 69,
+              "message": "timeout"
+            },
+            {
+              "provider": "ashby",
+              "key": "whatnot",
+              "company": "WhatNot",
+              "status": "failed",
+              "rows": 0,
+              "retryRequests": 0,
+              "durationMs": 142,
+              "message": "404 Not Found"
+            },
+            {
+              "provider": "greenhouse",
+              "key": "oldmissioncapital",
+              "company": "Old Mission",
+              "status": "failed",
+              "rows": 0,
+              "retryRequests": 0,
+              "durationMs": 345,
+              "message": "404 Not Found"
+            }
+          ]
+        },
+        "verification": [
+          {
+            "provider": "smartrecruiters",
+            "attempted": 141,
+            "verified": 141
+          },
+          {
+            "provider": "microsoft",
+            "attempted": 30,
+            "verified": 30
+          },
+          {
+            "provider": "scoped_employer",
+            "attempted": 0,
+            "verified": 0
+          }
+        ],
+        "listings": {
+          "candidates": 21334,
+          "accepted": 5804,
+          "quarantined": 12907,
+          "rejected": 1456,
+          "preservedFromLastHealthySnapshot": 33,
+          "checksAttempted": 250,
+          "checksCompleted": 250,
+          "knownClosed": 629,
+          "screening": {
+            "version": 1,
+            "unit": "application_destinations",
+            "reviewed": 16678,
+            "accepted": 5914,
+            "excluded": 5836,
+            "pendingVerification": 4928,
+            "uncountedRecords": 0,
+            "reasons": {
+              "closed": 85,
+              "expired": 302,
+              "location": 1114,
+              "role": 4274,
+              "employer": 61
+            }
+          }
+        }
+      },
+      "listingChangesSummary": null
+    }
+  ],
+  "inputManifest": {
+    "clock": "2026-10-27T23:52:43.501Z",
+    "head": "21cf7862ab8f08487f2d2ca55467c4d7c157d851",
+    "baselineSha256": "9a400ee9d6270b6724a82ac61ea06bee624ecf20ef7a321203506f314a55f346",
+    "files": [
+      {
+        "file": "lib\\activity-client.ts",
+        "sha256": "35fb77944f85cd82128390b94e4c4a13c03bb3981222f27894e08a95419597b7"
+      },
+      {
+        "file": "lib\\activity-contract.ts",
+        "sha256": "31ba8e628d2df52f842a2e70dc73ddfde437c6afb8469ce286b0648ba975ffe5"
+      },
+      {
+        "file": "lib\\analytics.ts",
+        "sha256": "9de19a799a1d378e0862be25a01c4e9fe623171959653f1f5a1eeb6f4314c497"
+      },
+      {
+        "file": "lib\\application-backup.ts",
+        "sha256": "4cf60dd74b0a02ea30ead5bfa078722fc5cfe939177ea32913fd66f1b95ba278"
+      },
+      {
+        "file": "lib\\application-status.ts",
+        "sha256": "ac23b3249982572a3fa348585f6e3b005ed67d14c82458f7440df2007ae19cfa"
+      },
+      {
+        "file": "lib\\applications.ts",
+        "sha256": "d653733b2fcc925e1a69af0d9da352630c14d66eac41d721069145024b089da9"
+      },
+      {
+        "file": "lib\\ats-boards.ts",
+        "sha256": "529422177cb04269a30e944b4ed9061966b52969fd914af8adc358870ebbcd87"
+      },
+      {
+        "file": "lib\\company-quality.ts",
+        "sha256": "2b909251ba674c612e366b2a4c217a4a0a2fc208b160557941469181dcb0ab7b"
+      },
+      {
+        "file": "lib\\company-tiers.ts",
+        "sha256": "69546c4dec954e3f3e3b32b5247ff23de929d358b6f579974c7477f74feaf304"
+      },
+      {
+        "file": "lib\\hidden-companies.ts",
+        "sha256": "65967bb37db25a96da37862d562ccaf7d470ca1973fb9ba24a36db4c801a6940"
+      },
+      {
+        "file": "lib\\ingestion\\concurrency.ts",
+        "sha256": "f705abdddbd0d586361720db3d5073615545ba3801148a4f36c3f38eb7a5391f"
+      },
+      {
+        "file": "lib\\ingestion\\engine-source.ts",
+        "sha256": "a1e936df2c907d3e035c3343d91462e250a4d238bc927a9c3dd3fb6084cbed8a"
+      },
+      {
+        "file": "lib\\ingestion\\last-known-good.ts",
+        "sha256": "a435d8df578c32a7b7a6b613a692df19c52667121ea06dd358ae2f0fc4405d0a"
+      },
+      {
+        "file": "lib\\ingestion\\listing-changes.ts",
+        "sha256": "787231dd80a761d85be767fca63369b6951ccb1f63c96e680e0454b92bceec68"
+      },
+      {
+        "file": "lib\\ingestion\\load-candidates.ts",
+        "sha256": "634721cd17f29a5226802b7ccbdf1f3bf8af0cdffb0da0d1fe0173ea32feb4c8"
+      },
+      {
+        "file": "lib\\ingestion\\refresh-report.ts",
+        "sha256": "b879fe98239c05ed68f985348cd0376c39516d747fb51069d5b0059b9a5ba0fc"
+      },
+      {
+        "file": "lib\\ingestion\\reviewed-employer-coverage.ts",
+        "sha256": "e381a848fefc18aa8f21e299620ac4655dba9052d632842a0c9abc04a6f818c9"
+      },
+      {
+        "file": "lib\\ingestion\\scoped-listing-cache.ts",
+        "sha256": "75ddfb6e68d1379120203d7838a34afc030ae3019d29632ac093d0d93ec4bc9d"
+      },
+      {
+        "file": "lib\\ingestion\\screening.ts",
+        "sha256": "581005335c2ad06f2ef1bb460467bb3ea7ea8cc375e617650ffdf76bc4fb49c4"
+      },
+      {
+        "file": "lib\\ingestion\\source-review-holds.ts",
+        "sha256": "56bf1571ebba438909d59bae3f651ad6ec5f7111930e9044f37abc7120466503"
+      },
+      {
+        "file": "lib\\ingestion\\types.ts",
+        "sha256": "cf90cf8394a625ab484c46966406cae043ddcb7bd27b61b45cf6e47165cf012e"
+      },
+      {
+        "file": "lib\\ingestion\\usajobs.ts",
+        "sha256": "1091790bcf6e7bce4a3b1362dd8055e5dddba6574dd6a950aef7fb2f95aec0d2"
+      },
+      {
+        "file": "lib\\job-board.ts",
+        "sha256": "513c2b13d3e880b671c283546ae860971942b3f940f3f5494c224f792c00fe4a"
+      },
+      {
+        "file": "lib\\job-collections.ts",
+        "sha256": "748b5673073747be5f584f0e752743feb8b51d7986d19b3235b8582b964374ad"
+      },
+      {
+        "file": "lib\\job-dedup.ts",
+        "sha256": "4b7f3d9858ef2453a20cd5525aba607b195f79e1c95ba79256bf18c41481303d"
+      },
+      {
+        "file": "lib\\job-freshness.ts",
+        "sha256": "20ff1f57850b86d57fc3902f486486c246261d2807b1a804e9e8644a4942853c"
+      },
+      {
+        "file": "lib\\job-insights.ts",
+        "sha256": "77624e6b3e1c0aa1a72cd38ee113d53f0dbde077b551dfe4899d3d6e200f7b48"
+      },
+      {
+        "file": "lib\\job-location-policy.ts",
+        "sha256": "9dd79a565881e179c75a1d1ac9856dab3f54c3adca9e0f6d3b15fc5352b60a63"
+      },
+      {
+        "file": "lib\\job-locations.ts",
+        "sha256": "9b63b7fb30d4471f3be38c4aefdd5a46bd41ca060213f41a573e0ecb4aa46839"
+      },
+      {
+        "file": "lib\\job-summary.ts",
+        "sha256": "e3db51cadce91c6b210d6c00afe0badde4f6bd061070f8767a927b7d98a07ad0"
+      },
+      {
+        "file": "lib\\jobs.ts",
+        "sha256": "de02d392dc61095672392110d836468ecb375518e5bc4918b2c22508e1449093"
+      },
+      {
+        "file": "lib\\listing-health.ts",
+        "sha256": "c6bc87350c0cca319315bca21572658aa420b5b06918c492754c09f9930c4274"
+      },
+      {
+        "file": "lib\\microsoft-careers.ts",
+        "sha256": "40b0000e56feb976d20b8ee11dbaaaa636e913b68eb3b84bf3fe0ff0fb3e2faa"
+      },
+      {
+        "file": "lib\\process-manufacturing.ts",
+        "sha256": "2f017b4a5f5a30afaa306eb3a39807c33cd4c154154a648d6b6c6f4512f5467f"
+      },
+      {
+        "file": "lib\\role-areas.ts",
+        "sha256": "cb83ae7934301206b545057a9124ac147356f2b393ef55bf98f56fa4db256d74"
+      },
+      {
+        "file": "lib\\saved-job-details.ts",
+        "sha256": "e41fa229effc3a8354689b86f1e983b15e6c15002e3313ae184efaa7de941e29"
+      },
+      {
+        "file": "lib\\saved-jobs.ts",
+        "sha256": "65647e886608fb68d65fc1212d4e3e76ec78ba00d76cf2c7be2a17e011da7335"
+      },
+      {
+        "file": "lib\\smartrecruiters.ts",
+        "sha256": "e1943fe66794cf70231a5ce865515d5f054a8c6baa1ca089ce68dd5993b976b7"
+      },
+      {
+        "file": "lib\\snapshot-polling.ts",
+        "sha256": "afa555a10a9c2ba5654535fc4b47ef046e0aa274ef1150d8d2a551cd0c960587"
+      },
+      {
+        "file": "lib\\source-catalog.ts",
+        "sha256": "a1f39a3d93909820aba86e1d6a0c934a5fdf88d7b9556910d183a2248b15b64a"
+      },
+      {
+        "file": "lib\\source-licenses.ts",
+        "sha256": "87113f8dd3333c34bbd1bd391433d87583ac756f4b56dab9b4d767be4fbe6d1a"
+      },
+      {
+        "file": "lib\\source-normalization.ts",
+        "sha256": "ea3ee7a4c14c6aed9aacac81081326b6975f325124369f66b293169e6b4384c0"
+      },
+      {
+        "file": "lib\\source-parsers.ts",
+        "sha256": "dcca94e4375a3c57c999a2b60ebd942348701f1efeda6110e0498a06a12c633f"
+      },
+      {
+        "file": "lib\\usajobs.ts",
+        "sha256": "500c9d70592f3d85b77d7b92ad7ff19d9d6b2760b7e7166e8b88137329fbe5fa"
+      },
+      {
+        "file": "lib\\workday.ts",
+        "sha256": "9ef0f078f75814a4f2571f3b102b7e80ea9ce8ae08f9a1d4b3ca9ea4615d944e"
+      },
+      {
+        "file": "scripts\\audit-job-locations.ts",
+        "sha256": "a7e45c0e916c418e83760e7c75aca2f20c3463a2ec34ec8a5415ab5bbe7ef5cb"
+      },
+      {
+        "file": "scripts\\audit-listing-quality.ts",
+        "sha256": "f6bed9be7667f16ffd8e782c1f48d7e2dcf89aabe662d1e5b2630f59393c2069"
+      },
+      {
+        "file": "scripts\\audit-refresh-changes.ts",
+        "sha256": "f1918bb22909abc683249bffff0377ad5b40ac4f72cda1e6e1476d295db76c95"
+      },
+      {
+        "file": "scripts\\audit-source-candidates.ts",
+        "sha256": "95b5c6fda1cab4fdaaee9ef667897d5205aa8a12c7d8dc346e33b27cb6ffa4de"
+      },
+      {
+        "file": "scripts\\audit-usajobs.ts",
+        "sha256": "a3555ed80c39a2e3c0c99a89498f3975cbfb5d9d5b53480448585caf8b174897"
+      },
+      {
+        "file": "scripts\\check-refresh-needed.mjs",
+        "sha256": "78a532c74eec0d4d597708c027bf7b430a4062ec3c2fdec734441fef50e14e5e"
+      },
+      {
+        "file": "scripts\\maintain-sources.ts",
+        "sha256": "3a132a0f80f56f7f5633671961a9584bf161cefb31006eef24c15c5ce1ec7518"
+      },
+      {
+        "file": "scripts\\measure-self-service-sources.ts",
+        "sha256": "68bb2aa995942cdf4b527c4dbeff5f1851d4ab40f6e2398e557f113a5c81dba9"
+      },
+      {
+        "file": "scripts\\measure-usajobs.ts",
+        "sha256": "731ce0954061bdf58f78914b309164aeab808b1eb2d089368764daf8cadb2758"
+      },
+      {
+        "file": "scripts\\prepare-activity-credentials.mjs",
+        "sha256": "e9ddc072ce9eb048c7c6273253473685faa5239ee5d07dde379b0a9b865e91e3"
+      },
+      {
+        "file": "scripts\\review-requisition-groups.ts",
+        "sha256": "33f4906b2e7815e443dcb0968127e7d77a18aa4217d0c98fc4fd8cb1d6dabdf9"
+      },
+      {
+        "file": "scripts\\review-usajobs.ts",
+        "sha256": "502a138986d60a47ad6d489b584536209987c131c003719f14e2ebc8c0cec277"
+      },
+      {
+        "file": "scripts\\sync-jobs.ts",
+        "sha256": "9f49b7289c12292ee28aed9ecd9298cdbc0315f9e690cf6ea138a4b494c9870a"
+      },
+      {
+        "file": "scripts\\verify-activity.mjs",
+        "sha256": "6b624a2972f2e55b2c729a0ed25f4a4c44e9bbcc6f721e3b304d2e3b7bb3d9a0"
+      },
+      {
+        "file": "data\\company-boards.json",
+        "sha256": "594d82fa1f41cf9fd8f3aca6e0b9227e697e785ebae5cbb6789874ee8fc7659d"
+      },
+      {
+        "file": "data\\company-trust.json",
+        "sha256": "ae3b31e3c57560cbd71c6cee211b4672d7bc143efa220c83a96881351f4d4424"
+      },
+      {
+        "file": "data\\listing-changes.json",
+        "sha256": "32c296971ff272ba222461c35da16a95c1fb2c685512ad4198859caf0d1f949c"
+      },
+      {
+        "file": "data\\listing-health.json",
+        "sha256": "407c955b987ffc608557b04a0b982f228b1a5e9478600eda0c234247692a9a49"
+      },
+      {
+        "file": "data\\pinned-boards.json",
+        "sha256": "e7519e92149d4ba6f170bddd6c1b388b42329b83f5ada6a5545124d3fa4aaf06"
+      },
+      {
+        "file": "data\\quarantine.json",
+        "sha256": "dc956b57687ea679caa8794ec8ab2f565699365e18a926c6a4f55c32ddfb039d"
+      },
+      {
+        "file": "data\\refresh-report.json",
+        "sha256": "473340a5edda341403f1d9414da7b6e027908cfd1a47cf904c6d02e509192dab"
+      },
+      {
+        "file": "data\\scoped-listing-health.json",
+        "sha256": "3d7d81d9b539fc7541b3e4493d397433ad7cd7c19cff7b1eb3bc0e4af9f9fab5"
+      },
+      {
+        "file": "data\\source-health.json",
+        "sha256": "12efab9f8dc8109ba3eb1b04670ec24c681448df4df6206468a9610641d2e67e"
+      },
+      {
+        "file": "data\\source-licenses.json",
+        "sha256": "fed8fd39330ce5533a95946e0005333dc69e9aced8bcebf08a11285f23f1fbda"
+      },
+      {
+        "file": "data\\source-report.md",
+        "sha256": "5bce8d013f2574b4c5457d6425c4b07d27b81aa134131bfa8715c6d60a3bec39"
+      },
+      {
+        "file": "data\\sources.json",
+        "sha256": "675e762633586cf5ed30d9c4c01f0f3590e10e6cc7ac003cc5fe684e553ff998"
+      },
+      {
+        "file": "data\\usajobs-config.json",
+        "sha256": "ff059943b870b091925915e448406b4b47e5794cf92f53583351eb9cd489fc04"
+      },
+      {
+        "file": "data\\verified-companies.json",
+        "sha256": "6fc92007da10b0306d2b075046476bd2ee7aee0f16511501fc0d792f163fcdcf"
+      },
+      {
+        "file": "data\\workday-boards.json",
+        "sha256": "b73d631d229cd3ed68b23b6bd35dfb3b44b732a7da0792f3f9b56c306e2984a4"
+      }
+    ]
+  },
+  "recordedResponses": {
+    "count": 1671,
+    "manifestSha256": "9392196deedd30fbd890479b2f59260ccad14ffdec464c6632579d43b6585e99",
+    "localDirectory": ".cache/keryx-controlled/responses"
+  },
+  "approvedScope": "Steps 1-4 only. No activation decision, implementation, commit, push, or deployment authorized."
+}

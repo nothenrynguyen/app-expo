@@ -9,6 +9,7 @@ export type JobSource = {
   cycle?: number;
   categories?: string[];
   expandAtsBoards?: boolean;
+  requireLiveListing?: boolean;
   active: boolean;
   trustedCoverage: boolean;
   reviewHolds?: Array<{ url: string; reason: string; reviewedAt: string }>;

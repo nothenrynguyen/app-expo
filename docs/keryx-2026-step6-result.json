@@ -1,0 +1,397 @@
+{
+  "reviewedAt": "2026-10-28T00:33:52.015Z",
+  "scope": "Step 6 local implementation and validation only. No commit, push, deployment or production activation.",
+  "clock": "2026-10-27T23:52:43.501Z",
+  "baselineJobs": 5802,
+  "method": "Full unmodified pipeline replay on frozen provider inputs, modified only by the implemented guard. Final control/trial have zero missing responses. Fault run injects a feed 503, four guarded detail 403 responses and generic HTML 403 responses; remaining responses are frozen. Persisted target identities seeded from the validated trial for first-run failure safety; no positive availability cache seeded.",
+  "checks": {
+    "tests": 118,
+    "lint": "passed",
+    "typescript": "passed",
+    "staticBuild": "passed outside filesystem restriction; restricted export hit EPERM"
+  },
+  "hashes": [
+    {
+      "path": "lib/ingestion/source-verification.ts",
+      "sha256": "52ee6b8a30f2e00ff494bfb6a0992ddccdb6af7b2bb2edc48e3029b3b5641dc8"
+    },
+    {
+      "path": "scripts/sync-jobs.ts",
+      "sha256": "85a74ddb7b432c5f42b9128a43ff3d18b447abd96293653e8ece55af9b8e0b4b"
+    },
+    {
+      "path": "lib/source-catalog.ts",
+      "sha256": "8bd2f683ebfdd6698a9b644cc3511ac46d65baedca876f01fb0bc9d459038612"
+    },
+    {
+      "path": "lib/ingestion/types.ts",
+      "sha256": "2ca76a658385c3641edf49ae8ae7607d71dd75b6dc973b9552048472bb8ef5ec"
+    },
+    {
+      "path": "data/sources.json",
+      "sha256": "9b36d0698f9d5fc615e29aa0ed3f9a6206c6694739e158f635dc656639c2e460"
+    },
+    {
+      "path": "data/source-verification-targets.json",
+      "sha256": "b712107621d3e1496b2fbbc533ae61af88779ac3fcac0446eb602ed4fc68fbc0"
+    },
+    {
+      "path": ".github/workflows/sync-jobs.yml",
+      "sha256": "6f829a81de99a7591910a1a1fd17fd10cf3cebe227d93f23186986648e45d8f2"
+    },
+    {
+      "path": "tests/source-verification.test.ts",
+      "sha256": "21bfdf3bc1030e265465c803c2d68468c52a2802275077f645bd9aaaeb642e9a"
+    },
+    {
+      "path": "package.json",
+      "sha256": "8f1982792f1fc0d59d26f930c122546e2672226500f5e98b533558e7719b8664"
+    }
+  ],
+  "reports": [
+    {
+      "name": "control",
+      "jobs": 5802,
+      "added": [],
+      "removed": [],
+      "rememberedTargets": 0,
+      "verifiedTargets": 0,
+      "guardedJobsPublished": 0,
+      "unverifiedPublished": 0,
+      "sharedHoldLeaks": 0,
+      "replay": {
+        "frozenRequests": 1634,
+        "uniqueRequests": 1633,
+        "missingFrozenInputs": 0
+      },
+      "verification": [
+        {
+          "provider": "smartrecruiters",
+          "attempted": 140,
+          "verified": 140
+        },
+        {
+          "provider": "microsoft",
+          "attempted": 30,
+          "verified": 30
+        },
+        {
+          "provider": "scoped_employer",
+          "attempted": 0,
+          "verified": 0
+        }
+      ],
+      "status": "degraded",
+      "failedSources": [],
+      "failedBoards": [
+        {
+          "provider": "greenhouse",
+          "key": "andurilindustries",
+          "company": "Anduril",
+          "status": "failed",
+          "rows": 0,
+          "retryRequests": 1,
+          "durationMs": 20,
+          "message": "timeout"
+        },
+        {
+          "provider": "ashby",
+          "key": "whatnot",
+          "company": "WhatNot",
+          "status": "failed",
+          "rows": 0,
+          "retryRequests": 0,
+          "durationMs": 70,
+          "message": "404 Not Found"
+        },
+        {
+          "provider": "greenhouse",
+          "key": "oldmissioncapital",
+          "company": "Old Mission",
+          "status": "failed",
+          "rows": 0,
+          "retryRequests": 0,
+          "durationMs": 183,
+          "message": "404 Not Found"
+        }
+      ],
+      "recovered": 35
+    },
+    {
+      "name": "trial",
+      "jobs": 5804,
+      "added": [
+        {
+          "id": "63b53faf1b52968604a72c2d",
+          "company": "GlobalFoundries",
+          "title": "3D Heterogeneous Integration Engineer (2026 New College Graduate)",
+          "term": "Not stated",
+          "location": "USA - New York - Malta",
+          "regions": [
+            "us"
+          ],
+          "metros": [
+            "new-york-city"
+          ],
+          "workMode": "unknown",
+          "postedAt": "2026-10-27T23:52:43.501Z",
+          "postedAtSource": "first_seen",
+          "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---New-York---Malta/XMLNAME-3D-Heterogeneous-Integration-Design-Enablement-Engineer--2025-New-College-Graduate-_JR-2501678",
+          "linkedInUrl": null,
+          "category": "New grad",
+          "roleTags": [
+            "systems-test"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software New Grad 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": null
+        },
+        {
+          "id": "a3cfde307baba08373ae5059",
+          "company": "NVIDIA",
+          "title": "ASIC Design Verification Engineer - New College Grad 2026",
+          "term": "Not stated",
+          "location": "US, TX, Austin",
+          "regions": [
+            "us"
+          ],
+          "metros": [
+            "austin"
+          ],
+          "workMode": "unknown",
+          "postedAt": "2026-10-27T23:52:43.501Z",
+          "postedAtSource": "first_seen",
+          "applyUrl": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-TX-Austin/ASIC-Design-Verification-Engineer---New-College-Grad-2026_JR2010391",
+          "linkedInUrl": "https://www.linkedin.com/company/nvidia",
+          "category": "New grad",
+          "roleTags": [
+            "hardware-electrical",
+            "systems-test"
+          ],
+          "salary": null,
+          "sources": [
+            "Keryx Non-Software New Grad 2026"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": 10000
+        }
+      ],
+      "removed": [],
+      "rememberedTargets": 14,
+      "verifiedTargets": 13,
+      "guardedJobsPublished": 11,
+      "unverifiedPublished": 0,
+      "sharedHoldLeaks": 0,
+      "replay": {
+        "frozenRequests": 1643,
+        "uniqueRequests": 1641,
+        "missingFrozenInputs": 0
+      },
+      "verification": [
+        {
+          "provider": "smartrecruiters",
+          "attempted": 141,
+          "verified": 141
+        },
+        {
+          "provider": "microsoft",
+          "attempted": 30,
+          "verified": 30
+        },
+        {
+          "provider": "scoped_employer",
+          "attempted": 0,
+          "verified": 0
+        },
+        {
+          "provider": "source_listing",
+          "attempted": 14,
+          "verified": 13
+        }
+      ],
+      "status": "degraded",
+      "failedSources": [],
+      "failedBoards": [
+        {
+          "provider": "greenhouse",
+          "key": "andurilindustries",
+          "company": "Anduril",
+          "status": "failed",
+          "rows": 0,
+          "retryRequests": 1,
+          "durationMs": 36,
+          "message": "timeout"
+        },
+        {
+          "provider": "ashby",
+          "key": "whatnot",
+          "company": "WhatNot",
+          "status": "failed",
+          "rows": 0,
+          "retryRequests": 0,
+          "durationMs": 60,
+          "message": "404 Not Found"
+        },
+        {
+          "provider": "greenhouse",
+          "key": "oldmissioncapital",
+          "company": "Old Mission",
+          "status": "failed",
+          "rows": 0,
+          "retryRequests": 0,
+          "durationMs": 178,
+          "message": "404 Not Found"
+        }
+      ],
+      "recovered": 33
+    },
+    {
+      "name": "fault",
+      "jobs": 5800,
+      "added": [],
+      "removed": [
+        {
+          "id": "2219f9d98a12824f9172ee47",
+          "company": "Anduril",
+          "title": "2026 Early Career Manufacturing Engineer",
+          "term": "Not stated",
+          "location": "Costa Mesa, California, United States; Irvine, California, United States; Santa Ana, California, United States",
+          "regions": [
+            "us"
+          ],
+          "metros": [
+            "los-angeles"
+          ],
+          "workMode": "unknown",
+          "postedAt": "2026-10-20T00:39:54.335Z",
+          "postedAtSource": "first_seen",
+          "applyUrl": "https://boards.greenhouse.io/andurilindustries/jobs/5176254007",
+          "linkedInUrl": null,
+          "category": "New grad",
+          "roleTags": [
+            "process-manufacturing"
+          ],
+          "salary": null,
+          "sources": [
+            "Direct ATS (Greenhouse)"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": null
+        },
+        {
+          "id": "a32d515254e9bbbc31017e3e",
+          "company": "Anduril",
+          "title": "2026 Early Career Mechanical Engineer",
+          "term": "Not stated",
+          "location": "Costa Mesa, California, United States",
+          "regions": [
+            "us"
+          ],
+          "metros": [
+            "los-angeles"
+          ],
+          "workMode": "unknown",
+          "postedAt": "2026-10-20T00:39:54.335Z",
+          "postedAtSource": "first_seen",
+          "applyUrl": "https://boards.greenhouse.io/andurilindustries/jobs/4802167007",
+          "linkedInUrl": null,
+          "category": "New grad",
+          "roleTags": [
+            "mechanical"
+          ],
+          "salary": null,
+          "sources": [
+            "Direct ATS (Greenhouse)"
+          ],
+          "verifiedCompany": true,
+          "employeeCount": null
+        }
+      ],
+      "rememberedTargets": 14,
+      "verifiedTargets": 9,
+      "guardedJobsPublished": 7,
+      "unverifiedPublished": 0,
+      "sharedHoldLeaks": 0,
+      "replay": {
+        "frozenRequests": 1357,
+        "uniqueRequests": 1356,
+        "missingFrozenInputs": 0
+      },
+      "faultInjection": {
+        "injectedFeedFailures": 1,
+        "injectedDetailFailures": 4,
+        "injectedGenericFailures": 280
+      },
+      "verification": [
+        {
+          "provider": "smartrecruiters",
+          "attempted": 140,
+          "verified": 140
+        },
+        {
+          "provider": "microsoft",
+          "attempted": 30,
+          "verified": 0
+        },
+        {
+          "provider": "scoped_employer",
+          "attempted": 0,
+          "verified": 0
+        },
+        {
+          "provider": "source_listing",
+          "attempted": 14,
+          "verified": 9
+        }
+      ],
+      "status": "degraded",
+      "failedSources": [
+        {
+          "name": "Keryx Non-Software New Grad 2026",
+          "kind": "keryx_markdown",
+          "status": "failed",
+          "rows": 0,
+          "durationMs": 0,
+          "requestCount": 1,
+          "message": "503 "
+        }
+      ],
+      "failedBoards": [
+        {
+          "provider": "greenhouse",
+          "key": "andurilindustries",
+          "company": "Anduril",
+          "status": "failed",
+          "rows": 0,
+          "retryRequests": 1,
+          "durationMs": 34,
+          "message": "timeout"
+        },
+        {
+          "provider": "ashby",
+          "key": "whatnot",
+          "company": "WhatNot",
+          "status": "failed",
+          "rows": 0,
+          "retryRequests": 0,
+          "durationMs": 65,
+          "message": "404 Not Found"
+        },
+        {
+          "provider": "greenhouse",
+          "key": "oldmissioncapital",
+          "company": "Old Mission",
+          "status": "failed",
+          "rows": 0,
+          "retryRequests": 0,
+          "durationMs": 165,
+          "message": "404 Not Found"
+        }
+      ],
+      "recovered": 33
+    }
+  ]
+}

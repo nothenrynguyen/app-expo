@@ -9,6 +9,7 @@ import { scopedListingIsLive, selectScopedChecks, type ScopedListingCache } from
 import { boardRecoveryPolicy, preserveLastKnownGoodJobs } from "../lib/ingestion/last-known-good";
 import { loadCandidates } from "../lib/ingestion/load-candidates";
 import { sourceReviewHoldIdentity } from "../lib/ingestion/source-review-holds";
+import { buildSourceVerificationTargets, createSourceListingVerifier, sourceListingIsAllowed, type SourceVerificationTargets } from "../lib/ingestion/source-verification";
 import { buildRefreshReport } from "../lib/ingestion/refresh-report";
 import { createScreeningTracker } from "../lib/ingestion/screening";
 import { buildListingChanges } from "../lib/ingestion/listing-changes";
@@ -91,24 +92,35 @@ async function main() {
   const scopedCachePath = path.join(root, "data/scoped-listing-health.json");
   const scopedCache: ScopedListingCache = await readFile(scopedCachePath, "utf8").then(value => JSON.parse(value) as ScopedListingCache).catch(() => ({}));
   const scopedUrls = new Map<string, string>();
+  const sourceTargetsPath = path.join(root, "data/source-verification-targets.json");
+  const savedSourceTargets = await readFile(sourceTargetsPath, "utf8")
+    .then(value => JSON.parse(value) as SourceVerificationTargets)
+    .catch((error: NodeJS.ErrnoException) => { if (error.code === "ENOENT") return {}; throw error; });
+  const sourceTargets = buildSourceVerificationTargets(catalog.sources, candidates, previous?.jobs ?? [], savedSourceTargets);
   for (const candidate of candidates) {
     const decision = evaluateCompanyQuality({ name: candidate.company, h1bApprovals: candidate.h1bApprovals, title: candidate.title, applyUrl: candidate.applyUrl }, candidate.rawText, registry, trustRegistry);
     const identity = jobIdentity(candidate.applyUrl);
     if (decision.status === "approved" && decision.requireLiveListing && identity && getJobLocationMetadata(candidate).eligible && classifyRoleTags(candidate).length > 0 && !getFreshnessRejection(candidate)) scopedUrls.set(identity, candidate.applyUrl);
   }
+  for (const [key, target] of Object.entries(sourceTargets)) scopedUrls.set(key, target.url);
   for (const identity of scopedUrls.keys()) if (!scopedCache[identity]) scopedCache[identity] = { status: "unknown", checkedAt: null, firstSeenAt: startedAt.toISOString() };
   const scopedChecks = selectScopedChecks([...scopedUrls], scopedCache, startedAt);
-  const scopedResults = await inBatches(scopedChecks, 8, async ([identity, url]) => ({ identity, live: await verifyScopedListing(url) }));
+  const verifySourceListing = createSourceListingVerifier({ boardResults });
+  const scopedResults = await inBatches(scopedChecks, 8, async ([identity, url]) => ({ identity, live: await (sourceTargets[identity] ? verifySourceListing(url) : verifyScopedListing(url)) }));
   for (const result of scopedResults) if (result.status === "fulfilled") scopedCache[result.value.identity] = { status: result.value.live ? "live" : "unknown", checkedAt: startedAt.toISOString(), firstSeenAt: scopedCache[result.value.identity].firstSeenAt };
   const verifiedScopedIds = new Set([...scopedUrls.keys()].filter(identity => scopedListingIsLive(scopedCache[identity], startedAt)));
-  if (scopedUrls.size) verificationDiagnostics.push({ provider: "scoped_employer", attempted: scopedChecks.length, verified: scopedResults.filter(result => result.status === "fulfilled" && result.value.live).length });
+  for (const [provider, sourceGuard] of [["scoped_employer", false], ["source_listing", true]] as const) {
+    const matches = (identity: string) => Boolean(sourceTargets[identity]) === sourceGuard;
+    if ([...scopedUrls.keys()].some(matches)) verificationDiagnostics.push({ provider, attempted: scopedChecks.filter(([identity]) => matches(identity)).length, verified: scopedResults.filter(result => result.status === "fulfilled" && matches(result.value.identity) && result.value.live).length });
+  }
 
   const reviewedCoverageSources = new Set(activeSources.filter(source => source.kind === "keryx_markdown").map(source => source.name));
   const reviewedCoverage = buildReviewedEmployerCoverage(candidates, trustedCuratedSources, registry, trustRegistry, candidate => {
     const identity = jobIdentity(candidate.applyUrl);
     const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
     const authoritative = board ? boardResults.get(board.id) : null;
-    return !!identity && (authoritative ? !authoritative.liveIdentities.has(identity) : isListingUnavailable(listingHealth[identity]));
+    return !sourceListingIsAllowed(candidate.applyUrl, sourceTargets, verifiedScopedIds)
+      || (!!identity && (authoritative ? !authoritative.liveIdentities.has(identity) : isListingUnavailable(listingHealth[identity])));
   });
 
   for (const candidate of candidates) {
@@ -168,7 +180,7 @@ async function main() {
 
     const canonical = canonicalizeUrl(candidate.applyUrl)!;
     const identity = jobIdentity(canonical)!;
-    if (scopedUrls.has(identity) && !verifiedScopedIds.has(identity)) {
+    if ((scopedUrls.has(identity) && !verifiedScopedIds.has(identity)) || !sourceListingIsAllowed(candidate.applyUrl, sourceTargets, verifiedScopedIds)) {
       screening.record(candidate.applyUrl, "pendingVerification");
       quarantined.push({ company: candidate.company, title: candidate.title, reason: "Current employer listing availability could not be verified.", source: candidate.source, applyUrl: candidate.applyUrl });
       continue;
@@ -227,6 +239,7 @@ async function main() {
   if ((unhealthySources.length > 0 || recovery.hasFailures) && previous) {
     preservedFromLastHealthySnapshot = preserveLastKnownGoodJobs(merged, previous.jobs, (prior) => {
       if (reviewHoldIds.has(sourceReviewHoldIdentity(prior.applyUrl))) return null;
+      if (!sourceListingIsAllowed(prior.applyUrl, sourceTargets, verifiedScopedIds)) return null;
       // A board outage recovers only that board, not unrelated missing inputs.
       if (unhealthySources.length === 0 && !recovery.affected(prior)) return null;
       const decision = evaluateCompanyQuality({ name: prior.company, title: prior.title, applyUrl: prior.applyUrl }, "", registry, trustRegistry);
@@ -277,6 +290,7 @@ async function main() {
     if (!scopedUrls.has(identity) && startedAt.getTime() - Date.parse(record.checkedAt ?? record.firstSeenAt) > 30 * 86_400_000) delete scopedCache[identity];
   }
   if (Object.keys(scopedCache).length) await writeFile(scopedCachePath, `${JSON.stringify(scopedCache, null, 2)}\n`);
+  await writeFile(sourceTargetsPath, `${JSON.stringify(sourceTargets, null, 2)}\n`);
   await writeFile(listingHealthPath, `${JSON.stringify(listingHealth, null, 2)}\n`);
   await writeFile(path.join(root, "data/company-boards.json"), `${JSON.stringify(boardRegistry, null, 2)}\n`);
   const refreshReport = buildRefreshReport({
