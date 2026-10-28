@@ -4,16 +4,16 @@ Reviewed October 28, 2026. This file tracks concrete active work, follow-up, and
 
 ## Active milestone
 
-Keryx New Grad 2026 activation and availability safeguards have completed approved steps 1-7, including local validation and the scoped milestone commit. Push and deployment remain unapproved; Fall remains inactive. See [local release checkpoint](KERYX_PENDING_2026_REVIEW.md#step-7-local-release-checkpoint-october-28).
+Keryx New Grad 2026 activation and availability safeguards are published and production-verified. The release is complete; Fall remains inactive. See [production receipt](keryx-2026-production-result.json) and [release review](KERYX_PENDING_2026_REVIEW.md#production-release-and-verification-october-28).
 
 ## Operational follow-up
 
 - Analytics: the owner confirmed dashboard access and report credential rotation. Cleanup cron was configured, but the first successful scheduled execution was not observed in the latest [action log](ANALYTICS_ACTION_LOG.md). Check current evidence before marking it complete.
 - Employer verification: monitor the bounded verification queue and review the remaining employer backlog. Booz Allen and RTX pilot proposals remain on hold pending review of existing jobs and URL variants.
-- Keryx 2026: steps 1-7 complete locally. New Grad is enabled in the local catalog with shared, bounded positive-availability checks and persisted destination protection across aliases and recovery. Full trial adds two jobs with no removals; failure simulation prevents unverified reintroduction. All 118 tests, lint, TypeScript and build passed, and implementation hashes were reconfirmed October 28. Fall remains inactive. Publication awaits separate approval and production verification. See [local release checkpoint](KERYX_PENDING_2026_REVIEW.md#step-7-local-release-checkpoint-october-28).
+- Keryx 2026: New Grad published and verified October 28. Workflow 40650482708 succeeded; snapshot `7711f2c` matched deployed JSON, with positive evidence for every published guarded destination and no shared-hold leaks. Fall remains inactive. Counts and detailed evidence belong in the [production receipt](keryx-2026-production-result.json); revisit Fall only in a separately approved batch.
 - Source maintenance: review newly discovered seasonal files and official evidence for held destinations as needed. Keep unreviewed feeds inactive and uncertain destinations on hold. The last documented Winter hold recheck returned 403 for all 16 endpoints; this is a historical result, not a current count.
 - Listing quality: revisit inconclusive duplicate groups when reliable official requisition evidence is available. Historical counts require a fresh measurement.
-- Local checkout: reconciled with fetched remote main through a local merge, retaining original work in a recovery folder and stash. All 112 tests, ESLint, and the production build passed. No push or deployment occurred; review the two local commits before publication. See [reconciliation receipt](ENVIRONMENT_RECONCILIATION_2026-10-27.md).
+- Local checkout: the original divergence and nine later generated-data commits were reconciled without discarding edits. The approved Keryx release was pushed and its generated snapshot fast-forwarded locally. Unrelated staged source-exclusion/environment changes and the untracked Jobbie review remain; recovery copies and stashes are retained. See [initial reconciliation receipt](ENVIRONMENT_RECONCILIATION_2026-10-27.md) and [release review](KERYX_PENDING_2026_REVIEW.md#production-release-and-verification-october-28).
 
 ## Candidate next batch
 

@@ -1,6 +1,6 @@
 # Pending Keryx 2026 feeds: review
 
-Reviewed October 28, 2026. Steps 1-7 are complete locally. New Grad 2026 is enabled in the local catalog with positive-availability safeguards, validated in isolated full refreshes and committed locally; Fall remains inactive. Nothing has been pushed or deployed in this batch. The step 7 checkpoint below supersedes the historical decisions and handoffs above it.
+Reviewed October 28, 2026. New Grad 2026 was published with positive-availability safeguards and production-verified; Fall remains inactive. The production receipt below supersedes the historical decisions and local-only handoffs above it.
 
 ## Scope and source evidence
 
@@ -158,3 +158,15 @@ The owner authorized continuing with step 7. Review confirmed all nine implement
 The local milestone commit is titled `Activate Keryx 2026 new-grad feed with availability safeguards`. Its scope includes the source activation, destination registry, shared verification queue integration, recovery protection, workflow persistence, regression tests, and the associated review/reconciliation evidence and project status. It excludes unrelated source-exclusion notes, Jobbie review, and generated environment-type changes. Existing staging for excluded files, the recovery folder and the stash are retained.
 
 No push, workflow dispatch, deployment or production snapshot change was performed. Local main also retains the earlier separator commit and reconciliation merge; they produced no file difference from the fetched remote before this milestone. Before any later push, fetch current remote main and safely reconcile new automation commits without discarding remaining edits. Publication still requires separate approval. After a future release, verify the actual workflow, generated snapshot commit and deployed JSON, including guarded destinations and source attribution; do not treat the frozen trial's two additions as a current production count.
+
+## Production release and verification, October 28
+
+The owner approved publication. Nine newer remote commits contained generated refresh data only; they were merged without conflicts while preserving the remaining staged source-exclusion/environment edits and untracked Jobbie review. All 118 post-merge tests passed. Release commit `acebabd2eb7cd8659305f43b847a07568fee6f67` includes implementation `1223956` and current remote data. The push deployed through the existing GitHub/Vercel integration.
+
+[Manual refresh run 40650482708](https://github.com/nothenrynguyen/app-expo/actions/runs/40650482708) completed successfully, including its tests, and published snapshot commit `7711f2c683cc1203b85bcab45219febffa7e5c60`. Vercel deployment `dpl_8JuU8zkg76Uz7c9tBA2rxeQsJsSn` reached READY for that exact snapshot and assigned `empluzzed.fyi`. At 12:33 a.m. Pacific on October 28, the deployed `jobs.json` matched repository JSON exactly, and `summary.json` had the same generated timestamp (`2026-10-28T07:32:54.116Z`). The first download caught the previous snapshot during the deployment switch; a subsequent comparison passed.
+
+The verified snapshot contains 5,800 jobs, compared with 5,798 in the preceding 07:21 UTC snapshot. The New Grad feed parsed 14 rows and is healthy. Eleven accepted jobs carry its attribution; NVIDIA `JR2010391` and GlobalFoundries `JR-2501678` are absent from that preceding snapshot. These are point-in-time measurements, not permanent source yield guarantees.
+
+Fourteen guarded targets are remembered, 13 have positive evidence, and all 11 published guarded destinations have positive, unexpired evidence. No unverified guarded destination or shared-held destination appears in accepted jobs. Fall remains inactive, with trust and board-expansion restrictions unchanged. The refresh is degraded only by the existing WhatNot and Old Mission 404 board failures, also present before release; no source failed.
+
+See the [machine-readable production receipt](keryx-2026-production-result.json) for timestamps, policy checks, source attribution, verification diagnostics, and deployment identity. The generated snapshot was fast-forwarded locally without disturbing unrelated edits. Both recovery stashes and the original recovery directory are retained. Future follow-up is optional Fall review and observation of normal refresh behavior; neither authorizes changing Fall activation or global degree/part-time policy.
