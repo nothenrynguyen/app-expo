@@ -4,13 +4,15 @@ Reviewed October 28, 2026. This file tracks concrete active work, follow-up, and
 
 ## Active milestone
 
+Coverage expansion and permission review is in progress with full owner approval through publication and live verification. Compare licensed source candidates, fix demonstrated collection gaps, and retain no-card/no-spending and source-permission constraints. Implementation and controlled validation are local until the [coverage expansion review](COVERAGE_EXPANSION_REVIEW.md) records a production receipt.
+
 Employer coverage retention and unexplained-drop safeguards are published and production-verified October 28. Workflow 40825645377 succeeded; generated snapshot `f7801da` exactly matched all four deployed public JSON files. Ten full-time jobs were restored with official evidence, and no jobs were removed in the production refresh. See [coverage review](COVERAGE_RETENTION_REVIEW.md) and [production receipt](coverage-retention-production-result.json).
 
 Keryx New Grad 2026 activation and availability safeguards are published and production-verified. The release is complete; Fall remains inactive. See [production receipt](keryx-2026-production-result.json) and [release review](KERYX_PENDING_2026_REVIEW.md#production-release-and-verification-october-28).
 
 ## Operational follow-up
 
-- Coverage: board history is persisted by the refresh workflow. Healthy active boards remain tracked; undiscovered empty or failing boards age out after 90 days. Explicit limits stop ingestion above 250 retained or 1,000 total public ATS boards. Investigate failed coverage guards using the seven-day Actions artifact rather than bypassing them or restoring old listings wholesale. Current measurements belong in the [production receipt](coverage-retention-production-result.json).
+- Coverage: board history is persisted by the refresh workflow. Healthy active boards remain tracked; undiscovered empty or failing boards age out after 90 days. The local expansion trial raises the retained-board allowance from 250 to 400 because permission holds reclassify existing boards; the 1,000-total cap remains. See the [expansion review](COVERAGE_EXPANSION_REVIEW.md) for publication state. Investigate failed coverage guards using the seven-day Actions artifact rather than bypassing them or restoring old listings wholesale.
 
 - Analytics: the owner confirmed dashboard access and report credential rotation. Cleanup cron was configured, but the first successful scheduled execution was not observed in the latest [action log](ANALYTICS_ACTION_LOG.md). Check current evidence before marking it complete.
 - Employer verification: monitor the bounded verification queue and review the remaining employer backlog. Booz Allen and RTX pilot proposals remain on hold pending review of existing jobs and URL variants.

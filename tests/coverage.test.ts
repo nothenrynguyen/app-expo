@@ -107,6 +107,7 @@ test("collector refreshes an omitted board, still detects closure, and fails on 
   const h = { ...history, boards: [{ ...history.boards[0], lastDiscoveredAt: new Date().toISOString() }] };
   try {
     await mkdir(path.join(root, "data"));
+    await writeFile(path.join(root, "data/source-licenses.json"), JSON.stringify({ repositories: [] }));
     await writeFile(path.join(root, "data/board-history.json"), JSON.stringify(h));
     const url = "https://boards.greenhouse.io/example/jobs/1234567";
     const previous = [{ company: "Example", title: "Software Engineer", applyUrl: url, sources: ["Old feed"] } as PublicJob];

@@ -4,6 +4,8 @@ This is the living overview of shipped capabilities, candidate priorities, and d
 
 ## Current status
 
+- Coverage expansion and source-permission review is locally in progress with owner approval through release and verification. It includes a posting-date parser correction, a narrowly guarded licensed source, employer verification and holds for feeds without detected licenses. See the [coverage expansion review](docs/COVERAGE_EXPANSION_REVIEW.md); do not treat local results as deployed coverage.
+
 - Employer coverage retention and unexplained-drop safeguards were published and production-verified October 28. Known official boards survive upstream omissions, and large unexplained losses block publication. See [coverage review](docs/COVERAGE_RETENTION_REVIEW.md) and [production receipt](docs/coverage-retention-production-result.json).
 
 - The public job board is free to browse without an account. It covers internships and early-career roles across software, data, engineering, product, business, finance, IT, security, and other fields.

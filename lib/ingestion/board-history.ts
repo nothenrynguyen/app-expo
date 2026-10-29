@@ -5,7 +5,9 @@ import type { BoardRefreshDiagnostic } from "./types";
 export type KnownBoard = AtsBoardSeed & { apiHost?: "api.lever.co" | "api.eu.lever.co"; lastDiscoveredAt: string; lastHealthyAt?: string };
 export type BoardHistory = { version: 1; boards: KnownBoard[] };
 const RETENTION_MS = 90 * 86_400_000;
-export const MAX_RETAINED_BOARDS = 250;
+// Permission holds can move previously discovered boards into retention without
+// increasing the total request count. Keep the independent total cap unchanged.
+export const MAX_RETAINED_BOARDS = 400;
 export const MAX_REFRESH_BOARDS = 1_000;
 
 function restore(record: KnownBoard): AtsBoard {

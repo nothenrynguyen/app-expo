@@ -17,6 +17,10 @@ Additionally reviewed October 18, 2026:
 
 - GodlyDonuts/keryx: Copyright (c) 2026 Saicharan Ramineni. MIT License. Only reviewed direct ATS provenance and employer ATS destinations are imported; upstream eligibility hints and aggregator fallback links are not imported.
 
+Additionally reviewed October 28, 2026:
+
+- aprameyak/2027-tech-jobs: Copyright (c) 2026 Aprameya Kannan. MIT License. Imports are limited to direct supported ATS application links with explicit early-career titles and positive employer availability checks. No job descriptions or aggregator detours are imported.
+
 The following MIT license text applies to each repository listed above:
 
 > Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -43,7 +47,7 @@ No license file was detected for these repositories at review time:
 - speedyapply/2027-AI-College-Jobs
 - speedyapply/2027-SWE-College-Jobs
 
-No general reuse permission is inferred from public availability. Their license status is retained here as part of empluzzed's source record.
+Rechecked October 28, 2026. These feeds are inactive pending reuse permission. No general reuse permission is inferred from public availability. Their license status is retained here as part of empluzzed's source record. This record is a technical permission review, not a legal opinion or a guarantee that third-party rights cannot be asserted.
 
 Company names and trademarks belong to their respective owners. Job links lead to third-party employer or recruiting sites; empluzzed is not affiliated with or endorsed by those employers or upstream maintainers.
 

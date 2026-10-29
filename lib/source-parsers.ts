@@ -52,6 +52,16 @@ function findColumn(headers: string[], candidates: string[]): number {
   return headers.findIndex((header) => candidates.some((candidate) => header.includes(candidate)));
 }
 
+function postingDateColumn(headers: string[]): number {
+  // Graduation/start/deadline dates describe eligibility, not posting freshness.
+  const postingHeaders = headers.map(header => /\b(?:grad(?:uation)?|start|closing|deadline|end)\b/i.test(header) ? "" : header);
+  for (const label of ["date posted", "posted", "date added", "added", "age", "date"]) {
+    const index = postingHeaders.findIndex(header => header === label || header.startsWith(`${label} `));
+    if (index >= 0) return index;
+  }
+  return -1;
+}
+
 export function parseMarkdownSource(markdown: string, source: string, now = new Date()): CandidateJob[] {
   const lines = markdown.split("\n");
   const jobs: CandidateJob[] = [];
@@ -69,7 +79,7 @@ export function parseMarkdownSource(markdown: string, source: string, now = new 
     const locationIndex = findColumn(headers, ["location"]);
     const termIndex = findColumn(headers, ["term", "season"]);
     const applyIndex = findColumn(headers, ["application", "apply", "posting", "link"]);
-    const dateIndex = findColumn(headers, ["date posted", "posted", "added", "age", "date"]);
+    const dateIndex = postingDateColumn(headers);
     if (companyIndex < 0 || titleIndex < 0 || dateIndex < 0) continue;
     const effectiveApplyIndex = applyIndex >= 0 ? applyIndex : titleIndex;
 
@@ -113,7 +123,7 @@ export function parseMarkdownSource(markdown: string, source: string, now = new 
     const locationIndex = findColumn(headers, ["location"]);
     const termIndex = findColumn(headers, ["term", "season"]);
     const applyIndex = findColumn(headers, ["application", "apply", "posting", "link"]);
-    const dateIndex = findColumn(headers, ["date posted", "posted", "added", "age", "date"]);
+    const dateIndex = postingDateColumn(headers);
     if (companyIndex < 0 || titleIndex < 0 || dateIndex < 0) return;
     const effectiveApplyIndex = applyIndex >= 0 ? applyIndex : titleIndex;
     let htmlLastCompany = "";

@@ -19,3 +19,15 @@ export function selectScopedChecks(entries: Array<[string, string]>, cache: Scop
   };
   return entries.filter(([id]) => due(id) <= now.getTime()).sort(([a], [b]) => due(a) - due(b) || a.localeCompare(b)).slice(0, limit);
 }
+
+// Source admission and employer admission share a budget, but neither queue may
+// starve the other when a newly reviewed source adds many verification leads.
+export function selectBalancedScopedChecks(entries: Array<[string, string]>, cache: ScopedListingCache, now: Date, limit = 150): Array<[string, string]> {
+  const due = selectScopedChecks(entries, cache, now, entries.length);
+  const source = due.filter(([id]) => id.startsWith("source:"));
+  const employer = due.filter(([id]) => !id.startsWith("source:"));
+  const reserved = Math.floor(limit / 2);
+  const selected = [...source.slice(0, reserved), ...employer.slice(0, reserved)];
+  const ids = new Set(selected.map(([id]) => id));
+  return [...selected, ...due.filter(([id]) => !ids.has(id))].slice(0, limit);
+}

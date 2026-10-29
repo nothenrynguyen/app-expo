@@ -32,6 +32,7 @@ export default function SourcesPage() {
           <h1 className="sr-only">Data sources</h1>
           <p className="eyebrow">Data sources</p>
           <p>empluzzed combines maintained community job lists and official federal job data, removes duplicates, and checks listings against employer career pages before sending you to the original application.</p>
+          <p>Community feeds without recorded reuse permission are held out. An upstream license does not establish that every job is eligible or still open, so employer and listing checks apply separately.</p>
         </div>
 
         <section className="pinned-source-note" aria-labelledby="federal-source-title">

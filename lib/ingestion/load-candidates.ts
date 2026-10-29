@@ -2,7 +2,7 @@ import { parseEngineJobs } from "./engine-source";
 import { loadReviewedUsaJobs } from "./usajobs";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { createAtsBoard, discoverAtsBoard, fetchAtsBoard, type AtsBoardSeed } from "../ats-boards";
+import { createAtsBoard, discoverAtsBoard, fetchAtsBoard, isEarlyCareerTitle, type AtsBoardSeed } from "../ats-boards";
 import { applyMicrosoftCareersPosting, fetchMicrosoftCareersPosting, parseMicrosoftCareersJobUrl } from "../microsoft-careers";
 import { applySmartRecruitersPosting, fetchSmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../smartrecruiters";
 import type { JobSource } from "../source-catalog";
@@ -14,6 +14,7 @@ import { partitionSourceReviewHolds } from "./source-review-holds";
 import { selectRefreshBoards, type BoardHistory } from "./board-history";
 import type { PublicJob } from "../jobs";
 import type { BoardRefreshDiagnostic, CandidateLoadResult, SourceRefreshDiagnostic } from "./types";
+import { assertSourcePermissions } from "./source-permissions";
 
 type TimedResult<T> =
   | { status: "fulfilled"; value: T; durationMs: number }
@@ -62,6 +63,11 @@ function engineCandidate(job: ReturnType<typeof parseEngineJobs>[number], source
 }
 
 export async function loadCandidates(root: string, sources: JobSource[], previousJobs: PublicJob[] = []): Promise<CandidateLoadResult> {
+  sources = sources.filter(source => source.active);
+  // Real refreshes enforce the recorded permissions before any source requests.
+  const licenses = await readFile(path.join(root, "data/source-licenses.json"), "utf8")
+    .then(value => JSON.parse(value) as { repositories: import("./source-permissions").PermissionReview[] });
+  assertSourcePermissions(sources, licenses.repositories);
   const health: CandidateLoadResult["health"] = [];
   const sourceDiagnostics: SourceRefreshDiagnostic[] = [];
   const candidates: CandidateJob[] = [];
@@ -96,7 +102,16 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
   }
 
   const markdownSources = sources.filter((source) => source.kind === "markdown" || source.kind === "keryx_markdown");
-  const markdownResults = await Promise.all(markdownSources.map((source) => runTimed(async () => (source.kind === "keryx_markdown" ? parseKeryxSource : parseMarkdownSource)(await fetchText(source.url), source.name))));
+  const markdownResults = await Promise.all(markdownSources.map((source) => runTimed(async () => {
+    const rows = (source.kind === "keryx_markdown" ? parseKeryxSource : parseMarkdownSource)(await fetchText(source.url), source.name);
+    return source.directEarlyCareerOnly ? rows.filter(candidate => {
+      const url = new URL(candidate.applyUrl);
+      const direct = discoverAtsBoard(candidate.applyUrl, candidate.company, source.name)
+        || /^[a-z0-9-]+\.wd\d+\.myworkdayjobs\.com$/i.test(url.hostname)
+        || parseSmartRecruitersJobUrl(candidate.applyUrl);
+      return url.protocol === "https:" && !url.username && !url.password && direct && isEarlyCareerTitle(candidate.title);
+    }) : rows;
+  })));
   markdownResults.forEach((result, index) => {
     const source = markdownSources[index];
     if (result.status === "fulfilled") {

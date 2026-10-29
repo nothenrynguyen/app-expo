@@ -583,6 +583,18 @@ test("markdown sources can use the linked role as the application column", () =>
   assert.equal(job?.applyUrl, "https://example.com/jobs/123");
 });
 
+test("posting dates never use graduation dates or application deadlines", () => {
+  const now = new Date("2026-10-28T12:00:00Z");
+  const markdown = `| Company | Role | Location | Grad Date | Application | Date Added |
+| --- | --- | --- | --- | --- | --- |
+| Example | Software Engineer, New Grad | Chicago, IL | Spring 2027 | [Apply](https://example.com/jobs/1) | Oct 27 |`;
+  const [job] = parseMarkdownSource(markdown, "New Grad", now);
+  assert.equal(job?.postedAt, parsePostedAt("Oct 27", now)?.postedAt);
+  assert.equal(parseMarkdownSource(markdown.replace("Date Added", "Deadline"), "New Grad", now).length, 0);
+  const html = `<table><thead><tr><th>Company</th><th>Role</th><th>Location</th><th>Graduation Date</th><th>Apply</th><th>Date Posted</th></tr></thead><tbody><tr><td>Example</td><td>New Grad Engineer</td><td>Chicago, IL</td><td>2027</td><td><a href="https://example.com/jobs/1">Apply</a></td><td>Oct 27</td></tr></tbody></table>`;
+  assert.equal(parseMarkdownSource(html, "New Grad", now)[0]?.postedAt, parsePostedAt("Oct 27", now)?.postedAt);
+});
+
 test("Dreamwork business tables parse linked roles and relative dates", () => {
   const markdown = `### Finance & Accounting (2)
 | Company | Role | Location | Pay | Added |

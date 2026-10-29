@@ -10,6 +10,7 @@ export type JobSource = {
   categories?: string[];
   expandAtsBoards?: boolean;
   requireLiveListing?: boolean;
+  directEarlyCareerOnly?: boolean;
   active: boolean;
   trustedCoverage: boolean;
   reviewHolds?: Array<{ url: string; reason: string; reviewedAt: string }>;

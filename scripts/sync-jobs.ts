@@ -5,7 +5,7 @@ import { pathToFileURL } from "node:url";
 import { discoverAtsBoard } from "../lib/ats-boards";
 import { evaluateCompanyQuality, normalizeCompanyDisplayName, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
 import { inBatches } from "../lib/ingestion/concurrency";
-import { scopedListingIsLive, selectScopedChecks, type ScopedListingCache } from "../lib/ingestion/scoped-listing-cache";
+import { scopedListingIsLive, selectBalancedScopedChecks, type ScopedListingCache } from "../lib/ingestion/scoped-listing-cache";
 import { boardRecoveryPolicy, preserveLastKnownGoodJobs } from "../lib/ingestion/last-known-good";
 import { loadCandidates } from "../lib/ingestion/load-candidates";
 import { sourceReviewHoldIdentity } from "../lib/ingestion/source-review-holds";
@@ -16,6 +16,7 @@ import { buildListingChanges } from "../lib/ingestion/listing-changes";
 import { completeBoardHistory } from "../lib/ingestion/board-history";
 import { assessCoverage, assertCoverageSafe } from "../lib/ingestion/coverage-guard";
 import { buildReviewedEmployerCoverage } from "../lib/ingestion/reviewed-employer-coverage";
+import { permissionHeldSourceNames } from "../lib/ingestion/source-permissions";
 import { isInCollection } from "../lib/job-collections";
 import { deduplicateCrossSourceJobs } from "../lib/job-dedup";
 import { getFreshnessRejection } from "../lib/job-freshness";
@@ -24,7 +25,7 @@ import { normalizeJobLocation } from "../lib/job-locations";
 import { getJobLocationMetadata } from "../lib/job-location-policy";
 import { buildJobsSummary } from "../lib/job-summary";
 import type { JobsSnapshot, PublicJob } from "../lib/jobs";
-import { isListingUnavailable, needsListingCheck, verifyListing, verifyScopedListing, type ListingHealthFile } from "../lib/listing-health";
+import { isListingUnavailable, needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
 import { classifyRoleTags, getJobRoleTags } from "../lib/role-areas";
 import type { SourceCatalog } from "../lib/source-catalog";
 import { canonicalizeUrl, jobIdentity, normalizeDisplayText, stableJobId } from "../lib/source-normalization";
@@ -34,6 +35,8 @@ async function main() {
   const root = path.resolve(import.meta.dirname, "..");
   const catalog = JSON.parse(await readFile(path.join(root, "data/sources.json"), "utf8")) as SourceCatalog;
   const activeSources = catalog.sources.filter((source) => source.active);
+  const licenses = JSON.parse(await readFile(path.join(root, "data/source-licenses.json"), "utf8"));
+  const permissionHeldSources = permissionHeldSourceNames(catalog.sources, licenses.repositories);
   const reviewHoldIds = new Set(activeSources.flatMap(source => source.reviewHolds ?? []).map(hold => sourceReviewHoldIdentity(hold.url)).filter(Boolean));
   const trustedCuratedSources = new Set(activeSources.filter((source) => source.trustedCoverage).map((source) => source.name));
   const output = path.join(root, "public/jobs.json");
@@ -100,7 +103,12 @@ async function main() {
   const savedSourceTargets = await readFile(sourceTargetsPath, "utf8")
     .then(value => JSON.parse(value) as SourceVerificationTargets)
     .catch((error: NodeJS.ErrnoException) => { if (error.code === "ENOENT") return {}; throw error; });
-  const sourceTargets = buildSourceVerificationTargets(catalog.sources, candidates, previous?.jobs ?? [], savedSourceTargets);
+  const verificationCandidates = candidates.filter(candidate => {
+    const decision = evaluateCompanyQuality({ name: candidate.company, h1bApprovals: candidate.h1bApprovals, title: candidate.title, applyUrl: candidate.applyUrl }, candidate.rawText, registry, trustRegistry);
+    return getJobLocationMetadata(candidate).eligible && classifyRoleTags(candidate).length > 0 && !getFreshnessRejection(candidate)
+      && (decision.status === "approved" || decision.coverageExceptionAllowed && trustedCompanies.has(normalizeCompanyName(candidate.company)));
+  });
+  const sourceTargets = buildSourceVerificationTargets(catalog.sources, verificationCandidates, previous?.jobs ?? [], savedSourceTargets);
   for (const candidate of candidates) {
     const decision = evaluateCompanyQuality({ name: candidate.company, h1bApprovals: candidate.h1bApprovals, title: candidate.title, applyUrl: candidate.applyUrl }, candidate.rawText, registry, trustRegistry);
     const identity = jobIdentity(candidate.applyUrl);
@@ -108,9 +116,17 @@ async function main() {
   }
   for (const [key, target] of Object.entries(sourceTargets)) scopedUrls.set(key, target.url);
   for (const identity of scopedUrls.keys()) if (!scopedCache[identity]) scopedCache[identity] = { status: "unknown", checkedAt: null, firstSeenAt: startedAt.toISOString() };
-  const scopedChecks = selectScopedChecks([...scopedUrls], scopedCache, startedAt);
+  // The same current authoritative board response can establish exact listing
+  // membership for both gates. Do not queue redundant detail requests or keep
+  // yesterday's positive result when today's official board omits the vacancy.
+  for (const [identity, url] of scopedUrls) {
+    const board = discoverAtsBoard(url, "Scoped availability", "Scoped availability");
+    const result = board && boardResults.get(board.id);
+    if (result) scopedCache[identity] = {status: result.liveIdentities.has(jobIdentity(url) ?? "") ? "live" : "unknown", checkedAt: startedAt.toISOString(), firstSeenAt: scopedCache[identity].firstSeenAt};
+  }
+  const scopedChecks = selectBalancedScopedChecks([...scopedUrls], scopedCache, startedAt);
   const verifySourceListing = createSourceListingVerifier({ boardResults });
-  const scopedResults = await inBatches(scopedChecks, 8, async ([identity, url]) => ({ identity, live: await (sourceTargets[identity] ? verifySourceListing(url) : verifyScopedListing(url)) }));
+  const scopedResults = await inBatches(scopedChecks, 8, async ([identity, url]) => ({ identity, live: await verifySourceListing(url) }));
   for (const result of scopedResults) if (result.status === "fulfilled") scopedCache[result.value.identity] = { status: result.value.live ? "live" : "unknown", checkedAt: startedAt.toISOString(), firstSeenAt: scopedCache[result.value.identity].firstSeenAt };
   const verifiedScopedIds = new Set([...scopedUrls.keys()].filter(identity => scopedListingIsLive(scopedCache[identity], startedAt)));
   for (const [provider, sourceGuard] of [["scoped_employer", false], ["source_listing", true]] as const) {
@@ -243,6 +259,8 @@ async function main() {
   const failedSourceNames = new Set(unhealthySources.map(source => source.name));
   if ((unhealthySources.length > 0 || recovery.hasFailures) && previous) {
     preservedFromLastHealthySnapshot = preserveLastKnownGoodJobs(merged, previous.jobs, (prior) => {
+      // Recovery cannot carry unlicensed feed material forward during failures.
+      if (prior.sources.some(source => permissionHeldSources.has(source))) return null;
       if (!recovery.mayRecover(prior, failedSourceNames)) return null;
       if (reviewHoldIds.has(sourceReviewHoldIdentity(prior.applyUrl))) return null;
       if (!sourceListingIsAllowed(prior.applyUrl, sourceTargets, verifiedScopedIds)) return null;
@@ -290,7 +308,13 @@ async function main() {
     generatedAt: snapshot.generatedAt, previousGeneratedAt: previous?.generatedAt ?? null,
     previous: previous?.jobs ?? [], current: jobs, acceptedBeforeDedup: [...merged.values()],
     candidateUrls: candidates.map(candidate => candidate.applyUrl),
-    outcomeFor: url => listingHealth[jobIdentity(url) ?? ""]?.status === "unavailable" ? "application-unavailable" : screening.outcomeFor(url),
+    outcomeFor: url => {
+      const outcome = screening.outcomeFor(url);
+      if (outcome) return outcome;
+      const prior = previousByUrl.get(jobIdentity(url));
+      if (prior?.sources.some(source => permissionHeldSources.has(source))) return "source-permission";
+      return listingHealth[jobIdentity(url) ?? ""]?.status === "unavailable" ? "application-unavailable" : undefined;
+    },
     boardState(prior) {
       const board = discoverAtsBoard(prior.applyUrl, prior.company, "audit");
       if (!board) return null;

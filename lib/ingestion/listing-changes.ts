@@ -2,7 +2,7 @@ import type { PublicJob } from "../jobs";
 import { jobIdentity } from "../source-normalization";
 import type { ScreeningReason } from "./screening";
 
-export type RemovalReason = ScreeningReason | "application-unavailable" | "deduplicated" | "employer-board-unavailable" | "absent-from-employer-board" | "not-returned-by-sources" | "reason-unavailable";
+export type RemovalReason = ScreeningReason | "source-permission" | "application-unavailable" | "deduplicated" | "employer-board-unavailable" | "absent-from-employer-board" | "not-returned-by-sources" | "reason-unavailable";
 
 export function buildListingChanges(input: {
   generatedAt: string;
@@ -11,7 +11,7 @@ export function buildListingChanges(input: {
   current: PublicJob[];
   acceptedBeforeDedup: PublicJob[];
   candidateUrls: Iterable<string>;
-  outcomeFor: (url: string) => ScreeningReason | "application-unavailable" | undefined;
+  outcomeFor: (url: string) => ScreeningReason | "application-unavailable" | "source-permission" | undefined;
   boardState: (job: PublicJob) => "unavailable" | "absent" | null;
 }) {
   const current = new Set(input.current.map(job => jobIdentity(job.applyUrl)));

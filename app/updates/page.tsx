@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 
 // Dates reflect recorded project milestones, not every deployment or job refresh.
 const updates = [
+  { date: "2026-10-28", label: "October 28, 2026", title: "Stronger source and coverage checks", description: "Added a licensed discovery source, corrected posting-date parsing, and improved employer availability checks. Feeds without recorded reuse permission are held out while coverage is rebuilt through reviewed sources." },
   { date: "2026-10-26", label: "October 26, 2026", title: "A home for project updates", description: "Added this timeline to share meaningful changes and milestones as empluzzed grows." },
   { date: "2026-10-23", label: "October 23, 2026", title: "A clearer picture of site activity", description: "Introduced optional activity analytics and a private dashboard to understand how the site is used and guide future improvements." },
   { date: "2026-10-19", label: "October 19, 2026", title: "More paths to opportunities", description: "Expanded non-software coverage with Keryx and added USAJOBS federal student and recent-graduate opportunities, with links to official application instructions." },

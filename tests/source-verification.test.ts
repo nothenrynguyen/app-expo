@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { buildSourceVerificationTargets, createSourceListingVerifier, sourceListingIsAllowed, sourceVerificationKey } from "../lib/ingestion/source-verification";
-import { scopedListingIsLive, selectScopedChecks, type ScopedListingCache } from "../lib/ingestion/scoped-listing-cache";
+import { scopedListingIsLive, selectScopedChecks, selectBalancedScopedChecks, type ScopedListingCache } from "../lib/ingestion/scoped-listing-cache";
 import type { JobSource } from "../lib/source-catalog";
 import type { CandidateJob } from "../lib/source-normalization";
 import type { PublicJob } from "../lib/jobs";
@@ -12,6 +12,20 @@ const url = "https://employer.wd1.myworkdayjobs.com/External/job/NY/Engineer_JR-
 const alias = "https://employer.wd5.myworkdayjobs.com/en-US/Other/job/NY/Changed-Slug_JR-2501678-1";
 const candidate = { source: source.name, applyUrl: url } as CandidateJob;
 const response = (body: unknown, status = 200) => (async () => new Response(JSON.stringify(body), { status })) as typeof fetch;
+
+test("employer and source verification share the cap without starving either queue", () => {
+  const entries: Array<[string, string]> = [
+    ...Array.from({length: 200}, (_, i) => [`employer:${i}`, url] as [string, string]),
+    ...Array.from({length: 200}, (_, i) => [`source:${i}`, url] as [string, string]),
+  ];
+  const now = new Date("2026-10-28T12:00:00Z");
+  const selected = selectBalancedScopedChecks(entries, {}, now);
+  assert.equal(selected.length, 150);
+  assert.equal(selected.filter(([id]) => id.startsWith("source:")).length, 75);
+  assert.equal(new Set(selected.map(([id]) => id)).size, 150);
+  assert.equal(selectBalancedScopedChecks(entries.slice(0, 200), {}, now).length, 150);
+  assert.equal(selectBalancedScopedChecks(entries, {}, now, 0).length, 0);
+});
 
 test("source guard survives aliases, failed/empty feeds, attribution changes and stale evidence", () => {
   const initial = buildSourceVerificationTargets([source], [candidate], [], {});
