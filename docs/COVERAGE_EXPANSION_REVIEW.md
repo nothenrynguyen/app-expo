@@ -53,3 +53,19 @@ The [fresh local release receipt](coverage-expansion-local-result.json) uses the
 ## Remaining scope
 
 This batch does not establish complete market coverage or a universal new-grad experience threshold. Unsupported employer systems, unresolved source rights, employer-review holds and role classification remain possible gaps. Further expansion should prioritize verified eligible opportunities absent from the board, rather than a target advertised count. Private or school-restricted opportunities cannot be assumed available for republication.
+
+The remaining employer-evidence queue includes RTX/Raytheon naming variants, Palantir, Shield AI, CACI and General Dynamics Mission Systems. These are review leads, not approvals or counts of valid vacancies. Palantir's official careers page links its Lever board and its SEC filing documents workforce/U.S. presence; a separately scoped record is a concrete next candidate. Unclear aliases and unsupported destinations must not receive blanket approval.
+
+## Publication and live verification
+
+Implementation `8f2078a` and follow-up `c160d76` were pushed with full owner approval. The follow-up ensures a missing permission-review record is held during recovery, just like an explicitly unresolved record; all 132 local tests and TypeScript pass. Unrelated staged source-exclusion/environment work and the untracked Jobbie review remain outside these commits.
+
+Production [workflow 40831094943](https://github.com/nothenrynguyen/app-expo/actions/runs/40831094943) passed tests, refresh and snapshot publication. Generated snapshot `ed828c0` completed October 28 at 11:48 PM Pacific (October 29, 06:48 UTC). GitHub's Vercel status confirmed the implementation deployment; direct public fetches confirmed the actual deployed snapshot.
+
+The [production receipt](coverage-expansion-production-result.json) records byte-for-byte matches for `jobs.json`, `internships.json`, `fulltime.json` and `summary.json`. Production contains **2,560 jobs: 1,667 internships and 893 full-time roles**. This automated refresh added 88 internships and removed none compared with the initial release. All 24 feed records succeeded. Two employer-board failures remain visible: a Wadetrim timeout and the known Old Mission 404. Overall refresh health is therefore degraded, not fully healthy.
+
+Production checks found zero invalid supported locations, expired published jobs, duplicate destination identities, held-source credits, guarded jobs without fresh positive evidence, collection mismatches or unexplained removals. Sources, Updates and both job-board routes returned HTTP 200 with the expected deployed content. The new discovery feeds receive source credit on 104 published jobs; source credit is not exclusive or net-new yield. No spending, payment method or new hosted resource was introduced.
+
+This completes this implementation/release checkpoint. It does not establish the one-stop-shop coverage goal. The permission-first inventory remains substantially smaller than the old unrestricted snapshot, and the roadmap now prioritizes rebuilding independently supported coverage.
+
+The owner has been asked for the specific boards advertising 10k+ listings. The existing comparison is against one reviewed licensed discovery source, not a completed 100-role-per-collection benchmark of two named competitors. That exact competitor benchmark remains open; no result is inferred from marketing counts.

@@ -4,7 +4,7 @@ This is the living overview of shipped capabilities, candidate priorities, and d
 
 ## Current status
 
-- Coverage expansion and source-permission review is locally in progress with owner approval through release and verification. It includes a posting-date parser correction, a narrowly guarded licensed source, employer verification and holds for feeds without detected licenses. See the [coverage expansion review](docs/COVERAGE_EXPANSION_REVIEW.md); do not treat local results as deployed coverage.
+- Coverage expansion and source-permission safeguards are published and production-verified October 28. A licensed discovery source, posting-date correction, independently reviewed employers and fairer availability checks shipped. Six feeds without detected reuse licenses are held out, substantially reducing the old inventory; rebuilding permitted coverage is the next priority. See the [coverage expansion review](docs/COVERAGE_EXPANSION_REVIEW.md) and [production receipt](docs/coverage-expansion-production-result.json).
 
 - Employer coverage retention and unexplained-drop safeguards were published and production-verified October 28. Known official boards survive upstream omissions, and large unexplained losses block publication. See [coverage review](docs/COVERAGE_RETENTION_REVIEW.md) and [production receipt](docs/coverage-retention-production-result.json).
 
@@ -20,10 +20,11 @@ This is the living overview of shipped capabilities, candidate priorities, and d
 
 These are recommendations, not a committed active milestone. Choose a batch before implementation.
 
-1. Define an early-career experience rule, measure its effect on existing listings, and review examples before enabling broader exclusions.
-2. Improve duplicate and expired-listing detection using official evidence; keep uncertain listings separate or on hold.
-3. Review new seasonal source discoveries and unresolved source holds as evidence becomes available. Keryx New Grad 2026 is published and verified; Fall remains pending for separate review. See [release review](docs/KERYX_PENDING_2026_REVIEW.md#production-release-and-verification-october-28). Do not automatically activate unreviewed feeds.
-4. Observe and record a successful scheduled analytics cleanup, if available.
+1. Rebuild coverage through permitted sources and independently verified employer boards. Review employer aliases and the largest company-evidence holds first, then unsupported collection systems. Measure actual missing destinations and keep permission holds separate from closure. See the [coverage expansion review](docs/COVERAGE_EXPANSION_REVIEW.md).
+2. Define an early-career experience rule, measure its effect on existing listings, and review examples before enabling broader exclusions.
+3. Improve duplicate and expired-listing detection using official evidence; keep uncertain listings separate or on hold.
+4. Review new seasonal source discoveries and unresolved source holds as evidence becomes available. Keryx New Grad 2026 is published and verified; Fall remains pending for separate review. See [release review](docs/KERYX_PENDING_2026_REVIEW.md#production-release-and-verification-october-28). Do not automatically activate unreviewed feeds.
+5. Observe and record a successful scheduled analytics cleanup, if available.
 
 See [active tasks](docs/ACTIVE_TASKS.md) for current status, constraints, and evidence.
 

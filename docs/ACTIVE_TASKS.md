@@ -4,7 +4,9 @@ Reviewed October 28, 2026. This file tracks concrete active work, follow-up, and
 
 ## Active milestone
 
-Coverage expansion and permission review is in progress with full owner approval through publication and live verification. Compare licensed source candidates, fix demonstrated collection gaps, and retain no-card/no-spending and source-permission constraints. Implementation and controlled validation are local until the [coverage expansion review](COVERAGE_EXPANSION_REVIEW.md) records a production receipt.
+Coverage expansion and permission safeguards are published and production-verified October 28. Workflow 40831094943 succeeded; generated snapshot `ed828c0` exactly matched all four live JSON files. The latest run added 88 internships and removed no jobs after the initial permission-hold migration. The inventory remains substantially below the earlier snapshot; rebuilding independently verified, permitted coverage is the leading follow-up. See the [coverage expansion review](COVERAGE_EXPANSION_REVIEW.md) and [production receipt](coverage-expansion-production-result.json).
+
+The broader coverage investigation remains open. The owner granted end-to-end implementation, push, deployment and verification approval, subject to no spending/payment method and permission-conscious lawful sourcing. Competitor names/links behind the 10k+ claims have been requested for the exact benchmark. This release does not establish one-stop coverage.
 
 Employer coverage retention and unexplained-drop safeguards are published and production-verified October 28. Workflow 40825645377 succeeded; generated snapshot `f7801da` exactly matched all four deployed public JSON files. Ten full-time jobs were restored with official evidence, and no jobs were removed in the production refresh. See [coverage review](COVERAGE_RETENTION_REVIEW.md) and [production receipt](coverage-retention-production-result.json).
 
@@ -12,10 +14,10 @@ Keryx New Grad 2026 activation and availability safeguards are published and pro
 
 ## Operational follow-up
 
-- Coverage: board history is persisted by the refresh workflow. Healthy active boards remain tracked; undiscovered empty or failing boards age out after 90 days. The local expansion trial raises the retained-board allowance from 250 to 400 because permission holds reclassify existing boards; the 1,000-total cap remains. See the [expansion review](COVERAGE_EXPANSION_REVIEW.md) for publication state. Investigate failed coverage guards using the seven-day Actions artifact rather than bypassing them or restoring old listings wholesale.
+- Coverage: board history is persisted by the refresh workflow. Healthy active boards remain tracked; undiscovered empty or failing boards age out after 90 days. The published retained-board allowance is 400 because permission holds reclassify existing boards; the 1,000-total cap remains. Investigate failed coverage guards using the seven-day Actions artifact rather than bypassing them or restoring old listings wholesale. Six permission-held community feeds must stay inactive without reviewed reuse permission.
 
 - Analytics: the owner confirmed dashboard access and report credential rotation. Cleanup cron was configured, but the first successful scheduled execution was not observed in the latest [action log](ANALYTICS_ACTION_LOG.md). Check current evidence before marking it complete.
-- Employer verification: monitor the bounded verification queue and review the remaining employer backlog. Booz Allen and RTX pilot proposals remain on hold pending review of existing jobs and URL variants.
+- Employer verification: monitor the balanced 150-check queue and review the remaining employer backlog. The reviewed Booz Allen Workday scope is now approved; other URL variants and the separate RTX pilot remain unresolved. Current official employer membership can satisfy scoped availability without redundant detail requests. Feed-dependent employer trust remains a major coverage gap.
 - Keryx 2026: New Grad published and verified October 28. Workflow 40650482708 succeeded; snapshot `7711f2c` matched deployed JSON, with positive evidence for every published guarded destination and no shared-hold leaks. Fall remains inactive. Counts and detailed evidence belong in the [production receipt](keryx-2026-production-result.json); revisit Fall only in a separately approved batch.
 - Source maintenance: review newly discovered seasonal files and official evidence for held destinations as needed. Keep unreviewed feeds inactive and uncertain destinations on hold. The last documented Winter hold recheck returned 403 for all 16 endpoints; this is a historical result, not a current count.
 - Listing quality: revisit inconclusive duplicate groups when reliable official requisition evidence is available. Historical counts require a fresh measurement.
@@ -23,11 +25,12 @@ Keryx New Grad 2026 activation and availability safeguards are published and pro
 
 ## Candidate next batch
 
-1. Define an early-career experience rule, measure effects on current listings, and review examples before enabling broader exclusions.
-2. Review the largest remaining duplicate groups where official identifiers support a decision.
-3. Review future seasonal discoveries when maintenance finds them.
+1. Rebuild permitted coverage by reviewing employer identities, aliases and official board ownership. Prioritize demonstrated missing destinations from the coverage review rather than raw source totals.
+2. Define an early-career experience rule, measure effects on current listings, and review examples before enabling broader exclusions.
+3. Review the largest remaining duplicate groups where official identifiers support a decision.
+4. Review future seasonal discoveries when maintenance finds them.
 
-These are recorded recommendations, not an authorization to start or deploy a batch.
+Coverage work remains owner-authorized within the constraints above. The other candidate areas are recommendations, not a separate selected milestone.
 
 ## Completed checkpoints
 

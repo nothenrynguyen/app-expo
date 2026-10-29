@@ -1,0 +1,127 @@
+{
+  "verifiedAt": "2026-10-29T06:50:28.608Z",
+  "site": "https://empluzzed.fyi",
+  "implementationCommit": "8f2078abc338fd4fc8066da16027e1f116b64694",
+  "followupCommit": "c160d76",
+  "snapshotCommit": "ed828c09f25e7345e9464117b12304726c54189a",
+  "workflow": {
+    "id": 40831094943,
+    "url": "https://github.com/nothenrynguyen/app-expo/actions/runs/40831094943"
+  },
+  "generatedAt": "2026-10-29T06:48:42.811Z",
+  "counts": {
+    "total": 2560,
+    "internships": 1667,
+    "fulltime": 893
+  },
+  "exactProductionMatches": [
+    {
+      "file": "jobs.json",
+      "matches": true,
+      "sha256": "5d00f60256d4cd935b9c936c60ff22f6970796c3b4f52e6b5d459bafb4020416"
+    },
+    {
+      "file": "internships.json",
+      "matches": true,
+      "sha256": "17c29afdf23c75319150bcac62199cc4ad7b7f9b4c253b1edec6977990bfa245"
+    },
+    {
+      "file": "fulltime.json",
+      "matches": true,
+      "sha256": "b565a4a3b5b6f20dfe3c72e90c5d8ae52b571c9868936354b3e4cadce4352f0a"
+    },
+    {
+      "file": "summary.json",
+      "matches": true,
+      "sha256": "4010b1ef9e712f206a920fc0e5d98c68316e023c7d185a44df2fd589ffac20fa"
+    }
+  ],
+  "validation": {
+    "invalidLocations": 0,
+    "expired": 0,
+    "duplicateDestinations": 0,
+    "heldSourceCredits": 0,
+    "guardedWithoutPositiveEvidence": 0,
+    "collectionMismatches": 0
+  },
+  "pages": [
+    {
+      "route": "/sources",
+      "status": 200,
+      "expectedContent": true
+    },
+    {
+      "route": "/updates",
+      "status": 200,
+      "expectedContent": true
+    },
+    {
+      "route": "/internships",
+      "status": 200,
+      "expectedContent": true
+    },
+    {
+      "route": "/jobs",
+      "status": 200,
+      "expectedContent": true
+    }
+  ],
+  "newSourceCredit": 104,
+  "coverage": {
+    "boards": {
+      "discovered": 290,
+      "retained": 305
+    },
+    "collections": [
+      {
+        "collection": "internships",
+        "previous": 1579,
+        "current": 1667,
+        "removed": 0,
+        "unexplained": 0,
+        "largeDrop": false,
+        "blocked": false
+      },
+      {
+        "collection": "fulltime",
+        "previous": 893,
+        "current": 893,
+        "removed": 0,
+        "unexplained": 0,
+        "largeDrop": false,
+        "blocked": false
+      }
+    ]
+  },
+  "refresh": {
+    "status": "degraded",
+    "durationMs": 194104,
+    "sources": {
+      "total": 24,
+      "healthy": 24,
+      "failed": 0
+    },
+    "boards": {
+      "total": 599,
+      "healthy": 597,
+      "failed": 2,
+      "failures": [
+        {
+          "company": "Wadetrim",
+          "provider": "lever",
+          "message": "The operation was aborted due to timeout"
+        },
+        {
+          "company": "Old Mission",
+          "provider": "greenhouse",
+          "message": "404 Not Found"
+        }
+      ]
+    }
+  },
+  "listingChanges": {
+    "added": 88,
+    "removed": 0,
+    "reasons": {}
+  }
+}
