@@ -1,6 +1,6 @@
 # Active project tasks
 
-October 29 owner scope correction: People / Legal, Science / Health and Education are removed from supported career families. The local adjusted snapshot contains 4,143 internships and 2,514 full-time roles, still above both recovery targets. Classification, stored tags, snapshots and Methodology are updated; publication verification is pending. The prior restoration receipt remains historical evidence.
+October 29 owner scope correction: People / Legal, Science / Health and Education are removed from supported career families. The deployed, verified snapshot contains 4,143 internships and 2,514 full-time roles, still above both recovery targets. Classification, stored tags, snapshots and Methodology are updated and production-verified in commit `710412b`; all four deployed JSON files exactly match. The prior restoration receipt remains historical evidence.
 
 Reviewed October 28, 2026. This file tracks concrete active work, follow-up, and evidence. The [roadmap](../ROADMAP.md) holds longer-term priorities and ideas. The [previous task record](ACTIVE_TASKS_ARCHIVE_2026-10-22.md) preserves the October 22 status and historical receipts; older detail is in [task history](TASK_HISTORY.md).
 
@@ -50,4 +50,4 @@ Coverage work remains owner-authorized within the constraints above. The other c
 
 Record changes to active status, decisions, evidence, blockers, and next actions when relevant. Keep detailed receipts in focused documents and archive superseded task history. Obtain explicit approval before pushing or deploying. Follow the zero-cost policy and keep public browsing account-free.
 
-October 29 owner scope correction: remove People / Legal, Science / Health and Education from supported career families, including listings classified only in those families. Supported software, data, engineering, product, business, finance and IT roles at any employer sector remain eligible. Local classification, legacy-tag filtering, public snapshots and Methodology are updated; release verification is pending. See [scope receipt](career-scope-correction-result.json). Historical restoration receipts retain their original counts.
+October 29 owner scope correction: remove People / Legal, Science / Health and Education from supported career families, including listings classified only in those families. Supported software, data, engineering, product, business, finance and IT roles at any employer sector remain eligible. Classification, legacy-tag filtering, public snapshots and Methodology are updated and production-verified. All 145 tests, TypeScript, lint and static export pass. See [scope receipt](career-scope-correction-result.json). Historical restoration receipts retain their original counts.
