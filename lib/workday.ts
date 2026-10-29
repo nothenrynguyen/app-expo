@@ -1,3 +1,5 @@
+import { workdayEvidenceKey, type WorkdayCheck } from "./ingestion/workday-continuity";
+import { evaluateCompanyQuality } from "./company-quality";
 import { isEarlyCareerTitle } from "./ats-boards";
 import type { CandidateJob } from "./source-normalization";
 import { canonicalizeUrl, inferTerm, inferWorkMode, jobIdentity, parsePostedAt } from "./source-normalization";
@@ -23,6 +25,7 @@ type WorkdayBoardResult = {
   jobs: CandidateJob[];
   liveIdentities: Set<string>;
   searchedPostings: number;
+  checks: WorkdayCheck[];
   diagnostics: {
     durationMs: number;
     listRequests: number;
@@ -90,12 +93,12 @@ async function requestWorkdayJson<T>(url: string, options: WorkdayRequestOptions
         signal: AbortSignal.timeout(Math.max(1, Math.min(options.timeoutMs, (options.deadlineAt ?? Infinity) - Date.now()))),
       });
       if (response.ok) return await response.json() as T;
-      const retryable = response.status === 408 || response.status === 429 || response.status >= 500;
+      const retryable = response.status === 408 || response.status >= 500;
       if (!retryable) throw new Error(`${response.status} ${response.statusText}`);
       lastError = new Error(`${response.status} ${response.statusText}`);
     } catch (error) {
       lastError = error;
-      if (error instanceof Error && /^4\d\d /.test(error.message) && !/^(?:408|429) /.test(error.message)) throw error;
+      if (error instanceof Error && /^4\d\d /.test(error.message) && !/^408 /.test(error.message)) throw error;
     }
     if (options.deadlineAt && Date.now() >= options.deadlineAt) throw new Error("Workday board time budget exceeded");
     if (attempt < REQUEST_ATTEMPTS - 1) {
@@ -235,7 +238,14 @@ export async function fetchWorkdayBoard(
 ): Promise<WorkdayBoardResult> {
   const startedAt = Date.now();
   const deadlineAt = startedAt + 90_000;
-  const fetchImpl = options.fetchImpl ?? fetch;
+  let accessDenied = 0;
+  const nativeFetch = options.fetchImpl ?? fetch;
+  const fetchImpl: typeof fetch = async (url, init) => {
+    if (accessDenied) throw new Error(`${accessDenied} Workday access paused for this board`);
+    const response = await nativeFetch(url, init);
+    if ([401, 403, 429].includes(response.status)) accessDenied = response.status;
+    return response;
+  };
   const retryDelayMs = options.retryDelayMs ?? 250;
   const summaries = new Map<string, WorkdaySummary>();
   const maxResults = board.maxResultsPerSearch ?? 500;
@@ -285,14 +295,28 @@ export async function fetchWorkdayBoard(
   });
 
   const jobs: CandidateJob[] = [];
+  const checks: WorkdayCheck[] = [];
   const liveIdentities = new Set<string>();
   const detailFailures = details.filter((result) => result.status === "rejected").length;
-  if (entries.length > 0 && detailFailures === entries.length) throw new Error("Every Workday detail request failed.");
-  for (const result of details) {
-    if (result.status !== "fulfilled") continue;
+  for (const [index, result] of details.entries()) {
+    const url = publicUrl(board, entries[index][0]);
+    if (result.status !== "fulfilled") {
+      checks.push({url, status: result.reason instanceof Error && /^(404|410)\b/.test(result.reason.message) ? "closed" : "unknown"});
+      continue;
+    }
+    const info = result.value.payload.jobPostingInfo;
+    const req = info?.jobReqId?.toLowerCase();
+    const postingPath = decodeURIComponent(new URL(url).pathname).toLowerCase();
+    const matches = !!req && (postingPath.endsWith(`_${req}`) || new RegExp(`_${req.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}-\\d+$`).test(postingPath));
+    if (matches && (info?.posted === false || info?.canApply === false)) checks.push({url, status: "closed"});
     const job = parseWorkdayJob(board, result.value.summary, result.value.payload, now);
     const identity = job && jobIdentity(job.applyUrl);
-    if (!job || !identity) continue;
+    if (!job || !identity) {
+      if (!matches || info?.posted !== false && info?.canApply !== false) checks.push({url, status: matches && typeof info?.title === "string" && info.title.trim() ? "ineligible" : "unknown"});
+      continue;
+    }
+    if (matches && evaluateCompanyQuality({name: board.company, title: job.title}, job.rawText, []).status === "rejected") {checks.push({url, status: "ineligible"}); continue;}
+    checks.push({url: job.applyUrl, status: matches && workdayEvidenceKey(url) === workdayEvidenceKey(job.applyUrl) && info?.posted === true && info?.canApply === true ? "live" : "unknown"});
     liveIdentities.add(identity);
     jobs.push(job);
   }
@@ -302,6 +326,7 @@ export async function fetchWorkdayBoard(
     jobs,
     liveIdentities,
     searchedPostings,
+    checks,
     diagnostics: {
       durationMs: Date.now() - startedAt,
       listRequests,

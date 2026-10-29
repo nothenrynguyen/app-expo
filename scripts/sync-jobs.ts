@@ -1,3 +1,4 @@
+import { workdayEvidenceKey, workdayRecoveryPolicy, recentWorkdayEvidence, updateWorkdayContinuity, type WorkdayContinuity } from "../lib/ingestion/workday-continuity";
 import { reviewedFederalCoverage } from "../lib/ingestion/usajobs";
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -63,7 +64,9 @@ async function main() {
     boardHistory,
     boardCoverage,
     recoveryState,
+    workdayChecks = [],
   } = await loadCandidates(root, activeSources, previous?.jobs ?? []);
+  const workdayCache: WorkdayContinuity = await readFile(path.join(root, "data/workday-continuity.json"), "utf8").then(value => JSON.parse(value)).catch((error: NodeJS.ErrnoException) => {if (error.code === "ENOENT") return {}; throw error;});
   const continuityData = JSON.parse(await readFile(path.join(root, "data/employer-continuity.json"), "utf8")) as EmployerContinuity;
   const hasPriorAdmission = continuityMatcher(continuityData);
   const continuityLive = (candidate: import("../lib/source-normalization").CandidateJob) => {
@@ -134,6 +137,14 @@ async function main() {
     if (decision.status === "approved" && decision.requireLiveListing && identity && getJobLocationMetadata(candidate).eligible && classifyRoleTags(candidate).length > 0 && !getFreshnessRejection(candidate)) scopedUrls.set(identity, candidate.applyUrl);
   }
   for (const [key, target] of Object.entries(sourceTargets)) scopedUrls.set(key, target.url);
+  for (const entry of Object.values(recentWorkdayEvidence(workdayCache, startedAt))) {
+    for (const key of [jobIdentity(entry.job.applyUrl), sourceVerificationKey(entry.job.applyUrl)]) {
+      if (key && (!scopedCache[key]?.checkedAt || Date.parse(scopedCache[key].checkedAt!) <= Date.parse(entry.checkedAt))) scopedCache[key] = {status: "live", checkedAt: entry.checkedAt, firstSeenAt: scopedCache[key]?.firstSeenAt ?? entry.checkedAt};
+    }
+  }
+  for (const check of workdayChecks) for (const key of [jobIdentity(check.url), sourceVerificationKey(check.url)]) {
+    if (key && check.status !== "unknown") scopedCache[key] = {status: check.status === "live" ? "live" : "unknown", checkedAt: startedAt.toISOString(), firstSeenAt: scopedCache[key]?.firstSeenAt ?? startedAt.toISOString()};
+  }
   for (const identity of scopedUrls.keys()) if (!scopedCache[identity]) scopedCache[identity] = { status: "unknown", checkedAt: null, firstSeenAt: startedAt.toISOString() };
   for (const candidate of candidates) {
     const evidence = recoveryEvidenceAt(candidate);
@@ -169,7 +180,10 @@ async function main() {
       || (!!identity && (authoritative ? !authoritative.liveIdentities.has(identity) : isListingUnavailable(listingHealth[identity])));
   });
 
+  const workdayTerminalKeys = new Map(workdayChecks.filter(check => check.status === "closed" || check.status === "ineligible").map(check => [workdayEvidenceKey(check.url), check.status] as const).filter(([key]) => key !== null));
   for (const candidate of candidates) {
+    const terminal = workdayTerminalKeys.get(workdayEvidenceKey(candidate.applyUrl));
+    if (terminal) {screening.record(candidate.applyUrl, terminal === "closed" ? "closed" : "role"); rejectedCount += 1; continue;}
     const locationMetadata = getJobLocationMetadata(candidate);
     if (!locationMetadata.eligible) {
       screening.record(candidate.applyUrl, "location");
@@ -284,16 +298,19 @@ async function main() {
   }
 
   const recovery = boardRecoveryPolicy(boardRegistry, boardResults);
+  const workdayRecovery = workdayRecoveryPolicy(boardRegistry, workdayChecks, workdayCache, startedAt);
   const failedSourceNames = new Set(unhealthySources.map(source => source.name));
-  if ((unhealthySources.length > 0 || recovery.hasFailures) && previous) {
-    preservedFromLastHealthySnapshot = preserveLastKnownGoodJobs(merged, previous.jobs, (prior) => {
+  const acceptedVerificationKeys = new Set([...merged.values()].map(job => sourceVerificationKey(job.applyUrl)));
+  if ((unhealthySources.length > 0 || recovery.hasFailures || workdayRecovery.hasFailures) && previous) {
+    preservedFromLastHealthySnapshot = preserveLastKnownGoodJobs(merged, [...previous.jobs, ...workdayRecovery.jobs], (prior) => {
+      if (workdayRecovery.mayRecover(prior) && acceptedVerificationKeys.has(sourceVerificationKey(prior.applyUrl))) return null;
       // Recovery cannot carry unlicensed feed material forward during failures.
       if (prior.sources.some(source => permissionHeldSources.has(source))) return null;
-      if (!recovery.mayRecover(prior, failedSourceNames)) return null;
+      if (!recovery.mayRecover(prior, failedSourceNames) && !workdayRecovery.mayRecover(prior)) return null;
       if (reviewHoldIds.has(sourceReviewHoldIdentity(prior.applyUrl))) return null;
       if (!sourceListingIsAllowed(prior.applyUrl, sourceTargets, verifiedScopedIds)) return null;
       // A board outage recovers only that board, not unrelated missing inputs.
-      if (unhealthySources.length === 0 && !recovery.affected(prior)) return null;
+      if (unhealthySources.length === 0 && !recovery.affected(prior) && !workdayRecovery.mayRecover(prior)) return null;
       const decision = evaluateCompanyQuality({ name: prior.company, title: prior.title, applyUrl: prior.applyUrl }, "", registry, trustRegistry);
       if (decision.requireLiveListing && !scopedListingIsLive(scopedCache[jobIdentity(prior.applyUrl) ?? ""], startedAt)) return null;
       const freshnessRejection = getFreshnessRejection(prior);
@@ -312,7 +329,7 @@ async function main() {
         roleTags,
       };
     }, (prior) => {
-      return recovery.confirmedClosed(prior) || isListingUnavailable(listingHealth[jobIdentity(prior.applyUrl) ?? ""]);
+      return recovery.confirmedClosed(prior) || workdayRecovery.terminal(prior) || (!workdayRecovery.mayRecover(prior) && isListingUnavailable(listingHealth[jobIdentity(prior.applyUrl) ?? ""]));
     });
   }
 
@@ -366,6 +383,7 @@ async function main() {
     if (!currentIdentities.has(identity) && age > 30 * 86_400_000) delete listingHealth[identity];
   }
   await mkdir(path.join(root, "data"), { recursive: true });
+  await writeFile(path.join(root, "data/workday-continuity.json"), `${JSON.stringify(updateWorkdayContinuity(workdayCache, workdayChecks, jobs, startedAt), null, 2)}\n`);
   if (recoveryState && Object.keys(recoveryState).length) await writeFile(path.join(root, "data/employer-recovery-state.json"), `${JSON.stringify(recoveryState, null, 2)}\n`);
   for (const [identity, record] of Object.entries(scopedCache)) {
     if (!scopedUrls.has(identity) && startedAt.getTime() - Date.parse(record.checkedAt ?? record.firstSeenAt) > 30 * 86_400_000) delete scopedCache[identity];

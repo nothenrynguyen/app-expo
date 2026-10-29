@@ -1,6 +1,6 @@
 # Active project tasks
 
-October 29 owner scope correction: People / Legal, Science / Health and Education are removed from supported career families. The deployed, verified snapshot contains 4,143 internships and 2,514 full-time roles, still above both recovery targets. Classification, stored tags, snapshots and Methodology are updated and production-verified in commit `710412b`; all four deployed JSON files exactly match. The prior restoration receipt remains historical evidence.
+October 29 current work: doubling feasibility research is complete and five additional employer boards are deployed. The career scope remains unchanged. Release verification exposed Workday outage-related losses; an exact-site, 24-hour evidence retention fix passes 150 tests, types, lint and export locally and awaits production verification. See the doubling feasibility review for measured supply limits and release evidence.
 
 Reviewed October 28, 2026. This file tracks concrete active work, follow-up, and evidence. The [roadmap](../ROADMAP.md) holds longer-term priorities and ideas. The [previous task record](ACTIVE_TASKS_ARCHIVE_2026-10-22.md) preserves the October 22 status and historical receipts; older detail is in [task history](TASK_HISTORY.md).
 

@@ -35,6 +35,7 @@ export type VerificationDiagnostic = {
 };
 
 export type CandidateLoadResult = {
+  workdayChecks?: import("./workday-continuity").WorkdayCheck[];
   recoveryState?: import("./employer-recovery").RecoveryState;
   boardHistory: import("./board-history").BoardHistory;
   boardCoverage: { discovered: number; retained: number };

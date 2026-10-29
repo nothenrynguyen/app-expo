@@ -193,25 +193,30 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     .catch(() => []);
   const workdayBoards = workdaySeeds.map(createWorkdayBoard);
   const settledWorkdayFetches = await inBatches(workdayBoards, 3, (board) => runTimed(() => fetchWorkdayBoard(board)));
+  const workdayChecks: import("./workday-continuity").WorkdayCheck[] = [];
   const workdayFetches = settledWorkdayFetches.map((result) => result.status === "fulfilled" ? result.value : ({ status: "rejected", reason: result.reason, durationMs: 0 } as const));
   workdayFetches.forEach((result, index) => {
     const board = workdayBoards[index];
     if (result.status === "fulfilled") {
+      const status = result.value.diagnostics.detailRequests > 0 && result.value.diagnostics.detailFailures === result.value.diagnostics.detailRequests ? "failed" as const : "ok" as const;
+      const sourceStatus = result.value.diagnostics.detailFailures > 0 || result.value.checks.some(check => check.status === "unknown") ? "failed" as const : "ok" as const;
       candidates.push(...result.value.jobs);
-      health.push({ name: `Workday: ${board.company}`, status: "ok", rows: result.value.searchedPostings });
+      workdayChecks.push(...result.value.checks);
+      health.push({ name: `Workday: ${board.company}`, status: sourceStatus, rows: result.value.searchedPostings });
       sourceDiagnostics.push({
         name: `Workday: ${board.company}`,
         kind: "workday",
-        status: "ok",
+        status: sourceStatus,
         rows: result.value.searchedPostings,
         durationMs: result.value.diagnostics.durationMs,
         requestCount: result.value.diagnostics.listRequests + result.value.diagnostics.detailRequests + result.value.diagnostics.retryRequests,
       });
       boardRegistry.push({
+        id: `workday:${board.host}:${board.site.toLowerCase()}`,
         provider: "workday",
         key: `${board.tenant}/${board.site}`,
         company: board.company,
-        status: "ok",
+        status,
         rows: result.value.liveIdentities.size,
         searchedRows: result.value.searchedPostings,
         listRequests: result.value.diagnostics.listRequests,
@@ -223,7 +228,7 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     } else {
       health.push({ name: `Workday: ${board.company}`, status: "failed", rows: 0 });
       sourceDiagnostics.push({ name: `Workday: ${board.company}`, kind: "workday", status: "failed", rows: 0, durationMs: result.durationMs, requestCount: 0, message: errorMessage(result.reason) });
-      boardRegistry.push({ provider: "workday", key: `${board.tenant}/${board.site}`, company: board.company, status: "failed", rows: 0, durationMs: result.durationMs, message: errorMessage(result.reason) });
+      boardRegistry.push({ id: `workday:${board.host}:${board.site.toLowerCase()}`, provider: "workday", key: `${board.tenant}/${board.site}`, company: board.company, status: "failed", rows: 0, durationMs: result.durationMs, message: errorMessage(result.reason) });
     }
   });
 
@@ -270,6 +275,7 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     if (diagnostic) diagnostic.message = JSON.stringify({ reviewHoldsConfigured: source.reviewHolds!.length, heldCandidateRowsAcrossSources: reviewed.held.length });
   }
   return {
+    workdayChecks,
     recoveryState: recovery.state,
     boardHistory: selection.history,
     boardCoverage: { discovered: selection.discovered, retained: selection.retained },
