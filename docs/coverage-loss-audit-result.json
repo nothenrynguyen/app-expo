@@ -1,0 +1,818 @@
+{
+  "auditedAt": "2026-10-29T07:57:25.598Z",
+  "baselineRef": "93a0218",
+  "baselineGeneratedAt": "2026-10-29T06:20:54.077Z",
+  "currentGeneratedAt": "2026-10-29T07:20:31.902Z",
+  "baseline": {
+    "total": 5893,
+    "internships": 3516,
+    "fulltime": 2377
+  },
+  "current": {
+    "total": 2606,
+    "internships": 1711,
+    "fulltime": 895
+  },
+  "netDecline": 3287,
+  "priorRowsCurrentlyMissing": 3401,
+  "currentRowsAbsentFromPrior": 114,
+  "causes": {
+    "employer-evidence-hold": 1613,
+    "missing-permitted-input": 1602,
+    "location": 37,
+    "possible-url-alias": 31,
+    "availability-evidence-hold": 17,
+    "role": 83,
+    "employer-destination-hold": 1,
+    "role-classification": 9,
+    "not-in-initial-migration": 1,
+    "employer": 4,
+    "deduplicated": 3
+  },
+  "employerEvidenceHoldsStillCollectedDirectly": 1093,
+  "employerBoardsQueried": {
+    "baseline": 600,
+    "current": 599
+  },
+  "missingInputHosts": [
+    {
+      "hostname": "lifeattiktok.com",
+      "rows": 155
+    },
+    {
+      "hostname": "www.tesla.com",
+      "rows": 65
+    },
+    {
+      "hostname": "apply.workable.com",
+      "rows": 49
+    },
+    {
+      "hostname": "jobs.smartrecruiters.com",
+      "rows": 49
+    },
+    {
+      "hostname": "www.amazon.jobs",
+      "rows": 31
+    },
+    {
+      "hostname": "amazon.jobs",
+      "rows": 26
+    },
+    {
+      "hostname": "careers.qorvo.com",
+      "rows": 19
+    },
+    {
+      "hostname": "careers.amd.com",
+      "rows": 16
+    },
+    {
+      "hostname": "jobs.ea.com",
+      "rows": 16
+    },
+    {
+      "hostname": "egug.fa.us2.oraclecloud.com",
+      "rows": 15
+    },
+    {
+      "hostname": "jobs.dayforcehcm.com",
+      "rows": 15
+    },
+    {
+      "hostname": "jobs.jobvite.com",
+      "rows": 14
+    },
+    {
+      "hostname": "bah.wd1.myworkdayjobs.com",
+      "rows": 12
+    },
+    {
+      "hostname": "globalhr.wd5.myworkdayjobs.com",
+      "rows": 12
+    },
+    {
+      "hostname": "app.careerpuck.com",
+      "rows": 12
+    },
+    {
+      "hostname": "hp.wd5.myworkdayjobs.com",
+      "rows": 11
+    },
+    {
+      "hostname": "www.metacareers.com",
+      "rows": 11
+    },
+    {
+      "hostname": "boards.greenhouse.io",
+      "rows": 11
+    },
+    {
+      "hostname": "careers.rivian.com",
+      "rows": 11
+    },
+    {
+      "hostname": "ats.rippling.com",
+      "rows": 11
+    }
+  ],
+  "topEmployerEvidenceHolds": [
+    {
+      "company": "Accenture Federal Services",
+      "rows": 38
+    },
+    {
+      "company": "Palantir",
+      "rows": 38
+    },
+    {
+      "company": "Sierra Nevada Corporation",
+      "rows": 25
+    },
+    {
+      "company": "Astranis",
+      "rows": 22
+    },
+    {
+      "company": "Shield AI",
+      "rows": 21
+    },
+    {
+      "company": "CACI",
+      "rows": 20
+    },
+    {
+      "company": "Relativity Space",
+      "rows": 19
+    },
+    {
+      "company": "DoorDash",
+      "rows": 19
+    },
+    {
+      "company": "SharkNinja",
+      "rows": 18
+    },
+    {
+      "company": "Rivian",
+      "rows": 18
+    },
+    {
+      "company": "Point72",
+      "rows": 17
+    },
+    {
+      "company": "Hermeus",
+      "rows": 17
+    },
+    {
+      "company": "Applied Intuition",
+      "rows": 16
+    },
+    {
+      "company": "DV Trading",
+      "rows": 16
+    },
+    {
+      "company": "Saronic",
+      "rows": 15
+    },
+    {
+      "company": "Muon Space",
+      "rows": 14
+    },
+    {
+      "company": "DRW",
+      "rows": 14
+    },
+    {
+      "company": "Verkada",
+      "rows": 14
+    },
+    {
+      "company": "CesiumAstro",
+      "rows": 14
+    },
+    {
+      "company": "True Anomaly",
+      "rows": 13
+    },
+    {
+      "company": "AMCA",
+      "rows": 13
+    },
+    {
+      "company": "CRB",
+      "rows": 13
+    },
+    {
+      "company": "xAI",
+      "rows": 13
+    },
+    {
+      "company": "Graphcore",
+      "rows": 12
+    },
+    {
+      "company": "Cirrus Logic",
+      "rows": 12
+    }
+  ],
+  "limitations": [
+    "These are observed pipeline causes, not closure decisions or proof that every missing role is eligible.",
+    "Company-evidence and availability holds are separate from source-permission holds.",
+    "Source-permission means a previously attributed feed is held and no current accepted replacement was found, not that employer facts are necessarily unlawful to use.",
+    "Counts use the pipeline destination identity so row totals reconcile. Possible URL/requisition aliases are flagged separately and are not treated as verified additional vacancies."
+  ],
+  "examplesByCause": {
+    "employer-evidence-hold": [
+      {
+        "company": "Marvell",
+        "title": "Security Verification/Validation Engineer Intern, BS - Summer 2027",
+        "applyUrl": "https://marvell.wd1.myworkdayjobs.com/MarvellCareers/job/Chandler-AZ/Security-Verification-Validation-Engineer-Intern--BS---Summer-2027_2604148-1",
+        "sources": [
+          "Keryx Non-Software Summer 2027"
+        ],
+        "cause": "employer-evidence-hold",
+        "initialReason": "pendingVerification",
+        "currentHoldReasons": [
+          "Company size and substantial U.S. operating presence have not been verified."
+        ],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "Axon",
+        "title": "Account Executive (Inside Sales), Boston (Hybrid)",
+        "applyUrl": "https://job-boards.greenhouse.io/axon/jobs/7589457003",
+        "sources": [
+          "Direct ATS (Greenhouse)"
+        ],
+        "cause": "employer-evidence-hold",
+        "initialReason": "pendingVerification",
+        "currentHoldReasons": [
+          "Company size and substantial U.S. operating presence have not been verified."
+        ],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "Axon",
+        "title": "Account Executive, Mid City",
+        "applyUrl": "https://job-boards.greenhouse.io/axon/jobs/7547658003",
+        "sources": [
+          "Direct ATS (Greenhouse)"
+        ],
+        "cause": "employer-evidence-hold",
+        "initialReason": "pendingVerification",
+        "currentHoldReasons": [
+          "Company size and substantial U.S. operating presence have not been verified."
+        ],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "Axon",
+        "title": "Account Executive, Mid City",
+        "applyUrl": "https://job-boards.greenhouse.io/axon/jobs/7547657003",
+        "sources": [
+          "Direct ATS (Greenhouse)"
+        ],
+        "cause": "employer-evidence-hold",
+        "initialReason": "pendingVerification",
+        "currentHoldReasons": [
+          "Company size and substantial U.S. operating presence have not been verified."
+        ],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "Axon",
+        "title": "Account Executive, Mid City",
+        "applyUrl": "https://job-boards.greenhouse.io/axon/jobs/7967207003",
+        "sources": [
+          "Direct ATS (Greenhouse)"
+        ],
+        "cause": "employer-evidence-hold",
+        "initialReason": "pendingVerification",
+        "currentHoldReasons": [
+          "Company size and substantial U.S. operating presence have not been verified."
+        ],
+        "possibleAliasMatch": false
+      }
+    ],
+    "missing-permitted-input": [
+      {
+        "company": "Boston Scientific",
+        "title": "R&D Software Design Intern",
+        "applyUrl": "https://bostonscientific.eightfold.ai/careers/job/563602813862687",
+        "sources": [
+          "Simplify Summer 2027"
+        ],
+        "cause": "missing-permitted-input",
+        "initialReason": "source-permission",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "Valmont",
+        "title": "AI and Data Engineering Intern",
+        "applyUrl": "https://valmont.wd1.myworkdayjobs.com/ValmontCareers/job/Omaha-NE/AI---Data-Engineering-Intern_R29310",
+        "sources": [
+          "Simplify Off-Season 2027"
+        ],
+        "cause": "missing-permitted-input",
+        "initialReason": "source-permission",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "ICF International",
+        "title": "Data Scientist Seasonal Associate Intern",
+        "applyUrl": "https://icf.wd5.myworkdayjobs.com/icfexternal_career_site/job/Reston-VA/Seasonal-Associate--Data-Scientist_R2603639",
+        "sources": [
+          "Simplify Off-Season 2027"
+        ],
+        "cause": "missing-permitted-input",
+        "initialReason": "source-permission",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "Johnson Controls",
+        "title": "Software Engineering Co-op",
+        "applyUrl": "https://jci.wd5.myworkdayjobs.com/JCI_Confidential/job/Burlington-Massachusetts-United-States-of-America/Software-Engineering-Co-Op_EB00075408-2",
+        "sources": [
+          "Simplify Off-Season 2027"
+        ],
+        "cause": "missing-permitted-input",
+        "initialReason": "source-permission",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "Booz Allen",
+        "title": "Design and Verification Engineer Intern",
+        "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Beavercreek-OH/Design-and-Verification-Engineer-Intern_R0252482",
+        "sources": [
+          "Simplify Off-Season 2027"
+        ],
+        "cause": "missing-permitted-input",
+        "initialReason": "source-permission",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      }
+    ],
+    "location": [
+      {
+        "company": "Keyrock",
+        "title": "DeFi Quant Research Intern - Digital Assets Market Making",
+        "applyUrl": "https://jobs.ashbyhq.com/keyrock/4cae20e0-f315-4ccb-aa8e-df0e87969313/application?embed=true",
+        "sources": [
+          "Simplify Off-Season 2027"
+        ],
+        "cause": "location",
+        "initialReason": "location",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "Keyrock",
+        "title": "Quantitative Analyst Intern - Digital Assets Market Making - High-Frequency Trading",
+        "applyUrl": "https://jobs.ashbyhq.com/keyrock/2665c2ed-9131-46d9-9a05-564e7a719d33/application?embed=true",
+        "sources": [
+          "Simplify Off-Season 2027"
+        ],
+        "cause": "location",
+        "initialReason": "location",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "JM Family",
+        "title": "Data Engineer Intern",
+        "applyUrl": "https://jmfamily.wd1.myworkdayjobs.com/jmfamily_external/job/Florida---Deerfield-Beach/Data-Engineer-Intern_JR105120",
+        "sources": [
+          "Simplify Summer 2027"
+        ],
+        "cause": "location",
+        "initialReason": "location",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "JM Family",
+        "title": "Power Platform & Analytics Intern",
+        "applyUrl": "https://jmfamily.wd1.myworkdayjobs.com/jmfamily_external/job/Alabama---Mobile/Intern--College-NE_JR105133",
+        "sources": [
+          "Simplify Summer 2027"
+        ],
+        "cause": "location",
+        "initialReason": "location",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "Assurant",
+        "title": "AI and Data Science Intern",
+        "applyUrl": "https://assurant.wd1.myworkdayjobs.com/External_Limited_Posting/job/Georgia-Virtual/Summer-2027--AI-and-Data-Science-Internship_R-116105",
+        "sources": [
+          "Simplify Summer 2027"
+        ],
+        "cause": "location",
+        "initialReason": "location",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      }
+    ],
+    "possible-url-alias": [
+      {
+        "company": "RTX",
+        "title": "Software Engineer Intern",
+        "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/rec_rtx_ext_gateway/job/US-VA-STERLING-291--22640-Davis-Dr--DAVIS/Software-Engineering-Intern--Summer-2027-_01885169",
+        "sources": [
+          "Simplify Summer 2027"
+        ],
+        "cause": "possible-url-alias",
+        "initialReason": "source-permission",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": true
+      },
+      {
+        "company": "RTX",
+        "title": "Software Engineer Co-op",
+        "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/rec_rtx_ext_gateway/job/US-MA-MARLBOROUGH-MA2--1001-Boston-Post-Rd--BLDG-2/Software-Engineer-Co-op--January-2027-_01885371",
+        "sources": [
+          "Simplify Summer 2027"
+        ],
+        "cause": "possible-url-alias",
+        "initialReason": "source-permission",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": true
+      },
+      {
+        "company": "RTX",
+        "title": "Software Engineer Intern",
+        "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/rec_rtx_ext_gateway/job/US-IA-CEDAR-RAPIDS-182--1100-Cimmie-Ave-Ne--BLDG-182/Software-Engineering-Intern--Summer-2027-_01885074",
+        "sources": [
+          "Simplify Summer 2027"
+        ],
+        "cause": "possible-url-alias",
+        "initialReason": "pendingVerification",
+        "currentHoldReasons": [
+          "Company size and substantial U.S. operating presence have not been verified."
+        ],
+        "possibleAliasMatch": true
+      },
+      {
+        "company": "RTX",
+        "title": "Secure Software Intern",
+        "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/rec_rtx_ext_gateway/job/US-MA-WOBURN-WB2--225-Presidential-Way--GODDARD-BLDG/Secure-Software-Intern--Summer-2027-_01884942",
+        "sources": [
+          "Simplify Summer 2027"
+        ],
+        "cause": "possible-url-alias",
+        "initialReason": "pendingVerification",
+        "currentHoldReasons": [
+          "Company size and substantial U.S. operating presence have not been verified."
+        ],
+        "possibleAliasMatch": true
+      },
+      {
+        "company": "RTX",
+        "title": "Receiver – & Processing Architecture Software Engineer Intern - Exciter",
+        "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/rec_rtx_ext_gateway/job/US-MA-MARLBOROUGH-MA2--1001-Boston-Post-Rd--BLDG-2/Receiver--Exciter----Processing-Architecture-Software-Engineer-Intern--Summer-2027----Onsite_01885187",
+        "sources": [
+          "Simplify Summer 2027"
+        ],
+        "cause": "possible-url-alias",
+        "initialReason": "pendingVerification",
+        "currentHoldReasons": [
+          "Company size and substantial U.S. operating presence have not been verified."
+        ],
+        "possibleAliasMatch": true
+      }
+    ],
+    "availability-evidence-hold": [
+      {
+        "company": "Visa",
+        "title": "Consulting & Analytics Intern - Summer 2027",
+        "applyUrl": "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Atlanta-GA/Consulting---Analytics-Intern---Summer-2027_REF089900W",
+        "sources": [
+          "Dreamwork Business Internships 2027"
+        ],
+        "cause": "availability-evidence-hold",
+        "initialReason": "pendingVerification",
+        "currentHoldReasons": [
+          "Current employer listing availability could not be verified."
+        ],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "RTX",
+        "title": "Test Engineering Intern (Summer 2027)",
+        "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/rec_rtx_ext_gateway/job/US-MN-BURNSVILLE-WEST--14300-Judicial-Rd--WEST-BLDG/Test-Engineering-Intern--Summer-2027-_01883803-1",
+        "sources": [
+          "Keryx Non-Software Summer 2027"
+        ],
+        "cause": "availability-evidence-hold",
+        "initialReason": "pendingVerification",
+        "currentHoldReasons": [
+          "Current employer listing availability could not be verified."
+        ],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "Northrop Grumman",
+        "title": "2027 Spring Mechanical Engineering Co-op - Chandler AZ",
+        "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Arizona-Chandler/XMLNAME-2027-Spring-Mechanical-Engineering-Co-op---Chandler-AZ_R10249939",
+        "sources": [
+          "Keryx Non-Software Spring 2027"
+        ],
+        "cause": "availability-evidence-hold",
+        "initialReason": "pendingVerification",
+        "currentHoldReasons": [
+          "Current employer listing availability could not be verified."
+        ],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "RTX",
+        "title": "Systems Engineer - Spring/Summer Co-op 2027 - (Onsite)",
+        "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/rec_rtx_ext_gateway/job/US-IA-CEDAR-RAPIDS-131--5450-C-Ave-NE--BLDG-131/Systems-Engineer---Spring-Summer-Co-op-2027----Onsite-_01871506",
+        "sources": [
+          "Keryx Non-Software Summer 2027"
+        ],
+        "cause": "availability-evidence-hold",
+        "initialReason": "pendingVerification",
+        "currentHoldReasons": [
+          "Current employer listing availability could not be verified."
+        ],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "RTX",
+        "title": "Software Engineering Intern (Summer 2027)",
+        "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/rec_rtx_ext_gateway/job/US-IA-CEDAR-RAPIDS-121--350-Collins-Rd-NE--BLDG-121/Software-Engineering-Intern--Summer-2027-_01880499",
+        "sources": [
+          "Internship Engine",
+          "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027"
+        ],
+        "cause": "availability-evidence-hold",
+        "initialReason": "pendingVerification",
+        "currentHoldReasons": [
+          "Current employer listing availability could not be verified."
+        ],
+        "possibleAliasMatch": false
+      }
+    ],
+    "role": [
+      {
+        "company": "Gelber Group",
+        "title": "Associate Software Engineer- Trading Integrations Team",
+        "applyUrl": "https://job-boards.greenhouse.io/gelbergroup/jobs/4724799006",
+        "sources": [
+          "SpeedyApply New Grad USA"
+        ],
+        "cause": "role",
+        "initialReason": "role",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "CrossCountry Consulting",
+        "title": "Forward Deployed Software Engineer - Recent Graduate - Chicago",
+        "applyUrl": "https://jobs.lever.co/crosscountry-consulting/10ecb553-0393-4e7b-af5a-88a1947a0769",
+        "sources": [
+          "SpeedyApply New Grad USA"
+        ],
+        "cause": "role",
+        "initialReason": "role",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "CrossCountry Consulting",
+        "title": "Forward Deployed Software Engineer - Recent Graduate - New York",
+        "applyUrl": "https://jobs.lever.co/crosscountry-consulting/f294b6dd-b2dc-46c5-9139-9ba93163ba5c",
+        "sources": [
+          "SpeedyApply New Grad USA"
+        ],
+        "cause": "role",
+        "initialReason": "role",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "CrossCountry Consulting",
+        "title": "Forward Deployed Software Engineer - Recent Graduate - DC Metro",
+        "applyUrl": "https://jobs.lever.co/crosscountry-consulting/eb6ab6cf-6f93-486f-b4bf-6137bc67feb7",
+        "sources": [
+          "SpeedyApply New Grad USA"
+        ],
+        "cause": "role",
+        "initialReason": "role",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "Addepar",
+        "title": "AI Engineer - AI Platform",
+        "applyUrl": "https://job-boards.greenhouse.io/addepar1/jobs/8906234002",
+        "sources": [
+          "2027-AI-College-Jobs New Grad 2027"
+        ],
+        "cause": "role",
+        "initialReason": "role",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      }
+    ],
+    "employer-destination-hold": [
+      {
+        "company": "Booz Allen",
+        "title": "University - Summer 2027 - Systems Administrator Intern",
+        "applyUrl": "https://bah.wd1.myworkdayjobs.com/Confidential/job/Annapolis-Junction-MD/University---Summer-2027---Systems-Administrator-Intern_R0249226",
+        "sources": [
+          "Keryx Non-Software Summer 2027"
+        ],
+        "cause": "employer-destination-hold",
+        "initialReason": "pendingVerification",
+        "currentHoldReasons": [
+          "The employer approval requires a reviewed direct application destination."
+        ],
+        "possibleAliasMatch": false
+      }
+    ],
+    "role-classification": [
+      {
+        "company": "Stand Together",
+        "title": "Data Analyst Intern - Open the Books",
+        "applyUrl": "https://jobs.lever.co/standtogether/f379a7ee-c2b6-47db-b1de-08283462ea6c/apply",
+        "sources": [
+          "Simplify Off-Season 2027"
+        ],
+        "cause": "role-classification",
+        "initialReason": "location",
+        "currentHoldReasons": [
+          "The role does not confidently match a supported empluzzed category."
+        ],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "DriveWealth",
+        "title": "AI Consulting Associate Program – AI Engineer Intern",
+        "applyUrl": "https://boards.greenhouse.io/drivewealth/jobs/8039350003",
+        "sources": [
+          "Simplify Summer 2027"
+        ],
+        "cause": "role-classification",
+        "initialReason": "role",
+        "currentHoldReasons": [
+          "The role does not confidently match a supported empluzzed category."
+        ],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "DriveWealth",
+        "title": "AI Consulting Associate Program – AI Engineer Intern",
+        "applyUrl": "https://jobs.ashbyhq.com/drivewealth/a214dd6c-e3ac-481e-8308-bf74c2032b8a/application?embed=true",
+        "sources": [
+          "Simplify Summer 2027"
+        ],
+        "cause": "role-classification",
+        "initialReason": "role",
+        "currentHoldReasons": [
+          "The role does not confidently match a supported empluzzed category."
+        ],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "Figure",
+        "title": "Middleware Software Intern",
+        "applyUrl": "https://job-boards.greenhouse.io/figureai/jobs/4605724006",
+        "sources": [
+          "Simplify Off-Season 2027"
+        ],
+        "cause": "role-classification",
+        "initialReason": "role",
+        "currentHoldReasons": [
+          "The role does not confidently match a supported empluzzed category."
+        ],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "Nokia",
+        "title": "AI Engineer Co-op 🎓",
+        "applyUrl": "https://fa-evmr-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/40566",
+        "sources": [
+          "Simplify Off-Season 2027"
+        ],
+        "cause": "role-classification",
+        "initialReason": "role",
+        "currentHoldReasons": [
+          "The role does not confidently match a supported empluzzed category."
+        ],
+        "possibleAliasMatch": false
+      }
+    ],
+    "not-in-initial-migration": [
+      {
+        "company": "NVIDIA",
+        "title": "SRAM Circuit Design Engineer (Master's)",
+        "applyUrl": "https://go.vansh.nyc/Dp?s=A",
+        "sources": [
+          "New-Grad-2027 2027"
+        ],
+        "cause": "not-in-initial-migration",
+        "initialReason": "not-in-initial-migration",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      }
+    ],
+    "employer": [
+      {
+        "company": "Amplitude",
+        "title": "Software Engineer I",
+        "applyUrl": "https://jobs.ashbyhq.com/amplitude/9c43576b-d16f-4192-a366-7c9eb689c4be",
+        "sources": [
+          "SpeedyApply New Grad USA"
+        ],
+        "cause": "employer",
+        "initialReason": "employer",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "Recidiviz",
+        "title": "Data Analyst - Entry-Level",
+        "applyUrl": "https://job-boards.greenhouse.io/recidiviz/jobs/4717510006",
+        "sources": [
+          "2027-AI-College-Jobs New Grad 2027"
+        ],
+        "cause": "employer",
+        "initialReason": "employer",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "Global Lending Services",
+        "title": "Data Scientist - December 2026 - May 2027 Grads",
+        "applyUrl": "https://jobs.lever.co/glsllc/d81bfc16-2ba1-41ca-ab21-7d8cffac9e07",
+        "sources": [
+          "2027-AI-College-Jobs New Grad 2027"
+        ],
+        "cause": "employer",
+        "initialReason": "employer",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "Blend",
+        "title": "Software Engineer - AI Native - Full Stack",
+        "applyUrl": "https://job-boards.greenhouse.io/blend/jobs/6141420004",
+        "sources": [
+          "SpeedyApply New Grad USA"
+        ],
+        "cause": "employer",
+        "initialReason": "employer",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      }
+    ],
+    "deduplicated": [
+      {
+        "company": "Figma",
+        "title": "PhD Intern, Data Science (2027)",
+        "applyUrl": "https://www.dreamworkhq.com/job/2d22ef76-50fa-45ea-bfa0-ad02a7dde338",
+        "sources": [
+          "Dreamwork Tech Internships 2027"
+        ],
+        "cause": "deduplicated",
+        "initialReason": "deduplicated",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "Google",
+        "title": "Business Data Scientist Intern, PhD, Summer 2027",
+        "applyUrl": "https://www.dreamworkhq.com/job/659c12af-c846-45d9-ab89-c1593323fb11",
+        "sources": [
+          "Dreamwork Tech Internships 2027"
+        ],
+        "cause": "deduplicated",
+        "initialReason": "deduplicated",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      },
+      {
+        "company": "Google",
+        "title": "Data Scientist, Research Intern, PhD, Summer 2027",
+        "applyUrl": "https://www.dreamworkhq.com/job/4454efdb-f1f8-4bf9-91e3-1f5d1723973e",
+        "sources": [
+          "Dreamwork Tech Internships 2027"
+        ],
+        "cause": "deduplicated",
+        "initialReason": "deduplicated",
+        "currentHoldReasons": [],
+        "possibleAliasMatch": false
+      }
+    ]
+  }
+}

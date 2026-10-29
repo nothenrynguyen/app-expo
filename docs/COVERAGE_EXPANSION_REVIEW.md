@@ -68,4 +68,4 @@ Production checks found zero invalid supported locations, expired published jobs
 
 This completes this implementation/release checkpoint. It does not establish the one-stop-shop coverage goal. The permission-first inventory remains substantially smaller than the old unrestricted snapshot, and the roadmap now prioritizes rebuilding independently supported coverage.
 
-The owner has been asked for the specific boards advertising 10k+ listings. The existing comparison is against one reviewed licensed discovery source, not a completed 100-role-per-collection benchmark of two named competitors. That exact competitor benchmark remains open; no result is inferred from marketing counts.
+October 29: the owner identified Jobright. Its terms do not clear the automated competitor corpus; see [Jobright review](JOBRIGHT_BENCHMARK_REVIEW.md). The earlier comparison is against one reviewed licensed discovery source, not a completed 100-role-per-collection Jobright benchmark. The follow-up [loss diagnosis](COVERAGE_LOSS_DIAGNOSIS.md) separates missing permitted inputs from employer-evidence holds. No result is inferred from marketing counts.

@@ -110,7 +110,12 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
         || /^[a-z0-9-]+\.wd\d+\.myworkdayjobs\.com$/i.test(url.hostname)
         || parseSmartRecruitersJobUrl(candidate.applyUrl);
       return url.protocol === "https:" && !url.username && !url.password && direct && isEarlyCareerTitle(candidate.title);
-    }) : rows;
+    }).map(candidate => ({...candidate,
+      // A discovery table's season is not employment-type evidence. Some summer
+      // tables include junior full-time roles alongside actual internships.
+      category: /\bintern(?:ship)?\b|\bco-?op\b/i.test(candidate.title) ? "Internship" : "New grad",
+      term: inferTerm(candidate.title),
+    })) : rows;
   })));
   markdownResults.forEach((result, index) => {
     const source = markdownSources[index];

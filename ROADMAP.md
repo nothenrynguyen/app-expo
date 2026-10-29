@@ -4,6 +4,8 @@ This is the living overview of shipped capabilities, candidate priorities, and d
 
 ## Current status
 
+- October 29 coverage investigation: approximately 95% of absent pre-migration rows are attributable to employer-evidence holds or missing permitted replacement inputs. A scoped recovery batch is local pending validation. Jobright is the named comparison board, but its published terms do not clear the automated competitor dataset. See [count-loss diagnosis](docs/COVERAGE_LOSS_DIAGNOSIS.md) and [Jobright review](docs/JOBRIGHT_BENCHMARK_REVIEW.md).
+
 - Coverage expansion and source-permission safeguards are published and production-verified October 28. A licensed discovery source, posting-date correction, independently reviewed employers and fairer availability checks shipped. Six feeds without detected reuse licenses are held out, substantially reducing the old inventory; rebuilding permitted coverage is the next priority. See the [coverage expansion review](docs/COVERAGE_EXPANSION_REVIEW.md) and [production receipt](docs/coverage-expansion-production-result.json).
 
 - Employer coverage retention and unexplained-drop safeguards were published and production-verified October 28. Known official boards survive upstream omissions, and large unexplained losses block publication. See [coverage review](docs/COVERAGE_RETENTION_REVIEW.md) and [production receipt](docs/coverage-retention-production-result.json).
