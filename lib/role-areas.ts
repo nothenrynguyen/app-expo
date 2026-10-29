@@ -1,7 +1,7 @@
 import type { PublicJob } from "./jobs";
 import { isProcessManufacturingRole } from "./process-manufacturing";
 
-export type RoleFamily = "all" | "software" | "data" | "engineering" | "product" | "solutions-support" | "business" | "finance-quant" | "it-security" | "people-legal" | "science-health" | "education";
+export type RoleFamily = "all" | "software" | "data" | "engineering" | "product" | "solutions-support" | "business" | "finance-quant" | "it-security";
 
 export type RoleTag =
   | "software-engineering"
@@ -27,11 +27,6 @@ export type RoleTag =
   | "quant"
   | "it-support-network"
   | "cybersecurity"
-  | "human-resources"
-  | "legal"
-  | "research-science"
-  | "healthcare"
-  | "education"
   | "general-engineering"
   | "graduate-programs";
 
@@ -51,9 +46,6 @@ export const ROLE_FAMILIES: Array<{ value: RoleFamily; label: string }> = [
   { value: "business", label: "Business" },
   { value: "finance-quant", label: "Finance / Quant" },
   { value: "it-security", label: "IT / Security" },
-  { value: "people-legal", label: "People / Legal" },
-  { value: "science-health", label: "Science / Health" },
-  { value: "education", label: "Education" },
 ];
 
 export const ROLE_TAGS: RoleDefinition[] = [
@@ -82,11 +74,6 @@ export const ROLE_TAGS: RoleDefinition[] = [
   { value: "quant", label: "Quant", family: "finance-quant" },
   { value: "it-support-network", label: "IT / Networking", family: "it-security" },
   { value: "cybersecurity", label: "Cybersecurity", family: "it-security" },
-  { value: "human-resources", label: "Human Resources", family: "people-legal" },
-  { value: "legal", label: "Legal", family: "people-legal" },
-  { value: "research-science", label: "Research / Science", family: "science-health" },
-  { value: "healthcare", label: "Healthcare", family: "science-health" },
-  { value: "education", label: "Education", family: "education" },
 ];
 
 const roleTagValues = new Set<RoleTag>(ROLE_TAGS.map((role) => role.value));
@@ -136,13 +123,6 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
   const tags = new Set<RoleTag>();
   const add = (tag: RoleTag, pattern: RegExp) => { if (pattern.test(text)) tags.add(tag); };
   const addTitle = (tag: RoleTag, pattern: RegExp) => { if (pattern.test(title)) tags.add(tag); };
-  // Match professional titles, not qualification/footer text mentioning these
-  // fields. Their eligibility, pay and seniority still use the normal gates.
-  if (!/\b(?:engineer|developer|software)\b/.test(title)) addTitle("human-resources", /\bhuman resources?\b|\bhr (?:intern|assistant|associate|analyst|coordinator)\b|\b(?:talent acquisition|recruiting|recruitment|people operations?)\b/);
-  addTitle("legal", /\blegal\b|\blaw (?:intern|clerk|student)\b|\bparalegal\b/);
-  addTitle("research-science", /\b(?:biology|biological|biomedical|biochemistry|biochemist|chemistry|chemist|microbiology|microbiologist|life science|environmental science|physics|physicist|research assistant|research associate|laboratory|lab technician|scientific research|research scientist)\b/);
-  addTitle("healthcare", /\b(?:nursing|nurse|clinical|medical assistant|public health|pharmacy|pharmacist|patient care|occupational therapy|physical therapy|speech language|social work)\b/);
-  addTitle("education", /\b(?:teacher|teaching|education intern|educational|school counseling|instructional design|curriculum)\b/);
   const softwareContext = /\bsoftware\b|\bcloud\b|\bsite reliability\b|\bsre\b|\btooling\b|\bdevops\b|\bplatform\b|\bota\b|\bqa\b|\btest automation\b/.test(text);
   const physicalQualityContext = /\b(?:supplier|manufacturing|production|process|product|hardware|device|component|semiconductor|silicon|wafer|materials?|mechanical|electrical|industrial|factory)\b|\bquality systems?\b|\bquality control\b|\bfailure analysis\b/.test(text)
     || /\b(?:medical device|medical technology|supplier quality|manufacturing quality|design quality|quality systems?|quality control|failure analysis|capa|gmp|iso 13485|fda)\b/.test(rawText);

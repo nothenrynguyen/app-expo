@@ -1,6 +1,6 @@
 # empluzzed Roadmap
 
-October 29 coverage restoration is published and production-verified: 4,288 internships and 2,618 full-time roles, exceeding both approved targets. Workflow 40850435335 succeeded; snapshot `fb3fea2` matched all four deployed JSON files. All 145 tests, types, lint and export pass. See the [restoration review](docs/COVERAGE_RESTORATION.md) for evidence, remaining source failures and follow-up. No spending or payment method was added.
+October 29 owner scope correction: People / Legal, Science / Health and Education are removed from supported career families. The local adjusted snapshot contains 4,143 internships and 2,514 full-time roles, still above both recovery targets. Classification, stored tags, snapshots and Methodology are updated; publication verification is pending. The prior restoration receipt remains historical evidence.
 
 This is the living overview of shipped capabilities, candidate priorities, and deferred ideas. Specific current work and evidence belong in [active tasks](docs/ACTIVE_TASKS.md). Historical releases and measurements remain in their linked reviews.
 
@@ -48,3 +48,5 @@ See [active tasks](docs/ACTIVE_TASKS.md) for current status, constraints, and ev
 - Keep application records out of analytics and maintain the current consent and privacy controls. See [owned analytics](docs/OWNED_ANALYTICS.md).
 - Preserve direct employer application links and conservative evidence-based listing decisions.
 - Keep release receipts, detailed measurements, and completed work in their linked reviews rather than treating historical counts as live status.
+
+October 29 owner scope correction: remove People / Legal, Science / Health and Education from supported career families, including listings classified only in those families. Supported software, data, engineering, product, business, finance and IT roles at any employer sector remain eligible. Local classification, legacy-tag filtering, public snapshots and Methodology are updated; release verification is pending. See [scope receipt](docs/career-scope-correction-result.json). Historical restoration receipts retain their original counts.

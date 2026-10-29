@@ -23,7 +23,7 @@ const steps = [
   {
     number: "03",
     title: "Keep relevant roles",
-    copy: "A role must clearly match one of the supported early-career areas. Software, data, engineering, product, solutions and support, business, finance, quant, IT, security, human resources, legal, science, healthcare, and education roles are included. Public collections are then split by source category plus title and term signals.",
+    copy: "A role must clearly match one of the supported early-career areas. Software, data, engineering, product, solutions and support, business, finance, quant, IT, and security roles are included. Legal, healthcare, education, and general science careers are outside the board's scope. Public collections are then split by source category plus title and term signals.",
   },
   {
     number: "04",

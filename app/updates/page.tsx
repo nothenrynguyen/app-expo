@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 // Dates reflect recorded project milestones, not every deployment or job refresh.
 const updates = [
-  { date: "2026-10-29", label: "October 29, 2026", title: "Broader student job coverage", description: "Expanded direct employer discovery and recovered current openings from employer records. Added more student disciplines, general engineering and graduate programs, corrected overly broad pay filtering, and strengthened safeguards against sudden coverage losses." },
+  { date: "2026-10-29", label: "October 29, 2026", title: "Broader student job coverage", description: "Expanded direct employer discovery and recovered current openings from employer records. Improved role classification, added general engineering and graduate programs, corrected overly broad pay filtering, and strengthened safeguards against sudden coverage losses." },
   { date: "2026-10-28", label: "October 28, 2026", title: "Stronger source and coverage checks", description: "Added a licensed discovery source, corrected posting-date parsing, and improved employer availability checks. Feeds without recorded reuse permission are held out while coverage is rebuilt through reviewed sources." },
   { date: "2026-10-26", label: "October 26, 2026", title: "A home for project updates", description: "Added this timeline to share meaningful changes and milestones as empluzzed grows." },
   { date: "2026-10-23", label: "October 23, 2026", title: "A clearer picture of site activity", description: "Introduced optional activity analytics and a private dashboard to understand how the site is used and guide future improvements." },
