@@ -13,6 +13,8 @@ import { buildSourceVerificationTargets, createSourceListingVerifier, sourceList
 import { buildRefreshReport } from "../lib/ingestion/refresh-report";
 import { createScreeningTracker } from "../lib/ingestion/screening";
 import { buildListingChanges } from "../lib/ingestion/listing-changes";
+import { completeBoardHistory } from "../lib/ingestion/board-history";
+import { assessCoverage, assertCoverageSafe } from "../lib/ingestion/coverage-guard";
 import { buildReviewedEmployerCoverage } from "../lib/ingestion/reviewed-employer-coverage";
 import { isInCollection } from "../lib/job-collections";
 import { deduplicateCrossSourceJobs } from "../lib/job-dedup";
@@ -52,7 +54,9 @@ async function main() {
     boardRegistry,
     verificationDiagnostics,
     pinnedCompanies,
-  } = await loadCandidates(root, activeSources);
+    boardHistory,
+    boardCoverage,
+  } = await loadCandidates(root, activeSources, previous?.jobs ?? []);
   const unhealthySources = health.filter((source) => source.status === "failed" || source.rows === 0);
   const merged = new Map<string, PublicJob>();
   const quarantined: Array<{ company: string; title: string; reason: string; source: string; applyUrl: string }> = [];
@@ -236,8 +240,10 @@ async function main() {
   }
 
   const recovery = boardRecoveryPolicy(boardRegistry, boardResults);
+  const failedSourceNames = new Set(unhealthySources.map(source => source.name));
   if ((unhealthySources.length > 0 || recovery.hasFailures) && previous) {
     preservedFromLastHealthySnapshot = preserveLastKnownGoodJobs(merged, previous.jobs, (prior) => {
+      if (!recovery.mayRecover(prior, failedSourceNames)) return null;
       if (reviewHoldIds.has(sourceReviewHoldIdentity(prior.applyUrl))) return null;
       if (!sourceListingIsAllowed(prior.applyUrl, sourceTargets, verifiedScopedIds)) return null;
       // A board outage recovers only that board, not unrelated missing inputs.
@@ -280,6 +286,28 @@ async function main() {
   };
   const closedPostingsCaught = Object.values(listingHealth).filter((entry) => entry.status === "closed").length;
 
+  const listingChanges = buildListingChanges({
+    generatedAt: snapshot.generatedAt, previousGeneratedAt: previous?.generatedAt ?? null,
+    previous: previous?.jobs ?? [], current: jobs, acceptedBeforeDedup: [...merged.values()],
+    candidateUrls: candidates.map(candidate => candidate.applyUrl),
+    outcomeFor: url => listingHealth[jobIdentity(url) ?? ""]?.status === "unavailable" ? "application-unavailable" : screening.outcomeFor(url),
+    boardState(prior) {
+      const board = discoverAtsBoard(prior.applyUrl, prior.company, "audit");
+      if (!board) return null;
+      const currentBoard = boardResults.get(board.id);
+      if (currentBoard) return currentBoard.liveIdentities.has(jobIdentity(prior.applyUrl) ?? "") ? null : "absent";
+      return boardRegistry.some(record => record.status === "failed" && record.provider === board.provider && record.key.toLowerCase() === board.key.toLowerCase()) ? "unavailable" : null;
+    },
+  });
+  const coverage = { boards: boardCoverage, collections: assessCoverage(previous?.jobs ?? [], jobs, listingChanges) };
+  if (coverage.collections.some(row => row.largeDrop || row.blocked)) console.warn("Coverage alert:", JSON.stringify(coverage));
+  try { assertCoverageSafe(coverage.collections); }
+  catch (error) {
+    await mkdir(path.join(root, ".cache"), { recursive: true });
+    await writeFile(path.join(root, ".cache/refresh-blocked.json"), `${JSON.stringify({ coverage, listingChanges }, null, 2)}\n`);
+    throw error;
+  }
+
   const currentIdentities = new Set(candidates.map((candidate) => jobIdentity(candidate.applyUrl)).filter(Boolean));
   for (const identity of Object.keys(listingHealth)) {
     const age = Date.now() - new Date(listingHealth[identity].checkedAt).getTime();
@@ -293,7 +321,9 @@ async function main() {
   await writeFile(sourceTargetsPath, `${JSON.stringify(sourceTargets, null, 2)}\n`);
   await writeFile(listingHealthPath, `${JSON.stringify(listingHealth, null, 2)}\n`);
   await writeFile(path.join(root, "data/company-boards.json"), `${JSON.stringify(boardRegistry, null, 2)}\n`);
+  await writeFile(path.join(root, "data/board-history.json"), `${JSON.stringify(completeBoardHistory(boardHistory, boardRegistry, startedAt), null, 2)}\n`);
   const refreshReport = buildRefreshReport({
+    coverage,
     startedAt,
     sourceDiagnostics,
     boardDiagnostics: boardRegistry,
@@ -309,19 +339,6 @@ async function main() {
     screening: snapshot.screening,
   });
   await writeFile(path.join(root, "data/refresh-report.json"), `${JSON.stringify(refreshReport, null, 2)}\n`);
-  const listingChanges = buildListingChanges({
-    generatedAt: snapshot.generatedAt, previousGeneratedAt: previous?.generatedAt ?? null,
-    previous: previous?.jobs ?? [], current: jobs, acceptedBeforeDedup: [...merged.values()],
-    candidateUrls: candidates.map(candidate => candidate.applyUrl),
-    outcomeFor: url => listingHealth[jobIdentity(url) ?? ""]?.status === "unavailable" ? "application-unavailable" : screening.outcomeFor(url),
-    boardState(prior) {
-      const board = discoverAtsBoard(prior.applyUrl, prior.company, "audit");
-      if (!board) return null;
-      const currentBoard = boardResults.get(board.id);
-      if (currentBoard) return currentBoard.liveIdentities.has(jobIdentity(prior.applyUrl) ?? "") ? null : "absent";
-      return boardRegistry.some(record => record.status === "failed" && record.provider === board.provider && record.key.toLowerCase() === board.key.toLowerCase()) ? "unavailable" : null;
-    },
-  });
   await writeFile(path.join(root, "data/listing-changes.json"), `${JSON.stringify(listingChanges, null, 2)}\n`);
 
   await mkdir(path.join(root, "public"), { recursive: true });

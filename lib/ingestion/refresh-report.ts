@@ -1,6 +1,7 @@
 import type { BoardRefreshDiagnostic, RefreshReport, SourceRefreshDiagnostic, VerificationDiagnostic } from "./types";
 
 type RefreshReportInput = {
+  coverage?: RefreshReport["coverage"];
   startedAt: Date;
   completedAt?: Date;
   sourceDiagnostics: SourceRefreshDiagnostic[];
@@ -25,6 +26,7 @@ export function buildRefreshReport(input: RefreshReportInput): RefreshReport {
   const allSourcesFailed = input.sourceDiagnostics.length > 0 && failedSources === input.sourceDiagnostics.length;
 
   return {
+    ...(input.coverage ? { coverage: input.coverage } : {}),
     version: 1,
     startedAt: input.startedAt.toISOString(),
     completedAt: completedAt.toISOString(),

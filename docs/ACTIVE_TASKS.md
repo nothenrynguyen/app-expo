@@ -4,6 +4,8 @@ Reviewed October 28, 2026. This file tracks concrete active work, follow-up, and
 
 ## Active milestone
 
+Employer coverage retention: implementation and fixed-input comparison are complete locally. The original collector produced 2,362 full-time jobs and the fixed collector produced 2,372 from the same responses, without restoring retail listings. Regression checks and the production build pass. Publication and production verification are in progress under the owner's full authorization. See [coverage review](COVERAGE_RETENTION_REVIEW.md).
+
 Keryx New Grad 2026 activation and availability safeguards are published and production-verified. The release is complete; Fall remains inactive. See [production receipt](keryx-2026-production-result.json) and [release review](KERYX_PENDING_2026_REVIEW.md#production-release-and-verification-october-28).
 
 ## Operational follow-up

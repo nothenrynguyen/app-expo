@@ -13,6 +13,7 @@ export type SourceRefreshDiagnostic = {
 };
 
 export type BoardRefreshDiagnostic = {
+  id?: string;
   provider: AtsProvider | "workday";
   key: string;
   company: string;
@@ -34,6 +35,8 @@ export type VerificationDiagnostic = {
 };
 
 export type CandidateLoadResult = {
+  boardHistory: import("./board-history").BoardHistory;
+  boardCoverage: { discovered: number; retained: number };
   preScreened?: Array<{ url: string; outcome: "employer" | "role" | "closed" | "pendingVerification" }>;
   candidates: CandidateJob[];
   health: JobsSnapshot["sourceHealth"];
@@ -45,6 +48,7 @@ export type CandidateLoadResult = {
 };
 
 export type RefreshReport = {
+  coverage?: { boards: { discovered: number; retained: number }; collections: ReturnType<typeof import("./coverage-guard").assessCoverage> };
   version: 1;
   startedAt: string;
   completedAt: string;

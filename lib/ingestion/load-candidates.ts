@@ -11,6 +11,8 @@ import { parseApplyGuySource, parseKeryxSource, parseMarkdownSource, sourceAllow
 import { createWorkdayBoard, fetchWorkdayBoard, type WorkdayBoardSeed } from "../workday";
 import { inBatches } from "./concurrency";
 import { partitionSourceReviewHolds } from "./source-review-holds";
+import { selectRefreshBoards, type BoardHistory } from "./board-history";
+import type { PublicJob } from "../jobs";
 import type { BoardRefreshDiagnostic, CandidateLoadResult, SourceRefreshDiagnostic } from "./types";
 
 type TimedResult<T> =
@@ -59,11 +61,12 @@ function engineCandidate(job: ReturnType<typeof parseEngineJobs>[number], source
   };
 }
 
-export async function loadCandidates(root: string, sources: JobSource[]): Promise<CandidateLoadResult> {
+export async function loadCandidates(root: string, sources: JobSource[], previousJobs: PublicJob[] = []): Promise<CandidateLoadResult> {
   const health: CandidateLoadResult["health"] = [];
   const sourceDiagnostics: SourceRefreshDiagnostic[] = [];
   const candidates: CandidateJob[] = [];
   const preScreened: NonNullable<CandidateLoadResult["preScreened"]> = [];
+  const previousIdentities = new Set(previousJobs.map(job => jobIdentity(job.applyUrl)));
 
   for (const source of sources.filter((candidate) => candidate.kind === "engine_json")) {
     const result = await runTimed(async () => {
@@ -132,7 +135,11 @@ export async function loadCandidates(root: string, sources: JobSource[]): Promis
     boards.set(board.id, board);
   }
 
-  const boardList = [...boards.values()];
+  const history = await readFile(path.join(root, "data/board-history.json"), "utf8")
+    .then(value => JSON.parse(value) as BoardHistory)
+    .catch((error: NodeJS.ErrnoException) => { if (error.code === "ENOENT") return { version: 1 as const, boards: [] }; throw error; });
+  const selection = selectRefreshBoards(boards.values(), history, previousJobs);
+  const boardList = selection.boards;
   const settledBoardFetches = await inBatches(boardList, 12, (board) => runTimed(() => fetchAtsBoard(board)));
   const boardFetches = settledBoardFetches.map((result) => result.status === "fulfilled" ? result.value : ({ status: "rejected", reason: result.reason, durationMs: 0 } as const));
   // Retry transient failures once, after the main pass, with lower concurrency.
@@ -152,9 +159,12 @@ export async function loadCandidates(root: string, sources: JobSource[]): Promis
     if (result.status === "fulfilled") {
       boardResults.set(board.id, result.value);
       candidates.push(...result.value.jobs);
-      return { provider: board.provider, key: board.key, company: board.company, status: "ok", rows: result.value.liveIdentities.size, retryRequests: retryCounts.has(index) ? 1 : 0, durationMs: result.durationMs };
+      for (const url of result.value.ineligibleUrls ?? []) {
+        if (previousIdentities.has(jobIdentity(url))) preScreened.push({ url, outcome: "role" });
+      }
+      return { id: board.id, provider: board.provider, key: board.key, company: board.company, status: "ok", rows: result.value.liveIdentities.size, retryRequests: retryCounts.has(index) ? 1 : 0, durationMs: result.durationMs };
     }
-    return { provider: board.provider, key: board.key, company: board.company, status: "failed", rows: 0, retryRequests: retryCounts.has(index) ? 1 : 0, durationMs: result.durationMs, message: errorMessage(result.reason) };
+    return { id: board.id, provider: board.provider, key: board.key, company: board.company, status: "failed", rows: 0, retryRequests: retryCounts.has(index) ? 1 : 0, durationMs: result.durationMs, message: errorMessage(result.reason) };
   });
 
   const workdaySeeds = await readFile(path.join(root, "data/workday-boards.json"), "utf8")
@@ -231,6 +241,8 @@ export async function loadCandidates(root: string, sources: JobSource[]): Promis
     if (diagnostic) diagnostic.message = JSON.stringify({ reviewHoldsConfigured: source.reviewHolds!.length, heldCandidateRowsAcrossSources: reviewed.held.length });
   }
   return {
+    boardHistory: selection.history,
+    boardCoverage: { discovered: selection.discovered, retained: selection.retained },
     preScreened,
     candidates: reviewed.accepted,
     health,

@@ -47,16 +47,24 @@ jobs:
           USAJOBS_API_KEY: ${{ secrets.USAJOBS_API_KEY }}
           USAJOBS_EMAIL: ${{ secrets.USAJOBS_EMAIL }}
           USAJOBS_PILOT_COST_REVIEWED: "true"
+      - name: Retain blocked coverage diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: blocked-coverage
+          path: .cache/refresh-blocked.json
+          if-no-files-found: ignore
+          retention-days: 7
       - name: Publish changed snapshot
         if: steps.freshness.outputs.needed == 'true'
         run: |
-          if [ -z "$(git status --porcelain -- public/jobs.json public/internships.json public/fulltime.json public/summary.json public/insights-history.json data/quarantine.json data/listing-health.json data/scoped-listing-health.json data/source-verification-targets.json data/company-boards.json data/refresh-report.json data/listing-changes.json)" ]; then
+          if [ -z "$(git status --porcelain -- public/jobs.json public/internships.json public/fulltime.json public/summary.json public/insights-history.json data/quarantine.json data/listing-health.json data/scoped-listing-health.json data/source-verification-targets.json data/company-boards.json data/board-history.json data/refresh-report.json data/listing-changes.json)" ]; then
             echo "No material job changes."
             exit 0
           fi
           git config user.name "app-expo-bot"
           git config user.email "app-expo-bot@users.noreply.github.com"
-          git add public/jobs.json public/internships.json public/fulltime.json public/summary.json public/insights-history.json data/quarantine.json data/listing-health.json data/scoped-listing-health.json data/source-verification-targets.json data/company-boards.json data/refresh-report.json data/listing-changes.json
+          git add public/jobs.json public/internships.json public/fulltime.json public/summary.json public/insights-history.json data/quarantine.json data/listing-health.json data/scoped-listing-health.json data/source-verification-targets.json data/company-boards.json data/board-history.json data/refresh-report.json data/listing-changes.json
           git commit -m "data: refresh verified jobs"
           git pull --rebase origin main
           git push

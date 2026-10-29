@@ -6,9 +6,16 @@ import type { BoardRefreshDiagnostic } from "./types";
 
 export function boardRecoveryPolicy(records: BoardRefreshDiagnostic[], results: Map<string, AtsBoardResult>) {
   const failed = new Set(records.filter(board => board.status === "failed" && board.provider !== "workday" && !/^(?:404|410)\b/.test(board.message ?? ""))
-    .map(board => createAtsBoard({ ...board, provider: board.provider as "greenhouse" | "lever" | "ashby" }).id));
+    .map(board => board.id ?? createAtsBoard({ ...board, provider: board.provider as "greenhouse" | "lever" | "ashby" }).id));
+  const permanent = new Set(records.filter(board => board.status === "failed" && board.provider !== "workday" && /^(?:404|410)\b/.test(board.message ?? ""))
+    .map(board => board.id ?? createAtsBoard({ ...board, provider: board.provider as "greenhouse" | "lever" | "ashby" }).id));
   return {
     hasFailures: failed.size > 0,
+    mayRecover(job: PublicJob, failedSources: Set<string>) {
+      const board = discoverAtsBoard(job.applyUrl, job.company, "recovery");
+      if (board && (results.has(board.id) || permanent.has(board.id))) return false;
+      return !!board && failed.has(board.id) || job.sources.some(source => failedSources.has(source));
+    },
     affected(job: PublicJob) {
       const board = discoverAtsBoard(job.applyUrl, job.company, "recovery");
       return !!board && failed.has(board.id);

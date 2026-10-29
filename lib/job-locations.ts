@@ -76,7 +76,7 @@ const CITY_NORMALIZATIONS: Array<[RegExp, string]> = [
 
 const REGION_PATTERNS: Array<[DetectedJobRegion, RegExp]> = [
   ["canada", /\b(canada|canadian|toronto|montreal|vancouver|ottawa|calgary|edmonton|quebec|ontario)\b/i],
-  ["uk", /\b(united kingdom|uk|great britain|england|scotland|wales|northern ireland)\b/i],
+  ["uk", /\b(united kingdom|uk|great britain|england|scotland|(?<!new south )wales|northern ireland)\b/i],
   ["europe", /\b(europe|germany|france|spain|italy|netherlands|switzerland|sweden|norway|denmark|finland|poland|portugal|belgium|austria|czechia|czech republic|romania|greece|amsterdam|berlin|paris|dublin|madrid|barcelona|munich|zurich|stockholm|oslo|copenhagen|helsinki|warsaw|lisbon|brussels|vienna|prague)\b|(?<!northern )\bireland\b/i],
   ["asia", /\b(india|singapore|china|shanghai|beijing|shenzhen|japan|south korea|korea|taiwan|hong kong|indonesia|malaysia|philippines|thailand|vietnam|israel|uae|united arab emirates|bangalore|bengaluru|hyderabad|mumbai|delhi|tokyo|seoul|tel aviv|dubai)\b/i],
   ["australia_nz", /\b(australia|australian|new zealand|auckland|wellington|sydney|melbourne|brisbane|perth)\b|\bNZ\b/i],

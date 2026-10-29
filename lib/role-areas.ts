@@ -101,14 +101,15 @@ export function getRoleSelection(roleParam: string | null, specialtyParam: strin
   return { family: "all", specialty: null };
 }
 
-function isStoreRetailRole(title: string): boolean {
+function isStoreRetailRole(title: string, rawText = ""): boolean {
   // Keep professional sales, retail analytics and retail software roles. These
   // explicit titles describe store-floor work rather than a career specialty.
-  return /\b(?:seasonal|retail|store) sales associate\b|\bsales associate\b.*\b(?:part[- ]time|seasonal)\b|\b(?:retail|store) associate\b|\bcashier\b/i.test(title);
+  return /\b(?:seasonal|retail|store) sales associate\b|\bsales associate\b.*\b(?:part[- ]time|seasonal)\b|\b(?:retail|store) associate\b|\bcashier\b|\bseasonal operations associate\b/i.test(title)
+    || (/\b(?:sales|operations) associate\b/i.test(title) && /\b(?:retail|store floor|store team|in-store)\b/i.test(rawText));
 }
 
 export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
-  if (isStoreRetailRole(job.title)) return [];
+  if (isStoreRetailRole(job.title, job.rawText)) return [];
   const title = job.title.toLowerCase();
   const text = `${job.title} ${job.category}`.toLowerCase();
   const rawText = job.rawText?.toLowerCase() ?? "";
@@ -163,7 +164,7 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
 }
 
 export function getJobRoleTags(job: RoleCandidate): RoleTag[] {
-  if (isStoreRetailRole(job.title)) return [];
+  if (isStoreRetailRole(job.title, job.rawText)) return [];
   const stored = (job.roleTags ?? []).filter((tag): tag is RoleTag => isRoleTag(tag));
   const tags = new Set([...stored, ...classifyRoleTags(job)]);
   if (/\b(?:software|analytics?)\b/i.test(job.title)) tags.delete("materials-chemical");

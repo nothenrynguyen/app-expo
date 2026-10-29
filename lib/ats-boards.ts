@@ -26,6 +26,7 @@ export type AtsBoardResult = {
   board: AtsBoard;
   jobs: CandidateJob[];
   liveIdentities: Set<string>;
+  ineligibleUrls?: string[];
 };
 
 const ASHBY_BOARD_ALIASES: Record<string, string> = { "luma-ai": "lumaai", "commure-athelas": "Commure" };
@@ -110,6 +111,17 @@ function validPostedAt(value: unknown): string | null {
 }
 
 function parseBoardJobs(board: AtsBoard, payload: unknown): BoardJob[] {
+  const rows: unknown = board.provider === "lever" ? payload : payload && typeof payload === "object" ? (payload as { jobs?: unknown }).jobs : null;
+  if (!Array.isArray(rows) || rows.some(row => !row || typeof row !== "object" || Array.isArray(row))) {
+    throw new Error(`Invalid ${board.provider} board payload: expected job records`);
+  }
+  for (const row of rows as Record<string, unknown>[]) {
+    const title = board.provider === "lever" ? row.text : row.title;
+    const url = board.provider === "greenhouse" ? row.absolute_url : board.provider === "lever" ? row.applyUrl ?? row.hostedUrl : row.applyUrl ?? row.jobUrl;
+    if (typeof title !== "string" || !title.trim() || typeof url !== "string" || !canonicalizeUrl(url)) {
+      throw new Error(`Invalid ${board.provider} board payload: missing job title or URL`);
+    }
+  }
   if (board.provider === "greenhouse") {
     const jobs = (payload as { jobs?: Array<Record<string, unknown>> }).jobs ?? [];
     return jobs.map((job) => ({
@@ -152,6 +164,7 @@ export async function fetchAtsBoard(board: AtsBoard, now = new Date()): Promise<
   if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
   const parsed = parseBoardJobs(board, await response.json());
   const liveIdentities = new Set<string>();
+  const ineligibleUrls: string[] = [];
   const jobs: CandidateJob[] = [];
 
   for (const job of parsed) {
@@ -159,7 +172,10 @@ export async function fetchAtsBoard(board: AtsBoard, now = new Date()): Promise<
     const identity = applyUrl && jobIdentity(applyUrl);
     if (!applyUrl || !identity || !job.title) continue;
     liveIdentities.add(identity);
-    if (!isEarlyCareerTitle(job.title, job.description)) continue;
+    if (!isEarlyCareerTitle(job.title, job.description)) {
+      ineligibleUrls.push(applyUrl);
+      continue;
+    }
     const postedAt = validPostedAt(job.postedAt);
     const text = `${job.title} ${job.location} ${job.description ?? ""}`;
     jobs.push({
@@ -177,5 +193,5 @@ export async function fetchAtsBoard(board: AtsBoard, now = new Date()): Promise<
       rawText: text,
     });
   }
-  return { board, jobs, liveIdentities };
+  return { board, jobs, liveIdentities, ineligibleUrls };
 }
