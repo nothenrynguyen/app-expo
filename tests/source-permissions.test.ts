@@ -17,6 +17,8 @@ test("active sources require an explicit reviewed license, even when trusted", (
   assert.doesNotThrow(() => assertSourcePermissions([source], [licensed]));
   assert.doesNotThrow(() => assertSourcePermissions([{...source, active: false}], []));
   assert.ok(permissionHeldSourceNames([source], [{...licensed, status: "no_license_detected"}]).has(source.name));
+  assert.ok(permissionHeldSourceNames([{...source, active: false}], []).has(source.name));
+  assert.ok(permissionHeldSourceNames([source], [{...licensed, licenseUrl: null}]).has(source.name));
 });
 
 test("permission failures stop ingestion before any network access", async () => {
