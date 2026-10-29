@@ -35,6 +35,12 @@ Of the 1,613 employer-evidence holds, **1,093 still have rows freshly collected 
 
 The earlier permission-first release was intentionally conservative, but it exposed a large recoverable evidence backlog. A low published count is not evidence that the rest of the market consists of low-quality jobs. The correct priority is independently corroborating employers and finding permitted replacement inputs, not imposing more exclusions to justify the count.
 
+## The broader market gap
+
+The sudden decline and the longer-term coverage goal are different questions. Current role families cover software, data, engineering, product, solutions/support, business, finance/quant and IT/security. They are not comprehensive across student majors. Direct local classifier checks return no supported tag for generic nursing, legal, teaching, human-resources and biology-research internship titles. Such exclusions describe current product scope, not job quality. The existing role-exclusion count also includes irrelevant or senior roles, so it cannot be interpreted as a count of missed eligible internships.
+
+To support the owner's goal of a destination for any student, the next product work must review these missing disciplines as well as employer identity, company-size/U.S.-presence policy and permitted discovery. More employer records alone do not make the board comprehensive. No market-wide or Jobright recall percentage has been established.
+
 ## Recovery batch
 
 - Palantir: [official SEC filing](https://www.sec.gov/Archives/edgar/data/1321655/000132165526000011/pltr-20251231.htm) reports 4,429 employees at December 31, 2025, with 72% in the U.S.; the [official careers page](https://www.palantir.com/careers/open-positions/) identifies its Lever board. Approval is restricted to that board, explicit early-career titles and positive current listing membership. Intermediary copies and senior titles remain held.

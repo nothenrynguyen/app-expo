@@ -88,7 +88,7 @@ export function discoverAtsBoard(applyUrl: string, company: string, source: stri
 export function isEarlyCareerTitle(title: string, description = ""): boolean {
   const explicitEarlyCareer = /\b(?:intern(?:ship)?|co-?op|new (?:college )?grad(?:uate)?|early career|university grad(?:uate)?|entry[- ]level)\b/i.test(title);
   if (/\b(?:senior|sr\.?|staff|principal|director|head|lead)\b/i.test(title)) return false;
-  const titleSignal = /\bintern(ship)?\b|\bco-?op\b|\bnew (?:college )?grad(uate)?\b|\bentry[- ]level\b|\bearly career\b|\buniversity (?:grad|graduate|hire)\b|\bcampus (?:hire|recruit)\b|\bjunior\b|\bjr\.?\b|\b(?:engineer|scientist|analyst|specialist) i\b|\bassociate solutions? engineer\b|\bsupport engineer(?:ing)? tier 1\b/i.test(title);
+  const titleSignal = /\bgraduate\b|\bassociate (?:software |electrical |mechanical |civil |structural |systems? )?engineer\b|\bassociate consultant\b|\bintern(ship)?\b|\bco-?op\b|\bnew (?:college )?grad(uate)?\b|\bentry[- ]level\b|\bearly career\b|\buniversity (?:grad|graduate|hire)\b|\bcampus (?:hire|recruit)\b|\bjunior\b|\bjr\.?\b|\b(?:engineer|scientist|analyst|specialist) i\b|\bassociate solutions? engineer\b|\bsupport engineer(?:ing)? tier 1\b/i.test(title);
 
   const normalizedDescription = description
     .replace(/&(?:ndash|mdash|#8211|#8212|#x2013|#x2014);/gi, "-")

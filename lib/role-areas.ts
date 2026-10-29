@@ -1,7 +1,7 @@
 import type { PublicJob } from "./jobs";
 import { isProcessManufacturingRole } from "./process-manufacturing";
 
-export type RoleFamily = "all" | "software" | "data" | "engineering" | "product" | "solutions-support" | "business" | "finance-quant" | "it-security";
+export type RoleFamily = "all" | "software" | "data" | "engineering" | "product" | "solutions-support" | "business" | "finance-quant" | "it-security" | "people-legal" | "science-health" | "education";
 
 export type RoleTag =
   | "software-engineering"
@@ -26,7 +26,14 @@ export type RoleTag =
   | "finance"
   | "quant"
   | "it-support-network"
-  | "cybersecurity";
+  | "cybersecurity"
+  | "human-resources"
+  | "legal"
+  | "research-science"
+  | "healthcare"
+  | "education"
+  | "general-engineering"
+  | "graduate-programs";
 
 export type RoleSelection = { family: RoleFamily; specialty: RoleTag | null };
 
@@ -44,9 +51,14 @@ export const ROLE_FAMILIES: Array<{ value: RoleFamily; label: string }> = [
   { value: "business", label: "Business" },
   { value: "finance-quant", label: "Finance / Quant" },
   { value: "it-security", label: "IT / Security" },
+  { value: "people-legal", label: "People / Legal" },
+  { value: "science-health", label: "Science / Health" },
+  { value: "education", label: "Education" },
 ];
 
 export const ROLE_TAGS: RoleDefinition[] = [
+  { value: "general-engineering", label: "General Engineering", family: "engineering" },
+  { value: "graduate-programs", label: "Graduate / Rotational Programs", family: "business" },
   { value: "software-engineering", label: "Software Engineering", family: "software" },
   { value: "ai-ml-engineering", label: "AI / ML Engineering", family: "software" },
   { value: "cloud-infrastructure", label: "Cloud / Infrastructure", family: "software" },
@@ -70,6 +82,11 @@ export const ROLE_TAGS: RoleDefinition[] = [
   { value: "quant", label: "Quant", family: "finance-quant" },
   { value: "it-support-network", label: "IT / Networking", family: "it-security" },
   { value: "cybersecurity", label: "Cybersecurity", family: "it-security" },
+  { value: "human-resources", label: "Human Resources", family: "people-legal" },
+  { value: "legal", label: "Legal", family: "people-legal" },
+  { value: "research-science", label: "Research / Science", family: "science-health" },
+  { value: "healthcare", label: "Healthcare", family: "science-health" },
+  { value: "education", label: "Education", family: "education" },
 ];
 
 const roleTagValues = new Set<RoleTag>(ROLE_TAGS.map((role) => role.value));
@@ -119,6 +136,13 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
   const tags = new Set<RoleTag>();
   const add = (tag: RoleTag, pattern: RegExp) => { if (pattern.test(text)) tags.add(tag); };
   const addTitle = (tag: RoleTag, pattern: RegExp) => { if (pattern.test(title)) tags.add(tag); };
+  // Match professional titles, not qualification/footer text mentioning these
+  // fields. Their eligibility, pay and seniority still use the normal gates.
+  if (!/\b(?:engineer|developer|software)\b/.test(title)) addTitle("human-resources", /\bhuman resources?\b|\bhr (?:intern|assistant|associate|analyst|coordinator)\b|\b(?:talent acquisition|recruiting|recruitment|people operations?)\b/);
+  addTitle("legal", /\blegal\b|\blaw (?:intern|clerk|student)\b|\bparalegal\b/);
+  addTitle("research-science", /\b(?:biology|biological|biomedical|biochemistry|biochemist|chemistry|chemist|microbiology|microbiologist|life science|environmental science|physics|physicist|research assistant|research associate|laboratory|lab technician|scientific research|research scientist)\b/);
+  addTitle("healthcare", /\b(?:nursing|nurse|clinical|medical assistant|public health|pharmacy|pharmacist|patient care|occupational therapy|physical therapy|speech language|social work)\b/);
+  addTitle("education", /\b(?:teacher|teaching|education intern|educational|school counseling|instructional design|curriculum)\b/);
   const softwareContext = /\bsoftware\b|\bcloud\b|\bsite reliability\b|\bsre\b|\btooling\b|\bdevops\b|\bplatform\b|\bota\b|\bqa\b|\btest automation\b/.test(text);
   const physicalQualityContext = /\b(?:supplier|manufacturing|production|process|product|hardware|device|component|semiconductor|silicon|wafer|materials?|mechanical|electrical|industrial|factory)\b|\bquality systems?\b|\bquality control\b|\bfailure analysis\b/.test(text)
     || /\b(?:medical device|medical technology|supplier quality|manufacturing quality|design quality|quality systems?|quality control|failure analysis|capa|gmp|iso 13485|fda)\b/.test(rawText);
@@ -132,7 +156,7 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
   if (genericApplicationsTitle && customerFacingContext) tags.add("solutions-support");
   add("product", /\bproduct\s+(?:manager|management)\b|\bproduct (?:intern|owner)\b|\bassociate product manager\b|\bapm\b/);
   if (!/\b(?:customer experience|customer support|customer service)\b/.test(title)) add("quant", /\bquant(?:itative)?\b|\btrader\b|\btrading\b|\bsystematic\b|\balgorithmic trading\b/);
-  add("data-science", /\bdata scien(?:ce|tist)\b|\bdecision scientist\b|\bmachine learning scientist\b|\bapplied scientist\b|\bstatistician\b/);
+  add("data-science", /\bdata scien(?:ce|tist)\b|\bdecision scientist\b|\bmachine learning scientist\b|\b(?:ai|artificial intelligence|machine learning|deep learning) research(?:er)?\b|\bapplied scientist\b|\bstatistician\b/);
   add("data-engineering", /\bdata engineer(?:ing)?\b|\banalytics engineer(?:ing)?\b|\bdata platform engineer(?:ing)?\b|\bdata infrastructure\b/);
   add("analytics", /\bdata analyst\b|\banalytics?\b|\bstrategy\s*(?:&|and)\s*analyt|\bbusiness intelligence\b|\bbi analyst\b/);
   add("business-analyst", /\bbusiness (?:systems? )?analyst\b|\bstrategy analyst\b|\boperations analyst\b|\bprocess analyst\b|\bprogram analyst\b|\bmanagement analyst\b|\bconsulting analyst\b|\bsupply chain analyst\b|\bprocurement analyst\b|\bcommercial analyst\b|\bproject analyst\b|\bbusiness development analyst\b|\bmanagement consulting\b|\bbusiness operations\b|\bstrategy and operations\b/);
@@ -153,13 +177,16 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
   if (civilStructuralContext) tags.add("civil-infrastructure");
   if (!softwareContext) add("systems-test", /\bsystems? engineer(?:ing)?\b|\bintegration (?:and|&) test\b|\bintegration engineer(?:ing)?\b|\btest engineer(?:ing)?\b|\bverification engineer(?:ing)?\b|\bvalidation engineer(?:ing)?\b/);
 
-  add("cybersecurity", /\bcyber ?security\b|\binformation security\b|\bsecurity operations\b|\bsoc analyst\b|\bred team\b|\bpenetration test(?:er|ing)?\b|\bapplication security\b/);
-  add("it-support-network", /\binformation technology\b|\bit (?:support|systems?|infrastructure|operations?|applications?|database|service|technician|specialist|analyst|intern|co-?op|developer|engineer)\b|\bhelp desk\b|\bservice desk\b|\bdesktop support\b|\btechnical support\b|\btechnology support\b|\bsoftware support\b|\bsystems? (?:administrator|support|technician)\b|\binfrastructure analyst\b|\bdatabase administrator\b|\bnetwork(?:ing)? (?:strategy|planning|software|switch|observation|automation|security|engineering|engineer|operations|administrator|technician|analyst|infrastructure|systems?|support)\b|\bnoc (?:analyst|engineer|technician)\b/);
+  add("cybersecurity", /\bsecurity (?:engineer|analyst|specialist)\b|\bcyber (?:engineer|capabilities)\b|\bapplications? security\b|\bcyber ?security\b|\binformation security\b|\bsecurity operations\b|\bsoc analyst\b|\bred team\b|\bpenetration test(?:er|ing)?\b|\bapplication security\b/);
+  add("it-support-network", /\binformation technology\b|\bit (?:support|systems?|infrastructure|operations?|applications?|database|service|technician|specialist|analyst|intern|co-?op|developer|engineer)\b|\bhelp desk\b|\bservice desk\b|\bdesktop support\b|\btechnical support\b|\btechnology support\b|\bsoftware support\b|\bsystems? (?:administrator|support|technician)\b|\binfrastructure (?:analyst|administrator)\b|\bdatabase administrator\b|\bnetwork(?:ing)? (?:strategy|planning|software|switch|observation|automation|security|engineering|engineer|operations|administrator|technician|analyst|infrastructure|systems?|support)\b|\bnoc (?:analyst|engineer|technician)\b/);
 
-  add("ai-ml-engineering", /\bmachine learning engineer(?:ing)?\b|\bml engineer(?:ing)?\b|\bai(?:\/ml)?\b.*\bengineer\b|\bllm\b.*\bengineer\b|\bcomputer vision engineer\b|\bnlp engineer\b|\bmlops\b/);
+  add("ai-ml-engineering", /\bmachine learning engineer(?:ing)?\b|\bml engineer(?:ing)?\b|\bai(?:\/ml)?\b.*\bengineer(?:ing)?\b|\bllm\b.*\bengineer\b|\bcomputer vision engineer\b|\bnlp engineer\b|\bmlops\b/);
   add("cloud-infrastructure", /\bdevops\b|\bsite reliability\b|\bsre\b|\bcloud engineer\b|\bcloud validation engineer\b|\binfrastructure engineer\b|\bplatform engineer\b/);
-  add("software-engineering", /\bsoftware\b|\bdeveloper\b|\bdevelopment engineer\b|\bfront[ -]?end\b|\bback[ -]?end\b|\bfull[ -]?stack\b|\bweb engineer\b|\bmobile engineer\b|\bios engineer\b|\bandroid engineer\b|\bfirmware\b|\bembedded software\b|\bmachine learning engineer\b|\bml engineer\b|\bai(?:\/ml)?\b.*\bengineer\b|\bllm\b.*\bengineer\b|\bcomputer vision engineer\b|\bqa engineer\b|\bquality assurance\b|\btest automation\b|\btester\b|\bprogrammer\b|\bforward deployed (?:ai |infrastructure )?engineer\b/);
+  add("software-engineering", /\bsoftware\b|\bdeveloper\b|\bdevelopment engineer\b|\bfront[ -]?end\b|\bback[ -]?end\b|\bfull[ -]?stack\b|\bweb engineer\b|\bmobile engineer\b|\bios engineer\b|\bandroid engineer\b|\bfirmware\b|\bembedded software\b|\bmachine learning engineer\b|\bml engineer\b|\bai(?:\/ml)?\b.*\bengineer(?:ing)?\b|\bllm\b.*\bengineer\b|\bcomputer vision engineer\b|\bqa engineer\b|\bquality assurance\b|\btest automation\b|\btester\b|\bprogrammer\b|\bforward deployed (?:ai |infrastructure )?engineer\b/);
 
+  if (/\b(?:graduate|new grad|early career)\b/.test(title) && /\b(?:rotational|rotation|general program|multiple teams|leadership development|engineering talent)\b/.test(title)) tags.add("graduate-programs");
+  // A clear engineering title can remain useful without inventing a specialty.
+  if (tags.size === 0 && /\bengineer(?:ing)?\b/.test(title)) tags.add("general-engineering");
   return ROLE_TAGS.map((role) => role.value).filter((tag) => tags.has(tag));
 }
 

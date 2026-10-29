@@ -9,7 +9,7 @@ import { scopedListingIsLive, selectBalancedScopedChecks, type ScopedListingCach
 import { boardRecoveryPolicy, preserveLastKnownGoodJobs } from "../lib/ingestion/last-known-good";
 import { loadCandidates } from "../lib/ingestion/load-candidates";
 import { sourceReviewHoldIdentity } from "../lib/ingestion/source-review-holds";
-import { buildSourceVerificationTargets, createSourceListingVerifier, sourceListingIsAllowed, type SourceVerificationTargets } from "../lib/ingestion/source-verification";
+import { buildSourceVerificationTargets, createSourceListingVerifier, sourceVerificationKey, sourceListingIsAllowed, type SourceVerificationTargets } from "../lib/ingestion/source-verification";
 import { buildRefreshReport } from "../lib/ingestion/refresh-report";
 import { createScreeningTracker } from "../lib/ingestion/screening";
 import { buildListingChanges } from "../lib/ingestion/listing-changes";
@@ -17,6 +17,9 @@ import { completeBoardHistory } from "../lib/ingestion/board-history";
 import { assessCoverage, assertCoverageSafe } from "../lib/ingestion/coverage-guard";
 import { buildReviewedEmployerCoverage } from "../lib/ingestion/reviewed-employer-coverage";
 import { permissionHeldSourceNames } from "../lib/ingestion/source-permissions";
+import { admitWithCurrentEmployerEvidence, continuityMatcher, type EmployerContinuity } from "../lib/ingestion/employer-continuity";
+import { isRecoveryLive, recoveryEvidenceAt } from "../lib/ingestion/employer-recovery";
+import { parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
 import { isInCollection } from "../lib/job-collections";
 import { deduplicateCrossSourceJobs } from "../lib/job-dedup";
 import { getFreshnessRejection } from "../lib/job-freshness";
@@ -59,7 +62,23 @@ async function main() {
     pinnedCompanies,
     boardHistory,
     boardCoverage,
+    recoveryState,
   } = await loadCandidates(root, activeSources, previous?.jobs ?? []);
+  const continuityData = JSON.parse(await readFile(path.join(root, "data/employer-continuity.json"), "utf8")) as EmployerContinuity;
+  const hasPriorAdmission = continuityMatcher(continuityData);
+  const continuityLive = (candidate: import("../lib/source-normalization").CandidateJob) => {
+    if (!hasPriorAdmission(candidate)) return false;
+    if (isRecoveryLive(candidate)) return true;
+    const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
+    if (board && boardResults.get(board.id)?.liveIdentities.has(jobIdentity(candidate.applyUrl) ?? "")) return true;
+    return !!parseSmartRecruitersJobUrl(candidate.applyUrl) && candidate.sourceActive === true;
+  };
+  const currentBoardEvidence = (candidate: import("../lib/source-normalization").CandidateJob) => {
+    const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
+    const result = board && boardResults.get(board.id);
+    return isRecoveryLive(candidate) || !!result && normalizeCompanyName(result.board.company) === normalizeCompanyName(candidate.company)
+      && result.liveIdentities.has(jobIdentity(candidate.applyUrl) ?? "");
+  };
   const unhealthySources = health.filter((source) => source.status === "failed" || source.rows === 0);
   const merged = new Map<string, PublicJob>();
   const quarantined: Array<{ company: string; title: string; reason: string; source: string; applyUrl: string }> = [];
@@ -78,7 +97,7 @@ async function main() {
   for (const candidate of candidates) {
     const identity = jobIdentity(candidate.applyUrl);
     const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
-    if (identity && candidate.source !== "Direct ATS (Workday)" && (!board || !boardResults.has(board.id))) genericUrls.set(identity, candidate.applyUrl);
+    if (identity && !isRecoveryLive(candidate) && candidate.source !== "Direct ATS (Workday)" && (!board || !boardResults.has(board.id))) genericUrls.set(identity, candidate.applyUrl);
   }
   const dueChecks = [...genericUrls]
     .filter(([identity]) => needsListingCheck(listingHealth[identity]))
@@ -106,7 +125,7 @@ async function main() {
   const verificationCandidates = candidates.filter(candidate => {
     const decision = evaluateCompanyQuality({ name: candidate.company, h1bApprovals: candidate.h1bApprovals, title: candidate.title, applyUrl: candidate.applyUrl }, candidate.rawText, registry, trustRegistry);
     return getJobLocationMetadata(candidate).eligible && classifyRoleTags(candidate).length > 0 && !getFreshnessRejection(candidate)
-      && (decision.status === "approved" || decision.coverageExceptionAllowed && trustedCompanies.has(normalizeCompanyName(candidate.company)));
+      && (decision.status === "approved" || decision.coverageExceptionAllowed && (currentBoardEvidence(candidate) || continuityLive(candidate) || trustedCompanies.has(normalizeCompanyName(candidate.company))));
   });
   const sourceTargets = buildSourceVerificationTargets(catalog.sources, verificationCandidates, previous?.jobs ?? [], savedSourceTargets);
   for (const candidate of candidates) {
@@ -116,6 +135,13 @@ async function main() {
   }
   for (const [key, target] of Object.entries(sourceTargets)) scopedUrls.set(key, target.url);
   for (const identity of scopedUrls.keys()) if (!scopedCache[identity]) scopedCache[identity] = { status: "unknown", checkedAt: null, firstSeenAt: startedAt.toISOString() };
+  for (const candidate of candidates) {
+    const evidence = recoveryEvidenceAt(candidate);
+    if (!evidence) continue;
+    for (const key of [jobIdentity(candidate.applyUrl), sourceVerificationKey(candidate.applyUrl)]) {
+      if (key && scopedUrls.has(key)) scopedCache[key] = {status: "live", checkedAt: evidence, firstSeenAt: scopedCache[key].firstSeenAt};
+    }
+  }
   // The same current authoritative board response can establish exact listing
   // membership for both gates. Do not queue redundant detail requests or keep
   // yesterday's positive result when today's official board omits the vacancy.
@@ -181,6 +207,8 @@ async function main() {
       registry,
       trustRegistry,
     );
+    const continuityAdmission = decision.status === "quarantined" && decision.coverageExceptionAllowed === true && (currentBoardEvidence(candidate) || continuityLive(candidate));
+    decision = admitWithCurrentEmployerEvidence(decision, continuityAdmission);
     if (decision.status === "rejected") {
       screening.record(candidate.applyUrl, "employer");
       rejectedCount += 1;
@@ -212,7 +240,7 @@ async function main() {
       rejectedCount += 1;
       continue;
     }
-    if (!authoritativeBoard && isListingUnavailable(listingHealth[identity])) {
+    if (!authoritativeBoard && !isRecoveryLive(candidate) && isListingUnavailable(listingHealth[identity])) {
       screening.record(candidate.applyUrl, "closed");
       rejectedCount += 1;
       continue;
@@ -249,7 +277,7 @@ async function main() {
       roleTags,
       salary: candidate.salary,
       sources: [candidate.source],
-      verifiedCompany: true,
+      verifiedCompany: !continuityAdmission,
       employeeCount: decision.minimumEmployees,
       ...(candidate.federal ? { federal: candidate.federal } : {}),
     });
@@ -338,6 +366,7 @@ async function main() {
     if (!currentIdentities.has(identity) && age > 30 * 86_400_000) delete listingHealth[identity];
   }
   await mkdir(path.join(root, "data"), { recursive: true });
+  if (recoveryState && Object.keys(recoveryState).length) await writeFile(path.join(root, "data/employer-recovery-state.json"), `${JSON.stringify(recoveryState, null, 2)}\n`);
   for (const [identity, record] of Object.entries(scopedCache)) {
     if (!scopedUrls.has(identity) && startedAt.getTime() - Date.parse(record.checkedAt ?? record.firstSeenAt) > 30 * 86_400_000) delete scopedCache[identity];
   }

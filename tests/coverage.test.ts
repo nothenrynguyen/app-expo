@@ -72,6 +72,8 @@ test("coverage guard blocks unexplained removals by collection, even if addition
   const closed = { ...changes, removed: changes.removed.map(j => ({ ...j, reason: "closed" as const })) };
   assert.doesNotThrow(() => assertCoverageSafe(assessCoverage(jobs, [], closed)));
   assert.equal(assessCoverage(jobs, [], closed)[1].largeDrop, true);
+  const policy = {...changes, removed: changes.removed.map(j => ({...j, reason: "pendingVerification" as const}))};
+  assert.throws(() => assertCoverageSafe(assessCoverage(jobs, [], policy)));
 });
 
 test("restoring employer coverage cannot reintroduce seasonal retail operations", () => {

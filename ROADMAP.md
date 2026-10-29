@@ -1,5 +1,7 @@
 # empluzzed Roadmap
 
+October 29 active priority: execute the owner-approved [coverage restoration and expansion](docs/COVERAGE_RESTORATION.md). Success requires more than 3,500 internships and 2,300 full-time opportunities, plus deployed verification. The controlled release candidate reaches 4,257 internships and 2,608 full-time jobs with zero missing replay inputs and 145 passing tests. Employer continuity, current-employer link recovery, broader disciplines and stronger loss guards are validated locally; publication and live verification remain pending. Existing end-to-end approval applies; no spending or payment method.
+
 This is the living overview of shipped capabilities, candidate priorities, and deferred ideas. Specific current work and evidence belong in [active tasks](docs/ACTIVE_TASKS.md). Historical releases and measurements remain in their linked reviews.
 
 ## Current status

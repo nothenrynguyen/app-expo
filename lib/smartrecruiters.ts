@@ -17,8 +17,9 @@ export function parseSmartRecruitersJobUrl(value: string): SmartRecruitersJobRef
   try {
     const url = new URL(value);
     if (url.hostname.toLowerCase() !== "jobs.smartrecruiters.com") return null;
-    const [companyIdentifier, jobId] = url.pathname.split("/").filter(Boolean);
-    if (!companyIdentifier || !/^\d+$/.test(jobId ?? "")) return null;
+    const [companyIdentifier, posting] = url.pathname.split("/").filter(Boolean);
+    const jobId = posting?.match(/^(\d+)(?:-|$)/)?.[1];
+    if (!companyIdentifier || !jobId) return null;
     return {
       companyIdentifier,
       jobId,

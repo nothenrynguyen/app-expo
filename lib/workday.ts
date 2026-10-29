@@ -64,6 +64,7 @@ const PAGE_SIZE = 20;
 const REQUEST_ATTEMPTS = 3;
 
 type WorkdayRequestOptions = {
+  deadlineAt?: number;
   method?: "GET" | "POST";
   body?: string;
   timeoutMs: number;
@@ -75,6 +76,7 @@ type WorkdayRequestOptions = {
 async function requestWorkdayJson<T>(url: string, options: WorkdayRequestOptions): Promise<T> {
   let lastError: unknown;
   for (let attempt = 0; attempt < REQUEST_ATTEMPTS; attempt += 1) {
+    if (options.deadlineAt && Date.now() >= options.deadlineAt) throw new Error("Workday board time budget exceeded");
     try {
       const response = await options.fetchImpl(url, {
         method: options.method ?? "GET",
@@ -85,7 +87,7 @@ async function requestWorkdayJson<T>(url: string, options: WorkdayRequestOptions
           "user-agent": "empluzzed/0.4",
         },
         body: options.body,
-        signal: AbortSignal.timeout(options.timeoutMs),
+        signal: AbortSignal.timeout(Math.max(1, Math.min(options.timeoutMs, (options.deadlineAt ?? Infinity) - Date.now()))),
       });
       if (response.ok) return await response.json() as T;
       const retryable = response.status === 408 || response.status === 429 || response.status >= 500;
@@ -95,6 +97,7 @@ async function requestWorkdayJson<T>(url: string, options: WorkdayRequestOptions
       lastError = error;
       if (error instanceof Error && /^4\d\d /.test(error.message) && !/^(?:408|429) /.test(error.message)) throw error;
     }
+    if (options.deadlineAt && Date.now() >= options.deadlineAt) throw new Error("Workday board time budget exceeded");
     if (attempt < REQUEST_ATTEMPTS - 1) {
       options.onRetry();
       if (options.retryDelayMs > 0) await new Promise((resolve) => setTimeout(resolve, options.retryDelayMs * (attempt + 1)));
@@ -231,6 +234,7 @@ export async function fetchWorkdayBoard(
   options: WorkdayFetchOptions = {},
 ): Promise<WorkdayBoardResult> {
   const startedAt = Date.now();
+  const deadlineAt = startedAt + 90_000;
   const fetchImpl = options.fetchImpl ?? fetch;
   const retryDelayMs = options.retryDelayMs ?? 250;
   const summaries = new Map<string, WorkdaySummary>();
@@ -246,6 +250,7 @@ export async function fetchWorkdayBoard(
       const payload = await requestWorkdayJson<{ total?: number; jobPostings?: WorkdaySummary[] }>(board.endpoint, {
         method: "POST",
         body: JSON.stringify({ appliedFacets: {}, limit: PAGE_SIZE, offset, searchText }),
+        deadlineAt,
         timeoutMs: 15_000,
         fetchImpl,
         retryDelayMs,
@@ -270,6 +275,7 @@ export async function fetchWorkdayBoard(
   });
   const details = await inBatches(entries, 4, async ([externalPath, summary]) => {
     const payload = await requestWorkdayJson<WorkdayDetail>(detailUrl(board, externalPath), {
+      deadlineAt,
       timeoutMs: 12_000,
       fetchImpl,
       retryDelayMs,

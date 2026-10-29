@@ -4,7 +4,7 @@ import type { CandidateJob } from "../source-normalization";
 
 export type SourceRefreshDiagnostic = {
   name: string;
-  kind: "engine_json" | "applyguy_json" | "markdown" | "keryx_markdown" | "workday" | "usajobs";
+  kind: "engine_json" | "applyguy_json" | "markdown" | "keryx_markdown" | "workday" | "usajobs" | "employer_recovery";
   status: "ok" | "failed";
   rows: number;
   durationMs: number;
@@ -35,6 +35,7 @@ export type VerificationDiagnostic = {
 };
 
 export type CandidateLoadResult = {
+  recoveryState?: import("./employer-recovery").RecoveryState;
   boardHistory: import("./board-history").BoardHistory;
   boardCoverage: { discovered: number; retained: number };
   preScreened?: Array<{ url: string; outcome: "employer" | "role" | "closed" | "pendingVerification" }>;

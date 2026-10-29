@@ -1,5 +1,7 @@
 # Active project tasks
 
+October 29 active priority: execute the owner-approved [coverage restoration and expansion](COVERAGE_RESTORATION.md). Success requires more than 3,500 internships and 2,300 full-time opportunities, plus deployed verification. The controlled release candidate reaches 4,257 internships and 2,608 full-time jobs with zero missing replay inputs and 145 passing tests. Employer continuity, current-employer link recovery, broader disciplines and stronger loss guards are validated locally; publication and live verification remain pending. Existing end-to-end approval applies; no spending or payment method.
+
 Reviewed October 28, 2026. This file tracks concrete active work, follow-up, and evidence. The [roadmap](../ROADMAP.md) holds longer-term priorities and ideas. The [previous task record](ACTIVE_TASKS_ARCHIVE_2026-10-22.md) preserves the October 22 status and historical receipts; older detail is in [task history](TASK_HISTORY.md).
 
 ## Active milestone

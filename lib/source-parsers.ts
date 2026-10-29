@@ -212,7 +212,7 @@ export function parseKeryxSource(markdown: string, source: string, now = new Dat
     const category = /new grad/i.test(source) ? "New grad" : "Internship";
     const rawText = `${company} ${title} ${cleanText(cells[2])}`;
     const families = classifyRoleTags({ title, category, rawText }).map(tag => ROLE_TAGS.find(role => role.value === tag)?.family);
-    if (!company || !title || !isEarlyCareerTitle(title, "") || families.includes("software") || !families.some(family => ["engineering", "business", "finance-quant", "it-security"].includes(family ?? ""))) continue;
+    if (!company || !title || !isEarlyCareerTitle(title, "") || families.includes("software") || !families.some(family => ["engineering", "business", "finance-quant", "it-security", "people-legal", "science-health", "education"].includes(family ?? ""))) continue;
     // Academic hints and discovery sources are not employer statements. Keep
     // them out of eligibility and risk classification. Missing dates are first
     // observed here, never invented as employer posting dates.

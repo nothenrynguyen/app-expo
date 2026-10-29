@@ -40,7 +40,7 @@ export type QualityDecision = {
 
 const UNPAID_PATTERNS = [
   /\bunpaid\b/i,
-  /\bvolunteer\b/i,
+  /\bvolunteer (?:intern(?:ship)?|position|role|job)\b|\b(?:position|role|job) (?:is|as) (?:a )?volunteer\b/i,
   /\bcommission[- ]only\b/i,
   /\bequity[- ]only\b/i,
   /\btraining fee\b/i,
@@ -80,7 +80,7 @@ export function evaluateCompanyQuality(
   registry: VerifiedCompany[],
   trustRegistry: CompanyTrustEntry[] = [],
 ): QualityDecision {
-  if (UNPAID_PATTERNS.some((pattern) => pattern.test(jobText))) {
+  if (/\bvolunteer\b/i.test(company.title ?? "") || UNPAID_PATTERNS.some((pattern) => pattern.test(jobText))) {
     return { status: "rejected", reason: "The posting explicitly appears unpaid or fee-based.", linkedInUrl: null, minimumEmployees: null };
   }
 

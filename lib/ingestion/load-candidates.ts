@@ -15,6 +15,7 @@ import { selectRefreshBoards, type BoardHistory } from "./board-history";
 import type { PublicJob } from "../jobs";
 import type { BoardRefreshDiagnostic, CandidateLoadResult, SourceRefreshDiagnostic } from "./types";
 import { assertSourcePermissions } from "./source-permissions";
+import { loadEmployerRecovery, type RecoverySeed, type RecoveryState } from "./employer-recovery";
 
 type TimedResult<T> =
   | { status: "fulfilled"; value: T; durationMs: number }
@@ -191,7 +192,7 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     .then((value) => JSON.parse(value) as WorkdayBoardSeed[])
     .catch(() => []);
   const workdayBoards = workdaySeeds.map(createWorkdayBoard);
-  const settledWorkdayFetches = await inBatches(workdayBoards, 1, (board) => runTimed(() => fetchWorkdayBoard(board)));
+  const settledWorkdayFetches = await inBatches(workdayBoards, 3, (board) => runTimed(() => fetchWorkdayBoard(board)));
   const workdayFetches = settledWorkdayFetches.map((result) => result.status === "fulfilled" ? result.value : ({ status: "rejected", reason: result.reason, durationMs: 0 } as const));
   workdayFetches.forEach((result, index) => {
     const board = workdayBoards[index];
@@ -226,10 +227,18 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     }
   });
 
+  const recoverySeeds = await readFile(path.join(root, "data/employer-recovery-targets.json"), "utf8").then(value => JSON.parse(value) as RecoverySeed[]).catch((error: NodeJS.ErrnoException) => {if (error.code === "ENOENT") return []; throw error;});
+  const savedRecovery = await readFile(path.join(root, "data/employer-recovery-state.json"), "utf8").then(value => JSON.parse(value) as RecoveryState).catch((error: NodeJS.ErrnoException) => {if (error.code === "ENOENT") return {}; throw error;});
+  const recovery = await loadEmployerRecovery(recoverySeeds, savedRecovery);
+  if (recoverySeeds.length) {
+    candidates.push(...recovery.candidates);
+    health.push({name: "Original employer link recovery", status: "ok", rows: recovery.candidates.length});
+    sourceDiagnostics.push({name: "Original employer link recovery", kind: "employer_recovery", status: "ok", rows: recovery.candidates.length, requestCount: recovery.requests, durationMs: recovery.durationMs, message: JSON.stringify({targets: recovery.targets, live: recovery.candidates.length, unknown: recovery.unknown, unchecked: recovery.remaining, pausedHosts: recovery.pausedHosts})});
+  }
   const smartRecruitersUrls = new Map<string, string>();
   for (const candidate of candidates) {
     const identity = jobIdentity(candidate.applyUrl);
-    if (identity && parseSmartRecruitersJobUrl(candidate.applyUrl)) smartRecruitersUrls.set(identity, candidate.applyUrl);
+    if (candidate.source !== "Employer recovery" && identity && parseSmartRecruitersJobUrl(candidate.applyUrl)) smartRecruitersUrls.set(identity, candidate.applyUrl);
   }
   const smartRecruitersEntries = [...smartRecruitersUrls];
   const smartRecruitersFetches = await inBatches(smartRecruitersEntries, 12, async ([identity, url]) => ({ identity, posting: await fetchSmartRecruitersPosting(url) }));
@@ -261,6 +270,7 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     if (diagnostic) diagnostic.message = JSON.stringify({ reviewHoldsConfigured: source.reviewHolds!.length, heldCandidateRowsAcrossSources: reviewed.held.length });
   }
   return {
+    recoveryState: recovery.state,
     boardHistory: selection.history,
     boardCoverage: { discovered: selection.discovered, retained: selection.retained },
     preScreened,

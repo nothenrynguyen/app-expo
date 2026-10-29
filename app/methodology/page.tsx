@@ -23,7 +23,7 @@ const steps = [
   {
     number: "03",
     title: "Keep relevant roles",
-    copy: "A role must clearly match one of the supported early-career areas. Software, data, engineering, product, solutions and support, business, finance, quant, IT, and security roles are included. Public collections are then split by source category plus title and term signals.",
+    copy: "A role must clearly match one of the supported early-career areas. Software, data, engineering, product, solutions and support, business, finance, quant, IT, security, human resources, legal, science, healthcare, and education roles are included. Public collections are then split by source category plus title and term signals.",
   },
   {
     number: "04",
@@ -33,7 +33,7 @@ const steps = [
   {
     number: "05",
     title: "Check the company",
-    copy: "Reviewed company records, employee evidence, meaningful U.S. employment evidence, and curated coverage all contribute to admission. A persistent trust list can approve, hold, or block a company and its aliases across every source.",
+    copy: "Current employer-board listings, reviewed company records, and curated coverage contribute to admission. Company size and U.S. workforce evidence are not prerequisites for a supported local opportunity. A live board listing is not an independent audit of the employer. A persistent trust list can approve, hold, or block a company and its aliases across every source.",
   },
   {
     number: "06",
