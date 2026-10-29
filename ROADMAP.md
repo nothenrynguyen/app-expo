@@ -4,7 +4,7 @@ This is the living overview of shipped capabilities, candidate priorities, and d
 
 ## Current status
 
-- Employer coverage retention and unexplained-drop safeguards are locally implemented and validated after the full-time count investigation. Publication and production verification are pending. See [coverage review](docs/COVERAGE_RETENTION_REVIEW.md).
+- Employer coverage retention and unexplained-drop safeguards were published and production-verified October 28. Known official boards survive upstream omissions, and large unexplained losses block publication. See [coverage review](docs/COVERAGE_RETENTION_REVIEW.md) and [production receipt](docs/coverage-retention-production-result.json).
 
 - The public job board is free to browse without an account. It covers internships and early-career roles across software, data, engineering, product, business, finance, IT, security, and other fields.
 - Source expansion, including Keryx and bounded USAJOBS discovery, has shipped. The Keryx Winter release was published and production-verified on October 21; blocked or unreviewed destinations remain on hold. See the [Winter production receipt](docs/keryx-winter-production-result.json) and [source expansion review](docs/SOURCE_EXPANSION_RELEASE.md).

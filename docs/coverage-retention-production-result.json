@@ -1,0 +1,125 @@
+{
+  "verifiedAt": "2026-10-29T05:54:10.979Z",
+  "site": "https://empluzzed.fyi",
+  "sourceCommit": "cc77288709bc1b486c0a04e51878d9edbe2b3916",
+  "snapshotCommit": "f7801da8261fdadb551cf26b519582230010797d",
+  "workflow": {
+    "id": 40825645377,
+    "url": "https://github.com/nothenrynguyen/app-expo/actions/runs/40825645377",
+    "conclusion": "success"
+  },
+  "generatedAt": "2026-10-29T05:53:14.255Z",
+  "counts": {
+    "total": 5886,
+    "fulltime": 2372,
+    "internships": 3514
+  },
+  "exactProductionMatches": [
+    {
+      "file": "jobs.json",
+      "matches": true,
+      "sha256": "7b19bff8ffeffcbde4783ecf07a6a061165973e06fb5387af5444b8808d62943"
+    },
+    {
+      "file": "fulltime.json",
+      "matches": true,
+      "sha256": "6a10201f4a46bed382f399dcf393aa686bc8716a2546e54801c7ecc7c2d5305c"
+    },
+    {
+      "file": "internships.json",
+      "matches": true,
+      "sha256": "43de0ac715a1e5245e8cf1797f19d52f338fd72f5b06a6e9325fc45cd7cee392"
+    },
+    {
+      "file": "summary.json",
+      "matches": true,
+      "sha256": "2055ee52bfaecd61e2fc03dd5990323eea993bdce64950c26a316d5e18c76493"
+    }
+  ],
+  "validation": {
+    "invalidLocations": 0,
+    "expired": 0,
+    "duplicateDestinations": 0,
+    "heldPublished": 0,
+    "collectionMismatches": 0
+  },
+  "controlledAdditionsStillPublished": 10,
+  "restoredWithoutCurrentOfficialEvidence": 0,
+  "coverage": {
+    "boards": {
+      "discovered": 555,
+      "retained": 41
+    },
+    "collections": [
+      {
+        "collection": "internships",
+        "previous": 3514,
+        "current": 3514,
+        "removed": 0,
+        "unexplained": 0,
+        "largeDrop": false,
+        "blocked": false
+      },
+      {
+        "collection": "fulltime",
+        "previous": 2362,
+        "current": 2372,
+        "removed": 0,
+        "unexplained": 0,
+        "largeDrop": false,
+        "blocked": false
+      }
+    ]
+  },
+  "refresh": {
+    "status": "degraded",
+    "durationMs": 166493,
+    "sources": {
+      "total": 27,
+      "healthy": 27,
+      "failed": 0
+    },
+    "boards": {
+      "total": 600,
+      "healthy": 598,
+      "failed": 2,
+      "requestCount": 1140,
+      "failures": [
+        {
+          "id": "ashby:whatnot",
+          "provider": "ashby",
+          "key": "whatnot",
+          "company": "WhatNot",
+          "status": "failed",
+          "rows": 0,
+          "retryRequests": 0,
+          "durationMs": 96,
+          "message": "404 Not Found"
+        },
+        {
+          "id": "greenhouse:oldmissioncapital",
+          "provider": "greenhouse",
+          "key": "oldmissioncapital",
+          "company": "Old Mission",
+          "status": "failed",
+          "rows": 0,
+          "retryRequests": 0,
+          "durationMs": 47,
+          "message": "404 Not Found"
+        }
+      ]
+    }
+  },
+  "listingChanges": {
+    "added": 10,
+    "removed": 0,
+    "reasons": {}
+  },
+  "deployment": {
+    "provider": "Vercel",
+    "statusSource": "GitHub commit status",
+    "state": "success",
+    "commit": "f7801da8261fdadb551cf26b519582230010797d",
+    "url": "https://vercel.com/henrys-projects-84715f33/app-expo/44Soyqf5r43LLXWSGT1JSi2qSfZC"
+  }
+}

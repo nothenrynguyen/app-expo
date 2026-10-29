@@ -4,11 +4,13 @@ Reviewed October 28, 2026. This file tracks concrete active work, follow-up, and
 
 ## Active milestone
 
-Employer coverage retention: implementation and fixed-input comparison are complete locally. The original collector produced 2,362 full-time jobs and the fixed collector produced 2,372 from the same responses, without restoring retail listings. Regression checks and the production build pass. Publication and production verification are in progress under the owner's full authorization. See [coverage review](COVERAGE_RETENTION_REVIEW.md).
+Employer coverage retention and unexplained-drop safeguards are published and production-verified October 28. Workflow 40825645377 succeeded; generated snapshot `f7801da` exactly matched all four deployed public JSON files. Ten full-time jobs were restored with official evidence, and no jobs were removed in the production refresh. See [coverage review](COVERAGE_RETENTION_REVIEW.md) and [production receipt](coverage-retention-production-result.json).
 
 Keryx New Grad 2026 activation and availability safeguards are published and production-verified. The release is complete; Fall remains inactive. See [production receipt](keryx-2026-production-result.json) and [release review](KERYX_PENDING_2026_REVIEW.md#production-release-and-verification-october-28).
 
 ## Operational follow-up
+
+- Coverage: board history is persisted by the refresh workflow. Healthy active boards remain tracked; undiscovered empty or failing boards age out after 90 days. Explicit limits stop ingestion above 250 retained or 1,000 total public ATS boards. Investigate failed coverage guards using the seven-day Actions artifact rather than bypassing them or restoring old listings wholesale. Current measurements belong in the [production receipt](coverage-retention-production-result.json).
 
 - Analytics: the owner confirmed dashboard access and report credential rotation. Cleanup cron was configured, but the first successful scheduled execution was not observed in the latest [action log](ANALYTICS_ACTION_LOG.md). Check current evidence before marking it complete.
 - Employer verification: monitor the bounded verification queue and review the remaining employer backlog. Booz Allen and RTX pilot proposals remain on hold pending review of existing jobs and URL variants.
