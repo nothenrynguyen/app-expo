@@ -83,7 +83,7 @@ function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJob
 }) {
   return (
     <div className={`layout-panel compact-panel ${className}`}>
-      <div className="job-table" role="table" aria-label="Verified jobs">
+      <div className="job-table" role="table" aria-label="Job listings">
         <div className={`job-table-head ${onHideCompany ? "with-more-actions" : ""}`} role="row">
           <span role="columnheader">Company</span>
           <span role="columnheader">Position</span>

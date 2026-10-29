@@ -31,21 +31,22 @@ export default function SourcesPage() {
         <div className="sources-hero">
           <h1 className="sr-only">Data sources</h1>
           <p className="eyebrow">Data sources</p>
-          <p>empluzzed combines maintained community job lists and official federal job data, removes duplicates, and checks listings against employer career pages before sending you to the original application.</p>
-          <p>Community feeds without recorded reuse permission are held out. An upstream license does not establish that every job is eligible or still open, so employer and listing checks apply separately.</p>
+          <p>I use reviewed community lists, employer career boards, and USAJOBS to find openings. Listings go through duplicate, role, location, and employer checks.</p>
+          <p>Feeds without recorded reuse permission stay out. A source license does not guarantee that its jobs qualify or are still open.</p>
         </div>
 
         <section className="pinned-source-note" aria-labelledby="federal-source-title">
           <p className="eyebrow">Federal jobs</p>
           <h2 id="federal-source-title">USAJOBS</h2>
-          <p>We search official federal postings for paid student and recent-graduate opportunities, then check the current announcement. Unpaid roles and standing recruiting notices are held out. Each federal listing links to its official application instructions and shows retrieval dates and eligibility information.</p>
+          <p>We search official federal postings for paid student and recent-graduate opportunities, then check the current announcement. Unpaid roles and standing recruiting notices are held out. Federal listings link to official application instructions and show retrieval dates and available eligibility details.</p>
           <p>empluzzed is independent and is not operated, sponsored, approved or endorsed by the U.S. Office of Personnel Management or another federal agency.</p>
           <a href="https://developer.usajobs.gov/guides/terms-of-service" target="_blank" rel="noreferrer">USAJOBS public-data terms</a>
         </section>
 
         <section className="source-audit" aria-label="Community data sources">
           <div className="source-summary" aria-label="Data source summary">
-            <div><AnimatedCount value={sourceCatalog.sources.length} /><span>community feed entries</span></div>
+            <div><AnimatedCount value={sourceCatalog.sources.length} /><span>cataloged community feeds</span></div>
+            <div><AnimatedCount value={sourceCatalog.sources.filter((source) => source.active).length} /><span>active community feeds</span></div>
             <div><AnimatedCount value={licenses.length} /><span>unique repositories</span></div>
             <div><AnimatedCount value={licensedCount} /><span>MIT licensed</span></div>
             <div><AnimatedCount value={unresolvedCount} /><span>no license detected</span></div>
@@ -54,14 +55,15 @@ export default function SourcesPage() {
 
           <div className="pinned-source-note">
             <p className="eyebrow">Direct employer coverage</p>
-            <h2>Public ATS boards checked every refresh.</h2>
-            <p>empluzzed keeps a small reviewed registry of public Greenhouse, Lever, Ashby, and Workday career sites. Their qualifying early-career roles can enter any matching job category, even when a community feed does not currently link to them.</p>
+            <h2>Direct from employer career boards.</h2>
+            <p>I keep a reviewed list of Greenhouse, Lever, Ashby, and Workday boards alongside boards discovered from job links. These pinned boards can contribute roles even when community lists miss them.</p>
             <ul aria-label="Pinned employer boards">
               {pinnedBoards.map((board) => <li key={`${board.provider}:${board.key}`}>{board.company}</li>)}
               {workdayBoards.map((board) => <li key={`workday:${board.tenant}:${board.site}`}>{board.company}</li>)}
             </ul>
           </div>
 
+          <p>License review recorded <time dateTime={sourceLicenseReview.reviewedAt}>{sourceLicenseReview.reviewedAt}</time>. The catalog includes inactive feeds.</p>
           <div className="source-license-list">
             {licenses.map((license) => {
               const sourceNames = sourcesByRepository.get(license.repository) ?? [];
@@ -103,7 +105,7 @@ export default function SourcesPage() {
           <section className="source-notices" aria-labelledby="source-notices-title">
             <div>
               <p className="eyebrow">Credits</p>
-              <h2 id="source-notices-title">Attribution, kept accessible.</h2>
+              <h2 id="source-notices-title">Credit where it is due.</h2>
               <p>empluzzed credits each community project above. Copyright and permission notices are preserved in the repository&apos;s third-party notices file.</p>
             </div>
             <details>

@@ -5,7 +5,7 @@ import { SiteFooter } from "../SiteFooter";
 import { HeroGravity } from "../HeroGravity";
 
 export default function InternshipsPage() {
-  return <BoardPage title="Current Internships" description="No sign-up. No BS. Here are the jobs, updated every hour." type="internships" />;
+  return <BoardPage title="Current Internships" description="No sign-up. No BS. Here are the jobs, with hourly refreshes." type="internships" />;
 }
 
 function BoardPage({ title, description, type }: { title: string; description: string; type: "internships" | "fulltime" }) {
@@ -16,7 +16,7 @@ function BoardPage({ title, description, type }: { title: string; description: s
         <div className="board-intro">
           <div><p className="eyebrow">Job board</p><h1>{title}</h1><p>{description}</p></div>
         </div>
-        <Suspense fallback={<p className="state-card">Loading verified jobs...</p>}><JobBoard type={type} /></Suspense>
+        <Suspense fallback={<p className="state-card">Loading jobs...</p>}><JobBoard type={type} /></Suspense>
       </section>
       <SiteFooter />
     </main>

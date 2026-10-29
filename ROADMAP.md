@@ -18,7 +18,9 @@ This is the living overview of shipped capabilities, candidate priorities, and d
 - Hourly refresh scheduling and open-tab snapshot updates were activated and verified. See [hourly refresh operations](docs/HOURLY_REFRESH.md).
 - Saved jobs, hidden companies, and the application tracker use browser-local storage. The tracker supports manual entries, statuses, dates, notes, and backup/recovery. Cross-device syncing and visitor accounts remain deferred.
 - Optional, consent-based owned activity analytics and the private owner dashboard are live. The analytics collector uses a Cloudflare Worker and D1; this is separate from any proposed backend for personal records. The owner dashboard walkthrough and credential rotation are complete. Scheduled cleanup was configured, but a successful scheduled run has not yet been recorded in the [analytics action log](docs/ANALYTICS_ACTION_LOG.md).
-- The Updates page shares selected user-facing milestones. When a meaningful milestone ships, consider a dated entry in `app/updates/page.tsx`; routine job refreshes and deployments do not need entries.
+- The Updates page shares selected user-facing milestones. Local October 29 edits group these into monthly summaries. Add meaningful shipped changes to the relevant month in `app/updates/page.tsx`; routine job refreshes and deployments do not need entries.
+
+October 29 local copy audit: reviewed all 11 page routes and shared copy against implementation and project history. Corrected application-link, refresh, source-count, tracker-status, and retention claims; shortened informational text. Tests, lint, types, and static export pass. Live-site revalidation was unavailable; changes remain unpublished. See [copy audit](docs/SITE_COPY_AUDIT_2026-10-29.md).
 
 ## Candidate next work
 

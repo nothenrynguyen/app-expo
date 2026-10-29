@@ -13,32 +13,32 @@ const steps = [
   {
     number: "01",
     title: "Find broadly",
-    copy: "We collect openings from maintained public job lists and use their application links to discover employer career boards. Reviewed Greenhouse, Lever, Ashby, and Workday boards are refreshed directly, and SmartRecruiters listings are checked against employer posting records. Direct-board jobs use the same screening, classification, and duplicate checks as every other listing.",
+    copy: "I bring together reviewed public job lists, federal postings, and employer career boards. Supported employer boards are also refreshed directly, so coverage does not depend on community lists alone.",
   },
   {
     number: "02",
-    title: "Normalize and deduplicate",
-    copy: "Tracking parameters are removed and application links are converted into stable identities. Strong company, title, and location matches can also join an aggregator copy to the direct employer listing. Separate employer requisition IDs remain separate, and the direct application is preferred.",
+    title: "Clean up duplicates",
+    copy: "Application links are cleaned up and duplicates are merged where there is a strong match. Different employer requisition IDs stay separate. Direct employer links are preferred.",
   },
   {
     number: "03",
     title: "Keep relevant roles",
-    copy: "A role must clearly match one of the supported early-career areas. Software, data, engineering, product, solutions and support, business, finance, quant, IT, and security roles are included. Legal, healthcare, education, and general science careers are outside the board's scope. Public collections are then split by source category plus title and term signals.",
+    copy: "The board focuses on internships and early-career software, data, engineering, product, business, finance, IT, and related technical roles. Legal, healthcare, education, and general science careers are outside its scope. Check each posting for experience requirements.",
   },
   {
     number: "04",
-    title: "Screen obvious risk",
-    copy: "Listings that explicitly appear unpaid, volunteer, fee-based, equity-only, or commission-only are rejected. Locations are normalized and limited to the United States, Canada, and United Kingdom, with United States selected by default. Coverage is nationwide, and metro filters are optional.",
+    title: "Filter obvious problems",
+    copy: "Listings that explicitly appear unpaid, volunteer, fee-based, equity-only, or commission-only are filtered out. Supported locations are the United States, Canada, and United Kingdom. The board starts with U.S. roles selected; metro filters are optional.",
   },
   {
     number: "05",
     title: "Check the company",
-    copy: "Current employer-board listings, reviewed company records, and curated coverage contribute to admission. Company size and U.S. workforce evidence are not prerequisites for a supported local opportunity. A live board listing is not an independent audit of the employer. A persistent trust list can approve, hold, or block a company and its aliases across every source.",
+    copy: "Employer-board records and reviewed company information help decide what appears. Held or blocked companies stay out across sources. These checks are not a personal review or endorsement of every employer.",
   },
   {
     number: "06",
     title: "Check freshness",
-    copy: "The job snapshot refreshes hourly, around the clock. Refreshes are scheduled for 17 minutes past every hour. Direct ATS boards confirm whether roles still appear on the employer board, transient source failures receive bounded retries, generic links rotate through daily checks, and the last healthy snapshot is preserved when a source fails.",
+    copy: "Refreshes are scheduled hourly. Employer-board records and rotating link checks help catch closed jobs. Recent healthy data may be kept during temporary failures, so a fresh snapshot does not mean every link was checked that hour.",
   },
 ];
 
@@ -49,7 +49,7 @@ export default function MethodologyPage() {
         <div className="methodology-hero">
           <p className="eyebrow">How the board works</p>
           <h1>Broad coverage.<br />Clear rules.</h1>
-          <p>The short version: empluzzed tries to find a lot without pretending every source is perfect. These are the rules between a scraped listing and the job you actually see.</p>
+          <p>Here is how I decide what makes it onto the board.</p>
         </div>
         <MethodologyStats />
         <section className="methodology-grid" aria-label="Listing methodology">
@@ -65,9 +65,9 @@ export default function MethodologyPage() {
           <p className="eyebrow">Reality check</p>
           <h2>Is every listing perfect? lol no.</h2>
           <div>
-            <p>I filter out a lot of obvious junk, but I&apos;m not personally investigating every company and every job. Some listings come from sources I trust, while others come directly from employer job boards that pass the project&apos;s checks. That still does not mean I can guarantee every company is amazing, trustworthy, or even real.</p>
-            <p>Jobs also close randomly, career pages break, and some companies make it weirdly difficult to tell when something was posted. I refresh and recheck listings regularly, but a dead link or outdated opening might still sneak through.</p>
-            <p>Basically, use empluzzed to find opportunities faster. Do your own research before applying, and definitely do not send anyone money. I&apos;m still tightening the filters and improving the company checks as I go. If something looks off, trust your gut.</p>
+            <p>I filter obvious junk and check employer records, but I do not personally review every job or company. Treat listings as leads, not endorsements.</p>
+            <p>Jobs close, links break, and posting dates can be unclear. Check the employer&apos;s page for availability, pay, location, and eligibility.</p>
+            <p>If something looks off, trust your gut. Research the employer and never pay to apply.</p>
           </div>
         </section>
       </section>

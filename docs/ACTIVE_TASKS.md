@@ -16,6 +16,19 @@ Employer coverage retention and unexplained-drop safeguards are published and pr
 
 Keryx New Grad 2026 activation and availability safeguards are published and production-verified. The release is complete; Fall remains inactive. See [production receipt](keryx-2026-production-result.json) and [release review](KERYX_PENDING_2026_REVIEW.md#production-release-and-verification-october-28).
 
+## Site polish, October 29 (release approved)
+
+- Owner-requested personal copy: Privacy opens with an informal analytics TL;DR explaining job-search and evidence-backed resume motivation. About and the footer state the always-free commitment. Copy-only additions, local and unpublished.
+
+- Updates now use consistent monthly summaries for August through October 2026.
+- Analytics preferences can close through Allow analytics again, an outside click, or Escape after a choice is saved. Browser privacy signals still block consent, and dismissal preserves the saved choice.
+- TypeScript, focused lint, six analytics/client tests, and the static production build pass. Browser interaction verification remains outstanding. These changes have not been pushed or deployed.
+- Footer credit now links to the owner's supplied LinkedIn profile, retaining its new-tab behavior. Focused footer lint passes; this change is local and unpublished.
+
+- Full page-copy audit is complete locally: [findings and evidence](SITE_COPY_AUDIT_2026-10-29.md). All 150 tests, full lint, TypeScript, and static export pass. All 11 exported routes have headings and the targeted stale claims are absent. Live-site access failed, so current deployment state and browser layout are not claimed as verified.
+
+Owner approved pushing all pending changes on October 29, including the earlier source-exclusion and Jobbie review notes. Final 150 tests, lint and production export pass. Publication is authorized; deployment verification is pending.
+
 ## Operational follow-up
 
 - Restoration: the numerical recovery milestone is complete, but market-wide coverage is not established. The verified run was degraded: 73/79 source records and 646/653 boards were healthy. Five Workday boards returned 429, Zurn Elkay returned 500, and the retained Old Mission Greenhouse board returned 404. Review backoff and employer-site mappings without bypassing access controls. Positive recovery checks renew at 12 hours and expire at 24 hours; monitor future runs for queue or availability regressions.

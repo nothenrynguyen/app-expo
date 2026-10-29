@@ -119,7 +119,7 @@ export function JobBoard({ type }: JobBoardProps) {
   });
 
   if (error) return <p className="state-card">The latest job snapshot could not be loaded. Please try again shortly.</p>;
-  if (!snapshot) return <p className="state-card">Loading verified jobs.</p>;
+  if (!snapshot) return <p className="state-card">Loading jobs...</p>;
 
   const { pageCount, safePage, startIndex, endIndex } = getPaginationState(jobs.length, page);
   const visibleJobs = jobs.slice(startIndex, endIndex);
@@ -128,7 +128,7 @@ export function JobBoard({ type }: JobBoardProps) {
     ? "No saved jobs match these filters."
     : query.trim().toLowerCase() === "henwoo"
       ? "lmaoo imagine if this actually returned smth"
-      : "No verified jobs match these filters.";
+      : "No jobs match these filters.";
 
   const resetPage = () => setPage(0);
   const changeView = (nextView: ViewMode) => {

@@ -5,23 +5,14 @@ import { SiteFooter } from "../SiteFooter";
 
 export const metadata: Metadata = {
   title: "Updates | empluzzed",
-  description: "A timeline of meaningful improvements to empluzzed.",
+  description: "Monthly highlights of improvements to empluzzed.",
 };
 
-// Dates reflect recorded project milestones, not every deployment or job refresh.
+// Monthly summaries cover meaningful changes, not routine job refreshes.
 const updates = [
-  { date: "2026-10-29", label: "October 29, 2026", title: "Broader student job coverage", description: "Expanded direct employer discovery and recovered current openings from employer records. Improved role classification, added general engineering and graduate programs, corrected overly broad pay filtering, and strengthened safeguards against sudden coverage losses." },
-  { date: "2026-10-28", label: "October 28, 2026", title: "Stronger source and coverage checks", description: "Added a licensed discovery source, corrected posting-date parsing, and improved employer availability checks. Feeds without recorded reuse permission are held out while coverage is rebuilt through reviewed sources." },
-  { date: "2026-10-26", label: "October 26, 2026", title: "A home for project updates", description: "Added this timeline to share meaningful changes and milestones as empluzzed grows." },
-  { date: "2026-10-23", label: "October 23, 2026", title: "A clearer picture of site activity", description: "Introduced optional activity analytics and a private dashboard to understand how the site is used and guide future improvements." },
-  { date: "2026-10-19", label: "October 19, 2026", title: "More paths to opportunities", description: "Expanded non-software coverage with Keryx and added USAJOBS federal student and recent-graduate opportunities, with links to official application instructions." },
-  { date: "2026-09-30", label: "September 30, 2026", title: "An application tracker", description: "Added a browser-local tracker for applications from any source, with statuses, dates, notes and downloadable backups." },
-  { date: "2026-09-27", label: "September 27, 2026", title: "Broader early-career coverage", description: "Expanded the range of roles beyond software, including engineering, operations, marketing, civil infrastructure and customer-facing technical roles." },
-  { date: "2026-09-22", label: "September 22, 2026", title: "Save jobs for later", description: "Added the ability to save interesting listings in your browser while you browse." },
-  { date: "2026-09-19", label: "September 19, 2026", title: "More transparent sourcing", description: "Added a dedicated source transparency page and metro-area filters to make it easier to understand and narrow down listings." },
-  { date: "2026-09-16", label: "September 16, 2026", title: "Three more community feeds", description: "Added Dreamwork Business Internships 2027, ApplyGuy Product Internships 2027 and Dreamwork New Grad US, bringing the catalog to 17 community feed entries at the time." },
-  { date: "2026-08-12", label: "August 12, 2026", title: "A bigger, easier-to-filter job board", description: "Expanded the job board and added multi-select filters and prefiltered role views." },
-  { date: "2026-08-11", label: "August 11, 2026", title: "The project begins", description: "The first version of the job aggregator was launched, starting the project that became empluzzed." },
+  { date: "2026-10", label: "October 2026", title: "More opportunities and a clearer experience", description: "Expanded student and new-grad coverage, added federal opportunities, and strengthened employer and listing checks. Introduced optional activity analytics, hourly job refreshes, and this updates page." },
+  { date: "2026-09", label: "September 2026", title: "Tools for your job search", description: "Added saved jobs and an application tracker with statuses, notes, and downloadable backups. Broadened early-career roles, introduced metro-area filters, and made listing sources easier to explore." },
+  { date: "2026-08", label: "August 2026", title: "The project begins", description: "Launched the first version of the job board that became empluzzed. Expanded the initial listings and added multi-select filters and prefiltered role views to make browsing easier." },
 ];
 
 export default function UpdatesPage() {
@@ -29,10 +20,10 @@ export default function UpdatesPage() {
     <section className="updates-hero">
       <p className="eyebrow">Updates</p>
       <h1>Always moving <span>forward.</span></h1>
-      <p>A look at the milestones and improvements shaping empluzzed.</p>
-      <p className="updates-latest">Latest milestone: <time dateTime={updates[0].date}>{updates[0].label}</time></p>
+      <p>A monthly look at the improvements shaping empluzzed.</p>
+      <p className="updates-latest">Latest update: <time dateTime={updates[0].date}>{updates[0].label}</time></p>
     </section>
-    <section aria-label="Project milestones">
+    <section aria-label="Monthly updates">
       <ol className="updates-list">
         {updates.map((update) => <li key={`${update.date}-${update.title}`}>
           <time dateTime={update.date}>{update.label}</time>

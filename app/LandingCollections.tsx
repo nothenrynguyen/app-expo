@@ -19,12 +19,12 @@ export function LandingCollections() {
     <div className="collection-grid">
       <Link className="collection-card" href="/internships">
         <h2>Current Internships</h2>
-        <p className="collection-subtitle"><AnimatedCount className="collection-count" value={summary?.internships} /> current jobs available</p>
+        <p className="collection-subtitle"><AnimatedCount className="collection-count" value={summary?.internships} /> listings on the board</p>
         <span className="collection-link">Browse Internships <b>→</b></span>
       </Link>
       <Link className="collection-card" href="/jobs">
         <h2>Current Full-Time Jobs</h2>
-        <p className="collection-subtitle"><AnimatedCount className="collection-count" value={summary?.fulltime} /> current jobs available</p>
+        <p className="collection-subtitle"><AnimatedCount className="collection-count" value={summary?.fulltime} /> listings on the board</p>
         <span className="collection-link">Browse Full-Time Jobs <b>→</b></span>
       </Link>
     </div>

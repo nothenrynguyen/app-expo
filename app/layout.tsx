@@ -6,7 +6,7 @@ import { AnalyticsControls } from "./AnalyticsControls";
 
 export const metadata: Metadata = {
   title: "empluzzed",
-  description: "Fresh, verified early-career jobs with direct application links.",
+  description: "Find internships and early-career jobs, save your shortlist, and apply on employer sites.",
   referrer: "strict-origin",
 };
 

@@ -4,13 +4,13 @@ import { AnalyticsPreferencesButton } from "./AnalyticsControls";
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <span>empluzzed · Free and direct.</span>
+      <span>empluzzed · Always free.</span>
       <Link href="/privacy">Privacy</Link>
       <AnalyticsPreferencesButton />
       <Link className="feedback-link" href="/feedback">Feedback</Link>
       <span className="creator-credit">
         <span>made by</span>
-        <a href="https://henwoo.dev" target="_blank" rel="noreferrer">
+        <a href="https://www.linkedin.com/in/henrynguyen02/" target="_blank" rel="noreferrer">
           <strong>henwoo</strong>
         </a>
       </span>
