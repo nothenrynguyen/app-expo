@@ -1,0 +1,177 @@
+{
+  "verifiedAt": "2026-10-29T09:40:47.373Z",
+  "site": "https://empluzzed.fyi",
+  "implementationCommit": "6b8d7cd08b73544f16efe9fac9a5d0981219db0f",
+  "snapshotCommit": "fb3fea2885d686f05aac7256f7b5266e0c3d5792",
+  "workflow": {
+    "id": 40850435335,
+    "url": "https://github.com/nothenrynguyen/app-expo/actions/runs/40850435335"
+  },
+  "generatedAt": "2026-10-29T09:38:55.650Z",
+  "counts": {
+    "total": 6906,
+    "internships": 4288,
+    "fulltime": 2618
+  },
+  "exactProductionMatches": [
+    {
+      "file": "jobs.json",
+      "matches": true,
+      "sha256": "1b0d96899a421b42739e8265a0681e4789d64fd58f235f94745e1c3b46a6fa3c"
+    },
+    {
+      "file": "internships.json",
+      "matches": true,
+      "sha256": "5b3ec4c9e9b7a22acda27237af59f21c6c8fb7ad0765dddbc19217aa28018a38"
+    },
+    {
+      "file": "fulltime.json",
+      "matches": true,
+      "sha256": "f44afc4f7e257094264305af04e49fe50b950f268f42a1cb0bfae4eca494379d"
+    },
+    {
+      "file": "summary.json",
+      "matches": true,
+      "sha256": "e7dfbe55488983733d97884dd69667ccd09573bbdf20e44f7224aff8ecb605de"
+    }
+  ],
+  "validation": {
+    "invalidLocations": 0,
+    "expired": 0,
+    "duplicateDestinations": 0,
+    "heldSourceCredits": 0,
+    "guardedWithoutPositiveEvidence": 0,
+    "collectionMismatches": 0
+  },
+  "pages": [
+    {
+      "route": "/sources",
+      "status": 200,
+      "expectedContent": true
+    },
+    {
+      "route": "/updates",
+      "status": 200,
+      "expectedContent": true
+    },
+    {
+      "route": "/methodology",
+      "status": 200,
+      "expectedContent": true
+    },
+    {
+      "route": "/internships",
+      "status": 200,
+      "expectedContent": true
+    },
+    {
+      "route": "/jobs",
+      "status": 200,
+      "expectedContent": true
+    }
+  ],
+  "recoverySourceCredit": 1304,
+  "workdayBoards": 58,
+  "coverage": {
+    "boards": {
+      "discovered": 290,
+      "retained": 305
+    },
+    "collections": [
+      {
+        "collection": "internships",
+        "previous": 1760,
+        "current": 4288,
+        "removed": 8,
+        "unexplained": 0,
+        "largeDrop": false,
+        "blocked": false
+      },
+      {
+        "collection": "fulltime",
+        "previous": 927,
+        "current": 2618,
+        "removed": 1,
+        "unexplained": 0,
+        "largeDrop": false,
+        "blocked": false
+      }
+    ]
+  },
+  "refresh": {
+    "status": "degraded",
+    "durationMs": 362419,
+    "sources": {
+      "total": 79,
+      "healthy": 73,
+      "failed": 6
+    },
+    "boards": {
+      "total": 653,
+      "healthy": 646,
+      "failed": 7,
+      "failures": [
+        {
+          "company": "Old Mission",
+          "provider": "greenhouse",
+          "message": "404 Not Found"
+        },
+        {
+          "company": "Zurn Elkay Water Solutions",
+          "provider": "workday",
+          "message": "500 Internal Server Error"
+        },
+        {
+          "company": "Intel",
+          "provider": "workday",
+          "message": "429 Too Many Requests"
+        },
+        {
+          "company": "Bank of America",
+          "provider": "workday",
+          "message": "429 Too Many Requests"
+        },
+        {
+          "company": "Sierra Space",
+          "provider": "workday",
+          "message": "429 Too Many Requests"
+        },
+        {
+          "company": "Milwaukee Tool",
+          "provider": "workday",
+          "message": "429 Too Many Requests"
+        },
+        {
+          "company": "LPL Financial Holdings",
+          "provider": "workday",
+          "message": "429 Too Many Requests"
+        }
+      ]
+    }
+  },
+  "listingChanges": {
+    "added": 4228,
+    "removed": 9,
+    "reasons": {
+      "pendingVerification": 8,
+      "deduplicated": 1
+    }
+  },
+  "browserChecks": {
+    "peopleLegalUsInternships": 68,
+    "recoveredEmployerApplication": {
+      "company": "SoundExchange",
+      "title": "Legal Summer Intern",
+      "url": "https://job-boards.greenhouse.io/sxinternships/jobs/5216342007",
+      "applicationFormVisible": true
+    },
+    "methodologyPolicyVisible": true,
+    "usFulltimeMatchingRoles": 2515
+  },
+  "regionCounts": {
+    "us": {
+      "internships": 4025,
+      "fulltime": 2515
+    }
+  }
+}

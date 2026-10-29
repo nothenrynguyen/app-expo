@@ -54,3 +54,7 @@ All 133 tests, TypeScript and lint pass. The production static export passes aft
 ## Reproduction and limits
 
 Run `node --import tsx scripts/audit-coverage-loss.ts [baseline-ref]` after updating the local generated snapshot. The default baseline is the recorded pre-migration publication. Audit output includes timestamps, causes and examples. Quarantine entries do not establish that a job is still open or that every listed requirement fits a new graduate. Source-permission holds are conservative operational decisions, not a legal ruling that the underlying employer facts cannot be used.
+
+## Resolution of the recovery milestone
+
+The subsequent [October 29 restoration](COVERAGE_RESTORATION.md#published-and-verified-october-29) is published and production-verified above the prior inventory targets. This diagnosis retains the historical cause analysis and initial Palantir comparison; its earlier pending-release language is superseded by the restoration production receipt.

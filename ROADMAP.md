@@ -1,14 +1,14 @@
 # empluzzed Roadmap
 
-October 29 active priority: execute the owner-approved [coverage restoration and expansion](docs/COVERAGE_RESTORATION.md). Success requires more than 3,500 internships and 2,300 full-time opportunities, plus deployed verification. The controlled release candidate reaches 4,257 internships and 2,608 full-time jobs with zero missing replay inputs and 145 passing tests. Employer continuity, current-employer link recovery, broader disciplines and stronger loss guards are validated locally; publication and live verification remain pending. Existing end-to-end approval applies; no spending or payment method.
+October 29 coverage restoration is published and production-verified: 4,288 internships and 2,618 full-time roles, exceeding both approved targets. Workflow 40850435335 succeeded; snapshot `fb3fea2` matched all four deployed JSON files. All 145 tests, types, lint and export pass. See the [restoration review](docs/COVERAGE_RESTORATION.md) for evidence, remaining source failures and follow-up. No spending or payment method was added.
 
 This is the living overview of shipped capabilities, candidate priorities, and deferred ideas. Specific current work and evidence belong in [active tasks](docs/ACTIVE_TASKS.md). Historical releases and measurements remain in their linked reviews.
 
 ## Current status
 
-- October 29 coverage investigation: approximately 95% of absent pre-migration rows are attributable to employer-evidence holds or missing permitted replacement inputs. A scoped recovery batch is local pending validation. Jobright is the named comparison board, but its published terms do not clear the automated competitor dataset. See [count-loss diagnosis](docs/COVERAGE_LOSS_DIAGNOSIS.md) and [Jobright review](docs/JOBRIGHT_BENCHMARK_REVIEW.md).
+- October 29 coverage investigation: approximately 95% of absent pre-migration rows are attributable to employer-evidence holds or missing permitted replacement inputs. The broader restoration is now published and verified as recorded above. Jobright is the named comparison board, but its published terms do not clear the automated competitor dataset. See [count-loss diagnosis](docs/COVERAGE_LOSS_DIAGNOSIS.md) and [Jobright review](docs/JOBRIGHT_BENCHMARK_REVIEW.md).
 
-- Coverage expansion and source-permission safeguards are published and production-verified October 28. A licensed discovery source, posting-date correction, independently reviewed employers and fairer availability checks shipped. Six feeds without detected reuse licenses are held out, substantially reducing the old inventory; rebuilding permitted coverage is the next priority. See the [coverage expansion review](docs/COVERAGE_EXPANSION_REVIEW.md) and [production receipt](docs/coverage-expansion-production-result.json).
+- Coverage expansion and source-permission safeguards are published and production-verified October 28. A licensed discovery source, posting-date correction, independently reviewed employers and fairer availability checks shipped. Six feeds without detected reuse licenses remain held out. Their initial inventory reduction was superseded by the October 29 employer-based restoration. See the [coverage expansion review](docs/COVERAGE_EXPANSION_REVIEW.md) and [production receipt](docs/coverage-expansion-production-result.json).
 
 - Employer coverage retention and unexplained-drop safeguards were published and production-verified October 28. Known official boards survive upstream omissions, and large unexplained losses block publication. See [coverage review](docs/COVERAGE_RETENTION_REVIEW.md) and [production receipt](docs/coverage-retention-production-result.json).
 
@@ -24,7 +24,7 @@ This is the living overview of shipped capabilities, candidate priorities, and d
 
 These are recommendations, not a committed active milestone. Choose a batch before implementation.
 
-1. Rebuild coverage through permitted sources and independently verified employer boards. Review employer aliases and the largest company-evidence holds first, then unsupported collection systems. Measure actual missing destinations and keep permission holds separate from closure. See the [coverage expansion review](docs/COVERAGE_EXPANSION_REVIEW.md).
+1. Grow beyond the restored coverage floor through permitted discovery and current employer evidence. Review remaining rate limits, unsupported hiring systems and employer destination holds. Keep unresolved availability separate from proven closure. See the [restoration review](docs/COVERAGE_RESTORATION.md).
 2. Define an early-career experience rule, measure its effect on existing listings, and review examples before enabling broader exclusions.
 3. Improve duplicate and expired-listing detection using official evidence; keep uncertain listings separate or on hold.
 4. Review new seasonal source discoveries and unresolved source holds as evidence becomes available. Keryx New Grad 2026 is published and verified; Fall remains pending for separate review. See [release review](docs/KERYX_PENDING_2026_REVIEW.md#production-release-and-verification-october-28). Do not automatically activate unreviewed feeds.
