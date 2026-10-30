@@ -15,6 +15,29 @@ import path from "node:path";
 
 const now = new Date("2026-10-29T12:00:00Z");
 
+test("collector excludes retired application URLs while preserving unrelated feed candidates", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "empluzzed-retired-board-"));
+  const original = globalThis.fetch;
+  try {
+    await mkdir(path.join(root, "data"));
+    await writeFile(path.join(root, "data/source-licenses.json"), JSON.stringify({repositories: [{repository: "owner/jobs", status: "licensed", licenseUrl: "https://github.com/owner/jobs/blob/main/LICENSE"}]}));
+    await writeFile(path.join(root, "data/retired-boards.json"), JSON.stringify([{id: "greenhouse:oldmissioncapital"}]));
+    const retiredUrl = "https://boards.greenhouse.io/oldmissioncapital/jobs/123";
+    let calls = 0;
+    globalThis.fetch = async input => {
+      calls++;
+      assert.equal(String(input), "https://raw.githubusercontent.com/owner/jobs/main/README.md");
+      return new Response(`| Company | Title | Location | Application | Date Posted |\n| --- | --- | --- | --- | --- |\n| Old Mission | Software Engineer Intern | Chicago, IL | [Apply](${retiredUrl}) | Oct 29, 2026 |\n| Other | Software Engineer Intern | Austin, TX | [Apply](https://example.com/apply) | Oct 29, 2026 |\n`);
+    };
+    const result = await loadCandidates(root, [{id: "test", name: "Test", kind: "markdown", repository: "owner/jobs", url: "https://raw.githubusercontent.com/owner/jobs/main/README.md", active: true, trustedCoverage: false}]);
+    assert.equal(calls, 1);
+    assert.deepEqual(result.candidates.map(candidate => candidate.company), ["Other"]);
+    assert.deepEqual(result.preScreened, [{url: retiredUrl, outcome: "closed"}]);
+    assert.deepEqual(result.retiredBoardIds, ["greenhouse:oldmissioncapital"]);
+    assert.equal(result.boardRegistry.length, 0);
+  } finally {globalThis.fetch = original; await rm(root, {recursive: true, force: true});}
+});
+
 test("collector persists a rate limit and makes zero board requests during the next refresh cooldown", async () => {
   const root = await mkdtemp(path.join(tmpdir(), "empluzzed-workday-health-"));
   const original = globalThis.fetch;

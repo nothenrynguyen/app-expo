@@ -163,7 +163,8 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     .catch((error: NodeJS.ErrnoException) => { if (error.code === "ENOENT") return { version: 1 as const, boards: [] }; throw error; });
   const retired = await readFile(path.join(root, "data/retired-boards.json"), "utf8")
     .then(value => JSON.parse(value) as Array<{id: string}>).catch((error: NodeJS.ErrnoException) => {if (error.code === "ENOENT") return []; throw error;});
-  const selection = selectRefreshBoards(boards.values(), history, previousJobs, new Date(), new Set(retired.map(board => board.id)));
+  const retiredBoardIds = new Set(retired.map(board => board.id));
+  const selection = selectRefreshBoards(boards.values(), history, previousJobs, new Date(), retiredBoardIds);
   const boardList = selection.boards;
   const settledBoardFetches = await inBatches(boardList, 12, (board) => runTimed(() => fetchAtsBoard(board)));
   const boardFetches = settledBoardFetches.map((result) => result.status === "fulfilled" ? result.value : ({ status: "rejected", reason: result.reason, durationMs: 0 } as const));
@@ -296,19 +297,26 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
   }
 
   const reviewed = partitionSourceReviewHolds(candidates, sources.flatMap(source => source.reviewHolds ?? []));
+  const eligibleCandidates = reviewed.accepted.filter(candidate => {
+    const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
+    if (!board || !retiredBoardIds.has(board.id)) return true;
+    preScreened.push({url: candidate.applyUrl, outcome: "closed"});
+    return false;
+  });
   preScreened.push(...reviewed.held.map(({ candidate }) => ({ url: candidate.applyUrl, outcome: "pendingVerification" as const })));
   for (const source of sources.filter(source => source.reviewHolds?.length)) {
     const diagnostic = sourceDiagnostics.find(record => record.name === source.name);
     if (diagnostic) diagnostic.message = JSON.stringify({ reviewHoldsConfigured: source.reviewHolds!.length, heldCandidateRowsAcrossSources: reviewed.held.length });
   }
   return {
+    retiredBoardIds: [...retiredBoardIds],
     workdaySchedule,
     workdayChecks,
     recoveryState: recovery.state,
     boardHistory: selection.history,
     boardCoverage: { discovered: selection.discovered, retained: selection.retained },
     preScreened,
-    candidates: reviewed.accepted,
+    candidates: eligibleCandidates,
     health,
     sourceDiagnostics,
     boardResults,

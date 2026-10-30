@@ -40,6 +40,7 @@ export type VerificationDiagnostic = {
 };
 
 export type CandidateLoadResult = {
+  retiredBoardIds?: string[];
   workdaySchedule?: import("./workday-schedule").WorkdaySchedule;
   workdayChecks?: import("./workday-continuity").WorkdayCheck[];
   recoveryState?: import("./employer-recovery").RecoveryState;

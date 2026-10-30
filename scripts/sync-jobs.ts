@@ -66,7 +66,13 @@ async function main() {
     recoveryState,
     workdayChecks = [],
     workdaySchedule,
+    retiredBoardIds = [],
   } = await loadCandidates(root, activeSources, previous?.jobs ?? []);
+  const retired = new Set(retiredBoardIds);
+  const usesRetiredBoard = (job: PublicJob) => {
+    const board = discoverAtsBoard(job.applyUrl, job.company, "Retirement check");
+    return !!board && retired.has(board.id);
+  };
   const workdayCache: WorkdayContinuity = await readFile(path.join(root, "data/workday-continuity.json"), "utf8").then(value => JSON.parse(value)).catch((error: NodeJS.ErrnoException) => {if (error.code === "ENOENT") return {}; throw error;});
   const continuityData = JSON.parse(await readFile(path.join(root, "data/employer-continuity.json"), "utf8")) as EmployerContinuity;
   const hasPriorAdmission = continuityMatcher(continuityData);
@@ -330,7 +336,7 @@ async function main() {
         roleTags,
       };
     }, (prior) => {
-      return recovery.confirmedClosed(prior) || workdayRecovery.terminal(prior) || (!workdayRecovery.mayRecover(prior) && isListingUnavailable(listingHealth[jobIdentity(prior.applyUrl) ?? ""]));
+      return usesRetiredBoard(prior) || recovery.confirmedClosed(prior) || workdayRecovery.terminal(prior) || (!workdayRecovery.mayRecover(prior) && isListingUnavailable(listingHealth[jobIdentity(prior.applyUrl) ?? ""]));
     });
   }
 
@@ -364,6 +370,7 @@ async function main() {
     boardState(prior) {
       const board = discoverAtsBoard(prior.applyUrl, prior.company, "audit");
       if (!board) return null;
+      if (retired.has(board.id)) return "absent";
       const currentBoard = boardResults.get(board.id);
       if (currentBoard) return currentBoard.liveIdentities.has(jobIdentity(prior.applyUrl) ?? "") ? null : "absent";
       return boardRegistry.some(record => record.status === "failed" && record.provider === board.provider && record.key.toLowerCase() === board.key.toLowerCase()) ? "unavailable" : null;
