@@ -1,6 +1,6 @@
 # empluzzed Roadmap
 
-October 30 location display: redundant US country labels are removed from specific non-remote board locations, including compact/card views. Remote and country-only labels remain. Local tests, lint, types and static export pass; publication is owner-authorized. See [change and release evidence](docs/LOCATION_DISPLAY_2026-10-30.md).
+October 30 location display published and production-verified: redundant US country labels are removed from specific non-remote board locations, including compact/card views. Remote and country-only labels remain. Tests, lint, types and static export pass; Vercel deployment succeeded for `767d815`. Live compact/card and remote-exception checks pass. See [change and release evidence](docs/LOCATION_DISPLAY_2026-10-30.md).
 
 October 30 release complete: audit actions 1 through 5 are published and production-verified. Implementation `4c5c1fb`; successful refresh `41022853725`; snapshot `f269540`, generated 1:00 a.m. Pacific, 6,781 listings. All four deployed JSON files match, retained Workday IDs have compatibility coverage, and desktop/mobile plus save-persistence checks pass. All 161 tests, types, lint/export and the zero-advisory dependency check pass. Provider failures and partial recovery remain documented limits. See [production release record](docs/APPROVED_FIXES_2026-10-29.md#production-completion-october-30).
 
