@@ -38,7 +38,7 @@ October 29 local copy audit: reviewed all 11 page routes and shared copy against
 
 ## Candidate next work
 
-- Saved October 30: permanent, evidence-backed disappearance explanations on every refresh. Build on existing removal reasons/URL changes and reconcile opportunities separately from URL rows. Deferred behind the owner's requested location display change. See [follow-up plan](docs/LISTING_DISAPPEARANCE_PLAN.md).
+- Completed October 30: permanent disappearance explanations and reconciled opening counts. Immediate follow-up is investigating the recovery/verification losses that blocked publication, using archived real-run evidence. See [release and operational follow-up](docs/LISTING_DISAPPEARANCE_PLAN.md#completion-and-operational-follow-up).
 
 October 29 source-health audit: the checked-in 14:24 UTC snapshot reports 62/79 because the denominator mixes 19 community feeds, USAJOBS, 58 Workday boards and recovery. All 17 failed source records are Workday, including eight partial detail failures. Owner-approved reporting, persistent cooldowns and Old Mission migration cleanup are published and production-verified. See [source audit](docs/SOURCE_HEALTH_AUDIT_2026-10-29.md).
 
