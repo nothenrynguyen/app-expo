@@ -309,7 +309,7 @@ export async function fetchWorkdayBoard(
       if (/\b(?:senior|sr\.?|staff|principal|director|head|lead)\b/i.test(title)) return false;
       return isEarlyCareerTitle(title) || /\bassociate\b/i.test(title);
     });
-    const details = await inBatches(entries, 2, async ([externalPath, summary]) => {
+    const details = await inBatches(entries, 3, async ([externalPath, summary]) => {
       const payload = await requestWorkdayJson<WorkdayDetail>(detailUrl(board, externalPath), {
         deadlineAt,
         timeoutMs: 12_000,
