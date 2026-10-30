@@ -1,58 +1,58 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-30T16:25:12.758Z",
-  "previousGeneratedAt": "2026-10-30T15:25:03.760Z",
-  "currentSnapshotGeneratedAt": "2026-10-30T16:25:12.758Z",
+  "generatedAt": "2026-10-30T17:24:55.931Z",
+  "previousGeneratedAt": "2026-10-30T16:25:12.758Z",
+  "currentSnapshotGeneratedAt": "2026-10-30T17:24:55.931Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6653,
-    "current": 6654,
-    "retained": 6644,
+    "previous": 6654,
+    "current": 6656,
+    "retained": 6646,
     "added": 10,
-    "removed": 9,
-    "net": 1
+    "removed": 8,
+    "net": 2
   },
   "categoryCounts": {
     "confirmed-closed": 0,
-    "scope-exclusion": 0,
-    "verification-pending": 3,
+    "scope-exclusion": 1,
+    "verification-pending": 4,
     "source-unavailable": 0,
-    "unresolved": 6,
+    "unresolved": 3,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "jobs.ashbyhq.com:8603ced0-1031-4092-ab9a-380d918b0934",
-      "id": "3754aaca37ff7d62b82a810c",
-      "company": "Base Power",
-      "title": "Deployments Engineering Intern (Product Launch)",
-      "applyUrl": "https://jobs.ashbyhq.com/base-power/8603ced0-1031-4092-ab9a-380d918b0934/application",
-      "reason": "absent-from-employer-board",
+      "identity": "workday:snc.wd1.myworkdayjobs.com:snc_external_career_site:r0030764",
+      "id": "cd9777a816b6469bcd583a30",
+      "company": "Sierra Nevada Corporation",
+      "title": "Program Financial Analyst I",
+      "applyUrl": "https://snc.wd1.myworkdayjobs.com/SNC_External_Career_Site/job/Lone-Tree-CO/Program-Financial-Analyst-I_R0030764",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "3754aaca37ff7d62b82a810c"
+        "cd9777a816b6469bcd583a30"
       ],
       "previousUrls": [
-        "https://jobs.ashbyhq.com/base-power/8603ced0-1031-4092-ab9a-380d918b0934/application"
+        "https://snc.wd1.myworkdayjobs.com/SNC_External_Career_Site/job/Lone-Tree-CO/Program-Financial-Analyst-I_R0030764"
       ],
       "sources": [
-        "Direct ATS (Ashby)"
+        "Direct ATS (Workday)"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-10-30T16:18:02.946Z",
+        "runStartedAt": "2026-10-30T17:18:06.609Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "ashby:base-power",
+          "id": "workday:snc.wd1.myworkdayjobs.com:snc_external_career_site",
           "status": "ok",
-          "outcome": null,
-          "membership": "absent",
+          "outcome": "healthy",
+          "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Direct ATS (Ashby)",
+            "name": "Direct ATS (Workday)",
             "diagnosticName": null,
             "status": "not-checked",
             "outcome": null,
@@ -66,17 +66,196 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "job-boards.greenhouse.io:8280249",
-      "id": "4e4ea643f8e23b93303a4285",
-      "company": "Tanium",
-      "title": "Commercial Account Executive",
-      "applyUrl": "https://job-boards.greenhouse.io/tanium/jobs/8280249",
-      "reason": "absent-from-employer-board",
+      "identity": "workday:jj.wd5.myworkdayjobs.com:jj:r-099626",
+      "id": "d6e817edfe5e717ad136a0cc",
+      "company": "Johnson & Johnson",
+      "title": "Electrical Engineering Intern - Robotics R&D",
+      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Santa-Clara-California-United-States-of-America/Electrical-Engineering-Intern---Robotics-R-D_R-099626-1",
+      "reason": "pendingVerification",
       "previousIds": [
-        "4e4ea643f8e23b93303a4285"
+        "d6e817edfe5e717ad136a0cc"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/tanium/jobs/8280249"
+        "https://jj.wd5.myworkdayjobs.com/JJ/job/Santa-Clara-California-United-States-of-America/Electrical-Engineering-Intern---Robotics-R-D_R-099626-1"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://jj.wd5.myworkdayjobs.com/JJ/job/Santa-Clara-California-United-States-of-America/Electrical-Engineering-Intern---Robotics-R-D_R-099626-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-10-30T17:18:06.609Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:jj.wd5.myworkdayjobs.com:jj",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:visa.wd5.myworkdayjobs.com:visa:ref089883w",
+      "id": "53f1b3377083585dd4057365",
+      "company": "Visa",
+      "title": "Data Science Intern, Data and AI Team – Summer 2027",
+      "applyUrl": "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Foster-City-CA/Data-Science-Intern--Data-and-AI-Team---Summer-2027_REF089883W-1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "53f1b3377083585dd4057365"
+      ],
+      "previousUrls": [
+        "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Foster-City-CA/Data-Science-Intern--Data-and-AI-Team---Summer-2027_REF089883W-1"
+      ],
+      "sources": [
+        "Internship Engine",
+        "Open-Tech-Internships-2027 2027",
+        "Aprameya Summer Internships 2027",
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Foster-City-CA/Data-Science-Intern--Data-and-AI-Team---Summer-2027_REF089883W-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://visa.wd5.myworkdayjobs.com/en-US/Visa/job/US---Foster-City-CA/Data-Science-Intern--Data-and-AI-Team---Summer-2027_REF089883W-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-10-30T17:18:06.609Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:visa.wd5.myworkdayjobs.com:visa",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1234
+          },
+          {
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1879
+          },
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1903
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:ghr.wd1.myworkdayjobs.com:us-emplsv:26039656",
+      "id": "1404ce4a8e790ba7cdbefe18",
+      "company": "Bank of America",
+      "title": "Data Scientist I",
+      "applyUrl": "https://ghr.wd1.myworkdayjobs.com/US-EMPLSV/job/Charlotte/Data-Scientist-I_26039656-1",
+      "reason": "location",
+      "previousIds": [
+        "1404ce4a8e790ba7cdbefe18"
+      ],
+      "previousUrls": [
+        "https://ghr.wd1.myworkdayjobs.com/US-EMPLSV/job/Charlotte/Data-Scientist-I_26039656-1"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://ghr.wd1.myworkdayjobs.com/US-EMPLSV/job/Charlotte/Data-Scientist-I_26039656-1",
+            "reason": "location",
+            "detail": null
+          }
+        ],
+        "runStartedAt": "2026-10-30T17:18:06.609Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:ghr.wd1.myworkdayjobs.com:us-emplsv",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1299
+          }
+        ]
+      },
+      "category": "scope-exclusion",
+      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
+      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
+      "requiresInvestigation": false
+    },
+    {
+      "identity": "job-boards.greenhouse.io:8802818002",
+      "id": "689bc5cec002e556b9da3b20",
+      "company": "Later",
+      "title": "Influencer Marketing Strategy Co-Op",
+      "applyUrl": "https://job-boards.greenhouse.io/later/jobs/8802818002",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "689bc5cec002e556b9da3b20"
+      ],
+      "previousUrls": [
+        "https://job-boards.greenhouse.io/later/jobs/8802818002"
       ],
       "sources": [
         "Direct ATS (Greenhouse)"
@@ -84,11 +263,11 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-10-30T16:18:02.946Z",
+        "runStartedAt": "2026-10-30T17:18:06.609Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:tanium",
+          "id": "greenhouse:later",
           "status": "ok",
           "outcome": null,
           "membership": "absent",
@@ -110,37 +289,37 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:hpe.wd5.myworkdayjobs.com:acjobsite:1214294",
-      "id": "183e54b11cad3934092fb29f",
-      "company": "Hewlett Packard Enterprise",
-      "title": "Software Development Intern, AI-Assisted Development (Winter 2027) / Stagiaire en développement de logiciel, développement assisté par l’IA (Hiver 2027)",
-      "applyUrl": "https://hpe.wd5.myworkdayjobs.com/ACJobSite/job/St-Laurent-Quebec-Canada/Software-Development-Intern--AI-Assisted-Development--Summer-2027------Stagiaire-en-dveloppement-de--logiciel--dveloppement-assist-par-l-IA--t-2027-_1214294",
-      "reason": "not-returned-by-sources",
+      "identity": "job-boards.greenhouse.io:7749069003",
+      "id": "4a0128a03c264c23579c46bf",
+      "company": "Faradayfuture",
+      "title": "AI Operations Specialist / AI Native Operator",
+      "applyUrl": "https://job-boards.greenhouse.io/faradayfuture/jobs/7749069003",
+      "reason": "absent-from-employer-board",
       "previousIds": [
-        "183e54b11cad3934092fb29f"
+        "4a0128a03c264c23579c46bf"
       ],
       "previousUrls": [
-        "https://hpe.wd5.myworkdayjobs.com/ACJobSite/job/St-Laurent-Quebec-Canada/Software-Development-Intern--AI-Assisted-Development--Summer-2027------Stagiaire-en-dveloppement-de--logiciel--dveloppement-assist-par-l-IA--t-2027-_1214294"
+        "https://job-boards.greenhouse.io/faradayfuture/jobs/7749069003"
       ],
       "sources": [
-        "Direct ATS (Workday)"
+        "Direct ATS (Greenhouse)"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-10-30T16:18:02.946Z",
+        "runStartedAt": "2026-10-30T17:18:06.609Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:hpe.wd5.myworkdayjobs.com:acjobsite",
+          "id": "greenhouse:faradayfuture",
           "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
+          "outcome": null,
+          "membership": "absent",
           "retired": false
         },
         "sources": [
           {
-            "name": "Direct ATS (Workday)",
+            "name": "Direct ATS (Greenhouse)",
             "diagnosticName": null,
             "status": "not-checked",
             "outcome": null,
@@ -154,29 +333,40 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "jobs.lever.co:8a595a61-4b15-47da-9740-fd279a6a74d1",
-      "id": "a19376f8b67a02e3a6bbd062",
-      "company": "Wadetrim",
-      "title": "Engineer Summer Intern - #3074",
-      "applyUrl": "https://jobs.lever.co/wadetrim/8a595a61-4b15-47da-9740-fd279a6a74d1/apply",
-      "reason": "absent-from-employer-board",
+      "identity": "jobs.lever.co:303b3b2f-9679-4a77-8908-456e29240486",
+      "id": "98040a8a68632e9f42d57360",
+      "company": "Rover.com",
+      "title": "Entry Level Software Engineer, Recommendations",
+      "applyUrl": "https://jobs.lever.co/rover/303b3b2f-9679-4a77-8908-456e29240486/apply",
+      "reason": "pendingVerification",
       "previousIds": [
-        "a19376f8b67a02e3a6bbd062"
+        "98040a8a68632e9f42d57360"
       ],
       "previousUrls": [
-        "https://jobs.lever.co/wadetrim/8a595a61-4b15-47da-9740-fd279a6a74d1/apply"
+        "https://jobs.lever.co/rover/303b3b2f-9679-4a77-8908-456e29240486/apply"
       ],
       "sources": [
         "Direct ATS (Lever)"
       ],
-      "candidateSeen": false,
+      "candidateSeen": true,
       "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T16:18:02.946Z",
-        "postingCheck": null,
+        "screening": [
+          {
+            "url": "https://jobs.lever.co/rover/303b3b2f-9679-4a77-8908-456e29240486",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-10-30T17:18:06.609Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-10-29T15:25:31.476Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
         "workdayChecks": [],
         "board": {
-          "id": "lever:api.lever.co:wadetrim",
+          "id": "lever:api.lever.co:rover",
           "status": "ok",
           "outcome": null,
           "membership": "absent",
@@ -192,151 +382,43 @@
           }
         ]
       },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31682",
-      "id": "df790fef5e5d5027758ba2e0",
-      "company": "HNTB",
-      "title": "New Grad Electrical Engineering I (2027)",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "df790fef5e5d5027758ba2e0"
-      ],
-      "previousUrls": [
-        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1"
-      ],
-      "sources": [
-        "Keryx Non-Software New Grad 2027",
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-10-30T16:18:02.946Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Keryx Non-Software New Grad 2027",
-            "diagnosticName": "Keryx Non-Software New Grad 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 132
-          },
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
       "category": "verification-pending",
       "explanation": "Required evidence was insufficient for publication; closure is not established.",
       "nextAction": "Inspect employer and destination verification evidence before admission.",
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31630",
-      "id": "d8a30447ed31200e6a60f505",
-      "company": "HNTB",
-      "title": "New Grad Civil Engineer I: Transportation - Summer 2027",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2",
+      "identity": "job-boards.greenhouse.io:8189328",
+      "id": "92e21339adb293f5bfd1ab84",
+      "company": "Tanium",
+      "title": "Technical Support Engineer (TSE) Intern",
+      "applyUrl": "https://job-boards.greenhouse.io/tanium/jobs/8189328",
       "reason": "pendingVerification",
       "previousIds": [
-        "d8a30447ed31200e6a60f505"
+        "92e21339adb293f5bfd1ab84"
       ],
       "previousUrls": [
-        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2"
+        "https://job-boards.greenhouse.io/tanium/jobs/8189328"
       ],
       "sources": [
-        "Keryx Non-Software New Grad 2027",
-        "Direct ATS (Workday)"
+        "Keryx Non-Software Spring 2027",
+        "Aprameya Summer Internships 2027",
+        "Direct ATS (Greenhouse)"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2",
+            "url": "https://job-boards.greenhouse.io/tanium/jobs/8189328",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-10-30T16:18:02.946Z",
+        "runStartedAt": "2026-10-30T17:18:06.609Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Keryx Non-Software New Grad 2027",
-            "diagnosticName": "Keryx Non-Software New Grad 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 132
-          },
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "jobs.lever.co:8353141b-6cc3-48ef-8ef8-b994ee400e7b",
-      "id": "fd799af07f48f1c1ced993f3",
-      "company": "Wadetrim",
-      "title": "Entry Level Civil/Environmental Engineer - #3010.35",
-      "applyUrl": "https://jobs.lever.co/wadetrim/8353141b-6cc3-48ef-8ef8-b994ee400e7b/apply",
-      "reason": "absent-from-employer-board",
-      "previousIds": [
-        "fd799af07f48f1c1ced993f3"
-      ],
-      "previousUrls": [
-        "https://jobs.lever.co/wadetrim/8353141b-6cc3-48ef-8ef8-b994ee400e7b/apply"
-      ],
-      "sources": [
-        "Direct ATS (Lever)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T16:18:02.946Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "lever:api.lever.co:wadetrim",
+          "id": "greenhouse:tanium",
           "status": "ok",
           "outcome": null,
           "membership": "absent",
@@ -344,65 +426,21 @@
         },
         "sources": [
           {
-            "name": "Direct ATS (Lever)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31435",
-      "id": "48d0774191df9234015b9c9f",
-      "company": "HNTB",
-      "title": "WED - Intern Civil Engineer (Summer 2027) (For Current & Recent HNTB Interns Only)",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "48d0774191df9234015b9c9f"
-      ],
-      "previousUrls": [
-        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435"
-      ],
-      "sources": [
-        "Keryx Non-Software Summer 2027",
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-10-30T16:18:02.946Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "name": "Keryx Non-Software Spring 2027",
+            "diagnosticName": "Keryx Non-Software Spring 2027",
             "status": "ok",
             "outcome": null,
-            "rows": 1446
+            "rows": 253
           },
           {
-            "name": "Direct ATS (Workday)",
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1903
+          },
+          {
+            "name": "Direct ATS (Greenhouse)",
             "diagnosticName": null,
             "status": "not-checked",
             "outcome": null,
@@ -413,142 +451,97 @@
       "category": "verification-pending",
       "explanation": "Required evidence was insufficient for publication; closure is not established.",
       "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:leidos.wd5.myworkdayjobs.com:external:r-00185107",
-      "id": "4e4503fcb33c924f32836fe7",
-      "company": "Leidos",
-      "title": "Jr. Operations Technician",
-      "applyUrl": "https://leidos.wd5.myworkdayjobs.com/External/job/Chantilly-VA/Jr-Operations-Technicial_R-00185107",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "4e4503fcb33c924f32836fe7"
-      ],
-      "previousUrls": [
-        "https://leidos.wd5.myworkdayjobs.com/External/job/Chantilly-VA/Jr-Operations-Technicial_R-00185107"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T16:18:02.946Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:leidos.wd5.myworkdayjobs.com:external",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
       "requiresInvestigation": true
     }
   ],
   "rowCounts": {
-    "previous": 6653,
-    "current": 6654,
-    "net": 1,
+    "previous": 6654,
+    "current": 6656,
+    "net": 2,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
   "added": 10,
-  "removedCount": 9,
+  "removedCount": 8,
   "counts": {
-    "absent-from-employer-board": 4,
-    "not-returned-by-sources": 2,
-    "pendingVerification": 3
+    "not-returned-by-sources": 1,
+    "pendingVerification": 4,
+    "location": 1,
+    "absent-from-employer-board": 2
   },
   "removed": [
     {
-      "id": "3754aaca37ff7d62b82a810c",
-      "company": "Base Power",
-      "title": "Deployments Engineering Intern (Product Launch)",
-      "applyUrl": "https://jobs.ashbyhq.com/base-power/8603ced0-1031-4092-ab9a-380d918b0934/application",
+      "id": "cd9777a816b6469bcd583a30",
+      "company": "Sierra Nevada Corporation",
+      "title": "Program Financial Analyst I",
+      "applyUrl": "https://snc.wd1.myworkdayjobs.com/SNC_External_Career_Site/job/Lone-Tree-CO/Program-Financial-Analyst-I_R0030764",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "d6e817edfe5e717ad136a0cc",
+      "company": "Johnson & Johnson",
+      "title": "Electrical Engineering Intern - Robotics R&D",
+      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Santa-Clara-California-United-States-of-America/Electrical-Engineering-Intern---Robotics-R-D_R-099626-1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "53f1b3377083585dd4057365",
+      "company": "Visa",
+      "title": "Data Science Intern, Data and AI Team – Summer 2027",
+      "applyUrl": "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Foster-City-CA/Data-Science-Intern--Data-and-AI-Team---Summer-2027_REF089883W-1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "1404ce4a8e790ba7cdbefe18",
+      "company": "Bank of America",
+      "title": "Data Scientist I",
+      "applyUrl": "https://ghr.wd1.myworkdayjobs.com/US-EMPLSV/job/Charlotte/Data-Scientist-I_26039656-1",
+      "reason": "location"
+    },
+    {
+      "id": "689bc5cec002e556b9da3b20",
+      "company": "Later",
+      "title": "Influencer Marketing Strategy Co-Op",
+      "applyUrl": "https://job-boards.greenhouse.io/later/jobs/8802818002",
       "reason": "absent-from-employer-board"
     },
     {
-      "id": "4e4ea643f8e23b93303a4285",
+      "id": "4a0128a03c264c23579c46bf",
+      "company": "Faradayfuture",
+      "title": "AI Operations Specialist / AI Native Operator",
+      "applyUrl": "https://job-boards.greenhouse.io/faradayfuture/jobs/7749069003",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "98040a8a68632e9f42d57360",
+      "company": "Rover.com",
+      "title": "Entry Level Software Engineer, Recommendations",
+      "applyUrl": "https://jobs.lever.co/rover/303b3b2f-9679-4a77-8908-456e29240486/apply",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "92e21339adb293f5bfd1ab84",
       "company": "Tanium",
-      "title": "Commercial Account Executive",
-      "applyUrl": "https://job-boards.greenhouse.io/tanium/jobs/8280249",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "183e54b11cad3934092fb29f",
-      "company": "Hewlett Packard Enterprise",
-      "title": "Software Development Intern, AI-Assisted Development (Winter 2027) / Stagiaire en développement de logiciel, développement assisté par l’IA (Hiver 2027)",
-      "applyUrl": "https://hpe.wd5.myworkdayjobs.com/ACJobSite/job/St-Laurent-Quebec-Canada/Software-Development-Intern--AI-Assisted-Development--Summer-2027------Stagiaire-en-dveloppement-de--logiciel--dveloppement-assist-par-l-IA--t-2027-_1214294",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "a19376f8b67a02e3a6bbd062",
-      "company": "Wadetrim",
-      "title": "Engineer Summer Intern - #3074",
-      "applyUrl": "https://jobs.lever.co/wadetrim/8a595a61-4b15-47da-9740-fd279a6a74d1/apply",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "df790fef5e5d5027758ba2e0",
-      "company": "HNTB",
-      "title": "New Grad Electrical Engineering I (2027)",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
+      "title": "Technical Support Engineer (TSE) Intern",
+      "applyUrl": "https://job-boards.greenhouse.io/tanium/jobs/8189328",
       "reason": "pendingVerification"
-    },
-    {
-      "id": "d8a30447ed31200e6a60f505",
-      "company": "HNTB",
-      "title": "New Grad Civil Engineer I: Transportation - Summer 2027",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "fd799af07f48f1c1ced993f3",
-      "company": "Wadetrim",
-      "title": "Entry Level Civil/Environmental Engineer - #3010.35",
-      "applyUrl": "https://jobs.lever.co/wadetrim/8353141b-6cc3-48ef-8ef8-b994ee400e7b/apply",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "48d0774191df9234015b9c9f",
-      "company": "HNTB",
-      "title": "WED - Intern Civil Engineer (Summer 2027) (For Current & Recent HNTB Interns Only)",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "4e4503fcb33c924f32836fe7",
-      "company": "Leidos",
-      "title": "Jr. Operations Technician",
-      "applyUrl": "https://leidos.wd5.myworkdayjobs.com/External/job/Chantilly-VA/Jr-Operations-Technicial_R-00185107",
-      "reason": "not-returned-by-sources"
     }
   ],
   "urlChanges": [
     {
-      "id": "54ffd2f4a2b4509dc4b96f3e",
-      "previousUrl": "https://generalmotors.wd5.myworkdayjobs.com/en-CA/Careers_GM/job/Milford-Michigan-United-States-of-America/XMLNAME-2027-Summer-Intern---Systems-Calibration-Engineer--ADAS-Drive_JR-202621623",
-      "applyUrl": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Milford-Michigan-United-States-of-America/XMLNAME-2027-Summer-Intern---Systems-Calibration-Engineer--ADAS-Drive_JR-202621623"
+      "id": "8553b409583cf19e553fa9b2",
+      "previousUrl": "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/New-Grad-2027---Software-Engineering_R-052475",
+      "applyUrl": "https://lplfinancial.wd1.myworkdayjobs.com/university/job/Fort-MillCharlotte/New-Grad-2027---Software-Engineering_R-052475"
     },
     {
-      "id": "af25515264c9c9abc2c082aa",
-      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037"
+      "id": "9a224ab2da05c0bcb97ce3a5",
+      "previousUrl": "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/New-Grad---2027---Data-Engineering_R-052493-1",
+      "applyUrl": "https://lplfinancial.wd1.myworkdayjobs.com/university/job/Fort-MillCharlotte/New-Grad---2027---Data-Engineering_R-052493-1"
+    },
+    {
+      "id": "47c4e1b9bc82b9c35bcf2df5",
+      "previousUrl": "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/Summer-Intern-2027--Software-Engineer_R-052921",
+      "applyUrl": "https://lplfinancial.wd1.myworkdayjobs.com/university/job/Fort-MillCharlotte/Summer-Intern-2027--Software-Engineer_R-052921"
     }
   ]
 }
