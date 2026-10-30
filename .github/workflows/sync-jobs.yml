@@ -22,7 +22,7 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -66,8 +66,7 @@ jobs:
           git config user.email "app-expo-bot@users.noreply.github.com"
           git add public/jobs.json public/internships.json public/fulltime.json public/summary.json public/insights-history.json data/quarantine.json data/listing-health.json data/scoped-listing-health.json data/source-verification-targets.json data/company-boards.json data/board-history.json data/employer-recovery-state.json data/workday-continuity.json data/workday-schedule.json data/job-id-aliases.json data/refresh-report.json data/listing-changes.json
           git commit -m "data: refresh verified jobs"
-          git pull --rebase origin main
-          git push
+          node scripts/publish-refresh.mjs
       - name: Preserve retry state after a blocked refresh
         if: failure() && steps.freshness.outputs.needed == 'true'
         run: |
@@ -77,5 +76,4 @@ jobs:
           git config user.name "app-expo-bot"
           git config user.email "app-expo-bot@users.noreply.github.com"
           git commit --only -m "data: preserve source retry state after blocked refresh" -- data/workday-schedule.json data/employer-recovery-state.json
-          git pull --rebase origin main
-          git push
+          node scripts/publish-refresh.mjs

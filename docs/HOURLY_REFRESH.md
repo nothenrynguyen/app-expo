@@ -51,7 +51,8 @@ The owner requested this deployment and explicitly required no payments.
   instead of buying extra usage. Shared account quotas still apply. The Worker
   does not attempt automatic upgrades or use any paid API.
 - Standard GitHub-hosted runners are free for this public repository. Retain
-  the existing 10-minute job timeout. Do not switch to a private repository or
+  the bounded 15-minute job timeout (increased October 30 to reserve publication
+  recovery time). Do not switch to a private repository or
   paid runner without reviewing the cost policy.
 - Vercel Hobby documents 100 deployments/day and 6,000 build minutes/month.
   Normally there is one data publication per hour (24/day, 720 to 744/month).
