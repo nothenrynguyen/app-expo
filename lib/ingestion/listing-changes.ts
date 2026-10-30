@@ -17,7 +17,8 @@ function diagnose(reason: RemovalReason, evidence?: ListingChangeEvidence) {
   else if (reason === "deduplicated") category = "deduplicated";
   else if (reason === "pendingVerification") category = "verification-pending";
   else if (checks.some(check => check.status === "unknown") || posting?.status === "unknown" || posting?.status === "unavailable"
-    || evidence?.board?.status === "failed" || evidence?.sources.some(source => source.status === "failed" || source.outcome && source.outcome !== "healthy")) category = "source-unavailable";
+    || evidence?.board?.status === "failed" || evidence?.board?.outcome && evidence.board.outcome !== "healthy"
+    || evidence?.sources.some(source => source.status === "failed" || source.outcome && source.outcome !== "healthy")) category = "source-unavailable";
   else category = "unresolved";
   const explanation = {
     "confirmed-closed": "A posting-specific check in this refresh explicitly reported closure.",

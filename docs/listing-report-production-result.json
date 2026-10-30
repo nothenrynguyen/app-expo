@@ -1,0 +1,384 @@
+{
+  "verifiedAt": "2026-10-30T08:57:38.585206+00:00",
+  "implementationCommits": [
+    "9a2c6da8e60efb42f0522826cd66e0bfaa48da5d",
+    "0b1dbc5c4aad8a53113bba73213b6cfd50242950"
+  ],
+  "lastPublishedSnapshotCommit": "9f125a1",
+  "lastPublishedGeneratedAt": "2026-10-30T08:25:41.068Z",
+  "tests": 165,
+  "typesLintExportPassed": true,
+  "files": [
+    {
+      "file": "jobs.json",
+      "sha256": "110dc1c34c3525ec525ddef64b38cca9ed4f19ac6ba5c4c14964438c22c35bda",
+      "productionMatchesLastPublishedSnapshot": true
+    },
+    {
+      "file": "internships.json",
+      "sha256": "7cb581ba2f698a470cdcc79fcd53cd88a9dcaa3ff138ec21c477aec9c98b93f2",
+      "productionMatchesLastPublishedSnapshot": true
+    },
+    {
+      "file": "fulltime.json",
+      "sha256": "c92baf525e5cea686d1fc965077e205ff2a2a6c7c0ec61f907b4f75ddb6178df",
+      "productionMatchesLastPublishedSnapshot": true
+    },
+    {
+      "file": "summary.json",
+      "sha256": "c44c6dbd22885887af782c40de4f592b9f2ddd2574fd16ef73dd422e67824426",
+      "productionMatchesLastPublishedSnapshot": true
+    }
+  ],
+  "lastPublishedSnapshotPreserved": true,
+  "attempts": [
+    {
+      "runId": 41027805416,
+      "url": "https://github.com/nothenrynguyen/app-expo/actions/runs/41027805416",
+      "status": "failure",
+      "publication": "blocked-by-existing-coverage-guard",
+      "proposedGeneratedAt": "2026-10-30T08:45:03.069Z",
+      "reconciliation": {
+        "unit": "opportunities",
+        "previous": 6781,
+        "current": 6514,
+        "retained": 6484,
+        "added": 30,
+        "removed": 297,
+        "net": -267
+      },
+      "categoryCounts": {
+        "confirmed-closed": 0,
+        "scope-exclusion": 17,
+        "verification-pending": 181,
+        "source-unavailable": 1,
+        "unresolved": 98,
+        "deduplicated": 0
+      },
+      "coverage": {
+        "boards": {
+          "discovered": 300,
+          "retained": 307
+        },
+        "collections": [
+          {
+            "collection": "internships",
+            "previous": 4205,
+            "current": 4003,
+            "removed": 224,
+            "unexplained": 42,
+            "previousOpportunities": 4205,
+            "currentOpportunities": 4003,
+            "largeDrop": false,
+            "blocked": false
+          },
+          {
+            "collection": "fulltime",
+            "previous": 2576,
+            "current": 2511,
+            "removed": 73,
+            "unexplained": 57,
+            "previousOpportunities": 2576,
+            "currentOpportunities": 2511,
+            "largeDrop": false,
+            "blocked": true
+          }
+        ]
+      },
+      "artifactId": 12964463392,
+      "artifactRetentionDays": 7,
+      "allUnresolvedAttributedToEmployerRecovery": true,
+      "pendingVerificationDetails": {
+        "Company size and substantial U.S. operating presence have not been verified.": 181,
+        "Current employer listing availability could not be verified.": 1
+      },
+      "representativeEvidence": [
+        {
+          "identity": "workday:pg.wd5.myworkdayjobs.com:1000:r000157696",
+          "id": "aff67476a0652947bb56b0c3",
+          "company": "Procter & Gamble \ud83d\udec2",
+          "title": "Analytics & Insights Internship",
+          "applyUrl": "https://pg.wd5.myworkdayjobs.com/1000/job/CINCINNATI-GENERAL-OFFICES/Analytics---Insights-Internship_R000157696",
+          "reason": "location",
+          "previousIds": [
+            "aff67476a0652947bb56b0c3"
+          ],
+          "previousUrls": [
+            "https://pg.wd5.myworkdayjobs.com/1000/job/CINCINNATI-GENERAL-OFFICES/Analytics---Insights-Internship_R000157696"
+          ],
+          "sources": [
+            "Employer recovery"
+          ],
+          "candidateSeen": true,
+          "evidence": {
+            "screening": [
+              {
+                "url": "https://pg.wd5.myworkdayjobs.com/1000/job/CINCINNATI-GENERAL-OFFICES/Analytics---Insights-Internship_R000157696",
+                "reason": "location",
+                "detail": null
+              },
+              {
+                "url": "https://pg.wd5.myworkdayjobs.com/1000/job/CINCINNATI-GENERAL-OFFICES/Analytics---Insights-Internship_R000157696",
+                "reason": "pendingVerification",
+                "detail": "Company size and substantial U.S. operating presence have not been verified."
+              }
+            ],
+            "runStartedAt": "2026-10-30T08:38:46.413Z",
+            "postingCheck": null,
+            "workdayChecks": [
+              {
+                "url": "https://pg.wd5.myworkdayjobs.com/1000/job/CINCINNATI-GENERAL-OFFICES/Analytics---Insights-Internship_R000157696",
+                "status": "live"
+              }
+            ],
+            "board": {
+              "id": "workday:pg.wd5.myworkdayjobs.com:1000",
+              "status": "ok",
+              "outcome": "healthy",
+              "membership": "unknown",
+              "retired": false
+            },
+            "sources": [
+              {
+                "name": "Employer recovery",
+                "status": "not-checked",
+                "outcome": null,
+                "rows": null
+              }
+            ]
+          },
+          "category": "scope-exclusion",
+          "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
+          "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
+          "requiresInvestigation": false
+        },
+        {
+          "identity": "workday:amat.wd1.myworkdayjobs.com:external:r2627691",
+          "id": "b18fe42857112f49c0dc7d03",
+          "company": "Applied Materials",
+          "title": "Summer 2027 Data Scientist Intern - Master's (Santa Clara, CA)",
+          "applyUrl": "https://amat.wd1.myworkdayjobs.com/External/job/Santa-ClaraCA/Summer-2027-Data-Scientist-Intern---Master-s--Santa-Clara--CA-_R2627691",
+          "reason": "pendingVerification",
+          "previousIds": [
+            "b18fe42857112f49c0dc7d03"
+          ],
+          "previousUrls": [
+            "https://amat.wd1.myworkdayjobs.com/External/job/Santa-ClaraCA/Summer-2027-Data-Scientist-Intern---Master-s--Santa-Clara--CA-_R2627691"
+          ],
+          "sources": [
+            "Employer recovery"
+          ],
+          "candidateSeen": true,
+          "evidence": {
+            "screening": [
+              {
+                "url": "https://amat.wd1.myworkdayjobs.com/external/job/Santa-ClaraCA/Summer-2027-Data-Scientist-Intern---Master-s--Santa-Clara--CA-_R2627691",
+                "reason": "pendingVerification",
+                "detail": "Company size and substantial U.S. operating presence have not been verified."
+              }
+            ],
+            "runStartedAt": "2026-10-30T08:38:46.413Z",
+            "postingCheck": null,
+            "workdayChecks": [],
+            "board": {
+              "id": "workday:amat.wd1.myworkdayjobs.com:external",
+              "status": "ok",
+              "outcome": "healthy",
+              "membership": "unknown",
+              "retired": false
+            },
+            "sources": [
+              {
+                "name": "Employer recovery",
+                "status": "not-checked",
+                "outcome": null,
+                "rows": null
+              }
+            ]
+          },
+          "category": "verification-pending",
+          "explanation": "Required evidence was insufficient for publication; closure is not established.",
+          "nextAction": "Inspect employer and destination verification evidence before admission.",
+          "requiresInvestigation": true
+        },
+        {
+          "identity": "workday:marvell.wd1.myworkdayjobs.com:marvellcareers:2603850",
+          "id": "e869c8b3b04852d09d638758",
+          "company": "Marvell",
+          "title": "Silicon Validation Intern, BS - Summer 2027",
+          "applyUrl": "https://marvell.wd1.myworkdayjobs.com/MarvellCareers/job/Santa-Clara-CA/Silicon-Validation-Intern--BS---Summer-2027_2603850-1",
+          "reason": "not-returned-by-sources",
+          "previousIds": [
+            "e869c8b3b04852d09d638758"
+          ],
+          "previousUrls": [
+            "https://marvell.wd1.myworkdayjobs.com/MarvellCareers/job/Santa-Clara-CA/Silicon-Validation-Intern--BS---Summer-2027_2603850-1"
+          ],
+          "sources": [
+            "Direct ATS (Workday)"
+          ],
+          "candidateSeen": false,
+          "evidence": {
+            "screening": [],
+            "runStartedAt": "2026-10-30T08:38:46.413Z",
+            "postingCheck": null,
+            "workdayChecks": [],
+            "board": {
+              "id": "workday:marvell.wd1.myworkdayjobs.com:marvellcareers",
+              "status": "failed",
+              "outcome": "rate_limited",
+              "membership": "unknown",
+              "retired": false
+            },
+            "sources": [
+              {
+                "name": "Direct ATS (Workday)",
+                "status": "not-checked",
+                "outcome": null,
+                "rows": null
+              }
+            ]
+          },
+          "category": "source-unavailable",
+          "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+          "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+          "requiresInvestigation": true
+        },
+        {
+          "identity": "workday:autodesk.wd1.myworkdayjobs.com:uni:26wd101693",
+          "id": "e35c6a95728e224f11f2198c",
+          "company": "Autodesk",
+          "title": "Intern, Software Engineer (C++/.NET) - 12 months",
+          "applyUrl": "https://autodesk.wd1.myworkdayjobs.com/uni/job/Sheffield-GBP/Intern--Software-Engineer--C---NET----12-months_26WD101693-2",
+          "reason": "not-returned-by-sources",
+          "previousIds": [
+            "e35c6a95728e224f11f2198c"
+          ],
+          "previousUrls": [
+            "https://autodesk.wd1.myworkdayjobs.com/uni/job/Sheffield-GBP/Intern--Software-Engineer--C---NET----12-months_26WD101693-2"
+          ],
+          "sources": [
+            "Employer recovery"
+          ],
+          "candidateSeen": false,
+          "evidence": {
+            "screening": [],
+            "runStartedAt": "2026-10-30T08:38:46.413Z",
+            "postingCheck": null,
+            "workdayChecks": [],
+            "board": {
+              "id": "workday:autodesk.wd1.myworkdayjobs.com:uni",
+              "status": "not-checked",
+              "outcome": null,
+              "membership": "unknown",
+              "retired": false
+            },
+            "sources": [
+              {
+                "name": "Employer recovery",
+                "status": "not-checked",
+                "outcome": null,
+                "rows": null
+              }
+            ]
+          },
+          "category": "unresolved",
+          "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+          "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+          "requiresInvestigation": true
+        }
+      ]
+    },
+    {
+      "runId": 41029028929,
+      "url": "https://github.com/nothenrynguyen/app-expo/actions/runs/41029028929",
+      "status": "failure",
+      "publication": "blocked-by-existing-coverage-guard",
+      "proposedGeneratedAt": "2026-10-30T08:56:48.195Z",
+      "reconciliation": {
+        "unit": "opportunities",
+        "previous": 6781,
+        "current": 6511,
+        "retained": 6484,
+        "added": 27,
+        "removed": 297,
+        "net": -270
+      },
+      "categoryCounts": {
+        "confirmed-closed": 0,
+        "scope-exclusion": 17,
+        "verification-pending": 181,
+        "source-unavailable": 98,
+        "unresolved": 1,
+        "deduplicated": 0
+      },
+      "coverage": {
+        "boards": {
+          "discovered": 300,
+          "retained": 307
+        },
+        "collections": [
+          {
+            "collection": "internships",
+            "previous": 4205,
+            "current": 4000,
+            "removed": 224,
+            "unexplained": 42,
+            "previousOpportunities": 4205,
+            "currentOpportunities": 4000,
+            "largeDrop": false,
+            "blocked": false
+          },
+          {
+            "collection": "fulltime",
+            "previous": 2576,
+            "current": 2511,
+            "removed": 73,
+            "unexplained": 57,
+            "previousOpportunities": 2576,
+            "currentOpportunities": 2511,
+            "largeDrop": false,
+            "blocked": true
+          }
+        ]
+      },
+      "artifactId": 12965745562,
+      "artifactZipSha256": "90b4fa894ccea2a782d0cae6fe2cfe63c4cf4d68a3e19ba32e7c8af15bdfb117",
+      "archivedReport": "docs/listing-report-blocked-production-2026-10-30.json",
+      "recoveryHealth": {
+        "name": "Original employer link recovery",
+        "kind": "employer_recovery",
+        "status": "ok",
+        "outcome": "partial",
+        "rows": 763,
+        "requestCount": 143,
+        "durationMs": 7250,
+        "message": "{\"targets\":3094,\"live\":763,\"unknown\":1077,\"unchecked\":653,\"pausedHosts\":31}"
+      },
+      "reconciliationPassed": true,
+      "recoveryHealthJoinPassed": true,
+      "fullSourceAndBoardDiagnosticsRetained": true
+    }
+  ],
+  "featureDeploymentVerified": true,
+  "newSnapshotPublished": false,
+  "nextOperationalTask": "Investigate employer-recovery and employer-verification losses while preserving the coverage guard; do not automatically restore or label omissions closed.",
+  "finalClassificationCorrection": {
+    "reason": "An ok board can have a rate_limited or partial health outcome; diagnosis now uses that outcome.",
+    "capturedEvidenceReplay": "docs/listing-report-final-diagnosis-replay.json",
+    "thirdNetworkRefreshUsed": false,
+    "validatedBy": "165 tests, full lint, TypeScript and static export"
+  },
+  "deploymentEvidence": [
+    {
+      "commit": "9a2c6da8e60efb42f0522826cd66e0bfaa48da5d",
+      "status": "success",
+      "url": "https://vercel.com/henrys-projects-84715f33/app-expo/HruAx9YFyKxfMnv1pMi45za4i5Mm"
+    },
+    {
+      "commit": "0b1dbc5c4aad8a53113bba73213b6cfd50242950",
+      "status": "success",
+      "url": "https://vercel.com/henrys-projects-84715f33/app-expo/9bcCGEBfBA5vbbvQYdJUKt3u6jUu"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "kind": "captured-production-diagnosis-replay",
+  "source": "docs/listing-report-blocked-production-2026-10-30.json",
+  "scope": "Only the 297 removed opportunities are replayed, not collection, admission, the full snapshot or publication.",
+  "observedCategoryCounts": {
+    "confirmed-closed": 0,
+    "scope-exclusion": 17,
+    "verification-pending": 181,
+    "source-unavailable": 98,
+    "unresolved": 1,
+    "deduplicated": 0
+  },
+  "correctedCategoryCounts": {
+    "confirmed-closed": 0,
+    "scope-exclusion": 17,
+    "verification-pending": 181,
+    "source-unavailable": 99,
+    "unresolved": 0,
+    "deduplicated": 0
+  },
+  "changed": [
+    {
+      "identity": "https://hp.wd5.myworkdayjobs.com/externalcareersite/job/san-francisco-california-united-states-of-america/cloud-engineering-intern_uni4799-1",
+      "company": "HP Inc.",
+      "previousCategory": "unresolved",
+      "category": "source-unavailable",
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-30T08:49:44.153Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:hp.wd5.myworkdayjobs.com:externalcareersite",
+          "status": "ok",
+          "outcome": "rate_limited",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "explanation": "A relevant source or posting check was unreliable; closure is not established."
+    }
+  ]
+}

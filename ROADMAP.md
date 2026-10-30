@@ -1,6 +1,6 @@
 # empluzzed Roadmap
 
-October 30 refresh-report upgrade in progress: owner authorized the saved disappearance-diagnostics feature. Version 2 adds reconciled opportunity counts, evidence-backed diagnoses, investigation actions and an Actions summary while retaining existing publication safeguards. See [implementation and release evidence](docs/LISTING_DISAPPEARANCE_PLAN.md).
+October 30 refresh-report upgrade is implemented and published: version 2 adds reconciled opportunity counts, evidence-backed diagnoses, investigation actions and an Actions summary. All 165 tests, lint, types and export pass. Two real refreshes generated useful diagnostics but the existing guard blocked publication for 57 unexplained full-time removals; the last published 6,781-listing snapshot remains live. Prioritize investigation of the employer-recovery/verification losses before further features. See [release evidence and archived diagnostics](docs/LISTING_DISAPPEARANCE_PLAN.md#completion-and-operational-follow-up).
 
 October 30 location display published and production-verified: redundant US country labels are removed from specific non-remote board locations, including compact/card views. Remote and country-only labels remain. Tests, lint, types and static export pass; Vercel deployment succeeded for `767d815`. Live compact/card and remote-exception checks pass. See [change and release evidence](docs/LOCATION_DISPLAY_2026-10-30.md).
 
