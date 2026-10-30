@@ -3,7 +3,10 @@ import test from "node:test";
 import { createAtsBoard, discoverAtsBoard, fetchAtsBoard } from "../lib/ats-boards";
 import { selectRefreshBoards, completeBoardHistory, MAX_RETAINED_BOARDS } from "../lib/ingestion/board-history";
 import { assessCoverage, assertCoverageSafe } from "../lib/ingestion/coverage-guard";
-import { buildListingChanges } from "../lib/ingestion/listing-changes";
+import { buildListingChanges, formatListingChangesSummary } from "../lib/ingestion/listing-changes";
+import { createListingChangeEvidence } from "../lib/ingestion/listing-change-evidence";
+import { createScreeningTracker } from "../lib/ingestion/screening";
+import { jobIdentity } from "../lib/source-normalization";
 import { classifyRoleTags } from "../lib/role-areas";
 import type { PublicJob } from "../lib/jobs";
 import { boardRecoveryPolicy } from "../lib/ingestion/last-known-good";
@@ -16,6 +19,79 @@ import path from "node:path";
 const now = new Date("2026-10-29T05:00:00Z");
 const board = createAtsBoard({ provider: "greenhouse", key: "example", company: "Example" });
 const history = { version: 1 as const, boards: [{ provider: "greenhouse" as const, key: "example", company: "Example", lastDiscoveredAt: "2026-10-21T00:00:00Z" }] };
+
+const priorJob = { id: "old", company: "Example", title: "Software Engineer", category: "New grad", applyUrl: "https://example.com/jobs/old", sources: ["Feed"] } as PublicJob;
+const generatedAt = "2026-10-29T05:02:00Z";
+const evidence = (overrides: Partial<Parameters<typeof createListingChangeEvidence>[0]> = {}) => createListingChangeEvidence({
+  startedAt: now, generatedAt, listingHealth: {}, workdayChecks: [], boardRegistry: [], boardResults: new Map(), sourceDiagnostics: [], retired: new Set(), ...overrides,
+});
+const changesFor = (overrides: Partial<Parameters<typeof buildListingChanges>[0]> = {}) => buildListingChanges({
+  generatedAt, previousGeneratedAt: "2026-10-29T04:00:00Z", previous: [priorJob], current: [], acceptedBeforeDedup: [], candidateUrls: [], outcomeFor: () => undefined, boardState: () => null, evidenceFor: evidence(), ...overrides,
+});
+
+test("removal diagnoses require current posting evidence for closure, not board absence or stale screening", () => {
+  const health = (checkedAt: string) => ({ [jobIdentity(priorJob.applyUrl)!]: { url: priorJob.applyUrl, status: "closed" as const, checkedAt, httpStatus: 404 } });
+  for (const checkedAt of ["2026-10-28T05:00:00Z", "2026-10-30T05:00:00Z"]) {
+    const report = changesFor({ outcomeFor: () => "closed", evidenceFor: evidence({ listingHealth: health(checkedAt) }) });
+    assert.equal(report.removedOpportunities[0].category, "unresolved");
+    assert.equal(report.removedOpportunities[0].evidence!.postingCheck!.currentRun, false);
+  }
+  const fresh = changesFor({ evidenceFor: evidence({ listingHealth: health("2026-10-29T05:01:00Z") }) });
+  assert.equal(fresh.categoryCounts["confirmed-closed"], 1);
+  assert.equal(changesFor({ boardState: () => "absent", outcomeFor: () => "closed" }).categoryCounts.unresolved, 1);
+  assert.equal(changesFor({ outcomeFor: () => "role" }).categoryCounts["scope-exclusion"], 1);
+  assert.equal(changesFor({ outcomeFor: () => "pendingVerification" }).categoryCounts["verification-pending"], 1);
+  assert.equal(changesFor({ acceptedBeforeDedup: [priorJob] }).categoryCounts.deduplicated, 1);
+});
+
+test("Workday alias compaction reconciles openings separately from rows and retains exact site evidence", () => {
+  const url = (site: string, slug = "Old") => `https://example.wd1.myworkdayjobs.com/${site}/job/Austin/${slug}_JR12345`;
+  const a = { ...priorJob, applyUrl: url("External") };
+  const alias = { ...a, id: "alias", applyUrl: url("en-US/External", "New") };
+  const internal = { ...a, id: "internal", applyUrl: url("Internal") };
+  const e = evidence({ workdayChecks: [{ url: alias.applyUrl, status: "closed" }] });
+  const report = changesFor({ previous: [a, alias, internal], current: [internal], acceptedBeforeDedup: [internal], evidenceFor: e });
+  assert.deepEqual(report.reconciliation, { unit: "opportunities", previous: 2, current: 1, retained: 1, added: 0, removed: 1, net: -1 });
+  assert.equal(report.removedCount, 2);
+  assert.equal(report.removedOpportunities.length, 1);
+  assert.equal(report.removedOpportunities[0].previousUrls.length, 2);
+  assert.equal(report.categoryCounts["confirmed-closed"], 1);
+  assert.equal(e(internal).workdayChecks.length, 0);
+  const compact = changesFor({ previous: [a, alias], current: [alias], acceptedBeforeDedup: [alias] });
+  assert.equal(compact.reconciliation.removed, 0);
+  assert.equal(compact.rowCounts.net, -1);
+  assert.equal(compact.rowCounts.previousDuplicateRows, 1);
+  assert.equal(compact.urlChanges.length, 1);
+  const conflict = changesFor({ previous: [a], evidenceFor: evidence({ workdayChecks: [{ url: a.applyUrl, status: "closed" }, { url: alias.applyUrl, status: "live" }] }) });
+  assert.equal(conflict.categoryCounts.unresolved, 1);
+  assert.match(conflict.removedOpportunities[0].explanation, /conflict/);
+  assert.match(formatListingChangesSummary(report), /2 \+ 0 added - 1 removed = 1/);
+});
+
+test("report evidence distinguishes posting failures, healthy board omissions and unattempted sources", () => {
+  const job = { ...priorJob, applyUrl: "https://boards.greenhouse.io/example/jobs/1234567" };
+  const healthyBoard = { board, jobs: [], liveIdentities: new Set<string>() };
+  const runEvidence = evidence({ boardResults: new Map([[board.id, healthyBoard]]), boardRegistry: [{ ...board, status: "ok", rows: 0, durationMs: 1 }] });
+  const r = changesFor({ previous: [job], boardState: () => "absent", evidenceFor: runEvidence });
+  assert.equal(r.removedOpportunities[0].category, "unresolved");
+  assert.equal(r.removedOpportunities[0].evidence!.board!.membership, "absent");
+  assert.equal(r.removedOpportunities[0].evidence!.sources[0].status, "not-checked");
+  const failed = changesFor({ evidenceFor: evidence({ sourceDiagnostics: [{ name: "Feed", kind: "markdown", status: "failed", outcome: "cooldown", rows: 0, requestCount: 0, durationMs: 0 }] }) });
+  assert.equal(failed.categoryCounts["source-unavailable"], 1);
+  assert.equal(failed.removedOpportunities[0].requiresInvestigation, true);
+  assert.equal(changesFor({ previous: [job], evidenceFor: evidence({ retired: new Set([board.id]) }) }).categoryCounts["confirmed-closed"], 0);
+});
+
+test("screening diagnostics follow locale aliases without crossing Workday sites and preserve the verification reason", () => {
+  const tracker = createScreeningTracker();
+  const url = "https://example.wd1.myworkdayjobs.com/External/job/Austin/Engineer_JR12345";
+  tracker.record(url, "pendingVerification", "Employer ownership not verified.");
+  const alias = url.replace("/External/", "/en-US/external/");
+  assert.equal(tracker.opportunityOutcomeFor(alias), "pendingVerification");
+  assert.equal(tracker.opportunityOutcomeFor(url.replace("/External/", "/Internal/")), undefined);
+  const e = evidence({ screeningFor: tracker.decisionsFor });
+  assert.equal(e({ ...priorJob, applyUrl: alias }).screening[0].detail, "Employer ownership not verified.");
+});
 
 test("successful source omission retains the official board without granting employer trust", () => {
   const result = selectRefreshBoards([], history, [], now);

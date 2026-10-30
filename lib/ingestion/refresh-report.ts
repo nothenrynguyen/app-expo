@@ -1,6 +1,7 @@
 import type { BoardRefreshDiagnostic, RefreshReport, SourceRefreshDiagnostic, VerificationDiagnostic } from "./types";
 
 type RefreshReportInput = {
+  listingChanges?: RefreshReport["listingChanges"];
   coverage?: RefreshReport["coverage"];
   startedAt: Date;
   completedAt?: Date;
@@ -28,6 +29,7 @@ export function buildRefreshReport(input: RefreshReportInput): RefreshReport {
     .some(record => (record.outcome && record.outcome !== "healthy") || !!record.detailFailures);
 
   return {
+    ...(input.listingChanges ? { listingChanges: input.listingChanges } : {}),
     ...(input.coverage ? { coverage: input.coverage } : {}),
     version: 1,
     startedAt: input.startedAt.toISOString(),

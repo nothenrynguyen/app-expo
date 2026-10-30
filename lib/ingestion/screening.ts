@@ -1,4 +1,4 @@
-import { jobIdentity } from "../source-normalization";
+import { jobIdentity, opportunityIdentity } from "../source-normalization";
 
 export type ScreeningReason = "closed" | "expired" | "location" | "role" | "employer" | "pendingVerification";
 export type ScreeningMetrics = {
@@ -18,13 +18,30 @@ const priority: ScreeningReason[] = ["closed", "expired", "location", "role", "e
 
 export function createScreeningTracker() {
   const destinations = new Map<string, ScreeningReason>();
+  const opportunities = new Map<string, ScreeningReason>();
+  const decisions = new Map<string, Array<{ url: string; reason: ScreeningReason; detail: string | null }>>();
   let uncountedRecords = 0;
   return {
+    decisionsFor(url: string) {
+      return decisions.get(opportunityIdentity(url) ?? "") ?? [];
+    },
+    opportunityOutcomeFor(url: string): ScreeningReason | undefined {
+      const identity = opportunityIdentity(url);
+      return identity ? opportunities.get(identity) : undefined;
+    },
     outcomeFor(url: string): ScreeningReason | undefined {
       const identity = jobIdentity(url);
       return identity ? destinations.get(identity) : undefined;
     },
-    record(url: string, reason: ScreeningReason) {
+    record(url: string, reason: ScreeningReason, detail?: string) {
+      const opportunity = opportunityIdentity(url);
+      if (opportunity) {
+        const rows = decisions.get(opportunity) ?? [];
+        if (!rows.some(row => row.url === url && row.reason === reason && row.detail === (detail ?? null))) rows.push({ url, reason, detail: detail ?? null });
+        decisions.set(opportunity, rows);
+        const current = opportunities.get(opportunity);
+        if (!current || priority.indexOf(reason) < priority.indexOf(current)) opportunities.set(opportunity, reason);
+      }
       const identity = jobIdentity(url);
       if (!identity) { uncountedRecords += 1; return; }
       const current = destinations.get(identity);

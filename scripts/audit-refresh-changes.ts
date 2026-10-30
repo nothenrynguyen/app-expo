@@ -18,8 +18,9 @@ const quarantine = await readAfter("data/quarantine.json");
 const health = await readAfter("data/listing-health.json");
 const changes = await readAfter("data/listing-changes.json").catch(() => null);
 // A decision from another refresh must never explain this comparison.
-const recorded = changes?.previousGeneratedAt === before.generatedAt && changes?.generatedAt === after.generatedAt
-  ? new Map((changes.removed as {applyUrl:string;reason:string}[]).map(row=>[jobIdentity(row.applyUrl),row.reason])) : new Map<string,string>();
+const matchingReport = changes?.previousGeneratedAt === before.generatedAt && (changes?.currentSnapshotGeneratedAt ?? changes?.generatedAt) === after.generatedAt;
+const recorded = matchingReport
+  ? new Map(((changes.removedOpportunities ?? changes.removed) as {applyUrl:string;reason:string;category?:string}[]).map(row=>[opportunityIdentity(row.applyUrl),row])) : new Map();
 const quarantineById = new Map((quarantine.jobs as {applyUrl:string;reason:string}[]).map(r => [jobIdentity(r.applyUrl),r]));
 const ids = new Set(after.jobs.map(j => opportunityIdentity(j.applyUrl)));
 const groups = Map.groupBy(after.jobs, semanticJobIdentity);
@@ -28,14 +29,19 @@ const removed = before.jobs.filter(j => !ids.has(opportunityIdentity(j.applyUrl)
   const board = discoverAtsBoard(job.applyUrl, job.company, "audit");
   const diagnostic = board && report.boards.records.find((r: {provider: string; key: string}) => r.provider === board.provider && r.key.toLowerCase() === board.key.toLowerCase());
   const q = quarantineById.get(jobIdentity(job.applyUrl));
-  const recordedReason = recorded.get(jobIdentity(job.applyUrl));
-  const reason = recordedReason ?? q?.reason ?? getFreshnessRejection(job, new Date(after.generatedAt)) ?? (isListingUnavailable(health[jobIdentity(job.applyUrl)!]) ? "Listing check: closed or unavailable" : diagnostic?.status === "failed" ? "Employer board failed" : "Absent from current accepted inputs; requires source investigation");
+  const diagnosis = recorded.get(opportunityIdentity(job.applyUrl));
+  const recordedReason = diagnosis?.category ?? diagnosis?.reason;
+  const reason = recordedReason ?? q?.reason ?? getFreshnessRejection(job, new Date(after.generatedAt)) ?? (isListingUnavailable(health[jobIdentity(job.applyUrl)!]) ? "Cached listing check is closed or unavailable; current closure unverified" : diagnostic?.status === "failed" ? "Employer board failed" : "Absent from current accepted inputs; requires source investigation");
   reasons[reason] = (reasons[reason] ?? 0) + 1;
-  return { company: job.company, title: job.title, applyUrl: job.applyUrl, reason, evidence:recordedReason ? "recorded-refresh-decision" : "snapshot-inference", boardStatus: diagnostic?.status, sources: job.sources };
+  return { company: job.company, title: job.title, applyUrl: job.applyUrl, reason, diagnosis, evidence:recordedReason ? "recorded-refresh-decision" : "snapshot-inference", boardStatus: diagnostic?.status, sources: job.sources };
 });
 const priorIds = new Set(before.jobs.map(j => opportunityIdentity(j.applyUrl)));
 const duplicateGroups = [...groups.values()].filter(g => g.length > 1).map(g => g.map(j => ({ id:j.id, company:j.company,title:j.title,location:j.location,applyUrl:j.applyUrl,sources:j.sources })));
-const result = { beforeRef, beforeGeneratedAt: before.generatedAt, afterGeneratedAt:after.generatedAt, before:before.jobs.length, after:after.jobs.length, removed:removed.length, added:after.jobs.filter(j=>!priorIds.has(opportunityIdentity(j.applyUrl))).length, reasons, missing:removed, duplicateGroups };
+const result = { beforeRef, beforeGeneratedAt: before.generatedAt, afterGeneratedAt:after.generatedAt, before:before.jobs.length, after:after.jobs.length,
+  removedUrlRows:removed.length, removed:new Set(removed.map(j => opportunityIdentity(j.applyUrl))).size,
+  added:new Set(after.jobs.filter(j=>!priorIds.has(opportunityIdentity(j.applyUrl))).map(j => opportunityIdentity(j.applyUrl))).size,
+  reconciliation:matchingReport ? changes.reconciliation : null, categoryCounts:matchingReport ? changes.categoryCounts : null,
+  reasonCountUnit:"url_rows", reasons, missing:removed, duplicateGroups };
 await mkdir(".cache/refresh-audit", {recursive:true});
 await writeFile(".cache/refresh-audit/comparison.json", JSON.stringify(result,null,2)+"\n");
 console.log(JSON.stringify({...result,missing:undefined,duplicateGroups:duplicateGroups.length},null,2));

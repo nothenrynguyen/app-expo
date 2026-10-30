@@ -57,6 +57,7 @@ export type CandidateLoadResult = {
 };
 
 export type RefreshReport = {
+  listingChanges?: { path: string; reconciliation: ReturnType<typeof import("./listing-changes").buildListingChanges>["reconciliation"]; categoryCounts: Record<string, number> };
   coverage?: { boards: { discovered: number; retained: number }; collections: ReturnType<typeof import("./coverage-guard").assessCoverage> };
   version: 1;
   startedAt: string;

@@ -2,7 +2,7 @@ import { preserveWorkdayJobIds, collectJobIdAliases } from "../lib/ingestion/pre
 import publishedJobIdAliases from "../data/job-id-aliases.json";
 import { workdayEvidenceKey, workdayRecoveryPolicy, recentWorkdayEvidence, updateWorkdayContinuity, type WorkdayContinuity } from "../lib/ingestion/workday-continuity";
 import { reviewedFederalCoverage } from "../lib/ingestion/usajobs";
-import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
+import { appendFile, mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { discoverAtsBoard } from "../lib/ats-boards";
@@ -15,7 +15,8 @@ import { sourceReviewHoldIdentity } from "../lib/ingestion/source-review-holds";
 import { buildSourceVerificationTargets, createSourceListingVerifier, sourceVerificationKey, sourceListingIsAllowed, type SourceVerificationTargets } from "../lib/ingestion/source-verification";
 import { buildRefreshReport } from "../lib/ingestion/refresh-report";
 import { createScreeningTracker } from "../lib/ingestion/screening";
-import { buildListingChanges } from "../lib/ingestion/listing-changes";
+import { buildListingChanges, formatListingChangesSummary } from "../lib/ingestion/listing-changes";
+import { createListingChangeEvidence } from "../lib/ingestion/listing-change-evidence";
 import { completeBoardHistory } from "../lib/ingestion/board-history";
 import { assessCoverage, assertCoverageSafe } from "../lib/ingestion/coverage-guard";
 import { buildReviewedEmployerCoverage } from "../lib/ingestion/reviewed-employer-coverage";
@@ -243,7 +244,7 @@ async function main() {
         // Reviewed feeds/boards and exact reviewed federal announcements provide coverage evidence.
         if (inherited) decision = { ...inherited, status: "approved", reason: "Matched current reviewed employer coverage on the same ATS board." };
       } else {
-        screening.record(candidate.applyUrl, "pendingVerification");
+        screening.record(candidate.applyUrl, "pendingVerification", decision.reason);
         quarantined.push({ company: normalizeDisplayText(candidate.company), title: normalizeDisplayText(candidate.title), reason: decision.reason, source: candidate.source, applyUrl: candidate.applyUrl });
         continue;
       }
@@ -252,7 +253,7 @@ async function main() {
     const canonical = canonicalizeUrl(candidate.applyUrl)!;
     const identity = jobIdentity(canonical)!;
     if ((scopedUrls.has(identity) && !verifiedScopedIds.has(identity)) || !sourceListingIsAllowed(candidate.applyUrl, sourceTargets, verifiedScopedIds)) {
-      screening.record(candidate.applyUrl, "pendingVerification");
+      screening.record(candidate.applyUrl, "pendingVerification", "Current employer listing availability could not be verified.");
       quarantined.push({ company: candidate.company, title: candidate.title, reason: "Current employer listing availability could not be verified.", source: candidate.source, applyUrl: candidate.applyUrl });
       continue;
     }
@@ -359,12 +360,17 @@ async function main() {
   };
   const closedPostingsCaught = Object.values(listingHealth).filter((entry) => entry.status === "closed").length;
 
+  const materialSnapshot = { jobs: snapshot.jobs, quarantinedCount: snapshot.quarantinedCount, sourceHealth: snapshot.sourceHealth, screening: snapshot.screening };
+  const previousMaterial = previous && { jobs: previous.jobs, quarantinedCount: previous.quarantinedCount, sourceHealth: previous.sourceHealth, screening: previous.screening };
+  const unchanged = !!previous && JSON.stringify(materialSnapshot) === JSON.stringify(previousMaterial);
+
   const listingChanges = buildListingChanges({
     generatedAt: snapshot.generatedAt, previousGeneratedAt: previous?.generatedAt ?? null,
+    currentSnapshotGeneratedAt: unchanged ? previous!.generatedAt : snapshot.generatedAt,
     previous: previous?.jobs ?? [], current: jobs, acceptedBeforeDedup: [...merged.values()],
     candidateUrls: candidates.map(candidate => candidate.applyUrl),
     outcomeFor: url => {
-      const outcome = screening.outcomeFor(url);
+      const outcome = screening.opportunityOutcomeFor(url);
       if (outcome) return outcome;
       const prior = previousByUrl.get(opportunityIdentity(url));
       if (prior?.sources.some(source => permissionHeldSources.has(source))) return "source-permission";
@@ -378,7 +384,12 @@ async function main() {
       if (currentBoard) return currentBoard.liveIdentities.has(jobIdentity(prior.applyUrl) ?? "") ? null : "absent";
       return boardRegistry.some(record => record.status === "failed" && record.provider === board.provider && record.key.toLowerCase() === board.key.toLowerCase()) ? "unavailable" : null;
     },
+    evidenceFor: createListingChangeEvidence({ startedAt, generatedAt: snapshot.generatedAt, listingHealth,
+      workdayChecks, boardRegistry, boardResults, sourceDiagnostics, retired, screeningFor: screening.decisionsFor }),
   });
+  const changeSummary = formatListingChangesSummary(listingChanges);
+  console.log(changeSummary);
+  if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY, changeSummary);
   const coverage = { boards: boardCoverage, collections: assessCoverage(previous?.jobs ?? [], jobs, listingChanges) };
   if (coverage.collections.some(row => row.largeDrop || row.blocked)) console.warn("Coverage alert:", JSON.stringify(coverage));
   try { assertCoverageSafe(coverage.collections); }
@@ -409,6 +420,7 @@ async function main() {
   await writeFile(path.join(root, "data/company-boards.json"), `${JSON.stringify(boardRegistry, null, 2)}\n`);
   await writeFile(path.join(root, "data/board-history.json"), `${JSON.stringify(completeBoardHistory(boardHistory, boardRegistry, startedAt), null, 2)}\n`);
   const refreshReport = buildRefreshReport({
+    listingChanges: { path: "data/listing-changes.json", reconciliation: listingChanges.reconciliation, categoryCounts: listingChanges.categoryCounts },
     coverage,
     startedAt,
     sourceDiagnostics,
@@ -435,9 +447,7 @@ async function main() {
   const nextInsightsHistory = updateJobInsightsHistory(insightsHistory, buildJobInsightsDay(snapshot, { closedPostingsCaught }));
   await writeFile(insightsHistoryPath, `${JSON.stringify(nextInsightsHistory, null, 2)}\n`);
 
-  const materialSnapshot = { jobs: snapshot.jobs, quarantinedCount: snapshot.quarantinedCount, sourceHealth: snapshot.sourceHealth, screening: snapshot.screening };
-  const previousMaterial = previous && { jobs: previous.jobs, quarantinedCount: previous.quarantinedCount, sourceHealth: previous.sourceHealth, screening: previous.screening };
-  if (previousMaterial && JSON.stringify(materialSnapshot) === JSON.stringify(previousMaterial)) {
+  if (unchanged) {
     await writeFile(path.join(root, "public/summary.json"), `${JSON.stringify(buildJobsSummary(snapshot, refreshReport), null, 2)}\n`);
     console.log(`No material changes; retained ${jobs.length} published jobs.`);
     return;

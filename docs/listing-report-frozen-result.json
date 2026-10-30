@@ -1,0 +1,44 @@
+{
+  "kind": "frozen-reconciliation-replay",
+  "beforeRef": "f269540^",
+  "afterRef": "f269540",
+  "limitations": [
+    "Candidate input rows, current Workday posting checks and full board membership sets were not retained for this historical run. They are not reconstructed or treated as observed. This replay validates reconciliation, not fresh availability."
+  ],
+  "version": 2,
+  "generatedAt": "2026-10-30T08:00:54.571Z",
+  "previousGeneratedAt": "2026-10-30T07:20:35.619Z",
+  "currentSnapshotGeneratedAt": "2026-10-30T08:00:54.571Z",
+  "reconciliation": {
+    "unit": "opportunities",
+    "previous": 6738,
+    "current": 6781,
+    "retained": 6714,
+    "added": 67,
+    "removed": 24,
+    "net": 43
+  },
+  "categoryCounts": {
+    "confirmed-closed": 0,
+    "scope-exclusion": 19,
+    "verification-pending": 2,
+    "source-unavailable": 0,
+    "unresolved": 3,
+    "deduplicated": 0
+  },
+  "rowCounts": {
+    "previous": 6765,
+    "current": 6781,
+    "net": 16,
+    "previousDuplicateRows": 27,
+    "currentDuplicateRows": 0
+  },
+  "added": 67,
+  "removedCount": 25,
+  "counts": {
+    "role": 19,
+    "pendingVerification": 3,
+    "not-returned-by-sources": 3
+  },
+  "urlChangeRows": 27
+}
