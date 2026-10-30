@@ -3,7 +3,6 @@ import { useState } from "react";
 import { trackActivity } from "@/lib/activity-client";
 import { ApplicationStatusSelect } from "./ApplicationStatusSelect";
 import { companyTierLabel } from "@/lib/company-tiers";
-import { normalizeJobLocation } from "@/lib/job-locations";
 import { daysAgo, type PublicJob } from "@/lib/jobs";
 import { displayText, getLinkedInUrl, getLocationDisplay, modeLabels, type ViewMode } from "./job-board-utils";
 
@@ -94,7 +93,7 @@ function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJob
           {onHideCompany ? <span role="columnheader" aria-label="More actions" /> : null}
         </div>
         {jobs.map((job) => {
-          const location = getLocationDisplay(job.location);
+          const location = getLocationDisplay(job.location, job.workMode);
           return (
             <article className={`job-table-row ${onHideCompany ? "with-more-actions" : ""}`} role="row" key={job.id}>
               <div className="job-table-company" role="cell" data-label="Company">{displayText(job.company)}</div>
@@ -139,7 +138,7 @@ function CardJobView({ className, jobs, totalJobCount, emptyMessage, savedJobIds
               <h2>{displayText(job.title)}</h2>
               <FederalEligibility job={job} />
               <div className="job-meta">
-                <span>{displayText(normalizeJobLocation(job.location))}</span>
+                <span>{getLocationDisplay(job.location, job.workMode).full}</span>
                 {modeLabels[job.workMode] ? <span>{modeLabels[job.workMode]}</span> : null}
                 {job.term !== "Not stated" ? <span>{displayText(job.term)}</span> : null}
               </div>

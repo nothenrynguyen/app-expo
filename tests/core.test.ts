@@ -230,6 +230,16 @@ test("job board display helpers keep copy plain and summarize long locations", (
     hasMore: true,
     compact: "San Francisco, CA + 2 more",
   });
+  assert.deepEqual(getLocationDisplay("Los Angeles, CA; Seattle, WA; United States", "in_person"), {
+    full: "Los Angeles, CA; Seattle, WA", hasMore: true, compact: "Los Angeles, CA + 1 more",
+  });
+  assert.equal(getLocationDisplay("Seattle, Washington, United States; Boston, Massachusetts, USA", "hybrid").full, "Seattle, WA; Boston, MA");
+  assert.equal(getLocationDisplay("Reston, VA, United States (Hybrid)", "hybrid").full, "Reston, VA (Hybrid)");
+  assert.equal(getLocationDisplay("Seattle, WA; United States", "remote").full, "Seattle, WA; United States");
+  assert.equal(getLocationDisplay("Remote, United States").full, "Remote, United States");
+  assert.equal(getLocationDisplay("United States").full, "United States");
+  assert.equal(getLocationDisplay("United States (Hybrid)", "hybrid").full, "United States (Hybrid)");
+  assert.equal(getLocationDisplay("Toronto, ON, Canada; London, United Kingdom").full, "Toronto, ON, Canada; London, United Kingdom");
 });
 
 test("snapshot age uses useful minute and hour labels", () => {

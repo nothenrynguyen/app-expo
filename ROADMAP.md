@@ -1,5 +1,7 @@
 # empluzzed Roadmap
 
+October 30 location display: redundant US country labels are removed from specific non-remote board locations, including compact/card views. Remote and country-only labels remain. Local tests, lint, types and static export pass; publication is owner-authorized. See [change and release evidence](docs/LOCATION_DISPLAY_2026-10-30.md).
+
 October 30 release complete: audit actions 1 through 5 are published and production-verified. Implementation `4c5c1fb`; successful refresh `41022853725`; snapshot `f269540`, generated 1:00 a.m. Pacific, 6,781 listings. All four deployed JSON files match, retained Workday IDs have compatibility coverage, and desktop/mobile plus save-persistence checks pass. All 161 tests, types, lint/export and the zero-advisory dependency check pass. Provider failures and partial recovery remain documented limits. See [production release record](docs/APPROVED_FIXES_2026-10-29.md#production-completion-october-30).
 
 October 30 release in progress: the owner authorized taking the approved audit fixes through commit, push, deployment and production verification. Preserve current automated refresh commits and verify the new snapshot and saved-state behavior before calling this published. See [release record](docs/APPROVED_FIXES_2026-10-29.md).
@@ -33,6 +35,8 @@ This is the living overview of shipped capabilities, candidate priorities, and d
 October 29 local copy audit: reviewed all 11 page routes and shared copy against implementation and project history. Corrected application-link, refresh, source-count, tracker-status, and retention claims; shortened informational text. Tests, lint, types, and static export pass. Live-site revalidation was unavailable; changes remain unpublished. See [copy audit](docs/SITE_COPY_AUDIT_2026-10-29.md).
 
 ## Candidate next work
+
+- Saved October 30: permanent, evidence-backed disappearance explanations on every refresh. Build on existing removal reasons/URL changes and reconcile opportunities separately from URL rows. Deferred behind the owner's requested location display change. See [follow-up plan](docs/LISTING_DISAPPEARANCE_PLAN.md).
 
 October 29 source-health audit: the checked-in 14:24 UTC snapshot reports 62/79 because the denominator mixes 19 community feeds, USAJOBS, 58 Workday boards and recovery. All 17 failed source records are Workday, including eight partial detail failures. Owner-approved reporting, persistent cooldowns and Old Mission migration cleanup are published and production-verified. See [source audit](docs/SOURCE_HEALTH_AUDIT_2026-10-29.md).
 

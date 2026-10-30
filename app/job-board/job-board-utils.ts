@@ -32,8 +32,17 @@ function splitLocations(location: string): string[] {
   return cityStateLocations.length > 1 ? cityStateLocations : semicolonLocations;
 }
 
-export function getLocationDisplay(location: string) {
-  const full = displayText(normalizeJobLocation(location));
+export function getLocationDisplay(location: string, workMode?: PublicJob["workMode"]) {
+  const normalized = displayText(normalizeJobLocation(location));
+  // Remote country restrictions and country-only locations are meaningful.
+  const countryOnly = /^(?:United States(?: of America)?|USA|US)$/i;
+  const parts = normalized.split(/\s*[;|]\s*/).filter(Boolean);
+  const hasSpecificLocation = parts.some((part) => !countryOnly.test(part));
+  const full = workMode === "remote" || /\bremote\b/i.test(normalized) || !hasSpecificLocation
+    ? normalized
+    : parts.filter((part) => !countryOnly.test(part))
+      .map((part) => normalizeJobLocation(part.replace(/,\s*(?:United States(?: of America)?|USA|US)(?=\s*(?:,|\(|$))/gi, "")))
+      .join("; ");
   const locations = splitLocations(full);
   const hasMore = locations.length > 1;
 

@@ -1,5 +1,7 @@
 # Active project tasks
 
+October 30 location display: owner authorized removing redundant United States labels from non-remote board locations and pushing the change. Preserve remote country restrictions and country-only locations. The permanent [disappearance-reporting upgrade](LISTING_DISAPPEARANCE_PLAN.md) is saved as the next proposed follow-up, not included in this implementation.
+
 October 30 release complete: owner-approved audit actions 1 through 5 are committed, published and production-verified. Implementation `4c5c1fb`, workflow `41022853725`, snapshot `f269540`: 6,781 listings at 1:00 a.m. Pacific, all four deployed JSON files byte-matched. Workday identity/compatibility and scope invariants pass; the live saved opening survived deployment/reload and the temporary test save was removed. All 161 tests, types, lint/export and full npm audit pass. Preserve recurring provider failures, partial recovery and unexplained omissions as limitations, not closures. See [release evidence](APPROVED_FIXES_2026-10-29.md#production-completion-october-30). Earlier local-only/in-progress notes below are historical and superseded.
 
 October 30 release in progress: owner authorization now includes commit, push, deployment and production verification for actions 1 through 5. Reconcile automated data commits, validate the integrated tree, publish the batch, run the existing refresh workflow and verify live data/UI. Earlier local-only release boundaries below are historical. See [release record](APPROVED_FIXES_2026-10-29.md).
