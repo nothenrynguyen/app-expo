@@ -28,5 +28,5 @@ export function LandingHeadline() {
     motion.addEventListener("change", onMotionChange);
     return () => { clearTimeout(timer); motion.removeEventListener("change", onMotionChange); };
   }, []);
-  return <h1 className="landing-headline"><span className="sr-only">Search for internships or full-time roles in software, data, engineering, product, solutions and support, business, finance, quant, IT and security.</span><span aria-hidden="true" className="headline-lead">Search for</span><span aria-hidden="true" className="headline-category"><span>{text}</span><span className="type-cursor">|</span></span><span aria-hidden="true" className="headline-tail">internships or full-time roles</span></h1>;
+  return <h1 className="landing-headline"><span className="sr-only">Search for internships or early-career roles in software, data, engineering, product, solutions and support, business, finance, quant, IT and security.</span><span aria-hidden="true" className="headline-lead">Search for</span><span aria-hidden="true" className="headline-category"><span>{text}</span><span className="type-cursor">|</span></span><span aria-hidden="true" className="headline-tail">internships or early-career roles</span></h1>;
 }

@@ -23,9 +23,9 @@ export function LandingCollections() {
         <span className="collection-link">Browse Internships <b>→</b></span>
       </Link>
       <Link className="collection-card" href="/jobs">
-        <h2>Current Full-Time Jobs</h2>
+        <h2>Current Early Career Jobs</h2>
         <p className="collection-subtitle"><AnimatedCount className="collection-count" value={summary?.fulltime} /> listings on the board</p>
-        <span className="collection-link">Browse Full-Time Jobs <b>→</b></span>
+        <span className="collection-link">Browse Early Career Jobs <b>→</b></span>
       </Link>
     </div>
     {summary?.screening?.version === 1 && <p className="landing-screening"><span aria-hidden="true">✦ </span><Link className="screening-total" href="/methodology" aria-label={`${summary.screening.reviewed.toLocaleString()} total job links screened. Learn about the screening methodology.`}>{summary.screening.reviewed.toLocaleString()}</Link> total job links screened</p>}

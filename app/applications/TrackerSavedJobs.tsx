@@ -37,7 +37,7 @@ export function TrackerSavedJobs() {
   return <section className="tracker-saved" aria-label="Saved jobs">
     <h2>Saved jobs <span className="tracker-count">{ids.size}</span></h2>
     <p className="tracker-hint">Keep jobs here to apply later. Opening Apply does not mark a job as applied.</p>
-    {!ids.size ? <div className="tracker-empty"><strong>No saved jobs yet</strong><p>Save a job on the <Link href="/internships">internship</Link> or <Link href="/jobs">full-time</Link> board and it will appear here.</p></div> : null}
+    {!ids.size ? <div className="tracker-empty"><strong>No saved jobs yet</strong><p>Save a job on the <Link href="/internships">internship</Link> or <Link href="/jobs">early-career</Link> board and it will appear here.</p></div> : null}
     {failed ? <p role="status">Current listings could not load. Retained saved details are still shown. Reload to retry.</p> : hasSaved && !loaded ? <p role="status">Loading current saved listings...</p> : null}
     {[...ids].map((id) => {
       const live = current.get(id);

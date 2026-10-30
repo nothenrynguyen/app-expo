@@ -22,7 +22,7 @@ export function MethodologyStats() {
     <div className="methodology-stats">
       <div><AnimatedCount value={summary.totalJobs} /><span>current listings, all locations</span></div>
       <Link href="/internships"><AnimatedCount value={summary.internships} /><span>internships, all locations</span></Link>
-      <Link href="/jobs"><AnimatedCount value={summary.fulltime} /><span>full-time jobs, all locations</span></Link>
+      <Link href="/jobs"><AnimatedCount value={summary.fulltime} /><span>early-career jobs, all locations</span></Link>
       {summary.screening?.version === 1 && <>
         <div><AnimatedCount value={summary.screening.excluded} /><span>unique application links excluded</span></div>
         <div><AnimatedCount value={summary.screening.pendingVerification} /><span>awaiting employer verification</span></div>
