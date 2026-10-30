@@ -18,6 +18,7 @@ import { assertSourcePermissions } from "./source-permissions";
 import { loadEmployerRecovery, type RecoverySeed, type RecoveryState } from "./employer-recovery";
 import { recordWorkdayAttempt, workdayCooldown, type WorkdaySchedule } from "./workday-schedule";
 import type { HealthOutcome } from "./source-health";
+import { currentWorkdayEvidence } from "./workday-continuity";
 
 type TimedResult<T> =
   | { status: "fulfilled"; value: T; durationMs: number }
@@ -209,6 +210,7 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     return fetchWorkdayBoard(board);
   }));
   const workdayChecks: import("./workday-continuity").WorkdayCheck[] = [];
+  const workdayPostings: CandidateJob[] = [];
   const workdayFetches = settledWorkdayFetches.map((result) => result.status === "fulfilled" ? result.value : ({ status: "rejected", reason: result.reason, durationMs: 0 } as const));
   workdayFetches.forEach((result, index) => {
     const board = workdayBoards[index];
@@ -221,6 +223,7 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
       recordWorkdayAttempt(workdaySchedule, board.host, outcome, new Date(), result.value.diagnostics.accessDenied ? `${result.value.diagnostics.accessDenied} Workday access paused` : message, result.value.diagnostics.retryAfterMs);
       candidates.push(...result.value.jobs);
       workdayChecks.push(...result.value.checks);
+      workdayPostings.push(...result.value.jobs);
       health.push({ name: `Workday: ${board.company}`, status: sourceStatus, outcome, rows: result.value.searchedPostings });
       sourceDiagnostics.push({
         name: `Workday: ${board.company}`,
@@ -261,12 +264,15 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
 
   const recoverySeeds = await readFile(path.join(root, "data/employer-recovery-targets.json"), "utf8").then(value => JSON.parse(value) as RecoverySeed[]).catch((error: NodeJS.ErrnoException) => {if (error.code === "ENOENT") return []; throw error;});
   const savedRecovery = await readFile(path.join(root, "data/employer-recovery-state.json"), "utf8").then(value => JSON.parse(value) as RecoveryState).catch((error: NodeJS.ErrnoException) => {if (error.code === "ENOENT") return {}; throw error;});
-  const recovery = await loadEmployerRecovery(recoverySeeds, savedRecovery);
+  const workdayEvidence = currentWorkdayEvidence(workdayPostings, workdayChecks);
+  const recovery = await loadEmployerRecovery(recoverySeeds, savedRecovery, new Date(), fetch, 500, {
+    previousJobs, seenUrls: candidates.map(job => job.applyUrl), workdayPostings, workdayChecks,
+  });
   if (recoverySeeds.length) {
     candidates.push(...recovery.candidates);
     const outcome = recovery.candidates.length < recovery.targets ? "partial" as const : "healthy" as const;
     health.push({name: "Original employer link recovery", status: "ok", outcome, rows: recovery.candidates.length});
-    sourceDiagnostics.push({name: "Original employer link recovery", kind: "employer_recovery", status: "ok", outcome, rows: recovery.candidates.length, requestCount: recovery.requests, durationMs: recovery.durationMs, message: JSON.stringify({targets: recovery.targets, live: recovery.candidates.length, unknown: recovery.unknown, unchecked: recovery.remaining, pausedHosts: recovery.pausedHosts})});
+    sourceDiagnostics.push({name: "Original employer link recovery", kind: "employer_recovery", status: "ok", outcome, rows: recovery.candidates.length, requestCount: recovery.requests, durationMs: recovery.durationMs, message: JSON.stringify({targets: recovery.targets, live: recovery.candidates.length, unknown: recovery.unknown, unchecked: recovery.remaining, pausedHosts: recovery.pausedHosts, reusedCurrentPostings: recovery.reusedCurrentPostings})});
   }
   const smartRecruitersUrls = new Map<string, string>();
   for (const candidate of candidates) {
@@ -312,6 +318,7 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     retiredBoardIds: [...retiredBoardIds],
     workdaySchedule,
     workdayChecks,
+    workdayEvidence,
     recoveryState: recovery.state,
     boardHistory: selection.history,
     boardCoverage: { discovered: selection.discovered, retained: selection.retained },

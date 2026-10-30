@@ -68,6 +68,7 @@ async function main() {
     boardCoverage,
     recoveryState,
     workdayChecks = [],
+    workdayEvidence,
     workdaySchedule,
     retiredBoardIds = [],
   } = await loadCandidates(root, activeSources, previous?.jobs ?? []);
@@ -82,6 +83,7 @@ async function main() {
   const continuityLive = (candidate: import("../lib/source-normalization").CandidateJob) => {
     if (!hasPriorAdmission(candidate)) return false;
     if (isRecoveryLive(candidate)) return true;
+    if (workdayEvidence?.matches(candidate)) return true;
     const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
     if (board && boardResults.get(board.id)?.liveIdentities.has(jobIdentity(candidate.applyUrl) ?? "")) return true;
     return !!parseSmartRecruitersJobUrl(candidate.applyUrl) && candidate.sourceActive === true;
@@ -89,7 +91,7 @@ async function main() {
   const currentBoardEvidence = (candidate: import("../lib/source-normalization").CandidateJob) => {
     const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
     const result = board && boardResults.get(board.id);
-    return isRecoveryLive(candidate) || !!result && normalizeCompanyName(result.board.company) === normalizeCompanyName(candidate.company)
+    return isRecoveryLive(candidate) || !!workdayEvidence?.matches(candidate) || !!result && normalizeCompanyName(result.board.company) === normalizeCompanyName(candidate.company)
       && result.liveIdentities.has(jobIdentity(candidate.applyUrl) ?? "");
   };
   const unhealthySources = health.filter((source) => source.status === "failed" || source.rows === 0);
@@ -372,6 +374,8 @@ async function main() {
     outcomeFor: url => {
       const outcome = screening.opportunityOutcomeFor(url);
       if (outcome) return outcome;
+      const terminal = workdayTerminalKeys.get(workdayEvidenceKey(url));
+      if (terminal) return terminal === "closed" ? "closed" : "role";
       const prior = previousByUrl.get(opportunityIdentity(url));
       if (prior?.sources.some(source => permissionHeldSources.has(source))) return "source-permission";
       return listingHealth[jobIdentity(url) ?? ""]?.status === "unavailable" ? "application-unavailable" : undefined;
@@ -391,6 +395,10 @@ async function main() {
   console.log(changeSummary);
   if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY, changeSummary);
   const coverage = { boards: boardCoverage, collections: assessCoverage(previous?.jobs ?? [], jobs, listingChanges) };
+  // Persist retry facts even when the proposed snapshot is rejected. These do
+  // not grant admission; accepted continuity and publication remain gated.
+  if (workdaySchedule) await writeFile(path.join(root, "data/workday-schedule.json"), `${JSON.stringify(workdaySchedule, null, 2)}\n`);
+  if (recoveryState && Object.keys(recoveryState).length) await writeFile(path.join(root, "data/employer-recovery-state.json"), `${JSON.stringify(recoveryState, null, 2)}\n`);
   if (coverage.collections.some(row => row.largeDrop || row.blocked)) console.warn("Coverage alert:", JSON.stringify(coverage));
   try { assertCoverageSafe(coverage.collections); }
   catch (error) {
@@ -408,9 +416,7 @@ async function main() {
   // Public IDs only. Keep compatibility when an opening later leaves the feed.
   const jobIdAliases = collectJobIdAliases(jobs, publishedJobIdAliases);
   await writeFile(path.join(root, "data/job-id-aliases.json"), `${JSON.stringify(jobIdAliases, null, 2)}\n`);
-  if (workdaySchedule) await writeFile(path.join(root, "data/workday-schedule.json"), `${JSON.stringify(workdaySchedule, null, 2)}\n`);
   await writeFile(path.join(root, "data/workday-continuity.json"), `${JSON.stringify(updateWorkdayContinuity(workdayCache, workdayChecks, jobs, startedAt), null, 2)}\n`);
-  if (recoveryState && Object.keys(recoveryState).length) await writeFile(path.join(root, "data/employer-recovery-state.json"), `${JSON.stringify(recoveryState, null, 2)}\n`);
   for (const [identity, record] of Object.entries(scopedCache)) {
     if (!scopedUrls.has(identity) && startedAt.getTime() - Date.parse(record.checkedAt ?? record.firstSeenAt) > 30 * 86_400_000) delete scopedCache[identity];
   }

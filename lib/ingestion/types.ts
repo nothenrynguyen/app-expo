@@ -43,6 +43,7 @@ export type CandidateLoadResult = {
   retiredBoardIds?: string[];
   workdaySchedule?: import("./workday-schedule").WorkdaySchedule;
   workdayChecks?: import("./workday-continuity").WorkdayCheck[];
+  workdayEvidence?: ReturnType<typeof import("./workday-continuity").currentWorkdayEvidence>;
   recoveryState?: import("./employer-recovery").RecoveryState;
   boardHistory: import("./board-history").BoardHistory;
   boardCoverage: { discovered: number; retained: number };

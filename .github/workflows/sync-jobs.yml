@@ -68,3 +68,14 @@ jobs:
           git commit -m "data: refresh verified jobs"
           git pull --rebase origin main
           git push
+      - name: Preserve retry state after a blocked refresh
+        if: failure() && steps.freshness.outputs.needed == 'true'
+        run: |
+          if git diff --quiet HEAD -- data/workday-schedule.json data/employer-recovery-state.json; then
+            exit 0
+          fi
+          git config user.name "app-expo-bot"
+          git config user.email "app-expo-bot@users.noreply.github.com"
+          git commit --only -m "data: preserve source retry state after blocked refresh" -- data/workday-schedule.json data/employer-recovery-state.json
+          git pull --rebase origin main
+          git push

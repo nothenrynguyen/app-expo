@@ -3,6 +3,9 @@ import test from 'node:test';
 import {admitWithCurrentEmployerEvidence, continuityMatcher} from '../lib/ingestion/employer-continuity';
 import {loadEmployerRecovery, parseRecoveryPosting, recoveryEvidenceAt} from '../lib/ingestion/employer-recovery';
 import {classifyRoleTags} from '../lib/role-areas';
+import {jobIdentity, opportunityIdentity} from '../lib/source-normalization';
+import {currentWorkdayEvidence} from '../lib/ingestion/workday-continuity';
+import type {PublicJob} from '../lib/jobs';
 const now=new Date('2026-10-29T12:00:00Z');
 const seed={company:'Example',url:'https://example.wd1.myworkdayjobs.com/Careers/job/Boston/Engineering-Intern_JR123'};
 const payload={jobPostingInfo:{title:'Engineering Intern',jobReqId:'JR123',posted:true,canApply:true,location:'Boston, Massachusetts',country:{descriptor:'United States of America'},jobDescription:'Mechanical engineering internship.',startDate:'2026-10-28',timeType:'Full time'}};
@@ -45,3 +48,62 @@ test('general engineering preserves specialty uncertainty and graduate programs 
 test('recovery uses the current application URL and rejects a different returned requisition',()=>{const updated=seed.url.replace('Engineering-Intern_JR123','Mechanical-Engineering-Intern_JR123');const job=parseRecoveryPosting(seed,{jobPostingInfo:{...payload.jobPostingInfo,externalUrl:updated}},now);assert.equal(job?.applyUrl,updated);assert.equal(parseRecoveryPosting(seed,{jobPostingInfo:{...payload.jobPostingInfo,externalUrl:updated.replace('JR123','JR999')}},now),null);});
 
 test('positive recovery evidence refreshes before its 24-hour publication expiry',async()=>{let requests=0;const fetcher=(async()=>{requests++;return Response.json(payload)}) as typeof fetch;const first=await loadEmployerRecovery([seed],{},now,fetcher);const refreshed=await loadEmployerRecovery([seed],first.state,new Date(now.getTime()+12*3600000),fetcher);assert.equal(requests,2);assert.equal(refreshed.candidates.length,1);assert.equal(recoveryEvidenceAt(refreshed.candidates[0]),new Date(now.getTime()+12*3600000).toISOString());});
+
+test('published missing openings receive recovery slots without starving discovery or exceeding the cap', async () => {
+  const known = Array.from({length: 8}, (_, i) => ({...seed, url: seed.url.replace('JR123', `JR${1000+i}`)}));
+  const unknown = Array.from({length: 12}, (_, i) => ({...seed, url: seed.url.replace('JR123', `JR${2000+i}`)}));
+  const candidate = parseRecoveryPosting(seed,payload,now)!;
+  const saved = Object.fromEntries(known.map(s => [opportunityIdentity(s.url)!, {status:'live' as const,checkedAt:new Date(now.getTime()-23*3600000).toISOString(),candidate:{...candidate,applyUrl:s.url}}]));
+  const requested: string[] = [];
+  const result = await loadEmployerRecovery([...unknown,...known],saved,now,(async input=>{
+    const url=String(input); requested.push(url);
+    const req=url.match(/_(JR\d+)$/)![1];
+    return Response.json({jobPostingInfo:{...payload.jobPostingInfo,jobReqId:req}});
+  }) as typeof fetch,5,{previousJobs:known.map(s=>({...candidate,id:s.url,applyUrl:s.url} as unknown as PublicJob)),seenUrls:known.slice(0,7).map(s=>s.url)});
+  assert.equal(result.requests,5);
+  assert.ok(requested[0].endsWith('JR1007'), 'published opening missing from inputs is checked first');
+  assert.equal(requested.filter(url=>/JR1\d+$/.test(url)).length,4);
+  assert.equal(requested.filter(url=>/JR2\d+$/.test(url)).length,1);
+});
+
+test('fresh exact Workday evidence grants current admission and avoids duplicate recovery requests', async () => {
+  const posting={...parseRecoveryPosting(seed,payload,now)!,source:'Direct ATS (Workday)',rawText:'Mechanical engineering internship. Employer description must not persist.'};
+  const checks=[{url:posting.applyUrl,status:'live' as const}];
+  const evidence=currentWorkdayEvidence([posting],checks);
+  assert.equal(evidence.matches(posting),true);
+  assert.equal(evidence.matches({...posting,company:'Unrelated employer'}),false);
+  assert.equal(evidence.matches({...posting,applyUrl:posting.applyUrl.replace('/Careers/','/Other/')}),false);
+  assert.equal(evidence.matches({...posting,applyUrl:posting.applyUrl.replace('JR123','JR124')}),false);
+  const alias={...posting,applyUrl:posting.applyUrl.replace('/Careers/','/en-US/careers/').replace('Engineering-Intern','Different-Slug')};
+  assert.equal(evidence.matches(alias),true);
+  const {evaluateCompanyQuality}=await import('../lib/company-quality');
+  assert.equal(admitWithCurrentEmployerEvidence(evaluateCompanyQuality({name:'Example',title:posting.title,applyUrl:posting.applyUrl},posting.rawText,[]),evidence.matches(posting)).status,'approved');
+  const result=await loadEmployerRecovery([seed],{},now,(async()=>{throw new Error('duplicate request')}) as typeof fetch,5,{workdayPostings:[posting],workdayChecks:checks});
+  assert.equal(result.requests,0);assert.equal(result.reusedCurrentPostings,1);assert.equal(result.candidates.length,1);
+  assert.equal(recoveryEvidenceAt(result.candidates[0]),now.toISOString());
+  assert.ok(!JSON.stringify(result.state).includes('Employer description must not persist'));
+});
+
+test('unknown or terminal Workday observations cannot create or retain recovery trust', async () => {
+  const candidate=parseRecoveryPosting(seed,payload,now)!;
+  for (const status of ['unknown','closed','ineligible'] as const) {
+    assert.equal(currentWorkdayEvidence([candidate],[{url:seed.url,status}]).matches(candidate),false);
+  }
+  const saved={[opportunityIdentity(seed.url)!]:{status:'live' as const,checkedAt:now.toISOString(),candidate}};
+  const result=await loadEmployerRecovery([seed],saved,now,(async()=>{throw new Error('unexpected request')}) as typeof fetch,0,{workdayPostings:[candidate],workdayChecks:[{url:seed.url,status:'live'},{url:seed.url,status:'closed'}]});
+  assert.equal(result.candidates.length,0);
+  assert.equal(result.state[opportunityIdentity(seed.url)!].status,'unknown');
+});
+
+test('legacy recovery migration binds positives to their exact site and preserves host denial cooldowns', async () => {
+  const candidate=parseRecoveryPosting(seed,payload,now)!;
+  const saved={[jobIdentity(seed.url)!]:{status:'live' as const,checkedAt:now.toISOString(),candidate}};
+  const other={...seed,url:seed.url.replace('/Careers/','/Internal/')};
+  const result=await loadEmployerRecovery([seed,other],saved,now,fetch,0);
+  assert.equal(result.candidates.length,1);
+  assert.equal(result.state[opportunityIdentity(other.url)!],undefined);
+  assert.equal(result.state[opportunityIdentity(seed.url)!].checkedAt,now.toISOString());
+  let requests=0;
+  const denied=await loadEmployerRecovery([seed,other],{[jobIdentity(seed.url)!]:{status:'unknown',checkedAt:now.toISOString(),accessDenied:true}},now,(async()=>{requests++;return Response.json(payload)}) as typeof fetch,5);
+  assert.equal(requests,0);assert.equal(denied.candidates.length,0);assert.equal(denied.pausedHosts,1);
+});
