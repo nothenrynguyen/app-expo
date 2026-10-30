@@ -395,7 +395,7 @@ async function main() {
   try { assertCoverageSafe(coverage.collections); }
   catch (error) {
     await mkdir(path.join(root, ".cache"), { recursive: true });
-    await writeFile(path.join(root, ".cache/refresh-blocked.json"), `${JSON.stringify({ coverage, listingChanges }, null, 2)}\n`);
+    await writeFile(path.join(root, ".cache/refresh-blocked.json"), `${JSON.stringify({ coverage, listingChanges, refreshDiagnostics: { sources: sourceDiagnostics, boards: boardRegistry } }, null, 2)}\n`);
     throw error;
   }
 

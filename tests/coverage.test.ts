@@ -79,6 +79,10 @@ test("report evidence distinguishes posting failures, healthy board omissions an
   const failed = changesFor({ evidenceFor: evidence({ sourceDiagnostics: [{ name: "Feed", kind: "markdown", status: "failed", outcome: "cooldown", rows: 0, requestCount: 0, durationMs: 0 }] }) });
   assert.equal(failed.categoryCounts["source-unavailable"], 1);
   assert.equal(failed.removedOpportunities[0].requiresInvestigation, true);
+  const recovery = changesFor({ previous: [{ ...priorJob, sources: ["Employer recovery"] }], evidenceFor: evidence({ sourceDiagnostics: [{ name: "Original employer link recovery", kind: "employer_recovery", status: "ok", outcome: "partial", rows: 10, requestCount: 2, durationMs: 1 }] }) });
+  assert.equal(recovery.categoryCounts["source-unavailable"], 1);
+  assert.equal(recovery.removedOpportunities[0].evidence!.sources[0].diagnosticName, "Original employer link recovery");
+  assert.equal(recovery.removedOpportunities[0].evidence!.sources[0].outcome, "partial");
   assert.equal(changesFor({ previous: [job], evidenceFor: evidence({ retired: new Set([board.id]) }) }).categoryCounts["confirmed-closed"], 0);
 });
 

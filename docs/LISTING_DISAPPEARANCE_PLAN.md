@@ -30,3 +30,21 @@ The [frozen reconciliation replay](listing-report-frozen-result.json) confirms t
 Test representative URL replacements, explicit closures, policy exclusions, source failures and uncertain omissions. Require consistent opportunity totals and useful evidence for unresolved cases. Then inspect one real refresh without treating that single run as the feature itself.
 
 Expected effort: roughly one focused development day, subject to the unresolved cases found. The result should reduce manual refresh investigations and misleading closure claims, while providing an interview-defensible example of handling uncertain external data. This improves diagnosis; it does not promise that all missing listings will be recovered.
+
+## How to use the report
+
+1. Open the completed refresh's Actions summary. Check the opening equation separately from the published-row change. URL replacements are retained openings, not disappearances.
+2. For investigation cases, open `data/listing-changes.json` at that run's generated snapshot commit. `removedOpportunities` contains one record per exact opportunity, its prior aliases, diagnosis, supporting evidence and next action.
+3. For pending verification, inspect `evidence.screening` and its recorded detail. For outages, inspect the exact `evidence.board` and `evidence.sources`, then the existing health report/cooldown schedule. A missing diagnostic is explicitly `not-checked`, not healthy.
+4. For unresolved or conflicting checks, compare candidate presence, recorded decisions and posting-specific evidence. Do not infer closure from board absence, a retired endpoint, an inactive source input or a stale cache. Do not restore a listing without admission evidence.
+5. To compare recorded snapshots locally, run `npx tsx scripts/audit-refresh-changes.ts BEFORE_REF AFTER_REF`. It writes `.cache/refresh-audit/comparison.json`. Recorded diagnoses are attached only to matching snapshot timestamps; arbitrary historical comparisons retain explicit inference labels.
+
+The reconciliation uses existing opportunity identity, not a new heuristic employer/title match. Cross-provider duplicates and unrecognized Workday URL forms can still need review. A clean refresh with zero removals validates integration, but does not exercise every diagnosis; controlled tests cover those branches.
+
+## First production observation
+
+Implementation `9a2c6da` deployed successfully. [Run 41027805416](https://github.com/nothenrynguyen/app-expo/actions/runs/41027805416) passed clean install/all 165 tests and exercised the new report, then correctly stopped at the existing coverage guard: 57 unexplained full-time removals exceeded its limit. Publication was skipped, preserving the prior snapshot. Proposed totals reconciled as 6,781 + 30 added - 297 removed = 6,514. Diagnoses: zero confirmed closed, 17 scope exclusions, 181 pending verification, one unreliable source and 98 unresolved. This was a blocked proposal, not a published inventory change.
+
+The saved artifact showed all 98 unresolved cases attributed to `Employer recovery`; 180 of the 181 pending opportunities carried an employer-verification detail (the remaining case carried destination-verification detail). These observations narrow investigation but do not establish closures or a complete upstream root cause. No jobs were restored and no guard was bypassed.
+
+The real run also exposed a reporting-name mismatch: recovery listings use `Employer recovery`, while health uses `Original employer link recovery`. The evidence adapter now joins this known lane by its `employer_recovery` kind, with a regression assertion. Subsequent blocked artifacts also retain the source/board diagnostic records alongside the change report so collection failures remain inspectable after the seven-day Actions artifact expires if archived. Final release verification follows below.
