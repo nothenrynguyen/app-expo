@@ -1,6 +1,7 @@
 import { normalizeCompanyName } from "./company-quality";
 import { normalizeJobLocation } from "./job-locations";
 import type { PostedAtSource, PublicJob } from "./jobs";
+import { workdayOpportunityIdentity } from "./workday-identity";
 
 const AGGREGATOR_HOSTS = new Set([
   "applyguy.ai",
@@ -58,6 +59,9 @@ export function workdayRequisitionIdentity(value: string): string | null {
 
 function mergeJobs(preferred: PublicJob, other: PublicJob): PublicJob {
   const result = { ...preferred, sources: [...new Set([...preferred.sources, ...other.sources])] };
+  if (workdayOpportunityIdentity(preferred.applyUrl)) {
+    result.previousIds = [...new Set([...(preferred.previousIds ?? []), other.id, ...(other.previousIds ?? [])])].filter(id => id !== preferred.id);
+  }
   if (DATE_PRECISION[other.postedAtSource] > DATE_PRECISION[result.postedAtSource]) {
     result.postedAt = other.postedAt;
     result.postedAtSource = other.postedAtSource;
@@ -71,14 +75,21 @@ function mergeJobs(preferred: PublicJob, other: PublicJob): PublicJob {
 export function deduplicateCrossSourceJobs(jobs: PublicJob[]): PublicJob[] {
   const results: PublicJob[] = [];
   const bySemanticIdentity = new Map<string, number[]>();
+  const byWorkdayOpportunity = new Map<string, number>();
 
   for (const job of jobs) {
     const key = semanticJobIdentity(job);
+    const opportunity = workdayOpportunityIdentity(job.applyUrl);
+    const exactIndex = opportunity ? byWorkdayOpportunity.get(opportunity) : undefined;
+    if (exactIndex !== undefined) {
+      results[exactIndex] = mergeJobs(results[exactIndex], job);
+      continue;
+    }
     const possibleMatches = bySemanticIdentity.get(key) ?? [];
     const matchIndex = possibleMatches.find((index) => {
       const existing = results[index];
-      const requisition = workdayRequisitionIdentity(job.applyUrl);
-      if (requisition && requisition === workdayRequisitionIdentity(existing.applyUrl)) return true;
+      const existingOpportunity = workdayOpportunityIdentity(existing.applyUrl);
+      if (opportunity && existingOpportunity) return opportunity === existingOpportunity;
       const sharesSource = existing.sources.some((source) => job.sources.includes(source));
       return !sharesSource && (isAggregatorJobUrl(existing.applyUrl) || isAggregatorJobUrl(job.applyUrl));
     });
@@ -86,6 +97,7 @@ export function deduplicateCrossSourceJobs(jobs: PublicJob[]): PublicJob[] {
     if (matchIndex === undefined) {
       const index = results.push(job) - 1;
       bySemanticIdentity.set(key, [...possibleMatches, index]);
+      if (opportunity) byWorkdayOpportunity.set(opportunity, index);
       continue;
     }
 
@@ -93,6 +105,7 @@ export function deduplicateCrossSourceJobs(jobs: PublicJob[]): PublicJob[] {
     const preferred = isAggregatorJobUrl(existing.applyUrl) && !isAggregatorJobUrl(job.applyUrl) ? job : existing;
     const other = preferred === existing ? job : existing;
     results[matchIndex] = mergeJobs(preferred, other);
+    if (opportunity) byWorkdayOpportunity.set(opportunity, matchIndex);
   }
 
   return results;

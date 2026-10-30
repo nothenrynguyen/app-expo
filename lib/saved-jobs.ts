@@ -1,3 +1,4 @@
+import { canonicalJobId } from "./job-id-aliases";
 export const SAVED_JOBS_STORAGE_KEY = "app-expo:saved-job-ids:v1";
 export const EMPTY_SAVED_JOB_IDS: readonly string[] = [];
 
@@ -8,7 +9,7 @@ export function parseSavedJobIds(raw: string | null): readonly string[] {
     const parsed: unknown = JSON.parse(raw);
     if (!Array.isArray(parsed)) return EMPTY_SAVED_JOB_IDS;
 
-    return [...new Set(parsed.filter((value): value is string => typeof value === "string"))];
+    return [...new Set(parsed.filter((value): value is string => typeof value === "string").map(canonicalJobId))];
   } catch {
     return EMPTY_SAVED_JOB_IDS;
   }

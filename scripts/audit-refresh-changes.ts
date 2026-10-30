@@ -1,6 +1,6 @@
 import { execFileSync } from "node:child_process";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { jobIdentity } from "../lib/source-normalization";
+import { jobIdentity, opportunityIdentity } from "../lib/source-normalization";
 import { semanticJobIdentity } from "../lib/job-dedup";
 import { discoverAtsBoard } from "../lib/ats-boards";
 import { getFreshnessRejection } from "../lib/job-freshness";
@@ -21,10 +21,10 @@ const changes = await readAfter("data/listing-changes.json").catch(() => null);
 const recorded = changes?.previousGeneratedAt === before.generatedAt && changes?.generatedAt === after.generatedAt
   ? new Map((changes.removed as {applyUrl:string;reason:string}[]).map(row=>[jobIdentity(row.applyUrl),row.reason])) : new Map<string,string>();
 const quarantineById = new Map((quarantine.jobs as {applyUrl:string;reason:string}[]).map(r => [jobIdentity(r.applyUrl),r]));
-const ids = new Set(after.jobs.map(j => jobIdentity(j.applyUrl)));
+const ids = new Set(after.jobs.map(j => opportunityIdentity(j.applyUrl)));
 const groups = Map.groupBy(after.jobs, semanticJobIdentity);
 const reasons: Record<string, number> = {};
-const removed = before.jobs.filter(j => !ids.has(jobIdentity(j.applyUrl))).map(job => {
+const removed = before.jobs.filter(j => !ids.has(opportunityIdentity(j.applyUrl))).map(job => {
   const board = discoverAtsBoard(job.applyUrl, job.company, "audit");
   const diagnostic = board && report.boards.records.find((r: {provider: string; key: string}) => r.provider === board.provider && r.key.toLowerCase() === board.key.toLowerCase());
   const q = quarantineById.get(jobIdentity(job.applyUrl));
@@ -33,9 +33,9 @@ const removed = before.jobs.filter(j => !ids.has(jobIdentity(j.applyUrl))).map(j
   reasons[reason] = (reasons[reason] ?? 0) + 1;
   return { company: job.company, title: job.title, applyUrl: job.applyUrl, reason, evidence:recordedReason ? "recorded-refresh-decision" : "snapshot-inference", boardStatus: diagnostic?.status, sources: job.sources };
 });
-const priorIds = new Set(before.jobs.map(j => jobIdentity(j.applyUrl)));
+const priorIds = new Set(before.jobs.map(j => opportunityIdentity(j.applyUrl)));
 const duplicateGroups = [...groups.values()].filter(g => g.length > 1).map(g => g.map(j => ({ id:j.id, company:j.company,title:j.title,location:j.location,applyUrl:j.applyUrl,sources:j.sources })));
-const result = { beforeRef, beforeGeneratedAt: before.generatedAt, afterGeneratedAt:after.generatedAt, before:before.jobs.length, after:after.jobs.length, removed:removed.length, added:after.jobs.filter(j=>!priorIds.has(jobIdentity(j.applyUrl))).length, reasons, missing:removed, duplicateGroups };
+const result = { beforeRef, beforeGeneratedAt: before.generatedAt, afterGeneratedAt:after.generatedAt, before:before.jobs.length, after:after.jobs.length, removed:removed.length, added:after.jobs.filter(j=>!priorIds.has(opportunityIdentity(j.applyUrl))).length, reasons, missing:removed, duplicateGroups };
 await mkdir(".cache/refresh-audit", {recursive:true});
 await writeFile(".cache/refresh-audit/comparison.json", JSON.stringify(result,null,2)+"\n");
 console.log(JSON.stringify({...result,missing:undefined,duplicateGroups:duplicateGroups.length},null,2));

@@ -1,4 +1,5 @@
 "use client";
+import { JOB_ID_ALIASES_EVENT, jobIdAliasesVersion } from "@/lib/job-id-aliases";
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 import type { PublicJob } from "@/lib/jobs";
@@ -6,20 +7,22 @@ import { parseSavedJobIds, SAVED_JOBS_STORAGE_KEY } from "@/lib/saved-jobs";
 import { EMPTY_SAVED_DETAILS, parseSavedJobDetails, retainSavedDetails, SAVED_DETAILS_KEY, type SavedJobDetails } from "@/lib/saved-job-details";
 
 const EVENT = "app-expo:saved-details-change";
+let cachedAliasVersion = -1;
 let cachedRaw: string | null | undefined;
 let cachedDetails = EMPTY_SAVED_DETAILS;
 function read() {
   try {
     const raw = window.localStorage.getItem(SAVED_DETAILS_KEY);
-    if (raw !== cachedRaw) { cachedRaw = raw; cachedDetails = parseSavedJobDetails(raw); }
+    if (raw !== cachedRaw || cachedAliasVersion !== jobIdAliasesVersion()) { cachedRaw = raw; cachedAliasVersion = jobIdAliasesVersion(); cachedDetails = parseSavedJobDetails(raw); }
     return cachedDetails;
   } catch { return EMPTY_SAVED_DETAILS; }
 }
 function subscribe(listener: () => void) {
   const storage = (event: StorageEvent) => { if (event.key === SAVED_DETAILS_KEY || event.key === null) listener(); };
+  window.addEventListener(JOB_ID_ALIASES_EVENT, listener);
   window.addEventListener("storage", storage);
   window.addEventListener(EVENT, listener);
-  return () => { window.removeEventListener("storage", storage); window.removeEventListener(EVENT, listener); };
+  return () => { window.removeEventListener(JOB_ID_ALIASES_EVENT, listener); window.removeEventListener("storage", storage); window.removeEventListener(EVENT, listener); };
 }
 export function useSavedJobDetails(ids: ReadonlySet<string>, jobs: readonly PublicJob[], collection: SavedJobDetails["collection"], ready: boolean) {
   const details = useSyncExternalStore(subscribe, read, () => EMPTY_SAVED_DETAILS);

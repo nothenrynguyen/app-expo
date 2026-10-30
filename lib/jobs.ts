@@ -2,6 +2,7 @@ export type PostedAtSource = "exact" | "date_only" | "relative_derived" | "first
 
 export type PublicJob = {
   id: string;
+  previousIds?: string[];
   company: string;
   title: string;
   term: string;

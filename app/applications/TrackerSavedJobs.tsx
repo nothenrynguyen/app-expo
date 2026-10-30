@@ -1,4 +1,5 @@
 "use client";
+import { announceJobIdAliases, resolveSnapshotJobIds } from "@/lib/job-id-aliases";
 import { useEffect, useState } from "react";
 import { trackActivity } from "@/lib/activity-client";
 import Link from "next/link";
@@ -28,7 +29,7 @@ export function TrackerSavedJobs() {
       const response = await fetch(`/${collection}.json`, { signal: controller.signal });
       if (!response.ok) throw new Error("Could not load listings");
       return (await response.json() as JobsSnapshot).jobs;
-    })).then((lists) => { setJobs(lists.flat()); setLoaded(true); setFailed(false); }).catch(() => { if (!controller.signal.aborted) setFailed(true); });
+    })).then((lists) => { announceJobIdAliases(lists.flat()); setJobs(resolveSnapshotJobIds(lists.flat())); setLoaded(true); setFailed(false); }).catch(() => { if (!controller.signal.aborted) setFailed(true); });
     return () => controller.abort();
   }, [hasSaved]);
   const current = new Map(jobs.map((job) => [job.id, job]));

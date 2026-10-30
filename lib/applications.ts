@@ -1,3 +1,4 @@
+import { canonicalJobId } from "./job-id-aliases";
 import { isApplicationStatus, type ApplicationStatus } from "./application-status";
 import type { SavedJobDetails } from "./saved-job-details";
 
@@ -29,7 +30,7 @@ export function parseApplications(raw: string | null): readonly Application[] {
       const { id, company, title, location, url, status, appliedOn, notes, origin, jobId } = item;
       if (location !== undefined && (typeof location !== "string" || location.length > 500)) continue;
       if (typeof id !== "string" || !id || id.length > 506 || typeof company !== "string" || !company.trim() || company.length > 1000 || typeof title !== "string" || title.length > 2000 || typeof url !== "string" || url.length > 2000 || safeApplicationUrl(url) === null || !isApplicationStatus(status) || typeof appliedOn !== "string" || !validApplicationDate(appliedOn) || typeof notes !== "string" || notes.length > 5000 || (origin !== "manual" && origin !== "app-expo")) continue;
-      records.set(id, { id, company, title, ...(location !== undefined ? { location } : {}), url: safeApplicationUrl(url)!, status, appliedOn, notes, origin, ...(origin === "app-expo" && typeof jobId === "string" ? { jobId } : {}) });
+      records.set(id, { id, company, title, ...(location !== undefined ? { location } : {}), url: safeApplicationUrl(url)!, status, appliedOn, notes, origin, ...(origin === "app-expo" && typeof jobId === "string" ? { jobId: canonicalJobId(jobId) } : {}) });
     }
     return [...records.values()];
   } catch { return EMPTY_APPLICATIONS; }

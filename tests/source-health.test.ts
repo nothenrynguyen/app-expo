@@ -59,6 +59,24 @@ test("collector persists a rate limit and makes zero board requests during the n
     assert.equal(second.sourceDiagnostics.find(record => record.kind === "workday")!.requestCount, 0);
     assert.equal(second.boardRegistry[0].status, "failed");
     assert.deepEqual(second.workdaySchedule, first.workdaySchedule);
+    // Persisted expiry must cause a real collector attempt, then reset the
+    // streak on usable success. This uses only the injected provider fixture.
+    const expired = JSON.parse(JSON.stringify(second.workdaySchedule));
+    expired["example.wd1.myworkdayjobs.com"].nextAttemptAt = new Date(Date.now() - 1).toISOString();
+    await writeFile(path.join(root, "data/workday-schedule.json"), JSON.stringify(expired));
+    globalThis.fetch = async () => { calls++; return Response.json({total: 0, jobPostings: []}); };
+    const third = await loadCandidates(root, []);
+    assert.ok(calls > 1);
+    assert.equal(third.sourceDiagnostics.find(record => record.kind === "workday")!.outcome, "healthy");
+    assert.ok(third.workdaySchedule);
+    assert.equal(third.workdaySchedule["example.wd1.myworkdayjobs.com"], undefined);
+    // A new failed attempt after expiry advances, rather than renewing a skip.
+    await writeFile(path.join(root, "data/workday-schedule.json"), JSON.stringify(expired));
+    globalThis.fetch = async () => { calls++; return new Response(null, {status: 429}); };
+    const fourth = await loadCandidates(root, []);
+    assert.ok(fourth.workdaySchedule);
+    assert.equal(fourth.workdaySchedule["example.wd1.myworkdayjobs.com"].failures, 2);
+    assert.ok(Date.parse(fourth.workdaySchedule["example.wd1.myworkdayjobs.com"].nextAttemptAt) > Date.now() + 3 * 3_600_000);
   } finally {globalThis.fetch = original; await rm(root, {recursive: true, force: true});}
 });
 

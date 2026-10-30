@@ -680,7 +680,7 @@ test("listing changes distinguish deduplication, screening, board outages and up
   assert.equal(report.added,0);
 });
 
-test("Workday duplicate career-site URLs merge only matching requisitions and semantic fields", () => {
+test("Workday aliases merge within an exact career site while other sites and requisitions stay separate", () => {
   const base = { company: "Autodesk", title: "Software Engineer Intern", term: "Summer 2027", location: "Birmingham, UK", regions: ["uk" as const], workMode: "unknown" as const, postedAt: "2026-10-19T00:00:00Z", postedAtSource: "exact" as const, linkedInUrl: null, category: "Internship", salary: null, verifiedCompany: true, sources: ["Same feed"] };
   const url = "https://autodesk.wd1.myworkdayjobs.com/uni/job/Birmingham/Intern_26WD101472";
   const result = deduplicateCrossSourceJobs([
@@ -692,6 +692,8 @@ test("Workday duplicate career-site URLs merge only matching requisitions and se
   ]);
   assert.equal(result.length, 4);
   assert.equal(result[0].id, "original");
+  assert.ok(result.some(job => job.id === "alias"));
+  assert.ok(!result.some(job => job.id === "different-location"));
   const insulet = "https://insulet.wd5.myworkdayjobs.com/site/job/Acton/Role_REQ-2026-18618";
   const yearlyIds = deduplicateCrossSourceJobs([
     { ...base, id: "first", applyUrl: insulet },

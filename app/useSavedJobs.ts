@@ -1,4 +1,5 @@
 "use client";
+import { JOB_ID_ALIASES_EVENT, jobIdAliasesVersion } from "@/lib/job-id-aliases";
 
 import { useMemo, useState, useSyncExternalStore } from "react";
 import { EMPTY_SAVED_JOB_IDS, parseSavedJobIds, SAVED_JOBS_STORAGE_KEY, toggleSavedJobId } from "@/lib/saved-jobs";
@@ -6,6 +7,7 @@ import { trackActivity } from "@/lib/activity-client";
 
 const CHANGE_EVENT = "app-expo:saved-jobs-change";
 
+let cachedAliasVersion = -1;
 let cachedRaw: string | null | undefined;
 let cachedIds: readonly string[] = EMPTY_SAVED_JOB_IDS;
 
@@ -19,8 +21,9 @@ function readSavedJobIds(): readonly string[] {
     return EMPTY_SAVED_JOB_IDS;
   }
 
-  if (raw === cachedRaw) return cachedIds;
+  if (raw === cachedRaw && cachedAliasVersion === jobIdAliasesVersion()) return cachedIds;
   cachedRaw = raw;
+  cachedAliasVersion = jobIdAliasesVersion();
   cachedIds = parseSavedJobIds(raw);
   return cachedIds;
 }
@@ -29,10 +32,11 @@ function subscribe(onChange: () => void) {
   const handleStorage = (event: StorageEvent) => {
     if (event.key === SAVED_JOBS_STORAGE_KEY || event.key === null) onChange();
   };
+  window.addEventListener(JOB_ID_ALIASES_EVENT, onChange);
   window.addEventListener("storage", handleStorage);
   window.addEventListener(CHANGE_EVENT, onChange);
   return () => {
-    window.removeEventListener("storage", handleStorage);
+    window.removeEventListener(JOB_ID_ALIASES_EVENT, onChange); window.removeEventListener("storage", handleStorage);
     window.removeEventListener(CHANGE_EVENT, onChange);
   };
 }

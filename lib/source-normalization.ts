@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import type { PostedAtSource, PublicJob } from "./jobs";
+import { workdayOpportunityIdentity } from "./workday-identity";
 
 export type CandidateJob = Omit<PublicJob, "id" | "sources" | "verifiedCompany" | "linkedInUrl"> & {
   source: string;
@@ -50,6 +51,17 @@ export function jobIdentity(value: string): string | null {
 
 export function stableJobId(url: string, company: string, title: string): string {
   return createHash("sha256").update(`${url}|${company}|${title}`).digest("hex").slice(0, 24);
+}
+
+// Opportunity matching is separate from legacy URL-health cache keys. Do not
+// copy host-only cached trust into a different employer career site.
+export function opportunityIdentity(value: string): string | null {
+  const workday = workdayOpportunityIdentity(value);
+  if (workday) return workday;
+  const canonical = canonicalizeUrl(value);
+  // Unrecognized Workday requisitions stay URL-specific, never host-only.
+  if (canonical && /\.myworkdayjobs\.com$/i.test(new URL(canonical).hostname)) return canonical.toLowerCase();
+  return jobIdentity(value);
 }
 
 export function inferWorkMode(text: string): PublicJob["workMode"] {

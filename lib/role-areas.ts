@@ -112,6 +112,13 @@ function isStoreRetailRole(title: string, rawText = ""): boolean {
     || (/\b(?:sales|operations) associate\b/i.test(title) && /\b(?:retail|store floor|store team|in-store)\b/i.test(rawText));
 }
 
+function excludedOperationsDomain(title: string): boolean {
+  if (/\b(?:talent acquisition|recruiting|human resources?|people|legal|law)\b/i.test(title)) return true;
+  // Supply-chain and logistics work remain supported in clinical employers.
+  return /\b(?:clinical|laboratory|lab)\b/i.test(title)
+    && !/\bsupply chain\b|\bprocurement\b|\blogistics\b|\binventory\b|\bproduction planning\b|\bvendor management\b/i.test(title);
+}
+
 export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
   if (isStoreRetailRole(job.title, job.rawText)) return [];
   const title = job.title.toLowerCase();
@@ -139,8 +146,11 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
   add("data-science", /\bdata scien(?:ce|tist)\b|\bdecision scientist\b|\bmachine learning scientist\b|\b(?:ai|artificial intelligence|machine learning|deep learning) research(?:er)?\b|\bapplied scientist\b|\bstatistician\b/);
   add("data-engineering", /\bdata engineer(?:ing)?\b|\banalytics engineer(?:ing)?\b|\bdata platform engineer(?:ing)?\b|\bdata infrastructure\b/);
   add("analytics", /\bdata analyst\b|\banalytics?\b|\bstrategy\s*(?:&|and)\s*analyt|\bbusiness intelligence\b|\bbi analyst\b/);
-  add("business-analyst", /\bbusiness (?:systems? )?analyst\b|\bstrategy analyst\b|\boperations analyst\b|\bprocess analyst\b|\bprogram analyst\b|\bmanagement analyst\b|\bconsulting analyst\b|\bsupply chain analyst\b|\bprocurement analyst\b|\bcommercial analyst\b|\bproject analyst\b|\bbusiness development analyst\b|\bmanagement consulting\b|\bbusiness operations\b|\bstrategy and operations\b/);
-  add("operations-supply-chain", /\boperations?\b|\bsupply chain\b|\bprocurement\b|\blogistics\b|\binventory\b|\bproduction planning\b|\bvendor management\b/);
+  add("business-analyst", /\bbusiness (?:systems? )?analyst\b|\bstrategy analyst\b|\bprocess analyst\b|\bprogram analyst\b|\bmanagement analyst\b|\bconsulting analyst\b|\bsupply chain analyst\b|\bprocurement analyst\b|\bcommercial analyst\b|\bproject analyst\b|\bbusiness development analyst\b|\bmanagement consulting\b|\bbusiness operations\b|\bstrategy and operations\b/);
+  if (!excludedOperationsDomain(title)) {
+    add("business-analyst", /\boperations analyst\b/);
+    add("operations-supply-chain", /\boperations?\b|\bsupply chain\b|\bprocurement\b|\blogistics\b|\binventory\b|\bproduction planning\b|\bvendor management\b/);
+  }
   add("marketing-sales", /\bmarketing\b|\bsales (?:intern|representative|development|operations|analyst|associate)\b|\baccount executive\b|\bcustomer success\b|\bcommunications? (?:intern|specialist|coordinator|associate)\b|\bpublic relations\b/);
   add("design", /\bux\b|\bui\b|\buser experience\b|\bproduct design(?:er| internship)?\b|\bgraphic design(?:er)?\b|\bindustrial design(?:er)?\b|\bvisual design(?:er)?\b/);
   add("finance", /\bfinance\b|\bfinancial\b|\baccount(?:ant|ing)\b|\binvestment\b|\bbanking\b|\btreasury\b|\baudit(?:or|ing)?\b|\btax\b|\bcontroller\b|\bfp&a\b|\bprivate equity\b|\bwealth management\b|\basset management\b|\bcapital markets\b|\bactuari(?:al|y)\b|\bunderwrit(?:er|ing)\b|\bcredit (?:analyst|risk|services)\b|\bmarket risk\b|\brisk (?:analyst|management|advisory|intern)\b|\bloan review\b|\bvaluation\b|\bcommercial banking\b|\bcorporate banking\b/);
@@ -174,6 +184,8 @@ export function getJobRoleTags(job: RoleCandidate): RoleTag[] {
   if (isStoreRetailRole(job.title, job.rawText)) return [];
   const stored = (job.roleTags ?? []).filter((tag): tag is RoleTag => isRoleTag(tag));
   const tags = new Set([...stored, ...classifyRoleTags(job)]);
+  // Old snapshots and last-known-good rows must obey the same scope boundary.
+  if (excludedOperationsDomain(job.title)) tags.delete("operations-supply-chain");
   if (/\b(?:software|analytics?)\b/i.test(job.title)) tags.delete("materials-chemical");
   if (/\bsoftware\b/i.test(job.title)) tags.delete("quality-reliability");
   return ROLE_TAGS.map((role) => role.value).filter((tag) => tags.has(tag));

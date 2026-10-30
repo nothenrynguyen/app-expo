@@ -1,3 +1,5 @@
+import { preserveWorkdayJobIds, collectJobIdAliases } from "../lib/ingestion/preserve-job-ids";
+import publishedJobIdAliases from "../data/job-id-aliases.json";
 import { workdayEvidenceKey, workdayRecoveryPolicy, recentWorkdayEvidence, updateWorkdayContinuity, type WorkdayContinuity } from "../lib/ingestion/workday-continuity";
 import { reviewedFederalCoverage } from "../lib/ingestion/usajobs";
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
@@ -32,7 +34,7 @@ import type { JobsSnapshot, PublicJob } from "../lib/jobs";
 import { isListingUnavailable, needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
 import { classifyRoleTags, getJobRoleTags } from "../lib/role-areas";
 import type { SourceCatalog } from "../lib/source-catalog";
-import { canonicalizeUrl, jobIdentity, normalizeDisplayText, stableJobId } from "../lib/source-normalization";
+import { canonicalizeUrl, jobIdentity, opportunityIdentity, normalizeDisplayText, stableJobId } from "../lib/source-normalization";
 
 async function main() {
   const startedAt = new Date();
@@ -45,7 +47,7 @@ async function main() {
   const trustedCuratedSources = new Set(activeSources.filter((source) => source.trustedCoverage).map((source) => source.name));
   const output = path.join(root, "public/jobs.json");
   const previous = await readFile(output, "utf8").then((value) => JSON.parse(value) as JobsSnapshot).catch(() => null);
-  const previousByUrl = new Map(previous?.jobs.map((job) => [jobIdentity(job.applyUrl), job]) ?? []);
+  const previousByUrl = new Map(previous?.jobs.map((job) => [opportunityIdentity(job.applyUrl), job]) ?? []);
   const registry = JSON.parse(await readFile(path.join(root, "data/verified-companies.json"), "utf8")) as VerifiedCompany[];
   const trustRegistry = JSON.parse(await readFile(path.join(root, "data/company-trust.json"), "utf8")) as CompanyTrustEntry[];
   const listingHealthPath = path.join(root, "data/listing-health.json");
@@ -266,7 +268,8 @@ async function main() {
       rejectedCount += 1;
       continue;
     }
-    const existing = merged.get(identity);
+    const mergeIdentity = opportunityIdentity(candidate.applyUrl)!;
+    const existing = merged.get(mergeIdentity);
     if (existing) {
       if (candidate.federal) existing.federal = candidate.federal;
       if (!existing.sources.includes(candidate.source)) existing.sources.push(candidate.source);
@@ -278,10 +281,10 @@ async function main() {
       }
       continue;
     }
-    const prior = previousByUrl.get(identity);
+    const prior = previousByUrl.get(mergeIdentity);
     const precision = { first_seen: 0, relative_derived: 1, date_only: 2, exact: 3 } as const;
     const keepPriorDate = prior && precision[prior.postedAtSource] >= precision[candidate.postedAtSource];
-    merged.set(identity, {
+    merged.set(mergeIdentity, {
       id: stableJobId(identity, candidate.company, candidate.title),
       company: normalizeDisplayText(displayCompany),
       title: normalizeDisplayText(candidate.title),
@@ -340,7 +343,7 @@ async function main() {
     });
   }
 
-  const jobs = deduplicateCrossSourceJobs([...merged.values()])
+  const jobs = preserveWorkdayJobIds(deduplicateCrossSourceJobs([...merged.values()]), previous?.jobs ?? [])
     .map((job) => ({ ...job, roleTags: getJobRoleTags(job) }))
     .sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime());
   if (jobs.length < 10) throw new Error(`Refusing to publish anomalous snapshot with only ${jobs.length} approved jobs.`);
@@ -363,7 +366,7 @@ async function main() {
     outcomeFor: url => {
       const outcome = screening.outcomeFor(url);
       if (outcome) return outcome;
-      const prior = previousByUrl.get(jobIdentity(url));
+      const prior = previousByUrl.get(opportunityIdentity(url));
       if (prior?.sources.some(source => permissionHeldSources.has(source))) return "source-permission";
       return listingHealth[jobIdentity(url) ?? ""]?.status === "unavailable" ? "application-unavailable" : undefined;
     },
@@ -391,6 +394,9 @@ async function main() {
     if (!currentIdentities.has(identity) && age > 30 * 86_400_000) delete listingHealth[identity];
   }
   await mkdir(path.join(root, "data"), { recursive: true });
+  // Public IDs only. Keep compatibility when an opening later leaves the feed.
+  const jobIdAliases = collectJobIdAliases(jobs, publishedJobIdAliases);
+  await writeFile(path.join(root, "data/job-id-aliases.json"), `${JSON.stringify(jobIdAliases, null, 2)}\n`);
   if (workdaySchedule) await writeFile(path.join(root, "data/workday-schedule.json"), `${JSON.stringify(workdaySchedule, null, 2)}\n`);
   await writeFile(path.join(root, "data/workday-continuity.json"), `${JSON.stringify(updateWorkdayContinuity(workdayCache, workdayChecks, jobs, startedAt), null, 2)}\n`);
   if (recoveryState && Object.keys(recoveryState).length) await writeFile(path.join(root, "data/employer-recovery-state.json"), `${JSON.stringify(recoveryState, null, 2)}\n`);

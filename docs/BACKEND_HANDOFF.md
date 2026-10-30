@@ -1,5 +1,7 @@
 # Backend milestone handoff
 
+Status clarification, October 29, 2026: the owned-analytics proposal and next-chat prompt below are historical and must not be treated as current implementation instructions. Owned analytics, its Cloudflare Worker/D1 and private dashboard are now deployed; visitor application records remain browser-local and optional accounts are deferred. Current contracts are in OWNED_ANALYTICS.md and the implementation. See [project review](PROJECT_REVIEW_2026-10-29.md) and ACTIVE_TASKS.md for current priorities and verification gaps. This audit does not authorize a Go/GraphQL backend or a release.
+
 The frontend milestone is complete. Saved jobs support explicit statuses, filtering and retained details for missing listings. My applications supports manual records from any source, dates, notes, editing, saved-job import, and private JSON backup/recovery with preview and duplicate handling. All records remain in the current browser profile on this site origin. Backup files contain plaintext notes and links and must be kept private. They do not include board saves or analytics preferences. See APPLICATION_TRACKER.md for limits.
 
 Static export and account-free browsing remain intact. Existing opt-in Vercel Hobby page views remain active when the owner enables the production switch and a visitor consents. The applications route is excluded. No backend, database, authentication or owned analytics intake exists yet.

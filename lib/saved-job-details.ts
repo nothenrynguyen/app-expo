@@ -1,3 +1,4 @@
+import { canonicalJobId } from "./job-id-aliases";
 import type { PublicJob } from "./jobs";
 
 export const SAVED_DETAILS_KEY = "app-expo:saved-job-details:v1";
@@ -13,7 +14,8 @@ export function parseSavedJobDetails(raw: string | null): readonly SavedJobDetai
       if (!item || typeof item !== "object") continue;
       const { id, company, title, collection } = item;
       if (typeof id !== "string" || !id || id.length > 500 || typeof company !== "string" || company.length > 1000 || typeof title !== "string" || title.length > 2000 || (collection !== "internships" && collection !== "fulltime")) continue;
-      unique.set(id, { id, company, title, collection });
+      const canonical = canonicalJobId(id);
+      if (!unique.has(canonical) || id === canonical) unique.set(canonical, { id: canonical, company, title, collection });
     }
     return [...unique.values()];
   } catch { return EMPTY_SAVED_DETAILS; }

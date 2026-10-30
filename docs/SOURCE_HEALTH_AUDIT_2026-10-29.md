@@ -1,5 +1,7 @@
 # Source health audit, October 29
 
+October 30 follow-up: normal hourly runs now verify post-expiry behavior. Elkay retried and increased bounded backoff after another HTTP 500; all ten original rate-limited hosts retried successfully and cleared their schedules in the 8:17 p.m. Pacific run on October 29. Later failures recur, so this does not establish permanent provider health. See [approved audit follow-up](APPROVED_FIXES_2026-10-29.md#production-cooldown-observation) and its [machine-readable receipt](approved-fixes-cooldown-result-2026-10-29.json). This observation did not deploy the separate local identity/scope/dependency fixes.
+
 Initial read-only ingestion audit. Evidence: checked-in snapshot `cc1a95c`, generated `2026-10-29T14:24:31.386Z`, and matching `data/refresh-report.json`. The initial live retrieval attempts used the wrong domain. The implementation follow-up below uses the verified production domain, `https://empluzzed.fyi`.
 
 ## Where 79 came from

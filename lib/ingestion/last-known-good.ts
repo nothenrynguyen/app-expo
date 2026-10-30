@@ -1,5 +1,5 @@
 import type { PublicJob } from "../jobs";
-import { jobIdentity } from "../source-normalization";
+import { jobIdentity, opportunityIdentity } from "../source-normalization";
 import { getJobLocationMetadata } from "../job-location-policy";
 import { createAtsBoard, discoverAtsBoard, type AtsBoardResult } from "../ats-boards";
 import type { BoardRefreshDiagnostic } from "./types";
@@ -39,7 +39,7 @@ export function preserveLastKnownGoodJobs(
   for (const prior of previous) {
     // Federal announcements require a fresh official-page check each run.
     if (prior.federal || /(?:^|\.)usajobs\.gov\//i.test(prior.applyUrl.replace(/^https?:\/\//, ""))) continue;
-    const identity = jobIdentity(prior.applyUrl);
+    const identity = opportunityIdentity(prior.applyUrl);
     if (!identity || current.has(identity) || isClosed(prior)) continue;
     const job = prepare(prior);
     if (!job || !getJobLocationMetadata(job).eligible) continue;

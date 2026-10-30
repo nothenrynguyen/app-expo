@@ -1,15 +1,17 @@
 "use client";
+import { JOB_ID_ALIASES_EVENT, jobIdAliasesVersion } from "@/lib/job-id-aliases";
 
 import { useSyncExternalStore } from "react";
 import { APPLICATION_STATUS_KEY, EMPTY_STATUSES, parseApplicationStatuses, type ApplicationStatus } from "@/lib/application-status";
 
 const CHANGE_EVENT = "app-expo:application-status-change";
+let cachedAliasVersion = -1;
 let cachedRaw: string | null | undefined;
 let cachedStatuses = EMPTY_STATUSES;
 function read() {
   try {
     const raw = window.localStorage.getItem(APPLICATION_STATUS_KEY);
-    if (raw !== cachedRaw) { cachedRaw = raw; cachedStatuses = parseApplicationStatuses(raw); }
+    if (raw !== cachedRaw || cachedAliasVersion !== jobIdAliasesVersion()) { cachedRaw = raw; cachedAliasVersion = jobIdAliasesVersion(); cachedStatuses = parseApplicationStatuses(raw); }
     return cachedStatuses;
   } catch { return EMPTY_STATUSES; }
 }
@@ -17,9 +19,10 @@ function subscribe(listener: () => void) {
   const storage = (event: StorageEvent) => {
     if (event.key === APPLICATION_STATUS_KEY || event.key === null) listener();
   };
+  window.addEventListener(JOB_ID_ALIASES_EVENT, listener);
   window.addEventListener("storage", storage);
   window.addEventListener(CHANGE_EVENT, listener);
-  return () => { window.removeEventListener("storage", storage); window.removeEventListener(CHANGE_EVENT, listener); };
+  return () => { window.removeEventListener(JOB_ID_ALIASES_EVENT, listener); window.removeEventListener("storage", storage); window.removeEventListener(CHANGE_EVENT, listener); };
 }
 export function useApplicationStatuses() {
   const statuses = useSyncExternalStore(subscribe, read, () => EMPTY_STATUSES);

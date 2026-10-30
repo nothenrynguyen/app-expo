@@ -1,3 +1,4 @@
+import { announceJobIdAliases, resolveSnapshotJobIds } from "./job-id-aliases";
 import type { JobsSnapshot } from "./jobs";
 
 export const SNAPSHOT_POLL_MS = 5 * 60_000;
@@ -38,7 +39,8 @@ export function createSnapshotPoller({ type, onSnapshot, onInitialError, fetcher
       if (!Number.isFinite(timestamp) || !Array.isArray(snapshot.jobs)) throw new Error("Invalid job snapshot");
       if (!stopped && timestamp > currentTimestamp) {
         currentTimestamp = timestamp;
-        onSnapshot(snapshot);
+        announceJobIdAliases(snapshot.jobs);
+        onSnapshot({ ...snapshot, jobs: resolveSnapshotJobIds(snapshot.jobs) });
       }
     } catch {
       // Keep the last successfully loaded jobs during network/provider failures.
