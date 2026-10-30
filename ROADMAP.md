@@ -1,8 +1,8 @@
 # empluzzed Roadmap
 
-October 30 sync repair is owner-authorized and in progress. Reproduce recovery queue starvation, missing Workday posting evidence and lost retry state, then verify successful gated publication. No guard or evidence-expiry relaxation. See [repair record](docs/SYNC_RECOVERY_REPAIR_2026-10-30.md).
+October 30 sync repair is published and production-verified. Two consecutive workflows passed the unchanged coverage guard and all 171 tests; both deployed snapshots matched all four public JSON files. Latest snapshot `f70e90b`, generated 3:03 a.m. Pacific: 6,576 listings, zero new unexplained removals. Published-target prioritization, exact current Workday evidence and persistent retry state resolve the sync blockage. Provider cooldowns and verification holds remain operational limits. See [repair and release evidence](docs/SYNC_RECOVERY_REPAIR_2026-10-30.md#production-completion).
 
-October 30 refresh-report upgrade is implemented and published: version 2 adds reconciled opportunity counts, evidence-backed diagnoses, investigation actions and an Actions summary. All 165 tests, lint, types and export pass. Two real refreshes generated useful diagnostics but the existing guard blocked publication for 57 unexplained full-time removals; the last published 6,781-listing snapshot remains live. Prioritize investigation of the employer-recovery/verification losses before further features. See [release evidence and archived diagnostics](docs/LISTING_DISAPPEARANCE_PLAN.md#completion-and-operational-follow-up).
+October 30 refresh-report upgrade is implemented and published: version 2 adds reconciled opportunity counts, evidence-backed diagnoses, investigation actions and an Actions summary. All 165 tests, lint, types and export pass. At that stage, two real refreshes generated useful diagnostics but the existing guard blocked publication for 57 unexplained full-time removals, preserving the then-current 6,781-listing snapshot. The subsequent sync repair above resolved the publication blockage. See [release evidence and archived diagnostics](docs/LISTING_DISAPPEARANCE_PLAN.md#completion-and-operational-follow-up).
 
 October 30 location display published and production-verified: redundant US country labels are removed from specific non-remote board locations, including compact/card views. Remote and country-only labels remain. Tests, lint, types and static export pass; Vercel deployment succeeded for `767d815`. Live compact/card and remote-exception checks pass. See [change and release evidence](docs/LOCATION_DISPLAY_2026-10-30.md).
 
@@ -40,7 +40,7 @@ October 29 local copy audit: reviewed all 11 page routes and shared copy against
 
 ## Candidate next work
 
-- Completed October 30: permanent disappearance explanations and reconciled opening counts. Immediate follow-up is investigating the recovery/verification losses that blocked publication, using archived real-run evidence. See [release and operational follow-up](docs/LISTING_DISAPPEARANCE_PLAN.md#completion-and-operational-follow-up).
+- Completed October 30: permanent disappearance explanations and reconciled opening counts. The follow-up recovery repair is now complete; continue ordinary refresh observation and review remaining holds using current evidence. See [release and operational follow-up](docs/LISTING_DISAPPEARANCE_PLAN.md#completion-and-operational-follow-up).
 
 October 29 source-health audit: the checked-in 14:24 UTC snapshot reports 62/79 because the denominator mixes 19 community feeds, USAJOBS, 58 Workday boards and recovery. All 17 failed source records are Workday, including eight partial detail failures. Owner-approved reporting, persistent cooldowns and Old Mission migration cleanup are published and production-verified. See [source audit](docs/SOURCE_HEALTH_AUDIT_2026-10-29.md).
 

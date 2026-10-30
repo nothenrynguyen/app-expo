@@ -1,0 +1,292 @@
+{
+  "implementationCommit": "a07a54b44f25d42fc5bc783b2cbd6370b19b8a48",
+  "tests": 171,
+  "typesLintExportPassed": true,
+  "consecutiveSuccessfulProductionRefreshes": 2,
+  "coverageGuardRelaxed": false,
+  "evidenceExpiryHours": 24,
+  "recoveryRequestCap": 500,
+  "recoveryTimeBudgetSeconds": 120,
+  "refreshes": [
+    {
+      "verifiedAt": "2026-10-30T09:53:05.189433+00:00",
+      "implementationCommit": "a07a54b44f25d42fc5bc783b2cbd6370b19b8a48",
+      "workflowRunId": 41035629566,
+      "snapshotCommit": "274c02ce358cd9fe4e39330b5dac15ec521d3f56",
+      "generatedAt": "2026-10-30T09:51:56.861Z",
+      "listings": 6562,
+      "internships": 4018,
+      "fulltime": 2544,
+      "reconciliation": {
+        "unit": "opportunities",
+        "previous": 6781,
+        "current": 6562,
+        "retained": 6530,
+        "added": 32,
+        "removed": 251,
+        "net": -219
+      },
+      "categoryCounts": {
+        "confirmed-closed": 0,
+        "scope-exclusion": 20,
+        "verification-pending": 208,
+        "source-unavailable": 22,
+        "unresolved": 1,
+        "deduplicated": 0
+      },
+      "coverage": {
+        "boards": {
+          "discovered": 300,
+          "retained": 307
+        },
+        "collections": [
+          {
+            "collection": "internships",
+            "previous": 4205,
+            "current": 4018,
+            "removed": 213,
+            "unexplained": 5,
+            "previousOpportunities": 4205,
+            "currentOpportunities": 4018,
+            "largeDrop": false,
+            "blocked": false
+          },
+          {
+            "collection": "fulltime",
+            "previous": 2576,
+            "current": 2544,
+            "removed": 38,
+            "unexplained": 18,
+            "previousOpportunities": 2576,
+            "currentOpportunities": 2544,
+            "largeDrop": false,
+            "blocked": false
+          }
+        ]
+      },
+      "recovery": {
+        "name": "Original employer link recovery",
+        "kind": "employer_recovery",
+        "status": "ok",
+        "outcome": "partial",
+        "rows": 1051,
+        "requestCount": 358,
+        "durationMs": 18026,
+        "message": "{\"targets\":3094,\"live\":1051,\"unknown\":454,\"unchecked\":1268,\"pausedHosts\":46,\"reusedCurrentPostings\":291}"
+      },
+      "files": [
+        {
+          "file": "jobs.json",
+          "sha256": "d4268b3cca8c2c20ccb09a831f58464822665dfea209baa881d8c761d4a0f280",
+          "productionMatches": true
+        },
+        {
+          "file": "internships.json",
+          "sha256": "e1093f56bd62dc15d591791b0ee08b2a0ccdb0c9cb96cb0f1fc274bbd996d3f1",
+          "productionMatches": true
+        },
+        {
+          "file": "fulltime.json",
+          "sha256": "4029182fa2040ae7f7f2563e7e235b150cdc7b6cb107fd6d9b15f1b8d99497fc",
+          "productionMatches": true
+        },
+        {
+          "file": "summary.json",
+          "sha256": "609f6bb37b82425cacb3dae94acedbfdd940eae7ddbb0367a9f0f1a9ea7c8961",
+          "productionMatches": true
+        }
+      ],
+      "allProductionFilesMatch": true,
+      "tests": 171,
+      "typesLintExportPassed": true,
+      "invariants": {
+        "uniquePublicIds": true,
+        "uniqueOpportunities": true,
+        "supportedRoles": true,
+        "canonicalWorkdayIds": true,
+        "retainedWorkdayIdsCompatible": 2370,
+        "exactWorkdayRecoveryCachePositives": 1257,
+        "urlChangesSameOpportunity": true
+      },
+      "health": {
+        "feeds": {
+          "total": 20,
+          "healthy": 20,
+          "partial": 0,
+          "rate_limited": 0,
+          "unavailable": 0,
+          "cooldown": 0
+        },
+        "employers": {
+          "total": 665,
+          "healthy": 658,
+          "partial": 0,
+          "rate_limited": 5,
+          "unavailable": 2,
+          "cooldown": 0
+        },
+        "recovery": {
+          "total": 1,
+          "healthy": 0,
+          "partial": 1,
+          "rate_limited": 0,
+          "unavailable": 0,
+          "cooldown": 0
+        }
+      },
+      "workflowSuccess": true,
+      "deployment": {
+        "status": "success",
+        "url": "https://vercel.com/henrys-projects-84715f33/app-expo/9gaZ3yWJtZfyDpp6EeYfoVw4xDyj"
+      },
+      "baselineDataCommit": "9f125a1"
+    },
+    {
+      "verifiedAt": "2026-10-30T10:03:50.150249+00:00",
+      "implementationCommit": "a07a54b44f25d42fc5bc783b2cbd6370b19b8a48",
+      "workflowRunId": 41036939685,
+      "snapshotCommit": "f70e90b4de06039ced43a573ac8036d0bb92a3e5",
+      "generatedAt": "2026-10-30T10:03:00.000Z",
+      "listings": 6576,
+      "internships": 4028,
+      "fulltime": 2548,
+      "reconciliation": {
+        "unit": "opportunities",
+        "previous": 6562,
+        "current": 6576,
+        "retained": 6560,
+        "added": 16,
+        "removed": 2,
+        "net": 14
+      },
+      "categoryCounts": {
+        "confirmed-closed": 0,
+        "scope-exclusion": 0,
+        "verification-pending": 2,
+        "source-unavailable": 0,
+        "unresolved": 0,
+        "deduplicated": 0
+      },
+      "coverage": {
+        "boards": {
+          "discovered": 300,
+          "retained": 307
+        },
+        "collections": [
+          {
+            "collection": "internships",
+            "previous": 4018,
+            "current": 4028,
+            "removed": 1,
+            "unexplained": 0,
+            "previousOpportunities": 4018,
+            "currentOpportunities": 4028,
+            "largeDrop": false,
+            "blocked": false
+          },
+          {
+            "collection": "fulltime",
+            "previous": 2544,
+            "current": 2548,
+            "removed": 1,
+            "unexplained": 0,
+            "previousOpportunities": 2544,
+            "currentOpportunities": 2548,
+            "largeDrop": false,
+            "blocked": false
+          }
+        ]
+      },
+      "recovery": {
+        "name": "Original employer link recovery",
+        "kind": "employer_recovery",
+        "status": "ok",
+        "outcome": "partial",
+        "rows": 1166,
+        "requestCount": 439,
+        "durationMs": 26282,
+        "message": "{\"targets\":3094,\"live\":1166,\"unknown\":522,\"unchecked\":1123,\"pausedHosts\":81,\"reusedCurrentPostings\":287}"
+      },
+      "health": {
+        "feeds": {
+          "total": 20,
+          "healthy": 20,
+          "partial": 0,
+          "rate_limited": 0,
+          "unavailable": 0,
+          "cooldown": 0
+        },
+        "employers": {
+          "total": 665,
+          "healthy": 658,
+          "partial": 0,
+          "rate_limited": 0,
+          "unavailable": 1,
+          "cooldown": 6
+        },
+        "recovery": {
+          "total": 1,
+          "healthy": 0,
+          "partial": 1,
+          "rate_limited": 0,
+          "unavailable": 0,
+          "cooldown": 0
+        }
+      },
+      "files": [
+        {
+          "file": "jobs.json",
+          "sha256": "1b89e043c66d63069d33d5c903001c38bcd4523a7cdfbd28174c950d47d3d7aa",
+          "productionMatches": true
+        },
+        {
+          "file": "internships.json",
+          "sha256": "aff0aed338eeeb716009f8041c36596e0865ce1fc458b3de7d70b74e8c17dfae",
+          "productionMatches": true
+        },
+        {
+          "file": "fulltime.json",
+          "sha256": "958420ac068873f637680d7f9b930468e417bb42e53eb42fa1ee25c3bb50d3c2",
+          "productionMatches": true
+        },
+        {
+          "file": "summary.json",
+          "sha256": "13962d0686c71c1c011afd9aa2854228baa308388a02df3f3a1a897b7464b4d0",
+          "productionMatches": true
+        }
+      ],
+      "allProductionFilesMatch": true,
+      "tests": 171,
+      "typesLintExportPassed": true,
+      "invariants": {
+        "uniquePublicIds": true,
+        "uniqueOpportunities": true,
+        "supportedRoles": true,
+        "canonicalWorkdayIds": true,
+        "retainedWorkdayIdsCompatible": 2398,
+        "exactWorkdayRecoveryCachePositives": 1267,
+        "urlChangesSameOpportunity": true
+      },
+      "baselineDataCommit": "274c02ce358cd9fe4e39330b5dac15ec521d3f56",
+      "workflowSuccess": true,
+      "deployment": {
+        "status": "success",
+        "url": "https://vercel.com/henrys-projects-84715f33/app-expo/4N1B9cmTCBrcGKnETqwAADDZ9Uet"
+      }
+    }
+  ],
+  "latest": {
+    "snapshotCommit": "f70e90b4de06039ced43a573ac8036d0bb92a3e5",
+    "generatedAt": "2026-10-30T10:03:00.000Z",
+    "listings": 6576,
+    "internships": 4028,
+    "fulltime": 2548,
+    "allProductionFilesMatch": true,
+    "unexplainedNewRemovals": 0
+  },
+  "limitations": [
+    "Recovery remains partial and some providers are unavailable or cooling down.",
+    "The first repaired refresh still held unverified openings. No missing listing was automatically restored or classified closed merely to pass coverage.",
+    "The failure-path publication boundary was verified with a temporary Git repository test; both repaired production runs passed, so its emergency commit branch did not execute live."
+  ]
+}
