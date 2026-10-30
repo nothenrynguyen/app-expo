@@ -1,5 +1,6 @@
 import type { CandidateJob } from "./source-normalization";
 import { canonicalizeUrl, inferTerm, inferWorkMode, jobIdentity } from "./source-normalization";
+import { hasRequiredExperienceConflict, qualificationText } from "./early-career-evidence";
 
 export type AtsProvider = "greenhouse" | "lever" | "ashby";
 
@@ -27,6 +28,7 @@ export type AtsBoardResult = {
   jobs: CandidateJob[];
   liveIdentities: Set<string>;
   ineligibleUrls?: string[];
+  experienceConflictUrls?: string[];
 };
 
 const ASHBY_BOARD_ALIASES: Record<string, string> = { "luma-ai": "lumaai", "commure-athelas": "Commure" };
@@ -90,11 +92,7 @@ export function isEarlyCareerTitle(title: string, description = ""): boolean {
   if (/\b(?:senior|sr\.?|staff|principal|director|head|lead)\b/i.test(title)) return false;
   const titleSignal = /\bgraduate\b|\bassociate (?:software |electrical |mechanical |civil |structural |systems? )?engineer\b|\bassociate consultant\b|\bintern(ship)?\b|\bco-?op\b|\bnew (?:college )?grad(uate)?\b|\bentry[- ]level\b|\bearly career\b|\buniversity (?:grad|graduate|hire)\b|\bcampus (?:hire|recruit)\b|\bjunior\b|\bjr\.?\b|\b(?:engineer|scientist|analyst|specialist) i\b|\bassociate solutions? engineer\b|\bsupport engineer(?:ing)? tier 1\b/i.test(title);
 
-  const normalizedDescription = description
-    .replace(/&(?:ndash|mdash|#8211|#8212|#x2013|#x2014);/gi, "-")
-    .replace(/[\u2013\u2014]/g, "-")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/\s+/g, " ");
+  const normalizedDescription = qualificationText(description).replace(/\s+/g, " ");
   const descriptionSignal = /\b(?:entry[- ]level|new (?:college )?grad(?:uate)?|early career|university grad(?:uate)?)\b/i.test(normalizedDescription)
     || /\b(?:0|1)\s*(?:-|to)\s*[123]\s+(?:years?|yrs?)\b[^.]{0,60}\bexperience\b/i.test(normalizedDescription)
     || /\b(?:experience|professional experience)\b[^.]{0,60}\b(?:0|1)\s*(?:-|to)\s*[123]\s+(?:years?|yrs?)\b/i.test(normalizedDescription)
@@ -102,7 +100,7 @@ export function isEarlyCareerTitle(title: string, description = ""): boolean {
     || /\b(?:one|1)\+?\s+(?:years?|yrs?)\b[^.]{0,60}\bexperience\b/i.test(normalizedDescription);
   const descriptionQualifiedProductManager = /\bproduct manager\b/i.test(title) && descriptionSignal;
   if (/\bmanager\b/i.test(title) && !explicitEarlyCareer && !descriptionQualifiedProductManager) return false;
-  return titleSignal || descriptionSignal;
+  return titleSignal || (descriptionSignal && !hasRequiredExperienceConflict(description));
 }
 
 function validPostedAt(value: unknown): string | null {
@@ -140,7 +138,12 @@ function parseBoardJobs(board: AtsBoard, payload: unknown): BoardJob[] {
         location: String(categories?.location ?? "Location not stated"),
         applyUrl: String(job.applyUrl ?? job.hostedUrl ?? ""),
         postedAt: typeof job.createdAt === "number" ? job.createdAt : null,
-        description: `${String(job.descriptionPlain ?? "")} ${String(categories?.commitment ?? "")} ${String(categories?.team ?? "")}`,
+        description: [String(job.descriptionPlain ?? job.description ?? ""),
+          ...(Array.isArray(job.lists) ? job.lists.flatMap(section => {
+            if (!section || typeof section !== "object") return [];
+            const { text, content } = section as Record<string, unknown>;
+            return [typeof text === "string" ? text : "", typeof content === "string" ? content : ""];
+          }) : []), String(categories?.commitment ?? ""), String(categories?.team ?? "")].join("\n"),
       };
     });
   }
@@ -165,6 +168,7 @@ export async function fetchAtsBoard(board: AtsBoard, now = new Date()): Promise<
   const parsed = parseBoardJobs(board, await response.json());
   const liveIdentities = new Set<string>();
   const ineligibleUrls: string[] = [];
+  const experienceConflictUrls: string[] = [];
   const jobs: CandidateJob[] = [];
 
   for (const job of parsed) {
@@ -172,6 +176,7 @@ export async function fetchAtsBoard(board: AtsBoard, now = new Date()): Promise<
     const identity = applyUrl && jobIdentity(applyUrl);
     if (!applyUrl || !identity || !job.title) continue;
     liveIdentities.add(identity);
+    if (!isEarlyCareerTitle(job.title) && hasRequiredExperienceConflict(job.description ?? "")) experienceConflictUrls.push(applyUrl);
     if (!isEarlyCareerTitle(job.title, job.description)) {
       ineligibleUrls.push(applyUrl);
       continue;
@@ -193,5 +198,5 @@ export async function fetchAtsBoard(board: AtsBoard, now = new Date()): Promise<
       rawText: text,
     });
   }
-  return { board, jobs, liveIdentities, ineligibleUrls };
+  return { board, jobs, liveIdentities, ineligibleUrls, experienceConflictUrls };
 }

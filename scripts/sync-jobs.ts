@@ -6,6 +6,7 @@ import { appendFile, mkdir, readFile, rename, writeFile } from "node:fs/promises
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { discoverAtsBoard } from "../lib/ats-boards";
+import { currentAtsExperienceConflict } from "../lib/ingestion/ats-eligibility";
 import { evaluateCompanyQuality, normalizeCompanyDisplayName, normalizeCompanyName, type CompanyTrustEntry, type VerifiedCompany } from "../lib/company-quality";
 import { inBatches } from "../lib/ingestion/concurrency";
 import { scopedListingIsLive, selectBalancedScopedChecks, type ScopedListingCache } from "../lib/ingestion/scoped-listing-cache";
@@ -196,6 +197,12 @@ async function main() {
   for (const candidate of candidates) {
     const terminal = workdayTerminalKeys.get(workdayEvidenceKey(candidate.applyUrl));
     if (terminal) {screening.record(candidate.applyUrl, terminal === "closed" ? "closed" : "role"); rejectedCount += 1; continue;}
+    if (currentAtsExperienceConflict(candidate, boardResults)) {
+      const reason = "Current employer qualifications conflict with description-only early-career evidence.";
+      screening.record(candidate.applyUrl, "role", reason);
+      quarantined.push({company: candidate.company, title: candidate.title, source: candidate.source, applyUrl: candidate.applyUrl, reason});
+      continue;
+    }
     const locationMetadata = getJobLocationMetadata(candidate);
     if (!locationMetadata.eligible) {
       screening.record(candidate.applyUrl, "location");
@@ -316,6 +323,7 @@ async function main() {
   const acceptedVerificationKeys = new Set([...merged.values()].map(job => sourceVerificationKey(job.applyUrl)));
   if ((unhealthySources.length > 0 || recovery.hasFailures || workdayRecovery.hasFailures) && previous) {
     preservedFromLastHealthySnapshot = preserveLastKnownGoodJobs(merged, [...previous.jobs, ...workdayRecovery.jobs], (prior) => {
+      if (currentAtsExperienceConflict(prior, boardResults)) return null;
       if (workdayRecovery.mayRecover(prior) && acceptedVerificationKeys.has(sourceVerificationKey(prior.applyUrl))) return null;
       // Recovery cannot carry unlicensed feed material forward during failures.
       if (prior.sources.some(source => permissionHeldSources.has(source))) return null;
