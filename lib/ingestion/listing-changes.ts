@@ -106,11 +106,11 @@ export function buildListingChanges(input: {
 
 export function formatListingChangesSummary(report: ReturnType<typeof buildListingChanges>) {
   const r = report.reconciliation;
-  const lines = ["## Listing changes", "", `Openings: ${r.previous} + ${r.added} added - ${r.removed} removed = ${r.current} (net ${r.net}).`,
-    `Published rows: ${report.rowCounts.previous} -> ${report.rowCounts.current}. URL replacements: ${report.urlChanges.length} prior rows.`,
+  const lines = ["## Listing changes", "", `Proposed openings: ${r.previous} + ${r.added} added - ${r.removed} removed = ${r.current} (net ${r.net}).`,
+    `Snapshot rows (proposed): ${report.rowCounts.previous} -> ${report.rowCounts.current}. URL replacements: ${report.urlChanges.length} prior rows.`,
     "", "| Disappearance diagnosis | Openings |", "| --- | ---: |",
     ...Object.entries(report.categoryCounts).map(([category, count]) => `| ${category} | ${count} |`), "",
-    "Uncertain omissions are not confirmed closures. Full evidence: data/listing-changes.json (removedOpportunities).", ""];
+    "Uncertain omissions are not confirmed closures. After publication: data/listing-changes.json (removedOpportunities). If blocked: the blocked-coverage Actions artifact (listingChanges.removedOpportunities).", ""];
   const pending = report.removedOpportunities.filter(row => row.requiresInvestigation);
   for (const row of pending.slice(0, 10)) lines.push(`- ${row.company.replace(/[\r\n<>]/g, " ")}: ${row.category}. ${row.nextAction}`);
   if (pending.length > 10) lines.push(`See the report for ${pending.length - 10} additional cases.`);

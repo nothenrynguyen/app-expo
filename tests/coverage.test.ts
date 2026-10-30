@@ -66,6 +66,8 @@ test("Workday alias compaction reconciles openings separately from rows and reta
   assert.equal(conflict.categoryCounts.unresolved, 1);
   assert.match(conflict.removedOpportunities[0].explanation, /conflict/);
   assert.match(formatListingChangesSummary(report), /2 \+ 0 added - 1 removed = 1/);
+  assert.match(formatListingChangesSummary(report), /Proposed openings:/);
+  assert.match(formatListingChangesSummary(report), /If blocked: the blocked-coverage Actions artifact/);
 });
 
 test("report evidence distinguishes posting failures, healthy board omissions and unattempted sources", () => {
