@@ -16,6 +16,8 @@ import type { PublicJob } from "../jobs";
 import type { BoardRefreshDiagnostic, CandidateLoadResult, SourceRefreshDiagnostic } from "./types";
 import { assertSourcePermissions } from "./source-permissions";
 import { loadEmployerRecovery, type RecoverySeed, type RecoveryState } from "./employer-recovery";
+import { recordWorkdayAttempt, workdayCooldown, type WorkdaySchedule } from "./workday-schedule";
+import type { HealthOutcome } from "./source-health";
 
 type TimedResult<T> =
   | { status: "fulfilled"; value: T; durationMs: number }
@@ -159,7 +161,9 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
   const history = await readFile(path.join(root, "data/board-history.json"), "utf8")
     .then(value => JSON.parse(value) as BoardHistory)
     .catch((error: NodeJS.ErrnoException) => { if (error.code === "ENOENT") return { version: 1 as const, boards: [] }; throw error; });
-  const selection = selectRefreshBoards(boards.values(), history, previousJobs);
+  const retired = await readFile(path.join(root, "data/retired-boards.json"), "utf8")
+    .then(value => JSON.parse(value) as Array<{id: string}>).catch((error: NodeJS.ErrnoException) => {if (error.code === "ENOENT") return []; throw error;});
+  const selection = selectRefreshBoards(boards.values(), history, previousJobs, new Date(), new Set(retired.map(board => board.id)));
   const boardList = selection.boards;
   const settledBoardFetches = await inBatches(boardList, 12, (board) => runTimed(() => fetchAtsBoard(board)));
   const boardFetches = settledBoardFetches.map((result) => result.status === "fulfilled" ? result.value : ({ status: "rejected", reason: result.reason, durationMs: 0 } as const));
@@ -192,7 +196,17 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     .then((value) => JSON.parse(value) as WorkdayBoardSeed[])
     .catch(() => []);
   const workdayBoards = workdaySeeds.map(createWorkdayBoard);
-  const settledWorkdayFetches = await inBatches(workdayBoards, 3, (board) => runTimed(() => fetchWorkdayBoard(board)));
+  const workdaySchedule: WorkdaySchedule = await readFile(path.join(root, "data/workday-schedule.json"), "utf8")
+    .then(value => JSON.parse(value)).catch((error: NodeJS.ErrnoException) => { if (error.code === "ENOENT") return {}; throw error; });
+  const cooldowns = new Map(workdayBoards.flatMap(board => {
+    const entry = workdayCooldown(workdaySchedule, board.host, new Date());
+    return entry ? [[board.id, entry] as const] : [];
+  }));
+  const settledWorkdayFetches = await inBatches(workdayBoards, 3, (board) => runTimed(() => {
+    const cooldown = cooldowns.get(board.id);
+    if (cooldown) throw new Error(`Cooldown until ${cooldown.nextAttemptAt}: ${cooldown.reason}`);
+    return fetchWorkdayBoard(board);
+  }));
   const workdayChecks: import("./workday-continuity").WorkdayCheck[] = [];
   const workdayFetches = settledWorkdayFetches.map((result) => result.status === "fulfilled" ? result.value : ({ status: "rejected", reason: result.reason, durationMs: 0 } as const));
   workdayFetches.forEach((result, index) => {
@@ -200,16 +214,21 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     if (result.status === "fulfilled") {
       const status = result.value.diagnostics.detailRequests > 0 && result.value.diagnostics.detailFailures === result.value.diagnostics.detailRequests ? "failed" as const : "ok" as const;
       const sourceStatus = result.value.diagnostics.detailFailures > 0 || result.value.checks.some(check => check.status === "unknown") ? "failed" as const : "ok" as const;
+      const outcome: HealthOutcome = result.value.diagnostics.accessDenied === 429 ? "rate_limited"
+        : result.value.diagnostics.accessDenied || status === "failed" ? "unavailable" : sourceStatus === "failed" ? "partial" : "healthy";
+      const message = JSON.stringify({ failureReasons: result.value.diagnostics.failureReasons, unknownChecks: result.value.checks.filter(check => check.status === "unknown").length });
+      recordWorkdayAttempt(workdaySchedule, board.host, outcome, new Date(), result.value.diagnostics.accessDenied ? `${result.value.diagnostics.accessDenied} Workday access paused` : message, result.value.diagnostics.retryAfterMs);
       candidates.push(...result.value.jobs);
       workdayChecks.push(...result.value.checks);
-      health.push({ name: `Workday: ${board.company}`, status: sourceStatus, rows: result.value.searchedPostings });
+      health.push({ name: `Workday: ${board.company}`, status: sourceStatus, outcome, rows: result.value.searchedPostings });
       sourceDiagnostics.push({
         name: `Workday: ${board.company}`,
         kind: "workday",
         status: sourceStatus,
         rows: result.value.searchedPostings,
         durationMs: result.value.diagnostics.durationMs,
-        requestCount: result.value.diagnostics.listRequests + result.value.diagnostics.detailRequests + result.value.diagnostics.retryRequests,
+        requestCount: result.value.diagnostics.requestCount,
+        outcome, message, detailFailures: result.value.diagnostics.detailFailures, detailRequests: result.value.diagnostics.detailRequests,
       });
       boardRegistry.push({
         id: `workday:${board.host}:${board.site.toLowerCase()}`,
@@ -224,11 +243,18 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
         detailFailures: result.value.diagnostics.detailFailures,
         retryRequests: result.value.diagnostics.retryRequests,
         durationMs: result.value.diagnostics.durationMs,
+        requestCount: result.value.diagnostics.requestCount,
+        outcome, message,
       });
     } else {
-      health.push({ name: `Workday: ${board.company}`, status: "failed", rows: 0 });
-      sourceDiagnostics.push({ name: `Workday: ${board.company}`, kind: "workday", status: "failed", rows: 0, durationMs: result.durationMs, requestCount: 0, message: errorMessage(result.reason) });
-      boardRegistry.push({ id: `workday:${board.host}:${board.site.toLowerCase()}`, provider: "workday", key: `${board.tenant}/${board.site}`, company: board.company, status: "failed", rows: 0, durationMs: result.durationMs, message: errorMessage(result.reason) });
+      const message = errorMessage(result.reason);
+      const outcome: HealthOutcome = cooldowns.has(board.id) ? "cooldown" : /^429\b/.test(message) ? "rate_limited" : "unavailable";
+      recordWorkdayAttempt(workdaySchedule, board.host, outcome, new Date(), message,
+        (result.reason as { retryAfterMs?: number })?.retryAfterMs);
+      health.push({ name: `Workday: ${board.company}`, status: "failed", outcome, rows: 0 });
+      const requestCount = (result.reason as { requestCount?: number })?.requestCount ?? 0;
+      sourceDiagnostics.push({ name: `Workday: ${board.company}`, kind: "workday", status: "failed", outcome, rows: 0, durationMs: result.durationMs, requestCount, message });
+      boardRegistry.push({ id: `workday:${board.host}:${board.site.toLowerCase()}`, provider: "workday", key: `${board.tenant}/${board.site}`, company: board.company, status: "failed", outcome, rows: 0, durationMs: result.durationMs, requestCount, message });
     }
   });
 
@@ -237,8 +263,9 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
   const recovery = await loadEmployerRecovery(recoverySeeds, savedRecovery);
   if (recoverySeeds.length) {
     candidates.push(...recovery.candidates);
-    health.push({name: "Original employer link recovery", status: "ok", rows: recovery.candidates.length});
-    sourceDiagnostics.push({name: "Original employer link recovery", kind: "employer_recovery", status: "ok", rows: recovery.candidates.length, requestCount: recovery.requests, durationMs: recovery.durationMs, message: JSON.stringify({targets: recovery.targets, live: recovery.candidates.length, unknown: recovery.unknown, unchecked: recovery.remaining, pausedHosts: recovery.pausedHosts})});
+    const outcome = recovery.candidates.length < recovery.targets ? "partial" as const : "healthy" as const;
+    health.push({name: "Original employer link recovery", status: "ok", outcome, rows: recovery.candidates.length});
+    sourceDiagnostics.push({name: "Original employer link recovery", kind: "employer_recovery", status: "ok", outcome, rows: recovery.candidates.length, requestCount: recovery.requests, durationMs: recovery.durationMs, message: JSON.stringify({targets: recovery.targets, live: recovery.candidates.length, unknown: recovery.unknown, unchecked: recovery.remaining, pausedHosts: recovery.pausedHosts})});
   }
   const smartRecruitersUrls = new Map<string, string>();
   for (const candidate of candidates) {
@@ -275,6 +302,7 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     if (diagnostic) diagnostic.message = JSON.stringify({ reviewHoldsConfigured: source.reviewHolds!.length, heldCandidateRowsAcrossSources: reviewed.held.length });
   }
   return {
+    workdaySchedule,
     workdayChecks,
     recoveryState: recovery.state,
     boardHistory: selection.history,

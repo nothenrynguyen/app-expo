@@ -6,6 +6,8 @@ Reviewed October 28, 2026. This file tracks concrete active work, follow-up, and
 
 ## Active milestone
 
+October 29 source-health audit complete: [findings and recommended batch](SOURCE_HEALTH_AUDIT_2026-10-29.md). Repository snapshot at 14:24 UTC confirms 62/79; live retrieval was unavailable. The increase mainly comes from 54 additional Workday boards. All 17 failed source records are Workday (eight partial, eight rate-limited, one server error). Keep employer coverage; improve health categories and collection pacing, and review Old Mission/Zurn Elkay addresses. Owner approved implementation and release. Reporting, persisted cooldowns and retirement of Old Mission's obsolete Greenhouse address (keeping its official Ashby board) are implemented locally; production verification is pending.
+
 Coverage expansion and permission safeguards are published and production-verified October 28. Workflow 40831094943 succeeded; generated snapshot `ed828c0` exactly matched all four live JSON files. The latest run added 88 internships and removed no jobs after the initial permission-hold migration. At that release the inventory remained below the earlier snapshot. The October 29 restoration above supersedes that inventory status. See the [coverage expansion review](COVERAGE_EXPANSION_REVIEW.md) and [production receipt](coverage-expansion-production-result.json).
 
 The broader coverage investigation remains open. The owner granted end-to-end implementation, push, deployment and verification approval, subject to no spending/payment method and permission-conscious lawful sourcing. The owner identified Jobright; automated competitive extraction is not cleared by its terms. This release does not establish one-stop coverage.

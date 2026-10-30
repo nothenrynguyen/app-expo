@@ -27,7 +27,7 @@ export type JobsSnapshot = {
   generatedAt: string;
   jobs: PublicJob[];
   quarantinedCount: number;
-  sourceHealth: Array<{ name: string; status: "ok" | "failed"; rows: number }>;
+  sourceHealth: Array<{ name: string; status: "ok" | "failed"; rows: number; outcome?: import("./ingestion/source-health").HealthOutcome }>;
 };
 
 export function daysAgo(postedAt: string, now = new Date()): number {

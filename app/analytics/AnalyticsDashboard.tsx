@@ -3,6 +3,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { activityConfigured, activityEndpoint, setOwnerExclusion } from "@/lib/activity-client";
 import type { ActivityReport } from "@/lib/activity-contract";
 import type { JobsSummary } from "@/lib/job-summary";
+import { SourceHealthSummary } from "../SourceHealthSummary";
 
 const number = (value: number) => value.toLocaleString("en-US");
 const percent = (n: number, d: number) => d ? `${(100 * n / d).toFixed(1)}%` : "No data";
@@ -132,5 +133,5 @@ function BoardHealth() {
     }).catch(() => { if (!controller.signal.aborted) setFailed(true); });
     return () => controller.abort();
   }, []);
-  return <section className="analytics-panel"><h2>Job-data health</h2><p className="analytics-caption">Current public snapshot, separate from visitor analytics and the selected date range.</p>{summary ? <><div className="analytics-health"><span><strong>{number(summary.totalJobs)}</strong> listings</span><span><strong>{summary.healthySources}/{summary.activeSources}</strong> healthy sources</span><span><strong>{summary.closedPostingsCaught === null ? "Not available" : number(summary.closedPostingsCaught)}</strong> closed destinations caught in this snapshot</span></div><p className="analytics-caption">Snapshot refreshed {new Date(summary.generatedAt).toLocaleString()}. Listing freshness reflects ingestion time, not a live check of every employer link.</p></> : <p>{failed ? "The snapshot summary could not be loaded." : "Loading current snapshot..."}</p>}</section>;
+  return <section className="analytics-panel"><h2>Job-data health</h2><p className="analytics-caption">Current public snapshot, separate from visitor analytics and the selected date range.</p>{summary ? <><div className="analytics-health"><span><strong>{number(summary.totalJobs)}</strong> listings</span><span><strong>{summary.closedPostingsCaught === null ? "Not available" : number(summary.closedPostingsCaught)}</strong> closed destinations caught in this snapshot</span></div><SourceHealthSummary summary={summary} /><p className="analytics-caption">Snapshot refreshed {new Date(summary.generatedAt).toLocaleString()}. Listing freshness reflects ingestion time, not a live check of every employer link.</p></> : <p>{failed ? "The snapshot summary could not be loaded." : "Loading current snapshot..."}</p>}</section>;
 }

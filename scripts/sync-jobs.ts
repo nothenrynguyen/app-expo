@@ -65,6 +65,7 @@ async function main() {
     boardCoverage,
     recoveryState,
     workdayChecks = [],
+    workdaySchedule,
   } = await loadCandidates(root, activeSources, previous?.jobs ?? []);
   const workdayCache: WorkdayContinuity = await readFile(path.join(root, "data/workday-continuity.json"), "utf8").then(value => JSON.parse(value)).catch((error: NodeJS.ErrnoException) => {if (error.code === "ENOENT") return {}; throw error;});
   const continuityData = JSON.parse(await readFile(path.join(root, "data/employer-continuity.json"), "utf8")) as EmployerContinuity;
@@ -383,6 +384,7 @@ async function main() {
     if (!currentIdentities.has(identity) && age > 30 * 86_400_000) delete listingHealth[identity];
   }
   await mkdir(path.join(root, "data"), { recursive: true });
+  if (workdaySchedule) await writeFile(path.join(root, "data/workday-schedule.json"), `${JSON.stringify(workdaySchedule, null, 2)}\n`);
   await writeFile(path.join(root, "data/workday-continuity.json"), `${JSON.stringify(updateWorkdayContinuity(workdayCache, workdayChecks, jobs, startedAt), null, 2)}\n`);
   if (recoveryState && Object.keys(recoveryState).length) await writeFile(path.join(root, "data/employer-recovery-state.json"), `${JSON.stringify(recoveryState, null, 2)}\n`);
   for (const [identity, record] of Object.entries(scopedCache)) {
@@ -423,7 +425,7 @@ async function main() {
   const materialSnapshot = { jobs: snapshot.jobs, quarantinedCount: snapshot.quarantinedCount, sourceHealth: snapshot.sourceHealth, screening: snapshot.screening };
   const previousMaterial = previous && { jobs: previous.jobs, quarantinedCount: previous.quarantinedCount, sourceHealth: previous.sourceHealth, screening: previous.screening };
   if (previousMaterial && JSON.stringify(materialSnapshot) === JSON.stringify(previousMaterial)) {
-    await writeFile(path.join(root, "public/summary.json"), `${JSON.stringify(buildJobsSummary(snapshot), null, 2)}\n`);
+    await writeFile(path.join(root, "public/summary.json"), `${JSON.stringify(buildJobsSummary(snapshot, refreshReport), null, 2)}\n`);
     console.log(`No material changes; retained ${jobs.length} published jobs.`);
     return;
   }
@@ -436,7 +438,7 @@ async function main() {
   const fulltime = { ...snapshot, jobs: snapshot.jobs.filter((job) => isInCollection(job, "fulltime")) };
   await writeFile(path.join(root, "public/internships.json"), `${JSON.stringify(internships, null, 2)}\n`);
   await writeFile(path.join(root, "public/fulltime.json"), `${JSON.stringify(fulltime, null, 2)}\n`);
-  await writeFile(path.join(root, "public/summary.json"), `${JSON.stringify(buildJobsSummary(snapshot), null, 2)}\n`);
+  await writeFile(path.join(root, "public/summary.json"), `${JSON.stringify(buildJobsSummary(snapshot, refreshReport), null, 2)}\n`);
   console.log(`Published ${jobs.length} jobs; quarantined ${quarantined.length}; rejected ${rejectedCount}.`);
 }
 

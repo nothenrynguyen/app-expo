@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AnimatedCount } from "./AnimatedCount";
 import type { JobsSummary } from "@/lib/job-summary";
+import { SourceHealthSummary } from "./SourceHealthSummary";
 
 export function MethodologyStats() {
   const [summary, setSummary] = useState<JobsSummary | null>(null);
@@ -26,8 +27,8 @@ export function MethodologyStats() {
         <div><AnimatedCount value={summary.screening.excluded} /><span>unique application links excluded</span></div>
         <div><AnimatedCount value={summary.screening.pendingVerification} /><span>awaiting employer verification</span></div>
       </>}
-      <div><strong>{summary.healthySources}/{summary.activeSources}</strong><span>sources healthy</span></div>
     </div>
+    <SourceHealthSummary summary={summary} />
     {summary.screening?.version === 1 ? <details id="screening" className="screening-details">
       <summary>What the screening counts mean</summary>
       <p>Unique application links assessed from available sources. A link accepted onto the board is never counted as excluded. Employers awaiting verification are counted separately.</p>

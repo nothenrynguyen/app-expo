@@ -10,9 +10,13 @@ export type SourceRefreshDiagnostic = {
   durationMs: number;
   requestCount: number;
   message?: string;
+  outcome?: import("./source-health").HealthOutcome;
+  detailFailures?: number;
+  detailRequests?: number;
 };
 
 export type BoardRefreshDiagnostic = {
+  requestCount?: number;
   id?: string;
   provider: AtsProvider | "workday";
   key: string;
@@ -26,6 +30,7 @@ export type BoardRefreshDiagnostic = {
   retryRequests?: number;
   durationMs: number;
   message?: string;
+  outcome?: import("./source-health").HealthOutcome;
 };
 
 export type VerificationDiagnostic = {
@@ -35,6 +40,7 @@ export type VerificationDiagnostic = {
 };
 
 export type CandidateLoadResult = {
+  workdaySchedule?: import("./workday-schedule").WorkdaySchedule;
   workdayChecks?: import("./workday-continuity").WorkdayCheck[];
   recoveryState?: import("./employer-recovery").RecoveryState;
   boardHistory: import("./board-history").BoardHistory;

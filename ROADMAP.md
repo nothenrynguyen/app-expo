@@ -24,6 +24,8 @@ October 29 local copy audit: reviewed all 11 page routes and shared copy against
 
 ## Candidate next work
 
+October 29 source-health audit: the checked-in 14:24 UTC snapshot reports 62/79 because the denominator mixes 19 community feeds, USAJOBS, 58 Workday boards and recovery. All 17 failed source records are Workday, including eight partial detail failures. Owner-approved reporting, persistent cooldowns and Old Mission migration cleanup are implemented locally; release verification is pending. See [source audit](docs/SOURCE_HEALTH_AUDIT_2026-10-29.md).
+
 These are recommendations, not a committed active milestone. Choose a batch before implementation.
 
 1. Grow beyond the restored coverage floor through permitted discovery and current employer evidence. Review remaining rate limits, unsupported hiring systems and employer destination holds. Keep unresolved availability separate from proven closure. See the [restoration review](docs/COVERAGE_RESTORATION.md).

@@ -32,6 +32,10 @@ type WorkdayBoardResult = {
     detailRequests: number;
     detailFailures: number;
     retryRequests: number;
+    failureReasons: Record<string, number>;
+    accessDenied: number;
+    retryAfterMs: number;
+    requestCount: number;
   };
 };
 
@@ -239,100 +243,135 @@ export async function fetchWorkdayBoard(
   const startedAt = Date.now();
   const deadlineAt = startedAt + 90_000;
   let accessDenied = 0;
+  let retryAfterMs = 0;
+  let requestCount = 0;
+  let nextRequestAt = 0;
+  let requestQueue = Promise.resolve();
   const nativeFetch = options.fetchImpl ?? fetch;
   const fetchImpl: typeof fetch = async (url, init) => {
+    // Serialize request starts, not response bodies. Shared by list and detail
+    // calls so concurrent details cannot burst at an employer endpoint.
+    const turn = requestQueue.then(async () => {
+      const delay = Math.max(0, nextRequestAt - Date.now());
+      if (delay) await new Promise(resolve => setTimeout(resolve, delay));
+      nextRequestAt = Date.now() + (options.fetchImpl ? 0 : 150);
+    });
+    requestQueue = turn;
+    await turn;
     if (accessDenied) throw new Error(`${accessDenied} Workday access paused for this board`);
+    if (Date.now() >= deadlineAt) throw new Error("Workday board time budget exceeded");
+    requestCount++;
     const response = await nativeFetch(url, init);
     if ([401, 403, 429].includes(response.status)) accessDenied = response.status;
+    const retryAfter = response.headers.get("retry-after");
+    if (retryAfter) {
+      const value = /^\d+$/.test(retryAfter) ? Number(retryAfter) * 1000 : Date.parse(retryAfter) - Date.now();
+      if (Number.isFinite(value)) retryAfterMs = Math.max(retryAfterMs, value);
+    }
+    if (accessDenied) throw Object.assign(new Error(`${response.status} ${response.statusText}`), { retryAfterMs, requestCount });
     return response;
   };
-  const retryDelayMs = options.retryDelayMs ?? 250;
-  const summaries = new Map<string, WorkdaySummary>();
-  const maxResults = board.maxResultsPerSearch ?? 500;
-  let listRequests = 0;
-  let retryRequests = 0;
+  try {
+    const retryDelayMs = options.retryDelayMs ?? 250;
+    const summaries = new Map<string, WorkdaySummary>();
+    const maxResults = board.maxResultsPerSearch ?? 500;
+    let listRequests = 0;
+    let retryRequests = 0;
 
-  for (const searchText of board.searchTerms) {
-    let offset = 0;
-    let total = 0;
-    do {
-      listRequests += 1;
-      const payload = await requestWorkdayJson<{ total?: number; jobPostings?: WorkdaySummary[] }>(board.endpoint, {
-        method: "POST",
-        body: JSON.stringify({ appliedFacets: {}, limit: PAGE_SIZE, offset, searchText }),
+    for (const searchText of board.searchTerms) {
+      let offset = 0;
+      let total = 0;
+      do {
+        listRequests += 1;
+        const payload = await requestWorkdayJson<{ total?: number; jobPostings?: WorkdaySummary[] }>(board.endpoint, {
+          method: "POST",
+          body: JSON.stringify({ appliedFacets: {}, limit: PAGE_SIZE, offset, searchText }),
+          deadlineAt,
+          timeoutMs: 15_000,
+          fetchImpl,
+          retryDelayMs,
+          onRetry: () => { retryRequests += 1; },
+        });
+        const postings = payload.jobPostings ?? [];
+        total = Math.min(payload.total ?? postings.length, maxResults);
+        for (const posting of postings) {
+          if (posting.externalPath) summaries.set(posting.externalPath, posting);
+        }
+        offset += postings.length;
+        if (postings.length === 0) break;
+      } while (offset < total);
+    }
+
+    const searchedPostings = summaries.size;
+    const entries = [...summaries.entries()].filter(([, summary]) => {
+      if (!board.prefilterEarlyCareerTitles) return true;
+      const title = summary.title ?? "";
+      if (/\b(?:senior|sr\.?|staff|principal|director|head|lead)\b/i.test(title)) return false;
+      return isEarlyCareerTitle(title) || /\bassociate\b/i.test(title);
+    });
+    const details = await inBatches(entries, 2, async ([externalPath, summary]) => {
+      const payload = await requestWorkdayJson<WorkdayDetail>(detailUrl(board, externalPath), {
         deadlineAt,
-        timeoutMs: 15_000,
+        timeoutMs: 12_000,
         fetchImpl,
         retryDelayMs,
         onRetry: () => { retryRequests += 1; },
       });
-      const postings = payload.jobPostings ?? [];
-      total = Math.min(payload.total ?? postings.length, maxResults);
-      for (const posting of postings) {
-        if (posting.externalPath) summaries.set(posting.externalPath, posting);
-      }
-      offset += postings.length;
-      if (postings.length === 0) break;
-    } while (offset < total);
-  }
-
-  const searchedPostings = summaries.size;
-  const entries = [...summaries.entries()].filter(([, summary]) => {
-    if (!board.prefilterEarlyCareerTitles) return true;
-    const title = summary.title ?? "";
-    if (/\b(?:senior|sr\.?|staff|principal|director|head|lead)\b/i.test(title)) return false;
-    return isEarlyCareerTitle(title) || /\bassociate\b/i.test(title);
-  });
-  const details = await inBatches(entries, 4, async ([externalPath, summary]) => {
-    const payload = await requestWorkdayJson<WorkdayDetail>(detailUrl(board, externalPath), {
-      deadlineAt,
-      timeoutMs: 12_000,
-      fetchImpl,
-      retryDelayMs,
-      onRetry: () => { retryRequests += 1; },
+      return { summary, payload };
     });
-    return { summary, payload };
-  });
 
-  const jobs: CandidateJob[] = [];
-  const checks: WorkdayCheck[] = [];
-  const liveIdentities = new Set<string>();
-  const detailFailures = details.filter((result) => result.status === "rejected").length;
-  for (const [index, result] of details.entries()) {
-    const url = publicUrl(board, entries[index][0]);
-    if (result.status !== "fulfilled") {
-      checks.push({url, status: result.reason instanceof Error && /^(404|410)\b/.test(result.reason.message) ? "closed" : "unknown"});
-      continue;
+    const jobs: CandidateJob[] = [];
+    const checks: WorkdayCheck[] = [];
+    const liveIdentities = new Set<string>();
+    const detailFailures = details.filter((result) => result.status === "rejected").length;
+    const failureReasons: Record<string, number> = {};
+    for (const result of details) if (result.status === "rejected") {
+      const reason = result.reason instanceof Error ? result.reason.message : "Unknown detail failure";
+      failureReasons[reason] = (failureReasons[reason] ?? 0) + 1;
     }
-    const info = result.value.payload.jobPostingInfo;
-    const req = info?.jobReqId?.toLowerCase();
-    const postingPath = decodeURIComponent(new URL(url).pathname).toLowerCase();
-    const matches = !!req && (postingPath.endsWith(`_${req}`) || new RegExp(`_${req.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}-\\d+$`).test(postingPath));
-    if (matches && (info?.posted === false || info?.canApply === false)) checks.push({url, status: "closed"});
-    const job = parseWorkdayJob(board, result.value.summary, result.value.payload, now);
-    const identity = job && jobIdentity(job.applyUrl);
-    if (!job || !identity) {
-      if (!matches || info?.posted !== false && info?.canApply !== false) checks.push({url, status: matches && typeof info?.title === "string" && info.title.trim() ? "ineligible" : "unknown"});
-      continue;
+    for (const [index, result] of details.entries()) {
+      const url = publicUrl(board, entries[index][0]);
+      if (result.status !== "fulfilled") {
+        checks.push({url, status: result.reason instanceof Error && /^(404|410)\b/.test(result.reason.message) ? "closed" : "unknown"});
+        continue;
+      }
+      const info = result.value.payload.jobPostingInfo;
+      const req = info?.jobReqId?.toLowerCase();
+      const postingPath = decodeURIComponent(new URL(url).pathname).toLowerCase();
+      const matches = !!req && (postingPath.endsWith(`_${req}`) || new RegExp(`_${req.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}-\\d+$`).test(postingPath));
+      if (matches && (info?.posted === false || info?.canApply === false)) checks.push({url, status: "closed"});
+      const job = parseWorkdayJob(board, result.value.summary, result.value.payload, now);
+      const identity = job && jobIdentity(job.applyUrl);
+      if (!job || !identity) {
+        if (!matches || info?.posted !== false && info?.canApply !== false) checks.push({url, status: matches && typeof info?.title === "string" && info.title.trim() ? "ineligible" : "unknown"});
+        continue;
+      }
+      if (matches && evaluateCompanyQuality({name: board.company, title: job.title}, job.rawText, []).status === "rejected") {checks.push({url, status: "ineligible"}); continue;}
+      checks.push({url: job.applyUrl, status: matches && workdayEvidenceKey(url) === workdayEvidenceKey(job.applyUrl) && info?.posted === true && info?.canApply === true ? "live" : "unknown"});
+      liveIdentities.add(identity);
+      jobs.push(job);
     }
-    if (matches && evaluateCompanyQuality({name: board.company, title: job.title}, job.rawText, []).status === "rejected") {checks.push({url, status: "ineligible"}); continue;}
-    checks.push({url: job.applyUrl, status: matches && workdayEvidenceKey(url) === workdayEvidenceKey(job.applyUrl) && info?.posted === true && info?.canApply === true ? "live" : "unknown"});
-    liveIdentities.add(identity);
-    jobs.push(job);
+
+    return {
+      board,
+      jobs,
+      liveIdentities,
+      searchedPostings,
+      checks,
+      diagnostics: {
+        durationMs: Date.now() - startedAt,
+        listRequests,
+        detailRequests: entries.length,
+        detailFailures,
+        retryRequests,
+        failureReasons,
+        accessDenied,
+        retryAfterMs,
+        requestCount,
+      },
+    };
+  } catch (error) {
+    if (error instanceof Error) Object.assign(error, { requestCount, retryAfterMs });
+    throw error;
   }
-
-  return {
-    board,
-    jobs,
-    liveIdentities,
-    searchedPostings,
-    checks,
-    diagnostics: {
-      durationMs: Date.now() - startedAt,
-      listRequests,
-      detailRequests: entries.length,
-      detailFailures,
-      retryRequests,
-    },
-  };
 }

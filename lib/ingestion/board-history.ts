@@ -29,11 +29,12 @@ function remember(board: AtsBoard, lastDiscoveredAt: string): KnownBoard {
 
 // History supplies discovery only. It grants no employer trust and stores no old jobs.
 export function selectRefreshBoards(discovered: Iterable<AtsBoard>, history: BoardHistory,
-  previousJobs: PublicJob[], now = new Date()) {
+  previousJobs: PublicJob[], now = new Date(), retired = new Set<string>()) {
   if (history.version !== 1 || !Array.isArray(history.boards)) throw new Error("Invalid employer board history");
   const records = new Map<string, KnownBoard>();
   for (const record of history.boards) {
     const board = restore(record);
+    if (retired.has(board.id)) continue;
     const lastActive = Math.max(Date.parse(record.lastDiscoveredAt), Date.parse(record.lastHealthyAt ?? record.lastDiscoveredAt));
     if (lastActive > now.getTime() + 60_000) throw new Error("Future employer board history timestamp");
     if (now.getTime() - lastActive <= RETENTION_MS) records.set(board.id, record);
@@ -42,9 +43,9 @@ export function selectRefreshBoards(discovered: Iterable<AtsBoard>, history: Boa
   // not extend retention forever on repeated source failures.
   for (const job of history.boards.length === 0 ? previousJobs : []) {
     const board = discoverAtsBoard(job.applyUrl, job.company, "Previous published ATS");
-    if (board && !records.has(board.id)) records.set(board.id, remember(board, now.toISOString()));
+    if (board && !retired.has(board.id) && !records.has(board.id)) records.set(board.id, remember(board, now.toISOString()));
   }
-  const current = new Map([...discovered].map(board => [board.id, board]));
+  const current = new Map([...discovered].filter(board => !retired.has(board.id)).map(board => [board.id, board]));
   for (const board of current.values()) records.set(board.id, { ...records.get(board.id), ...remember(board, now.toISOString()) });
   const retained = [...records].filter(([id]) => !current.has(id));
   if (retained.length > MAX_RETAINED_BOARDS || records.size > MAX_REFRESH_BOARDS) {

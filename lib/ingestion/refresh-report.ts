@@ -24,6 +24,8 @@ export function buildRefreshReport(input: RefreshReportInput): RefreshReport {
   const emptySources = input.sourceDiagnostics.filter((source) => source.status === "ok" && source.rows === 0).length;
   const failedBoards = input.boardDiagnostics.filter((board) => board.status === "failed").length;
   const allSourcesFailed = input.sourceDiagnostics.length > 0 && failedSources === input.sourceDiagnostics.length;
+  const incomplete = [...input.sourceDiagnostics, ...input.boardDiagnostics]
+    .some(record => (record.outcome && record.outcome !== "healthy") || !!record.detailFailures);
 
   return {
     ...(input.coverage ? { coverage: input.coverage } : {}),
@@ -31,7 +33,7 @@ export function buildRefreshReport(input: RefreshReportInput): RefreshReport {
     startedAt: input.startedAt.toISOString(),
     completedAt: completedAt.toISOString(),
     durationMs: Math.max(0, completedAt.getTime() - input.startedAt.getTime()),
-    status: allSourcesFailed ? "failed" : failedSources > 0 || failedBoards > 0 || emptySources > 0 ? "degraded" : "healthy",
+    status: allSourcesFailed ? "failed" : failedSources > 0 || failedBoards > 0 || emptySources > 0 || incomplete ? "degraded" : "healthy",
     sources: {
       total: input.sourceDiagnostics.length,
       healthy: input.sourceDiagnostics.length - failedSources,
@@ -45,7 +47,7 @@ export function buildRefreshReport(input: RefreshReportInput): RefreshReport {
       total: input.boardDiagnostics.length,
       healthy: input.boardDiagnostics.length - failedBoards,
       failed: failedBoards,
-      requestCount: input.boardDiagnostics.reduce((total, board) => total + (board.listRequests ?? 1) + (board.detailRequests ?? 0) + (board.retryRequests ?? 0), 0),
+      requestCount: input.boardDiagnostics.reduce((total, board) => total + (board.requestCount ?? ((board.listRequests ?? 1) + (board.detailRequests ?? 0) + (board.retryRequests ?? 0))), 0),
       retryRequests: input.boardDiagnostics.reduce((total, board) => total + (board.retryRequests ?? 0), 0),
       detailFailures: input.boardDiagnostics.reduce((total, board) => total + (board.detailFailures ?? 0), 0),
       durationMs: input.boardDiagnostics.reduce((total, board) => total + board.durationMs, 0),

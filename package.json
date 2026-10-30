@@ -12,7 +12,7 @@
     "activity:verify": "node scripts/verify-activity.mjs",
     "sync:jobs": "node --env-file-if-exists=.env.local --import tsx scripts/sync-jobs.ts",
     "maintain:sources": "tsx scripts/maintain-sources.ts",
-    "test": "tsx --test tests/core.test.ts tests/analytics.test.ts tests/activity-client.test.ts tests/activity-collector.test.ts tests/application-status.test.ts tests/saved-job-details.test.ts tests/applications.test.ts tests/application-backup.test.ts tests/hidden-companies.test.ts tests/refresh.test.ts tests/refresh-guard.test.mjs tests/source-verification.test.ts tests/coverage.test.ts tests/source-permissions.test.ts tests/employer-recovery.test.ts tests/workday-continuity.test.ts",
+    "test": "tsx --test tests/core.test.ts tests/analytics.test.ts tests/activity-client.test.ts tests/activity-collector.test.ts tests/application-status.test.ts tests/saved-job-details.test.ts tests/applications.test.ts tests/application-backup.test.ts tests/hidden-companies.test.ts tests/refresh.test.ts tests/refresh-guard.test.mjs tests/source-verification.test.ts tests/coverage.test.ts tests/source-permissions.test.ts tests/employer-recovery.test.ts tests/workday-continuity.test.ts tests/source-health.test.ts",
     "measure:usajobs": "node --env-file-if-exists=.env.local --import tsx scripts/measure-usajobs.ts",
     "measure:coverage": "tsx scripts/measure-coverage-gap.ts"
   },
