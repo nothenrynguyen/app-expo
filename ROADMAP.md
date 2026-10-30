@@ -1,5 +1,7 @@
 # empluzzed Roadmap
 
+October 30 release complete: audit actions 1 through 5 are published and production-verified. Implementation `4c5c1fb`; successful refresh `41022853725`; snapshot `f269540`, generated 1:00 a.m. Pacific, 6,781 listings. All four deployed JSON files match, retained Workday IDs have compatibility coverage, and desktop/mobile plus save-persistence checks pass. All 161 tests, types, lint/export and the zero-advisory dependency check pass. Provider failures and partial recovery remain documented limits. See [production release record](docs/APPROVED_FIXES_2026-10-29.md#production-completion-october-30).
+
 October 30 release in progress: the owner authorized taking the approved audit fixes through commit, push, deployment and production verification. Preserve current automated refresh commits and verify the new snapshot and saved-state behavior before calling this published. See [release record](docs/APPROVED_FIXES_2026-10-29.md).
 
 October 30 verification: the October 29 approved local actions 1 through 5 are complete within their local/read-only boundary. Ordinary production runs verified Elkay's retry/backoff and all ten rate-limited hosts' post-expiry success/reset, followed by further successful hourly refreshes. All four latest deployed data files match snapshot `f8bb115`; provider degradation still recurs. Local code remains uncommitted and unpublished. See [approved fixes and remaining limitations](docs/APPROVED_FIXES_2026-10-29.md).
