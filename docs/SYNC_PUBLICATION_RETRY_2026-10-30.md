@@ -37,7 +37,7 @@ failure alerts; it cannot guarantee GitHub or providers never fail.
 
 ## Verification and release
 
-Local validation: all 183 tests pass, including 12 publication recovery tests. TypeScript and ESLint pass. No UI or Next.js runtime code changed, so static export was not repeated. Production release verification is pending.
+Local validation: all 183 tests pass, including 12 publication recovery tests. TypeScript and ESLint pass. No UI or Next.js runtime code changed, so static export was not repeated. Production release verification is complete.
 The retry tests use real temporary Git repositories with injected transport
 failures. They cover server errors, timeouts before/after acceptance, exhaustion,
 fetch outages, permissions, independent remote changes, conflicts and exclusion
@@ -45,3 +45,16 @@ of staged rejected snapshots. Production outages are not deliberately induced.
 
 Next product priority remains defining and measuring an early-career experience
 policy before enabling broader exclusions.
+
+## Production completion
+
+Implementation `a8e4755` is published. [Run 41138799216](https://github.com/nothenrynguyen/app-expo/actions/runs/41138799216)
+passed a clean install, all 183 tests, collection, unchanged coverage safeguards
+and publication through the new helper. Logs show `Publish attempt 1/3` followed
+by `Publication succeeded`. Snapshot `e59eb91` contains 6,654 jobs, generated
+October 30 at 3:38 p.m. Pacific. All four public JSON files byte-match production.
+See [machine-readable receipt](sync-publication-production-result.json).
+
+This live run verifies normal publication with the new helper. Temporary outage
+recovery and conflict behavior are verified by local fault injection, not a
+manufactured GitHub outage. No email subscription or failure alert was disabled.
