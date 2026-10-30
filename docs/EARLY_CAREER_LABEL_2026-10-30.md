@@ -7,7 +7,7 @@ new language. Existing /jobs URL, fulltime collection keys, feeds, filters,
 analytics contracts, IDs and browser-local records remain unchanged. No jobs
 are removed or reclassified by this change.
 
-All 183 tests, ESLint, TypeScript and static export pass. Production release verification is pending. Reviewed the installed Next.js
+All 183 tests, ESLint, TypeScript and static export pass. Production release verification is complete. Reviewed the installed Next.js
 static-export guide and React component/accessibility checklist. Existing heading
 semantics, accessible homepage headline, link destinations, hooks and fetches are
 preserved. No new dependencies or infrastructure.
@@ -31,3 +31,14 @@ The audit is proposed, not implemented by this label release. Prioritize fixing
 missed eligible opportunities if demonstrated. If experience evidence remains
 ambiguous, prefer clearer labels or review holds over blanket exclusions. Preserve
 zero-cost operation and source permissions. No eligibility ceiling is chosen yet.
+
+## Production completion
+
+Implementation `f31eed93d231f69626f8394d68210d9dc099e8bb` is pushed.
+Vercel reports success: https://vercel.com/henrys-projects-84715f33/app-expo/CvrnQ8d9y24AjgdHdGew9Eg1RZS2
+Live browser checks confirm the accessible homepage headline and collection link,
+navigation to /jobs, loaded early-career listings, and a loaded internship table.
+The 390 by 844 mobile preview shows the full heading and usable listing cards.
+Desktop and mobile screenshots are retained locally under .cache/early-career-*.jpg.
+No saved records were changed during verification. The source diff changes only
+copy and documentation, preserving storage, data and filtering behavior.
