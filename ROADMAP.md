@@ -1,6 +1,6 @@
 # empluzzed Roadmap
 
-October 29 current status: doubling feasibility research is complete. Five additional employer boards and exact-site Workday outage retention are published and production-verified. The latest verified snapshot has 4,194 internships and 2,576 full-time jobs (6,770 total), generated at 2026-10-29T13:24:38.404Z. All 62 initial unexplained Workday absences are present again. Three consecutive refreshes succeeded; all four deployed JSON files match snapshot 43a93e3. All 150 tests, types, lint and export passed. The tested expansion pool does not substantiate a 2x promise; broader provider support and independent employer discovery remain next work. Career scope and no-spending constraints remain unchanged.
+October 29 current status: source-health reporting and Workday backoff are published and production-verified. Two refreshes succeeded; the final collection took 376 seconds. All 20 discovery feeds are healthy; the final 665 employer-board records distinguish 654 healthy, 10 rate-limited and one cooldown. The four deployed data files match snapshot `3d75a23` (6,854 listings, generated `2026-10-30T01:12:12.152Z`, October 29 Pacific). Six new regression tests bring the suite to 156 passing tests; types, lint and export pass. Employer coverage is preserved, including Old Mission through its official Ashby board. See [source-health audit](docs/SOURCE_HEALTH_AUDIT_2026-10-29.md).
 
 This is the living overview of shipped capabilities, candidate priorities, and deferred ideas. Specific current work and evidence belong in [active tasks](docs/ACTIVE_TASKS.md). Historical releases and measurements remain in their linked reviews.
 
@@ -24,7 +24,7 @@ October 29 local copy audit: reviewed all 11 page routes and shared copy against
 
 ## Candidate next work
 
-October 29 source-health audit: the checked-in 14:24 UTC snapshot reports 62/79 because the denominator mixes 19 community feeds, USAJOBS, 58 Workday boards and recovery. All 17 failed source records are Workday, including eight partial detail failures. Owner-approved reporting, persistent cooldowns and Old Mission migration cleanup are implemented locally; release verification is pending. See [source audit](docs/SOURCE_HEALTH_AUDIT_2026-10-29.md).
+October 29 source-health audit: the checked-in 14:24 UTC snapshot reports 62/79 because the denominator mixes 19 community feeds, USAJOBS, 58 Workday boards and recovery. All 17 failed source records are Workday, including eight partial detail failures. Owner-approved reporting, persistent cooldowns and Old Mission migration cleanup are published and production-verified. See [source audit](docs/SOURCE_HEALTH_AUDIT_2026-10-29.md).
 
 These are recommendations, not a committed active milestone. Choose a batch before implementation.
 
