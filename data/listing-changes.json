@@ -1,38 +1,256 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-30T20:45:16.280Z",
-  "previousGeneratedAt": "2026-10-30T19:26:04.988Z",
-  "currentSnapshotGeneratedAt": "2026-10-30T20:45:16.280Z",
+  "generatedAt": "2026-10-30T21:24:53.881Z",
+  "previousGeneratedAt": "2026-10-30T20:45:16.280Z",
+  "currentSnapshotGeneratedAt": "2026-10-30T21:24:53.881Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6667,
-    "current": 6671,
-    "retained": 6629,
-    "added": 42,
-    "removed": 38,
-    "net": 4
+    "previous": 6671,
+    "current": 6684,
+    "retained": 6660,
+    "added": 24,
+    "removed": 11,
+    "net": 13
   },
   "categoryCounts": {
     "confirmed-closed": 0,
-    "scope-exclusion": 2,
-    "verification-pending": 6,
-    "source-unavailable": 0,
-    "unresolved": 30,
+    "scope-exclusion": 0,
+    "verification-pending": 9,
+    "source-unavailable": 1,
+    "unresolved": 1,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31094",
-      "id": "e1598d89dc3dfbf48670472f",
-      "company": "HNTB",
-      "title": "Roadway Engineer I",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/North-Charleston-SC/Roadway-Engineer-I_R-31094",
-      "reason": "not-returned-by-sources",
+      "identity": "job-boards.greenhouse.io:8037922003",
+      "id": "a0869699ac0f0c13ca9b8486",
+      "company": "Axon",
+      "title": "2027 US Software Engineering Internship (Dedrone)",
+      "applyUrl": "https://job-boards.greenhouse.io/axontalentcommunity/jobs/8037922003",
+      "reason": "pendingVerification",
       "previousIds": [
-        "e1598d89dc3dfbf48670472f"
+        "a0869699ac0f0c13ca9b8486"
       ],
       "previousUrls": [
-        "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/North-Charleston-SC/Roadway-Engineer-I_R-31094"
+        "https://job-boards.greenhouse.io/axontalentcommunity/jobs/8037922003"
+      ],
+      "sources": [
+        "Internship Engine",
+        "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://job-boards.greenhouse.io/axontalentcommunity/jobs/8037922003",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-10-30T21:18:06.784Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:axontalentcommunity",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1245
+          },
+          {
+            "name": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
+            "diagnosticName": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 579
+          },
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "boards.greenhouse.io:5247800007",
+      "id": "290b3e44dfb4f77e94320cd9",
+      "company": "Parallel Systems",
+      "title": "Full Stack Software Engineer I",
+      "applyUrl": "https://boards.greenhouse.io/parallel/jobs/5247800007",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "290b3e44dfb4f77e94320cd9"
+      ],
+      "previousUrls": [
+        "https://boards.greenhouse.io/parallel/jobs/5247800007"
+      ],
+      "sources": [
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-30T21:18:06.784Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:parallel",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:abb.wd3.myworkdayjobs.com:external_career_page:jr00045727",
+      "id": "4c5d2240d4837959c462cb6f",
+      "company": "External Career Page",
+      "title": "Mechanical Design Engineer Intern- Summer 2027",
+      "applyUrl": "https://abb.wd3.myworkdayjobs.com/External_Career_Page/job/Fort-Smith-Arkansas-United-States-of-America/Mechanical-Design-Engineer-Intern--Summer-2027_JR00045727",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "4c5d2240d4837959c462cb6f"
+      ],
+      "previousUrls": [
+        "https://abb.wd3.myworkdayjobs.com/External_Career_Page/job/Fort-Smith-Arkansas-United-States-of-America/Mechanical-Design-Engineer-Intern--Summer-2027_JR00045727"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://abb.wd3.myworkdayjobs.com/external_career_page/job/Fort-Smith-Arkansas-United-States-of-America/Mechanical-Design-Engineer-Intern--Summer-2027_JR00045727",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-10-30T21:18:06.784Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:abb.wd3.myworkdayjobs.com:external_career_page",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1289
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rockwellautomation.wd1.myworkdayjobs.com:external_rockwell_automation:r26-7706",
+      "id": "26bcac24d78efd24776e4830",
+      "company": "Rockwell Automation",
+      "title": "Electrical Engineer Co-op",
+      "applyUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/External_Rockwell_Automation/job/Chelmsford-Massachusetts-United-States/Co-op--Electrical-Engineer--June---Dec-2027-_R26-7706-1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "26bcac24d78efd24776e4830"
+      ],
+      "previousUrls": [
+        "https://rockwellautomation.wd1.myworkdayjobs.com/External_Rockwell_Automation/job/Chelmsford-Massachusetts-United-States/Co-op--Electrical-Engineer--June---Dec-2027-_R26-7706-1"
+      ],
+      "sources": [
+        "Keryx Non-Software Summer 2027",
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://rockwellautomation.wd1.myworkdayjobs.com/External_Rockwell_Automation/job/Chelmsford-Massachusetts-United-States/Co-op--Electrical-Engineer--June---Dec-2027-_R26-7706-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-10-30T21:18:06.784Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:rockwellautomation.wd1.myworkdayjobs.com:external_rockwell_automation",
+          "status": "failed",
+          "outcome": "rate_limited",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1467
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rockwellautomation.wd1.myworkdayjobs.com:external_rockwell_automation:r26-6980",
+      "id": "0947416c1656f8f362913a1b",
+      "company": "Rockwell Automation",
+      "title": "Intern, AI Software Engineering (June-August 2027)",
+      "applyUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/External_Rockwell_Automation/job/Mayfield-Heights-Ohio-United-States/Intern--AI-Software-Engineering--June-August-2027-_R26-6980-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "0947416c1656f8f362913a1b"
+      ],
+      "previousUrls": [
+        "https://rockwellautomation.wd1.myworkdayjobs.com/External_Rockwell_Automation/job/Mayfield-Heights-Ohio-United-States/Intern--AI-Software-Engineering--June-August-2027-_R26-6980-1"
       ],
       "sources": [
         "Direct ATS (Workday)"
@@ -40,17 +258,80 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
+        "runStartedAt": "2026-10-30T21:18:06.784Z",
         "postingCheck": null,
         "workdayChecks": [],
+        "board": {
+          "id": "workday:rockwellautomation.wd1.myworkdayjobs.com:external_rockwell_automation",
+          "status": "failed",
+          "outcome": "rate_limited",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31682",
+      "id": "df790fef5e5d5027758ba2e0",
+      "company": "HNTB",
+      "title": "New Grad Electrical Engineering I (2027)",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "df790fef5e5d5027758ba2e0"
+      ],
+      "previousUrls": [
+        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1"
+      ],
+      "sources": [
+        "Keryx Non-Software New Grad 2027",
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-10-30T21:18:06.784Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
+            "status": "unknown"
+          }
+        ],
         "board": {
           "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
           "status": "ok",
-          "outcome": "healthy",
+          "outcome": "rate_limited",
           "membership": "unknown",
           "retired": false
         },
         "sources": [
+          {
+            "name": "Keryx Non-Software New Grad 2027",
+            "diagnosticName": "Keryx Non-Software New Grad 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 138
+          },
           {
             "name": "Direct ATS (Workday)",
             "diagnosticName": null,
@@ -60,168 +341,59 @@
           }
         ]
       },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:cvshealth.wd1.myworkdayjobs.com:cvs_health_careers:r1052308",
-      "id": "0a82a7e26068922d5819075f",
-      "company": "CVS Health",
-      "title": "Provider Network Strategy & Operations Corporate Internship – Summer 2027 (Undergraduate)",
-      "applyUrl": "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/CT---Hartford/Provider-Network-Strategy---Operations-Corporate-Internship---Summer-2027--Undergraduate-_R1052308",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "0a82a7e26068922d5819075f"
-      ],
-      "previousUrls": [
-        "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/CT---Hartford/Provider-Network-Strategy---Operations-Corporate-Internship---Summer-2027--Undergraduate-_R1052308"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:cvshealth.wd1.myworkdayjobs.com:cvs_health_careers",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:cvshealth.wd1.myworkdayjobs.com:cvs_health_careers:r1052389",
-      "id": "443d6122cfc5d7fe65ee8a66",
-      "company": "CVS Health",
-      "title": "Mental Well-being Operations Corporate Internship – Summer 2027 (Undergraduate)",
-      "applyUrl": "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/CT---Hartford/Mental-Well-being-Operations-Corporate-Internship---Summer-2027--Undergraduate-_R1052389",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "443d6122cfc5d7fe65ee8a66"
-      ],
-      "previousUrls": [
-        "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/CT---Hartford/Mental-Well-being-Operations-Corporate-Internship---Summer-2027--Undergraduate-_R1052389"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:cvshealth.wd1.myworkdayjobs.com:cvs_health_careers",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:visa.wd5.myworkdayjobs.com:visa:ref089881w",
-      "id": "1a8e419a3e00fe6f9a73548e",
-      "company": "Visa",
-      "title": "Product Management Intern, Data and AI Team - Summer 2027",
-      "applyUrl": "https://visa.wd5.myworkdayjobs.com/visa/job/US---Foster-City-CA/Product-Management-Intern--Data-and-AI-Team---Summer-2027_REF089881W-1",
+      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31630",
+      "id": "d8a30447ed31200e6a60f505",
+      "company": "HNTB",
+      "title": "New Grad Civil Engineer I: Transportation - Summer 2027",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2",
       "reason": "pendingVerification",
       "previousIds": [
-        "1a8e419a3e00fe6f9a73548e"
+        "d8a30447ed31200e6a60f505"
       ],
       "previousUrls": [
-        "https://visa.wd5.myworkdayjobs.com/visa/job/US---Foster-City-CA/Product-Management-Intern--Data-and-AI-Team---Summer-2027_REF089881W-1"
+        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2"
       ],
       "sources": [
-        "ApplyGuy Product Internships 2027",
-        "Open-Tech-Internships-2027 2027",
-        "Aprameya Summer Internships 2027",
+        "Keryx Non-Software New Grad 2027",
         "Direct ATS (Workday)"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://visa.wd5.myworkdayjobs.com/visa/job/US---Foster-City-CA/Product-Management-Intern--Data-and-AI-Team---Summer-2027_REF089881W-1",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          },
-          {
-            "url": "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Foster-City-CA/Product-Management-Intern--Data-and-AI-Team---Summer-2027_REF089881W-1",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          },
-          {
-            "url": "https://visa.wd5.myworkdayjobs.com/en-US/Visa/job/US---Foster-City-CA/Product-Management-Intern--Data-and-AI-Team---Summer-2027_REF089881W-1",
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
+        "runStartedAt": "2026-10-30T21:18:06.784Z",
         "postingCheck": null,
-        "workdayChecks": [],
+        "workdayChecks": [
+          {
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2",
+            "status": "unknown"
+          }
+        ],
         "board": {
-          "id": "workday:visa.wd5.myworkdayjobs.com:visa",
+          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
           "status": "ok",
-          "outcome": "healthy",
+          "outcome": "rate_limited",
           "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "ApplyGuy Product Internships 2027",
-            "diagnosticName": "ApplyGuy Product Internships 2027",
+            "name": "Keryx Non-Software New Grad 2027",
+            "diagnosticName": "Keryx Non-Software New Grad 2027",
             "status": "ok",
             "outcome": null,
-            "rows": 55
-          },
-          {
-            "name": "Open-Tech-Internships-2027 2027",
-            "diagnosticName": "Open-Tech-Internships-2027 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1856
-          },
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1903
+            "rows": 138
           },
           {
             "name": "Direct ATS (Workday)",
@@ -238,1564 +410,220 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "https://apply.clearcompany.com/centurawealth?jobid=040f1c18-f0a1-2c9c-6efc-e0219e393a3e",
-      "id": "2dd2847412d22340bb29909d",
-      "company": "Centura Wealth Advisory",
-      "title": "Wealth Management Intern San Diego (Fall 2026)",
-      "applyUrl": "https://apply.clearcompany.com/centurawealth?jobId=040f1c18-f0a1-2c9c-6efc-e0219e393a3e",
-      "reason": "not-returned-by-sources",
+      "identity": "workday:redhat.wd5.myworkdayjobs.com:jobs:r-059039",
+      "id": "1e1681984b494fc9a159fdf7",
+      "company": "Red Hat",
+      "title": "Software Engineer Co-op",
+      "applyUrl": "https://redhat.wd5.myworkdayjobs.com/Jobs/job/Raleigh/Software-Engineer-Co-op_R-059039",
+      "reason": "pendingVerification",
       "previousIds": [
-        "2dd2847412d22340bb29909d"
+        "1e1681984b494fc9a159fdf7"
       ],
       "previousUrls": [
-        "https://apply.clearcompany.com/centurawealth?jobId=040f1c18-f0a1-2c9c-6efc-e0219e393a3e"
+        "https://redhat.wd5.myworkdayjobs.com/Jobs/job/Raleigh/Software-Engineer-Co-op_R-059039"
       ],
       "sources": [
-        "Dreamwork Business Internships 2027"
+        "Employer recovery"
       ],
-      "candidateSeen": false,
+      "candidateSeen": true,
       "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": {
-          "status": "unknown",
-          "checkedAt": "2026-10-30T00:24:09.508Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
+        "screening": [
+          {
+            "url": "https://redhat.wd5.myworkdayjobs.com/Jobs/job/Raleigh/Software-Engineer-Co-op_R-059039",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://redhat.wd5.myworkdayjobs.com/jobs/job/Raleigh/Software-Engineer-Co-op_R-059039",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-10-30T21:18:06.784Z",
+        "postingCheck": null,
         "workdayChecks": [],
-        "board": null,
+        "board": {
+          "id": "workday:redhat.wd5.myworkdayjobs.com:jobs",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
         "sources": [
           {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
             "status": "ok",
-            "outcome": null,
-            "rows": 420
+            "outcome": "partial",
+            "rows": 1289
           }
         ]
       },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
       "requiresInvestigation": true
     },
     {
-      "identity": "https://myjobs.adp.com/aticareers/cx/job-details?reqid=5001229815900",
-      "id": "b49d49087dfe6c83eb73a700",
-      "company": "ATI Inc.",
-      "title": "Summer 2027 Intern - Finance (Accounting)",
-      "applyUrl": "https://myjobs.adp.com/aticareers/cx/job-details?reqId=5001229815900",
-      "reason": "not-returned-by-sources",
+      "identity": "workday:redhat.wd5.myworkdayjobs.com:jobs:r-059060",
+      "id": "01d08f7e7513a0362b803ea9",
+      "company": "Red Hat",
+      "title": "Product Manager Intern",
+      "applyUrl": "https://redhat.wd5.myworkdayjobs.com/Jobs/job/Raleigh/Product-Manager-Intern_R-059060",
+      "reason": "pendingVerification",
       "previousIds": [
-        "b49d49087dfe6c83eb73a700"
+        "01d08f7e7513a0362b803ea9"
       ],
       "previousUrls": [
-        "https://myjobs.adp.com/aticareers/cx/job-details?reqId=5001229815900"
+        "https://redhat.wd5.myworkdayjobs.com/Jobs/job/Raleigh/Product-Manager-Intern_R-059060"
       ],
       "sources": [
-        "Dreamwork Business Internships 2027"
+        "Employer recovery"
       ],
-      "candidateSeen": false,
+      "candidateSeen": true,
       "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": {
-          "status": "unknown",
-          "checkedAt": "2026-10-30T00:24:09.524Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
+        "screening": [
+          {
+            "url": "https://redhat.wd5.myworkdayjobs.com/Jobs/job/Raleigh/Product-Manager-Intern_R-059060",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://redhat.wd5.myworkdayjobs.com/jobs/job/Raleigh/Product-Manager-Intern_R-059060",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-10-30T21:18:06.784Z",
+        "postingCheck": null,
         "workdayChecks": [],
-        "board": null,
+        "board": {
+          "id": "workday:redhat.wd5.myworkdayjobs.com:jobs",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
         "sources": [
           {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
             "status": "ok",
-            "outcome": null,
-            "rows": 420
+            "outcome": "partial",
+            "rows": 1289
           }
         ]
       },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
       "requiresInvestigation": true
     },
     {
-      "identity": "https://apply.clearcompany.com/americo?jobid=90bb2ac3-d215-6b86-1a7e-0bb16b647b63",
-      "id": "f8b6e0f29bff13a0e8223b70",
-      "company": "Americo Financial Life and Annu…",
-      "title": "2027 Actuarial Summer Internship",
-      "applyUrl": "https://apply.clearcompany.com/americo?jobId=90bb2ac3-d215-6b86-1a7e-0bb16b647b63",
-      "reason": "not-returned-by-sources",
+      "identity": "workday:redhat.wd5.myworkdayjobs.com:jobs:r-059038",
+      "id": "d24d949aa9e50b9c990d7f29",
+      "company": "Red Hat",
+      "title": "Software Engineer Intern",
+      "applyUrl": "https://redhat.wd5.myworkdayjobs.com/Jobs/job/Raleigh/Software-Engineer-Intern_R-059038",
+      "reason": "pendingVerification",
       "previousIds": [
-        "f8b6e0f29bff13a0e8223b70"
+        "d24d949aa9e50b9c990d7f29"
       ],
       "previousUrls": [
-        "https://apply.clearcompany.com/americo?jobId=90bb2ac3-d215-6b86-1a7e-0bb16b647b63"
+        "https://redhat.wd5.myworkdayjobs.com/Jobs/job/Raleigh/Software-Engineer-Intern_R-059038"
       ],
       "sources": [
-        "Dreamwork Business Internships 2027"
+        "Employer recovery"
       ],
-      "candidateSeen": false,
+      "candidateSeen": true,
       "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": {
-          "status": "unknown",
-          "checkedAt": "2026-10-30T00:24:09.535Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
+        "screening": [
+          {
+            "url": "https://redhat.wd5.myworkdayjobs.com/jobs/job/Raleigh/Software-Engineer-Intern_R-059038",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-10-30T21:18:06.784Z",
+        "postingCheck": null,
         "workdayChecks": [],
-        "board": null,
+        "board": {
+          "id": "workday:redhat.wd5.myworkdayjobs.com:jobs",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
         "sources": [
           {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
             "status": "ok",
-            "outcome": null,
-            "rows": 420
+            "outcome": "partial",
+            "rows": 1289
           }
         ]
       },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
       "requiresInvestigation": true
     },
     {
-      "identity": "https://careers-stifel.icims.com/jobs/9970/data-analyst-intern--summer-2027/job",
-      "id": "8111a15d2196ced601f4c82f",
-      "company": "Stifel",
-      "title": "Data Analyst Intern- Summer 2027",
-      "applyUrl": "https://careers-stifel.icims.com/jobs/9970/data-analyst-intern--summer-2027/job",
-      "reason": "not-returned-by-sources",
+      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31355",
+      "id": "e40074ef200d40c15b63eb3e",
+      "company": "HNTB",
+      "title": "New Grad Structural Engineer I - Winter/Summer 2027",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
+      "reason": "pendingVerification",
       "previousIds": [
-        "8111a15d2196ced601f4c82f"
+        "e40074ef200d40c15b63eb3e"
       ],
       "previousUrls": [
-        "https://careers-stifel.icims.com/jobs/9970/data-analyst-intern--summer-2027/job"
+        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355"
       ],
       "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": {
-          "status": "unknown",
-          "checkedAt": "2026-10-29T16:19:06.081Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": null,
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 420
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:aptiv.wd5.myworkdayjobs.com:aptiv_careers:j000704364",
-      "id": "88454f4af9c85c5bfd4e0de3",
-      "company": "Aptiv",
-      "title": "Engineering Intern",
-      "applyUrl": "https://aptiv.wd5.myworkdayjobs.com/APTIV_CAREERS/job/CAN-Kanata-2-ON---WR/Engineering-Intern_J000704364",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "88454f4af9c85c5bfd4e0de3"
-      ],
-      "previousUrls": [
-        "https://aptiv.wd5.myworkdayjobs.com/APTIV_CAREERS/job/CAN-Kanata-2-ON---WR/Engineering-Intern_J000704364"
-      ],
-      "sources": [
+        "Keryx Non-Software New Grad 2027",
         "Direct ATS (Workday)"
       ],
-      "candidateSeen": false,
+      "candidateSeen": true,
       "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
+        "screening": [
+          {
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-10-30T21:18:06.784Z",
         "postingCheck": null,
-        "workdayChecks": [],
+        "workdayChecks": [
+          {
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
+            "status": "unknown"
+          }
+        ],
         "board": {
-          "id": "workday:aptiv.wd5.myworkdayjobs.com:aptiv_careers",
+          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
           "status": "ok",
-          "outcome": "healthy",
+          "outcome": "rate_limited",
           "membership": "unknown",
           "retired": false
         },
         "sources": [
+          {
+            "name": "Keryx Non-Software New Grad 2027",
+            "diagnosticName": "Keryx Non-Software New Grad 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 138
+          },
           {
             "name": "Direct ATS (Workday)",
             "diagnosticName": null,
             "status": "not-checked",
             "outcome": null,
             "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:disney.wd5.myworkdayjobs.com:disneycareer:10162487",
-      "id": "6418f77a81956053c75b128c",
-      "company": "Disney",
-      "title": "Finance Intern, Spring 2027",
-      "applyUrl": "https://disney.wd5.myworkdayjobs.com/disneycareer/job/Anaheim-CA-USA/Finance-Intern--Spring-2027_10162487",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "6418f77a81956053c75b128c"
-      ],
-      "previousUrls": [
-        "https://disney.wd5.myworkdayjobs.com/disneycareer/job/Anaheim-CA-USA/Finance-Intern--Spring-2027_10162487"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:disney.wd5.myworkdayjobs.com:disneycareer",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 420
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:stvinc.wd5.myworkdayjobs.com:stv:jr6126",
-      "id": "d41ffec8b3cfb3dace944460",
-      "company": "STV",
-      "title": "Electrical Engineering Intern - Spring 2027",
-      "applyUrl": "https://stvinc.wd5.myworkdayjobs.com/stv/job/Boston-Massachusetts/Electrical-Engineering-Intern---Spring-2027_JR6126",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "d41ffec8b3cfb3dace944460"
-      ],
-      "previousUrls": [
-        "https://stvinc.wd5.myworkdayjobs.com/stv/job/Boston-Massachusetts/Electrical-Engineering-Intern---Spring-2027_JR6126"
-      ],
-      "sources": [
-        "Keryx Non-Software Spring 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:stvinc.wd5.myworkdayjobs.com:stv",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Keryx Non-Software Spring 2027",
-            "diagnosticName": "Keryx Non-Software Spring 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 271
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "fa-exvu-saasfaprod1.fa.ocs.oraclecloud.com:260773",
-      "id": "45a227d7f3b2ebe23c4e6975",
-      "company": "GM Financial",
-      "title": "Intern - Portfolio Analytics",
-      "applyUrl": "https://fa-exvu-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/260773",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "45a227d7f3b2ebe23c4e6975"
-      ],
-      "previousUrls": [
-        "https://fa-exvu-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/260773"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": {
-          "status": "unknown",
-          "checkedAt": "2026-10-30T10:24:50.746Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": null,
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 420
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:stvinc.wd5.myworkdayjobs.com:stv:jr6006",
-      "id": "d84e8093ea241e73874de917",
-      "company": "STV",
-      "title": "Civil Engineering Intern - Summer 2027",
-      "applyUrl": "https://stvinc.wd5.myworkdayjobs.com/stv/job/Empire-State-Building-New-York-New-York/Civil-Engineering-Intern---Summer-2027_JR6006",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "d84e8093ea241e73874de917"
-      ],
-      "previousUrls": [
-        "https://stvinc.wd5.myworkdayjobs.com/stv/job/Empire-State-Building-New-York-New-York/Civil-Engineering-Intern---Summer-2027_JR6006"
-      ],
-      "sources": [
-        "Keryx Non-Software Summer 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:stvinc.wd5.myworkdayjobs.com:stv",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1467
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:stvinc.wd5.myworkdayjobs.com:stv:jr6202",
-      "id": "248b940050e91ff6cf42a08c",
-      "company": "STV",
-      "title": "Civil Engineering Intern - Summer 2027",
-      "applyUrl": "https://stvinc.wd5.myworkdayjobs.com/stv/job/Chicago-Illinois/Civil-Engineering-Intern---Summer-2027_JR6202",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "248b940050e91ff6cf42a08c"
-      ],
-      "previousUrls": [
-        "https://stvinc.wd5.myworkdayjobs.com/stv/job/Chicago-Illinois/Civil-Engineering-Intern---Summer-2027_JR6202"
-      ],
-      "sources": [
-        "Keryx Non-Software Summer 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:stvinc.wd5.myworkdayjobs.com:stv",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1467
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "job-boards.greenhouse.io:5450442008",
-      "id": "1f350e09e40e3418b841282a",
-      "company": "Memx",
-      "title": "Data Engineering Intern, Summer 2027 (Hybrid, NYC)",
-      "applyUrl": "https://job-boards.greenhouse.io/memx/jobs/5450442008",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "1f350e09e40e3418b841282a"
-      ],
-      "previousUrls": [
-        "https://job-boards.greenhouse.io/memx/jobs/5450442008"
-      ],
-      "sources": [
-        "Open-Tech-Internships-2027 2027",
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://job-boards.greenhouse.io/memx/jobs/5450442008",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:memx",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Open-Tech-Internships-2027 2027",
-            "diagnosticName": "Open-Tech-Internships-2027 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1856
-          },
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://career2.successfactors.eu/careers?career_job_req_id=136467&career_ns=job_listing&company=sf2013",
-      "id": "86117ee34473a17c6fde25da",
-      "company": "Zurich Insurance",
-      "title": "Underwriting Internship - Boston - Summer 2027",
-      "applyUrl": "https://career2.successfactors.eu/careers?career_job_req_id=136467&career_ns=job_listing&company=SF2013",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "86117ee34473a17c6fde25da"
-      ],
-      "previousUrls": [
-        "https://career2.successfactors.eu/careers?career_job_req_id=136467&career_ns=job_listing&company=SF2013"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": {
-          "status": "unknown",
-          "checkedAt": "2026-10-30T00:24:12.239Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": null,
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 420
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "job-boards.greenhouse.io:5449276008",
-      "id": "66fd0a6dc1b2b74b36835651",
-      "company": "MEMX",
-      "title": "Data Center Operations Intern, Summer 2027 (Hybrid, NYC)",
-      "applyUrl": "https://job-boards.greenhouse.io/memx/jobs/5449276008",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "66fd0a6dc1b2b74b36835651"
-      ],
-      "previousUrls": [
-        "https://job-boards.greenhouse.io/memx/jobs/5449276008"
-      ],
-      "sources": [
-        "Keryx Non-Software Summer 2027",
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://job-boards.greenhouse.io/memx/jobs/5449276008",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:memx",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1467
-          },
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "jobs.ashbyhq.com:9c43576b-d16f-4192-a366-7c9eb689c4be",
-      "id": "fb2ff52f295a0a04f8222ae3",
-      "company": "Amplitude",
-      "title": "Software Engineer I",
-      "applyUrl": "https://jobs.ashbyhq.com/amplitude/9c43576b-d16f-4192-a366-7c9eb689c4be/application",
-      "reason": "absent-from-employer-board",
-      "previousIds": [
-        "fb2ff52f295a0a04f8222ae3"
-      ],
-      "previousUrls": [
-        "https://jobs.ashbyhq.com/amplitude/9c43576b-d16f-4192-a366-7c9eb689c4be/application"
-      ],
-      "sources": [
-        "Direct ATS (Ashby)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "ashby:amplitude",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Ashby)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "job-boards.greenhouse.io:8013277003",
-      "id": "1b444fbb811750c8aef01489",
-      "company": "Rocket Lab",
-      "title": "RF Engineering Intern Summer 2027",
-      "applyUrl": "https://job-boards.greenhouse.io/rocketlab/jobs/8013277003",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "1b444fbb811750c8aef01489"
-      ],
-      "previousUrls": [
-        "https://job-boards.greenhouse.io/rocketlab/jobs/8013277003"
-      ],
-      "sources": [
-        "Keryx Non-Software Summer 2027",
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://job-boards.greenhouse.io/rocketlab/jobs/8013277003",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:rocketlab",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1467
-          },
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:vanguard.wd5.myworkdayjobs.com:vanguard_external:182757",
-      "id": "8e303ab3852ee1a42a0b02c3",
-      "company": "Vanguard",
-      "title": "College to Corporate IT Intern - Application Development",
-      "applyUrl": "https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Malvern-PA/College-to-Corporate-IT-Internship-Application-Development--PA-_182757",
-      "reason": "role",
-      "previousIds": [
-        "8e303ab3852ee1a42a0b02c3"
-      ],
-      "previousUrls": [
-        "https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Malvern-PA/College-to-Corporate-IT-Internship-Application-Development--PA-_182757"
-      ],
-      "sources": [
-        "Keryx Non-Software Summer 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Malvern-PA/College-to-Corporate-IT-Internship-Application-Development--PA-_182757",
-            "reason": "role",
-            "detail": null
-          }
-        ],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:vanguard.wd5.myworkdayjobs.com:vanguard_external",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1467
-          }
-        ]
-      },
-      "category": "scope-exclusion",
-      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
-      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
-      "requiresInvestigation": false
-    },
-    {
-      "identity": "workday:vanguard.wd5.myworkdayjobs.com:vanguard_external:182781",
-      "id": "95b4ba477ab2c16520343247",
-      "company": "Vanguard",
-      "title": "IT Intern Application Development",
-      "applyUrl": "https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Charlotte-NC/College-to-Corporate-IT-Internship-Application-Development--NC-_182781",
-      "reason": "role",
-      "previousIds": [
-        "95b4ba477ab2c16520343247"
-      ],
-      "previousUrls": [
-        "https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Charlotte-NC/College-to-Corporate-IT-Internship-Application-Development--NC-_182781"
-      ],
-      "sources": [
-        "Keryx Non-Software Summer 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Charlotte-NC/College-to-Corporate-IT-Internship-Application-Development--NC-_182781",
-            "reason": "role",
-            "detail": null
-          }
-        ],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:vanguard.wd5.myworkdayjobs.com:vanguard_external",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1467
-          }
-        ]
-      },
-      "category": "scope-exclusion",
-      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
-      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
-      "requiresInvestigation": false
-    },
-    {
-      "identity": "job-boards.greenhouse.io:5414475008",
-      "id": "48d0e1194d2ff644432c34fd",
-      "company": "Northmarq",
-      "title": "Software Engineering Intern, Summer 2027",
-      "applyUrl": "https://job-boards.greenhouse.io/northmarq/jobs/5414475008",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "48d0e1194d2ff644432c34fd"
-      ],
-      "previousUrls": [
-        "https://job-boards.greenhouse.io/northmarq/jobs/5414475008"
-      ],
-      "sources": [
-        "Open-Tech-Internships-2027 2027",
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://job-boards.greenhouse.io/northmarq/jobs/5414475008",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:northmarq",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Open-Tech-Internships-2027 2027",
-            "diagnosticName": "Open-Tech-Internships-2027 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1856
-          },
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "job-boards.greenhouse.io:7481689",
-      "id": "365995ae5f8d6c7e85a8cc81",
-      "company": "Twilio",
-      "title": "Sales Development Representative",
-      "applyUrl": "https://job-boards.greenhouse.io/twilio/jobs/7481689",
-      "reason": "absent-from-employer-board",
-      "previousIds": [
-        "365995ae5f8d6c7e85a8cc81"
-      ],
-      "previousUrls": [
-        "https://job-boards.greenhouse.io/twilio/jobs/7481689"
-      ],
-      "sources": [
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:twilio",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://career2.successfactors.eu/careers?career_job_req_id=136452&career_ns=job_listing&company=sf2013",
-      "id": "06c8d9de18bc81aeb1478708",
-      "company": "Zurich Insurance",
-      "title": "Underwriting Internship - NYC - Summer 2027",
-      "applyUrl": "https://career2.successfactors.eu/careers?career_job_req_id=136452&career_ns=job_listing&company=SF2013",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "06c8d9de18bc81aeb1478708"
-      ],
-      "previousUrls": [
-        "https://career2.successfactors.eu/careers?career_job_req_id=136452&career_ns=job_listing&company=SF2013"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": {
-          "status": "unknown",
-          "checkedAt": "2026-10-29T15:25:34.362Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": null,
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 420
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:armaninollp.wd1.myworkdayjobs.com:armanino:jr104301",
-      "id": "c592ccfe16fd160d7e2afc7d",
-      "company": "Armaninollp",
-      "title": "Summer 2027 Audit Intern (Northern California)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/San-Jose-California/Winter-2027-Audit-Intern--Northern-California-_JR104301",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "c592ccfe16fd160d7e2afc7d"
-      ],
-      "previousUrls": [
-        "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/San-Jose-California/Winter-2027-Audit-Intern--Northern-California-_JR104301"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:armaninollp.wd1.myworkdayjobs.com:armanino",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 420
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:armaninollp.wd1.myworkdayjobs.com:armanino:jr104278",
-      "id": "2a46371bacce5c6b4697d9ab",
-      "company": "Armaninollp",
-      "title": "Summer 2027 Risk Advisory Intern (Southern California)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Century-City-California/Summer-2027-Risk-Advisory-Intern_JR104278",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "2a46371bacce5c6b4697d9ab"
-      ],
-      "previousUrls": [
-        "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Century-City-California/Summer-2027-Risk-Advisory-Intern_JR104278"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:armaninollp.wd1.myworkdayjobs.com:armanino",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 420
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:armaninollp.wd1.myworkdayjobs.com:armanino:jr104279",
-      "id": "2f8e68fda749f270dc6cda1b",
-      "company": "Armaninollp",
-      "title": "Summer 2027 Risk Advisory Intern (Northern California)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/San-Ramon-California/Summer-2027-Risk-Advisory-Intern_JR104279",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "2f8e68fda749f270dc6cda1b"
-      ],
-      "previousUrls": [
-        "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/San-Ramon-California/Summer-2027-Risk-Advisory-Intern_JR104279"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:armaninollp.wd1.myworkdayjobs.com:armanino",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 420
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:armaninollp.wd1.myworkdayjobs.com:armanino:jr104336",
-      "id": "2b1f7774147766f1e5a642f7",
-      "company": "Armaninollp",
-      "title": "Summer 2027 Audit Intern (Woodland Hills)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Woodland-Hills-California/Summer-2027-Audit-Intern--Woodland-Hills-_JR104336",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "2b1f7774147766f1e5a642f7"
-      ],
-      "previousUrls": [
-        "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Woodland-Hills-California/Summer-2027-Audit-Intern--Woodland-Hills-_JR104336"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:armaninollp.wd1.myworkdayjobs.com:armanino",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 420
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:armaninollp.wd1.myworkdayjobs.com:armanino:jr104307",
-      "id": "4cfcdc74140202caf5b85ee5",
-      "company": "Armaninollp",
-      "title": "Summer 2027 Tax Intern (San Jose)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/San-Jose-California/Summer-2027-Tax-Intern--San-Jose-_JR104307",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "4cfcdc74140202caf5b85ee5"
-      ],
-      "previousUrls": [
-        "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/San-Jose-California/Summer-2027-Tax-Intern--San-Jose-_JR104307"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:armaninollp.wd1.myworkdayjobs.com:armanino",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 420
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:armaninollp.wd1.myworkdayjobs.com:armanino:jr104308",
-      "id": "dcb85b3312494e3d095e0310",
-      "company": "Armaninollp",
-      "title": "Summer 2027 Tax Intern (Bellevue)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Bellevue-Washington/Summer-2027-Tax-Intern--Bellevue-_JR104308",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "dcb85b3312494e3d095e0310"
-      ],
-      "previousUrls": [
-        "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Bellevue-Washington/Summer-2027-Tax-Intern--Bellevue-_JR104308"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:armaninollp.wd1.myworkdayjobs.com:armanino",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 420
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:armaninollp.wd1.myworkdayjobs.com:armanino:jr104281",
-      "id": "f21ce68ea325a32c32257a77",
-      "company": "Armaninollp",
-      "title": "Summer 2027 Risk Advisory Intern (Austin)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Austin-Texas/Summer-2027-Risk-Advisory-Intern_JR104281",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "f21ce68ea325a32c32257a77"
-      ],
-      "previousUrls": [
-        "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Austin-Texas/Summer-2027-Risk-Advisory-Intern_JR104281"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:armaninollp.wd1.myworkdayjobs.com:armanino",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 420
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:armaninollp.wd1.myworkdayjobs.com:armanino:jr104287",
-      "id": "c04cd1465aa3d96686f1005b",
-      "company": "Armaninollp",
-      "title": "Summer 2027 IT Audit Intern (Austin)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Austin-Texas/Summer-2027-IT-Audit-Intern--Austin-_JR104287",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "c04cd1465aa3d96686f1005b"
-      ],
-      "previousUrls": [
-        "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Austin-Texas/Summer-2027-IT-Audit-Intern--Austin-_JR104287"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:armaninollp.wd1.myworkdayjobs.com:armanino",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 420
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:armaninollp.wd1.myworkdayjobs.com:armanino:jr104280",
-      "id": "e1b618805b3a32584e2127d3",
-      "company": "Armaninollp",
-      "title": "Summer 2027 Risk Advisory Intern (Dallas)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Dallas-Texas/Summer-2027-Risk-Advisory-Intern_JR104280",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "e1b618805b3a32584e2127d3"
-      ],
-      "previousUrls": [
-        "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Dallas-Texas/Summer-2027-Risk-Advisory-Intern_JR104280"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:armaninollp.wd1.myworkdayjobs.com:armanino",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 420
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:armaninollp.wd1.myworkdayjobs.com:armanino:jr104255",
-      "id": "257f0160090e90ef554f4ca5",
-      "company": "Armaninollp",
-      "title": "Winter 2027 Tax Intern (Philadelphia)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Philadelphia-Pennsylvania/Winter-2027-Tax-Intern--Philadelphia-_JR104255",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "257f0160090e90ef554f4ca5"
-      ],
-      "previousUrls": [
-        "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Philadelphia-Pennsylvania/Winter-2027-Tax-Intern--Philadelphia-_JR104255"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:armaninollp.wd1.myworkdayjobs.com:armanino",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 420
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://fa-etum-saasfaprod1.fa.ocs.oraclecloud.com/hcmui/candidateexperience/en/sites/cx_1/job/41879",
-      "id": "08cbe1a2f9922b305fd73e59",
-      "company": "Guide Well",
-      "title": "Enterprise Analytics - Summer 2027 Internship",
-      "applyUrl": "https://fa-etum-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/41879",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "08cbe1a2f9922b305fd73e59"
-      ],
-      "previousUrls": [
-        "https://fa-etum-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/41879"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": {
-          "status": "unknown",
-          "checkedAt": "2026-10-29T11:28:44.346Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": null,
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 420
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:armaninollp.wd1.myworkdayjobs.com:armanino:jr103108",
-      "id": "df97583a75292c7de108e3ed",
-      "company": "Armaninollp",
-      "title": "Summer 2027 Tax Intern (Dallas)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Dallas-Texas/Summer-2027-Tax-Intern--Dallas-_JR103108",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "df97583a75292c7de108e3ed"
-      ],
-      "previousUrls": [
-        "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Dallas-Texas/Summer-2027-Tax-Intern--Dallas-_JR103108"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:armaninollp.wd1.myworkdayjobs.com:armanino",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 420
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:armaninollp.wd1.myworkdayjobs.com:armanino:jr104221",
-      "id": "a55aff748660a699d084200c",
-      "company": "Armaninollp",
-      "title": "Summer 2027 - IT Audit Intern (Austin)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Austin-Texas/Summer-2027---IT-Audit-Intern--Austin-_JR104221",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "a55aff748660a699d084200c"
-      ],
-      "previousUrls": [
-        "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Austin-Texas/Summer-2027---IT-Audit-Intern--Austin-_JR104221"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:armaninollp.wd1.myworkdayjobs.com:armanino",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 420
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:vanguard.wd5.myworkdayjobs.com:vanguard_external:181766",
-      "id": "6815da0fa678d1eba532ed40",
-      "company": "Vanguard",
-      "title": "Data Science Intern - Information Technology",
-      "applyUrl": "https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Malvern-PA/College-to-Corporate-IT-Internship---Data-Science--PA-_181766",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "6815da0fa678d1eba532ed40"
-      ],
-      "previousUrls": [
-        "https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Malvern-PA/College-to-Corporate-IT-Internship---Data-Science--PA-_181766"
-      ],
-      "sources": [
-        "Keryx Non-Software Summer 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://vanguard.wd5.myworkdayjobs.com/vanguard_external/job/Malvern-PA/College-to-Corporate-IT-Internship---Data-Science--PA-_181766",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          },
-          {
-            "url": "https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Malvern-PA/College-to-Corporate-IT-Internship---Data-Science--PA-_181766",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-10-30T20:37:58.227Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:vanguard.wd5.myworkdayjobs.com:vanguard_external",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1467
           }
         ]
       },
@@ -1806,388 +634,118 @@
     }
   ],
   "rowCounts": {
-    "previous": 6667,
-    "current": 6671,
-    "net": 4,
+    "previous": 6671,
+    "current": 6684,
+    "net": 13,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 42,
-  "removedCount": 38,
+  "added": 24,
+  "removedCount": 11,
   "counts": {
-    "not-returned-by-sources": 28,
-    "pendingVerification": 6,
-    "absent-from-employer-board": 2,
-    "role": 2
+    "pendingVerification": 9,
+    "absent-from-employer-board": 1,
+    "not-returned-by-sources": 1
   },
   "removed": [
     {
-      "id": "e1598d89dc3dfbf48670472f",
+      "id": "a0869699ac0f0c13ca9b8486",
+      "company": "Axon",
+      "title": "2027 US Software Engineering Internship (Dedrone)",
+      "applyUrl": "https://job-boards.greenhouse.io/axontalentcommunity/jobs/8037922003",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "290b3e44dfb4f77e94320cd9",
+      "company": "Parallel Systems",
+      "title": "Full Stack Software Engineer I",
+      "applyUrl": "https://boards.greenhouse.io/parallel/jobs/5247800007",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "4c5d2240d4837959c462cb6f",
+      "company": "External Career Page",
+      "title": "Mechanical Design Engineer Intern- Summer 2027",
+      "applyUrl": "https://abb.wd3.myworkdayjobs.com/External_Career_Page/job/Fort-Smith-Arkansas-United-States-of-America/Mechanical-Design-Engineer-Intern--Summer-2027_JR00045727",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "26bcac24d78efd24776e4830",
+      "company": "Rockwell Automation",
+      "title": "Electrical Engineer Co-op",
+      "applyUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/External_Rockwell_Automation/job/Chelmsford-Massachusetts-United-States/Co-op--Electrical-Engineer--June---Dec-2027-_R26-7706-1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "0947416c1656f8f362913a1b",
+      "company": "Rockwell Automation",
+      "title": "Intern, AI Software Engineering (June-August 2027)",
+      "applyUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/External_Rockwell_Automation/job/Mayfield-Heights-Ohio-United-States/Intern--AI-Software-Engineering--June-August-2027-_R26-6980-1",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "df790fef5e5d5027758ba2e0",
       "company": "HNTB",
-      "title": "Roadway Engineer I",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/North-Charleston-SC/Roadway-Engineer-I_R-31094",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "0a82a7e26068922d5819075f",
-      "company": "CVS Health",
-      "title": "Provider Network Strategy & Operations Corporate Internship – Summer 2027 (Undergraduate)",
-      "applyUrl": "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/CT---Hartford/Provider-Network-Strategy---Operations-Corporate-Internship---Summer-2027--Undergraduate-_R1052308",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "443d6122cfc5d7fe65ee8a66",
-      "company": "CVS Health",
-      "title": "Mental Well-being Operations Corporate Internship – Summer 2027 (Undergraduate)",
-      "applyUrl": "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/CT---Hartford/Mental-Well-being-Operations-Corporate-Internship---Summer-2027--Undergraduate-_R1052389",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "1a8e419a3e00fe6f9a73548e",
-      "company": "Visa",
-      "title": "Product Management Intern, Data and AI Team - Summer 2027",
-      "applyUrl": "https://visa.wd5.myworkdayjobs.com/visa/job/US---Foster-City-CA/Product-Management-Intern--Data-and-AI-Team---Summer-2027_REF089881W-1",
+      "title": "New Grad Electrical Engineering I (2027)",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
       "reason": "pendingVerification"
     },
     {
-      "id": "2dd2847412d22340bb29909d",
-      "company": "Centura Wealth Advisory",
-      "title": "Wealth Management Intern San Diego (Fall 2026)",
-      "applyUrl": "https://apply.clearcompany.com/centurawealth?jobId=040f1c18-f0a1-2c9c-6efc-e0219e393a3e",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "b49d49087dfe6c83eb73a700",
-      "company": "ATI Inc.",
-      "title": "Summer 2027 Intern - Finance (Accounting)",
-      "applyUrl": "https://myjobs.adp.com/aticareers/cx/job-details?reqId=5001229815900",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "f8b6e0f29bff13a0e8223b70",
-      "company": "Americo Financial Life and Annu…",
-      "title": "2027 Actuarial Summer Internship",
-      "applyUrl": "https://apply.clearcompany.com/americo?jobId=90bb2ac3-d215-6b86-1a7e-0bb16b647b63",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "8111a15d2196ced601f4c82f",
-      "company": "Stifel",
-      "title": "Data Analyst Intern- Summer 2027",
-      "applyUrl": "https://careers-stifel.icims.com/jobs/9970/data-analyst-intern--summer-2027/job",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "88454f4af9c85c5bfd4e0de3",
-      "company": "Aptiv",
-      "title": "Engineering Intern",
-      "applyUrl": "https://aptiv.wd5.myworkdayjobs.com/APTIV_CAREERS/job/CAN-Kanata-2-ON---WR/Engineering-Intern_J000704364",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "6418f77a81956053c75b128c",
-      "company": "Disney",
-      "title": "Finance Intern, Spring 2027",
-      "applyUrl": "https://disney.wd5.myworkdayjobs.com/disneycareer/job/Anaheim-CA-USA/Finance-Intern--Spring-2027_10162487",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "d41ffec8b3cfb3dace944460",
-      "company": "STV",
-      "title": "Electrical Engineering Intern - Spring 2027",
-      "applyUrl": "https://stvinc.wd5.myworkdayjobs.com/stv/job/Boston-Massachusetts/Electrical-Engineering-Intern---Spring-2027_JR6126",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "45a227d7f3b2ebe23c4e6975",
-      "company": "GM Financial",
-      "title": "Intern - Portfolio Analytics",
-      "applyUrl": "https://fa-exvu-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/260773",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "d84e8093ea241e73874de917",
-      "company": "STV",
-      "title": "Civil Engineering Intern - Summer 2027",
-      "applyUrl": "https://stvinc.wd5.myworkdayjobs.com/stv/job/Empire-State-Building-New-York-New-York/Civil-Engineering-Intern---Summer-2027_JR6006",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "248b940050e91ff6cf42a08c",
-      "company": "STV",
-      "title": "Civil Engineering Intern - Summer 2027",
-      "applyUrl": "https://stvinc.wd5.myworkdayjobs.com/stv/job/Chicago-Illinois/Civil-Engineering-Intern---Summer-2027_JR6202",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "1f350e09e40e3418b841282a",
-      "company": "Memx",
-      "title": "Data Engineering Intern, Summer 2027 (Hybrid, NYC)",
-      "applyUrl": "https://job-boards.greenhouse.io/memx/jobs/5450442008",
+      "id": "d8a30447ed31200e6a60f505",
+      "company": "HNTB",
+      "title": "New Grad Civil Engineer I: Transportation - Summer 2027",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2",
       "reason": "pendingVerification"
     },
     {
-      "id": "86117ee34473a17c6fde25da",
-      "company": "Zurich Insurance",
-      "title": "Underwriting Internship - Boston - Summer 2027",
-      "applyUrl": "https://career2.successfactors.eu/careers?career_job_req_id=136467&career_ns=job_listing&company=SF2013",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "66fd0a6dc1b2b74b36835651",
-      "company": "MEMX",
-      "title": "Data Center Operations Intern, Summer 2027 (Hybrid, NYC)",
-      "applyUrl": "https://job-boards.greenhouse.io/memx/jobs/5449276008",
+      "id": "1e1681984b494fc9a159fdf7",
+      "company": "Red Hat",
+      "title": "Software Engineer Co-op",
+      "applyUrl": "https://redhat.wd5.myworkdayjobs.com/Jobs/job/Raleigh/Software-Engineer-Co-op_R-059039",
       "reason": "pendingVerification"
     },
     {
-      "id": "fb2ff52f295a0a04f8222ae3",
-      "company": "Amplitude",
-      "title": "Software Engineer I",
-      "applyUrl": "https://jobs.ashbyhq.com/amplitude/9c43576b-d16f-4192-a366-7c9eb689c4be/application",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "1b444fbb811750c8aef01489",
-      "company": "Rocket Lab",
-      "title": "RF Engineering Intern Summer 2027",
-      "applyUrl": "https://job-boards.greenhouse.io/rocketlab/jobs/8013277003",
+      "id": "01d08f7e7513a0362b803ea9",
+      "company": "Red Hat",
+      "title": "Product Manager Intern",
+      "applyUrl": "https://redhat.wd5.myworkdayjobs.com/Jobs/job/Raleigh/Product-Manager-Intern_R-059060",
       "reason": "pendingVerification"
     },
     {
-      "id": "8e303ab3852ee1a42a0b02c3",
-      "company": "Vanguard",
-      "title": "College to Corporate IT Intern - Application Development",
-      "applyUrl": "https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Malvern-PA/College-to-Corporate-IT-Internship-Application-Development--PA-_182757",
-      "reason": "role"
-    },
-    {
-      "id": "95b4ba477ab2c16520343247",
-      "company": "Vanguard",
-      "title": "IT Intern Application Development",
-      "applyUrl": "https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Charlotte-NC/College-to-Corporate-IT-Internship-Application-Development--NC-_182781",
-      "reason": "role"
-    },
-    {
-      "id": "48d0e1194d2ff644432c34fd",
-      "company": "Northmarq",
-      "title": "Software Engineering Intern, Summer 2027",
-      "applyUrl": "https://job-boards.greenhouse.io/northmarq/jobs/5414475008",
+      "id": "d24d949aa9e50b9c990d7f29",
+      "company": "Red Hat",
+      "title": "Software Engineer Intern",
+      "applyUrl": "https://redhat.wd5.myworkdayjobs.com/Jobs/job/Raleigh/Software-Engineer-Intern_R-059038",
       "reason": "pendingVerification"
     },
     {
-      "id": "365995ae5f8d6c7e85a8cc81",
-      "company": "Twilio",
-      "title": "Sales Development Representative",
-      "applyUrl": "https://job-boards.greenhouse.io/twilio/jobs/7481689",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "06c8d9de18bc81aeb1478708",
-      "company": "Zurich Insurance",
-      "title": "Underwriting Internship - NYC - Summer 2027",
-      "applyUrl": "https://career2.successfactors.eu/careers?career_job_req_id=136452&career_ns=job_listing&company=SF2013",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "c592ccfe16fd160d7e2afc7d",
-      "company": "Armaninollp",
-      "title": "Summer 2027 Audit Intern (Northern California)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/San-Jose-California/Winter-2027-Audit-Intern--Northern-California-_JR104301",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "2a46371bacce5c6b4697d9ab",
-      "company": "Armaninollp",
-      "title": "Summer 2027 Risk Advisory Intern (Southern California)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Century-City-California/Summer-2027-Risk-Advisory-Intern_JR104278",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "2f8e68fda749f270dc6cda1b",
-      "company": "Armaninollp",
-      "title": "Summer 2027 Risk Advisory Intern (Northern California)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/San-Ramon-California/Summer-2027-Risk-Advisory-Intern_JR104279",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "2b1f7774147766f1e5a642f7",
-      "company": "Armaninollp",
-      "title": "Summer 2027 Audit Intern (Woodland Hills)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Woodland-Hills-California/Summer-2027-Audit-Intern--Woodland-Hills-_JR104336",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "4cfcdc74140202caf5b85ee5",
-      "company": "Armaninollp",
-      "title": "Summer 2027 Tax Intern (San Jose)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/San-Jose-California/Summer-2027-Tax-Intern--San-Jose-_JR104307",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "dcb85b3312494e3d095e0310",
-      "company": "Armaninollp",
-      "title": "Summer 2027 Tax Intern (Bellevue)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Bellevue-Washington/Summer-2027-Tax-Intern--Bellevue-_JR104308",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "f21ce68ea325a32c32257a77",
-      "company": "Armaninollp",
-      "title": "Summer 2027 Risk Advisory Intern (Austin)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Austin-Texas/Summer-2027-Risk-Advisory-Intern_JR104281",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "c04cd1465aa3d96686f1005b",
-      "company": "Armaninollp",
-      "title": "Summer 2027 IT Audit Intern (Austin)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Austin-Texas/Summer-2027-IT-Audit-Intern--Austin-_JR104287",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "e1b618805b3a32584e2127d3",
-      "company": "Armaninollp",
-      "title": "Summer 2027 Risk Advisory Intern (Dallas)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Dallas-Texas/Summer-2027-Risk-Advisory-Intern_JR104280",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "257f0160090e90ef554f4ca5",
-      "company": "Armaninollp",
-      "title": "Winter 2027 Tax Intern (Philadelphia)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Philadelphia-Pennsylvania/Winter-2027-Tax-Intern--Philadelphia-_JR104255",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "08cbe1a2f9922b305fd73e59",
-      "company": "Guide Well",
-      "title": "Enterprise Analytics - Summer 2027 Internship",
-      "applyUrl": "https://fa-etum-saasfaprod1.fa.ocs.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/41879",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "df97583a75292c7de108e3ed",
-      "company": "Armaninollp",
-      "title": "Summer 2027 Tax Intern (Dallas)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Dallas-Texas/Summer-2027-Tax-Intern--Dallas-_JR103108",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "a55aff748660a699d084200c",
-      "company": "Armaninollp",
-      "title": "Summer 2027 - IT Audit Intern (Austin)",
-      "applyUrl": "https://armaninollp.wd1.myworkdayjobs.com/Armanino/job/Austin-Texas/Summer-2027---IT-Audit-Intern--Austin-_JR104221",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "6815da0fa678d1eba532ed40",
-      "company": "Vanguard",
-      "title": "Data Science Intern - Information Technology",
-      "applyUrl": "https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Malvern-PA/College-to-Corporate-IT-Internship---Data-Science--PA-_181766",
+      "id": "e40074ef200d40c15b63eb3e",
+      "company": "HNTB",
+      "title": "New Grad Structural Engineer I - Winter/Summer 2027",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
       "reason": "pendingVerification"
     }
   ],
   "urlChanges": [
     {
-      "id": "5070543f2a4c4ac9395e05cb",
-      "previousUrl": "https://jobs.lever.co/cfsenergy/faa295da-2f67-41af-88aa-516f118e38e3/apply",
-      "applyUrl": "https://jobs.lever.co/cfsenergy/faa295da-2f67-41af-88aa-516f118e38e3"
+      "id": "cd9ab86f753f801b68068408",
+      "previousUrl": "https://globalfoundries.wd1.myworkdayjobs.com/en-US/External/job/USA---Texas---Richardson/AI-ML-Systems-Engineer--2027-New-College-Graduate-_JR-2604163",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Richardson/AI-ML-Systems-Engineer--2027-New-College-Graduate-_JR-2604163"
     },
     {
-      "id": "9ca0613e92e301b7b3dd1f17",
-      "previousUrl": "https://jobs.ashbyhq.com/snowflake/322b82f6-4b18-4f86-ae34-007f55c4bdbf/application",
-      "applyUrl": "https://jobs.ashbyhq.com/snowflake/322b82f6-4b18-4f86-ae34-007f55c4bdbf"
+      "id": "9f3d0fc5083eaf102290d2ad",
+      "previousUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/en-US/external_rockwell_automation/job/Milwaukee-Wisconsin-United-States/Intern--Information-Technology_R26-5374-2",
+      "applyUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/External_Rockwell_Automation/job/Milwaukee-Wisconsin-United-States/Intern--Information-Technology_R26-5374-2"
     },
     {
-      "id": "728dccad72d198cdf2627f30",
-      "previousUrl": "https://jobs.lever.co/cfsenergy/41725c72-2242-4ae4-815a-21064d7d7d05/apply",
-      "applyUrl": "https://jobs.lever.co/cfsenergy/41725c72-2242-4ae4-815a-21064d7d7d05"
+      "id": "82e319dc33dd275804891d73",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1"
     },
     {
-      "id": "ae55c27542bf79177a9304cf",
-      "previousUrl": "https://jobs.ashbyhq.com/snowflake/97e37c43-2298-42c8-bb4c-1bcfadc80af9/application",
-      "applyUrl": "https://jobs.ashbyhq.com/snowflake/97e37c43-2298-42c8-bb4c-1bcfadc80af9"
-    },
-    {
-      "id": "38c70bea2eeea21f82d81f5d",
-      "previousUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-137--855-35Th-St-NE--BLDG-137/Systems-Engineer-Intern--Summer-2027-----Tac-Comm---Onsite_01886283",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/rec_rtx_ext_gateway/job/US-IA-CEDAR-RAPIDS-137--855-35Th-St-NE--BLDG-137/Systems-Engineer-Intern--Summer-2027-----Tac-Comm---Onsite_01886283"
-    },
-    {
-      "id": "63077e7e0352971b69c7cab2",
-      "previousUrl": "https://globalhr.wd5.myworkdayjobs.com/fr-CA/Private_Posting_No_TMP/job/US-IN-FT-WAYNE-150A--1010-Production-Rd--BLDG-150A/Electrical-Engineering-Hardware-Intern--Summer-2027--Onsite-_01886126",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/Private_Posting_No_TMP/job/US-IN-FT-WAYNE-150A--1010-Production-Rd--BLDG-150A/Electrical-Engineering-Hardware-Intern--Summer-2027--Onsite-_01886126"
-    },
-    {
-      "id": "090d43b1dfcdf2ba8521a6ce",
-      "previousUrl": "https://recruiting2.ultipro.com/fro1003ftair/jobboard/1efcf859-1b48-4a31-b014-ef62bdcab988/opportunitydetail?opportunityid=f08f693d-aa02-4ae5-86a6-f07507a5c76d",
-      "applyUrl": "https://recruiting2.ultipro.com/fro1003ftair/jobboard/1efcf859-1b48-4a31-b014-ef62bdcab988/opportunitydetail?opportunityid=ce28ba2c-66ae-4927-b4f9-749bdc8167e5"
-    },
-    {
-      "id": "c253ad072b6938667c9c4996",
-      "previousUrl": "https://jobs.lever.co/cfsenergy/cbf90690-2518-4c81-ace4-530e3b158545/apply",
-      "applyUrl": "https://jobs.lever.co/cfsenergy/cbf90690-2518-4c81-ace4-530e3b158545"
-    },
-    {
-      "id": "7125c6c13be97879c13e9095",
-      "previousUrl": "https://jobs.lever.co/cfsenergy/32e62a79-eff5-4a58-83fd-51a60eb57707/apply",
-      "applyUrl": "https://jobs.lever.co/cfsenergy/32e62a79-eff5-4a58-83fd-51a60eb57707"
-    },
-    {
-      "id": "c9cb68396fabff6b7be085ee",
-      "previousUrl": "https://jobs.lever.co/cfsenergy/79cd53ba-b864-4bcb-8421-60cf58f7df54/apply",
-      "applyUrl": "https://jobs.lever.co/cfsenergy/79cd53ba-b864-4bcb-8421-60cf58f7df54"
-    },
-    {
-      "id": "c1d7259ff9880f71eaa26547",
-      "previousUrl": "https://jobs.lever.co/cfsenergy/12638cfd-8bad-40b5-88b4-1fe3b21aec8f/apply",
-      "applyUrl": "https://jobs.lever.co/cfsenergy/12638cfd-8bad-40b5-88b4-1fe3b21aec8f"
-    },
-    {
-      "id": "120a563f44a5ff6412a44238",
-      "previousUrl": "https://jobs.lever.co/cfsenergy/3e88978c-ff6e-461a-997a-2a7a6ffb3fea/apply",
-      "applyUrl": "https://jobs.lever.co/cfsenergy/3e88978c-ff6e-461a-997a-2a7a6ffb3fea"
-    },
-    {
-      "id": "89b68566746a32d87d4d148d",
-      "previousUrl": "https://jobs.ashbyhq.com/skydio/6f5caf41-fa1d-4208-9bdc-82c72e5d3f17/application",
-      "applyUrl": "https://jobs.ashbyhq.com/skydio/6f5caf41-fa1d-4208-9bdc-82c72e5d3f17"
-    },
-    {
-      "id": "4db11e7975e69bd3f05116dd",
-      "previousUrl": "https://jobs.lever.co/cfsenergy/da8cc185-70d0-4a8e-b484-9866c71b593e/apply",
-      "applyUrl": "https://jobs.lever.co/cfsenergy/da8cc185-70d0-4a8e-b484-9866c71b593e"
-    },
-    {
-      "id": "5598bb791a2641a06c59b95e",
-      "previousUrl": "https://jobs.ashbyhq.com/skydio/1ac972b1-8094-4765-8869-63e1c4d50dea/application?embed=true",
-      "applyUrl": "https://jobs.ashbyhq.com/skydio/1ac972b1-8094-4765-8869-63e1c4d50dea"
-    },
-    {
-      "id": "89774e8ca7457b593fd00699",
-      "previousUrl": "https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Malvern-PA/College-to-Corporate-IT-Internship-Investment-Systems--PA-_182782",
-      "applyUrl": "https://vanguard.wd5.myworkdayjobs.com/vanguard_external/job/Malvern-PA/College-to-Corporate-IT-Internship-Investment-Systems--PA-_182782"
-    },
-    {
-      "id": "67b4df12822e32fd720ab2a8",
-      "previousUrl": "https://jobs.ashbyhq.com/aurora-operations-inc/f63bb8e2-9ead-4322-beb9-4bcbdbbe14bd",
-      "applyUrl": "https://jobs.ashbyhq.com/aurora-operations-inc/f63bb8e2-9ead-4322-beb9-4bcbdbbe14bd/application?embed=true"
-    },
-    {
-      "id": "95c72ebbc7b20c168d573dda",
-      "previousUrl": "https://jobs.lever.co/belvederetrading/8f06f221-8777-4a4d-b035-40882db5f4a0",
-      "applyUrl": "https://jobs.lever.co/belvederetrading/8f06f221-8777-4a4d-b035-40882db5f4a0/apply"
-    },
-    {
-      "id": "256261bba229eb4d5ca244df",
-      "previousUrl": "https://jobs.ashbyhq.com/old-mission-capital/a7b34fe6-cd82-4f17-b5d7-983aa354b505/application",
-      "applyUrl": "https://jobs.ashbyhq.com/old-mission-capital/a7b34fe6-cd82-4f17-b5d7-983aa354b505"
-    },
-    {
-      "id": "798df1949a58d93fd5b3f201",
-      "previousUrl": "https://jobs.ashbyhq.com/old-mission-capital/a8bad54c-405b-469c-8a7d-b7794dfb54b3/application",
-      "applyUrl": "https://jobs.ashbyhq.com/old-mission-capital/a8bad54c-405b-469c-8a7d-b7794dfb54b3"
+      "id": "c22a9ded3705b29620d52318",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---2027-New-Grad-Civil-Engineer-I--For-Current---Recent-HNTB-Interns-Only-_R-31314-1",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Salt-Lake-City-UT/WED---2027-New-Grad-Civil-Engineer-I--For-Current---Recent-HNTB-Interns-Only-_R-31314-1"
     }
   ]
 }
