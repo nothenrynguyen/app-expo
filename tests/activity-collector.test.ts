@@ -20,7 +20,7 @@ class SqlStatement implements Statement {
 }
 export class SqliteD1 implements Database {
   native = new DatabaseSync(":memory:");
-  constructor() { this.native.exec(readFileSync(new URL("../workers/activity/migrations/0001_activity.sql", import.meta.url), "utf8")); }
+  constructor() { this.native.exec(readFileSync(new URL("../workers/activity/migrations/0001_activity.sql", import.meta.url), "utf8")); this.native.exec(readFileSync(new URL("../workers/activity/migrations/0002_monthly_reports.sql", import.meta.url), "utf8")); }
   prepare(sql: string) { return new SqlStatement(this.native, sql); }
   async batch(statements: Statement[]) {
     this.native.exec("BEGIN IMMEDIATE");
@@ -159,5 +159,48 @@ test("quota exhaustion and database errors stop collection without exposing payl
   const response = await handleRequest(request(event()), broken, day);
   assert.equal(response.status, 503);
   assert.ok(!(await response.text()).includes("private"));
+  db.native.close();
+});
+
+
+test("monthly history deduplicates, archives before expiry and survives repeated cleanup", async () => {
+  const {db,env} = await fixture();
+  const visitorId = crypto.randomUUID();
+  for (const date of ["2026-10-23T12:00Z", "2026-10-24T12:00Z"]) {
+    await handleRequest(request(event({visitorId})),env,new Date(date));
+    await handleRequest(request(event({visitorId,name:"apply_click",page:"/jobs",board:"fulltime",device:"unknown"})),env,new Date(date));
+  }
+  const november = new Date("2026-11-01T12:00Z");
+  await pruneDetails(db,november);
+  await pruneDetails(db,november);
+  await pruneDetails(db,new Date("2027-02-01T12:00Z"));
+  assert.equal((await db.prepare("SELECT * FROM visitor_days").all()).results.length,0);
+  assert.deepEqual((await buildReport(db,"month",new Date("2027-02-01T12:00Z"))).monthly,[{month:"2026-10",visitors:1,active:1,applied:1,clicks:2,limited:false}]);
+  db.native.close();
+});
+
+
+test("monthly reports do not invent history after missed archival and partial detail expiry", async () => {
+  const {db,env}=await fixture();
+  await handleRequest(request(event()),env,new Date("2026-10-01T12:00Z"));
+  await handleRequest(request(event()),env,new Date("2026-10-31T12:00Z"));
+  // A missed cleanup cannot safely reconstruct the complete month after its
+  // earliest details have expired, even if some later rows remain.
+  await pruneDetails(db,new Date("2027-02-01T12:00Z"));
+  assert.deepEqual((await buildReport(db,"all",new Date("2027-02-01T12:00Z"))).monthly,[]);
+  assert.equal((await buildReport(db,"all",new Date("2027-02-01T12:00Z"))).totals.visitors,2);
+  db.native.close();
+});
+
+test("monthly summaries keep quota warnings and daily employer click counts", async () => {
+  const {db,env}=await fixture();
+  const visitorId=crypto.randomUUID();
+  await handleRequest(request(event({visitorId,name:"apply_click",page:"/jobs",board:"fulltime",device:"unknown"})),env,day);
+  await db.prepare("UPDATE daily_stats SET limited=1").run();
+  const report=await buildReport(db,"all",day);
+  assert.equal(report.daily[0].clicks,1);
+  assert.deepEqual(report.monthly,[{month:"2026-10",visitors:1,active:1,applied:1,clicks:1,limited:true}]);
+  await pruneDetails(db,new Date("2026-11-01T12:00Z"));
+  assert.equal((await db.prepare("SELECT limited FROM monthly_reports").all()).results[0].limited,1);
   db.native.close();
 });

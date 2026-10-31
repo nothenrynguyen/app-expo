@@ -7,6 +7,7 @@ export function SiteFooter() {
       <span>empluzzed · Always free.</span>
       <Link href="/privacy">Privacy</Link>
       <AnalyticsPreferencesButton />
+      <Link href="/analytics" prefetch={false}>Owner dashboard</Link>
       <Link className="feedback-link" href="/feedback">Feedback</Link>
       <span className="creator-credit">
         <span>made by</span>

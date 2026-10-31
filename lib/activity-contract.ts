@@ -76,7 +76,8 @@ export type ActivityReport = {
   start: string;
   end: string;
   totals: ActivityTotals;
-  daily: { day: string; visitors: number; active: number; returning: number; events: number; limited: boolean }[];
+  daily: { day: string; visitors: number; active: number; returning: number; events: number; clicks?: number; limited: boolean }[];
   breakdown: { name: ActivityEventName; page: ActivityPage; board: ActivityEvent["board"]; dimension: string; count: number }[];
+  monthly?: { month: string; visitors: number; active: number; applied: number; clicks: number; limited: boolean }[];
   limits: { dailyEvents: number; browserDailyEvents: number; detailDays: number };
 };

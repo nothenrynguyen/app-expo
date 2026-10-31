@@ -104,3 +104,10 @@ Local validation uses the actual migration and collector SQL against Node 22's r
 The suite passed all 92 tests, ESLint and TypeScript checks. Static production export passed with the activity endpoint empty and with a non-live example collector URL. The configured export contains the expanded notice, owner-key form and noindex metadata. A browser-targeted bundled Worker build also passed. A scan of the configured static output found none of the generated local analytics credentials.
 
 These tests do not substitute for actual Cloudflare binding/runtime verification or a browser network trace. Static production builds are checked with the endpoint absent and with a non-live example HTTPS endpoint, without enabling collection on a real service. No new runtime dependency is added to the public app.
+
+
+## Monthly reporting update, October 31
+
+The owner dashboard now selects a UTC month or all time. Monthly unique browsers are deduplicated over retained visitor-day detail; closed-month aggregate rows are archived before daily detail expires. No additional browser identities or raw events are retained. If the collector misses archival before detail expiry, a complete historical month is unavailable rather than estimated from daily totals. All-time uniques still come from the lifetime browser table and are not the sum of monthly uniques.
+
+The existing production database was initialized manually. Apply only the idempotent `0002_monthly_reports.sql` for this upgrade; do not run the untracked original schema against the live database. Deploy the new collector before publishing the frontend and explicitly preserve active collection (`--var COLLECTION_ENABLED:true`); source defaults to disabled. See the [release receipt and configuration follow-up](ANALYTICS_UX_AUDIT_2026-10-31.md#collector-release-receipt).

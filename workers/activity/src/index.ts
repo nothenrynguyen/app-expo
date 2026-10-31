@@ -131,6 +131,27 @@ const featureTotals = (table: string) => `COUNT(*) AS visitors,
   COALESCE(SUM((flags & 2)>0),0) AS browsed, COALESCE(SUM((flags & 4)>0),0) AS applied,
   COALESCE(SUM((flags & 8)>0),0) AS saved, COALESCE(SUM((flags & 16)>0),0) AS filtered, COALESCE(SUM((flags & 32)>0),0) AS tracked`;
 
+// Complete retained months only. A month intersecting already-expired detail
+// is unavailable rather than reported as a smaller, misleading unique count.
+export async function monthlyReports(db: Database, now = new Date()) {
+  const cutoff = daysAgo(now, DETAIL_DAYS - 1);
+  const earliestMonth = cutoff.endsWith("-01") ? cutoff.slice(0, 7) : new Date(Date.UTC(Number(cutoff.slice(0, 4)), Number(cutoff.slice(5, 7)), 1)).toISOString().slice(0, 7);
+  const [live, archived] = await db.batch([
+    db.prepare(`SELECT month,COUNT(*) AS visitors,SUM((flags & 1)>0) AS active,SUM((flags & 4)>0) AS applied,
+      COALESCE((SELECT SUM(count) FROM counters c WHERE substr(c.day,1,7)=p.month AND name='apply_click'),0) AS clicks,
+      COALESCE((SELECT MAX(limited) FROM daily_stats d WHERE substr(d.day,1,7)=p.month),0) AS limited
+      FROM (SELECT substr(day,1,7) AS month,visitor,MAX(flags & 1) | MAX(flags & 4) AS flags
+      FROM visitor_days WHERE day>=? AND day<=? GROUP BY substr(day,1,7),visitor) p GROUP BY month`).bind(earliestMonth + "-01", dayAt(now)),
+    db.prepare("SELECT * FROM monthly_reports ORDER BY month"),
+  ]);
+  const rows = new Map(archived.results.map(row => [row.month, row]));
+  for (const row of live.results) rows.set(row.month, row);
+  return [...rows.values()].sort((a,b) => String(b.month).localeCompare(String(a.month))).map(row => ({
+    month: String(row.month), visitors: Number(row.visitors), active: Number(row.active),
+    applied: Number(row.applied), clicks: Number(row.clicks), limited: !!row.limited,
+  }));
+}
+
 export async function buildReport(db: Database, range: ActivityReport["range"], now = new Date()): Promise<ActivityReport> {
   const end = dayAt(now);
   const start = range === "all" ? "0000-01-01" : range === "month" ? end.slice(0, 7) + "-01" : daysAgo(now, range === "7d" ? 6 : 29);
@@ -141,7 +162,7 @@ export async function buildReport(db: Database, range: ActivityReport["range"], 
       FROM visitor_days WHERE day>=? AND day<=? GROUP BY visitor) period`;
   const statements = [
     range === "all" ? db.prepare(totalsSql) : db.prepare(totalsSql).bind(start, end),
-    db.prepare('SELECT day,visitors,active,is_returning AS "returning",events,limited FROM daily_stats WHERE day>=? AND day<=? ORDER BY day').bind(range === "all" ? daysAgo(now, 89) : start, end),
+    db.prepare(`SELECT day,visitors,active,is_returning AS "returning",events,limited,COALESCE((SELECT SUM(count) FROM counters c WHERE c.day=daily_stats.day AND c.name='apply_click'),0) AS clicks FROM daily_stats WHERE day>=? AND day<=? ORDER BY day`).bind(range === "all" ? daysAgo(now, 89) : start, end),
     db.prepare("SELECT name,page,board,dimension,SUM(count) AS count FROM counters WHERE day>=? AND day<=? GROUP BY name,page,board,dimension ORDER BY count DESC").bind(start, end),
     db.prepare("SELECT value FROM metadata WHERE key='tracking_since'"),
     db.prepare("SELECT MAX(last_received_at) AS last FROM daily_stats"),
@@ -154,6 +175,7 @@ export async function buildReport(db: Database, range: ActivityReport["range"], 
     totals: totals.results[0] as ActivityTotals,
     daily: daily.results.map((row) => ({ ...row, limited: !!row.limited })) as ActivityReport["daily"],
     breakdown: breakdown.results as ActivityReport["breakdown"],
+    monthly: await monthlyReports(db, now),
     limits: { dailyEvents: DAILY_EVENT_LIMIT, browserDailyEvents: BROWSER_EVENT_LIMIT, detailDays: DETAIL_DAYS },
   };
 }
@@ -186,6 +208,11 @@ export async function handleRequest(request: Request, env: Env, now = new Date()
 }
 
 export async function pruneDetails(db: Database, now = new Date()) {
+  // Archive closed months before pruning. Upserts make repeated cleanup safe.
+  const months = (await monthlyReports(db, now)).filter(row => row.month < dayAt(now).slice(0, 7));
+  if (months.length) await db.batch(months.map(row => db.prepare(`INSERT INTO monthly_reports(month,visitors,active,applied,clicks,limited)
+    VALUES (?,?,?,?,?,?) ON CONFLICT(month) DO UPDATE SET visitors=excluded.visitors,active=excluded.active,applied=excluded.applied,clicks=excluded.clicks,limited=excluded.limited`)
+    .bind(row.month,row.visitors,row.active,row.applied,row.clicks,Number(row.limited))));
   await db.batch([
     db.prepare("DELETE FROM visitor_days WHERE day < ?").bind(daysAgo(now, DETAIL_DAYS - 1)),
     db.prepare("DELETE FROM receipts WHERE day < ?").bind(daysAgo(now, 6)),
