@@ -1,38 +1,38 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-31T18:23:26.744Z",
-  "previousGeneratedAt": "2026-10-31T17:23:30.986Z",
-  "currentSnapshotGeneratedAt": "2026-10-31T18:23:26.744Z",
+  "generatedAt": "2026-10-31T19:25:19.174Z",
+  "previousGeneratedAt": "2026-10-31T18:23:26.744Z",
+  "currentSnapshotGeneratedAt": "2026-10-31T19:25:19.174Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6754,
-    "current": 6752,
-    "retained": 6752,
-    "added": 0,
-    "removed": 2,
-    "net": -2
+    "previous": 6752,
+    "current": 6749,
+    "retained": 6742,
+    "added": 7,
+    "removed": 10,
+    "net": -3
   },
   "categoryCounts": {
     "confirmed-closed": 0,
     "scope-exclusion": 0,
     "verification-pending": 0,
-    "source-unavailable": 2,
-    "unresolved": 0,
+    "source-unavailable": 4,
+    "unresolved": 6,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10258027",
-      "id": "c99bff1179291f39c55fcfce",
-      "company": "Northrop Grumman",
-      "title": "Associate Engineer Electrical",
-      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Arizona-Gilbert/Associate-Engineer-Electrical_R10258027-1",
+      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31094",
+      "id": "e1598d89dc3dfbf48670472f",
+      "company": "HNTB",
+      "title": "Roadway Engineer I",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/North-Charleston-SC/Roadway-Engineer-I_R-31094",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "c99bff1179291f39c55fcfce"
+        "e1598d89dc3dfbf48670472f"
       ],
       "previousUrls": [
-        "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Arizona-Gilbert/Associate-Engineer-Electrical_R10258027-1"
+        "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/North-Charleston-SC/Roadway-Engineer-I_R-31094"
       ],
       "sources": [
         "Direct ATS (Workday)"
@@ -40,11 +40,55 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-10-31T18:18:53.017Z",
+        "runStartedAt": "2026-10-31T19:18:50.026Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
+          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
+          "status": "ok",
+          "outcome": "rate_limited",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:cvshealth.wd1.myworkdayjobs.com:cvs_health_careers:r1052308",
+      "id": "0a82a7e26068922d5819075f",
+      "company": "CVS Health",
+      "title": "Provider Network Strategy & Operations Corporate Internship – Summer 2027 (Undergraduate)",
+      "applyUrl": "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/CT---Hartford/Provider-Network-Strategy---Operations-Corporate-Internship---Summer-2027--Undergraduate-_R1052308",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "0a82a7e26068922d5819075f"
+      ],
+      "previousUrls": [
+        "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/CT---Hartford/Provider-Network-Strategy---Operations-Corporate-Internship---Summer-2027--Undergraduate-_R1052308"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T19:18:50.026Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:cvshealth.wd1.myworkdayjobs.com:cvs_health_careers",
           "status": "failed",
           "outcome": "cooldown",
           "membership": "unknown",
@@ -66,32 +110,119 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:micron.wd1.myworkdayjobs.com:external:jr108946",
-      "id": "5df5e1b6b0cc48d38d0c60f2",
-      "company": "Micron",
-      "title": "New College Grad - ID1 IT System Administrator",
-      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---ID1/New-College-Grad---ID1-IT-System-Administrator_JR108946",
+      "identity": "workday:cvshealth.wd1.myworkdayjobs.com:cvs_health_careers:r1052389",
+      "id": "443d6122cfc5d7fe65ee8a66",
+      "company": "CVS Health",
+      "title": "Mental Well-being Operations Corporate Internship – Summer 2027 (Undergraduate)",
+      "applyUrl": "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/CT---Hartford/Mental-Well-being-Operations-Corporate-Internship---Summer-2027--Undergraduate-_R1052389",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "5df5e1b6b0cc48d38d0c60f2"
+        "443d6122cfc5d7fe65ee8a66"
       ],
       "previousUrls": [
-        "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---ID1/New-College-Grad---ID1-IT-System-Administrator_JR108946"
+        "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/CT---Hartford/Mental-Well-being-Operations-Corporate-Internship---Summer-2027--Undergraduate-_R1052389"
       ],
       "sources": [
-        "Direct ATS (Workday)",
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T19:18:50.026Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:cvshealth.wd1.myworkdayjobs.com:cvs_health_careers",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0252270",
+      "id": "b95d1fc16003547f78e96dce",
+      "company": "Booz Allen",
+      "title": "Data Scientist, Junior",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Washington-DC/Data-Scientist--Junior_R0252270",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "b95d1fc16003547f78e96dce"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Washington-DC/Data-Scientist--Junior_R0252270"
+      ],
+      "sources": [
         "Employer recovery"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-10-31T18:18:53.017Z",
+        "runStartedAt": "2026-10-31T19:18:50.026Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:micron.wd1.myworkdayjobs.com:external",
-          "status": "failed",
-          "outcome": "cooldown",
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1363
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033629",
+      "id": "a9106b180a1a834e00f06702",
+      "company": "The Federal Reserve System",
+      "title": "Audit Intern - 2027",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/Audit-Intern---2027_R-0000033629",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "a9106b180a1a834e00f06702"
+      ],
+      "previousUrls": [
+        "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/Audit-Intern---2027_R-0000033629"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T19:18:50.026Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "status": "ok",
+          "outcome": "healthy",
           "membership": "unknown",
           "retired": false
         },
@@ -102,49 +233,379 @@
             "status": "not-checked",
             "outcome": null,
             "rows": null
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1364
           }
         ]
       },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033626",
+      "id": "f18133559374f4bdb4047231",
+      "company": "The Federal Reserve System",
+      "title": "External Communications Intern - 2027",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/External-Communications-Intern---2027_R-0000033626",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "f18133559374f4bdb4047231"
+      ],
+      "previousUrls": [
+        "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/External-Communications-Intern---2027_R-0000033626"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T19:18:50.026Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033636",
+      "id": "79365519efc78444aa0a21e8",
+      "company": "The Federal Reserve System",
+      "title": "Financial Management Intern - 2027",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/Financial-Management-Intern---2027_R-0000033636",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "79365519efc78444aa0a21e8"
+      ],
+      "previousUrls": [
+        "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/Financial-Management-Intern---2027_R-0000033636"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T19:18:50.026Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033621",
+      "id": "1858e9a47bd3fa268e3f4bc5",
+      "company": "The Federal Reserve System",
+      "title": "Enterprise Risk Management Intern - 2027",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/Enterprise-Risk-Management-Intern---2027_R-0000033621",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "1858e9a47bd3fa268e3f4bc5"
+      ],
+      "previousUrls": [
+        "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/Enterprise-Risk-Management-Intern---2027_R-0000033621"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T19:18:50.026Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033643",
+      "id": "e3d96012092aa060735c51e4",
+      "company": "The Federal Reserve System",
+      "title": "SCS - Credit Risk Management Intern - 2027",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/SCS---Credit-Risk-Management-Intern---2027_R-0000033643",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "e3d96012092aa060735c51e4"
+      ],
+      "previousUrls": [
+        "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/SCS---Credit-Risk-Management-Intern---2027_R-0000033643"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T19:18:50.026Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033638",
+      "id": "028897074a4ee4c0b307866b",
+      "company": "The Federal Reserve System",
+      "title": "SCS - Community Banking and Applications Intern - 2027",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/SCS---Community-Banking-and-Applications-Intern---2027_R-0000033638",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "028897074a4ee4c0b307866b"
+      ],
+      "previousUrls": [
+        "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/SCS---Community-Banking-and-Applications-Intern---2027_R-0000033638"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T19:18:50.026Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
       "requiresInvestigation": true
     }
   ],
   "rowCounts": {
-    "previous": 6754,
-    "current": 6752,
-    "net": -2,
+    "previous": 6752,
+    "current": 6749,
+    "net": -3,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 0,
-  "removedCount": 2,
+  "added": 7,
+  "removedCount": 10,
   "counts": {
-    "not-returned-by-sources": 2
+    "not-returned-by-sources": 10
   },
   "removed": [
     {
-      "id": "c99bff1179291f39c55fcfce",
-      "company": "Northrop Grumman",
-      "title": "Associate Engineer Electrical",
-      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Arizona-Gilbert/Associate-Engineer-Electrical_R10258027-1",
+      "id": "e1598d89dc3dfbf48670472f",
+      "company": "HNTB",
+      "title": "Roadway Engineer I",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/North-Charleston-SC/Roadway-Engineer-I_R-31094",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "5df5e1b6b0cc48d38d0c60f2",
-      "company": "Micron",
-      "title": "New College Grad - ID1 IT System Administrator",
-      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---ID1/New-College-Grad---ID1-IT-System-Administrator_JR108946",
+      "id": "0a82a7e26068922d5819075f",
+      "company": "CVS Health",
+      "title": "Provider Network Strategy & Operations Corporate Internship – Summer 2027 (Undergraduate)",
+      "applyUrl": "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/CT---Hartford/Provider-Network-Strategy---Operations-Corporate-Internship---Summer-2027--Undergraduate-_R1052308",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "443d6122cfc5d7fe65ee8a66",
+      "company": "CVS Health",
+      "title": "Mental Well-being Operations Corporate Internship – Summer 2027 (Undergraduate)",
+      "applyUrl": "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/CT---Hartford/Mental-Well-being-Operations-Corporate-Internship---Summer-2027--Undergraduate-_R1052389",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "b95d1fc16003547f78e96dce",
+      "company": "Booz Allen",
+      "title": "Data Scientist, Junior",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Washington-DC/Data-Scientist--Junior_R0252270",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "a9106b180a1a834e00f06702",
+      "company": "The Federal Reserve System",
+      "title": "Audit Intern - 2027",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/Audit-Intern---2027_R-0000033629",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "f18133559374f4bdb4047231",
+      "company": "The Federal Reserve System",
+      "title": "External Communications Intern - 2027",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/External-Communications-Intern---2027_R-0000033626",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "79365519efc78444aa0a21e8",
+      "company": "The Federal Reserve System",
+      "title": "Financial Management Intern - 2027",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/Financial-Management-Intern---2027_R-0000033636",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "1858e9a47bd3fa268e3f4bc5",
+      "company": "The Federal Reserve System",
+      "title": "Enterprise Risk Management Intern - 2027",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/Enterprise-Risk-Management-Intern---2027_R-0000033621",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "e3d96012092aa060735c51e4",
+      "company": "The Federal Reserve System",
+      "title": "SCS - Credit Risk Management Intern - 2027",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/SCS---Credit-Risk-Management-Intern---2027_R-0000033643",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "028897074a4ee4c0b307866b",
+      "company": "The Federal Reserve System",
+      "title": "SCS - Community Banking and Applications Intern - 2027",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/SCS---Community-Banking-and-Applications-Intern---2027_R-0000033638",
       "reason": "not-returned-by-sources"
     }
   ],
-  "urlChanges": []
+  "urlChanges": [
+    {
+      "id": "2bb958c8b8d63375e986a4c2",
+      "previousUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-CA-Vandenberg-AFB/Software-Engineer-Junior_R0173629",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-CA-Vandenberg-AFB/Software-Engineer-Junior_R0173629"
+    },
+    {
+      "id": "2539bde802dfa37b045401b0",
+      "previousUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Dahlgren/Entry-Level-Software-Engineer---SECRET_R0173771",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-VA-Dahlgren/Entry-Level-Software-Engineer---SECRET_R0173771"
+    },
+    {
+      "id": "456a41d9e53e1db90e2a17de",
+      "previousUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Newark-NJ/XMLNAME-2027-Summer-Internship-Program---Office-of-Employee-Benefits--Investment-Management-_R-0000033872",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Newark-NJ/XMLNAME-2027-Summer-Internship-Program---Office-of-Employee-Benefits--Investment-Management-_R-0000033872"
+    },
+    {
+      "id": "04a5d004fbdd6d04f93e83f2",
+      "previousUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603"
+    },
+    {
+      "id": "b22c93f5de0742485063ac7a",
+      "previousUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634"
+    },
+    {
+      "id": "82e319dc33dd275804891d73",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1"
+    },
+    {
+      "id": "76d6f6d8506a8facad58426c",
+      "previousUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Golden-CO/Summer-Intern---Software-Engineering_JR37795-1",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/en-US/careers/job/Golden-CO/Summer-Intern---Software-Engineering_JR37795-1"
+    },
+    {
+      "id": "53d1560835c4eb88ffd9fe9a",
+      "previousUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Software-Operations-Engineer_JR37722-1",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/en-US/careers/job/Carmel-IN/Summer-Intern---Software-Operations-Engineer_JR37722-1"
+    },
+    {
+      "id": "06ed362ab3037d5ebcbff4a6",
+      "previousUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern--User-Experience--UX--Research_JR37497",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/en-US/careers/job/Carmel-IN/Summer-Intern--User-Experience--UX--Research_JR37497"
+    },
+    {
+      "id": "af25515264c9c9abc2c082aa",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037"
+    },
+    {
+      "id": "c22a9ded3705b29620d52318",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Salt-Lake-City-UT/WED---2027-New-Grad-Civil-Engineer-I--For-Current---Recent-HNTB-Interns-Only-_R-31314-1",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---2027-New-Grad-Civil-Engineer-I--For-Current---Recent-HNTB-Interns-Only-_R-31314-1"
+    },
+    {
+      "id": "dec17dd7c886c9ef57d35a82",
+      "previousUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603"
+    }
+  ]
 }
