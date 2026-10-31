@@ -1,38 +1,137 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-31T02:24:23.262Z",
-  "previousGeneratedAt": "2026-10-31T01:23:49.017Z",
-  "currentSnapshotGeneratedAt": "2026-10-31T02:24:23.262Z",
+  "generatedAt": "2026-10-31T03:24:58.260Z",
+  "previousGeneratedAt": "2026-10-31T02:24:23.262Z",
+  "currentSnapshotGeneratedAt": "2026-10-31T03:24:58.260Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6778,
-    "current": 6780,
-    "retained": 6777,
-    "added": 3,
-    "removed": 1,
-    "net": 2
+    "previous": 6780,
+    "current": 6765,
+    "retained": 6753,
+    "added": 12,
+    "removed": 27,
+    "net": -15
   },
   "categoryCounts": {
     "confirmed-closed": 0,
     "scope-exclusion": 0,
-    "verification-pending": 0,
-    "source-unavailable": 0,
-    "unresolved": 1,
+    "verification-pending": 11,
+    "source-unavailable": 2,
+    "unresolved": 14,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "workday:visa.wd5.myworkdayjobs.com:visa:ref089498w",
-      "id": "64ba190dbf2b6d09871356a7",
-      "company": "Visa",
-      "title": "Data Science Graduate",
-      "applyUrl": "https://visa.wd5.myworkdayjobs.com/Visa/job/GB---London-United-Kingdom/Data-Science-Graduate_REF089498W-1",
-      "reason": "not-returned-by-sources",
+      "identity": "https://go.vansh.nyc/11f?s=a",
+      "id": "251ebd900286edc177c70d56",
+      "company": "NVIDIA",
+      "title": "ASIC Design Engineer",
+      "applyUrl": "https://go.vansh.nyc/11F?s=A",
+      "reason": "pendingVerification",
       "previousIds": [
-        "64ba190dbf2b6d09871356a7"
+        "251ebd900286edc177c70d56"
       ],
       "previousUrls": [
-        "https://visa.wd5.myworkdayjobs.com/Visa/job/GB---London-United-Kingdom/Data-Science-Graduate_REF089498W-1"
+        "https://go.vansh.nyc/11F?s=A"
+      ],
+      "sources": [
+        "New-Grad-2027 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://go.vansh.nyc/11f?s=A",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-10-30T23:22:35.058Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "New-Grad-2027 2027",
+            "diagnosticName": "New-Grad-2027 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 645
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10257575",
+      "id": "872fcf657d5811ff437b7ab0",
+      "company": "Northrop Grumman",
+      "title": "2027 Associate Systems Engineer - Baltimore MD",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Maryland-Baltimore/XMLNAME-2027-Associate-Systems-Engineer---Baltimore-MD_R10257575",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "872fcf657d5811ff437b7ab0"
+      ],
+      "previousUrls": [
+        "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Maryland-Baltimore/XMLNAME-2027-Associate-Systems-Engineer---Baltimore-MD_R10257575"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Maryland-Baltimore/XMLNAME-2027-Associate-Systems-Engineer---Baltimore-MD_R10257575",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31094",
+      "id": "e1598d89dc3dfbf48670472f",
+      "company": "HNTB",
+      "title": "Roadway Engineer I",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/North-Charleston-SC/Roadway-Engineer-I_R-31094",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "e1598d89dc3dfbf48670472f"
+      ],
+      "previousUrls": [
+        "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/North-Charleston-SC/Roadway-Engineer-I_R-31094"
       ],
       "sources": [
         "Direct ATS (Workday)"
@@ -40,11 +139,1162 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-10-31T02:18:49.047Z",
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:visa.wd5.myworkdayjobs.com:visa",
+          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01885187",
+      "id": "298fea9e366d3d5b571467b5",
+      "company": "RTX",
+      "title": "Receiver, Exciter, & Processing Architecture Software Engineer Intern (Summer 2027) - Onsite",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-MA-MARLBOROUGH-MA2--1001-Boston-Post-Rd--BLDG-2/Receiver--Exciter----Processing-Architecture-Software-Engineer-Intern--Summer-2027----Onsite_01885187",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "298fea9e366d3d5b571467b5"
+      ],
+      "previousUrls": [
+        "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-MA-MARLBOROUGH-MA2--1001-Boston-Post-Rd--BLDG-2/Receiver--Exciter----Processing-Architecture-Software-Engineer-Intern--Summer-2027----Onsite_01885187"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-MA-MARLBOROUGH-MA2--1001-Boston-Post-Rd--BLDG-2/Receiver--Exciter----Processing-Architecture-Software-Engineer-Intern--Summer-2027----Onsite_01885187",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1927
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10254664",
+      "id": "3d6cd74aa4fb4e0332b431f3",
+      "company": "Northrop Grumman",
+      "title": "2027 Associate Systems Engineer - Woodland Hills CA",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-California-Woodland-Hills/XMLNAME-2027-Associate-Systems-Engineer---Woodland-Hills-CA_R10254664",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "3d6cd74aa4fb4e0332b431f3"
+      ],
+      "previousUrls": [
+        "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-California-Woodland-Hills/XMLNAME-2027-Associate-Systems-Engineer---Woodland-Hills-CA_R10254664"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10258027",
+      "id": "c99bff1179291f39c55fcfce",
+      "company": "Northrop Grumman",
+      "title": "Associate Engineer Electrical",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Arizona-Gilbert/Associate-Engineer-Electrical_R10258027-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "c99bff1179291f39c55fcfce"
+      ],
+      "previousUrls": [
+        "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Arizona-Gilbert/Associate-Engineer-Electrical_R10258027-1"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10258154",
+      "id": "7f7763507686cea3ea2e2e04",
+      "company": "Northrop Grumman",
+      "title": "Associate Systems Engineer - Pathways Program - Aurora CO",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Colorado-Aurora/Associate-Systems-Engineer---Pathways-Program---Aurora-CO_R10258154",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "7f7763507686cea3ea2e2e04"
+      ],
+      "previousUrls": [
+        "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Colorado-Aurora/Associate-Systems-Engineer---Pathways-Program---Aurora-CO_R10258154"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://go.vansh.nyc/wf?s=y",
+      "id": "ce79ac25fa0382b028546a16",
+      "company": "Amazon",
+      "title": "Database Engineer Intern",
+      "applyUrl": "https://go.vansh.nyc/WF?s=y",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "ce79ac25fa0382b028546a16"
+      ],
+      "previousUrls": [
+        "https://go.vansh.nyc/WF?s=y"
+      ],
+      "sources": [
+        "Vansh Summer 2027"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-10-31T02:23:59.097Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Vansh Summer 2027",
+            "diagnosticName": "Vansh Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1285
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10257890",
+      "id": "7e9d45e377754d148cf18eff",
+      "company": "Northrop Grumman",
+      "title": "2027 Associate Software Engineer - Azusa CA",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-California-Azusa/XMLNAME-2027-Associate-Software-Engineer---Azusa-CA_R10257890",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "7e9d45e377754d148cf18eff"
+      ],
+      "previousUrls": [
+        "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-California-Azusa/XMLNAME-2027-Associate-Software-Engineer---Azusa-CA_R10257890"
+      ],
+      "sources": [
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-California-Azusa/XMLNAME-2027-Associate-Software-Engineer---Azusa-CA_R10257890",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1271
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10257899",
+      "id": "a58aed0535c0fbb693a91818",
+      "company": "Northrop Grumman",
+      "title": "2027 Civil Engineering Intern - Roy UT",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Utah-Roy/XMLNAME-2027-Civil-Engineering-Intern---Roy-UT_R10257899",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "a58aed0535c0fbb693a91818"
+      ],
+      "previousUrls": [
+        "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Utah-Roy/XMLNAME-2027-Civil-Engineering-Intern---Roy-UT_R10257899"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10257901",
+      "id": "6234f73aabebc223f0115a54",
+      "company": "Northrop Grumman",
+      "title": "2027 Business Development Analyst Internship - Baltimore MD or McLean VA",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Maryland-Linthicum/XMLNAME-2027-Business-Development-Analyst-Internship---Baltimore-MD-or-McLean-VA_R10257901",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "6234f73aabebc223f0115a54"
+      ],
+      "previousUrls": [
+        "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Maryland-Linthicum/XMLNAME-2027-Business-Development-Analyst-Internship---Baltimore-MD-or-McLean-VA_R10257901"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10257768",
+      "id": "de4585168e320580e7c2735d",
+      "company": "Northrop Grumman",
+      "title": "2027 Associate Software Engineer / Software Engineer - Colorado Springs CO",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Colorado-Colorado-Springs/XMLNAME-2027-Associate-Software-Engineer---Software-Engineer---Colorado-Springs-CO_R10257768",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "de4585168e320580e7c2735d"
+      ],
+      "previousUrls": [
+        "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Colorado-Colorado-Springs/XMLNAME-2027-Associate-Software-Engineer---Software-Engineer---Colorado-Springs-CO_R10257768"
+      ],
+      "sources": [
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Colorado-Colorado-Springs/XMLNAME-2027-Associate-Software-Engineer---Software-Engineer---Colorado-Springs-CO_R10257768",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1271
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:pae.wd1.myworkdayjobs.com:amentum_careers:r0173758",
+      "id": "19a6c8b74192fa41958a6d50",
+      "company": "Amentum",
+      "title": "Integration Engineer Junior",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-CA-Vandenberg-AFB/Integration-Engineer-Junior_R0173758",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "19a6c8b74192fa41958a6d50"
+      ],
+      "previousUrls": [
+        "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-CA-Vandenberg-AFB/Integration-Engineer-Junior_R0173758"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:pae.wd1.myworkdayjobs.com:amentum_careers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:pae.wd1.myworkdayjobs.com:amentum_careers:r0173760",
+      "id": "9cf767ae4c0520f23c1f9ec7",
+      "company": "Amentum",
+      "title": "Integration Engineer Junior",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-CA-Vandenberg-AFB/Integration-Engineer-Junior_R0173760",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "9cf767ae4c0520f23c1f9ec7"
+      ],
+      "previousUrls": [
+        "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-CA-Vandenberg-AFB/Integration-Engineer-Junior_R0173760"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:pae.wd1.myworkdayjobs.com:amentum_careers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:ghr.wd1.myworkdayjobs.com:us-emplsv:26039656",
+      "id": "1404ce4a8e790ba7cdbefe18",
+      "company": "Bank of America",
+      "title": "Data Scientist I",
+      "applyUrl": "https://ghr.wd1.myworkdayjobs.com/US-EMPLSV/job/Charlotte/Data-Scientist-I_26039656-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "1404ce4a8e790ba7cdbefe18"
+      ],
+      "previousUrls": [
+        "https://ghr.wd1.myworkdayjobs.com/US-EMPLSV/job/Charlotte/Data-Scientist-I_26039656-1"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:ghr.wd1.myworkdayjobs.com:us-emplsv",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1271
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10257561",
+      "id": "331937097ffda94ecca709f1",
+      "company": "Northrop Grumman",
+      "title": "2027 Associate Electrical Engineer - Baltimore MD",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Maryland-Baltimore/XMLNAME-2027-Associate-Electrical-Engineer---Baltimore-MD_R10257561",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "331937097ffda94ecca709f1"
+      ],
+      "previousUrls": [
+        "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Maryland-Baltimore/XMLNAME-2027-Associate-Electrical-Engineer---Baltimore-MD_R10257561"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:pae.wd1.myworkdayjobs.com:amentum_careers:r0165663",
+      "id": "1439b04c773fbbaa37a17b16",
+      "company": "Amentum",
+      "title": "Personnel Security Specialist I Adjudicator",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Springfield/Personnel-Security-Specialist-I-Adjudicator_R0165663-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "1439b04c773fbbaa37a17b16"
+      ],
+      "previousUrls": [
+        "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Springfield/Personnel-Security-Specialist-I-Adjudicator_R0165663-1"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:pae.wd1.myworkdayjobs.com:amentum_careers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:globalfoundries.wd1.myworkdayjobs.com:external:jr-2604136",
+      "id": "09bcf1100af295df6db0fbb4",
+      "company": "GlobalFoundries",
+      "title": "CPU IP Design & Verification Engineer – RISC-V (2027 New College Graduate)",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Austin/CPU-IP-Design---Verification-Engineer---RISC-V--2027-New-College-Graduate-_JR-2604136",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "09bcf1100af295df6db0fbb4"
+      ],
+      "previousUrls": [
+        "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Austin/CPU-IP-Design---Verification-Engineer---RISC-V--2027-New-College-Graduate-_JR-2604136"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:globalfoundries.wd1.myworkdayjobs.com:external",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://go.vansh.nyc/gd?s=z",
+      "id": "5b858b200124f7ad72ee47c5",
+      "company": "Amazon",
+      "title": "Hardware Development Engineer Intern",
+      "applyUrl": "https://go.vansh.nyc/gD?s=z",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "5b858b200124f7ad72ee47c5"
+      ],
+      "previousUrls": [
+        "https://go.vansh.nyc/gD?s=z"
+      ],
+      "sources": [
+        "Vansh Off-Season 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://go.vansh.nyc/GD?s=z",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-10-30T01:11:56.379Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Vansh Off-Season 2027",
+            "diagnosticName": "Vansh Off-Season 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 359
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://go.vansh.nyc/gk?s=z",
+      "id": "c8379507873fd1c6905542e2",
+      "company": "Amazon",
+      "title": "Embedded Firmware Co-op",
+      "applyUrl": "https://go.vansh.nyc/gK?s=z",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "c8379507873fd1c6905542e2"
+      ],
+      "previousUrls": [
+        "https://go.vansh.nyc/gK?s=z"
+      ],
+      "sources": [
+        "Vansh Off-Season 2027"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-10-30T01:11:56.427Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Vansh Off-Season 2027",
+            "diagnosticName": "Vansh Off-Season 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 359
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://go.vansh.nyc/ge?s=y",
+      "id": "31ed8b09daf55b018eba49b5",
+      "company": "Amazon",
+      "title": "Software Engineer Intern, Embedded Systems",
+      "applyUrl": "https://go.vansh.nyc/gE?s=y",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "31ed8b09daf55b018eba49b5"
+      ],
+      "previousUrls": [
+        "https://go.vansh.nyc/gE?s=y"
+      ],
+      "sources": [
+        "Vansh Summer 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://go.vansh.nyc/ge?s=y",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://go.vansh.nyc/Ge?s=y",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": {
+          "status": "unknown",
+          "checkedAt": "2026-10-30T01:23:52.543Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Vansh Summer 2027",
+            "diagnosticName": "Vansh Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1285
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:jj.wd5.myworkdayjobs.com:jj:r-103642",
+      "id": "f4816de8c79269ad010becb8",
+      "company": "Johnson & Johnson",
+      "title": "R&D Device Engineer Summer Intern",
+      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Raritan-New-Jersey-United-States-of-America/R-D-Device-Engineer-Summer-Intern_R-103642",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "f4816de8c79269ad010becb8"
+      ],
+      "previousUrls": [
+        "https://jj.wd5.myworkdayjobs.com/JJ/job/Raritan-New-Jersey-United-States-of-America/R-D-Device-Engineer-Summer-Intern_R-103642"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:jj.wd5.myworkdayjobs.com:jj",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://go.vansh.nyc/dj?s=a",
+      "id": "23bebb72e6d90aef92558b5a",
+      "company": "Amazon",
+      "title": "New Grad 2027: Software Development Engineer",
+      "applyUrl": "https://go.vansh.nyc/DJ?s=A",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "23bebb72e6d90aef92558b5a"
+      ],
+      "previousUrls": [
+        "https://go.vansh.nyc/DJ?s=A"
+      ],
+      "sources": [
+        "New-Grad-2027 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://go.vansh.nyc/Dj?s=A",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": {
+          "status": "unknown",
+          "checkedAt": "2026-10-30T04:24:39.710Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "New-Grad-2027 2027",
+            "diagnosticName": "New-Grad-2027 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 645
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers:r69030",
+      "id": "db147aad0754e306c3e2ef78",
+      "company": "Motorola",
+      "title": "Mechanical Engineering Intern - Summer 2027",
+      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Plantation-FL/Mechanical-Engineering-Intern---Summer-2027_R69030",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "db147aad0754e306c3e2ef78"
+      ],
+      "previousUrls": [
+        "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Plantation-FL/Mechanical-Engineering-Intern---Summer-2027_R69030"
+      ],
+      "sources": [
+        "Keryx Non-Software Summer 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Plantation-FL/Mechanical-Engineering-Intern---Summer-2027_R69030",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1470
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1271
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://go.vansh.nyc/fs?s=y",
+      "id": "1c1b82d0c113c63c24d55c3a",
+      "company": "Amazon",
+      "title": "Software Engineer Intern, Embedded Systems",
+      "applyUrl": "https://go.vansh.nyc/FS?s=y",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "1c1b82d0c113c63c24d55c3a"
+      ],
+      "previousUrls": [
+        "https://go.vansh.nyc/FS?s=y"
+      ],
+      "sources": [
+        "Vansh Summer 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://go.vansh.nyc/fs?s=y",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://go.vansh.nyc/Fs?s=y",
+            "reason": "pendingVerification",
+            "detail": "The employer approval requires a reviewed direct application destination."
+          }
+        ],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-10-30T01:23:52.233Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Vansh Summer 2027",
+            "diagnosticName": "Vansh Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1285
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:jj.wd5.myworkdayjobs.com:jj:r-098904",
+      "id": "08cca16b16ae82bc1d3504b1",
+      "company": "Jj",
+      "title": "Production Data Analyst Co-Op",
+      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Danvers-Massachusetts-United-States-of-America/Production-Data-Analyst-Co-Op_R-098904",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "08cca16b16ae82bc1d3504b1"
+      ],
+      "previousUrls": [
+        "https://jj.wd5.myworkdayjobs.com/JJ/job/Danvers-Massachusetts-United-States-of-America/Production-Data-Analyst-Co-Op_R-098904"
+      ],
+      "sources": [
+        "Dreamwork Business Internships 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://jj.wd5.myworkdayjobs.com/JJ/job/Danvers-Massachusetts-United-States-of-America/Production-Data-Analyst-Co-Op_R-098904",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://jj.wd5.myworkdayjobs.com/JJ/job/Danvers-Massachusetts-United-States-of-America/Production-Data-Analyst-Co-Op_R-098904",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:jj.wd5.myworkdayjobs.com:jj",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Dreamwork Business Internships 2027",
+            "diagnosticName": "Dreamwork Business Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 420
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-30884",
+      "id": "d01e39fb10fab8166156eda2",
+      "company": "HNTB",
+      "title": "New Grad Engineer I - Winter/Summer 2027 - Central Division (For Current/Former HNTB Interns Only)",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Dallas-TX/New-Grad-Engineer-I---Winter-Summer-2027---Central-Division--For-Current-Former-HNTB-Interns-Only-_R-30884-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "d01e39fb10fab8166156eda2"
+      ],
+      "previousUrls": [
+        "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Dallas-TX/New-Grad-Engineer-I---Winter-Summer-2027---Central-Division--For-Current-Former-HNTB-Interns-Only-_R-30884-1"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T03:18:36.924Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
           "status": "ok",
           "outcome": "healthy",
           "membership": "unknown",
@@ -67,46 +1317,259 @@
     }
   ],
   "rowCounts": {
-    "previous": 6778,
-    "current": 6780,
-    "net": 2,
+    "previous": 6780,
+    "current": 6765,
+    "net": -15,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 3,
-  "removedCount": 1,
+  "added": 12,
+  "removedCount": 27,
   "counts": {
-    "not-returned-by-sources": 1
+    "pendingVerification": 11,
+    "not-returned-by-sources": 16
   },
   "removed": [
     {
-      "id": "64ba190dbf2b6d09871356a7",
-      "company": "Visa",
-      "title": "Data Science Graduate",
-      "applyUrl": "https://visa.wd5.myworkdayjobs.com/Visa/job/GB---London-United-Kingdom/Data-Science-Graduate_REF089498W-1",
+      "id": "251ebd900286edc177c70d56",
+      "company": "NVIDIA",
+      "title": "ASIC Design Engineer",
+      "applyUrl": "https://go.vansh.nyc/11F?s=A",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "872fcf657d5811ff437b7ab0",
+      "company": "Northrop Grumman",
+      "title": "2027 Associate Systems Engineer - Baltimore MD",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Maryland-Baltimore/XMLNAME-2027-Associate-Systems-Engineer---Baltimore-MD_R10257575",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "e1598d89dc3dfbf48670472f",
+      "company": "HNTB",
+      "title": "Roadway Engineer I",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/North-Charleston-SC/Roadway-Engineer-I_R-31094",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "298fea9e366d3d5b571467b5",
+      "company": "RTX",
+      "title": "Receiver, Exciter, & Processing Architecture Software Engineer Intern (Summer 2027) - Onsite",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-MA-MARLBOROUGH-MA2--1001-Boston-Post-Rd--BLDG-2/Receiver--Exciter----Processing-Architecture-Software-Engineer-Intern--Summer-2027----Onsite_01885187",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "3d6cd74aa4fb4e0332b431f3",
+      "company": "Northrop Grumman",
+      "title": "2027 Associate Systems Engineer - Woodland Hills CA",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-California-Woodland-Hills/XMLNAME-2027-Associate-Systems-Engineer---Woodland-Hills-CA_R10254664",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "c99bff1179291f39c55fcfce",
+      "company": "Northrop Grumman",
+      "title": "Associate Engineer Electrical",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Arizona-Gilbert/Associate-Engineer-Electrical_R10258027-1",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "7f7763507686cea3ea2e2e04",
+      "company": "Northrop Grumman",
+      "title": "Associate Systems Engineer - Pathways Program - Aurora CO",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Colorado-Aurora/Associate-Systems-Engineer---Pathways-Program---Aurora-CO_R10258154",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "ce79ac25fa0382b028546a16",
+      "company": "Amazon",
+      "title": "Database Engineer Intern",
+      "applyUrl": "https://go.vansh.nyc/WF?s=y",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "7e9d45e377754d148cf18eff",
+      "company": "Northrop Grumman",
+      "title": "2027 Associate Software Engineer - Azusa CA",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-California-Azusa/XMLNAME-2027-Associate-Software-Engineer---Azusa-CA_R10257890",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "a58aed0535c0fbb693a91818",
+      "company": "Northrop Grumman",
+      "title": "2027 Civil Engineering Intern - Roy UT",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Utah-Roy/XMLNAME-2027-Civil-Engineering-Intern---Roy-UT_R10257899",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "6234f73aabebc223f0115a54",
+      "company": "Northrop Grumman",
+      "title": "2027 Business Development Analyst Internship - Baltimore MD or McLean VA",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Maryland-Linthicum/XMLNAME-2027-Business-Development-Analyst-Internship---Baltimore-MD-or-McLean-VA_R10257901",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "de4585168e320580e7c2735d",
+      "company": "Northrop Grumman",
+      "title": "2027 Associate Software Engineer / Software Engineer - Colorado Springs CO",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Colorado-Colorado-Springs/XMLNAME-2027-Associate-Software-Engineer---Software-Engineer---Colorado-Springs-CO_R10257768",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "19a6c8b74192fa41958a6d50",
+      "company": "Amentum",
+      "title": "Integration Engineer Junior",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-CA-Vandenberg-AFB/Integration-Engineer-Junior_R0173758",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "9cf767ae4c0520f23c1f9ec7",
+      "company": "Amentum",
+      "title": "Integration Engineer Junior",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-CA-Vandenberg-AFB/Integration-Engineer-Junior_R0173760",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "1404ce4a8e790ba7cdbefe18",
+      "company": "Bank of America",
+      "title": "Data Scientist I",
+      "applyUrl": "https://ghr.wd1.myworkdayjobs.com/US-EMPLSV/job/Charlotte/Data-Scientist-I_26039656-1",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "331937097ffda94ecca709f1",
+      "company": "Northrop Grumman",
+      "title": "2027 Associate Electrical Engineer - Baltimore MD",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Maryland-Baltimore/XMLNAME-2027-Associate-Electrical-Engineer---Baltimore-MD_R10257561",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "1439b04c773fbbaa37a17b16",
+      "company": "Amentum",
+      "title": "Personnel Security Specialist I Adjudicator",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Springfield/Personnel-Security-Specialist-I-Adjudicator_R0165663-1",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "09bcf1100af295df6db0fbb4",
+      "company": "GlobalFoundries",
+      "title": "CPU IP Design & Verification Engineer – RISC-V (2027 New College Graduate)",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Austin/CPU-IP-Design---Verification-Engineer---RISC-V--2027-New-College-Graduate-_JR-2604136",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "5b858b200124f7ad72ee47c5",
+      "company": "Amazon",
+      "title": "Hardware Development Engineer Intern",
+      "applyUrl": "https://go.vansh.nyc/gD?s=z",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "c8379507873fd1c6905542e2",
+      "company": "Amazon",
+      "title": "Embedded Firmware Co-op",
+      "applyUrl": "https://go.vansh.nyc/gK?s=z",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "31ed8b09daf55b018eba49b5",
+      "company": "Amazon",
+      "title": "Software Engineer Intern, Embedded Systems",
+      "applyUrl": "https://go.vansh.nyc/gE?s=y",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "f4816de8c79269ad010becb8",
+      "company": "Johnson & Johnson",
+      "title": "R&D Device Engineer Summer Intern",
+      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Raritan-New-Jersey-United-States-of-America/R-D-Device-Engineer-Summer-Intern_R-103642",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "23bebb72e6d90aef92558b5a",
+      "company": "Amazon",
+      "title": "New Grad 2027: Software Development Engineer",
+      "applyUrl": "https://go.vansh.nyc/DJ?s=A",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "db147aad0754e306c3e2ef78",
+      "company": "Motorola",
+      "title": "Mechanical Engineering Intern - Summer 2027",
+      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Plantation-FL/Mechanical-Engineering-Intern---Summer-2027_R69030",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "1c1b82d0c113c63c24d55c3a",
+      "company": "Amazon",
+      "title": "Software Engineer Intern, Embedded Systems",
+      "applyUrl": "https://go.vansh.nyc/FS?s=y",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "08cca16b16ae82bc1d3504b1",
+      "company": "Jj",
+      "title": "Production Data Analyst Co-Op",
+      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Danvers-Massachusetts-United-States-of-America/Production-Data-Analyst-Co-Op_R-098904",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "d01e39fb10fab8166156eda2",
+      "company": "HNTB",
+      "title": "New Grad Engineer I - Winter/Summer 2027 - Central Division (For Current/Former HNTB Interns Only)",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Dallas-TX/New-Grad-Engineer-I---Winter-Summer-2027---Central-Division--For-Current-Former-HNTB-Interns-Only-_R-30884-1",
       "reason": "not-returned-by-sources"
     }
   ],
   "urlChanges": [
     {
+      "id": "2bb958c8b8d63375e986a4c2",
+      "previousUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-CA-Vandenberg-AFB/Software-Engineer-Junior_R0173629",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-CA-Vandenberg-AFB/Software-Engineer-Junior_R0173629"
+    },
+    {
+      "id": "2539bde802dfa37b045401b0",
+      "previousUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Dahlgren/Entry-Level-Software-Engineer---SECRET_R0173771",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-VA-Dahlgren/Entry-Level-Software-Engineer---SECRET_R0173771"
+    },
+    {
+      "id": "04a5d004fbdd6d04f93e83f2",
+      "previousUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603"
+    },
+    {
+      "id": "cd9ab86f753f801b68068408",
+      "previousUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Richardson/AI-ML-Systems-Engineer--2027-New-College-Graduate-_JR-2604163",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/en-US/External/job/USA---Texas---Richardson/AI-ML-Systems-Engineer--2027-New-College-Graduate-_JR-2604163"
+    },
+    {
+      "id": "82e319dc33dd275804891d73",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1"
+    },
+    {
       "id": "7a90a21aa3ff02ea7b0eb4aa",
-      "previousUrl": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers/job/Portage-Michigan/Product-Interaction-Design-Intern---Portage--MI_R572833",
-      "applyUrl": "https://stryker.wd1.myworkdayjobs.com/strykercareers/job/Portage-Michigan/Product-Interaction-Design-Intern---Portage--MI_R572833"
+      "previousUrl": "https://stryker.wd1.myworkdayjobs.com/strykercareers/job/Portage-Michigan/Product-Interaction-Design-Intern---Portage--MI_R572833",
+      "applyUrl": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers/job/Portage-Michigan/Product-Interaction-Design-Intern---Portage--MI_R572833"
     },
     {
       "id": "dea94e21e0a5fb68a216f733",
-      "previousUrl": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers/job/Portage-Michigan/Industrial-Design-Intern---Portage--MI_R572730",
-      "applyUrl": "https://stryker.wd1.myworkdayjobs.com/strykercareers/job/Portage-Michigan/Industrial-Design-Intern---Portage--MI_R572730"
+      "previousUrl": "https://stryker.wd1.myworkdayjobs.com/strykercareers/job/Portage-Michigan/Industrial-Design-Intern---Portage--MI_R572730",
+      "applyUrl": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers/job/Portage-Michigan/Industrial-Design-Intern---Portage--MI_R572730"
     },
     {
-      "id": "f8fd23e6741557b0746e77b1",
-      "previousUrl": "https://intel.wd1.myworkdayjobs.com/en-US/external/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Bachelor-s_JR0286834",
-      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Bachelor-s_JR0286834"
+      "id": "af25515264c9c9abc2c082aa",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037"
     },
     {
-      "id": "ce91345ac9ad28e840f28d31",
-      "previousUrl": "https://intel.wd1.myworkdayjobs.com/en-us/external/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Graduate_JR0286836",
-      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Graduate_JR0286836"
+      "id": "c22a9ded3705b29620d52318",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Salt-Lake-City-UT/WED---2027-New-Grad-Civil-Engineer-I--For-Current---Recent-HNTB-Interns-Only-_R-31314-1",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---2027-New-Grad-Civil-Engineer-I--For-Current---Recent-HNTB-Interns-Only-_R-31314-1"
+    },
+    {
+      "id": "dec17dd7c886c9ef57d35a82",
+      "previousUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603"
     }
   ]
 }
