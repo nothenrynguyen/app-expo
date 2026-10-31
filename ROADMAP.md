@@ -1,6 +1,6 @@
 # empluzzed Roadmap
 
-October 30 coverage/eligibility milestone is owner-approved through release. A frozen 6,665-opening baseline and 24-board sample identify omitted Lever qualifications and contradictory description-only experience evidence. Focused repairs and regression cases are implemented; validation and production verification are in progress. No universal experience cap or new feed. See [audit, scope and evidence](docs/EARLY_CAREER_COVERAGE_AUDIT_2026-10-30.md).
+October 30 coverage/eligibility milestone is complete, published and production-verified (`4e1ffd3`). All 187 tests, lint, types and export pass. Run 41146904327 published byte-matched snapshot `a08af81`: 6,745 openings, including 2,649 early-career roles (+79). All 19 sampled recovered leads are live; all 12 reviewed experience conflicts are excluded. Overall +128/-48 includes normal source churn; 12 diagnosed unresolved removals remain operational follow-up, not closures. Next proposed work is a bounded Workday generic-title coverage pilot within current request caps. See [audit, release and limitations](docs/EARLY_CAREER_COVERAGE_AUDIT_2026-10-30.md).
 
 October 30: Early Career collection rename is published and production-verified (`f31eed9`). All 183 tests, lint, types and static export pass. Live homepage navigation, loaded /jobs and /internships boards, and desktop/mobile labels pass. URLs, collection keys, saved data and eligibility rules are preserved. Next proposed work is the combined coverage and eligibility audit, followed by one measured fix selected from its evidence. See [release and audit steps](docs/EARLY_CAREER_LABEL_2026-10-30.md).
 
@@ -53,7 +53,7 @@ October 29 source-health audit: the checked-in 14:24 UTC snapshot reports 62/79 
 These are recommendations, not a committed active milestone. Choose a batch before implementation.
 
 1. Grow beyond the restored coverage floor through permitted discovery and current employer evidence. Review remaining rate limits, unsupported hiring systems and employer destination holds. Keep unresolved availability separate from proven closure. See the [restoration review](docs/COVERAGE_RESTORATION.md).
-2. Define an early-career experience rule, measure its effect on existing listings, and review examples before enabling broader exclusions.
+2. Following the published qualification repair, measure generic-title opportunities skipped by Workday title prefilters on a small set of existing boards. Compare eligible additions per extra request within current caps before expanding collection. Keep broader experience-policy changes and an experience filter deferred pending evidence.
 3. Improve duplicate and expired-listing detection using official evidence; keep uncertain listings separate or on hold.
 4. Review new seasonal source discoveries and unresolved source holds as evidence becomes available. Keryx New Grad 2026 is published and verified; Fall remains pending for separate review. See [release review](docs/KERYX_PENDING_2026_REVIEW.md#production-release-and-verification-october-28). Do not automatically activate unreviewed feeds.
 5. Observe and record a successful scheduled analytics cleanup, if available.

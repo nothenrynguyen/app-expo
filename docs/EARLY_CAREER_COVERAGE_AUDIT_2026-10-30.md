@@ -88,7 +88,7 @@ rows. All are early-career full-time roles, not internship removals. These count
 are not the complete board impact or guaranteed publication additions.
 
 All 187 tests pass, including four new qualification/adapter/identity regressions.
-Lint, TypeScript and static export pass. Production verification is pending.
+Lint, TypeScript and static export pass. Production verification is complete.
 
 Local replay: `npx tsx scripts/audit-early-career-coverage.ts .cache/early-career-audit .cache/control-ats-boards.ts`.
 The control module is the baseline ATS adapter extracted from `67fe695`, with
@@ -104,3 +104,39 @@ set of existing, healthy boards, using the current request/time caps. Count
 additional eligible openings per extra request before changing collection. Keep
 provider cooldowns and positive-evidence expiry intact. A consistent visible
 experience label/filter is deferred until evidence quality supports one.
+
+## Production completion
+
+Implementation `4e1ffd3` is published. Workflow
+[41146904327](https://github.com/nothenrynguyen/app-expo/actions/runs/41146904327)
+passed a clean install, all 187 tests, collection, the unchanged guard and the
+bounded publication helper. Snapshot `a08af81` generated October 30 at 4:59 p.m.
+Pacific. All four public data files byte-match production. See the
+[machine-readable receipt](early-career-coverage-production-result.json).
+
+| Collection | Before | Published | Net |
+| --- | ---: | ---: | ---: |
+| Internships | 4,095 | 4,096 | +1 |
+| Early career | 2,570 | 2,649 | +79 |
+| All | 6,665 | 6,745 | +80 |
+
+The real refresh added 128 unique openings and removed 48. This is not a frozen
+whole-pipeline experiment: normal source churn and recovery also affect these
+numbers. Do not attribute all growth or removals to the code change. Stronger
+specific proof: all 19 sampled preliminary leads are now published, while all
+12 reviewed previously published conflicts are absent. Public IDs are unique.
+This repair adds no descriptions to public job records or recovery state. Deployed Methodology copy
+was checked in the browser; screenshot retained locally at
+`.cache/early-career-audit/methodology-production.jpg`.
+
+Remaining limitations: the report diagnoses 27 scope exclusions, six pending
+verification removals, three source-unavailable removals and 12 unresolved
+removals, with zero confirmed closures. The independent coverage guard reports
+two unexplained internship removals and 13 unexplained early-career removals,
+below the existing blocking thresholds. These metrics have different rules and
+must not be conflated. None of the uncertain omissions is relabeled closed.
+Provider cooldowns, missing input discovery and ambiguous qualifications remain.
+
+This milestone is complete through release. Next proposed implementation remains
+a bounded Workday generic-title coverage pilot, selected using additional eligible
+openings per request. It is not automatically authorized as part of this release.
