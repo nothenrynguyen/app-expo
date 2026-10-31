@@ -158,3 +158,10 @@
 @media(prefers-reduced-motion:reduce) {
   .analytics-period-switch::before,.analytics-period-switch button,.analytics-day-picker select,.analytics-day-picker select::picker-icon { transition:none; }
 }
+
+.analytics-shell.analytics-locked { min-height:calc(100svh - 200px); display:grid; place-items:center; padding:48px 24px; }
+.analytics-locked .analytics-access { width:100%; max-width:360px; margin:auto; }
+.analytics-access h1 { font-size:25px; font-weight:600; letter-spacing:-.035em; text-align:center; margin:0 0 26px; }
+.analytics-access input[type="password"] { width:100%; box-sizing:border-box; font-size:14px; padding:14px 16px; border-radius:12px; background:#1c1d22; }
+.analytics-access>.button { width:100%; margin-top:14px; border-radius:12px; }
+.analytics-access p[role="status"] { text-align:center; margin:12px 0 0; }

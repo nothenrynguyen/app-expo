@@ -8,7 +8,6 @@ const number = (value: number) => value.toLocaleString("en-US");
 const percent = (n: number, d: number) => d ? `${(100 * n / d).toFixed(1)}%` : "No data";
 const label = (value: string) => ({fulltime: "Early career", internships: "Internships", direct_unknown: "Direct or unknown"}[value] ?? value.replaceAll("_", " "));
 export function AnalyticsDashboard() {
-  const [preview, setPreview] = useState(false);
   const [draft, setDraft] = useState("");
   const range: ActivityReport["range"] = "all";
   const [report, setReport] = useState<ActivityReport | null>(null);
@@ -33,7 +32,7 @@ export function AnalyticsDashboard() {
         headers: { Authorization: `Bearer ${secret}` }, credentials: "omit", cache: "no-store",
         referrerPolicy: "no-referrer", redirect: "error", signal: controller.signal,
       });
-      if (response.status === 401 || response.status === 403) { token.current = ""; setUnlocked(false); throw new Error("Owner access could not be verified. Check the access key."); }
+      if (response.status === 401 || response.status === 403) { token.current = ""; setUnlocked(false); throw new Error("Could not unlock the dashboard. Check your password."); }
       if (!response.ok) throw new Error("Reports are temporarily unavailable. Collection may have reached a free-tier limit. Try again later.");
       const data: ActivityReport = await response.json();
       if (data.version !== 1 || data.range !== nextRange || !data.totals || !Array.isArray(data.daily) || !Array.isArray(data.breakdown)) throw new Error("The report response could not be read.");
@@ -48,19 +47,20 @@ export function AnalyticsDashboard() {
   }
   function connect(event: FormEvent) { event.preventDefault(); void loadReport(draft.trim(), range); }
   function lock() { request.current?.abort(); request.current = null; token.current = ""; setUnlocked(false); setDraft(""); setReport(null); setMessage(""); setLoading(false); }
-  return <section className="analytics-shell">
-    <h1 className="sr-only">Analytics</h1>
-    <label className="analytics-exclusion"><input type="checkbox" checked={excluded} onChange={(event) => { setExcluded(event.target.checked); setOwnerExclusion(event.target.checked); }} />Exclude this browser from activity collection</label>
-    {!activityConfigured && !preview ? <div className="analytics-panel analytics-empty"><h2>Analytics is not connected yet.</h2><p>The dashboard is ready for the private collector. Activity totals will appear after setup and the first consenting visit.</p><p>No historical interactions have been reconstructed.</p></div> : null}
-    {activityConfigured && !unlocked && !preview ? <form className="analytics-panel analytics-access" onSubmit={connect}><h2>Your dashboard, unlocked.</h2><p>Use your private access key. Save it in your password manager for next time. Access is checked by the reporting service.</p><input type="text" name="username" autoComplete="username" value="empluzzed-owner" readOnly hidden /><label>Owner access key<input name="password" type="password" autoComplete="current-password" spellCheck={false} required minLength={43} maxLength={128} value={draft} onChange={(event) => setDraft(event.target.value)} /></label><button className="button primary" disabled={loading}>{loading ? "Connecting..." : "Open dashboard"}</button></form> : null}
-    {!unlocked ? <button type="button" className="button secondary" onClick={() => setPreview(!preview)}>{preview ? "Close sample preview" : "Preview with sample data"}</button> : null}
-    {preview ? <><p className="analytics-warning">Sample preview. These are fictional numbers, not your site&apos;s audience.</p><ReportContent report={sampleReport} preview /></> : null}
-    <p role="status" aria-live="polite">{message}</p>
+  return <section className={`analytics-shell${unlocked ? "" : " analytics-locked"}`}>
+    {unlocked ? <><h1 className="sr-only">Analytics dashboard</h1><label className="analytics-exclusion"><input type="checkbox" checked={excluded} onChange={(event) => { setExcluded(event.target.checked); setOwnerExclusion(event.target.checked); }} />Exclude this browser from activity collection</label></> : <form className="analytics-access" onSubmit={connect}>
+      <h1>Analytics dashboard</h1>
+      <input type="text" name="username" autoComplete="username" value="empluzzed-owner" readOnly hidden />
+      <label><span className="sr-only">Password</span><input name="password" type="password" placeholder="Password" autoComplete="current-password" spellCheck={false} required minLength={43} maxLength={128} value={draft} onChange={(event) => setDraft(event.target.value)} /></label>
+      <button className="button primary" disabled={loading || !activityConfigured}>{loading ? "Opening..." : "Open dashboard"}</button>
+      <p role="status" aria-live="polite">{message}</p>
+    </form>}
+    {unlocked && message ? <p role="status" aria-live="polite">{message}</p> : null}
     {unlocked ? <div className="analytics-toolbar"><div><button type="button" className="button secondary" disabled={loading} onClick={() => void loadReport(token.current, range)}>{loading ? "Loading..." : "Refresh"}</button><button type="button" className="button secondary" onClick={lock}>Lock dashboard</button></div></div> : null}
     {report ? <ReportContent report={report} /> : null}
   </section>;
 }
-function ReportContent({ report, preview = false }: { report: ActivityReport; preview?: boolean }) {
+function ReportContent({ report }: { report: ActivityReport }) {
   const [view, setView] = useState<"month" | "all">("month");
   const [month, setMonth] = useState(report.end.slice(0, 7));
   const months = report.monthly ?? [];
@@ -98,12 +98,12 @@ function ReportContent({ report, preview = false }: { report: ActivityReport; pr
     <ActivityTrend key={`${view}-${month}`} report={report} month={monthlyView ? month : null} />
     {!monthlyView ? <section className="analytics-panel analytics-actions"><h2>What people actually use</h2><p className="analytics-caption">Visitors count once per feature. Actions include repeated uses. One bulk tracker addition counts as one action.</p><div className="analytics-table-scroll"><table className="analytics-table"><thead><tr><th scope="col">Feature</th><th scope="col">Visitors</th><th scope="col">Share of visitors</th><th scope="col">Actions</th></tr></thead><tbody>{features.map(([name,people,actions]) => <tr key={name}><th scope="row">{name}</th><td>{number(people)}</td><td>{percent(people,report.totals.visitors)}</td><td>{number(actions)}</td></tr>)}</tbody></table></div><p className="analytics-caption">Zero-result filter uses: {number(zero)} of {number(events("filter_use"))} ({percent(zero,events("filter_use"))}).</p></section> : null}
     <section className="analytics-panel analytics-months"><h2>Monthly totals</h2>{report.monthly?.length ? <div className="analytics-table-scroll"><table className="analytics-table"><thead><tr><th scope="col">Month</th><th scope="col">Visitors</th><th scope="col">Engaged</th><th scope="col">Link clickers</th><th scope="col">Clicks</th></tr></thead><tbody>{report.monthly.map(row => <tr key={row.month}><th scope="row">{new Date(row.month+"-01T00:00Z").toLocaleDateString("en-US",{month:"long",year:"numeric",timeZone:"UTC"})}<small>{row.month === report.end.slice(0,7) ? "In progress" : "Closed month"}{report.trackingSince?.startsWith(row.month) ? " · Collection started " + report.trackingSince.slice(0,10) : ""}{row.limited ? " · Incomplete collection" : ""}</small></th><td>{number(row.visitors)}</td><td>{number(row.active)}</td><td>{number(row.applied)}</td><td>{number(row.clicks)}</td></tr>)}</tbody></table></div> : <p className="analytics-caption">Monthly history will appear after the collector update. No estimates are substituted for unavailable months.</p>}</section>
-    {!monthlyView ? <details className="analytics-panel analytics-definitions"><summary>Explore traffic and collection health</summary><div className="analytics-grid"><CountTable title="Boards" rows={grouped("board")} subtitle="Page views, including repeat navigation." /><CountTable title="Traffic sources" rows={grouped("source")} subtitle="Page-view referrers, including internal navigation. These are not unique arrivals or channel conversions." /><CountTable title="Devices" rows={grouped("device")} subtitle="Page views by estimated device type." /></div>{!preview ? <BoardHealth /> : <p className="analytics-caption">Live job-data health is omitted from this sample.</p>}<p>Last accepted event: {report.lastReceivedAt ?? "None"}. Safety limits: {number(report.limits.dailyEvents)} events per day, {report.limits.browserDailyEvents} per browser per day.</p></details> : null}
+    {!monthlyView ? <details className="analytics-panel analytics-definitions"><summary>Explore traffic and collection health</summary><div className="analytics-grid"><CountTable title="Boards" rows={grouped("board")} subtitle="Page views, including repeat navigation." /><CountTable title="Traffic sources" rows={grouped("source")} subtitle="Page-view referrers, including internal navigation. These are not unique arrivals or channel conversions." /><CountTable title="Devices" rows={grouped("device")} subtitle="Page views by estimated device type." /></div><BoardHealth /><p>Last accepted event: {report.lastReceivedAt ?? "None"}. Safety limits: {number(report.limits.dailyEvents)} events per day, {report.limits.browserDailyEvents} per browser per day.</p></details> : null}
     <details className="analytics-panel analytics-definitions"><summary>What these numbers can and cannot tell you</summary><p>These are consenting observed browsers, not verified people. Blockers, privacy signals, cleared storage, different devices and collection outages affect counts. Browser identities expire after 180 days. Owner exclusion applies to this browser.</p><p>Engaged visitors and feature groups overlap. They are not a sequential funnel. Returning means seen on an earlier UTC day, not necessarily in a previous month. Employer-link clicks are not submitted applications. Tracker additions measure feature use, never record contents.</p><p>All time starts when collection began. Daily detail is scheduled for deletion after 90 days; failures can delay cleanup. Closed-month summaries preserve aggregate counts without extra browser identities. Missing history is unavailable, not zero.</p></details>
     <button type="button" className="button secondary" onClick={() => {
       const url = URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:"application/json"}));
-      const a = document.createElement("a"); a.href=url; a.download=`empluzzed-${preview ? "sample" : "activity"}-${report.end}.json`; a.click(); URL.revokeObjectURL(url);
-    }}>Download {preview ? "sample" : "full report"} JSON</button>
+      const a = document.createElement("a"); a.href=url; a.download=`empluzzed-activity-${report.end}.json`; a.click(); URL.revokeObjectURL(url);
+    }}>Download full report JSON</button>
   </>;
 }
 function Metric({ title, value, detail }: { title: string; value: string; detail: string }) {
@@ -173,13 +173,6 @@ function ActivityTrend({report, month}:{report:ActivityReport; month:string | nu
     </>}
   </section>;
 }
-const sampleReport: ActivityReport = {
-  version:1, range:"all", start:"2026-10-01",end:"2026-10-31",generatedAt:"2026-10-31T18:00:00Z",trackingSince:"2026-10-23T00:00:00Z",lastReceivedAt:"2026-10-31T17:55:00Z",
-  totals:{visitors:128,active:76,returning:34,browsed:104,applied:42,saved:23,filtered:61,tracked:8},
-  daily:[14,22,18,31,27,38,35,44,39].map((visitors,i)=>({day:`2026-10-${23+i}`,visitors,active:Math.round(visitors*.6),returning:Math.round(visitors*.25),events:visitors*4,clicks:Math.round(visitors*.3),limited:false})),
-  breakdown:([{name:"apply_click",count:96},{name:"save_click",count:38},{name:"filter_use",count:147},{name:"application_add",count:12}] as const).map(row=>({...row,page:row.name === "application_add" ? "/applications" : "/jobs",board:row.name === "application_add" ? "none" : "fulltime",dimension:row.name==="filter_use" ? "role:11_50" : "none"})),
-  monthly:[{month:"2026-10",visitors:128,active:76,applied:42,clicks:96,limited:false}],limits:{dailyEvents:4000,browserDailyEvents:120,detailDays:90},
-};
 function BoardHealth() {
   const [summary, setSummary] = useState<JobsSummary | null>(null);
   const [failed, setFailed] = useState(false);
