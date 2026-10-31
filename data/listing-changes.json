@@ -1,72 +1,58 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-31T14:23:59.618Z",
-  "previousGeneratedAt": "2026-10-31T13:24:34.129Z",
-  "currentSnapshotGeneratedAt": "2026-10-31T14:23:59.618Z",
+  "generatedAt": "2026-10-31T15:24:01.198Z",
+  "previousGeneratedAt": "2026-10-31T14:23:59.618Z",
+  "currentSnapshotGeneratedAt": "2026-10-31T15:24:01.198Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6746,
-    "current": 6748,
-    "retained": 6745,
-    "added": 3,
-    "removed": 1,
-    "net": 2
+    "previous": 6748,
+    "current": 6746,
+    "retained": 6746,
+    "added": 0,
+    "removed": 2,
+    "net": -2
   },
   "categoryCounts": {
     "confirmed-closed": 0,
     "scope-exclusion": 0,
-    "verification-pending": 1,
-    "source-unavailable": 0,
-    "unresolved": 0,
+    "verification-pending": 0,
+    "source-unavailable": 1,
+    "unresolved": 1,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "job-boards.greenhouse.io:5441811008",
-      "id": "187fa2839bd19c64bb563a48",
-      "company": "MEMX",
-      "title": "Enterprise IT Intern, Summer 2027 (Hybrid, NYC)",
-      "applyUrl": "https://job-boards.greenhouse.io/memx/jobs/5441811008",
-      "reason": "pendingVerification",
+      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10258154",
+      "id": "7f7763507686cea3ea2e2e04",
+      "company": "Northrop Grumman",
+      "title": "Associate Systems Engineer - Pathways Program - Aurora CO",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Colorado-Aurora/Associate-Systems-Engineer---Pathways-Program---Aurora-CO_R10258154",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "187fa2839bd19c64bb563a48"
+        "7f7763507686cea3ea2e2e04"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/memx/jobs/5441811008"
+        "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Colorado-Aurora/Associate-Systems-Engineer---Pathways-Program---Aurora-CO_R10258154"
       ],
       "sources": [
-        "Keryx Non-Software Summer 2027",
-        "Direct ATS (Greenhouse)"
+        "Direct ATS (Workday)"
       ],
-      "candidateSeen": true,
+      "candidateSeen": false,
       "evidence": {
-        "screening": [
-          {
-            "url": "https://job-boards.greenhouse.io/memx/jobs/5441811008",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-10-31T14:18:48.390Z",
+        "screening": [],
+        "runStartedAt": "2026-10-31T15:18:49.467Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:memx",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
+          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1482
-          },
-          {
-            "name": "Direct ATS (Greenhouse)",
+            "name": "Direct ATS (Workday)",
             "diagnosticName": null,
             "status": "not-checked",
             "outcome": null,
@@ -74,38 +60,114 @@
           }
         ]
       },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:intel.wd1.myworkdayjobs.com:external:jr0287535",
+      "id": "e4115302f86f195e1d7ce27b",
+      "company": "Intel",
+      "title": "Graphics Hardware Validation Undergraduate Engineering Intern",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/Canada-Toronto/Graphics-Hardware-Validation-Undergraduate-Engineering-Intern_JR0287535",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "e4115302f86f195e1d7ce27b"
+      ],
+      "previousUrls": [
+        "https://intel.wd1.myworkdayjobs.com/External/job/Canada-Toronto/Graphics-Hardware-Validation-Undergraduate-Engineering-Intern_JR0287535"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-10-31T15:18:49.467Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:intel.wd1.myworkdayjobs.com:external",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
       "requiresInvestigation": true
     }
   ],
   "rowCounts": {
-    "previous": 6746,
-    "current": 6748,
-    "net": 2,
+    "previous": 6748,
+    "current": 6746,
+    "net": -2,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 3,
-  "removedCount": 1,
+  "added": 0,
+  "removedCount": 2,
   "counts": {
-    "pendingVerification": 1
+    "not-returned-by-sources": 2
   },
   "removed": [
     {
-      "id": "187fa2839bd19c64bb563a48",
-      "company": "MEMX",
-      "title": "Enterprise IT Intern, Summer 2027 (Hybrid, NYC)",
-      "applyUrl": "https://job-boards.greenhouse.io/memx/jobs/5441811008",
-      "reason": "pendingVerification"
+      "id": "7f7763507686cea3ea2e2e04",
+      "company": "Northrop Grumman",
+      "title": "Associate Systems Engineer - Pathways Program - Aurora CO",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Colorado-Aurora/Associate-Systems-Engineer---Pathways-Program---Aurora-CO_R10258154",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "e4115302f86f195e1d7ce27b",
+      "company": "Intel",
+      "title": "Graphics Hardware Validation Undergraduate Engineering Intern",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/Canada-Toronto/Graphics-Hardware-Validation-Undergraduate-Engineering-Intern_JR0287535",
+      "reason": "not-returned-by-sources"
     }
   ],
   "urlChanges": [
     {
-      "id": "9f3d0fc5083eaf102290d2ad",
-      "previousUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/External_Rockwell_Automation/job/Milwaukee-Wisconsin-United-States/Intern--Information-Technology_R26-5374-2",
-      "applyUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/en-US/external_rockwell_automation/job/Milwaukee-Wisconsin-United-States/Intern--Information-Technology_R26-5374-2"
+      "id": "d031d429d87c18dcf461efa3",
+      "previousUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Ann-Arbor-MI/Software-Engineer-Intern---AI_2641817",
+      "applyUrl": "https://kla.wd1.myworkdayjobs.com/en-US/Search/job/Ann-Arbor-MI/Software-Engineer-Intern---AI_2641817"
+    },
+    {
+      "id": "020aa8e85df85704aa7c5c7c",
+      "previousUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Software-Engineering-Intern_2641581-1",
+      "applyUrl": "https://kla.wd1.myworkdayjobs.com/en-US/Search/job/Milpitas-CA/Software-Engineering-Intern_2641581-1"
+    },
+    {
+      "id": "8a2e8a2c73156bcf0ee48041",
+      "previousUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Software-Engineering-Intern--C----Unix-_2641325-1",
+      "applyUrl": "https://kla.wd1.myworkdayjobs.com/en-US/Search/job/Milpitas-CA/Software-Engineering-Intern--C----Unix-_2641325-1"
+    },
+    {
+      "id": "0a65e2f2b888cea45ca20133",
+      "previousUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Algorithm-Engineering-Intern--AI--Computer-Vision---Software-Engineering-_2641392-2",
+      "applyUrl": "https://kla.wd1.myworkdayjobs.com/en-US/Search/job/Milpitas-CA/Algorithm-Engineering-Intern--AI--Computer-Vision---Software-Engineering-_2641392-2"
+    },
+    {
+      "id": "f8fd23e6741557b0746e77b1",
+      "previousUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Bachelor-s_JR0286834",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/en-US/external/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Bachelor-s_JR0286834"
+    },
+    {
+      "id": "ce91345ac9ad28e840f28d31",
+      "previousUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Graduate_JR0286836",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/en-us/external/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Graduate_JR0286836"
     }
   ]
 }
