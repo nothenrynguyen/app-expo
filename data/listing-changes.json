@@ -1,58 +1,58 @@
 {
   "version": 2,
-  "generatedAt": "2026-10-31T01:23:49.017Z",
-  "previousGeneratedAt": "2026-10-31T00:24:08.751Z",
-  "currentSnapshotGeneratedAt": "2026-10-31T01:23:49.017Z",
+  "generatedAt": "2026-10-31T02:24:23.262Z",
+  "previousGeneratedAt": "2026-10-31T01:23:49.017Z",
+  "currentSnapshotGeneratedAt": "2026-10-31T02:24:23.262Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6771,
-    "current": 6778,
-    "retained": 6769,
-    "added": 9,
-    "removed": 2,
-    "net": 7
+    "previous": 6778,
+    "current": 6780,
+    "retained": 6777,
+    "added": 3,
+    "removed": 1,
+    "net": 2
   },
   "categoryCounts": {
     "confirmed-closed": 0,
     "scope-exclusion": 0,
-    "verification-pending": 1,
+    "verification-pending": 0,
     "source-unavailable": 0,
     "unresolved": 1,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "job-boards.greenhouse.io:8760590002",
-      "id": "c8b44af8bca2c7a30511fbaf",
-      "company": "Rothesay",
-      "title": "Summer Internship - 2028 Rothesay Asset Management",
-      "applyUrl": "https://job-boards.greenhouse.io/rothesaygraduates/jobs/8760590002",
-      "reason": "absent-from-employer-board",
+      "identity": "workday:visa.wd5.myworkdayjobs.com:visa:ref089498w",
+      "id": "64ba190dbf2b6d09871356a7",
+      "company": "Visa",
+      "title": "Data Science Graduate",
+      "applyUrl": "https://visa.wd5.myworkdayjobs.com/Visa/job/GB---London-United-Kingdom/Data-Science-Graduate_REF089498W-1",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "c8b44af8bca2c7a30511fbaf"
+        "64ba190dbf2b6d09871356a7"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/rothesaygraduates/jobs/8760590002"
+        "https://visa.wd5.myworkdayjobs.com/Visa/job/GB---London-United-Kingdom/Data-Science-Graduate_REF089498W-1"
       ],
       "sources": [
-        "Direct ATS (Greenhouse)"
+        "Direct ATS (Workday)"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-10-31T01:18:29.640Z",
+        "runStartedAt": "2026-10-31T02:18:49.047Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:rothesaygraduates",
+          "id": "workday:visa.wd5.myworkdayjobs.com:visa",
           "status": "ok",
-          "outcome": null,
-          "membership": "absent",
+          "outcome": "healthy",
+          "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Direct ATS (Greenhouse)",
+            "name": "Direct ATS (Workday)",
             "diagnosticName": null,
             "status": "not-checked",
             "outcome": null,
@@ -64,110 +64,49 @@
       "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
       "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
       "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31435",
-      "id": "48d0774191df9234015b9c9f",
-      "company": "HNTB",
-      "title": "WED - Intern Civil Engineer (Summer 2027) (For Current & Recent HNTB Interns Only)",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "48d0774191df9234015b9c9f"
-      ],
-      "previousUrls": [
-        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435"
-      ],
-      "sources": [
-        "Keryx Non-Software Summer 2027",
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-10-31T01:18:29.640Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1470
-          },
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
     }
   ],
   "rowCounts": {
-    "previous": 6771,
-    "current": 6778,
-    "net": 7,
+    "previous": 6778,
+    "current": 6780,
+    "net": 2,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 9,
-  "removedCount": 2,
+  "added": 3,
+  "removedCount": 1,
   "counts": {
-    "absent-from-employer-board": 1,
-    "pendingVerification": 1
+    "not-returned-by-sources": 1
   },
   "removed": [
     {
-      "id": "c8b44af8bca2c7a30511fbaf",
-      "company": "Rothesay",
-      "title": "Summer Internship - 2028 Rothesay Asset Management",
-      "applyUrl": "https://job-boards.greenhouse.io/rothesaygraduates/jobs/8760590002",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "48d0774191df9234015b9c9f",
-      "company": "HNTB",
-      "title": "WED - Intern Civil Engineer (Summer 2027) (For Current & Recent HNTB Interns Only)",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
-      "reason": "pendingVerification"
+      "id": "64ba190dbf2b6d09871356a7",
+      "company": "Visa",
+      "title": "Data Science Graduate",
+      "applyUrl": "https://visa.wd5.myworkdayjobs.com/Visa/job/GB---London-United-Kingdom/Data-Science-Graduate_REF089498W-1",
+      "reason": "not-returned-by-sources"
     }
   ],
   "urlChanges": [
     {
-      "id": "2bb958c8b8d63375e986a4c2",
-      "previousUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-CA-Vandenberg-AFB/Software-Engineer-Junior_R0173629",
-      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-CA-Vandenberg-AFB/Software-Engineer-Junior_R0173629"
+      "id": "7a90a21aa3ff02ea7b0eb4aa",
+      "previousUrl": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers/job/Portage-Michigan/Product-Interaction-Design-Intern---Portage--MI_R572833",
+      "applyUrl": "https://stryker.wd1.myworkdayjobs.com/strykercareers/job/Portage-Michigan/Product-Interaction-Design-Intern---Portage--MI_R572833"
     },
     {
-      "id": "2539bde802dfa37b045401b0",
-      "previousUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-VA-Dahlgren/Entry-Level-Software-Engineer---SECRET_R0173771",
-      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Dahlgren/Entry-Level-Software-Engineer---SECRET_R0173771"
+      "id": "dea94e21e0a5fb68a216f733",
+      "previousUrl": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers/job/Portage-Michigan/Industrial-Design-Intern---Portage--MI_R572730",
+      "applyUrl": "https://stryker.wd1.myworkdayjobs.com/strykercareers/job/Portage-Michigan/Industrial-Design-Intern---Portage--MI_R572730"
     },
     {
-      "id": "af25515264c9c9abc2c082aa",
-      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037"
+      "id": "f8fd23e6741557b0746e77b1",
+      "previousUrl": "https://intel.wd1.myworkdayjobs.com/en-US/external/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Bachelor-s_JR0286834",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Bachelor-s_JR0286834"
+    },
+    {
+      "id": "ce91345ac9ad28e840f28d31",
+      "previousUrl": "https://intel.wd1.myworkdayjobs.com/en-us/external/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Graduate_JR0286836",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Graduate_JR0286836"
     }
   ]
 }
