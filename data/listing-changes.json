@@ -1,36 +1,893 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-01T16:24:21.312Z",
-  "previousGeneratedAt": "2026-11-01T15:21:44.990Z",
-  "currentSnapshotGeneratedAt": "2026-11-01T16:24:21.312Z",
+  "generatedAt": "2026-11-01T17:24:08.127Z",
+  "previousGeneratedAt": "2026-11-01T16:24:21.312Z",
+  "currentSnapshotGeneratedAt": "2026-11-01T17:24:08.127Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6717,
-    "current": 6722,
-    "retained": 6717,
-    "added": 5,
-    "removed": 0,
-    "net": 5
+    "previous": 6722,
+    "current": 6757,
+    "retained": 6711,
+    "added": 46,
+    "removed": 11,
+    "net": 35
   },
   "categoryCounts": {
     "confirmed-closed": 0,
     "scope-exclusion": 0,
-    "verification-pending": 0,
+    "verification-pending": 11,
     "source-unavailable": 0,
     "unresolved": 0,
     "deduplicated": 0
   },
-  "removedOpportunities": [],
+  "removedOpportunities": [
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248060",
+      "id": "5ca4b8f1233a8861507be91e",
+      "company": "Booz Allen",
+      "title": "Full Stack Software Engineer, Junior",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/McLean-VA/Full-Stack-Software-Engineer--Junior_R0248060",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "5ca4b8f1233a8861507be91e"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/McLean-VA/Full-Stack-Software-Engineer--Junior_R0248060"
+      ],
+      "sources": [
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/McLean-VA/Full-Stack-Software-Engineer--Junior_R0248060",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-01T17:18:47.634Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/McLean-VA/Full-Stack-Software-Engineer--Junior_R0248060",
+            "status": "live"
+          }
+        ],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1382
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:caci.wd1.myworkdayjobs.com:external:332671",
+      "id": "8cf07989c1ee5e45144a103c",
+      "company": "CACI",
+      "title": "Junior Data Analyst",
+      "applyUrl": "https://caci.wd1.myworkdayjobs.com/en-US/external/job/Florham-Park-NJ-US/Junior-Data-Analyst_332671",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "8cf07989c1ee5e45144a103c"
+      ],
+      "previousUrls": [
+        "https://caci.wd1.myworkdayjobs.com/en-US/external/job/Florham-Park-NJ-US/Junior-Data-Analyst_332671"
+      ],
+      "sources": [
+        "Aprameya New Grad 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://caci.wd1.myworkdayjobs.com/en-US/external/job/Florham-Park-NJ-US/Junior-Data-Analyst_332671",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://caci.wd1.myworkdayjobs.com/External/job/Florham-Park-NJ-US/Junior-Data-Analyst_332671",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-01T17:18:47.634Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://caci.wd1.myworkdayjobs.com/External/job/Florham-Park-NJ-US/Junior-Data-Analyst_332671",
+            "status": "live"
+          }
+        ],
+        "board": {
+          "id": "workday:caci.wd1.myworkdayjobs.com:external",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya New Grad 2027",
+            "diagnosticName": "Aprameya New Grad 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 481
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1382
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0249560",
+      "id": "f986f54ec148cd1bb3cce462",
+      "company": "Booz Allen",
+      "title": "Data Scientist, Junior",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Stafford-VA/Data-Scientist--Junior_R0249560",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "f986f54ec148cd1bb3cce462"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Stafford-VA/Data-Scientist--Junior_R0249560"
+      ],
+      "sources": [
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Stafford-VA/Data-Scientist--Junior_R0249560",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-01T17:18:47.634Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Stafford-VA/Data-Scientist--Junior_R0249560",
+            "status": "live"
+          }
+        ],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1382
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:caci.wd1.myworkdayjobs.com:external:333249",
+      "id": "bbe572715626c4500b227351",
+      "company": "CACI",
+      "title": "Entry Level C# Software Engineer",
+      "applyUrl": "https://caci.wd1.myworkdayjobs.com/en-US/external/job/Virginia-Beach-VA-US/Entry-Level-C--Software-Engineer_333249",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "bbe572715626c4500b227351"
+      ],
+      "previousUrls": [
+        "https://caci.wd1.myworkdayjobs.com/en-US/external/job/Virginia-Beach-VA-US/Entry-Level-C--Software-Engineer_333249"
+      ],
+      "sources": [
+        "Aprameya New Grad 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://caci.wd1.myworkdayjobs.com/en-US/external/job/Virginia-Beach-VA-US/Entry-Level-C--Software-Engineer_333249",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://caci.wd1.myworkdayjobs.com/External/job/Virginia-Beach-VA-US/Entry-Level-C--Software-Engineer_333249",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-01T17:18:47.634Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://caci.wd1.myworkdayjobs.com/External/job/Virginia-Beach-VA-US/Entry-Level-C--Software-Engineer_333249",
+            "status": "live"
+          }
+        ],
+        "board": {
+          "id": "workday:caci.wd1.myworkdayjobs.com:external",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya New Grad 2027",
+            "diagnosticName": "Aprameya New Grad 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 481
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1382
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:caci.wd1.myworkdayjobs.com:external:332339",
+      "id": "bf2c1fd16c7c49dc7657209a",
+      "company": "CACI",
+      "title": "Junior Cyber Software Engineer",
+      "applyUrl": "https://caci.wd1.myworkdayjobs.com/en-US/external/job/Aberdeen-Proving-Ground-MD-US/Junior-Cyber-Software-Engineer_332339",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "bf2c1fd16c7c49dc7657209a"
+      ],
+      "previousUrls": [
+        "https://caci.wd1.myworkdayjobs.com/en-US/external/job/Aberdeen-Proving-Ground-MD-US/Junior-Cyber-Software-Engineer_332339"
+      ],
+      "sources": [
+        "Aprameya New Grad 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://caci.wd1.myworkdayjobs.com/en-US/external/job/Aberdeen-Proving-Ground-MD-US/Junior-Cyber-Software-Engineer_332339",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://caci.wd1.myworkdayjobs.com/External/job/Aberdeen-Proving-Ground-MD-US/Junior-Cyber-Software-Engineer_332339",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-01T17:18:47.634Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://caci.wd1.myworkdayjobs.com/External/job/Aberdeen-Proving-Ground-MD-US/Junior-Cyber-Software-Engineer_332339",
+            "status": "live"
+          }
+        ],
+        "board": {
+          "id": "workday:caci.wd1.myworkdayjobs.com:external",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya New Grad 2027",
+            "diagnosticName": "Aprameya New Grad 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 481
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1382
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:blackrock.wd1.myworkdayjobs.com:blackrock_professional:r266476",
+      "id": "fa0514283a3bb11101af07cb",
+      "company": "BlackRock",
+      "title": "2027 Quantitative Masters Internship Program - Technology - Analytics &…",
+      "applyUrl": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Technology---Analytics---Modeling---San-Francisco_R266476",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "fa0514283a3bb11101af07cb"
+      ],
+      "previousUrls": [
+        "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Technology---Analytics---Modeling---San-Francisco_R266476"
+      ],
+      "sources": [
+        "Open-Tech-Internships-2027 2027",
+        "Aprameya Summer Internships 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Technology---Analytics---Modeling---San-Francisco_R266476",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Technology---Analytics---Modeling---San-Francisco_R266476",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-01T17:18:47.634Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Technology---Analytics---Modeling---San-Francisco_R266476",
+            "status": "live"
+          }
+        ],
+        "board": {
+          "id": "workday:blackrock.wd1.myworkdayjobs.com:blackrock_professional",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1842
+          },
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2230
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1382
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:blackrock.wd1.myworkdayjobs.com:blackrock_professional:r266477",
+      "id": "db19ff5968b02bbef238b0f7",
+      "company": "BlackRock",
+      "title": "2027 Quantitative Masters Internship Program - Technology - Analytics & Modeling - New York",
+      "applyUrl": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Technology---Analytics---Modeling---New-York_R266477",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "db19ff5968b02bbef238b0f7"
+      ],
+      "previousUrls": [
+        "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Technology---Analytics---Modeling---New-York_R266477"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Technology---Analytics---Modeling---New-York_R266477",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Technology---Analytics---Modeling---New-York_R266477",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-01T17:18:47.634Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Technology---Analytics---Modeling---New-York_R266477",
+            "status": "live"
+          }
+        ],
+        "board": {
+          "id": "workday:blackrock.wd1.myworkdayjobs.com:blackrock_professional",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2230
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1382
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:clearwateranalytics.wd1.myworkdayjobs.com:clearwater_analytics_careers:r12195",
+      "id": "a2b326c354e0e52de8ee6150",
+      "company": "Clearwater Analytics",
+      "title": "UX/UI/Technical Content Intern",
+      "applyUrl": "https://clearwateranalytics.wd1.myworkdayjobs.com/en-US/Clearwater_Analytics_Careers/job/Office---New-York/UX-UI-Technical-Content-Intern_R12195",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "a2b326c354e0e52de8ee6150"
+      ],
+      "previousUrls": [
+        "https://clearwateranalytics.wd1.myworkdayjobs.com/en-US/Clearwater_Analytics_Careers/job/Office---New-York/UX-UI-Technical-Content-Intern_R12195"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://clearwateranalytics.wd1.myworkdayjobs.com/en-US/Clearwater_Analytics_Careers/job/Office---New-York/UX-UI-Technical-Content-Intern_R12195",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://clearwateranalytics.wd1.myworkdayjobs.com/Clearwater_Analytics_Careers/job/Office---New-York/UX-UI-Technical-Content-Intern_R12195",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-01T17:18:47.634Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://clearwateranalytics.wd1.myworkdayjobs.com/Clearwater_Analytics_Careers/job/Office---New-York/UX-UI-Technical-Content-Intern_R12195",
+            "status": "live"
+          }
+        ],
+        "board": {
+          "id": "workday:clearwateranalytics.wd1.myworkdayjobs.com:clearwater_analytics_careers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2230
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1382
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:lplfinancial.wd1.myworkdayjobs.com:university:r-052475",
+      "id": "8553b409583cf19e553fa9b2",
+      "company": "LPL Financial Holdings",
+      "title": "New Grad 2027 - Software Engineer",
+      "applyUrl": "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/New-Grad-2027---Software-Engineering_R-052475",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "8553b409583cf19e553fa9b2"
+      ],
+      "previousUrls": [
+        "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/New-Grad-2027---Software-Engineering_R-052475"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://lplfinancial.wd1.myworkdayjobs.com/university/job/Fort-MillCharlotte/New-Grad-2027---Software-Engineering_R-052475",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/New-Grad-2027---Software-Engineering_R-052475",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-01T17:18:47.634Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:lplfinancial.wd1.myworkdayjobs.com:university",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1382
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:lplfinancial.wd1.myworkdayjobs.com:university:r-052493",
+      "id": "9a224ab2da05c0bcb97ce3a5",
+      "company": "LPL Financial Holdings",
+      "title": "New Grad 2027 - Data Engineer",
+      "applyUrl": "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/New-Grad---2027---Data-Engineering_R-052493-1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "9a224ab2da05c0bcb97ce3a5"
+      ],
+      "previousUrls": [
+        "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/New-Grad---2027---Data-Engineering_R-052493-1"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://lplfinancial.wd1.myworkdayjobs.com/university/job/Fort-MillCharlotte/New-Grad---2027---Data-Engineering_R-052493-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/New-Grad---2027---Data-Engineering_R-052493-1",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-01T17:18:47.634Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:lplfinancial.wd1.myworkdayjobs.com:university",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1382
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:lplfinancial.wd1.myworkdayjobs.com:university:r-052921",
+      "id": "47c4e1b9bc82b9c35bcf2df5",
+      "company": "LPL Financial Holdings",
+      "title": "Intern 2027- Software Engineer",
+      "applyUrl": "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/Summer-Intern-2027--Software-Engineer_R-052921",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "47c4e1b9bc82b9c35bcf2df5"
+      ],
+      "previousUrls": [
+        "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/Summer-Intern-2027--Software-Engineer_R-052921"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://lplfinancial.wd1.myworkdayjobs.com/university/job/Fort-MillCharlotte/Summer-Intern-2027--Software-Engineer_R-052921",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/Summer-Intern-2027--Software-Engineer_R-052921",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-01T17:18:47.634Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:lplfinancial.wd1.myworkdayjobs.com:university",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1382
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    }
+  ],
   "rowCounts": {
-    "previous": 6717,
-    "current": 6722,
-    "net": 5,
+    "previous": 6722,
+    "current": 6757,
+    "net": 35,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 5,
-  "removedCount": 0,
-  "counts": {},
-  "removed": [],
-  "urlChanges": []
+  "added": 46,
+  "removedCount": 11,
+  "counts": {
+    "pendingVerification": 11
+  },
+  "removed": [
+    {
+      "id": "5ca4b8f1233a8861507be91e",
+      "company": "Booz Allen",
+      "title": "Full Stack Software Engineer, Junior",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/McLean-VA/Full-Stack-Software-Engineer--Junior_R0248060",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "8cf07989c1ee5e45144a103c",
+      "company": "CACI",
+      "title": "Junior Data Analyst",
+      "applyUrl": "https://caci.wd1.myworkdayjobs.com/en-US/external/job/Florham-Park-NJ-US/Junior-Data-Analyst_332671",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "f986f54ec148cd1bb3cce462",
+      "company": "Booz Allen",
+      "title": "Data Scientist, Junior",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Stafford-VA/Data-Scientist--Junior_R0249560",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "bbe572715626c4500b227351",
+      "company": "CACI",
+      "title": "Entry Level C# Software Engineer",
+      "applyUrl": "https://caci.wd1.myworkdayjobs.com/en-US/external/job/Virginia-Beach-VA-US/Entry-Level-C--Software-Engineer_333249",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "bf2c1fd16c7c49dc7657209a",
+      "company": "CACI",
+      "title": "Junior Cyber Software Engineer",
+      "applyUrl": "https://caci.wd1.myworkdayjobs.com/en-US/external/job/Aberdeen-Proving-Ground-MD-US/Junior-Cyber-Software-Engineer_332339",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "fa0514283a3bb11101af07cb",
+      "company": "BlackRock",
+      "title": "2027 Quantitative Masters Internship Program - Technology - Analytics &…",
+      "applyUrl": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Technology---Analytics---Modeling---San-Francisco_R266476",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "db19ff5968b02bbef238b0f7",
+      "company": "BlackRock",
+      "title": "2027 Quantitative Masters Internship Program - Technology - Analytics & Modeling - New York",
+      "applyUrl": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Technology---Analytics---Modeling---New-York_R266477",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "a2b326c354e0e52de8ee6150",
+      "company": "Clearwater Analytics",
+      "title": "UX/UI/Technical Content Intern",
+      "applyUrl": "https://clearwateranalytics.wd1.myworkdayjobs.com/en-US/Clearwater_Analytics_Careers/job/Office---New-York/UX-UI-Technical-Content-Intern_R12195",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "8553b409583cf19e553fa9b2",
+      "company": "LPL Financial Holdings",
+      "title": "New Grad 2027 - Software Engineer",
+      "applyUrl": "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/New-Grad-2027---Software-Engineering_R-052475",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "9a224ab2da05c0bcb97ce3a5",
+      "company": "LPL Financial Holdings",
+      "title": "New Grad 2027 - Data Engineer",
+      "applyUrl": "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/New-Grad---2027---Data-Engineering_R-052493-1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "47c4e1b9bc82b9c35bcf2df5",
+      "company": "LPL Financial Holdings",
+      "title": "Intern 2027- Software Engineer",
+      "applyUrl": "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/Summer-Intern-2027--Software-Engineer_R-052921",
+      "reason": "pendingVerification"
+    }
+  ],
+  "urlChanges": [
+    {
+      "id": "8a2e8a2c73156bcf0ee48041",
+      "previousUrl": "https://kla.wd1.myworkdayjobs.com/en-US/Search/job/Milpitas-CA/Software-Engineering-Intern--C----Unix-_2641325-1",
+      "applyUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Software-Engineering-Intern--C----Unix-_2641325-1"
+    },
+    {
+      "id": "0a65e2f2b888cea45ca20133",
+      "previousUrl": "https://kla.wd1.myworkdayjobs.com/en-US/Search/job/Milpitas-CA/Algorithm-Engineering-Intern--AI--Computer-Vision---Software-Engineering-_2641392-2",
+      "applyUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Algorithm-Engineering-Intern--AI--Computer-Vision---Software-Engineering-_2641392-2"
+    },
+    {
+      "id": "f8fd23e6741557b0746e77b1",
+      "previousUrl": "https://intel.wd1.myworkdayjobs.com/en-US/external/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Bachelor-s_JR0286834",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Bachelor-s_JR0286834"
+    },
+    {
+      "id": "ce91345ac9ad28e840f28d31",
+      "previousUrl": "https://intel.wd1.myworkdayjobs.com/en-us/external/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Graduate_JR0286836",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Graduate_JR0286836"
+    }
+  ]
 }
