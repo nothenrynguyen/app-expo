@@ -1,100 +1,64 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-02T15:28:57.825Z",
-  "previousGeneratedAt": "2026-11-02T14:28:16.646Z",
-  "currentSnapshotGeneratedAt": "2026-11-02T15:28:57.825Z",
+  "generatedAt": "2026-11-02T16:26:47.334Z",
+  "previousGeneratedAt": "2026-11-02T15:28:57.825Z",
+  "currentSnapshotGeneratedAt": "2026-11-02T16:26:47.334Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6721,
-    "current": 6723,
-    "retained": 6684,
-    "added": 39,
-    "removed": 37,
-    "net": 2
+    "previous": 6723,
+    "current": 6724,
+    "retained": 6710,
+    "added": 14,
+    "removed": 13,
+    "net": 1
   },
   "categoryCounts": {
-    "confirmed-closed": 1,
-    "scope-exclusion": 1,
-    "verification-pending": 30,
+    "confirmed-closed": 0,
+    "scope-exclusion": 0,
+    "verification-pending": 5,
     "source-unavailable": 0,
-    "unresolved": 5,
+    "unresolved": 8,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "https://imacorp.com/careers/openings/5228645007",
-      "id": "7a6a4e7ef97e02b620a247ed",
-      "company": "Imafinancialgroup",
-      "title": "IT Help Desk Technician I",
-      "applyUrl": "https://imacorp.com/careers/openings/5228645007",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "7a6a4e7ef97e02b620a247ed"
-      ],
-      "previousUrls": [
-        "https://imacorp.com/careers/openings/5228645007"
-      ],
-      "sources": [
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-01T20:23:51.222Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": null,
-        "sources": [
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "job-boards.greenhouse.io:5444306008",
-      "id": "cc5ddbd14978cc7f1f1c47e3",
-      "company": "Geotab",
-      "title": "Data Analyst Intern (Winter/January 2027, 12 Months)",
-      "applyUrl": "https://job-boards.greenhouse.io/internshiplist2000/jobs/5444306008",
+      "identity": "job-boards.greenhouse.io:4748483005",
+      "id": "c787fc274b5c6aae3d00d9f3",
+      "company": "The New York Times",
+      "title": "Backend Engineering Intern, Wirecutter",
+      "applyUrl": "https://job-boards.greenhouse.io/thenewyorktimes/jobs/4748483005",
       "reason": "pendingVerification",
       "previousIds": [
-        "cc5ddbd14978cc7f1f1c47e3"
+        "c787fc274b5c6aae3d00d9f3"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/internshiplist2000/jobs/5444306008"
+        "https://job-boards.greenhouse.io/thenewyorktimes/jobs/4748483005"
       ],
       "sources": [
+        "Internship Engine",
         "Aprameya Summer Internships 2027",
+        "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
         "Direct ATS (Greenhouse)"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://job-boards.greenhouse.io/internshiplist2000/jobs/5444306008",
+            "url": "https://job-boards.greenhouse.io/thenewyorktimes/jobs/4748483005",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://job-boards.greenhouse.io/thenewyorktimes/jobs/4748483005",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
+        "runStartedAt": "2026-11-02T16:16:47.700Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:internshiplist2000",
+          "id": "greenhouse:thenewyorktimes",
           "status": "ok",
           "outcome": null,
           "membership": "absent",
@@ -102,11 +66,25 @@
         },
         "sources": [
           {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1205
+          },
+          {
             "name": "Aprameya Summer Internships 2027",
             "diagnosticName": "Aprameya Summer Internships 2027",
             "status": "ok",
             "outcome": null,
-            "rows": 2260
+            "rows": 2285
+          },
+          {
+            "name": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
+            "diagnosticName": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 554
           },
           {
             "name": "Direct ATS (Greenhouse)",
@@ -123,17 +101,174 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01877795",
-      "id": "7f21bd71ef1911287135a275",
-      "company": "Raytheon",
-      "title": "Vision Systems - Test Engineer I",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-CA-GOLETA-B01--6825-Cortona-Dr--BLDG-B01/Vision-Systems---Test-Engineer-I_01877795",
-      "reason": "not-returned-by-sources",
+      "identity": "workday:itron.wd5.myworkdayjobs.com:itron:jr102789",
+      "id": "403ca8b34618cbafbc5dca6e",
+      "company": "Itron",
+      "title": "Intern - Systems Engineer (Spring 2027)",
+      "applyUrl": "https://itron.wd5.myworkdayjobs.com/Itron/job/United-States-of-America-South-Carolina-West-Union/Intern---Systems-Engineer--Spring-2027-_JR102789-2",
+      "reason": "pendingVerification",
       "previousIds": [
-        "7f21bd71ef1911287135a275"
+        "403ca8b34618cbafbc5dca6e"
       ],
       "previousUrls": [
-        "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-CA-GOLETA-B01--6825-Cortona-Dr--BLDG-B01/Vision-Systems---Test-Engineer-I_01877795"
+        "https://itron.wd5.myworkdayjobs.com/Itron/job/United-States-of-America-South-Carolina-West-Union/Intern---Systems-Engineer--Spring-2027-_JR102789-2"
+      ],
+      "sources": [
+        "Keryx Non-Software Spring 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://itron.wd5.myworkdayjobs.com/en-US/Itron/job/United-States-of-America-South-Carolina-West-Union/Intern---Systems-Engineer--Spring-2027-_JR102789-2",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://itron.wd5.myworkdayjobs.com/Itron/job/United-States-of-America-South-Carolina-West-Union/Intern---Systems-Engineer--Spring-2027-_JR102789-2",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-02T16:16:47.700Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:itron.wd5.myworkdayjobs.com:itron",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Keryx Non-Software Spring 2027",
+            "diagnosticName": "Keryx Non-Software Spring 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 269
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "job-boards.greenhouse.io:8191531",
+      "id": "97e9314d0e1c8ab72f699a0d",
+      "company": "DRW",
+      "title": "Data Analyst",
+      "applyUrl": "https://job-boards.greenhouse.io/drweng/jobs/8191531",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "97e9314d0e1c8ab72f699a0d"
+      ],
+      "previousUrls": [
+        "https://job-boards.greenhouse.io/drweng/jobs/8191531"
+      ],
+      "sources": [
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-02T16:16:47.700Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:drweng",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "jobs.lever.co:5fb0fc3c-3747-4351-92fd-459b3df7c82c",
+      "id": "a6f748812358c1b08e807db1",
+      "company": "Shield AI",
+      "title": "Summer 2027 - Product Support Engineering Intern #6470 & #6442",
+      "applyUrl": "https://jobs.lever.co/shieldai/5fb0fc3c-3747-4351-92fd-459b3df7c82c",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "a6f748812358c1b08e807db1"
+      ],
+      "previousUrls": [
+        "https://jobs.lever.co/shieldai/5fb0fc3c-3747-4351-92fd-459b3df7c82c"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Direct ATS (Lever)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://jobs.lever.co/shieldai/5fb0fc3c-3747-4351-92fd-459b3df7c82c",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-02T16:16:47.700Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "lever:api.lever.co:shieldai",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2285
+          },
+          {
+            "name": "Direct ATS (Lever)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:cvshealth.wd1.myworkdayjobs.com:cvs_health_careers:r1080789",
+      "id": "282b86c53d2df058ea5c8fb6",
+      "company": "CVS Health",
+      "title": "Innovation & Technology Internship - Tech Strategy Ops & Business Analytics Summer 2027 (Undergrad)",
+      "applyUrl": "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/CT---Hartford/Innovation---Technology-Internship---Tech-Strategy-Ops---Business-Analytics-Summer-2027--Undergrad-_R1080789-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "282b86c53d2df058ea5c8fb6"
+      ],
+      "previousUrls": [
+        "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/CT---Hartford/Innovation---Technology-Internship---Tech-Strategy-Ops---Business-Analytics-Summer-2027--Undergrad-_R1080789-1"
       ],
       "sources": [
         "Direct ATS (Workday)"
@@ -141,11 +276,11 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
+        "runStartedAt": "2026-11-02T16:16:47.700Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
+          "id": "workday:cvshealth.wd1.myworkdayjobs.com:cvs_health_careers",
           "status": "ok",
           "outcome": "healthy",
           "membership": "unknown",
@@ -167,143 +302,54 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "https://jobs.smartrecruiters.com/abbvie/3743990016414967",
-      "id": "454e0fc4ad4165da824744ff",
-      "company": "AbbVie",
-      "title": "2027 Automation & Process Analytics Technology Co-Op (June - Dec)",
-      "applyUrl": "https://jobs.smartrecruiters.com/AbbVie/3743990016414967",
+      "identity": "workday:visa.wd5.myworkdayjobs.com:visa:ref089779w",
+      "id": "272e6fd08b11ebdd5beea80d",
+      "company": "Visa",
+      "title": "Network and Security Engineering Intern - 2027, Highlands Ranch, CO",
+      "applyUrl": "https://visa.wd5.myworkdayjobs.com/en-US/Visa/job/US---Denver-CO/Network-and-Security-Engineering-Intern---2027--Highlands-Ranch--CO_REF089779W-1",
       "reason": "pendingVerification",
       "previousIds": [
-        "454e0fc4ad4165da824744ff"
+        "272e6fd08b11ebdd5beea80d"
       ],
       "previousUrls": [
-        "https://jobs.smartrecruiters.com/AbbVie/3743990016414967"
+        "https://visa.wd5.myworkdayjobs.com/en-US/Visa/job/US---Denver-CO/Network-and-Security-Engineering-Intern---2027--Highlands-Ranch--CO_REF089779W-1"
       ],
       "sources": [
-        "Aprameya Off-Cycle Internships 2027",
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/AbbVie/3743990016414967",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-01T07:23:29.846Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:abbvie",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Off-Cycle Internships 2027",
-            "diagnosticName": "Aprameya Off-Cycle Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 661
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1359
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/abbvie/3743990016414086",
-      "id": "0408f4d03150033917a47114",
-      "company": "AbbVie",
-      "title": "2027 Business Technology Solutions Intern - Cybersecurity (Undergraduate)",
-      "applyUrl": "https://jobs.smartrecruiters.com/AbbVie/3743990016414086",
-      "reason": "role",
-      "previousIds": [
-        "0408f4d03150033917a47114"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/AbbVie/3743990016414086"
-      ],
-      "sources": [
-        "Internship Engine",
         "Aprameya Summer Internships 2027",
-        "Keryx Non-Software Summer 2027",
         "Open-Tech-Internships-2027 2027",
-        "Employer recovery"
+        "Direct ATS (Workday)"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://jobs.smartrecruiters.com/AbbVie/3743990016414086",
+            "url": "https://visa.wd5.myworkdayjobs.com/en-US/Visa/job/US---Denver-CO/Network-and-Security-Engineering-Intern---2027--Highlands-Ranch--CO_REF089779W-1",
             "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
           },
           {
-            "url": "https://jobs.smartrecruiters.com/AbbVie/3743990016414086",
-            "reason": "role",
-            "detail": null
-          },
-          {
-            "url": "https://jobs.smartrecruiters.com/abbvie/3743990016414086",
+            "url": "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Denver-CO/Network-and-Security-Engineering-Intern---2027--Highlands-Ranch--CO_REF089779W-1",
             "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-02T14:27:35.666Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
+        "runStartedAt": "2026-11-02T16:16:47.700Z",
+        "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "jobs.smartrecruiters.com:abbvie",
-          "status": "not-checked",
-          "outcome": null,
+          "id": "workday:visa.wd5.myworkdayjobs.com:visa",
+          "status": "ok",
+          "outcome": "healthy",
           "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1205
-          },
-          {
             "name": "Aprameya Summer Internships 2027",
             "diagnosticName": "Aprameya Summer Internships 2027",
             "status": "ok",
             "outcome": null,
-            "rows": 2260
-          },
-          {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1415
+            "rows": 2285
           },
           {
             "name": "Open-Tech-Internships-2027 2027",
@@ -313,82 +359,11 @@
             "rows": 1858
           },
           {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1359
-          }
-        ]
-      },
-      "category": "scope-exclusion",
-      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
-      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
-      "requiresInvestigation": false
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/abbvie/3743990015679246",
-      "id": "8daf45bf4259837a56793412",
-      "company": "AbbVie",
-      "title": "2027 Business Technology Solutions Intern - Cybersecurity (Undergraduate)",
-      "applyUrl": "https://jobs.smartrecruiters.com/AbbVie/3743990015679246",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "8daf45bf4259837a56793412"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/AbbVie/3743990015679246"
-      ],
-      "sources": [
-        "Aprameya Summer Internships 2027",
-        "Keryx Non-Software Summer 2027",
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/AbbVie/3743990015679246",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-01T20:23:54.819Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:abbvie",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
             "outcome": null,
-            "rows": 2260
-          },
-          {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1415
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1359
+            "rows": null
           }
         ]
       },
@@ -398,17 +373,220 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:keybank.wd5.myworkdayjobs.com:external_career_site:r-42823",
-      "id": "ae3560f0b8da9b5a4215a08b",
-      "company": "KeyBank",
-      "title": "2027 Summer Graphic Design Internship",
-      "applyUrl": "https://keybank.wd5.myworkdayjobs.com/External_Career_Site/job/Brooklyn-OH/XMLNAME-2027-Summer-Graphic-Design-Internship_R-42823",
-      "reason": "not-returned-by-sources",
+      "identity": "jobs.ashbyhq.com:0de2cc4d-8ddc-41a9-adc7-321560f57b9a",
+      "id": "183b432e4426294cca8d3562",
+      "company": "Jerry",
+      "title": "Product Manager-in-Training (YC cofounder/CEO-led)",
+      "applyUrl": "https://jobs.ashbyhq.com/jerry.ai/0de2cc4d-8ddc-41a9-adc7-321560f57b9a/application",
+      "reason": "absent-from-employer-board",
       "previousIds": [
-        "ae3560f0b8da9b5a4215a08b"
+        "183b432e4426294cca8d3562"
       ],
       "previousUrls": [
-        "https://keybank.wd5.myworkdayjobs.com/External_Career_Site/job/Brooklyn-OH/XMLNAME-2027-Summer-Graphic-Design-Internship_R-42823"
+        "https://jobs.ashbyhq.com/jerry.ai/0de2cc4d-8ddc-41a9-adc7-321560f57b9a/application"
+      ],
+      "sources": [
+        "Direct ATS (Ashby)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-02T16:16:47.700Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "ashby:jerry.ai",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Ashby)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "jobs.ashbyhq.com:271b73bc-2b1a-4be6-b3dc-d72d806b8e35",
+      "id": "4e145885f370b1ca012b24dd",
+      "company": "Jerry",
+      "title": "Associate Data Scientist",
+      "applyUrl": "https://jobs.ashbyhq.com/jerry.ai/271b73bc-2b1a-4be6-b3dc-d72d806b8e35/application",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "4e145885f370b1ca012b24dd"
+      ],
+      "previousUrls": [
+        "https://jobs.ashbyhq.com/jerry.ai/271b73bc-2b1a-4be6-b3dc-d72d806b8e35/application"
+      ],
+      "sources": [
+        "Direct ATS (Ashby)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-02T16:16:47.700Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "ashby:jerry.ai",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Ashby)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "jobs.ashbyhq.com:283cd5ff-a8ac-4b16-9088-bad48e5fe472",
+      "id": "6394ab691337c7497759f139",
+      "company": "Jerry",
+      "title": "Associate, Business Operations & Analytics",
+      "applyUrl": "https://jobs.ashbyhq.com/jerry.ai/283cd5ff-a8ac-4b16-9088-bad48e5fe472/application",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "6394ab691337c7497759f139"
+      ],
+      "previousUrls": [
+        "https://jobs.ashbyhq.com/jerry.ai/283cd5ff-a8ac-4b16-9088-bad48e5fe472/application"
+      ],
+      "sources": [
+        "Direct ATS (Ashby)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-02T16:16:47.700Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "ashby:jerry.ai",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Ashby)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "job-boards.greenhouse.io:4393731009",
+      "id": "0656d33b24e23bc79b0cbd12",
+      "company": "Gallup",
+      "title": "Site Reliability Engineer Intern - Summer 2027",
+      "applyUrl": "https://job-boards.greenhouse.io/gallup/jobs/4393731009",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "0656d33b24e23bc79b0cbd12"
+      ],
+      "previousUrls": [
+        "https://job-boards.greenhouse.io/gallup/jobs/4393731009"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Open-Tech-Internships-2027 2027",
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://job-boards.greenhouse.io/gallup/jobs/4393731009",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-02T16:16:47.700Z",
+        "postingCheck": {
+          "status": "unknown",
+          "checkedAt": "2026-10-01T00:16:32.002Z",
+          "httpStatus": null,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:gallup",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2285
+          },
+          {
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1858
+          },
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:micron.wd1.myworkdayjobs.com:external:jr109078",
+      "id": "53767a5f279d6f18047fef51",
+      "company": "Micron",
+      "title": "Intern - RDA/Metrology-Process Shift Engineer, TD",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---RDA-Metrology-Process-Shift-Engineer--TD_JR109078",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "53767a5f279d6f18047fef51"
+      ],
+      "previousUrls": [
+        "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---RDA-Metrology-Process-Shift-Engineer--TD_JR109078"
       ],
       "sources": [
         "Direct ATS (Workday)"
@@ -416,11 +594,11 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
+        "runStartedAt": "2026-11-02T16:16:47.700Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:keybank.wd5.myworkdayjobs.com:external_career_site",
+          "id": "workday:micron.wd1.myworkdayjobs.com:external",
           "status": "ok",
           "outcome": "healthy",
           "membership": "unknown",
@@ -442,814 +620,17 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "https://jobs.smartrecruiters.com/boschgroup/744000156311682",
-      "id": "138b74e80cf8c3379aa27e7b",
-      "company": "Bosch",
-      "title": "Software Engineering Co-Op - Spring 2027",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000156311682",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "138b74e80cf8c3379aa27e7b"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/BoschGroup/744000156311682"
-      ],
-      "sources": [
-        "Aprameya Off-Cycle Internships 2027",
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/BoschGroup/744000156311682",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-01T02:23:52.737Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:boschgroup",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Off-Cycle Internships 2027",
-            "diagnosticName": "Aprameya Off-Cycle Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 661
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1359
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/boschgroup/744000156311682-software-engineering-co-op-spring-2027?oga=true",
-      "id": "91727ea357f60eca81403653",
-      "company": "Bosch",
-      "title": "Software Engineering Co-Op - Spring 2027",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000156311682-software-engineering-co-op-spring-2027?oga=true",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "91727ea357f60eca81403653"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/BoschGroup/744000156311682-software-engineering-co-op-spring-2027?oga=true"
-      ],
-      "sources": [
-        "Open-Tech-Internships-2027 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/BoschGroup/744000156311682-software-engineering-co-op-spring-2027?oga=true",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "unknown",
-          "checkedAt": "2026-11-01T12:24:46.090Z",
-          "httpStatus": 403,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:boschgroup",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Open-Tech-Internships-2027 2027",
-            "diagnosticName": "Open-Tech-Internships-2027 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1858
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://careers.airbnb.com/positions/8285171",
-      "id": "f953a49a187d873605deeb35",
-      "company": "Airbnb",
-      "title": "Strategic Finance & Analytics Intern (MBA)",
-      "applyUrl": "https://careers.airbnb.com/positions/8285171",
-      "reason": "closed",
-      "previousIds": [
-        "f953a49a187d873605deeb35"
-      ],
-      "previousUrls": [
-        "https://careers.airbnb.com/positions/8285171"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://careers.airbnb.com/positions/8285171",
-            "reason": "closed",
-            "detail": null
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "closed",
-          "checkedAt": "2026-11-02T15:28:27.743Z",
-          "httpStatus": 404,
-          "currentRun": true
-        },
-        "workdayChecks": [],
-        "board": null,
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 433
-          }
-        ]
-      },
-      "category": "confirmed-closed",
-      "explanation": "A posting-specific check in this refresh explicitly reported closure.",
-      "nextAction": "No recovery based only on prior publication.",
-      "requiresInvestigation": false
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/abbvie/3743990016070676",
-      "id": "880bb108b5758ec4df6dc436",
-      "company": "AbbVie",
-      "title": "Associate Data Scientist I",
-      "applyUrl": "https://jobs.smartrecruiters.com/AbbVie/3743990016070676",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "880bb108b5758ec4df6dc436"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/AbbVie/3743990016070676"
-      ],
-      "sources": [
-        "Aprameya New Grad 2027",
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/AbbVie/3743990016070676",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-01T08:24:20.774Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:abbvie",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya New Grad 2027",
-            "diagnosticName": "Aprameya New Grad 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 492
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1359
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/boschgroup/744000155120934",
-      "id": "c7812b077a6f7722569a10e9",
-      "company": "Bosch",
-      "title": "Information Security and Privacy Intern",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000155120934",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "c7812b077a6f7722569a10e9"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/BoschGroup/744000155120934"
-      ],
-      "sources": [
-        "Internship Engine",
-        "Aprameya Summer Internships 2027",
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/BoschGroup/744000155120934",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-02T04:24:35.642Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:boschgroup",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1205
-          },
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2260
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1359
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/boschgroup/744000154757409",
-      "id": "702aea8d84d98a4d1283049d",
-      "company": "Bosch",
-      "title": "Information Security and Privacy Intern",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000154757409",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "702aea8d84d98a4d1283049d"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/BoschGroup/744000154757409"
-      ],
-      "sources": [
-        "Internship Engine",
-        "Aprameya Summer Internships 2027",
-        "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/BoschGroup/744000154757409",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-02T00:23:55.249Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:boschgroup",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1205
-          },
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2260
-          },
-          {
-            "name": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-            "diagnosticName": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 554
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1359
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/boschgroup/744000155120934-information-security-and-privacy-intern?oga=true",
-      "id": "2cae7f29ec654347d6e53532",
-      "company": "Bosch",
-      "title": "Information Security and Privacy Intern",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000155120934-information-security-and-privacy-intern?oga=true",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "2cae7f29ec654347d6e53532"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/BoschGroup/744000155120934-information-security-and-privacy-intern?oga=true"
-      ],
-      "sources": [
-        "Open-Tech-Internships-2027 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/BoschGroup/744000155120934-information-security-and-privacy-intern?oga=true",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "unknown",
-          "checkedAt": "2026-11-02T05:24:42.080Z",
-          "httpStatus": 403,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:boschgroup",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Open-Tech-Internships-2027 2027",
-            "diagnosticName": "Open-Tech-Internships-2027 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1858
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/westerndigital/744000155109379",
-      "id": "f59188f23f00fe4b1f397a28",
-      "company": "Western Digital",
-      "title": "Spring Co-op - Recording Electronics Data Analytics & Optimization",
-      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000155109379",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "f59188f23f00fe4b1f397a28"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/WesternDigital/744000155109379"
-      ],
-      "sources": [
-        "Aprameya Off-Cycle Internships 2027",
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/WesternDigital/744000155109379",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-10-31T22:23:33.377Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:westerndigital",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Off-Cycle Internships 2027",
-            "diagnosticName": "Aprameya Off-Cycle Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 661
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1359
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/westerndigital/744000155109379-spring-co-op-recording-electronics-data-analytics-optimization?oga=true",
-      "id": "171be0cd02c8483a2665a775",
-      "company": "Western Digital",
-      "title": "Spring Co-op - Recording Electronics Data Analytics & Optimization",
-      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000155109379-spring-co-op-recording-electronics-data-analytics-optimization?oga=true",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "171be0cd02c8483a2665a775"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/WesternDigital/744000155109379-spring-co-op-recording-electronics-data-analytics-optimization?oga=true"
-      ],
-      "sources": [
-        "Open-Tech-Internships-2027 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/WesternDigital/744000155109379-spring-co-op-recording-electronics-data-analytics-optimization?oga=true",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "unknown",
-          "checkedAt": "2026-11-02T04:24:37.663Z",
-          "httpStatus": 403,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:westerndigital",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Open-Tech-Internships-2027 2027",
-            "diagnosticName": "Open-Tech-Internships-2027 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1858
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/boschgroup/744000155101377",
-      "id": "9b875f0dedddb9712bada3df",
-      "company": "Bosch",
-      "title": "ERP/IT Intern- Summer 2027",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000155101377",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "9b875f0dedddb9712bada3df"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/BoschGroup/744000155101377"
-      ],
-      "sources": [
-        "Aprameya Summer Internships 2027",
-        "Keryx Non-Software Summer 2027",
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/BoschGroup/744000155101377",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-10-31T22:23:33.471Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:boschgroup",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2260
-          },
-          {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1415
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1359
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/boschgroup/744000155101377-erp-it-intern-summer-2027?oga=true",
-      "id": "12f6d03ef628543e7285392b",
-      "company": "Bosch",
-      "title": "ERP/IT Intern- Summer 2027",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000155101377-erp-it-intern-summer-2027?oga=true",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "12f6d03ef628543e7285392b"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/BoschGroup/744000155101377-erp-it-intern-summer-2027?oga=true"
-      ],
-      "sources": [
-        "Open-Tech-Internships-2027 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/BoschGroup/744000155101377-erp-it-intern-summer-2027?oga=true",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "unknown",
-          "checkedAt": "2026-11-02T05:24:42.032Z",
-          "httpStatus": 403,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:boschgroup",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Open-Tech-Internships-2027 2027",
-            "diagnosticName": "Open-Tech-Internships-2027 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1858
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/boschgroup/744000154671460",
-      "id": "295df44b0b214e1654d12203",
-      "company": "Bosch",
-      "title": "Product Management Co-op- Spring 2027",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000154671460",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "295df44b0b214e1654d12203"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/BoschGroup/744000154671460"
-      ],
-      "sources": [
-        "Aprameya Off-Cycle Internships 2027",
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/BoschGroup/744000154671460",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-02T00:23:52.385Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:boschgroup",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Off-Cycle Internships 2027",
-            "diagnosticName": "Aprameya Off-Cycle Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 661
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1359
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/boschgroup/744000154671460-product-management-co-op-spring-2027?oga=true",
-      "id": "ea8695e4c06f82a0ca6844eb",
-      "company": "Bosch",
-      "title": "Product Management Co-op- Spring 2027",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000154671460-product-management-co-op-spring-2027?oga=true",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "ea8695e4c06f82a0ca6844eb"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/BoschGroup/744000154671460-product-management-co-op-spring-2027?oga=true"
-      ],
-      "sources": [
-        "Open-Tech-Internships-2027 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/BoschGroup/744000154671460-product-management-co-op-spring-2027?oga=true",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "unknown",
-          "checkedAt": "2026-11-02T02:24:20.258Z",
-          "httpStatus": 403,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:boschgroup",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Open-Tech-Internships-2027 2027",
-            "diagnosticName": "Open-Tech-Internships-2027 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1858
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10253708",
-      "id": "04542bbf1487585758164a09",
-      "company": "Northrop Grumman",
-      "title": "2027 Engineering Intern - Manhattan Beach (CA) (Evergreen)",
-      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-California-Manhattan-Beach/XMLNAME-2027-Engineering-Intern---Manhattan-Beach--CA---Evergreen-_R10253708",
+      "identity": "workday:pae.wd1.myworkdayjobs.com:amentum_careers:r0168357",
+      "id": "655ea1d66b73eac231a186a3",
+      "company": "Amentum",
+      "title": "Junior RF Engineering Technician",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Dahlgren/Junior-RF-Engineering-Technician_R0168357",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "04542bbf1487585758164a09"
+        "655ea1d66b73eac231a186a3"
       ],
       "previousUrls": [
-        "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-California-Manhattan-Beach/XMLNAME-2027-Engineering-Intern---Manhattan-Beach--CA---Evergreen-_R10253708"
+        "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Dahlgren/Junior-RF-Engineering-Technician_R0168357"
       ],
       "sources": [
         "Direct ATS (Workday)"
@@ -1257,11 +638,11 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
+        "runStartedAt": "2026-11-02T16:16:47.700Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
+          "id": "workday:pae.wd1.myworkdayjobs.com:amentum_careers",
           "status": "ok",
           "outcome": "healthy",
           "membership": "unknown",
@@ -1283,595 +664,17 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "https://jobs.smartrecruiters.com/westerndigital/744000152261929",
-      "id": "d8bc394c68773c84967ec2f6",
-      "company": "Western Digital",
-      "title": "Winter 2027 Intern/Co-op Development Engineer",
-      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000152261929",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "d8bc394c68773c84967ec2f6"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/WesternDigital/744000152261929"
-      ],
-      "sources": [
-        "Aprameya Off-Cycle Internships 2027",
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/WesternDigital/744000152261929",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-02T01:24:42.744Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:westerndigital",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Off-Cycle Internships 2027",
-            "diagnosticName": "Aprameya Off-Cycle Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 661
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1359
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/abbvie/3743990015679386",
-      "id": "1b0838fe815bafe91b417020",
-      "company": "AbbVie",
-      "title": "2027 Business Technology Solutions Intern - Data & Software Engineering (Undergraduate)",
-      "applyUrl": "https://jobs.smartrecruiters.com/AbbVie/3743990015679386",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "1b0838fe815bafe91b417020"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/AbbVie/3743990015679386"
-      ],
-      "sources": [
-        "Internship Engine",
-        "Aprameya Summer Internships 2027",
-        "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/AbbVie/3743990015679386",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-01T20:23:54.953Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:abbvie",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1205
-          },
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2260
-          },
-          {
-            "name": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-            "diagnosticName": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 554
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1359
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/abbvie/3743990014697918",
-      "id": "73e2a80793dbad90666f9eb5",
-      "company": "AbbVie",
-      "title": "Business Technology Solutions Intern - Data & Software Engineering",
-      "applyUrl": "https://jobs.smartrecruiters.com/AbbVie/3743990014697918",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "73e2a80793dbad90666f9eb5"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/AbbVie/3743990014697918"
-      ],
-      "sources": [
-        "Aprameya Summer Internships 2027",
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/AbbVie/3743990014697918",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-01T09:23:41.955Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:abbvie",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2260
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1359
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/abbvie/3743990015679386-2027-business-technology-solutions-intern-data-software-engineering-undergraduate-?oga=true",
-      "id": "1f52121f7abbd8f25c623d58",
-      "company": "AbbVie",
-      "title": "2027 Business Technology Solutions Intern - Data & Software Engineering…",
-      "applyUrl": "https://jobs.smartrecruiters.com/AbbVie/3743990015679386-2027-business-technology-solutions-intern-data-software-engineering-undergraduate-?oga=true",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "1f52121f7abbd8f25c623d58"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/AbbVie/3743990015679386-2027-business-technology-solutions-intern-data-software-engineering-undergraduate-?oga=true"
-      ],
-      "sources": [
-        "Open-Tech-Internships-2027 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/AbbVie/3743990015679386-2027-business-technology-solutions-intern-data-software-engineering-undergraduate-?oga=true",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "unknown",
-          "checkedAt": "2026-11-01T21:24:03.426Z",
-          "httpStatus": 403,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:abbvie",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Open-Tech-Internships-2027 2027",
-            "diagnosticName": "Open-Tech-Internships-2027 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1858
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "job-boards.greenhouse.io:8814318002",
-      "id": "0b66a404686d5bb3a82270d1",
-      "company": "Flagship Pioneering",
-      "title": "Technical Operations Co-op - Analytical Development",
-      "applyUrl": "https://job-boards.greenhouse.io/fspco-op012325/jobs/8814318002",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "0b66a404686d5bb3a82270d1"
-      ],
-      "previousUrls": [
-        "https://job-boards.greenhouse.io/fspco-op012325/jobs/8814318002"
-      ],
-      "sources": [
-        "Aprameya Off-Cycle Internships 2027",
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://job-boards.greenhouse.io/fspco-op012325/jobs/8814318002",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:fspco-op012325",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Off-Cycle Internships 2027",
-            "diagnosticName": "Aprameya Off-Cycle Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 661
-          },
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "job-boards.greenhouse.io:4408204009",
-      "id": "7a2c0aecebf79ac1dbaa2fe0",
-      "company": "Cartesian",
-      "title": "IAP Software Engineering Intern 2027",
-      "applyUrl": "https://job-boards.greenhouse.io/cartesiansystems/jobs/4408204009",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "7a2c0aecebf79ac1dbaa2fe0"
-      ],
-      "previousUrls": [
-        "https://job-boards.greenhouse.io/cartesiansystems/jobs/4408204009"
-      ],
-      "sources": [
-        "Internship Engine",
-        "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://job-boards.greenhouse.io/cartesiansystems/jobs/4408204009",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-10-01T15:50:11.953Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:cartesiansystems",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1205
-          },
-          {
-            "name": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-            "diagnosticName": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 554
-          },
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:blackrock.wd1.myworkdayjobs.com:blackrock_professional:r266468",
-      "id": "40bc5043d299587d9e8d23c1",
-      "company": "BlackRock",
-      "title": "2027 Quantitative Masters Internship Program - Investments - Global Capital Markets - New York",
-      "applyUrl": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Global-Capital-Markets---New-York_R266468",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "40bc5043d299587d9e8d23c1"
-      ],
-      "previousUrls": [
-        "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Global-Capital-Markets---New-York_R266468"
-      ],
-      "sources": [
-        "Aprameya Summer Internships 2027",
-        "Direct ATS (Workday)",
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Global-Capital-Markets---New-York_R266468",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          },
-          {
-            "url": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Global-Capital-Markets---New-York_R266468",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": null,
-        "workdayChecks": [
-          {
-            "url": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Global-Capital-Markets---New-York_R266468",
-            "status": "live"
-          }
-        ],
-        "board": {
-          "id": "workday:blackrock.wd1.myworkdayjobs.com:blackrock_professional",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2260
-          },
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1359
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:capitalone.wd12.myworkdayjobs.com:capital_one:r249110",
-      "id": "a743ae975851a3f2fe0e8fcb",
-      "company": "Capital One 🛂",
-      "title": "AI Engineering Intern (PhD) - Summer 2027",
-      "applyUrl": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/New-York-NY/Current-PhD--AI-Engineering-Internship-Program---Summer-2027_R249110-1",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "a743ae975851a3f2fe0e8fcb"
-      ],
-      "previousUrls": [
-        "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/New-York-NY/Current-PhD--AI-Engineering-Internship-Program---Summer-2027_R249110-1"
-      ],
-      "sources": [
-        "Aprameya Summer Internships 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/New-York-NY/Current-PhD--AI-Engineering-Internship-Program---Summer-2027_R249110-1",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:capitalone.wd12.myworkdayjobs.com:capital_one",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2260
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://momentive.wd1.myworkdayjobs.com/mc/job/us-ny-niskayuna/summer-2027-intern---enterprise-reporting---analytics---data-science_r9807-1",
-      "id": "987eba45d857ddf6368f065d",
-      "company": "Momentive",
-      "title": "Summer 2027 Intern - Enterprise Reporting & Analytics - Data Science",
-      "applyUrl": "https://momentive.wd1.myworkdayjobs.com/MC/job/US-NY-Niskayuna/Summer-2027-Intern---Enterprise-Reporting---Analytics---Data-Science_R9807-1",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "987eba45d857ddf6368f065d"
-      ],
-      "previousUrls": [
-        "https://momentive.wd1.myworkdayjobs.com/MC/job/US-NY-Niskayuna/Summer-2027-Intern---Enterprise-Reporting---Analytics---Data-Science_R9807-1"
-      ],
-      "sources": [
-        "Internship Engine",
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://momentive.wd1.myworkdayjobs.com/MC/job/US-NY-Niskayuna/Summer-2027-Intern---Enterprise-Reporting---Analytics---Data-Science_R9807-1",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          },
-          {
-            "url": "https://momentive.wd1.myworkdayjobs.com/MC/job/US-NY-Niskayuna/Summer-2027-Intern---Enterprise-Reporting---Analytics---Data-Science_R9807-1",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:momentive.wd1.myworkdayjobs.com:mc",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1205
-          },
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 433
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers:r68521",
-      "id": "7f02ccfa9060fe887f4b8d84",
+      "identity": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers:r64786",
+      "id": "6cabd9c41b8f1a527f384862",
       "company": "Motorola",
-      "title": "Junior Field Applications Engineer",
-      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Reston-VA--VA58/Junior-Field-Applications-Engineer_R68521",
+      "title": "Associate Research and Development (R&D) Test Engineer",
+      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Los-Angeles-CA/Associate-Research-and-Development--R-D--Test-Engineer_R64786-1",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "7f02ccfa9060fe887f4b8d84"
+        "6cabd9c41b8f1a527f384862"
       ],
       "previousUrls": [
-        "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Reston-VA--VA58/Junior-Field-Applications-Engineer_R68521"
+        "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Los-Angeles-CA/Associate-Research-and-Development--R-D--Test-Engineer_R64786-1"
       ],
       "sources": [
         "Direct ATS (Workday)"
@@ -1879,7 +682,7 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
+        "runStartedAt": "2026-11-02T16:16:47.700Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
@@ -1903,664 +706,120 @@
       "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
       "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
       "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/boschgroup/744000146546699-calibration-process-data-science-intern-8-months-40-hours-per-week-?oga=true",
-      "id": "3ebc47ab0984f171bef47430",
-      "company": "Bosch",
-      "title": "Calibration Process Data Science Intern - 8 months/40 hours per week",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000146546699-calibration-process-data-science-intern-8-months-40-hours-per-week-?oga=true",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "3ebc47ab0984f171bef47430"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/BoschGroup/744000146546699-calibration-process-data-science-intern-8-months-40-hours-per-week-?oga=true"
-      ],
-      "sources": [
-        "Aprameya Summer Internships 2027",
-        "Open-Tech-Internships-2027 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/BoschGroup/744000146546699-calibration-process-data-science-intern-8-months-40-hours-per-week-?oga=true",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "unknown",
-          "checkedAt": "2026-11-01T16:24:05.183Z",
-          "httpStatus": 403,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:boschgroup",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2260
-          },
-          {
-            "name": "Open-Tech-Internships-2027 2027",
-            "diagnosticName": "Open-Tech-Internships-2027 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1858
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/boschgroup/744000146546699",
-      "id": "8621fbd9150eb2a0eefae2d4",
-      "company": "Bosch",
-      "title": "Calibration Process Data Science Intern (8 months/40 hours per week)",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000146546699",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "8621fbd9150eb2a0eefae2d4"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/BoschGroup/744000146546699"
-      ],
-      "sources": [
-        "Aprameya Summer Internships 2027",
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/BoschGroup/744000146546699",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-01T06:23:42.688Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:boschgroup",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2260
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1359
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "job-boards.greenhouse.io:6131191004",
-      "id": "7a9b9da3015d7fb97e0c9112",
-      "company": "Sage",
-      "title": "Software Engineering Intern (Edge) – Summer 2027",
-      "applyUrl": "https://job-boards.greenhouse.io/sage49/jobs/6131191004",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "7a9b9da3015d7fb97e0c9112"
-      ],
-      "previousUrls": [
-        "https://job-boards.greenhouse.io/sage49/jobs/6131191004"
-      ],
-      "sources": [
-        "Internship Engine",
-        "Aprameya Summer Internships 2027",
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://job-boards.greenhouse.io/sage49/jobs/6131191004",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:sage49",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1205
-          },
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2260
-          },
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/westerndigital/744000143171017",
-      "id": "ba6ff38e9908bc2a50eb052a",
-      "company": "Western Digital",
-      "title": "Summer 2027 Intern - Software Engineering",
-      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000143171017",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "ba6ff38e9908bc2a50eb052a"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/WesternDigital/744000143171017"
-      ],
-      "sources": [
-        "Internship Engine",
-        "Aprameya Summer Internships 2027",
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/WesternDigital/744000143171017",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-01T04:24:26.342Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:westerndigital",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1205
-          },
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2260
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1359
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/westerndigital/744000138727213",
-      "id": "4e351b76e2fa9c4a3c9c5a97",
-      "company": "Western Digital",
-      "title": "Software Engineering Intern",
-      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000138727213",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "4e351b76e2fa9c4a3c9c5a97"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/WesternDigital/744000138727213"
-      ],
-      "sources": [
-        "Aprameya Summer Internships 2027",
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/WesternDigital/744000138727213",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-01T07:23:29.092Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:westerndigital",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2260
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1359
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://jobs.smartrecruiters.com/westerndigital/744000138727213-summer-2027-software-engineering-internship",
-      "id": "5aa949a35e0bf1138d3a2afe",
-      "company": "Western Digital",
-      "title": "Software Engineering Intern (Summer 2027)",
-      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000138727213-summer-2027-software-engineering-internship",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "5aa949a35e0bf1138d3a2afe"
-      ],
-      "previousUrls": [
-        "https://jobs.smartrecruiters.com/WesternDigital/744000138727213-summer-2027-software-engineering-internship"
-      ],
-      "sources": [
-        "Summer 2027 Tech Internships"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.smartrecruiters.com/WesternDigital/744000138727213-summer-2027-software-engineering-internship",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-02T15:18:32.511Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-01T04:24:21.963Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "jobs.smartrecruiters.com:westerndigital",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Summer 2027 Tech Internships",
-            "diagnosticName": "Summer 2027 Tech Internships",
-            "status": "ok",
-            "outcome": null,
-            "rows": 100
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
     }
   ],
   "rowCounts": {
-    "previous": 6721,
-    "current": 6723,
-    "net": 2,
+    "previous": 6723,
+    "current": 6724,
+    "net": 1,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 39,
-  "removedCount": 37,
+  "added": 14,
+  "removedCount": 13,
   "counts": {
-    "not-returned-by-sources": 5,
-    "pendingVerification": 30,
-    "role": 1,
-    "closed": 1
+    "pendingVerification": 5,
+    "absent-from-employer-board": 4,
+    "not-returned-by-sources": 4
   },
   "removed": [
     {
-      "id": "7a6a4e7ef97e02b620a247ed",
-      "company": "Imafinancialgroup",
-      "title": "IT Help Desk Technician I",
-      "applyUrl": "https://imacorp.com/careers/openings/5228645007",
+      "id": "c787fc274b5c6aae3d00d9f3",
+      "company": "The New York Times",
+      "title": "Backend Engineering Intern, Wirecutter",
+      "applyUrl": "https://job-boards.greenhouse.io/thenewyorktimes/jobs/4748483005",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "403ca8b34618cbafbc5dca6e",
+      "company": "Itron",
+      "title": "Intern - Systems Engineer (Spring 2027)",
+      "applyUrl": "https://itron.wd5.myworkdayjobs.com/Itron/job/United-States-of-America-South-Carolina-West-Union/Intern---Systems-Engineer--Spring-2027-_JR102789-2",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "97e9314d0e1c8ab72f699a0d",
+      "company": "DRW",
+      "title": "Data Analyst",
+      "applyUrl": "https://job-boards.greenhouse.io/drweng/jobs/8191531",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "a6f748812358c1b08e807db1",
+      "company": "Shield AI",
+      "title": "Summer 2027 - Product Support Engineering Intern #6470 & #6442",
+      "applyUrl": "https://jobs.lever.co/shieldai/5fb0fc3c-3747-4351-92fd-459b3df7c82c",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "282b86c53d2df058ea5c8fb6",
+      "company": "CVS Health",
+      "title": "Innovation & Technology Internship - Tech Strategy Ops & Business Analytics Summer 2027 (Undergrad)",
+      "applyUrl": "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/CT---Hartford/Innovation---Technology-Internship---Tech-Strategy-Ops---Business-Analytics-Summer-2027--Undergrad-_R1080789-1",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "cc5ddbd14978cc7f1f1c47e3",
-      "company": "Geotab",
-      "title": "Data Analyst Intern (Winter/January 2027, 12 Months)",
-      "applyUrl": "https://job-boards.greenhouse.io/internshiplist2000/jobs/5444306008",
+      "id": "272e6fd08b11ebdd5beea80d",
+      "company": "Visa",
+      "title": "Network and Security Engineering Intern - 2027, Highlands Ranch, CO",
+      "applyUrl": "https://visa.wd5.myworkdayjobs.com/en-US/Visa/job/US---Denver-CO/Network-and-Security-Engineering-Intern---2027--Highlands-Ranch--CO_REF089779W-1",
       "reason": "pendingVerification"
     },
     {
-      "id": "7f21bd71ef1911287135a275",
-      "company": "Raytheon",
-      "title": "Vision Systems - Test Engineer I",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-CA-GOLETA-B01--6825-Cortona-Dr--BLDG-B01/Vision-Systems---Test-Engineer-I_01877795",
+      "id": "183b432e4426294cca8d3562",
+      "company": "Jerry",
+      "title": "Product Manager-in-Training (YC cofounder/CEO-led)",
+      "applyUrl": "https://jobs.ashbyhq.com/jerry.ai/0de2cc4d-8ddc-41a9-adc7-321560f57b9a/application",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "4e145885f370b1ca012b24dd",
+      "company": "Jerry",
+      "title": "Associate Data Scientist",
+      "applyUrl": "https://jobs.ashbyhq.com/jerry.ai/271b73bc-2b1a-4be6-b3dc-d72d806b8e35/application",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "6394ab691337c7497759f139",
+      "company": "Jerry",
+      "title": "Associate, Business Operations & Analytics",
+      "applyUrl": "https://jobs.ashbyhq.com/jerry.ai/283cd5ff-a8ac-4b16-9088-bad48e5fe472/application",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "0656d33b24e23bc79b0cbd12",
+      "company": "Gallup",
+      "title": "Site Reliability Engineer Intern - Summer 2027",
+      "applyUrl": "https://job-boards.greenhouse.io/gallup/jobs/4393731009",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "53767a5f279d6f18047fef51",
+      "company": "Micron",
+      "title": "Intern - RDA/Metrology-Process Shift Engineer, TD",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---RDA-Metrology-Process-Shift-Engineer--TD_JR109078",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "454e0fc4ad4165da824744ff",
-      "company": "AbbVie",
-      "title": "2027 Automation & Process Analytics Technology Co-Op (June - Dec)",
-      "applyUrl": "https://jobs.smartrecruiters.com/AbbVie/3743990016414967",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "0408f4d03150033917a47114",
-      "company": "AbbVie",
-      "title": "2027 Business Technology Solutions Intern - Cybersecurity (Undergraduate)",
-      "applyUrl": "https://jobs.smartrecruiters.com/AbbVie/3743990016414086",
-      "reason": "role"
-    },
-    {
-      "id": "8daf45bf4259837a56793412",
-      "company": "AbbVie",
-      "title": "2027 Business Technology Solutions Intern - Cybersecurity (Undergraduate)",
-      "applyUrl": "https://jobs.smartrecruiters.com/AbbVie/3743990015679246",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "ae3560f0b8da9b5a4215a08b",
-      "company": "KeyBank",
-      "title": "2027 Summer Graphic Design Internship",
-      "applyUrl": "https://keybank.wd5.myworkdayjobs.com/External_Career_Site/job/Brooklyn-OH/XMLNAME-2027-Summer-Graphic-Design-Internship_R-42823",
+      "id": "655ea1d66b73eac231a186a3",
+      "company": "Amentum",
+      "title": "Junior RF Engineering Technician",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Dahlgren/Junior-RF-Engineering-Technician_R0168357",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "138b74e80cf8c3379aa27e7b",
-      "company": "Bosch",
-      "title": "Software Engineering Co-Op - Spring 2027",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000156311682",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "91727ea357f60eca81403653",
-      "company": "Bosch",
-      "title": "Software Engineering Co-Op - Spring 2027",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000156311682-software-engineering-co-op-spring-2027?oga=true",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "f953a49a187d873605deeb35",
-      "company": "Airbnb",
-      "title": "Strategic Finance & Analytics Intern (MBA)",
-      "applyUrl": "https://careers.airbnb.com/positions/8285171",
-      "reason": "closed"
-    },
-    {
-      "id": "880bb108b5758ec4df6dc436",
-      "company": "AbbVie",
-      "title": "Associate Data Scientist I",
-      "applyUrl": "https://jobs.smartrecruiters.com/AbbVie/3743990016070676",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "c7812b077a6f7722569a10e9",
-      "company": "Bosch",
-      "title": "Information Security and Privacy Intern",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000155120934",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "702aea8d84d98a4d1283049d",
-      "company": "Bosch",
-      "title": "Information Security and Privacy Intern",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000154757409",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "2cae7f29ec654347d6e53532",
-      "company": "Bosch",
-      "title": "Information Security and Privacy Intern",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000155120934-information-security-and-privacy-intern?oga=true",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "f59188f23f00fe4b1f397a28",
-      "company": "Western Digital",
-      "title": "Spring Co-op - Recording Electronics Data Analytics & Optimization",
-      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000155109379",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "171be0cd02c8483a2665a775",
-      "company": "Western Digital",
-      "title": "Spring Co-op - Recording Electronics Data Analytics & Optimization",
-      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000155109379-spring-co-op-recording-electronics-data-analytics-optimization?oga=true",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "9b875f0dedddb9712bada3df",
-      "company": "Bosch",
-      "title": "ERP/IT Intern- Summer 2027",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000155101377",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "12f6d03ef628543e7285392b",
-      "company": "Bosch",
-      "title": "ERP/IT Intern- Summer 2027",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000155101377-erp-it-intern-summer-2027?oga=true",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "295df44b0b214e1654d12203",
-      "company": "Bosch",
-      "title": "Product Management Co-op- Spring 2027",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000154671460",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "ea8695e4c06f82a0ca6844eb",
-      "company": "Bosch",
-      "title": "Product Management Co-op- Spring 2027",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000154671460-product-management-co-op-spring-2027?oga=true",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "04542bbf1487585758164a09",
-      "company": "Northrop Grumman",
-      "title": "2027 Engineering Intern - Manhattan Beach (CA) (Evergreen)",
-      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-California-Manhattan-Beach/XMLNAME-2027-Engineering-Intern---Manhattan-Beach--CA---Evergreen-_R10253708",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "d8bc394c68773c84967ec2f6",
-      "company": "Western Digital",
-      "title": "Winter 2027 Intern/Co-op Development Engineer",
-      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000152261929",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "1b0838fe815bafe91b417020",
-      "company": "AbbVie",
-      "title": "2027 Business Technology Solutions Intern - Data & Software Engineering (Undergraduate)",
-      "applyUrl": "https://jobs.smartrecruiters.com/AbbVie/3743990015679386",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "73e2a80793dbad90666f9eb5",
-      "company": "AbbVie",
-      "title": "Business Technology Solutions Intern - Data & Software Engineering",
-      "applyUrl": "https://jobs.smartrecruiters.com/AbbVie/3743990014697918",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "1f52121f7abbd8f25c623d58",
-      "company": "AbbVie",
-      "title": "2027 Business Technology Solutions Intern - Data & Software Engineering…",
-      "applyUrl": "https://jobs.smartrecruiters.com/AbbVie/3743990015679386-2027-business-technology-solutions-intern-data-software-engineering-undergraduate-?oga=true",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "0b66a404686d5bb3a82270d1",
-      "company": "Flagship Pioneering",
-      "title": "Technical Operations Co-op - Analytical Development",
-      "applyUrl": "https://job-boards.greenhouse.io/fspco-op012325/jobs/8814318002",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "7a2c0aecebf79ac1dbaa2fe0",
-      "company": "Cartesian",
-      "title": "IAP Software Engineering Intern 2027",
-      "applyUrl": "https://job-boards.greenhouse.io/cartesiansystems/jobs/4408204009",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "40bc5043d299587d9e8d23c1",
-      "company": "BlackRock",
-      "title": "2027 Quantitative Masters Internship Program - Investments - Global Capital Markets - New York",
-      "applyUrl": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Global-Capital-Markets---New-York_R266468",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "a743ae975851a3f2fe0e8fcb",
-      "company": "Capital One 🛂",
-      "title": "AI Engineering Intern (PhD) - Summer 2027",
-      "applyUrl": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/New-York-NY/Current-PhD--AI-Engineering-Internship-Program---Summer-2027_R249110-1",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "987eba45d857ddf6368f065d",
-      "company": "Momentive",
-      "title": "Summer 2027 Intern - Enterprise Reporting & Analytics - Data Science",
-      "applyUrl": "https://momentive.wd1.myworkdayjobs.com/MC/job/US-NY-Niskayuna/Summer-2027-Intern---Enterprise-Reporting---Analytics---Data-Science_R9807-1",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "7f02ccfa9060fe887f4b8d84",
+      "id": "6cabd9c41b8f1a527f384862",
       "company": "Motorola",
-      "title": "Junior Field Applications Engineer",
-      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Reston-VA--VA58/Junior-Field-Applications-Engineer_R68521",
+      "title": "Associate Research and Development (R&D) Test Engineer",
+      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Los-Angeles-CA/Associate-Research-and-Development--R-D--Test-Engineer_R64786-1",
       "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "3ebc47ab0984f171bef47430",
-      "company": "Bosch",
-      "title": "Calibration Process Data Science Intern - 8 months/40 hours per week",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000146546699-calibration-process-data-science-intern-8-months-40-hours-per-week-?oga=true",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "8621fbd9150eb2a0eefae2d4",
-      "company": "Bosch",
-      "title": "Calibration Process Data Science Intern (8 months/40 hours per week)",
-      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000146546699",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "7a9b9da3015d7fb97e0c9112",
-      "company": "Sage",
-      "title": "Software Engineering Intern (Edge) – Summer 2027",
-      "applyUrl": "https://job-boards.greenhouse.io/sage49/jobs/6131191004",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "ba6ff38e9908bc2a50eb052a",
-      "company": "Western Digital",
-      "title": "Summer 2027 Intern - Software Engineering",
-      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000143171017",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "4e351b76e2fa9c4a3c9c5a97",
-      "company": "Western Digital",
-      "title": "Software Engineering Intern",
-      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000138727213",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "5aa949a35e0bf1138d3a2afe",
-      "company": "Western Digital",
-      "title": "Software Engineering Intern (Summer 2027)",
-      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000138727213-summer-2027-software-engineering-internship",
-      "reason": "pendingVerification"
     }
   ],
-  "urlChanges": []
+  "urlChanges": [
+    {
+      "id": "fb0ab45dbbec00be6eff61af",
+      "previousUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Supervision---Regulation--Cybersecurity-_R-0000033866",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Supervision---Regulation--Cybersecurity-_R-0000033866"
+    }
+  ]
 }
