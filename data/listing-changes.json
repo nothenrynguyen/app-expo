@@ -1,38 +1,82 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-03T12:24:38.264Z",
-  "previousGeneratedAt": "2026-11-03T11:25:04.598Z",
-  "currentSnapshotGeneratedAt": "2026-11-03T12:24:38.264Z",
+  "generatedAt": "2026-11-03T13:25:22.624Z",
+  "previousGeneratedAt": "2026-11-03T12:24:38.264Z",
+  "currentSnapshotGeneratedAt": "2026-11-03T13:25:22.624Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6763,
-    "current": 6760,
-    "retained": 6746,
-    "added": 14,
-    "removed": 17,
-    "net": -3
+    "previous": 6760,
+    "current": 6774,
+    "retained": 6758,
+    "added": 16,
+    "removed": 2,
+    "net": 14
   },
   "categoryCounts": {
     "confirmed-closed": 0,
-    "scope-exclusion": 1,
-    "verification-pending": 10,
-    "source-unavailable": 5,
+    "scope-exclusion": 0,
+    "verification-pending": 0,
+    "source-unavailable": 1,
     "unresolved": 1,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01885888",
-      "id": "9659cb80048632055b522d6f",
-      "company": "Raytheon",
-      "title": "Program Quality Engineer I, Woburn, MA",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-MA-WOBURN-WB1--235-Presidential-Way--SPENCER-BLDG/Program-Quality-Engineer-I--Woburn--MA_01885888",
+      "identity": "workday:snc.wd1.myworkdayjobs.com:snc_external_career_site:r0031260",
+      "id": "b04f4a050280451b0806617d",
+      "company": "Sierra Nevada Corporation",
+      "title": "DevOps Engineer I",
+      "applyUrl": "https://snc.wd1.myworkdayjobs.com/SNC_External_Career_Site/job/Folsom-CA/DevOps-Engineer-I_R0031260",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "9659cb80048632055b522d6f"
+        "b04f4a050280451b0806617d"
       ],
       "previousUrls": [
-        "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-MA-WOBURN-WB1--235-Presidential-Way--SPENCER-BLDG/Program-Quality-Engineer-I--Woburn--MA_01885888"
+        "https://snc.wd1.myworkdayjobs.com/SNC_External_Career_Site/job/Folsom-CA/DevOps-Engineer-I_R0031260"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-03T13:18:42.619Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:snc.wd1.myworkdayjobs.com:snc_external_career_site",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1313
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:intel.wd1.myworkdayjobs.com:external:jr0286916",
+      "id": "c4519950991a69429ef2b7b5",
+      "company": "Intel",
+      "title": "Module Engineering - PhD Intern",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Module-Engineering-PhD-Intern-Summer-2027_JR0286916",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "c4519950991a69429ef2b7b5"
+      ],
+      "previousUrls": [
+        "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Module-Engineering-PhD-Intern-Summer-2027_JR0286916"
       ],
       "sources": [
         "Direct ATS (Workday)"
@@ -40,11 +84,11 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-03T12:18:56.069Z",
+        "runStartedAt": "2026-11-03T13:18:42.619Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
+          "id": "workday:intel.wd1.myworkdayjobs.com:external",
           "status": "ok",
           "outcome": "healthy",
           "membership": "unknown",
@@ -64,989 +108,56 @@
       "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
       "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
       "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:itron.wd5.myworkdayjobs.com:itron:jr102923",
-      "id": "d44e053478db587828e60af0",
-      "company": "Itron",
-      "title": "Software Quality Assurance Engineer",
-      "applyUrl": "https://itron.wd5.myworkdayjobs.com/Itron/job/United-States-of-America-Washington-Liberty-Lake/Software-Quality-Assurance-Engineer_JR102923-1",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "d44e053478db587828e60af0"
-      ],
-      "previousUrls": [
-        "https://itron.wd5.myworkdayjobs.com/Itron/job/United-States-of-America-Washington-Liberty-Lake/Software-Quality-Assurance-Engineer_JR102923-1"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-03T12:18:56.069Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:itron.wd5.myworkdayjobs.com:itron",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1311
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:cigna.wd5.myworkdayjobs.com:cignacareers:26009483",
-      "id": "ca90e8f3b8f44900c5d8c52e",
-      "company": "Cigna",
-      "title": "Healthcare Analytics Summer Intern - Morris Plains, NJ - Start Date: Ma…",
-      "applyUrl": "https://cigna.wd5.myworkdayjobs.com/cignacareers/job/Morris-Plains-NJ/Healthcare-Analytics-Summer-Intern---Morris-Plains--NJ---Start-Date--May-24--2027_26009483",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "ca90e8f3b8f44900c5d8c52e"
-      ],
-      "previousUrls": [
-        "https://cigna.wd5.myworkdayjobs.com/cignacareers/job/Morris-Plains-NJ/Healthcare-Analytics-Summer-Intern---Morris-Plains--NJ---Start-Date--May-24--2027_26009483"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://cigna.wd5.myworkdayjobs.com/en-US/cignacareers/job/Morris-Plains-NJ/Healthcare-Analytics-Summer-Intern---Morris-Plains--NJ---Start-Date--May-24--2027_26009483",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          },
-          {
-            "url": "https://cigna.wd5.myworkdayjobs.com/cignacareers/job/Morris-Plains-NJ/Healthcare-Analytics-Summer-Intern---Morris-Plains--NJ---Start-Date--May-24--2027_26009483",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          },
-          {
-            "url": "https://cigna.wd5.myworkdayjobs.com/cignacareers/job/Morris-Plains-NJ/Healthcare-Analytics-Summer-Intern---Morris-Plains--NJ---Start-Date--May-24--2027_26009483",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-03T12:18:56.069Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:cigna.wd5.myworkdayjobs.com:cignacareers",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 428
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:allegion.wd5.myworkdayjobs.com:careers:jr37369",
-      "id": "50849cb899785f042208eb49",
-      "company": "Allegion",
-      "title": "Summer Intern - Product Management",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Product-Management_JR37369-1",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "50849cb899785f042208eb49"
-      ],
-      "previousUrls": [
-        "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Product-Management_JR37369-1"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-03T12:18:56.069Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:allegion.wd5.myworkdayjobs.com:careers",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:amat.wd1.myworkdayjobs.com:external:r2623409",
-      "id": "7fa7510f6f130c90a6f04db0",
-      "company": "Applied Materials",
-      "title": "2026 Process Engineer Co-op - Adv Degree (Gloucester, MA)",
-      "applyUrl": "https://amat.wd1.myworkdayjobs.com/External/job/GloucesterMA/XMLNAME-2026-Process-Engineer-Co-op---Adv-Degree--Gloucester--MA-_R2623409",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "7fa7510f6f130c90a6f04db0"
-      ],
-      "previousUrls": [
-        "https://amat.wd1.myworkdayjobs.com/External/job/GloucesterMA/XMLNAME-2026-Process-Engineer-Co-op---Adv-Degree--Gloucester--MA-_R2623409"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-03T12:18:56.069Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:amat.wd1.myworkdayjobs.com:external",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1311
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:allegion.wd5.myworkdayjobs.com:careers:jr37413",
-      "id": "79fc4765a5953f41d0397ed8",
-      "company": "Allegion",
-      "title": "Summer Intern - Hardware Engineering",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering_JR37413-1",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "79fc4765a5953f41d0397ed8"
-      ],
-      "previousUrls": [
-        "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering_JR37413-1"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-03T12:18:56.069Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:allegion.wd5.myworkdayjobs.com:careers",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:jj.wd5.myworkdayjobs.com:jj:r-098277",
-      "id": "c435fab90bbd613f847e2c0c",
-      "company": "Johnson & Johnson",
-      "title": "Software Engineering Co-Op",
-      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Danvers-Massachusetts-United-States-of-America/Software-Engineering-Co-Op_R-098277",
-      "reason": "location",
-      "previousIds": [
-        "c435fab90bbd613f847e2c0c"
-      ],
-      "previousUrls": [
-        "https://jj.wd5.myworkdayjobs.com/JJ/job/Danvers-Massachusetts-United-States-of-America/Software-Engineering-Co-Op_R-098277"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jj.wd5.myworkdayjobs.com/JJ/job/Danvers-Massachusetts-United-States-of-America/Software-Engineering-Co-Op_R-098277",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          },
-          {
-            "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Danvers-Massachusetts-United-States-of-America/Software-Engineering-Co-Op_R-098277",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          },
-          {
-            "url": "https://jj.wd5.myworkdayjobs.com/JJ/job/Danvers-Massachusetts-United-States-of-America/Software-Engineering-Co-Op_R-098277",
-            "reason": "location",
-            "detail": null
-          }
-        ],
-        "runStartedAt": "2026-11-03T12:18:56.069Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:jj.wd5.myworkdayjobs.com:jj",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1311
-          }
-        ]
-      },
-      "category": "scope-exclusion",
-      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
-      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
-      "requiresInvestigation": false
-    },
-    {
-      "identity": "workday:globalhr.wd5.myworkdayjobs.com:private_posting_no_tmp:01866850",
-      "id": "297db56280645ea534492d09",
-      "company": "RTX",
-      "title": "Conversion Systems Engineer 1 Intern",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/fr-CA/Private_Posting_No_TMP/job/US-IA-CEDAR-RAPIDS-130--5350-C-Ave-NE--BLDG-130/Intern-Conversion-Systems-Engineer-I--Onsite-_01866850",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "297db56280645ea534492d09"
-      ],
-      "previousUrls": [
-        "https://globalhr.wd5.myworkdayjobs.com/fr-CA/Private_Posting_No_TMP/job/US-IA-CEDAR-RAPIDS-130--5350-C-Ave-NE--BLDG-130/Intern-Conversion-Systems-Engineer-I--Onsite-_01866850"
-      ],
-      "sources": [
-        "Aprameya Off-Cycle Internships 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://globalhr.wd5.myworkdayjobs.com/fr-CA/Private_Posting_No_TMP/job/US-IA-CEDAR-RAPIDS-130--5350-C-Ave-NE--BLDG-130/Intern-Conversion-Systems-Engineer-I--Onsite-_01866850",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-03T12:18:56.069Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:globalhr.wd5.myworkdayjobs.com:private_posting_no_tmp",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Off-Cycle Internships 2027",
-            "diagnosticName": "Aprameya Off-Cycle Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 673
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31630",
-      "id": "d8a30447ed31200e6a60f505",
-      "company": "HNTB",
-      "title": "New Grad Civil Engineer I: Transportation - Summer 2027",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "d8a30447ed31200e6a60f505"
-      ],
-      "previousUrls": [
-        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2"
-      ],
-      "sources": [
-        "Keryx Non-Software New Grad 2027",
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-03T12:18:56.069Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Keryx Non-Software New Grad 2027",
-            "diagnosticName": "Keryx Non-Software New Grad 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 122
-          },
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01871298",
-      "id": "56c3cb60095d1f0daf8132e6",
-      "company": "RTX 🛂",
-      "title": "Co-Op, Software Engineer- Onsite",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-109--400-Collins-Rd-NE--BLDG-109/Co-Op--Software-Engineer--Onsite_01871298",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "56c3cb60095d1f0daf8132e6"
-      ],
-      "previousUrls": [
-        "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-109--400-Collins-Rd-NE--BLDG-109/Co-Op--Software-Engineer--Onsite_01871298"
-      ],
-      "sources": [
-        "Aprameya Off-Cycle Internships 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-109--400-Collins-Rd-NE--BLDG-109/Co-Op--Software-Engineer--Onsite_01871298",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          },
-          {
-            "url": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-109--400-Collins-Rd-NE--BLDG-109/Co-Op--Software-Engineer--Onsite_01871298",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-03T12:18:56.069Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Off-Cycle Internships 2027",
-            "diagnosticName": "Aprameya Off-Cycle Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 673
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31435",
-      "id": "48d0774191df9234015b9c9f",
-      "company": "HNTB",
-      "title": "WED - Intern Civil Engineer (Summer 2027) (For Current & Recent HNTB Interns Only)",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "48d0774191df9234015b9c9f"
-      ],
-      "previousUrls": [
-        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435"
-      ],
-      "sources": [
-        "Keryx Non-Software Summer 2027",
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-03T12:18:56.069Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1440
-          },
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:allegion.wd5.myworkdayjobs.com:careers:jr37494",
-      "id": "2aa797304f7503542257ba43",
-      "company": "Allegion",
-      "title": "Summer Intern - Materials Supply Chain",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Greenfield-IN---West-350N/Summer-Intern---Materials-Supply-Chain_JR37494-1",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "2aa797304f7503542257ba43"
-      ],
-      "previousUrls": [
-        "https://allegion.wd5.myworkdayjobs.com/careers/job/Greenfield-IN---West-350N/Summer-Intern---Materials-Supply-Chain_JR37494-1"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-03T12:18:56.069Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:allegion.wd5.myworkdayjobs.com:careers",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:jj.wd5.myworkdayjobs.com:jj:r-096746",
-      "id": "9d8609a38ac7af9ac4b9cddd",
-      "company": "Johnson & Johnson",
-      "title": "Data Science Co-Op, Summer 2027",
-      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Data-Science-Co-Op--Summer-2027_R-096746",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "9d8609a38ac7af9ac4b9cddd"
-      ],
-      "previousUrls": [
-        "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Data-Science-Co-Op--Summer-2027_R-096746"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Data-Science-Co-Op--Summer-2027_R-096746",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-03T12:18:56.069Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:jj.wd5.myworkdayjobs.com:jj",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1311
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:jj.wd5.myworkdayjobs.com:jj:r-096743",
-      "id": "0fa69d277a360c1b7c4e9c7c",
-      "company": "Johnson & Johnson",
-      "title": "Software Engineering Co-Op. Summer 2027",
-      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Software-Engineering-Co-Op-Summer-2027_R-096743",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "0fa69d277a360c1b7c4e9c7c"
-      ],
-      "previousUrls": [
-        "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Software-Engineering-Co-Op-Summer-2027_R-096743"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Software-Engineering-Co-Op-Summer-2027_R-096743",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          },
-          {
-            "url": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Cincinnati-Ohio-United-States-of-America/Software-Engineering-Co-Op-Summer-2027_R-096743",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-03T12:18:56.069Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:jj.wd5.myworkdayjobs.com:jj",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1311
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:jj.wd5.myworkdayjobs.com:jj:r-096736",
-      "id": "9c706fc39fb7e3d6a7e79094",
-      "company": "Johnson & Johnson",
-      "title": "Electrical Engineering Co-Op, Summer 2027",
-      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Electrical-Engineering-Co-Op--Summer-2027_R-096736",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "9c706fc39fb7e3d6a7e79094"
-      ],
-      "previousUrls": [
-        "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Electrical-Engineering-Co-Op--Summer-2027_R-096736"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Electrical-Engineering-Co-Op--Summer-2027_R-096736",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-03T12:18:56.069Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:jj.wd5.myworkdayjobs.com:jj",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1311
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:jj.wd5.myworkdayjobs.com:jj:r-095700",
-      "id": "3ba1045c1b8e34d0db4a088c",
-      "company": "Johnson & Johnson",
-      "title": "Electrical Engineering Co-Op, Spring 2027",
-      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Electrical-Engineer-Co-Op--Spring-2027_R-095700",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "3ba1045c1b8e34d0db4a088c"
-      ],
-      "previousUrls": [
-        "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Electrical-Engineer-Co-Op--Spring-2027_R-095700"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Electrical-Engineer-Co-Op--Spring-2027_R-095700",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-03T12:18:56.069Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:jj.wd5.myworkdayjobs.com:jj",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1311
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:jj.wd5.myworkdayjobs.com:jj:r-095741",
-      "id": "2b3fcc23b9ef90dd2d2d6885",
-      "company": "Johnson & Johnson",
-      "title": "Software Engineering Co-Op, Spring 2027",
-      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Software-Engineering-Co-Op--Spring-2027_R-095741",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "2b3fcc23b9ef90dd2d2d6885"
-      ],
-      "previousUrls": [
-        "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Software-Engineering-Co-Op--Spring-2027_R-095741"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jj.wd5.myworkdayjobs.com/jj/job/Cincinnati-Ohio-United-States-of-America/Software-Engineering-Co-Op--Spring-2027_R-095741",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          },
-          {
-            "url": "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Software-Engineering-Co-Op--Spring-2027_R-095741",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-03T12:18:56.069Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:jj.wd5.myworkdayjobs.com:jj",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1311
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
     }
   ],
   "rowCounts": {
-    "previous": 6763,
-    "current": 6760,
-    "net": -3,
+    "previous": 6760,
+    "current": 6774,
+    "net": 14,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 14,
-  "removedCount": 17,
+  "added": 16,
+  "removedCount": 2,
   "counts": {
-    "not-returned-by-sources": 6,
-    "pendingVerification": 10,
-    "location": 1
+    "not-returned-by-sources": 2
   },
   "removed": [
     {
-      "id": "9659cb80048632055b522d6f",
-      "company": "Raytheon",
-      "title": "Program Quality Engineer I, Woburn, MA",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-MA-WOBURN-WB1--235-Presidential-Way--SPENCER-BLDG/Program-Quality-Engineer-I--Woburn--MA_01885888",
+      "id": "b04f4a050280451b0806617d",
+      "company": "Sierra Nevada Corporation",
+      "title": "DevOps Engineer I",
+      "applyUrl": "https://snc.wd1.myworkdayjobs.com/SNC_External_Career_Site/job/Folsom-CA/DevOps-Engineer-I_R0031260",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "d44e053478db587828e60af0",
-      "company": "Itron",
-      "title": "Software Quality Assurance Engineer",
-      "applyUrl": "https://itron.wd5.myworkdayjobs.com/Itron/job/United-States-of-America-Washington-Liberty-Lake/Software-Quality-Assurance-Engineer_JR102923-1",
+      "id": "c4519950991a69429ef2b7b5",
+      "company": "Intel",
+      "title": "Module Engineering - PhD Intern",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Module-Engineering-PhD-Intern-Summer-2027_JR0286916",
       "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "ca90e8f3b8f44900c5d8c52e",
-      "company": "Cigna",
-      "title": "Healthcare Analytics Summer Intern - Morris Plains, NJ - Start Date: Ma…",
-      "applyUrl": "https://cigna.wd5.myworkdayjobs.com/cignacareers/job/Morris-Plains-NJ/Healthcare-Analytics-Summer-Intern---Morris-Plains--NJ---Start-Date--May-24--2027_26009483",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "50849cb899785f042208eb49",
-      "company": "Allegion",
-      "title": "Summer Intern - Product Management",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Product-Management_JR37369-1",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "7fa7510f6f130c90a6f04db0",
-      "company": "Applied Materials",
-      "title": "2026 Process Engineer Co-op - Adv Degree (Gloucester, MA)",
-      "applyUrl": "https://amat.wd1.myworkdayjobs.com/External/job/GloucesterMA/XMLNAME-2026-Process-Engineer-Co-op---Adv-Degree--Gloucester--MA-_R2623409",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "79fc4765a5953f41d0397ed8",
-      "company": "Allegion",
-      "title": "Summer Intern - Hardware Engineering",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering_JR37413-1",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "c435fab90bbd613f847e2c0c",
-      "company": "Johnson & Johnson",
-      "title": "Software Engineering Co-Op",
-      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Danvers-Massachusetts-United-States-of-America/Software-Engineering-Co-Op_R-098277",
-      "reason": "location"
-    },
-    {
-      "id": "297db56280645ea534492d09",
-      "company": "RTX",
-      "title": "Conversion Systems Engineer 1 Intern",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/fr-CA/Private_Posting_No_TMP/job/US-IA-CEDAR-RAPIDS-130--5350-C-Ave-NE--BLDG-130/Intern-Conversion-Systems-Engineer-I--Onsite-_01866850",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "d8a30447ed31200e6a60f505",
-      "company": "HNTB",
-      "title": "New Grad Civil Engineer I: Transportation - Summer 2027",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "56c3cb60095d1f0daf8132e6",
-      "company": "RTX 🛂",
-      "title": "Co-Op, Software Engineer- Onsite",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-109--400-Collins-Rd-NE--BLDG-109/Co-Op--Software-Engineer--Onsite_01871298",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "48d0774191df9234015b9c9f",
-      "company": "HNTB",
-      "title": "WED - Intern Civil Engineer (Summer 2027) (For Current & Recent HNTB Interns Only)",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "2aa797304f7503542257ba43",
-      "company": "Allegion",
-      "title": "Summer Intern - Materials Supply Chain",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Greenfield-IN---West-350N/Summer-Intern---Materials-Supply-Chain_JR37494-1",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "9d8609a38ac7af9ac4b9cddd",
-      "company": "Johnson & Johnson",
-      "title": "Data Science Co-Op, Summer 2027",
-      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Data-Science-Co-Op--Summer-2027_R-096746",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "0fa69d277a360c1b7c4e9c7c",
-      "company": "Johnson & Johnson",
-      "title": "Software Engineering Co-Op. Summer 2027",
-      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Software-Engineering-Co-Op-Summer-2027_R-096743",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "9c706fc39fb7e3d6a7e79094",
-      "company": "Johnson & Johnson",
-      "title": "Electrical Engineering Co-Op, Summer 2027",
-      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Electrical-Engineering-Co-Op--Summer-2027_R-096736",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "3ba1045c1b8e34d0db4a088c",
-      "company": "Johnson & Johnson",
-      "title": "Electrical Engineering Co-Op, Spring 2027",
-      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Electrical-Engineer-Co-Op--Spring-2027_R-095700",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "2b3fcc23b9ef90dd2d2d6885",
-      "company": "Johnson & Johnson",
-      "title": "Software Engineering Co-Op, Spring 2027",
-      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Cincinnati-Ohio-United-States-of-America/Software-Engineering-Co-Op--Spring-2027_R-095741",
-      "reason": "pendingVerification"
     }
   ],
   "urlChanges": [
     {
-      "id": "2bb958c8b8d63375e986a4c2",
-      "previousUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-CA-Vandenberg-AFB/Software-Engineer-Junior_R0173629",
-      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-CA-Vandenberg-AFB/Software-Engineer-Junior_R0173629"
+      "id": "75cb3f0cd14563e162f9b59c",
+      "previousUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering-PhD-Intern-New-2027_JR0287458-1",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/US-Oregon-Hillsboro/Software-Engineering-PhD-Intern-New-2027_JR0287458-1"
     },
     {
-      "id": "76d6f6d8506a8facad58426c",
-      "previousUrl": "https://allegion.wd5.myworkdayjobs.com/en-US/careers/job/Golden-CO/Summer-Intern---Software-Engineering_JR37795-1",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Golden-CO/Summer-Intern---Software-Engineering_JR37795-1"
+      "id": "94b48811a355ad21a62aad2c",
+      "previousUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Arizona-Phoenix/Operations-Research--Engineering-Analytics-Graduate-Intern_JR0286502",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/US-Arizona-Phoenix/Operations-Research--Engineering-Analytics-Graduate-Intern_JR0286502"
     },
     {
-      "id": "53d1560835c4eb88ffd9fe9a",
-      "previousUrl": "https://allegion.wd5.myworkdayjobs.com/en-US/careers/job/Carmel-IN/Summer-Intern---Software-Operations-Engineer_JR37722-1",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Software-Operations-Engineer_JR37722-1"
+      "id": "f8fd23e6741557b0746e77b1",
+      "previousUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Bachelor-s_JR0286834",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/en-US/external/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Bachelor-s_JR0286834"
     },
     {
-      "id": "b56e01ad51dfd35ab2d3d343",
-      "previousUrl": "https://allegion.wd5.myworkdayjobs.com/en-US/careers/job/Carmel-IN/Software-Engineering-Intern---DevOps_JR37379",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Software-Engineering-Intern---DevOps_JR37379"
-    },
-    {
-      "id": "af25515264c9c9abc2c082aa",
-      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037"
+      "id": "ce91345ac9ad28e840f28d31",
+      "previousUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Graduate_JR0286836",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/en-us/external/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Graduate_JR0286836"
     }
   ]
 }
