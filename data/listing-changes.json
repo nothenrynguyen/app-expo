@@ -1,36 +1,1535 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-03T10:24:30.599Z",
-  "previousGeneratedAt": "2026-11-03T09:24:42.089Z",
-  "currentSnapshotGeneratedAt": "2026-11-03T10:24:30.599Z",
+  "generatedAt": "2026-11-03T11:25:04.598Z",
+  "previousGeneratedAt": "2026-11-03T10:24:30.599Z",
+  "currentSnapshotGeneratedAt": "2026-11-03T11:25:04.598Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6775,
-    "current": 6776,
-    "retained": 6775,
-    "added": 1,
-    "removed": 0,
-    "net": 1
+    "previous": 6776,
+    "current": 6763,
+    "retained": 6754,
+    "added": 9,
+    "removed": 22,
+    "net": -13
   },
   "categoryCounts": {
     "confirmed-closed": 0,
     "scope-exclusion": 0,
-    "verification-pending": 0,
-    "source-unavailable": 0,
-    "unresolved": 0,
+    "verification-pending": 14,
+    "source-unavailable": 4,
+    "unresolved": 4,
     "deduplicated": 0
   },
-  "removedOpportunities": [],
+  "removedOpportunities": [
+    {
+      "identity": "job-boards.greenhouse.io:6237361004",
+      "id": "041ac0c97fe2dfaaa5a5560d",
+      "company": "Sony Interactive Entertainment",
+      "title": "QA Tester",
+      "applyUrl": "https://job-boards.greenhouse.io/sonyinteractiveentertainmentglobal/jobs/6237361004",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "041ac0c97fe2dfaaa5a5560d"
+      ],
+      "previousUrls": [
+        "https://job-boards.greenhouse.io/sonyinteractiveentertainmentglobal/jobs/6237361004"
+      ],
+      "sources": [
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:sonyinteractiveentertainmentglobal",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10257823",
+      "id": "6c29c2f59dfa643d7deb3235",
+      "company": "Northrop Grumman",
+      "title": "Associate Software Engineer (BM/SRM) (26-464)",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Alabama-Huntsville/Associate-Software-Engineer--BM-SRM---26-464-_R10257823",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "6c29c2f59dfa643d7deb3235"
+      ],
+      "previousUrls": [
+        "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Alabama-Huntsville/Associate-Software-Engineer--BM-SRM---26-464-_R10257823"
+      ],
+      "sources": [
+        "Aprameya New Grad 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Alabama-Huntsville/Associate-Software-Engineer--BM-SRM---26-464-_R10257823",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya New Grad 2027",
+            "diagnosticName": "Aprameya New Grad 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 484
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:tti.wd1.myworkdayjobs.com:milwaukee:r78962",
+      "id": "4e85219f765700b24c7c0728",
+      "company": "Milwaukee Tool",
+      "title": "Platform Engineer I- 2nd Shift",
+      "applyUrl": "https://tti.wd1.myworkdayjobs.com/Milwaukee/job/Olive-Branch-MS/Platform-Engineer-I--2nd-Shift_R78962",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "4e85219f765700b24c7c0728"
+      ],
+      "previousUrls": [
+        "https://tti.wd1.myworkdayjobs.com/Milwaukee/job/Olive-Branch-MS/Platform-Engineer-I--2nd-Shift_R78962"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:tti.wd1.myworkdayjobs.com:milwaukee",
+          "status": "failed",
+          "outcome": "rate_limited",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10257599",
+      "id": "95f02b1e45d3ace08d2ecf22",
+      "company": "Northrop Grumman",
+      "title": "Associate Software Engineer / Software Engineer",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Alabama-Huntsville/Associate-Software-Engineer---Software-Engineer_R10257599",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "95f02b1e45d3ace08d2ecf22"
+      ],
+      "previousUrls": [
+        "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Alabama-Huntsville/Associate-Software-Engineer---Software-Engineer_R10257599"
+      ],
+      "sources": [
+        "Aprameya New Grad 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Alabama-Huntsville/Associate-Software-Engineer---Software-Engineer_R10257599",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya New Grad 2027",
+            "diagnosticName": "Aprameya New Grad 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 484
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0250655",
+      "id": "83b07f2285086c5653632074",
+      "company": "Booz Allen Hamilton",
+      "title": "Product Engineering Intern",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/McLean-VA/Product-Engineering-Intern_R0250655",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "83b07f2285086c5653632074"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/McLean-VA/Product-Engineering-Intern_R0250655"
+      ],
+      "sources": [
+        "Open-Tech-Internships-2027 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/McLean-VA/Product-Engineering-Intern_R0250655",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1834
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:kla.wd1.myworkdayjobs.com:search:2640286",
+      "id": "e8eddd067c5dad4282cd98dd",
+      "company": "KLA",
+      "title": "Graduate Process Engineer",
+      "applyUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Newport-United-Kingdom/Graduate-Process-Engineer_2640286",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "e8eddd067c5dad4282cd98dd"
+      ],
+      "previousUrls": [
+        "https://kla.wd1.myworkdayjobs.com/Search/job/Newport-United-Kingdom/Graduate-Process-Engineer_2640286"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:kla.wd1.myworkdayjobs.com:search",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:kla.wd1.myworkdayjobs.com:search:2640080",
+      "id": "83b78d396e3de7247c7274bb",
+      "company": "KLA",
+      "title": "Graduate Electrical / Electronic Engineer",
+      "applyUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Newport-United-Kingdom/Graduate-Electrical---Electronic-Engineer_2640080",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "83b78d396e3de7247c7274bb"
+      ],
+      "previousUrls": [
+        "https://kla.wd1.myworkdayjobs.com/Search/job/Newport-United-Kingdom/Graduate-Electrical---Electronic-Engineer_2640080"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:kla.wd1.myworkdayjobs.com:search",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:kla.wd1.myworkdayjobs.com:search:2640076",
+      "id": "27628bfdda91e7b96869d472",
+      "company": "KLA",
+      "title": "Graduate Mechanical Design Engineer",
+      "applyUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Newport-United-Kingdom/Graduate-Mechanical-Design-Engineer_2640076",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "27628bfdda91e7b96869d472"
+      ],
+      "previousUrls": [
+        "https://kla.wd1.myworkdayjobs.com/Search/job/Newport-United-Kingdom/Graduate-Mechanical-Design-Engineer_2640076"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:kla.wd1.myworkdayjobs.com:search",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:allegion.wd5.myworkdayjobs.com:careers:jr37467",
+      "id": "c2e19afff7231bb046a4edaa",
+      "company": "Allegion",
+      "title": "Summer Intern - Hardware Engineering - Indianapolis, Indiana",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering---Indianapolis--Indiana_JR37467-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "c2e19afff7231bb046a4edaa"
+      ],
+      "previousUrls": [
+        "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering---Indianapolis--Indiana_JR37467-1"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering---Indianapolis--Indiana_JR37467-1",
+            "status": "unknown"
+          }
+        ],
+        "board": {
+          "id": "workday:allegion.wd5.myworkdayjobs.com:careers",
+          "status": "ok",
+          "outcome": "rate_limited",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:allegion.wd5.myworkdayjobs.com:careers:jr37380",
+      "id": "6df28b43b16a70579b67bff6",
+      "company": "Allegion",
+      "title": "Summer Intern - Product Assurance Test Engineer",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Colorado-Springs-CO/Summer-Intern---Product-Assurance-Test-Engineer_JR37380-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "6df28b43b16a70579b67bff6"
+      ],
+      "previousUrls": [
+        "https://allegion.wd5.myworkdayjobs.com/careers/job/Colorado-Springs-CO/Summer-Intern---Product-Assurance-Test-Engineer_JR37380-1"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://allegion.wd5.myworkdayjobs.com/careers/job/Colorado-Springs-CO/Summer-Intern---Product-Assurance-Test-Engineer_JR37380-1",
+            "status": "unknown"
+          }
+        ],
+        "board": {
+          "id": "workday:allegion.wd5.myworkdayjobs.com:careers",
+          "status": "ok",
+          "outcome": "rate_limited",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site:r26130",
+      "id": "6072dfa63ce7ec5c7c83651e",
+      "company": "Sierra Space",
+      "title": "Manufacturing Engineer I",
+      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Manufacturing-Engineer-I_R26130-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "6072dfa63ce7ec5c7c83651e"
+      ],
+      "previousUrls": [
+        "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Manufacturing-Engineer-I_R26130-1"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site",
+          "status": "failed",
+          "outcome": "rate_limited",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248369",
+      "id": "fc75724a061f38d1d772d9a4",
+      "company": "Booz Allen Hamilton",
+      "title": "University - 2027 Summer Games Systems Engineer Intern - Charleston, SC",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Charleston-SC/University---2027-Summer-Games-Systems-Engineer-Intern---Charleston--SC_R0248369",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "fc75724a061f38d1d772d9a4"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Charleston-SC/University---2027-Summer-Games-Systems-Engineer-Intern---Charleston--SC_R0248369"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Keryx Non-Software Summer 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Charleston-SC/University---2027-Summer-Games-Systems-Engineer-Intern---Charleston--SC_R0248369",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Colorado-Springs-CO/University---2027-Summer-Games-Systems-Engineer-Intern---Charleston--SC_R0248369",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Colorado-Springs-CO/University---2027-Summer-Games-Systems-Engineer-Intern---Charleston--SC_R0248369",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2275
+          },
+          {
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1440
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248370",
+      "id": "7a9f739be04535cb63615fcf",
+      "company": "Booz Allen Hamilton",
+      "title": "University - 2027 Summer Games Systems Engineer Intern - Honolulu, HI",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Honolulu-HI/University---2027-Summer-Games-Systems-Engineer-Intern---Honolulu--HI_R0248370",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "7a9f739be04535cb63615fcf"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Honolulu-HI/University---2027-Summer-Games-Systems-Engineer-Intern---Honolulu--HI_R0248370"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Keryx Non-Software Summer 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Honolulu-HI/University---2027-Summer-Games-Systems-Engineer-Intern---Honolulu--HI_R0248370",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Honolulu-HI/University---2027-Summer-Games-Systems-Engineer-Intern---Honolulu--HI_R0248370",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2275
+          },
+          {
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1440
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248361",
+      "id": "01ae0bf0a8f66be3a0b8626b",
+      "company": "Booz Allen Hamilton",
+      "title": "University - 2027 Summer Games Systems Engineer Intern - McLean, VA",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/McLean-VA/University---2027-Summer-Games-Systems-Engineer-Intern---McLean--VA_R0248361",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "01ae0bf0a8f66be3a0b8626b"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/McLean-VA/University---2027-Summer-Games-Systems-Engineer-Intern---McLean--VA_R0248361"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Keryx Non-Software Summer 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/McLean-VA/University---2027-Summer-Games-Systems-Engineer-Intern---McLean--VA_R0248361",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/McLean-VA/University---2027-Summer-Games-Systems-Engineer-Intern---McLean--VA_R0248361",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2275
+          },
+          {
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1440
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248368",
+      "id": "0da422864632f93ab5025eec",
+      "company": "Booz Allen Hamilton",
+      "title": "University - 2027 Summer Games Systems Engineer Intern - Colorado Springs, CO",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Colorado-Springs-CO/University---2027-Summer-Games-Systems-Engineer-Intern---Colorado-Springs--CO_R0248368",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "0da422864632f93ab5025eec"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Colorado-Springs-CO/University---2027-Summer-Games-Systems-Engineer-Intern---Colorado-Springs--CO_R0248368"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Keryx Non-Software Summer 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Colorado-Springs-CO/University---2027-Summer-Games-Systems-Engineer-Intern---Colorado-Springs--CO_R0248368",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Colorado-Springs-CO/University---2027-Summer-Games-Systems-Engineer-Intern---Colorado-Springs--CO_R0248368",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2275
+          },
+          {
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1440
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248365",
+      "id": "f0ad830bddd979c1aa1f1fd1",
+      "company": "Booz Allen Hamilton",
+      "title": "University - 2027 Summer Games Systems Engineer Intern - San Diego, CA",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/San-Diego-CA/University---2027-Summer-Games-Systems-Engineer-Intern---San-Diego--CA_R0248365",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "f0ad830bddd979c1aa1f1fd1"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/San-Diego-CA/University---2027-Summer-Games-Systems-Engineer-Intern---San-Diego--CA_R0248365"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Keryx Non-Software Summer 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/San-Diego-CA/University---2027-Summer-Games-Systems-Engineer-Intern---San-Diego--CA_R0248365",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/San-Diego-CA/University---2027-Summer-Games-Systems-Engineer-Intern---San-Diego--CA_R0248365",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2275
+          },
+          {
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1440
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248381",
+      "id": "897f2add1ed0ffaf0364f96e",
+      "company": "Booz Allen Hamilton",
+      "title": "University - 2027 Summer Games, Systems Engineer Intern - Atlanta, GA",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Atlanta-GA/University---2027-Summer-Games--Systems-Engineer-Intern---Atlanta--GA_R0248381",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "897f2add1ed0ffaf0364f96e"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Atlanta-GA/University---2027-Summer-Games--Systems-Engineer-Intern---Atlanta--GA_R0248381"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Keryx Non-Software Summer 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Atlanta-GA/University---2027-Summer-Games--Systems-Engineer-Intern---Atlanta--GA_R0248381",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University---2027-Summer-Games--Systems-Engineer-Intern---Atlanta--GA_R0248381",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2275
+          },
+          {
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1440
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248139",
+      "id": "3c4bfeaff9ddb99f3309560c",
+      "company": "Booz Allen",
+      "title": "University - 2027 Summer Games Cyber Security Intern - Atlanta, GA",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University---2027-Summer-Games-Cyber-Security-Intern---Atlanta--GA_R0248139",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "3c4bfeaff9ddb99f3309560c"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University---2027-Summer-Games-Cyber-Security-Intern---Atlanta--GA_R0248139"
+      ],
+      "sources": [
+        "Internship Engine",
+        "Aprameya Summer Internships 2027",
+        "Keryx Non-Software Summer 2027",
+        "Open-Tech-Internships-2027 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University---2027-Summer-Games-Cyber-Security-Intern---Atlanta--GA_R0248139",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Atlanta-GA/University---2027-Summer-Games-Cyber-Security-Intern---Atlanta--GA_R0248139",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1216
+          },
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2275
+          },
+          {
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1440
+          },
+          {
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1834
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248138",
+      "id": "5bab33dc8b1b954225b472e5",
+      "company": "Booz Allen",
+      "title": "University - 2027 Summer Games Software Developer Intern - Atlanta, GA",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University---2027-Summer-Games-Software-Developer-Intern---Atlanta--GA_R0248138",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "5bab33dc8b1b954225b472e5"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University---2027-Summer-Games-Software-Developer-Intern---Atlanta--GA_R0248138"
+      ],
+      "sources": [
+        "Internship Engine",
+        "Aprameya Summer Internships 2027",
+        "Open-Tech-Internships-2027 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University---2027-Summer-Games-Software-Developer-Intern---Atlanta--GA_R0248138",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Atlanta-GA/University---2027-Summer-Games-Software-Developer-Intern---Atlanta--GA_R0248138",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1216
+          },
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2275
+          },
+          {
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1834
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248140",
+      "id": "b81248fee36ce32514f5a151",
+      "company": "Booz Allen",
+      "title": "University, 2027 Summer Games Data Scientist Intern - Atlanta, GA",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University--2027-Summer-Games-Data-Scientist-Intern_R0248140",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "b81248fee36ce32514f5a151"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University--2027-Summer-Games-Data-Scientist-Intern_R0248140"
+      ],
+      "sources": [
+        "Internship Engine",
+        "Aprameya Summer Internships 2027",
+        "Open-Tech-Internships-2027 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University--2027-Summer-Games-Data-Scientist-Intern_R0248140",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Atlanta-GA/University--2027-Summer-Games-Data-Scientist-Intern_R0248140",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1216
+          },
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2275
+          },
+          {
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1834
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248143",
+      "id": "634e78f41159c6f9d29d4e52",
+      "company": "Booz Allen",
+      "title": "University, 2027 Summer Games Data Scientist Intern - Rome, NY",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Rome-NY/University--2027-Summer-Games-Data-Scientist-Intern_R0248143",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "634e78f41159c6f9d29d4e52"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Rome-NY/University--2027-Summer-Games-Data-Scientist-Intern_R0248143"
+      ],
+      "sources": [
+        "Internship Engine",
+        "Aprameya Summer Internships 2027",
+        "Open-Tech-Internships-2027 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Rome-NY/University--2027-Summer-Games-Data-Scientist-Intern_R0248143",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Rome-NY/University--2027-Summer-Games-Data-Scientist-Intern_R0248143",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Rome-NY/University--2027-Summer-Games-Data-Scientist-Intern_R0248143",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1216
+          },
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2275
+          },
+          {
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1834
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248141",
+      "id": "216510c09c9c5d81452f3e6e",
+      "company": "Booz Allen",
+      "title": "University, 2027 Summer Games Software Developer Intern - Rome, NY",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Rome-NY/University--2027-Summer-Games-Software-Developer-Intern_R0248141",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "216510c09c9c5d81452f3e6e"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Rome-NY/University--2027-Summer-Games-Software-Developer-Intern_R0248141"
+      ],
+      "sources": [
+        "Internship Engine",
+        "Aprameya Summer Internships 2027",
+        "Open-Tech-Internships-2027 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Rome-NY/University--2027-Summer-Games-Software-Developer-Intern_R0248141",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Rome-NY/University--2027-Summer-Games-Software-Developer-Intern_R0248141",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Rome-NY/University--2027-Summer-Games-Software-Developer-Intern_R0248141",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-03T11:18:52.832Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1216
+          },
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2275
+          },
+          {
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1834
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    }
+  ],
   "rowCounts": {
-    "previous": 6775,
-    "current": 6776,
-    "net": 1,
+    "previous": 6776,
+    "current": 6763,
+    "net": -13,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 1,
-  "removedCount": 0,
-  "counts": {},
-  "removed": [],
-  "urlChanges": []
+  "added": 9,
+  "removedCount": 22,
+  "counts": {
+    "absent-from-employer-board": 1,
+    "pendingVerification": 14,
+    "not-returned-by-sources": 7
+  },
+  "removed": [
+    {
+      "id": "041ac0c97fe2dfaaa5a5560d",
+      "company": "Sony Interactive Entertainment",
+      "title": "QA Tester",
+      "applyUrl": "https://job-boards.greenhouse.io/sonyinteractiveentertainmentglobal/jobs/6237361004",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "6c29c2f59dfa643d7deb3235",
+      "company": "Northrop Grumman",
+      "title": "Associate Software Engineer (BM/SRM) (26-464)",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Alabama-Huntsville/Associate-Software-Engineer--BM-SRM---26-464-_R10257823",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "4e85219f765700b24c7c0728",
+      "company": "Milwaukee Tool",
+      "title": "Platform Engineer I- 2nd Shift",
+      "applyUrl": "https://tti.wd1.myworkdayjobs.com/Milwaukee/job/Olive-Branch-MS/Platform-Engineer-I--2nd-Shift_R78962",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "95f02b1e45d3ace08d2ecf22",
+      "company": "Northrop Grumman",
+      "title": "Associate Software Engineer / Software Engineer",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Alabama-Huntsville/Associate-Software-Engineer---Software-Engineer_R10257599",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "83b07f2285086c5653632074",
+      "company": "Booz Allen Hamilton",
+      "title": "Product Engineering Intern",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/McLean-VA/Product-Engineering-Intern_R0250655",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "e8eddd067c5dad4282cd98dd",
+      "company": "KLA",
+      "title": "Graduate Process Engineer",
+      "applyUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Newport-United-Kingdom/Graduate-Process-Engineer_2640286",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "83b78d396e3de7247c7274bb",
+      "company": "KLA",
+      "title": "Graduate Electrical / Electronic Engineer",
+      "applyUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Newport-United-Kingdom/Graduate-Electrical---Electronic-Engineer_2640080",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "27628bfdda91e7b96869d472",
+      "company": "KLA",
+      "title": "Graduate Mechanical Design Engineer",
+      "applyUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Newport-United-Kingdom/Graduate-Mechanical-Design-Engineer_2640076",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "c2e19afff7231bb046a4edaa",
+      "company": "Allegion",
+      "title": "Summer Intern - Hardware Engineering - Indianapolis, Indiana",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering---Indianapolis--Indiana_JR37467-1",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "6df28b43b16a70579b67bff6",
+      "company": "Allegion",
+      "title": "Summer Intern - Product Assurance Test Engineer",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Colorado-Springs-CO/Summer-Intern---Product-Assurance-Test-Engineer_JR37380-1",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "6072dfa63ce7ec5c7c83651e",
+      "company": "Sierra Space",
+      "title": "Manufacturing Engineer I",
+      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Manufacturing-Engineer-I_R26130-1",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "fc75724a061f38d1d772d9a4",
+      "company": "Booz Allen Hamilton",
+      "title": "University - 2027 Summer Games Systems Engineer Intern - Charleston, SC",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Charleston-SC/University---2027-Summer-Games-Systems-Engineer-Intern---Charleston--SC_R0248369",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "7a9f739be04535cb63615fcf",
+      "company": "Booz Allen Hamilton",
+      "title": "University - 2027 Summer Games Systems Engineer Intern - Honolulu, HI",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Honolulu-HI/University---2027-Summer-Games-Systems-Engineer-Intern---Honolulu--HI_R0248370",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "01ae0bf0a8f66be3a0b8626b",
+      "company": "Booz Allen Hamilton",
+      "title": "University - 2027 Summer Games Systems Engineer Intern - McLean, VA",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/McLean-VA/University---2027-Summer-Games-Systems-Engineer-Intern---McLean--VA_R0248361",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "0da422864632f93ab5025eec",
+      "company": "Booz Allen Hamilton",
+      "title": "University - 2027 Summer Games Systems Engineer Intern - Colorado Springs, CO",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Colorado-Springs-CO/University---2027-Summer-Games-Systems-Engineer-Intern---Colorado-Springs--CO_R0248368",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "f0ad830bddd979c1aa1f1fd1",
+      "company": "Booz Allen Hamilton",
+      "title": "University - 2027 Summer Games Systems Engineer Intern - San Diego, CA",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/San-Diego-CA/University---2027-Summer-Games-Systems-Engineer-Intern---San-Diego--CA_R0248365",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "897f2add1ed0ffaf0364f96e",
+      "company": "Booz Allen Hamilton",
+      "title": "University - 2027 Summer Games, Systems Engineer Intern - Atlanta, GA",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Atlanta-GA/University---2027-Summer-Games--Systems-Engineer-Intern---Atlanta--GA_R0248381",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "3c4bfeaff9ddb99f3309560c",
+      "company": "Booz Allen",
+      "title": "University - 2027 Summer Games Cyber Security Intern - Atlanta, GA",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University---2027-Summer-Games-Cyber-Security-Intern---Atlanta--GA_R0248139",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "5bab33dc8b1b954225b472e5",
+      "company": "Booz Allen",
+      "title": "University - 2027 Summer Games Software Developer Intern - Atlanta, GA",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University---2027-Summer-Games-Software-Developer-Intern---Atlanta--GA_R0248138",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "b81248fee36ce32514f5a151",
+      "company": "Booz Allen",
+      "title": "University, 2027 Summer Games Data Scientist Intern - Atlanta, GA",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University--2027-Summer-Games-Data-Scientist-Intern_R0248140",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "634e78f41159c6f9d29d4e52",
+      "company": "Booz Allen",
+      "title": "University, 2027 Summer Games Data Scientist Intern - Rome, NY",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Rome-NY/University--2027-Summer-Games-Data-Scientist-Intern_R0248143",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "216510c09c9c5d81452f3e6e",
+      "company": "Booz Allen",
+      "title": "University, 2027 Summer Games Software Developer Intern - Rome, NY",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Rome-NY/University--2027-Summer-Games-Software-Developer-Intern_R0248141",
+      "reason": "pendingVerification"
+    }
+  ],
+  "urlChanges": [
+    {
+      "id": "2bb958c8b8d63375e986a4c2",
+      "previousUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-CA-Vandenberg-AFB/Software-Engineer-Junior_R0173629",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-CA-Vandenberg-AFB/Software-Engineer-Junior_R0173629"
+    },
+    {
+      "id": "456a41d9e53e1db90e2a17de",
+      "previousUrl": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Newark-NJ/XMLNAME-2027-Summer-Internship-Program---Office-of-Employee-Benefits--Investment-Management-_R-0000033872",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Newark-NJ/XMLNAME-2027-Summer-Internship-Program---Office-of-Employee-Benefits--Investment-Management-_R-0000033872"
+    },
+    {
+      "id": "5a0420fb78f3c9322cd2c142",
+      "previousUrl": "https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Ottawa/Software-Developer-Intern---Winter-2027_R031953-1",
+      "applyUrl": "https://ciena.wd5.myworkdayjobs.com/Careers/job/Ottawa/Software-Developer-Intern---Winter-2027_R031953-1"
+    },
+    {
+      "id": "9937fd1bff3b8cb8889c9111",
+      "previousUrl": "https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Atlanta/Software-Engineer--Security----Intern--Winter-2027-_R031926",
+      "applyUrl": "https://ciena.wd5.myworkdayjobs.com/Careers/job/Atlanta/Software-Engineer--Security----Intern--Winter-2027-_R031926"
+    },
+    {
+      "id": "2c6c3377e59f8bb621c7202a",
+      "previousUrl": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Cleveland-OH/SCS---Advanced-Analytics-Intern---2027_R-0000033622",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Cleveland-OH/SCS---Advanced-Analytics-Intern---2027_R-0000033622"
+    },
+    {
+      "id": "b22c93f5de0742485063ac7a",
+      "previousUrl": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634"
+    },
+    {
+      "id": "e495c163e9ff0b8fa82b7f58",
+      "previousUrl": "https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Atlanta/WaveLogic-Software-Intern-Spring-2027_R031692",
+      "applyUrl": "https://ciena.wd5.myworkdayjobs.com/Careers/job/Atlanta/WaveLogic-Software-Intern-Spring-2027_R031692"
+    },
+    {
+      "id": "5de568452af5b4e0653b8862",
+      "previousUrl": "https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Atlanta/WaveLogic-Software-Intern--Summer-2027-_R031695",
+      "applyUrl": "https://ciena.wd5.myworkdayjobs.com/Careers/job/Atlanta/WaveLogic-Software-Intern--Summer-2027-_R031695"
+    },
+    {
+      "id": "20d96af8f8544bd732d48122",
+      "previousUrl": "https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Ottawa/AI---Automation-Intern---GCN-Services-Business-Operations_R031664",
+      "applyUrl": "https://ciena.wd5.myworkdayjobs.com/Careers/job/Ottawa/AI---Automation-Intern---GCN-Services-Business-Operations_R031664"
+    },
+    {
+      "id": "5c1f6f1c302a6bd0b036e695",
+      "previousUrl": "https://kbr.wd5.myworkdayjobs.com/en-US/kbr_careers/job/Sioux-Falls-South-Dakota/Image-Processing-Software-Engineer-Intern_R2130067",
+      "applyUrl": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Sioux-Falls-South-Dakota/Image-Processing-Software-Engineer-Intern_R2130067"
+    },
+    {
+      "id": "d57968f68170626f4b62e1a1",
+      "previousUrl": "https://kbr.wd5.myworkdayjobs.com/en-US/kbr_careers/job/Sioux-Falls-South-Dakota/Data-Processing-Systems-Engineer-Intern_R2130060",
+      "applyUrl": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Sioux-Falls-South-Dakota/Data-Processing-Systems-Engineer-Intern_R2130060"
+    },
+    {
+      "id": "06ed362ab3037d5ebcbff4a6",
+      "previousUrl": "https://allegion.wd5.myworkdayjobs.com/en-US/careers/job/Carmel-IN/Summer-Intern--User-Experience--UX--Research_JR37497",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern--User-Experience--UX--Research_JR37497"
+    },
+    {
+      "id": "c152aaeef29d4094fa0377ee",
+      "previousUrl": "https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Atlanta/WaveLogic-Software-Developer---New-Grad_R031608",
+      "applyUrl": "https://ciena.wd5.myworkdayjobs.com/Careers/job/Atlanta/WaveLogic-Software-Developer---New-Grad_R031608"
+    },
+    {
+      "id": "af25515264c9c9abc2c082aa",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037"
+    }
+  ]
 }
