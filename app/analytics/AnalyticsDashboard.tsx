@@ -4,6 +4,8 @@ import { activityConfigured, activityEndpoint, setOwnerExclusion } from "@/lib/a
 import type { ActivityReport } from "@/lib/activity-contract";
 import type { JobsSummary } from "@/lib/job-summary";
 import { SourceHealthSummary } from "../SourceHealthSummary";
+const localReports = process.env.NODE_ENV === "development";
+const reportsConfigured = localReports || activityConfigured;
 const number = (value: number) => value.toLocaleString("en-US");
 const percent = (n: number, d: number) => d ? `${(100 * n / d).toFixed(1)}%` : "No data";
 const label = (value: string) => ({fulltime: "Early career", internships: "Internships", direct_unknown: "Direct or unknown"}[value] ?? value.replaceAll("_", " "));
@@ -14,19 +16,20 @@ export function AnalyticsDashboard() {
   const [loading, setLoading] = useState(false);
   const [unlocked, setUnlocked] = useState(false);
   const [message, setMessage] = useState("");
-  const [excluded, setExcluded] = useState(true);
   const token = useRef("");
   const request = useRef<AbortController | null>(null);
   useEffect(() => { setOwnerExclusion(true); return () => { request.current?.abort(); token.current = ""; }; }, []);
   async function loadReport(secret: string, nextRange: ActivityReport["range"]) {
-    if (!activityConfigured) return;
+    if (!reportsConfigured) return;
     request.current?.abort();
     const controller = new AbortController();
     request.current = controller;
     setLoading(true); setMessage(""); setReport(null);
     const timer = window.setTimeout(() => controller.abort(), 15000);
     try {
-      const url = new URL("/report", activityEndpoint);
+      const url = localReports
+        ? new URL("/__owner-report", window.location.origin)
+        : new URL("/report", activityEndpoint);
       url.searchParams.set("range", nextRange);
       const response = await fetch(url, {
         headers: { Authorization: `Bearer ${secret}` }, credentials: "omit", cache: "no-store",
@@ -48,11 +51,11 @@ export function AnalyticsDashboard() {
   function connect(event: FormEvent) { event.preventDefault(); void loadReport(draft.trim(), range); }
   function lock() { request.current?.abort(); request.current = null; token.current = ""; setUnlocked(false); setDraft(""); setReport(null); setMessage(""); setLoading(false); }
   return <section className={`analytics-shell${unlocked ? "" : " analytics-locked"}`}>
-    {unlocked ? <><h1 className="sr-only">Analytics dashboard</h1><label className="analytics-exclusion"><input type="checkbox" checked={excluded} onChange={(event) => { setExcluded(event.target.checked); setOwnerExclusion(event.target.checked); }} />Exclude this browser from activity collection</label></> : <form className="analytics-access" onSubmit={connect}>
+    {unlocked ? <h1 className="sr-only">Analytics dashboard</h1> : <form className="analytics-access" onSubmit={connect}>
       <h1>Analytics dashboard</h1>
       <input type="text" name="username" autoComplete="username" value="empluzzed-owner" readOnly hidden />
       <label><span className="sr-only">Password</span><input name="password" type="password" placeholder="Password" autoComplete="current-password" spellCheck={false} required minLength={43} maxLength={128} value={draft} onChange={(event) => setDraft(event.target.value)} /></label>
-      <button className="button primary" disabled={loading || !activityConfigured}>{loading ? "Opening..." : "Open dashboard"}</button>
+      <button className="button primary" disabled={loading || !reportsConfigured}>{loading ? "Opening..." : "Open dashboard"}</button>
       <p role="status" aria-live="polite">{message}</p>
     </form>}
     {unlocked && message ? <p role="status" aria-live="polite">{message}</p> : null}
@@ -81,7 +84,7 @@ function ReportContent({ report }: { report: ActivityReport }) {
     return [...counts].sort((a,b) => b[1]-a[1]);
   };
   const zero = report.breakdown.filter(row => row.name === "filter_use" && row.dimension.endsWith(":zero")).reduce((sum,row) => sum+row.count,0);
-  return <>
+  return <div className={`analytics-report analytics-report-${view}`}>
     <div className="analytics-view-controls"><div className="analytics-segments analytics-period-switch" data-view={view} aria-label="Reporting period"><button type="button" aria-pressed={monthlyView} onClick={() => setView("month")}>Month</button><button type="button" aria-pressed={!monthlyView} onClick={() => setView("all")}>All time</button></div>{monthlyView ? <label className="analytics-day-picker"><span className="sr-only">Select month</span><select value={month} onChange={event => setMonth(event.target.value)}>{[...new Set([report.end.slice(0,7), ...months.map(row => row.month)])].sort().reverse().map(value => <option key={value} value={value}>{new Date(value+"-01T00:00Z").toLocaleDateString("en-US",{month:"long",year:"numeric",timeZone:"UTC"})}</option>)}</select></label> : null}</div>
     {report.daily.some(row => row.limited) ? <p className="analytics-warning">Some days reached a collection limit. Their counts are incomplete.</p> : null}
     {monthlyView ? <div className="analytics-metrics">
@@ -95,22 +98,24 @@ function ReportContent({ report }: { report: ActivityReport }) {
       <Metric title="Employer-link clickers" value={number(report.totals.applied)} detail={`${percent(report.totals.applied,report.totals.visitors)} of visitors opened an employer link. This does not confirm an application.`} />
       <Metric title="Returning visitors" value={number(report.totals.returning)} detail={`${percent(report.totals.returning,report.totals.visitors)} were seen on an earlier UTC day, including earlier in this period.`} />
     </div>}
-    <ActivityTrend key={`${view}-${month}`} report={report} month={monthlyView ? month : null} />
-    {!monthlyView ? <section className="analytics-panel analytics-actions"><h2>What people actually use</h2><p className="analytics-caption">Visitors count once per feature. Actions include repeated uses. One bulk tracker addition counts as one action.</p><div className="analytics-table-scroll"><table className="analytics-table"><thead><tr><th scope="col">Feature</th><th scope="col">Visitors</th><th scope="col">Share of visitors</th><th scope="col">Actions</th></tr></thead><tbody>{features.map(([name,people,actions]) => <tr key={name}><th scope="row">{name}</th><td>{number(people)}</td><td>{percent(people,report.totals.visitors)}</td><td>{number(actions)}</td></tr>)}</tbody></table></div><p className="analytics-caption">Zero-result filter uses: {number(zero)} of {number(events("filter_use"))} ({percent(zero,events("filter_use"))}).</p></section> : null}
+    <section aria-label="Overview" className="analytics-section analytics-overview"><div className="analytics-workspace"><ActivityTrend key={`${view}-${month}`} report={report} month={monthlyView ? month : null} />
+    <div className="analytics-sidebar">{!monthlyView ? <section className="analytics-panel analytics-actions"><h2>What people actually use</h2><p className="analytics-caption">Unique browsers per feature. Actions include repeat use.</p><div className="analytics-table-scroll"><table className="analytics-table"><thead><tr><th scope="col">Feature</th><th scope="col">Visitors</th><th scope="col">Share of visitors</th><th scope="col">Actions</th></tr></thead><tbody>{features.map(([name,people,actions]) => <tr key={name}><th scope="row">{name}</th><td>{number(people)}</td><td>{percent(people,report.totals.visitors)}</td><td>{number(actions)}</td></tr>)}</tbody></table></div><p className="analytics-caption">Zero-result filter uses: {number(zero)} of {number(events("filter_use"))} ({percent(zero,events("filter_use"))}).</p></section> : null}
     <section className="analytics-panel analytics-months"><h2>Monthly totals</h2>{report.monthly?.length ? <div className="analytics-table-scroll"><table className="analytics-table"><thead><tr><th scope="col">Month</th><th scope="col">Visitors</th><th scope="col">Engaged</th><th scope="col">Link clickers</th><th scope="col">Clicks</th></tr></thead><tbody>{report.monthly.map(row => <tr key={row.month}><th scope="row">{new Date(row.month+"-01T00:00Z").toLocaleDateString("en-US",{month:"long",year:"numeric",timeZone:"UTC"})}<small>{row.month === report.end.slice(0,7) ? "In progress" : "Closed month"}{report.trackingSince?.startsWith(row.month) ? " · Collection started " + report.trackingSince.slice(0,10) : ""}{row.limited ? " · Incomplete collection" : ""}</small></th><td>{number(row.visitors)}</td><td>{number(row.active)}</td><td>{number(row.applied)}</td><td>{number(row.clicks)}</td></tr>)}</tbody></table></div> : <p className="analytics-caption">Monthly history will appear after the collector update. No estimates are substituted for unavailable months.</p>}</section>
-    {!monthlyView ? <details className="analytics-panel analytics-definitions"><summary>Explore traffic and collection health</summary><div className="analytics-grid"><CountTable title="Boards" rows={grouped("board")} subtitle="Page views, including repeat navigation." /><CountTable title="Traffic sources" rows={grouped("source")} subtitle="Page-view referrers, including internal navigation. These are not unique arrivals or channel conversions." /><CountTable title="Devices" rows={grouped("device")} subtitle="Page views by estimated device type." /></div><BoardHealth /><p>Last accepted event: {report.lastReceivedAt ?? "None"}. Safety limits: {number(report.limits.dailyEvents)} events per day, {report.limits.browserDailyEvents} per browser per day.</p></details> : null}
-    <details className="analytics-panel analytics-definitions"><summary>What these numbers can and cannot tell you</summary><p>These are consenting observed browsers, not verified people. Blockers, privacy signals, cleared storage, different devices and collection outages affect counts. Browser identities expire after 180 days. Owner exclusion applies to this browser.</p><p>Engaged visitors and feature groups overlap. They are not a sequential funnel. Returning means seen on an earlier UTC day, not necessarily in a previous month. Employer-link clicks are not submitted applications. Tracker additions measure feature use, never record contents.</p><p>All time starts when collection began. Daily detail is scheduled for deletion after 90 days; failures can delay cleanup. Closed-month summaries preserve aggregate counts without extra browser identities. Missing history is unavailable, not zero.</p></details>
-    <button type="button" className="button secondary" onClick={() => {
-      const url = URL.createObjectURL(new Blob([JSON.stringify(report,null,2)],{type:"application/json"}));
-      const a = document.createElement("a"); a.href=url; a.download=`empluzzed-activity-${report.end}.json`; a.click(); URL.revokeObjectURL(url);
-    }}>Download full report JSON</button>
-  </>;
+    </div></div></section>
+    <section aria-labelledby="analytics-traffic-heading" className="analytics-section analytics-traffic">
+      <h2 id="analytics-traffic-heading" className="analytics-traffic-heading">Traffic &amp; health</h2>
+      <p className="analytics-caption analytics-tab-context">All-time traffic since collection began. These page-view counts include repeat navigation and are separate from the selected month.</p>
+      <div className="analytics-traffic-grid"><CountTable title="Boards" rows={grouped("board")} subtitle="Page views by job board." /><CountTable title="Traffic sources" rows={grouped("source")} subtitle="Page-view referrers, not unique arrivals or conversions." /><CountTable title="Devices" rows={grouped("device")} subtitle="Page views by estimated device type." /></div>
+      <BoardHealth />
+      <p className="analytics-caption analytics-tab-context">Last accepted event: {report.lastReceivedAt ?? "None"}. Collection limits: {number(report.limits.dailyEvents)} events per day, {report.limits.browserDailyEvents} per browser per day.</p>
+    </section>
+  </div>;
 }
 function Metric({ title, value, detail }: { title: string; value: string; detail: string }) {
   return <div className="analytics-panel analytics-metric"><span>{title}</span><strong>{value}</strong><small>{detail}</small></div>;
 }
 function CountTable({title,rows,subtitle}:{title:string;rows:[string,number][];subtitle:string}) {
-  return <section><h3>{title}</h3><p className="analytics-caption">{subtitle}</p><table className="analytics-table"><thead><tr><th scope="col">Category</th><th scope="col">Views</th></tr></thead><tbody>{rows.map(([name,count]) => <tr key={name}><th scope="row">{label(name)}</th><td>{number(count)}</td></tr>)}{!rows.length ? <tr><td colSpan={2}>No recorded views.</td></tr> : null}</tbody></table></section>;
+  return <section className="analytics-panel"><h2>{title}</h2><p className="analytics-caption">{subtitle}</p><table className="analytics-table"><thead><tr><th scope="col">Category</th><th scope="col">Views</th></tr></thead><tbody>{rows.map(([name,count]) => <tr key={name}><th scope="row">{label(name)}</th><td>{number(count)}</td></tr>)}{!rows.length ? <tr><td colSpan={2}>No recorded views.</td></tr> : null}</tbody></table></section>;
 }
 function ActivityTrend({report, month}:{report:ActivityReport; month:string | null}) {
   const daily = month !== null;
@@ -147,7 +152,7 @@ function ActivityTrend({report, month}:{report:ActivityReport; month:string | nu
           point.x = event.clientX; point.y = event.clientY;
           const pointerX = point.matrixTransform(transform.inverse()).x;
           setSelected(pointerX < (x(rows[i-1].day) + x(row.day)) / 2 ? rows[i-1].day : row.day);
-        }} style={{cursor:"crosshair"}} /></g> : null}<circle cx={x(row.day)} cy={y(row.visitors)} r={selectedRow?.day===row.day ? 7 : 5} fill={row.limited ? "#f3d398" : "#bba2ff"} tabIndex={0} role="button" aria-label={`${row.day}: ${row.visitors} visitors`} onFocus={()=>setSelected(row.day)} onPointerEnter={()=>setSelected(row.day)} onClick={()=>setSelected(row.day)} onKeyDown={event=>{if(event.key==="Enter" || event.key===" "){event.preventDefault();setSelected(row.day);}}}><title>{row.day}: {row.visitors}</title></circle></g>)}
+        }} style={{cursor:"pointer"}} /></g> : null}<circle cx={x(row.day)} cy={y(row.visitors)} r={selectedRow?.day===row.day ? 7 : 5} fill={row.limited ? "#f3d398" : "#bba2ff"} tabIndex={0} role="button" aria-label={`${row.day}: ${row.visitors} visitors`} onFocus={()=>setSelected(row.day)} onPointerEnter={()=>setSelected(row.day)} onClick={()=>setSelected(row.day)} onKeyDown={event=>{if(event.key==="Enter" || event.key===" "){event.preventDefault();setSelected(row.day);}}}><title>{row.day}: {row.visitors}</title></circle></g>)}
         {ticks.map(day=><text key={day} x={48+(day-1)/(lastDay-1)*804} y="217" textAnchor="middle" fill="currentColor" fontSize="12">{month?.slice(5)}-{String(day).padStart(2,"0")}</text>)}
       </svg>
       {rows.length ? <label className="analytics-day-picker">Inspect a day<select value={selectedRow?.day ?? ""} onChange={event=>setSelected(event.target.value)}>{rows.map(row=><option key={row.day} value={row.day}>{row.day}</option>)}</select></label> : <p className="analytics-caption">Daily detail is retained for 90 days. Older monthly totals remain available when archived.</p>}
@@ -158,7 +163,7 @@ function ActivityTrend({report, month}:{report:ActivityReport; month:string | nu
       {monthRows.length ? <svg viewBox="0 0 900 230" role="group" aria-label="All-time chart of unique visitors per month">
         {[0,.5,1].map(t=><g key={t}><line x1="48" y1={y(peak*t)} x2="852" y2={y(peak*t)} stroke="currentColor" opacity=".12"/><text x="35" y={y(peak*t)+4} textAnchor="end" fill="currentColor" fontSize="12">{Number((peak*t).toFixed(1))}</text></g>)}
         {monthRows.map((row,i)=><g key={row.month}>
-          {i>0 && monthIndex(row.month)-monthIndex(monthRows[i-1].month)===1 ? <g><line x1={monthX(monthRows[i-1].month)} y1={y(monthRows[i-1].visitors)} x2={monthX(row.month)} y2={y(row.visitors)} stroke="#bba2ff" strokeWidth="3" pointerEvents="none"/><line x1={monthX(monthRows[i-1].month)} y1={y(monthRows[i-1].visitors)} x2={monthX(row.month)} y2={y(row.visitors)} stroke="transparent" strokeWidth="20" pointerEvents="stroke" style={{cursor:"crosshair"}} onPointerMove={event=>{
+          {i>0 && monthIndex(row.month)-monthIndex(monthRows[i-1].month)===1 ? <g><line x1={monthX(monthRows[i-1].month)} y1={y(monthRows[i-1].visitors)} x2={monthX(row.month)} y2={y(row.visitors)} stroke="#bba2ff" strokeWidth="3" pointerEvents="none"/><line x1={monthX(monthRows[i-1].month)} y1={y(monthRows[i-1].visitors)} x2={monthX(row.month)} y2={y(row.visitors)} stroke="transparent" strokeWidth="20" pointerEvents="stroke" style={{cursor:"pointer"}} onPointerMove={event=>{
             const svg=event.currentTarget.ownerSVGElement; const transform=svg?.getScreenCTM();
             if(!svg || !transform) return;
             const point=svg.createSVGPoint(); point.x=event.clientX; point.y=event.clientY;

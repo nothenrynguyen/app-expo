@@ -50,7 +50,7 @@ export function AnalyticsControls() {
       document.removeEventListener("keydown", dismissEscape);
     };
   }, [preferencesOpen, consent]);
-  const showChoice = preferencesOpen || (ready && enabled && consent === "unset" && !privacySignal);
+  const showChoice = pathname !== "/analytics" && (preferencesOpen || (ready && enabled && consent === "unset" && !privacySignal));
   return (
     <>
       {activityConfigured ? <ActivityTracking allowed={enabled && consent === "allowed" && !privacySignal} /> : null}
