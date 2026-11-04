@@ -1,251 +1,80 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-04T00:25:09.535Z",
-  "previousGeneratedAt": "2026-11-03T23:24:40.638Z",
-  "currentSnapshotGeneratedAt": "2026-11-04T00:25:09.535Z",
+  "generatedAt": "2026-11-04T01:25:26.802Z",
+  "previousGeneratedAt": "2026-11-04T00:25:09.535Z",
+  "currentSnapshotGeneratedAt": "2026-11-04T01:25:26.802Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6855,
-    "current": 6849,
+    "previous": 6849,
+    "current": 6852,
     "retained": 6844,
-    "added": 5,
-    "removed": 11,
-    "net": -6
+    "added": 8,
+    "removed": 5,
+    "net": 3
   },
   "categoryCounts": {
-    "confirmed-closed": 1,
-    "scope-exclusion": 0,
+    "confirmed-closed": 0,
+    "scope-exclusion": 1,
     "verification-pending": 1,
     "source-unavailable": 2,
-    "unresolved": 7,
+    "unresolved": 1,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "workday:abbott.wd5.myworkdayjobs.com:abbottcareers:31166505",
-      "id": "e0e0d8fa2977fb63620adb9d",
-      "company": "Abbott",
-      "title": "Associate Manufacturing Engineer",
-      "applyUrl": "https://abbott.wd5.myworkdayjobs.com/abbottcareers/job/United-States---Texas---Irving/Associate-Manufacturing-Engineer_31166505",
-      "reason": "not-returned-by-sources",
+      "identity": "job-boards.greenhouse.io:8919274002",
+      "id": "553c10d4e21cf80cec5d2b3a",
+      "company": "KnowBe4",
+      "title": "Associate Product Manager Summer Internship (Hybrid)",
+      "applyUrl": "https://job-boards.greenhouse.io/knowbe4/jobs/8919274002",
+      "reason": "location",
       "previousIds": [
-        "e0e0d8fa2977fb63620adb9d"
+        "553c10d4e21cf80cec5d2b3a"
       ],
       "previousUrls": [
-        "https://abbott.wd5.myworkdayjobs.com/abbottcareers/job/United-States---Texas---Irving/Associate-Manufacturing-Engineer_31166505"
+        "https://job-boards.greenhouse.io/knowbe4/jobs/8919274002"
       ],
       "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-04T00:18:40.467Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:abbott.wd5.myworkdayjobs.com:abbottcareers",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01886197",
-      "id": "a26c2a6cd957a485311785f9",
-      "company": "Raytheon",
-      "title": "Systems Engineering Intern, St. Petersburg, FL (Onsite)",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-FL-ST-PETERSBURG-381BD--7401-22nd-Ave-N--BLDG-D/Systems-Engineering-Intern--St-Petersburg--FL--Onsite-_01886197",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "a26c2a6cd957a485311785f9"
-      ],
-      "previousUrls": [
-        "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-FL-ST-PETERSBURG-381BD--7401-22nd-Ave-N--BLDG-D/Systems-Engineering-Intern--St-Petersburg--FL--Onsite-_01886197"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-04T00:18:40.467Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "job-boards.greenhouse.io:8811546002",
-      "id": "d12ed931bced76b078aab807",
-      "company": "Rothesay",
-      "title": "2027 Summer Internship Programme - Capital & Pricing Actuarial",
-      "applyUrl": "https://job-boards.greenhouse.io/rothesaygraduates/jobs/8811546002",
-      "reason": "absent-from-employer-board",
-      "previousIds": [
-        "d12ed931bced76b078aab807"
-      ],
-      "previousUrls": [
-        "https://job-boards.greenhouse.io/rothesaygraduates/jobs/8811546002"
-      ],
-      "sources": [
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-04T00:18:40.467Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:rothesaygraduates",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "job-boards.greenhouse.io:8279305",
-      "id": "4a620f1fdd48691dad92a449",
-      "company": "CLEAR",
-      "title": "Sales Development Representative, Healthcare (C1 - B2B)",
-      "applyUrl": "https://job-boards.greenhouse.io/clear/jobs/8279305",
-      "reason": "absent-from-employer-board",
-      "previousIds": [
-        "4a620f1fdd48691dad92a449"
-      ],
-      "previousUrls": [
-        "https://job-boards.greenhouse.io/clear/jobs/8279305"
-      ],
-      "sources": [
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-04T00:18:40.467Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:clear",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:nvidia.wd5.myworkdayjobs.com:nvidiaexternalcareersite:jr2027170",
-      "id": "119d847d5bb7d28af7a23791",
-      "company": "NVIDIA",
-      "title": "AI Systems Software Engineering Intern – Summer 2027",
-      "applyUrl": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-TX-Austin/AI-Systems-Software-Engineering-Intern---Summer-2027_JR2027170",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "119d847d5bb7d28af7a23791"
-      ],
-      "previousUrls": [
-        "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-TX-Austin/AI-Systems-Software-Engineering-Intern---Summer-2027_JR2027170"
-      ],
-      "sources": [
-        "Internship Engine",
+        "ApplyGuy Product Internships 2027",
         "Aprameya Summer Internships 2027",
-        "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027"
+        "Direct ATS (Greenhouse)"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-TX-Austin/AI-Systems-Software-Engineering-Intern---Summer-2027_JR2027170",
+            "url": "https://job-boards.greenhouse.io/knowbe4/jobs/8919274002",
             "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
           },
           {
-            "url": "https://nvidia.wd5.myworkdayjobs.com/en-US/NVIDIAExternalCareerSite/job/US-TX-Austin/AI-Systems-Software-Engineering-Intern---Summer-2027_JR2027170",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
+            "url": "https://job-boards.greenhouse.io/knowbe4/jobs/8919274002",
+            "reason": "location",
+            "detail": null
           }
         ],
-        "runStartedAt": "2026-11-04T00:18:40.467Z",
-        "postingCheck": null,
+        "runStartedAt": "2026-11-04T01:18:46.725Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-11-01T22:23:37.097Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
         "workdayChecks": [],
         "board": {
-          "id": "workday:nvidia.wd5.myworkdayjobs.com:nvidiaexternalcareersite",
+          "id": "greenhouse:knowbe4",
           "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
+          "outcome": null,
+          "membership": "absent",
           "retired": false
         },
         "sources": [
           {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
+            "name": "ApplyGuy Product Internships 2027",
+            "diagnosticName": "ApplyGuy Product Internships 2027",
             "status": "ok",
             "outcome": null,
-            "rows": 1233
+            "rows": 59
           },
           {
             "name": "Aprameya Summer Internships 2027",
@@ -255,31 +84,31 @@
             "rows": 2316
           },
           {
-            "name": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-            "diagnosticName": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-            "status": "ok",
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
             "outcome": null,
-            "rows": 560
+            "rows": null
           }
         ]
       },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
+      "category": "scope-exclusion",
+      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
+      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
+      "requiresInvestigation": false
     },
     {
-      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01879432",
-      "id": "a9e5c5ea4bafc78cb81dae7c",
-      "company": "Raytheon",
-      "title": "Software Engineer I (Onsite)",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-AZ-TUCSON-805--1151-E-Hermans-Rd--BLDG-805/Software-Engineer-I--Onsite-_01879432",
+      "identity": "workday:rockwellautomation.wd1.myworkdayjobs.com:external_rockwell_automation:r26-8514",
+      "id": "ebb78219e9626ba540282ab1",
+      "company": "Rockwell Automation",
+      "title": "Intern, Cybersecurity",
+      "applyUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/External_Rockwell_Automation/job/United-States-of-America-Milwaukee-South-2nd-Street/Intern--Cybersecurity_R26-8514-1",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "a9e5c5ea4bafc78cb81dae7c"
+        "ebb78219e9626ba540282ab1"
       ],
       "previousUrls": [
-        "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-AZ-TUCSON-805--1151-E-Hermans-Rd--BLDG-805/Software-Engineer-I--Onsite-_01879432"
+        "https://rockwellautomation.wd1.myworkdayjobs.com/External_Rockwell_Automation/job/United-States-of-America-Milwaukee-South-2nd-Street/Intern--Cybersecurity_R26-8514-1"
       ],
       "sources": [
         "Direct ATS (Workday)"
@@ -287,13 +116,13 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-04T00:18:40.467Z",
+        "runStartedAt": "2026-11-04T01:18:46.725Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
-          "status": "failed",
-          "outcome": "cooldown",
+          "id": "workday:rockwellautomation.wd1.myworkdayjobs.com:external_rockwell_automation",
+          "status": "ok",
+          "outcome": "healthy",
           "membership": "unknown",
           "retired": false
         },
@@ -307,207 +136,150 @@
           }
         ]
       },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:republic.wd5.myworkdayjobs.com:republic:r-186063",
+      "id": "6b429a684560403f213072a5",
+      "company": "Republic Services",
+      "title": "Data Analyst - Enterprise Analytics",
+      "applyUrl": "https://republic.wd5.myworkdayjobs.com/Republic/job/Phoenix-AZ-USA/Data-Analyst---Enterprise-Analytics_R-186063",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "6b429a684560403f213072a5"
+      ],
+      "previousUrls": [
+        "https://republic.wd5.myworkdayjobs.com/Republic/job/Phoenix-AZ-USA/Data-Analyst---Enterprise-Analytics_R-186063"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-04T01:18:46.725Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:republic.wd5.myworkdayjobs.com:republic",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1350
+          }
+        ]
+      },
       "category": "source-unavailable",
       "explanation": "A relevant source or posting check was unreliable; closure is not established.",
       "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
       "requiresInvestigation": true
     },
     {
-      "identity": "boards.greenhouse.io:8647452002",
-      "id": "0820e2c71bb80a09ab3efc01",
-      "company": "SpaceX",
-      "title": "Development Test Engineer, Battery (Starship Electronics)",
-      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8647452002",
-      "reason": "absent-from-employer-board",
+      "identity": "workday:ghr.wd1.myworkdayjobs.com:us-emplsv:26035240",
+      "id": "0aeae3dcee4d9b9213a53bf4",
+      "company": "Bank of America",
+      "title": "Quantitative Engineer",
+      "applyUrl": "https://ghr.wd1.myworkdayjobs.com/US-EMPLSV/job/Chicago/Quantitative-Engineer_26035240-4",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "0820e2c71bb80a09ab3efc01"
+        "0aeae3dcee4d9b9213a53bf4"
       ],
       "previousUrls": [
-        "https://boards.greenhouse.io/spacex/jobs/8647452002"
+        "https://ghr.wd1.myworkdayjobs.com/US-EMPLSV/job/Chicago/Quantitative-Engineer_26035240-4"
       ],
       "sources": [
-        "Direct ATS (Greenhouse)"
+        "Employer recovery"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-04T00:18:40.467Z",
+        "runStartedAt": "2026-11-04T01:18:46.725Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:spacex",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
+          "id": "workday:ghr.wd1.myworkdayjobs.com:us-emplsv",
+          "status": "failed",
+          "outcome": "rate_limited",
+          "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "boards.greenhouse.io:8839682002",
-      "id": "cd549d6ed1b578c5f6831c57",
-      "company": "SpaceX",
-      "title": "Supervisor, Quality Assurance (Falcon) - 2nd Shift",
-      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8839682002",
-      "reason": "absent-from-employer-board",
-      "previousIds": [
-        "cd549d6ed1b578c5f6831c57"
-      ],
-      "previousUrls": [
-        "https://boards.greenhouse.io/spacex/jobs/8839682002"
-      ],
-      "sources": [
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-04T00:18:40.467Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:spacex",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "www.usajobs.gov:888637600",
-      "id": "7adfcc2a01c3a635fae50b50",
-      "company": "Department of Energy Headquarters",
-      "title": "INTERDISCIPLINARY General Engineer (Recent Graduate)",
-      "applyUrl": "https://www.usajobs.gov/job/888637600",
-      "reason": "closed",
-      "previousIds": [
-        "7adfcc2a01c3a635fae50b50"
-      ],
-      "previousUrls": [
-        "https://www.usajobs.gov/job/888637600"
-      ],
-      "sources": [
-        "USAJOBS selective review"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://www.usajobs.gov/job/888637600",
-            "reason": "closed",
-            "detail": null
-          }
-        ],
-        "runStartedAt": "2026-11-04T00:18:40.467Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-03T10:24:09.192Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": null,
-        "sources": [
-          {
-            "name": "USAJOBS selective review",
-            "diagnosticName": "USAJOBS selective review",
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
             "status": "ok",
-            "outcome": null,
-            "rows": 11
+            "outcome": "partial",
+            "rows": 1350
           }
         ]
       },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
       "requiresInvestigation": true
     },
     {
-      "identity": "job-boards.greenhouse.io:8259714",
-      "id": "d509366b61232406b3ec963a",
-      "company": "DRW",
-      "title": "Quantitative Trading Analyst Intern - IAP Winternship (MIT Students Only)",
-      "applyUrl": "https://job-boards.greenhouse.io/drwuniversityjobs/jobs/8259714",
-      "reason": "closed",
+      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31355",
+      "id": "e40074ef200d40c15b63eb3e",
+      "company": "HNTB",
+      "title": "New Grad Structural Engineer I - Winter/Summer 2027",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
+      "reason": "pendingVerification",
       "previousIds": [
-        "d509366b61232406b3ec963a"
+        "e40074ef200d40c15b63eb3e"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/drwuniversityjobs/jobs/8259714"
+        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355"
       ],
       "sources": [
-        "Internship Engine",
-        "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-        "Direct ATS (Greenhouse)"
+        "Keryx Non-Software New Grad 2027",
+        "Direct ATS (Workday)"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://job-boards.greenhouse.io/drwuniversityjobs/jobs/8259714",
-            "reason": "closed",
-            "detail": null
-          },
-          {
-            "url": "https://job-boards.greenhouse.io/drwuniversityjobs/jobs/8259714",
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-04T00:18:40.467Z",
+        "runStartedAt": "2026-11-04T01:18:46.725Z",
         "postingCheck": null,
-        "workdayChecks": [],
+        "workdayChecks": [
+          {
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
+            "status": "unknown"
+          }
+        ],
         "board": {
-          "id": "greenhouse:drwuniversityjobs",
+          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
           "status": "ok",
-          "outcome": null,
-          "membership": "absent",
+          "outcome": "rate_limited",
+          "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
+            "name": "Keryx Non-Software New Grad 2027",
+            "diagnosticName": "Keryx Non-Software New Grad 2027",
             "status": "ok",
             "outcome": null,
-            "rows": 1233
+            "rows": 129
           },
           {
-            "name": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-            "diagnosticName": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 560
-          },
-          {
-            "name": "Direct ATS (Greenhouse)",
+            "name": "Direct ATS (Workday)",
             "diagnosticName": null,
             "status": "not-checked",
             "outcome": null,
@@ -515,154 +287,78 @@
           }
         ]
       },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
       "requiresInvestigation": true
-    },
-    {
-      "identity": "https://careers-westernsouthern.icims.com/jobs/25087/rotational-intern---accounting%2c-audit-%26-treasury-%28full-year-2027%29/job",
-      "id": "0e6d3bd504bb7df01fdec667",
-      "company": "Western & Southern",
-      "title": "Rotational Intern - Accounting, Audit & Treasury (Full Year 2027)",
-      "applyUrl": "https://careers-westernsouthern.icims.com/jobs/25087/rotational-intern---accounting%2c-audit-%26-treasury-%28full-year-2027%29/job",
-      "reason": "closed",
-      "previousIds": [
-        "0e6d3bd504bb7df01fdec667"
-      ],
-      "previousUrls": [
-        "https://careers-westernsouthern.icims.com/jobs/25087/rotational-intern---accounting%2c-audit-%26-treasury-%28full-year-2027%29/job"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://careers-westernsouthern.icims.com/jobs/25087/rotational-intern---accounting%2c-audit-%26-treasury-%28full-year-2027%29/job",
-            "reason": "closed",
-            "detail": null
-          }
-        ],
-        "runStartedAt": "2026-11-04T00:18:40.467Z",
-        "postingCheck": {
-          "status": "closed",
-          "checkedAt": "2026-11-04T00:24:49.896Z",
-          "httpStatus": 410,
-          "currentRun": true
-        },
-        "workdayChecks": [],
-        "board": null,
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 432
-          }
-        ]
-      },
-      "category": "confirmed-closed",
-      "explanation": "A posting-specific check in this refresh explicitly reported closure.",
-      "nextAction": "No recovery based only on prior publication.",
-      "requiresInvestigation": false
     }
   ],
   "rowCounts": {
-    "previous": 6855,
-    "current": 6849,
-    "net": -6,
+    "previous": 6849,
+    "current": 6852,
+    "net": 3,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 5,
-  "removedCount": 11,
+  "added": 8,
+  "removedCount": 5,
   "counts": {
+    "location": 1,
     "not-returned-by-sources": 3,
-    "absent-from-employer-board": 4,
-    "pendingVerification": 1,
-    "closed": 3
+    "pendingVerification": 1
   },
   "removed": [
     {
-      "id": "e0e0d8fa2977fb63620adb9d",
-      "company": "Abbott",
-      "title": "Associate Manufacturing Engineer",
-      "applyUrl": "https://abbott.wd5.myworkdayjobs.com/abbottcareers/job/United-States---Texas---Irving/Associate-Manufacturing-Engineer_31166505",
+      "id": "553c10d4e21cf80cec5d2b3a",
+      "company": "KnowBe4",
+      "title": "Associate Product Manager Summer Internship (Hybrid)",
+      "applyUrl": "https://job-boards.greenhouse.io/knowbe4/jobs/8919274002",
+      "reason": "location"
+    },
+    {
+      "id": "ebb78219e9626ba540282ab1",
+      "company": "Rockwell Automation",
+      "title": "Intern, Cybersecurity",
+      "applyUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/External_Rockwell_Automation/job/United-States-of-America-Milwaukee-South-2nd-Street/Intern--Cybersecurity_R26-8514-1",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "a26c2a6cd957a485311785f9",
-      "company": "Raytheon",
-      "title": "Systems Engineering Intern, St. Petersburg, FL (Onsite)",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-FL-ST-PETERSBURG-381BD--7401-22nd-Ave-N--BLDG-D/Systems-Engineering-Intern--St-Petersburg--FL--Onsite-_01886197",
+      "id": "6b429a684560403f213072a5",
+      "company": "Republic Services",
+      "title": "Data Analyst - Enterprise Analytics",
+      "applyUrl": "https://republic.wd5.myworkdayjobs.com/Republic/job/Phoenix-AZ-USA/Data-Analyst---Enterprise-Analytics_R-186063",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "d12ed931bced76b078aab807",
-      "company": "Rothesay",
-      "title": "2027 Summer Internship Programme - Capital & Pricing Actuarial",
-      "applyUrl": "https://job-boards.greenhouse.io/rothesaygraduates/jobs/8811546002",
-      "reason": "absent-from-employer-board"
+      "id": "0aeae3dcee4d9b9213a53bf4",
+      "company": "Bank of America",
+      "title": "Quantitative Engineer",
+      "applyUrl": "https://ghr.wd1.myworkdayjobs.com/US-EMPLSV/job/Chicago/Quantitative-Engineer_26035240-4",
+      "reason": "not-returned-by-sources"
     },
     {
-      "id": "4a620f1fdd48691dad92a449",
-      "company": "CLEAR",
-      "title": "Sales Development Representative, Healthcare (C1 - B2B)",
-      "applyUrl": "https://job-boards.greenhouse.io/clear/jobs/8279305",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "119d847d5bb7d28af7a23791",
-      "company": "NVIDIA",
-      "title": "AI Systems Software Engineering Intern – Summer 2027",
-      "applyUrl": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-TX-Austin/AI-Systems-Software-Engineering-Intern---Summer-2027_JR2027170",
+      "id": "e40074ef200d40c15b63eb3e",
+      "company": "HNTB",
+      "title": "New Grad Structural Engineer I - Winter/Summer 2027",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
       "reason": "pendingVerification"
-    },
-    {
-      "id": "a9e5c5ea4bafc78cb81dae7c",
-      "company": "Raytheon",
-      "title": "Software Engineer I (Onsite)",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-AZ-TUCSON-805--1151-E-Hermans-Rd--BLDG-805/Software-Engineer-I--Onsite-_01879432",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "0820e2c71bb80a09ab3efc01",
-      "company": "SpaceX",
-      "title": "Development Test Engineer, Battery (Starship Electronics)",
-      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8647452002",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "cd549d6ed1b578c5f6831c57",
-      "company": "SpaceX",
-      "title": "Supervisor, Quality Assurance (Falcon) - 2nd Shift",
-      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8839682002",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "7adfcc2a01c3a635fae50b50",
-      "company": "Department of Energy Headquarters",
-      "title": "INTERDISCIPLINARY General Engineer (Recent Graduate)",
-      "applyUrl": "https://www.usajobs.gov/job/888637600",
-      "reason": "closed"
-    },
-    {
-      "id": "d509366b61232406b3ec963a",
-      "company": "DRW",
-      "title": "Quantitative Trading Analyst Intern - IAP Winternship (MIT Students Only)",
-      "applyUrl": "https://job-boards.greenhouse.io/drwuniversityjobs/jobs/8259714",
-      "reason": "closed"
-    },
-    {
-      "id": "0e6d3bd504bb7df01fdec667",
-      "company": "Western & Southern",
-      "title": "Rotational Intern - Accounting, Audit & Treasury (Full Year 2027)",
-      "applyUrl": "https://careers-westernsouthern.icims.com/jobs/25087/rotational-intern---accounting%2c-audit-%26-treasury-%28full-year-2027%29/job",
-      "reason": "closed"
     }
   ],
-  "urlChanges": []
+  "urlChanges": [
+    {
+      "id": "82e319dc33dd275804891d73",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1"
+    },
+    {
+      "id": "9f3d0fc5083eaf102290d2ad",
+      "previousUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/External_Rockwell_Automation/job/Milwaukee-Wisconsin-United-States/Intern--Information-Technology_R26-5374-2",
+      "applyUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/en-US/external_rockwell_automation/job/Milwaukee-Wisconsin-United-States/Intern--Information-Technology_R26-5374-2"
+    },
+    {
+      "id": "c22a9ded3705b29620d52318",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---2027-New-Grad-Civil-Engineer-I--For-Current---Recent-HNTB-Interns-Only-_R-31314-1",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Salt-Lake-City-UT/WED---2027-New-Grad-Civil-Engineer-I--For-Current---Recent-HNTB-Interns-Only-_R-31314-1"
+    }
+  ]
 }
