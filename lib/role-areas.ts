@@ -105,7 +105,7 @@ export function getRoleTagsForFamily(family: RoleFamily): RoleDefinition[] {
 export function getRoleSelection(roleParam: string | null, specialtyParam: string | null): RoleSelection {
   // Preserve inbound links to the former family and the former Business design filter.
   if (roleParam === "solutions-support") return { family: "engineering", specialty: "solutions-support" };
-  if (roleParam === "business" && specialtyParam === "design") return { family: "design", specialty: "design" };
+  if (roleParam === "business" && specialtyParam === "design") return { family: "design", specialty: null };
   if (isRoleFamily(roleParam)) {
     if (!isRoleTag(specialtyParam)) return { family: roleParam, specialty: null };
     const specialty = roleDefinitionByTag.get(specialtyParam)!;

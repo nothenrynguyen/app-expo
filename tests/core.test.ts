@@ -1369,7 +1369,7 @@ test("product/program, design and support categories preserve intent and legacy 
   assert.ok(classifyRoleTags({ title: "Cloud Implementation Engineer Intern", category: "Internship", rawText: "Work directly with customers on client implementations." }).includes("solutions-support"));
   assert.deepEqual(classifyRoleTags({ title: "2027 Intern Product Support - Data Scientist", category: "Internship" }), ["data-science"]);
   assert.deepEqual(classifyRoleTags({ title: "2027 Global Product Support (GPS) Engineer I", category: "New grad" }), ["solutions-support"]);
-  assert.deepEqual(getRoleSelection("business", "design"), { family: "design", specialty: "design" });
+  assert.deepEqual(getRoleSelection("business", "design"), { family: "design", specialty: null });
   assert.equal(matchesRoleSelection({ title: "Technical Program Manager Intern", category: "Internship" }, { family: "product", specialty: "technical-program" }), true);
   assert.equal(matchesRoleSelection({ title: "UX Research Intern", category: "Internship" }, { family: "design", specialty: null }), true);
   assert.equal(matchesRoleSelection({ title: "Business Program Management Intern", category: "Internship" }, { family: "product", specialty: null }), false);
