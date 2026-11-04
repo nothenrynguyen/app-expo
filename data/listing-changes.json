@@ -1,213 +1,58 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-04T11:43:51.304Z",
-  "previousGeneratedAt": "2026-11-04T10:24:40.991Z",
-  "currentSnapshotGeneratedAt": "2026-11-04T11:43:51.304Z",
+  "generatedAt": "2026-11-04T12:24:17.069Z",
+  "previousGeneratedAt": "2026-11-04T11:43:51.304Z",
+  "currentSnapshotGeneratedAt": "2026-11-04T12:24:17.069Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6856,
-    "current": 6846,
-    "retained": 6846,
-    "added": 0,
-    "removed": 10,
-    "net": -10
+    "previous": 6846,
+    "current": 6852,
+    "retained": 6843,
+    "added": 9,
+    "removed": 3,
+    "net": 6
   },
   "categoryCounts": {
     "confirmed-closed": 0,
-    "scope-exclusion": 0,
-    "verification-pending": 8,
-    "source-unavailable": 1,
-    "unresolved": 1,
+    "scope-exclusion": 1,
+    "verification-pending": 2,
+    "source-unavailable": 0,
+    "unresolved": 0,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01885888",
-      "id": "9659cb80048632055b522d6f",
-      "company": "Raytheon",
-      "title": "Program Quality Engineer I, Woburn, MA",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-MA-WOBURN-WB1--235-Presidential-Way--SPENCER-BLDG/Program-Quality-Engineer-I--Woburn--MA_01885888",
-      "reason": "not-returned-by-sources",
+      "identity": "workday:hpe.wd5.myworkdayjobs.com:jobsathpe:1213406",
+      "id": "ba2ff66643def952d8b96a9f",
+      "company": "Hewlett Packard Enterprise",
+      "title": "Infrastructure Deployment Automation Intern",
+      "applyUrl": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/Bloomington-Minnesota-United-States-of-America/Infrastructure-Deployment-Automation-Intern_1213406",
+      "reason": "role",
       "previousIds": [
-        "9659cb80048632055b522d6f"
+        "ba2ff66643def952d8b96a9f"
       ],
       "previousUrls": [
-        "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-MA-WOBURN-WB1--235-Presidential-Way--SPENCER-BLDG/Program-Quality-Engineer-I--Woburn--MA_01885888"
+        "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/Bloomington-Minnesota-United-States-of-America/Infrastructure-Deployment-Automation-Intern_1213406"
       ],
       "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-04T11:38:24.148Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:jj.wd5.myworkdayjobs.com:jj:r-107577",
-      "id": "b8f23c31b2740f0f41c71be9",
-      "company": "Johnson & Johnson",
-      "title": "Associate Engineer",
-      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Jacksonville-Florida-United-States-of-America/Associate-Engineer_R-107577-2",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "b8f23c31b2740f0f41c71be9"
-      ],
-      "previousUrls": [
-        "https://jj.wd5.myworkdayjobs.com/JJ/job/Jacksonville-Florida-United-States-of-America/Associate-Engineer_R-107577-2"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-04T11:38:24.148Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:jj.wd5.myworkdayjobs.com:jj",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0252345",
-      "id": "42b6e6f302aeddd819615018",
-      "company": "Booz Allen Hamilton",
-      "title": "University - 2027 Summer Games Software Developer Intern - Dayton, OH",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Dayton-OH/University---2027-Summer-Games-Software-Developer-Intern---Dayton--OH_R0252345",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "42b6e6f302aeddd819615018"
-      ],
-      "previousUrls": [
-        "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Dayton-OH/University---2027-Summer-Games-Software-Developer-Intern---Dayton--OH_R0252345"
-      ],
-      "sources": [
-        "Aprameya Summer Internships 2027"
+        "Internship Engine"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Dayton-OH/University---2027-Summer-Games-Software-Developer-Intern---Dayton--OH_R0252345",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          },
-          {
-            "url": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Dayton-OH/University---2027-Summer-Games-Software-Developer-Intern---Dayton--OH_R0252345",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          },
-          {
-            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Dayton-OH/University---2027-Summer-Games-Software-Developer-Intern---Dayton--OH_R0252345",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
+            "url": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/Bloomington-Minnesota-United-States-of-America/Infrastructure-Deployment-Automation-Intern_1213406",
+            "reason": "role",
+            "detail": null
           }
         ],
-        "runStartedAt": "2026-11-04T11:38:24.148Z",
+        "runStartedAt": "2026-11-04T12:18:54.527Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2316
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248137",
-      "id": "a1e212db7d05643b9989f535",
-      "company": "Booz Allen",
-      "title": "University - 2027 Summer Games Data Scientist Intern - Charleston, SC",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Charleston-SC/University---2027-Summer-Games-Data-Scientist-Intern_R0248137",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "a1e212db7d05643b9989f535"
-      ],
-      "previousUrls": [
-        "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Charleston-SC/University---2027-Summer-Games-Data-Scientist-Intern_R0248137"
-      ],
-      "sources": [
-        "Internship Engine",
-        "Aprameya Summer Internships 2027",
-        "Open-Tech-Internships-2027 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Charleston-SC/University---2027-Summer-Games-Data-Scientist-Intern_R0248137",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          },
-          {
-            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Charleston-SC/University---2027-Summer-Games-Data-Scientist-Intern_R0248137",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-04T11:38:24.148Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
-          "status": "ok",
-          "outcome": "healthy",
+          "id": "workday:hpe.wd5.myworkdayjobs.com:jobsathpe",
+          "status": "not-checked",
+          "outcome": null,
           "membership": "unknown",
           "retired": false
         },
@@ -217,62 +62,47 @@
             "diagnosticName": "Internship Engine",
             "status": "ok",
             "outcome": null,
-            "rows": 1239
-          },
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2316
-          },
-          {
-            "name": "Open-Tech-Internships-2027 2027",
-            "diagnosticName": "Open-Tech-Internships-2027 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1828
+            "rows": 1233
           }
         ]
       },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
+      "category": "scope-exclusion",
+      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
+      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
+      "requiresInvestigation": false
     },
     {
-      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248134",
-      "id": "8be256a739708c402cf8d926",
-      "company": "Booz Allen",
-      "title": "University - 2027 Summer Games Software Developer Intern - Charleston, SC",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Charleston-SC/University---2027-Summer-Games-Software-Developer-Intern_R0248134",
+      "identity": "workday:hpe.wd5.myworkdayjobs.com:jobsathpe:1213401",
+      "id": "beb20dd1ca8d1f40d92557cd",
+      "company": "Hewlett Packard Enterprise",
+      "title": "Systems Software Engineer Intern",
+      "applyUrl": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/Bloomington-Minnesota-United-States-of-America/Systems-Software-Engineer-Intern_1213401",
       "reason": "pendingVerification",
       "previousIds": [
-        "8be256a739708c402cf8d926"
+        "beb20dd1ca8d1f40d92557cd"
       ],
       "previousUrls": [
-        "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Charleston-SC/University---2027-Summer-Games-Software-Developer-Intern_R0248134"
+        "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/Bloomington-Minnesota-United-States-of-America/Systems-Software-Engineer-Intern_1213401"
       ],
       "sources": [
-        "Internship Engine",
-        "Aprameya Summer Internships 2027"
+        "Internship Engine"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Charleston-SC/University---2027-Summer-Games-Software-Developer-Intern_R0248134",
+            "url": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/Bloomington-Minnesota-United-States-of-America/Systems-Software-Engineer-Intern_1213401",
             "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-04T11:38:24.148Z",
+        "runStartedAt": "2026-11-04T12:18:54.527Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
-          "status": "ok",
-          "outcome": "healthy",
+          "id": "workday:hpe.wd5.myworkdayjobs.com:jobsathpe",
+          "status": "not-checked",
+          "outcome": null,
           "membership": "unknown",
           "retired": false
         },
@@ -282,14 +112,7 @@
             "diagnosticName": "Internship Engine",
             "status": "ok",
             "outcome": null,
-            "rows": 1239
-          },
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2316
+            "rows": 1233
           }
         ]
       },
@@ -299,45 +122,37 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248131",
-      "id": "0cb11c1c6a39120a1df87883",
-      "company": "Booz Allen",
-      "title": "University, 2027 Summer Games Cyber Security Intern - Colorado Springs, CO",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Colorado-Springs-CO/University--2027-Summer-Games-Cybersecurity-Intern_R0248131",
+      "identity": "workday:hpe.wd5.myworkdayjobs.com:jobsathpe:1214950",
+      "id": "1f3df2c02d11ccfefe504b3b",
+      "company": "Hewlett Packard Enterprise",
+      "title": "Cloud Developer Intern",
+      "applyUrl": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/San-Jose-California-United-States-of-America/Cloud-Developer-Intern_1214950",
       "reason": "pendingVerification",
       "previousIds": [
-        "0cb11c1c6a39120a1df87883"
+        "1f3df2c02d11ccfefe504b3b"
       ],
       "previousUrls": [
-        "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Colorado-Springs-CO/University--2027-Summer-Games-Cybersecurity-Intern_R0248131"
+        "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/San-Jose-California-United-States-of-America/Cloud-Developer-Intern_1214950"
       ],
       "sources": [
-        "Internship Engine",
-        "Aprameya Summer Internships 2027",
-        "Keryx Non-Software Summer 2027",
-        "Open-Tech-Internships-2027 2027"
+        "Internship Engine"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Colorado-Springs-CO/University--2027-Summer-Games-Cybersecurity-Intern_R0248131",
+            "url": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/San-Jose-California-United-States-of-America/Cloud-Developer-Intern_1214950",
             "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          },
-          {
-            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Colorado-Springs-CO/University--2027-Summer-Games-Cybersecurity-Intern_R0248131",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-04T11:38:24.148Z",
+        "runStartedAt": "2026-11-04T12:18:54.527Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
-          "status": "ok",
-          "outcome": "healthy",
+          "id": "workday:hpe.wd5.myworkdayjobs.com:jobsathpe",
+          "status": "not-checked",
+          "outcome": null,
           "membership": "unknown",
           "retired": false
         },
@@ -347,312 +162,7 @@
             "diagnosticName": "Internship Engine",
             "status": "ok",
             "outcome": null,
-            "rows": 1239
-          },
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2316
-          },
-          {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1497
-          },
-          {
-            "name": "Open-Tech-Internships-2027 2027",
-            "diagnosticName": "Open-Tech-Internships-2027 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1828
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248132",
-      "id": "161883759998e02f8d755a04",
-      "company": "Booz Allen",
-      "title": "University, 2027 Summer Games Data Scientist Intern - Colorado Springs, CO",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Colorado-Springs-CO/University--2027-Summer-Games-Data-Scientist-Intern_R0248132",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "161883759998e02f8d755a04"
-      ],
-      "previousUrls": [
-        "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Colorado-Springs-CO/University--2027-Summer-Games-Data-Scientist-Intern_R0248132"
-      ],
-      "sources": [
-        "Internship Engine",
-        "Aprameya Summer Internships 2027",
-        "Open-Tech-Internships-2027 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Colorado-Springs-CO/University--2027-Summer-Games-Data-Scientist-Intern_R0248132",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          },
-          {
-            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Colorado-Springs-CO/University--2027-Summer-Games-Data-Scientist-Intern_R0248132",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-04T11:38:24.148Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1239
-          },
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2316
-          },
-          {
-            "name": "Open-Tech-Internships-2027 2027",
-            "diagnosticName": "Open-Tech-Internships-2027 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1828
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248130",
-      "id": "29b0985dff0cab31ca3d3e64",
-      "company": "Booz Allen",
-      "title": "University, 2027 Summer Games Software Developer Intern - Colorado Springs, CO",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Colorado-Springs-CO/University--2027-Summer-Games-Software-Developer-Intern_R0248130",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "29b0985dff0cab31ca3d3e64"
-      ],
-      "previousUrls": [
-        "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Colorado-Springs-CO/University--2027-Summer-Games-Software-Developer-Intern_R0248130"
-      ],
-      "sources": [
-        "Internship Engine",
-        "Aprameya Summer Internships 2027",
-        "Open-Tech-Internships-2027 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Colorado-Springs-CO/University--2027-Summer-Games-Software-Developer-Intern_R0248130",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          },
-          {
-            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Colorado-Springs-CO/University--2027-Summer-Games-Software-Developer-Intern_R0248130",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-04T11:38:24.148Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1239
-          },
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2316
-          },
-          {
-            "name": "Open-Tech-Internships-2027 2027",
-            "diagnosticName": "Open-Tech-Internships-2027 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1828
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248046",
-      "id": "aa5616d0924d2f3fc98f66cf",
-      "company": "Booz Allen",
-      "title": "University - 2027 Summer Games Software Developer Intern - El Segundo, CA",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/El-Segundo-CA/University---2027-Summer-Games-Software-Developer-Intern---El-Segundo--CA_R0248046",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "aa5616d0924d2f3fc98f66cf"
-      ],
-      "previousUrls": [
-        "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/El-Segundo-CA/University---2027-Summer-Games-Software-Developer-Intern---El-Segundo--CA_R0248046"
-      ],
-      "sources": [
-        "Internship Engine",
-        "Aprameya Summer Internships 2027",
-        "Open-Tech-Internships-2027 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/El-Segundo-CA/University---2027-Summer-Games-Software-Developer-Intern---El-Segundo--CA_R0248046",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          },
-          {
-            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/El-Segundo-CA/University---2027-Summer-Games-Software-Developer-Intern---El-Segundo--CA_R0248046",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-04T11:38:24.148Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1239
-          },
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2316
-          },
-          {
-            "name": "Open-Tech-Internships-2027 2027",
-            "diagnosticName": "Open-Tech-Internships-2027 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1828
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248045",
-      "id": "90e57c80e652cb96fadcbef4",
-      "company": "Booz Allen",
-      "title": "University - 2027 Summer Games Data Scientist Intern - San Diego, CA",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/San-Diego-CA/University---2027-Summer-Games-Data-Scientist-Intern---San-Diego--CA_R0248045",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "90e57c80e652cb96fadcbef4"
-      ],
-      "previousUrls": [
-        "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/San-Diego-CA/University---2027-Summer-Games-Data-Scientist-Intern---San-Diego--CA_R0248045"
-      ],
-      "sources": [
-        "Internship Engine",
-        "Aprameya Summer Internships 2027",
-        "Open-Tech-Internships-2027 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/San-Diego-CA/University---2027-Summer-Games-Data-Scientist-Intern---San-Diego--CA_R0248045",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          },
-          {
-            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/San-Diego-CA/University---2027-Summer-Games-Data-Scientist-Intern---San-Diego--CA_R0248045",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-04T11:38:24.148Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1239
-          },
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2316
-          },
-          {
-            "name": "Open-Tech-Internships-2027 2027",
-            "diagnosticName": "Open-Tech-Internships-2027 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1828
+            "rows": 1233
           }
         ]
       },
@@ -663,100 +173,46 @@
     }
   ],
   "rowCounts": {
-    "previous": 6856,
-    "current": 6846,
-    "net": -10,
+    "previous": 6846,
+    "current": 6852,
+    "net": 6,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 0,
-  "removedCount": 10,
+  "added": 9,
+  "removedCount": 3,
   "counts": {
-    "not-returned-by-sources": 2,
-    "pendingVerification": 8
+    "role": 1,
+    "pendingVerification": 2
   },
   "removed": [
     {
-      "id": "9659cb80048632055b522d6f",
-      "company": "Raytheon",
-      "title": "Program Quality Engineer I, Woburn, MA",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-MA-WOBURN-WB1--235-Presidential-Way--SPENCER-BLDG/Program-Quality-Engineer-I--Woburn--MA_01885888",
-      "reason": "not-returned-by-sources"
+      "id": "ba2ff66643def952d8b96a9f",
+      "company": "Hewlett Packard Enterprise",
+      "title": "Infrastructure Deployment Automation Intern",
+      "applyUrl": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/Bloomington-Minnesota-United-States-of-America/Infrastructure-Deployment-Automation-Intern_1213406",
+      "reason": "role"
     },
     {
-      "id": "b8f23c31b2740f0f41c71be9",
-      "company": "Johnson & Johnson",
-      "title": "Associate Engineer",
-      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Jacksonville-Florida-United-States-of-America/Associate-Engineer_R-107577-2",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "42b6e6f302aeddd819615018",
-      "company": "Booz Allen Hamilton",
-      "title": "University - 2027 Summer Games Software Developer Intern - Dayton, OH",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/Dayton-OH/University---2027-Summer-Games-Software-Developer-Intern---Dayton--OH_R0252345",
+      "id": "beb20dd1ca8d1f40d92557cd",
+      "company": "Hewlett Packard Enterprise",
+      "title": "Systems Software Engineer Intern",
+      "applyUrl": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/Bloomington-Minnesota-United-States-of-America/Systems-Software-Engineer-Intern_1213401",
       "reason": "pendingVerification"
     },
     {
-      "id": "a1e212db7d05643b9989f535",
-      "company": "Booz Allen",
-      "title": "University - 2027 Summer Games Data Scientist Intern - Charleston, SC",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Charleston-SC/University---2027-Summer-Games-Data-Scientist-Intern_R0248137",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "8be256a739708c402cf8d926",
-      "company": "Booz Allen",
-      "title": "University - 2027 Summer Games Software Developer Intern - Charleston, SC",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Charleston-SC/University---2027-Summer-Games-Software-Developer-Intern_R0248134",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "0cb11c1c6a39120a1df87883",
-      "company": "Booz Allen",
-      "title": "University, 2027 Summer Games Cyber Security Intern - Colorado Springs, CO",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Colorado-Springs-CO/University--2027-Summer-Games-Cybersecurity-Intern_R0248131",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "161883759998e02f8d755a04",
-      "company": "Booz Allen",
-      "title": "University, 2027 Summer Games Data Scientist Intern - Colorado Springs, CO",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Colorado-Springs-CO/University--2027-Summer-Games-Data-Scientist-Intern_R0248132",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "29b0985dff0cab31ca3d3e64",
-      "company": "Booz Allen",
-      "title": "University, 2027 Summer Games Software Developer Intern - Colorado Springs, CO",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Colorado-Springs-CO/University--2027-Summer-Games-Software-Developer-Intern_R0248130",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "aa5616d0924d2f3fc98f66cf",
-      "company": "Booz Allen",
-      "title": "University - 2027 Summer Games Software Developer Intern - El Segundo, CA",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/El-Segundo-CA/University---2027-Summer-Games-Software-Developer-Intern---El-Segundo--CA_R0248046",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "90e57c80e652cb96fadcbef4",
-      "company": "Booz Allen",
-      "title": "University - 2027 Summer Games Data Scientist Intern - San Diego, CA",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/San-Diego-CA/University---2027-Summer-Games-Data-Scientist-Intern---San-Diego--CA_R0248045",
+      "id": "1f3df2c02d11ccfefe504b3b",
+      "company": "Hewlett Packard Enterprise",
+      "title": "Cloud Developer Intern",
+      "applyUrl": "https://hpe.wd5.myworkdayjobs.com/Jobsathpe/job/San-Jose-California-United-States-of-America/Cloud-Developer-Intern_1214950",
       "reason": "pendingVerification"
     }
   ],
   "urlChanges": [
     {
-      "id": "7a90a21aa3ff02ea7b0eb4aa",
-      "previousUrl": "https://stryker.wd1.myworkdayjobs.com/strykercareers/job/Portage-Michigan/Product-Interaction-Design-Intern---Portage--MI_R572833",
-      "applyUrl": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers/job/Portage-Michigan/Product-Interaction-Design-Intern---Portage--MI_R572833"
-    },
-    {
-      "id": "dea94e21e0a5fb68a216f733",
-      "previousUrl": "https://stryker.wd1.myworkdayjobs.com/strykercareers/job/Portage-Michigan/Industrial-Design-Intern---Portage--MI_R572730",
-      "applyUrl": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers/job/Portage-Michigan/Industrial-Design-Intern---Portage--MI_R572730"
+      "id": "2011c24ca83e0b632a7151d0",
+      "previousUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-California-San-Diego/XMLNAME-2027-Intern-Product-Support---Data-Scientist_R10258679",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-California-San-Diego/XMLNAME-2027-Intern-Product-Support---Data-Scientist_R10258679"
     }
   ]
 }
