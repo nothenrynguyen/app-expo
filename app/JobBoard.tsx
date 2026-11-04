@@ -87,10 +87,10 @@ export function JobBoard({ type }: JobBoardProps) {
   const sourceJobs = snapshot?.jobs ?? EMPTY_JOBS;
   const { details: savedDetails, storageError: detailsError } = useSavedJobDetails(savedJobIds, sourceJobs, type, snapshot !== null);
   const unavailableSaved = missingSavedDetails(savedDetails, savedJobIds, sourceJobs, type);
-  const engineeringSpecialties = useMemo(() => {
+  const roleSpecialties = useMemo(() => {
     const availableTags = new Set(sourceJobs.flatMap((job) => getJobRoleTags(job)));
-    return getRoleTagsForFamily("engineering").filter((specialty) => availableTags.has(specialty.value));
-  }, [sourceJobs]);
+    return getRoleTagsForFamily(roleSelection.family).filter((specialty) => roleSelection.family === "product" || roleSelection.family === "design" || availableTags.has(specialty.value));
+  }, [sourceJobs, roleSelection.family]);
   const terms = useMemo(() => getJobTerms(sourceJobs), [sourceJobs]);
   const metroOptions = useMemo(
     () => getAvailableMetroOptions(sourceJobs, type, regions),
@@ -177,7 +177,7 @@ export function JobBoard({ type }: JobBoardProps) {
         selectedTerms={selectedTerms}
         terms={terms}
         companyTiers={companyTiers}
-        engineeringSpecialties={engineeringSpecialties}
+        roleSpecialties={roleSpecialties}
         roleSelection={roleSelection}
         type={type}
         viewMode={viewMode}

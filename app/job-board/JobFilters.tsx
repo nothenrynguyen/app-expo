@@ -18,7 +18,7 @@ type JobFiltersProps = {
   selectedTerms: readonly string[];
   terms: readonly string[];
   companyTiers: readonly CompanyTier[];
-  engineeringSpecialties: ReadonlyArray<{ value: RoleTag; label: string }>;
+  roleSpecialties: ReadonlyArray<{ value: RoleTag; label: string }>;
   roleSelection: RoleSelection;
   type: "internships" | "fulltime";
   viewMode: ViewMode;
@@ -70,7 +70,7 @@ export function JobFilters({
   selectedTerms,
   terms,
   companyTiers,
-  engineeringSpecialties,
+  roleSpecialties,
   roleSelection,
   type,
   viewMode,
@@ -86,12 +86,14 @@ export function JobFilters({
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const filterButtonRef = useRef<HTMLButtonElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const hasSpecialtyFilter = ["engineering", "product", "design", "business"].includes(roleSelection.family);
   const regionIsDefault = regions.length === 1 && regions[0] === "us";
   const activeFilterCount = Number(!regionIsDefault)
     + Number(metros.length > 0)
     + Number(modes.length > 0)
     + Number(selectedTerms.length > 0)
-    + Number(roleSelection.family === "engineering" ? roleSelection.specialty !== null : companyTiers.length > 0);
+    + Number(hasSpecialtyFilter && roleSelection.specialty !== null)
+    + Number(roleSelection.family !== "engineering" && companyTiers.length > 0);
 
   useEffect(() => {
     if (!mobileFiltersOpen) return;
@@ -145,7 +147,7 @@ export function JobFilters({
   };
 
   return (
-    <section className="filters" aria-label="Job filters">
+    <section className={`filters${hasSpecialtyFilter && roleSelection.family !== "engineering" ? " filters-with-specialty" : ""}`} aria-label="Job filters">
       <label className="search-field">
         <span>Search</span>
         <input value={query} onChange={(event) => onQueryChange(event.target.value)} placeholder="Company or role" />
@@ -179,18 +181,19 @@ export function JobFilters({
         <MultiFilter label="Metro area" values={metros} onChange={(values) => onMetrosChange(values as JobMetro[])} options={metroOptions} allLabel="All metros" />
         <MultiFilter label="Workplace" values={modes} onChange={onModesChange} options={[["remote", "Remote"], ["hybrid", "Hybrid"], ["in_person", "In person"]]} />
         <MultiFilter label="Term" values={selectedTerms} onChange={onTermsChange} options={terms.map((value) => [value, value] as const)} />
-        {roleSelection.family === "engineering" ? (
+        {hasSpecialtyFilter ? (
           <SingleFilter
-            key={roleSelection.specialty ?? "all-engineering"}
+            key={roleSelection.specialty ?? `all-${roleSelection.family}`}
             label="Specialty"
             value={roleSelection.specialty}
-            hrefForValue={(value) => value ? `${route}?role=engineering&specialty=${value}` : `${route}?role=engineering`}
-            options={engineeringSpecialties.map((specialty) => [specialty.value, specialty.label] as const)}
+            hrefForValue={(value) => value ? `${route}?role=${roleSelection.family}&specialty=${value}` : `${route}?role=${roleSelection.family}`}
+            options={roleSpecialties.map((specialty) => [specialty.value, specialty.label] as const)}
             allLabel="All"
           />
-        ) : (
+        ) : null}
+        {roleSelection.family !== "engineering" ? (
           <MultiFilter label="Company tier" values={companyTiers} onChange={(values) => onCompanyTiersChange(values as CompanyTier[])} options={[["faang_plus", "FAANG+"], ["fortune_500", "Fortune 500"]]} />
-        )}
+        ) : null}
         <div className="filter-control layout-filter-control">
           <span>Layout</span>
           <div className={`view-toggle ${viewMode === "cards" ? "cards-active" : ""}`} role="group" aria-label="Job layout">

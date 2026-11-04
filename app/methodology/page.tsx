@@ -23,7 +23,7 @@ const steps = [
   {
     number: "03",
     title: "Keep relevant roles",
-    copy: "The board focuses on internships and early-career software, data, engineering, product, business, finance, IT, and related technical roles. Legal, healthcare, education, and general science careers are outside its scope. For generic titles, I check for clearly conflicting required experience when employer details are available. Check each posting's requirements, since titles and descriptions can be ambiguous.",
+    copy: "The board focuses on internships and early-career software, data, engineering, product and technical program management, design, business, finance, IT, and related technical roles. Customer-facing solutions engineering is under Engineering, while help desk and technical support are under IT / Security. Legal, healthcare, education, and general science careers are outside its scope. For generic titles, I check for clearly conflicting required experience when employer details are available. Check each posting's requirements, since titles and descriptions can be ambiguous.",
   },
   {
     number: "04",

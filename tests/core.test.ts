@@ -417,6 +417,14 @@ test("Keryx imports only early-career non-software rows with direct ATS provenan
   assert.equal(parsed[0].rawText.includes("PhD"), false);
   const grad = parseKeryxSource([header, row("Mechanical Engineer I", direct)].join("\n"), "Keryx Non-Software New Grad 2027", now);
   assert.equal(grad[0].category, "New grad");
+  const expanded = parseKeryxSource([header,
+    row("Technical Program Management Intern", direct),
+    row("Product Management Intern", direct),
+    row("UX Research Intern", direct),
+    row("Industrial Design Intern", direct),
+    row("Software Engineering Intern", direct),
+  ].join("\n"), "Keryx Non-Software Summer 2027", now);
+  assert.deepEqual(expanded.map(job => job.title), ["Technical Program Management Intern", "Product Management Intern", "UX Research Intern", "Industrial Design Intern"]);
   const reviewedCatalog = sourceCatalog as SourceCatalog;
   const sources = reviewedCatalog.sources.filter(source => source.repository === "GodlyDonuts/keryx");
   for (const file of ["internships/summer-2027.md", "internships/spring-2027.md", "new-grad/2027.md"]) {
@@ -846,9 +854,9 @@ test("role taxonomy supports multiple tags, broad families, and legacy links", (
   assert.deepEqual(classifyRoleTags({ title: "Data Solution Engineer Intern", category: "Internship", rawText: "Build internal reporting tools and data pipelines." }), ["general-engineering"]);
   assert.deepEqual(classifyRoleTags({ title: "Data Solution Engineer Intern", category: "Internship", rawText: "Work directly with clients on technical implementations." }), ["solutions-support"]);
   assert.deepEqual(classifyRoleTags({ title: "Sales Operations Manager", category: "New grad" }), []);
-  assert.deepEqual(classifyRoleTags({ title: "Product Support Specialist", category: "New grad" }), ["solutions-support"]);
+  assert.deepEqual(classifyRoleTags({ title: "Product Support Specialist", category: "New grad" }), ["it-support-network"]);
   assert.deepEqual(classifyRoleTags({ title: "Product Engineer I", category: "New grad" }), ["general-engineering"]);
-  assert.deepEqual(classifyRoleTags({ title: "Product Design Engineer Intern", category: "Internship" }), ["design"]);
+  assert.deepEqual(classifyRoleTags({ title: "Product Design Engineer Intern", category: "Internship" }), ["general-engineering"]);
   assert.deepEqual(classifyRoleTags({ title: "Production Support Engineer I", category: "New grad" }), ["general-engineering"]);
   assert.deepEqual(classifyRoleTags({ title: "IT Help Desk Intern", category: "Internship" }), ["it-support-network"]);
   assert.deepEqual(classifyRoleTags({ title: "Vehicle Integration Engineer I", category: "New grad" }), ["systems-test"]);
@@ -857,7 +865,7 @@ test("role taxonomy supports multiple tags, broad families, and legacy links", (
   assert.deepEqual(classifyRoleTags({ title: "Customer Experience Representative, Active Trader", category: "New grad" }), []);
   assert.deepEqual(classifyRoleTags({ title: "Fullstack Engineer - Applications Engineering", category: "Internship" }), ["software-engineering"]);
   assert.deepEqual(getRoleSelection("product", null), { family: "product", specialty: null });
-  assert.deepEqual(getRoleSelection("solutions-support", null), { family: "solutions-support", specialty: null });
+  assert.deepEqual(getRoleSelection("solutions-support", null), { family: "engineering", specialty: "solutions-support" });
   assert.deepEqual(getRoleSelection("process-manufacturing", null), { family: "engineering", specialty: "process-manufacturing" });
   assert.deepEqual(getRoleSelection("engineering", "mechanical"), { family: "engineering", specialty: "mechanical" });
   assert.deepEqual(getRoleSelection("data", "mechanical"), { family: "data", specialty: null });
@@ -865,7 +873,7 @@ test("role taxonomy supports multiple tags, broad families, and legacy links", (
   assert.equal(matchesRoleSelection(semiconductor, { family: "engineering", specialty: "materials-chemical" }), true);
   assert.equal(matchesRoleSelection(semiconductor, { family: "software", specialty: null }), false);
   assert.equal(matchesRoleSelection({ title: "Associate Product Manager", category: "New grad", roleTags: ["product"] }, { family: "product", specialty: null }), true);
-  assert.equal(matchesRoleSelection({ title: "Forward Deployed Engineer", category: "New grad", roleTags: ["software-engineering"] }, { family: "solutions-support", specialty: null }), true);
+  assert.equal(matchesRoleSelection({ title: "Forward Deployed Engineer", category: "New grad", roleTags: ["software-engineering"] }, { family: "engineering", specialty: "solutions-support" }), true);
 });
 
 test("physical quality context and semiconductor materials terms remain distinct from software QA", () => {
@@ -1343,4 +1351,49 @@ test("bounded scoped queue reaches candidates across refreshes", () => {
   const secondBatch = selectScopedChecks(entries, cache, next);
   assert.equal(secondBatch.length, 150);
   assert.equal(secondBatch.some(([id]) => firstBatch.some(([previous]) => previous === id)), false);
+});
+
+
+test("product/program, design and support categories preserve intent and legacy selections", () => {
+  assert.deepEqual(classifyRoleTags({ title: "Technical Program Manager Intern", category: "Internship" }), ["technical-program"]);
+  assert.deepEqual(classifyRoleTags({ title: "Technical Program Manager", category: "New grad" }), ["technical-program"]);
+  assert.deepEqual(classifyRoleTags({ title: "Senior Technical Program Manager", category: "New grad" }), []);
+  assert.deepEqual(classifyRoleTags({ title: "Business Program Management Intern", category: "Internship" }), ["program-management"]);
+  assert.deepEqual(classifyRoleTags({ title: "Product Designer Intern", category: "Internship" }), ["design"]);
+  assert.deepEqual(classifyRoleTags({ title: "UX Research Intern", category: "Internship" }), ["ux-research"]);
+  assert.deepEqual(classifyRoleTags({ title: "Graphic Designer Intern", category: "Internship" }), ["visual-design"]);
+  assert.deepEqual(classifyRoleTags({ title: "Industrial Design Intern", category: "Internship" }), ["industrial-design"]);
+  assert.deepEqual(getJobRoleTags({ title: "Industrial Design Intern", category: "Internship", roleTags: ["design"] }), ["industrial-design"]);
+  assert.deepEqual(getJobRoleTags({ title: "FPGA Implementation Engineer (JR)", category: "New grad", roleTags: ["solutions-support", "hardware-electrical"] }), ["hardware-electrical"]);
+  assert.deepEqual(getJobRoleTags({ title: "Product Support Specialist", category: "New grad", roleTags: ["solutions-support"] }), ["it-support-network"]);
+  assert.ok(classifyRoleTags({ title: "Cloud Implementation Engineer Intern", category: "Internship", rawText: "Work directly with customers on client implementations." }).includes("solutions-support"));
+  assert.deepEqual(classifyRoleTags({ title: "2027 Intern Product Support - Data Scientist", category: "Internship" }), ["data-science"]);
+  assert.deepEqual(classifyRoleTags({ title: "2027 Global Product Support (GPS) Engineer I", category: "New grad" }), ["solutions-support"]);
+  assert.deepEqual(getRoleSelection("business", "design"), { family: "design", specialty: "design" });
+  assert.equal(matchesRoleSelection({ title: "Technical Program Manager Intern", category: "Internship" }, { family: "product", specialty: "technical-program" }), true);
+  assert.equal(matchesRoleSelection({ title: "UX Research Intern", category: "Internship" }, { family: "design", specialty: null }), true);
+  assert.equal(matchesRoleSelection({ title: "Business Program Management Intern", category: "Internship" }, { family: "product", specialty: null }), false);
+  assert.equal(isEarlyCareerTitle("Technical Program Manager", "This role is for recent graduates with 0-2 years of experience."), true);
+  assert.equal(isEarlyCareerTitle("Technical Program Manager", "Requires 8 years of experience."), false);
+});
+
+
+test("program expansion rejects internal career-program managers and recognizes technical project/program titles", () => {
+  assert.deepEqual(classifyRoleTags({ title: "Product & Program Management Intern", category: "Internship" }), ["product"]);
+  assert.ok(classifyRoleTags({ title: "2027 Summer Internship Program - IT Procurement Intern", category: "Internship" }).includes("operations-supply-chain"));
+  assert.deepEqual(classifyRoleTags({ title: "Internship Program Manager - B4", category: "New grad" }), []);
+  assert.deepEqual(classifyRoleTags({ title: "L&D Program Manager - Early Career Onboarding and Professional Development", category: "New grad" }), []);
+  assert.deepEqual(classifyRoleTags({ title: "Verkademy Program Coordinator", category: "New grad" }), []);
+  assert.deepEqual(classifyRoleTags({ title: "Technical Project/Program Management I New College Grad", category: "New grad" }), ["technical-program"]);
+  assert.deepEqual(getJobRoleTags({ title: "Internship Program Manager - B4", category: "New grad", roleTags: ["program-management"] }), []);
+  assert.equal(isEarlyCareerTitle("Technical Program Manager, Mission Integration", "You should have:<ul><li>5+ years of experience managing complex programs.</li><li>At least one year of startup experience.</li></ul>"), false);
+});
+
+
+test("ambiguous engineering titles do not invent design or customer-facing specialties", () => {
+  assert.deepEqual(classifyRoleTags({ title: "Systems Engineer Intern", category: "Internship" }), ["systems-test"]);
+  assert.deepEqual(classifyRoleTags({ title: "Product Design Engineer Intern", category: "Internship" }), ["general-engineering"]);
+  assert.deepEqual(classifyRoleTags({ title: "Product Designer Intern", category: "Internship" }), ["design"]);
+  assert.deepEqual(getJobRoleTags({ title: "Applications Engineer Intern", category: "Internship", rawText: "Build internal company tools.", roleTags: ["solutions-support"] }), ["general-engineering"]);
+  assert.deepEqual(getJobRoleTags({ title: "Applications Engineer Intern", category: "Internship", roleTags: ["solutions-support"] }), ["general-engineering", "solutions-support"]);
 });

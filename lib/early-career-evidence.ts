@@ -22,7 +22,7 @@ export function hasRequiredExperienceConflict(description: string): boolean {
       required = false;
       preferred = true;
     }
-    if (/^(?:(?:minimum|required|basic) (?:qualifications?|skills|experience)|requirements?|what (?:you(?:'ll| will)? need|we(?:'re| are) looking for|we require)|here(?:'s| is) what you(?:'ll| will)? need|you must have)\b/i.test(line)) {
+    if (/^(?:(?:minimum|required|basic) (?:qualifications?|skills|experience)|requirements?|what (?:you(?:'ll| will)? need|we(?:'re| are) looking for|we require)|here(?:'s| is) what you(?:'ll| will)? need|you (?:must|should) have)\b/i.test(line)) {
       required = true;
       preferred = false;
     }

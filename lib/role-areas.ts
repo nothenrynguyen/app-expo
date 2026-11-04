@@ -1,7 +1,7 @@
 import type { PublicJob } from "./jobs";
 import { isProcessManufacturingRole } from "./process-manufacturing";
 
-export type RoleFamily = "all" | "software" | "data" | "engineering" | "product" | "solutions-support" | "business" | "finance-quant" | "it-security";
+export type RoleFamily = "all" | "software" | "data" | "engineering" | "product" | "design" | "business" | "finance-quant" | "it-security";
 
 export type RoleTag =
   | "software-engineering"
@@ -19,6 +19,11 @@ export type RoleTag =
   | "materials-chemical"
   | "quality-reliability"
   | "product"
+  | "technical-program"
+  | "program-management"
+  | "ux-research"
+  | "visual-design"
+  | "industrial-design"
   | "business-analyst"
   | "operations-supply-chain"
   | "marketing-sales"
@@ -41,8 +46,8 @@ export const ROLE_FAMILIES: Array<{ value: RoleFamily; label: string }> = [
   { value: "software", label: "Software" },
   { value: "data", label: "Data" },
   { value: "engineering", label: "Engineering" },
-  { value: "product", label: "Product" },
-  { value: "solutions-support", label: "Solutions / Support" },
+  { value: "product", label: "Product / Program" },
+  { value: "design", label: "Design" },
   { value: "business", label: "Business" },
   { value: "finance-quant", label: "Finance / Quant" },
   { value: "it-security", label: "IT / Security" },
@@ -54,7 +59,7 @@ export const ROLE_TAGS: RoleDefinition[] = [
   { value: "software-engineering", label: "Software Engineering", family: "software" },
   { value: "ai-ml-engineering", label: "AI / ML Engineering", family: "software" },
   { value: "cloud-infrastructure", label: "Cloud / Infrastructure", family: "software" },
-  { value: "solutions-support", label: "Solutions / Support", family: "solutions-support" },
+  { value: "solutions-support", label: "Solutions / Customer Engineering", family: "engineering" },
   { value: "data-science", label: "Data Science", family: "data" },
   { value: "data-engineering", label: "Data Engineering", family: "data" },
   { value: "analytics", label: "Analytics / BI", family: "data" },
@@ -65,14 +70,19 @@ export const ROLE_TAGS: RoleDefinition[] = [
   { value: "systems-test", label: "Systems / Test", family: "engineering" },
   { value: "materials-chemical", label: "Materials / Chemical", family: "engineering" },
   { value: "quality-reliability", label: "Quality / Reliability", family: "engineering" },
-  { value: "product", label: "Product", family: "product" },
+  { value: "product", label: "Product Management", family: "product" },
+  { value: "technical-program", label: "Technical Program Management", family: "product" },
+  { value: "program-management", label: "Program Management", family: "business" },
   { value: "business-analyst", label: "Business Analysis", family: "business" },
   { value: "operations-supply-chain", label: "Operations / Supply Chain", family: "business" },
   { value: "marketing-sales", label: "Marketing / Sales", family: "business" },
-  { value: "design", label: "Design", family: "business" },
+  { value: "design", label: "Product / UX / UI Design", family: "design" },
+  { value: "ux-research", label: "UX Research", family: "design" },
+  { value: "visual-design", label: "Graphic / Visual Design", family: "design" },
+  { value: "industrial-design", label: "Industrial Design", family: "design" },
   { value: "finance", label: "Finance", family: "finance-quant" },
   { value: "quant", label: "Quant", family: "finance-quant" },
-  { value: "it-support-network", label: "IT / Networking", family: "it-security" },
+  { value: "it-support-network", label: "IT / Support / Networking", family: "it-security" },
   { value: "cybersecurity", label: "Cybersecurity", family: "it-security" },
 ];
 
@@ -93,6 +103,9 @@ export function getRoleTagsForFamily(family: RoleFamily): RoleDefinition[] {
 }
 
 export function getRoleSelection(roleParam: string | null, specialtyParam: string | null): RoleSelection {
+  // Preserve inbound links to the former family and the former Business design filter.
+  if (roleParam === "solutions-support") return { family: "engineering", specialty: "solutions-support" };
+  if (roleParam === "business" && specialtyParam === "design") return { family: "design", specialty: "design" };
   if (isRoleFamily(roleParam)) {
     if (!isRoleTag(specialtyParam)) return { family: roleParam, specialty: null };
     const specialty = roleDefinitionByTag.get(specialtyParam)!;
@@ -113,7 +126,7 @@ function isStoreRetailRole(title: string, rawText = ""): boolean {
 }
 
 function excludedOperationsDomain(title: string): boolean {
-  if (/\b(?:talent acquisition|recruiting|human resources?|people|legal|law)\b/i.test(title)) return true;
+  if (/\b(?:talent acquisition|recruiting|human resources?|people|legal|law|l&d|learning and development|learning & development|talent development|internship program (?:manager|management))\b/i.test(title)) return true;
   // Supply-chain and logistics work remain supported in clinical employers.
   return /\b(?:clinical|laboratory|lab)\b/i.test(title)
     && !/\bsupply chain\b|\bprocurement\b|\blogistics\b|\binventory\b|\bproduction planning\b|\bvendor management\b/i.test(title);
@@ -126,7 +139,7 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
   const rawText = job.rawText?.toLowerCase() ?? "";
   const explicitEarlyCareerTitle = /\b(?:intern(?:ship)?|co-?op|new (?:college )?grad(?:uate)?|early career|university grad(?:uate)?|entry[- ]level)\b/i.test(job.title);
   if (/\b(?:senior|sr\.?|staff|principal|director|head|lead)\b/i.test(job.title)) return [];
-  if (/\bmanager\b/i.test(job.title) && !explicitEarlyCareerTitle && !/\bproduct manager\b/i.test(job.title)) return [];
+  if (/\bmanager\b/i.test(job.title) && !explicitEarlyCareerTitle && !/\b(?:product|technical program) manager\b/i.test(job.title)) return [];
   const tags = new Set<RoleTag>();
   const add = (tag: RoleTag, pattern: RegExp) => { if (pattern.test(text)) tags.add(tag); };
   const addTitle = (tag: RoleTag, pattern: RegExp) => { if (pattern.test(title)) tags.add(tag); };
@@ -136,12 +149,15 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
   const customerFacingContext = /\b(?:customer-facing|client-facing|work(?:ing)? (?:directly )?with (?:our )?(?:customers|clients)|support(?:ing)? (?:our )?(?:customers|clients)|customer deployments?|client implementations?|pre[- ]sales|post[- ]sales|technical sales|field applications?)\b/.test(rawText);
 
   const internalPeopleRole = /\b(?:talent acquisition|recruiting|human resources?|people operations?)\b/.test(title);
-  if (!internalPeopleRole) addTitle("solutions-support", /^\s*(?:(?:associate|junior) )?support engineer(?:ing)?\b|\b(?:product|software) support\b|\b(?:technical|application|cloud|platform) support (?:engineer(?:ing)?|specialist|analyst)\b|\bcustomer support engineer(?:ing)?\b|^\s*(?:(?:associate|junior) )?solutions? engineer(?:ing)?\b|\b(?:technical|customer) solutions? engineer(?:ing)?\b|\bimplementation engineer(?:ing)?\b|\bcustomer engineer(?:ing)?\b|\bfield applications? engineer(?:ing)?\b|\bsales engineer(?:ing)?\b|\bdeployment engineer(?:ing)?\b|\bforward deployed (?:software |infrastructure |ai )?engineer(?:ing)?\b|\btechnical account manager\b/);
+  if (!internalPeopleRole) addTitle("solutions-support", /^\s*(?:(?:associate|junior) )?support engineer(?:ing)?\b|\b(?:product|software) support(?: \([^)]*\))?\s*(?:[-\u2013]\s*)?engineer(?:ing)?\b|\b(?:technical|application|cloud|platform) support engineer(?:ing)?\b|\bcustomer support engineer(?:ing)?\b|^\s*(?:(?:associate|junior) )?solutions? engineer(?:ing)?\b|\b(?:technical|customer) solutions? engineer(?:ing)?\b|^\s*(?:(?:associate|junior) )?implementation engineer(?:ing)?\b|\bcustomer engineer(?:ing)?\b|\bfield applications? engineer(?:ing)?\b|\bsales engineer(?:ing)?\b|\bdeployment engineer(?:ing)?\b|\bforward deployed (?:software |infrastructure |ai )?engineer(?:ing)?\b|\btechnical account manager\b/);
+  if (!internalPeopleRole && /\bimplementation engineer(?:ing)?\b/.test(title) && customerFacingContext) tags.add("solutions-support");
   const contextualSolutionsTitle = /\bsolutions? engineer(?:ing)?\b/.test(title);
   if (!internalPeopleRole && contextualSolutionsTitle && customerFacingContext) tags.add("solutions-support");
   const genericApplicationsTitle = /^\s*(?:(?:associate|junior) )?applications? engineer(?:ing)?(?:\s+(?:i|1))?\b/.test(title);
   if (genericApplicationsTitle && customerFacingContext) tags.add("solutions-support");
-  add("product", /\bproduct\s+(?:manager|management)\b|\bproduct (?:intern|owner)\b|\bassociate product manager\b|\bapm\b/);
+  add("product", /\bproduct\s+(?:manager|management)\b|\bproduct (?:intern|owner)\b|\bassociate product manager\b|\bproduct\s*(?:&|and|\/)\s*program management\b|\bapm\b/);
+  addTitle("technical-program", /\btechnical (?:project\s*[/&]\s*)?program (?:manager|management)\b/);
+  if (!tags.has("technical-program") && !tags.has("product") && !excludedOperationsDomain(title)) addTitle("program-management", /\bprogram (?:manager|management)\b/);
   if (!/\b(?:customer experience|customer support|customer service)\b/.test(title)) add("quant", /\bquant(?:itative)?\b|\btrader\b|\btrading\b|\bsystematic\b|\balgorithmic trading\b/);
   add("data-science", /\bdata scien(?:ce|tist)\b|\bdecision scientist\b|\bmachine learning scientist\b|\b(?:ai|artificial intelligence|machine learning|deep learning) research(?:er)?\b|\bapplied scientist\b|\bstatistician\b/);
   add("data-engineering", /\bdata engineer(?:ing)?\b|\banalytics engineer(?:ing)?\b|\bdata platform engineer(?:ing)?\b|\bdata infrastructure\b/);
@@ -152,7 +168,12 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
     add("operations-supply-chain", /\boperations?\b|\bsupply chain\b|\bprocurement\b|\blogistics\b|\binventory\b|\bproduction planning\b|\bvendor management\b/);
   }
   add("marketing-sales", /\bmarketing\b|\bsales (?:intern|representative|development|operations|analyst|associate)\b|\baccount executive\b|\bcustomer success\b|\bcommunications? (?:intern|specialist|coordinator|associate)\b|\bpublic relations\b/);
-  add("design", /\bux\b|\bui\b|\buser experience\b|\bproduct design(?:er| internship)?\b|\bgraphic design(?:er)?\b|\bindustrial design(?:er)?\b|\bvisual design(?:er)?\b/);
+  const uxResearchTitle = /\b(?:ux|user experience|user) research(?:er)?\b/.test(title);
+  if (uxResearchTitle) tags.add("ux-research");
+  const productDesignEngineering = /\bproduct design engineer(?:ing)?\b/.test(title);
+  if (!uxResearchTitle && !productDesignEngineering) addTitle("design", /\b(?:ux|ui|user experience)\b|\bproduct design(?:er| internship)?\b/);
+  addTitle("visual-design", /\b(?:graphic|visual|brand|communication) design(?:er)?\b/);
+  addTitle("industrial-design", /\bindustrial design(?:er)?\b/);
   add("finance", /\bfinance\b|\bfinancial\b|\baccount(?:ant|ing)\b|\binvestment\b|\bbanking\b|\btreasury\b|\baudit(?:or|ing)?\b|\btax\b|\bcontroller\b|\bfp&a\b|\bprivate equity\b|\bwealth management\b|\basset management\b|\bcapital markets\b|\bactuari(?:al|y)\b|\bunderwrit(?:er|ing)\b|\bcredit (?:analyst|risk|services)\b|\bmarket risk\b|\brisk (?:analyst|management|advisory|intern)\b|\bloan review\b|\bvaluation\b|\bcommercial banking\b|\bcorporate banking\b/);
 
   if (isProcessManufacturingRole(job)) tags.add("process-manufacturing");
@@ -168,7 +189,7 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
   if (!softwareContext) add("systems-test", /\bsystems? engineer(?:ing)?\b|\bintegration (?:and|&) test\b|\bintegration engineer(?:ing)?\b|\btest engineer(?:ing)?\b|\bverification engineer(?:ing)?\b|\bvalidation engineer(?:ing)?\b/);
 
   add("cybersecurity", /\bsecurity (?:engineer|analyst|specialist)\b|\bcyber (?:engineer|capabilities)\b|\bapplications? security\b|\bcyber ?security\b|\binformation security\b|\bsecurity operations\b|\bsoc analyst\b|\bred team\b|\bpenetration test(?:er|ing)?\b|\bapplication security\b/);
-  add("it-support-network", /\binformation technology\b|\bit (?:support|systems?|infrastructure|operations?|applications?|database|service|technician|specialist|analyst|intern|co-?op|developer|engineer)\b|\bhelp desk\b|\bservice desk\b|\bdesktop support\b|\btechnical support\b|\btechnology support\b|\bsoftware support\b|\bsystems? (?:administrator|support|technician)\b|\binfrastructure (?:analyst|administrator)\b|\bdatabase administrator\b|\bnetwork(?:ing)? (?:strategy|planning|software|switch|observation|automation|security|engineering|engineer|operations|administrator|technician|analyst|infrastructure|systems?|support)\b|\bnoc (?:analyst|engineer|technician)\b/);
+  add("it-support-network", /\binformation technology\b|\bit (?:support|systems?|infrastructure|operations?|applications?|database|service|technician|specialist|analyst|intern|co-?op|developer|engineer)\b|\bhelp desk\b|\bservice desk\b|\bdesktop support\b|\btechnical support\b|\btechnology support\b|\b(?:software|application|cloud|platform) support\b|\bproduct support(?:\s*(?:&|and)\s*operations)?\s+(?:specialist|analyst|technician|associate)\b|\bsystems? (?:administrator|support|technician)\b|\binfrastructure (?:analyst|administrator)\b|\bdatabase administrator\b|\bnetwork(?:ing)? (?:strategy|planning|software|switch|observation|automation|security|engineering|engineer|operations|administrator|technician|analyst|infrastructure|systems?|support)\b|\bnoc (?:analyst|engineer|technician)\b/);
 
   add("ai-ml-engineering", /\bmachine learning engineer(?:ing)?\b|\bml engineer(?:ing)?\b|\bai(?:\/ml)?\b.*\bengineer(?:ing)?\b|\bllm\b.*\bengineer\b|\bcomputer vision engineer\b|\bnlp engineer\b|\bmlops\b/);
   add("cloud-infrastructure", /\bdevops\b|\bsite reliability\b|\bsre\b|\bcloud engineer\b|\bcloud validation engineer\b|\binfrastructure engineer\b|\bplatform engineer\b/);
@@ -182,8 +203,18 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
 
 export function getJobRoleTags(job: RoleCandidate): RoleTag[] {
   if (isStoreRetailRole(job.title, job.rawText)) return [];
-  const stored = (job.roleTags ?? []).filter((tag): tag is RoleTag => isRoleTag(tag));
-  const tags = new Set([...stored, ...classifyRoleTags(job)]);
+  // Re-evaluate changed design/support rules for snapshots created before this taxonomy.
+  // Contextual customer-engineering evidence may exist only in ingestion descriptions.
+  const current = classifyRoleTags(job);
+  const stored = (job.roleTags ?? []).filter((tag): tag is RoleTag => {
+    if (!isRoleTag(tag) || tag === "design" || tag === "program-management") return false;
+    if (tag === "solutions-support" && !current.includes(tag)) {
+      return !job.rawText && /\b(?:solutions?|applications?) engineer(?:ing)?\b/i.test(job.title)
+        && !/\b(?:talent acquisition|recruiting|human resources?|people operations?)\b/i.test(job.title);
+    }
+    return true;
+  });
+  const tags = new Set([...stored, ...current]);
   // Old snapshots and last-known-good rows must obey the same scope boundary.
   if (excludedOperationsDomain(job.title)) tags.delete("operations-supply-chain");
   if (/\b(?:software|analytics?)\b/i.test(job.title)) tags.delete("materials-chemical");

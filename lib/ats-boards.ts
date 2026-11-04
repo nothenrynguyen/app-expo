@@ -98,8 +98,8 @@ export function isEarlyCareerTitle(title: string, description = ""): boolean {
     || /\b(?:experience|professional experience)\b[^.]{0,60}\b(?:0|1)\s*(?:-|to)\s*[123]\s+(?:years?|yrs?)\b/i.test(normalizedDescription)
     || /\bup to\s+3\s+(?:years?|yrs?)\b[^.]{0,60}\bexperience\b/i.test(normalizedDescription)
     || /\b(?:one|1)\+?\s+(?:years?|yrs?)\b[^.]{0,60}\bexperience\b/i.test(normalizedDescription);
-  const descriptionQualifiedProductManager = /\bproduct manager\b/i.test(title) && descriptionSignal;
-  if (/\bmanager\b/i.test(title) && !explicitEarlyCareer && !descriptionQualifiedProductManager) return false;
+  const descriptionQualifiedProductProgramManager = /\b(?:product|technical program) manager\b/i.test(title) && descriptionSignal;
+  if (/\bmanager\b/i.test(title) && !explicitEarlyCareer && !descriptionQualifiedProductProgramManager) return false;
   return titleSignal || (descriptionSignal && !hasRequiredExperienceConflict(description));
 }
 
