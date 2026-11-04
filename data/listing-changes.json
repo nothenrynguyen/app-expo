@@ -1,50 +1,182 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-04T18:26:44.895Z",
-  "previousGeneratedAt": "2026-11-04T17:25:45.871Z",
-  "currentSnapshotGeneratedAt": "2026-11-04T18:26:44.895Z",
+  "generatedAt": "2026-11-04T19:25:40.883Z",
+  "previousGeneratedAt": "2026-11-04T18:26:44.895Z",
+  "currentSnapshotGeneratedAt": "2026-11-04T19:25:40.883Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6802,
-    "current": 6845,
-    "retained": 6794,
-    "added": 51,
-    "removed": 8,
-    "net": 43
+    "previous": 6845,
+    "current": 6859,
+    "retained": 6830,
+    "added": 29,
+    "removed": 15,
+    "net": 14
   },
   "categoryCounts": {
     "confirmed-closed": 0,
-    "scope-exclusion": 0,
-    "verification-pending": 2,
-    "source-unavailable": 0,
-    "unresolved": 6,
+    "scope-exclusion": 1,
+    "verification-pending": 3,
+    "source-unavailable": 3,
+    "unresolved": 8,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "job-boards.greenhouse.io:8795526002",
-      "id": "d0f8ebc0bebe9f18e4b1d997",
-      "company": "Beam Therapeutics",
-      "title": "Process Engineering Co-op, LNP Development",
-      "applyUrl": "https://job-boards.greenhouse.io/beamtherapeutics/jobs/8795526002",
-      "reason": "absent-from-employer-board",
+      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01879878",
+      "id": "0d2aba26422ed7ac8dca465c",
+      "company": "Raytheon",
+      "title": "Systems Engineer I - Tac Comm - Onsite",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-137--855-35Th-St-NE--BLDG-137/Systems-Engineer-I---Tac-Comm---Onsite_01879878",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "d0f8ebc0bebe9f18e4b1d997"
+        "0d2aba26422ed7ac8dca465c"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/beamtherapeutics/jobs/8795526002"
+        "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-137--855-35Th-St-NE--BLDG-137/Systems-Engineer-I---Tac-Comm---Onsite_01879878"
       ],
       "sources": [
-        "Direct ATS (Greenhouse)"
+        "Direct ATS (Workday)"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-04T18:18:30.640Z",
+        "runStartedAt": "2026-11-04T19:18:36.905Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:beamtherapeutics",
+          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01885964",
+      "id": "f3199480ca6f88abe0073834",
+      "company": "Raytheon",
+      "title": "Systems Engineer I",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-137--855-35Th-St-NE--BLDG-137/Systems-Engineer-I_01885964",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "f3199480ca6f88abe0073834"
+      ],
+      "previousUrls": [
+        "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-137--855-35Th-St-NE--BLDG-137/Systems-Engineer-I_01885964"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-04T19:18:36.905Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248060",
+      "id": "5ca4b8f1233a8861507be91e",
+      "company": "Booz Allen",
+      "title": "Full Stack Software Engineer, Junior",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/McLean-VA/Full-Stack-Software-Engineer--Junior_R0248060",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "5ca4b8f1233a8861507be91e"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/McLean-VA/Full-Stack-Software-Engineer--Junior_R0248060"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-04T19:18:36.905Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1324
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "jobs.lever.co:47acbed4-4c8f-4004-a838-12a1b1fe3adb",
+      "id": "c11642b35d11ffddacc6e95e",
+      "company": "hatch I.T.",
+      "title": "Junior Test Engineer (VOR)",
+      "applyUrl": "https://jobs.lever.co/hatchit/47acbed4-4c8f-4004-a838-12a1b1fe3adb/apply",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "c11642b35d11ffddacc6e95e"
+      ],
+      "previousUrls": [
+        "https://jobs.lever.co/hatchit/47acbed4-4c8f-4004-a838-12a1b1fe3adb/apply"
+      ],
+      "sources": [
+        "Direct ATS (Lever)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-04T19:18:36.905Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "lever:api.lever.co:hatchit",
           "status": "ok",
           "outcome": null,
           "membership": "absent",
@@ -52,7 +184,7 @@
         },
         "sources": [
           {
-            "name": "Direct ATS (Greenhouse)",
+            "name": "Direct ATS (Lever)",
             "diagnosticName": null,
             "status": "not-checked",
             "outcome": null,
@@ -66,143 +198,36 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033888",
-      "id": "709ecf92dc8a806a131b1c2a",
-      "company": "The Federal Reserve System",
-      "title": "2027 Summer Internship Program - OAS Business Analyst",
-      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---OAS-Busines-Analyst_R-0000033888",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "709ecf92dc8a806a131b1c2a"
-      ],
-      "previousUrls": [
-        "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---OAS-Busines-Analyst_R-0000033888"
-      ],
-      "sources": [
-        "Keryx Non-Software Summer 2027",
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---OAS-Busines-Analyst_R-0000033888",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-04T18:18:30.640Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1492
-          },
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:micron.wd1.myworkdayjobs.com:external:jr112164",
-      "id": "8417d7f26bd9a3146d84b6e7",
-      "company": "Micron",
-      "title": "New College Grad - Engineer, ASIC Digital Design",
-      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Minneapolis-MN/New-College-Grad---Engineer--ASIC-Digital-Design_JR112164",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "8417d7f26bd9a3146d84b6e7"
-      ],
-      "previousUrls": [
-        "https://micron.wd1.myworkdayjobs.com/External/job/Minneapolis-MN/New-College-Grad---Engineer--ASIC-Digital-Design_JR112164"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-04T18:18:30.640Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:micron.wd1.myworkdayjobs.com:external",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:kla.wd1.myworkdayjobs.com:search:2641701",
-      "id": "02fa73a292dc6357c2de25c8",
+      "identity": "workday:kla.wd1.myworkdayjobs.com:search:2641568",
+      "id": "9572eff8000d1fbb4aef3e12",
       "company": "KLA",
-      "title": "AI/ML Software Engineer - Intern",
-      "applyUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Ann-Arbor-MI/AI-ML-Software-Engineer---Intern_2641701-1",
+      "title": "PLM BI & Analytics Intern",
+      "applyUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Ann-Arbor-MI/Intern---PLM-BI---Analytics_2641568-2",
       "reason": "pendingVerification",
       "previousIds": [
-        "02fa73a292dc6357c2de25c8"
+        "9572eff8000d1fbb4aef3e12"
       ],
       "previousUrls": [
-        "https://kla.wd1.myworkdayjobs.com/Search/job/Ann-Arbor-MI/AI-ML-Software-Engineer---Intern_2641701-1"
+        "https://kla.wd1.myworkdayjobs.com/Search/job/Ann-Arbor-MI/Intern---PLM-BI---Analytics_2641568-2"
       ],
       "sources": [
-        "Internship Engine"
+        "Dreamwork Business Internships 2027"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://kla.wd1.myworkdayjobs.com/Search/job/Ann-Arbor-MI/AI-ML-Software-Engineer---Intern_2641701-1",
+            "url": "https://kla.wd1.myworkdayjobs.com/Search/job/Ann-Arbor-MI/Intern---PLM-BI---Analytics_2641568-2",
             "reason": "pendingVerification",
             "detail": "Current employer listing availability could not be verified."
           },
           {
-            "url": "https://kla.wd1.myworkdayjobs.com/en-US/Search/job/Ann-Arbor-MI/AI-ML-Software-Engineer---Intern_2641701-1",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          },
-          {
-            "url": "https://kla.wd1.myworkdayjobs.com/Search/job/Ann-Arbor-MI/AI-ML-Software-Engineer---Intern_2641701-1",
+            "url": "https://kla.wd1.myworkdayjobs.com/Search/job/Ann-Arbor-MI/Intern---PLM-BI---Analytics_2641568-2",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-04T18:18:30.640Z",
+        "runStartedAt": "2026-11-04T19:18:36.905Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
@@ -214,11 +239,11 @@
         },
         "sources": [
           {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
+            "name": "Dreamwork Business Internships 2027",
+            "diagnosticName": "Dreamwork Business Internships 2027",
             "status": "ok",
             "outcome": null,
-            "rows": 1233
+            "rows": 432
           }
         ]
       },
@@ -228,17 +253,103 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:micron.wd1.myworkdayjobs.com:external:jr108456",
-      "id": "160f54139b8cb98ac8f2265a",
-      "company": "Micron",
-      "title": "Intern - Photomask Sustaining Engineering",
-      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---Photomask-Sustaining-Engineering_JR108456",
+      "identity": "www.dreamworkhq.com:28009b1f-0c25-43b8-b583-be0f0f41060a",
+      "id": "980c3f4b1533fd9f33a0b560",
+      "company": "Figma",
+      "title": "Data Science Intern (2027)",
+      "applyUrl": "https://www.dreamworkhq.com/job/28009b1f-0c25-43b8-b583-be0f0f41060a",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "160f54139b8cb98ac8f2265a"
+        "980c3f4b1533fd9f33a0b560"
       ],
       "previousUrls": [
-        "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---Photomask-Sustaining-Engineering_JR108456"
+        "https://www.dreamworkhq.com/job/28009b1f-0c25-43b8-b583-be0f0f41060a"
+      ],
+      "sources": [
+        "Dreamwork Tech Internships 2027"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-04T19:18:36.905Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-11-04T17:25:16.109Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork Tech Internships 2027",
+            "diagnosticName": "Dreamwork Tech Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1222
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "www.dreamworkhq.com:377ed3dc-9724-47de-88a3-74b5e52fe373",
+      "id": "b303f6c5e19aa439d8ef364f",
+      "company": "Figma",
+      "title": "Product Design Intern (2027)",
+      "applyUrl": "https://www.dreamworkhq.com/job/377ed3dc-9724-47de-88a3-74b5e52fe373",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "b303f6c5e19aa439d8ef364f"
+      ],
+      "previousUrls": [
+        "https://www.dreamworkhq.com/job/377ed3dc-9724-47de-88a3-74b5e52fe373"
+      ],
+      "sources": [
+        "Dreamwork Tech Internships 2027"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-04T19:18:36.905Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-11-04T17:25:16.931Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork Tech Internships 2027",
+            "diagnosticName": "Dreamwork Tech Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1222
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:kla.wd1.myworkdayjobs.com:search:2641518",
+      "id": "5d329133c3ae0992bd7ba21e",
+      "company": "KLA",
+      "title": "Mechatronics Engineering Internship",
+      "applyUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Mechatronics-Engineering-Internship_2641518-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "5d329133c3ae0992bd7ba21e"
+      ],
+      "previousUrls": [
+        "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Mechatronics-Engineering-Internship_2641518-1"
       ],
       "sources": [
         "Direct ATS (Workday)"
@@ -246,11 +357,11 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-04T18:18:30.640Z",
+        "runStartedAt": "2026-11-04T19:18:36.905Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:micron.wd1.myworkdayjobs.com:external",
+          "id": "workday:kla.wd1.myworkdayjobs.com:search",
           "status": "ok",
           "outcome": "healthy",
           "membership": "unknown",
@@ -272,41 +383,161 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:intel.wd1.myworkdayjobs.com:external:jr0286839",
-      "id": "1bc0d6c30e117a384f97f07c",
-      "company": "Intel",
-      "title": "Sales and Marketing - Intern, Graduate",
-      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-California-Santa-Clara/Sales-and-Marketing---Intern--Graduate_JR0286839",
-      "reason": "not-returned-by-sources",
+      "identity": "job-boards.greenhouse.io:4716249006",
+      "id": "dde9653f3c26f4b76c395976",
+      "company": "Wurl",
+      "title": "Data Science Intern",
+      "applyUrl": "https://job-boards.greenhouse.io/wurljobs/jobs/4716249006",
+      "reason": "location",
       "previousIds": [
-        "1bc0d6c30e117a384f97f07c"
+        "dde9653f3c26f4b76c395976"
       ],
       "previousUrls": [
-        "https://intel.wd1.myworkdayjobs.com/External/job/US-California-Santa-Clara/Sales-and-Marketing---Intern--Graduate_JR0286839"
+        "https://job-boards.greenhouse.io/wurljobs/jobs/4716249006"
       ],
       "sources": [
-        "Direct ATS (Workday)"
+        "Internship Engine",
+        "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
+        "Direct ATS (Greenhouse)"
       ],
-      "candidateSeen": false,
+      "candidateSeen": true,
       "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-04T18:18:30.640Z",
+        "screening": [
+          {
+            "url": "https://job-boards.greenhouse.io/wurljobs/jobs/4716249006",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://job-boards.greenhouse.io/wurljobs/jobs/4716249006",
+            "reason": "location",
+            "detail": null
+          }
+        ],
+        "runStartedAt": "2026-11-04T19:18:36.905Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:intel.wd1.myworkdayjobs.com:external",
+          "id": "greenhouse:wurljobs",
           "status": "ok",
-          "outcome": "healthy",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1240
+          },
+          {
+            "name": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
+            "diagnosticName": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 560
+          },
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "scope-exclusion",
+      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
+      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
+      "requiresInvestigation": false
+    },
+    {
+      "identity": "workday:fmr.wd1.myworkdayjobs.com:targeted:2135122",
+      "id": "af48175ecf70903fc98453b5",
+      "company": "Fidelity Investments",
+      "title": "Quantitative Research Intern- Equity Quantitative Research Team",
+      "applyUrl": "https://fmr.wd1.myworkdayjobs.com/targeted/job/200-Seaport-Blvd-Boston-MA/Quantitative-Research-Intern--Equity-Quantitative-Research-Team_2135122",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "af48175ecf70903fc98453b5"
+      ],
+      "previousUrls": [
+        "https://fmr.wd1.myworkdayjobs.com/targeted/job/200-Seaport-Blvd-Boston-MA/Quantitative-Research-Intern--Equity-Quantitative-Research-Team_2135122"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://fmr.wd1.myworkdayjobs.com/targeted/job/200-Seaport-Blvd-Boston-MA/Quantitative-Research-Intern--Equity-Quantitative-Research-Team_2135122",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-04T19:18:36.905Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:fmr.wd1.myworkdayjobs.com:targeted",
+          "status": "not-checked",
+          "outcome": null,
           "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
             "outcome": null,
-            "rows": null
+            "rows": 1240
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "www.dreamworkhq.com:ddda543a-5700-4044-9f9a-63ed0bb5dad0",
+      "id": "f25573dd5d4a79a987d338cb",
+      "company": "Amazon",
+      "title": "Robotics Systems Engineer I, Robotics Delivery & Packaging Innovations …",
+      "applyUrl": "https://www.dreamworkhq.com/job/ddda543a-5700-4044-9f9a-63ed0bb5dad0",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "f25573dd5d4a79a987d338cb"
+      ],
+      "previousUrls": [
+        "https://www.dreamworkhq.com/job/ddda543a-5700-4044-9f9a-63ed0bb5dad0"
+      ],
+      "sources": [
+        "Dreamwork New Grad US"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-04T19:18:36.905Z",
+        "postingCheck": {
+          "status": "unknown",
+          "checkedAt": "2026-11-04T05:24:15.451Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork New Grad US",
+            "diagnosticName": "Dreamwork New Grad US",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1380
           }
         ]
       },
@@ -316,41 +547,40 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:intel.wd1.myworkdayjobs.com:external:jr0286837",
-      "id": "5395cc6474d2c61603834aa6",
-      "company": "Intel",
-      "title": "Sales and Marketing Rotation Program - College Graduate",
-      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-California-Santa-Clara/Sales-and-Marketing-Rotation-Program---College-Graduate_JR0286837",
+      "identity": "www.dreamworkhq.com:1c90c245-954f-4dc2-8af0-c52db2ca88ce",
+      "id": "6ffd60dee9e20ff8690b286a",
+      "company": "Amazon",
+      "title": "Systems Development Engineer, Frontier Amazon Dedicated Cloud (ADC)",
+      "applyUrl": "https://www.dreamworkhq.com/job/1c90c245-954f-4dc2-8af0-c52db2ca88ce",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "5395cc6474d2c61603834aa6"
+        "6ffd60dee9e20ff8690b286a"
       ],
       "previousUrls": [
-        "https://intel.wd1.myworkdayjobs.com/External/job/US-California-Santa-Clara/Sales-and-Marketing-Rotation-Program---College-Graduate_JR0286837"
+        "https://www.dreamworkhq.com/job/1c90c245-954f-4dc2-8af0-c52db2ca88ce"
       ],
       "sources": [
-        "Direct ATS (Workday)"
+        "Dreamwork New Grad US"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-04T18:18:30.640Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:intel.wd1.myworkdayjobs.com:external",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
+        "runStartedAt": "2026-11-04T19:18:36.905Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-11-04T05:24:15.243Z",
+          "httpStatus": 200,
+          "currentRun": false
         },
+        "workdayChecks": [],
+        "board": null,
         "sources": [
           {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
+            "name": "Dreamwork New Grad US",
+            "diagnosticName": "Dreamwork New Grad US",
+            "status": "ok",
             "outcome": null,
-            "rows": null
+            "rows": 1380
           }
         ]
       },
@@ -360,37 +590,137 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:intel.wd1.myworkdayjobs.com:external:jr0286832",
-      "id": "e50d8af64c17a8e43ab4521f",
-      "company": "Intel",
-      "title": "Sales and Marketing Rotation Program (Technical) - College Graduate",
-      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-California-Santa-Clara/Sales-and-Marketing-Rotation-Program--Technical----College-Graduate_JR0286832",
+      "identity": "www.dreamworkhq.com:03e17bfa-29b8-4fe3-9916-d7af17593493",
+      "id": "b2b65ef4f02ce228664f8e9b",
+      "company": "Amazon",
+      "title": "Network Infrastructure Eng I, Amazon Dedicated Cloud",
+      "applyUrl": "https://www.dreamworkhq.com/job/03e17bfa-29b8-4fe3-9916-d7af17593493",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "e50d8af64c17a8e43ab4521f"
+        "b2b65ef4f02ce228664f8e9b"
       ],
       "previousUrls": [
-        "https://intel.wd1.myworkdayjobs.com/External/job/US-California-Santa-Clara/Sales-and-Marketing-Rotation-Program--Technical----College-Graduate_JR0286832"
+        "https://www.dreamworkhq.com/job/03e17bfa-29b8-4fe3-9916-d7af17593493"
       ],
       "sources": [
-        "Direct ATS (Workday)"
+        "Dreamwork New Grad US"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-04T18:18:30.640Z",
+        "runStartedAt": "2026-11-04T19:18:36.905Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-11-04T06:24:07.406Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork New Grad US",
+            "diagnosticName": "Dreamwork New Grad US",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1380
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "www.dreamworkhq.com:45304409",
+      "id": "db55860eac949b50d73941d7",
+      "company": "Nvidia",
+      "title": "Product Management MBA Intern, Data Center GPU - Summer 2027",
+      "applyUrl": "https://www.dreamworkhq.com/job/45304409-efc3-45a7-b410-a2cea406c97a",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "db55860eac949b50d73941d7"
+      ],
+      "previousUrls": [
+        "https://www.dreamworkhq.com/job/45304409-efc3-45a7-b410-a2cea406c97a"
+      ],
+      "sources": [
+        "Dreamwork Tech Internships 2027"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-04T19:18:36.905Z",
+        "postingCheck": {
+          "status": "unknown",
+          "checkedAt": "2026-11-04T02:23:34.501Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork Tech Internships 2027",
+            "diagnosticName": "Dreamwork Tech Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1222
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "job-boards.greenhouse.io:5381202008",
+      "id": "c8d2ba2614801eeb64a9fb3c",
+      "company": "Olsson",
+      "title": "Entry-Level Transportation Engineer - Roadway",
+      "applyUrl": "https://job-boards.greenhouse.io/olsson/jobs/5381202008",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "c8d2ba2614801eeb64a9fb3c"
+      ],
+      "previousUrls": [
+        "https://job-boards.greenhouse.io/olsson/jobs/5381202008"
+      ],
+      "sources": [
+        "Keryx Non-Software New Grad 2026",
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://job-boards.greenhouse.io/olsson/jobs/5381202008",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-04T19:18:36.905Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:intel.wd1.myworkdayjobs.com:external",
+          "id": "greenhouse:olsson",
           "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
+          "outcome": null,
+          "membership": "absent",
           "retired": false
         },
         "sources": [
           {
-            "name": "Direct ATS (Workday)",
+            "name": "Keryx Non-Software New Grad 2026",
+            "diagnosticName": "Keryx Non-Software New Grad 2026",
+            "status": "ok",
+            "outcome": null,
+            "rows": 36
+          },
+          {
+            "name": "Direct ATS (Greenhouse)",
             "diagnosticName": null,
             "status": "not-checked",
             "outcome": null,
@@ -398,89 +728,149 @@
           }
         ]
       },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
       "requiresInvestigation": true
     }
   ],
   "rowCounts": {
-    "previous": 6802,
-    "current": 6845,
-    "net": 43,
+    "previous": 6845,
+    "current": 6859,
+    "net": 14,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 51,
-  "removedCount": 8,
+  "added": 29,
+  "removedCount": 15,
   "counts": {
+    "not-returned-by-sources": 10,
     "absent-from-employer-board": 1,
-    "pendingVerification": 2,
-    "not-returned-by-sources": 5
+    "pendingVerification": 3,
+    "location": 1
   },
   "removed": [
     {
-      "id": "d0f8ebc0bebe9f18e4b1d997",
-      "company": "Beam Therapeutics",
-      "title": "Process Engineering Co-op, LNP Development",
-      "applyUrl": "https://job-boards.greenhouse.io/beamtherapeutics/jobs/8795526002",
+      "id": "0d2aba26422ed7ac8dca465c",
+      "company": "Raytheon",
+      "title": "Systems Engineer I - Tac Comm - Onsite",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-137--855-35Th-St-NE--BLDG-137/Systems-Engineer-I---Tac-Comm---Onsite_01879878",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "f3199480ca6f88abe0073834",
+      "company": "Raytheon",
+      "title": "Systems Engineer I",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-137--855-35Th-St-NE--BLDG-137/Systems-Engineer-I_01885964",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "5ca4b8f1233a8861507be91e",
+      "company": "Booz Allen",
+      "title": "Full Stack Software Engineer, Junior",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/McLean-VA/Full-Stack-Software-Engineer--Junior_R0248060",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "c11642b35d11ffddacc6e95e",
+      "company": "hatch I.T.",
+      "title": "Junior Test Engineer (VOR)",
+      "applyUrl": "https://jobs.lever.co/hatchit/47acbed4-4c8f-4004-a838-12a1b1fe3adb/apply",
       "reason": "absent-from-employer-board"
     },
     {
-      "id": "709ecf92dc8a806a131b1c2a",
-      "company": "The Federal Reserve System",
-      "title": "2027 Summer Internship Program - OAS Business Analyst",
-      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---OAS-Busines-Analyst_R-0000033888",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "8417d7f26bd9a3146d84b6e7",
-      "company": "Micron",
-      "title": "New College Grad - Engineer, ASIC Digital Design",
-      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Minneapolis-MN/New-College-Grad---Engineer--ASIC-Digital-Design_JR112164",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "02fa73a292dc6357c2de25c8",
+      "id": "9572eff8000d1fbb4aef3e12",
       "company": "KLA",
-      "title": "AI/ML Software Engineer - Intern",
-      "applyUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Ann-Arbor-MI/AI-ML-Software-Engineer---Intern_2641701-1",
+      "title": "PLM BI & Analytics Intern",
+      "applyUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Ann-Arbor-MI/Intern---PLM-BI---Analytics_2641568-2",
       "reason": "pendingVerification"
     },
     {
-      "id": "160f54139b8cb98ac8f2265a",
-      "company": "Micron",
-      "title": "Intern - Photomask Sustaining Engineering",
-      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---Photomask-Sustaining-Engineering_JR108456",
+      "id": "980c3f4b1533fd9f33a0b560",
+      "company": "Figma",
+      "title": "Data Science Intern (2027)",
+      "applyUrl": "https://www.dreamworkhq.com/job/28009b1f-0c25-43b8-b583-be0f0f41060a",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "1bc0d6c30e117a384f97f07c",
-      "company": "Intel",
-      "title": "Sales and Marketing - Intern, Graduate",
-      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-California-Santa-Clara/Sales-and-Marketing---Intern--Graduate_JR0286839",
+      "id": "b303f6c5e19aa439d8ef364f",
+      "company": "Figma",
+      "title": "Product Design Intern (2027)",
+      "applyUrl": "https://www.dreamworkhq.com/job/377ed3dc-9724-47de-88a3-74b5e52fe373",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "5395cc6474d2c61603834aa6",
-      "company": "Intel",
-      "title": "Sales and Marketing Rotation Program - College Graduate",
-      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-California-Santa-Clara/Sales-and-Marketing-Rotation-Program---College-Graduate_JR0286837",
+      "id": "5d329133c3ae0992bd7ba21e",
+      "company": "KLA",
+      "title": "Mechatronics Engineering Internship",
+      "applyUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Mechatronics-Engineering-Internship_2641518-1",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "e50d8af64c17a8e43ab4521f",
-      "company": "Intel",
-      "title": "Sales and Marketing Rotation Program (Technical) - College Graduate",
-      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-California-Santa-Clara/Sales-and-Marketing-Rotation-Program--Technical----College-Graduate_JR0286832",
+      "id": "dde9653f3c26f4b76c395976",
+      "company": "Wurl",
+      "title": "Data Science Intern",
+      "applyUrl": "https://job-boards.greenhouse.io/wurljobs/jobs/4716249006",
+      "reason": "location"
+    },
+    {
+      "id": "af48175ecf70903fc98453b5",
+      "company": "Fidelity Investments",
+      "title": "Quantitative Research Intern- Equity Quantitative Research Team",
+      "applyUrl": "https://fmr.wd1.myworkdayjobs.com/targeted/job/200-Seaport-Blvd-Boston-MA/Quantitative-Research-Intern--Equity-Quantitative-Research-Team_2135122",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "f25573dd5d4a79a987d338cb",
+      "company": "Amazon",
+      "title": "Robotics Systems Engineer I, Robotics Delivery & Packaging Innovations …",
+      "applyUrl": "https://www.dreamworkhq.com/job/ddda543a-5700-4044-9f9a-63ed0bb5dad0",
       "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "6ffd60dee9e20ff8690b286a",
+      "company": "Amazon",
+      "title": "Systems Development Engineer, Frontier Amazon Dedicated Cloud (ADC)",
+      "applyUrl": "https://www.dreamworkhq.com/job/1c90c245-954f-4dc2-8af0-c52db2ca88ce",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "b2b65ef4f02ce228664f8e9b",
+      "company": "Amazon",
+      "title": "Network Infrastructure Eng I, Amazon Dedicated Cloud",
+      "applyUrl": "https://www.dreamworkhq.com/job/03e17bfa-29b8-4fe3-9916-d7af17593493",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "db55860eac949b50d73941d7",
+      "company": "Nvidia",
+      "title": "Product Management MBA Intern, Data Center GPU - Summer 2027",
+      "applyUrl": "https://www.dreamworkhq.com/job/45304409-efc3-45a7-b410-a2cea406c97a",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "c8d2ba2614801eeb64a9fb3c",
+      "company": "Olsson",
+      "title": "Entry-Level Transportation Engineer - Roadway",
+      "applyUrl": "https://job-boards.greenhouse.io/olsson/jobs/5381202008",
+      "reason": "pendingVerification"
     }
   ],
   "urlChanges": [
     {
-      "id": "54ffd2f4a2b4509dc4b96f3e",
-      "previousUrl": "https://generalmotors.wd5.myworkdayjobs.com/en-CA/Careers_GM/job/Milford-Michigan-United-States-of-America/XMLNAME-2027-Summer-Intern---Systems-Calibration-Engineer--ADAS-Drive_JR-202621623",
-      "applyUrl": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Milford-Michigan-United-States-of-America/XMLNAME-2027-Summer-Intern---Systems-Calibration-Engineer--ADAS-Drive_JR-202621623"
+      "id": "9b60845f6551973215267188",
+      "previousUrl": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Utah-Roy/XMLNAME-2027-Software-Engineering-Intern---Roy-UT_R10259181",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Utah-Roy/XMLNAME-2027-Software-Engineering-Intern---Roy-UT_R10259181"
+    },
+    {
+      "id": "dca9b2313fe4fb6a4c31ce82",
+      "previousUrl": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Utah-Roy/XMLNAME-2027-Software-Test-Engineering-Intern---Roy-UT_R10259179",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Utah-Roy/XMLNAME-2027-Software-Test-Engineering-Intern---Roy-UT_R10259179"
+    },
+    {
+      "id": "85e33eec35636c919e361dfc",
+      "previousUrl": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Utah-Roy/XMLNAME-2027-DevOps-Software-Engineering-Intern---Roy-UT_R10259178",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Utah-Roy/XMLNAME-2027-DevOps-Software-Engineering-Intern---Roy-UT_R10259178"
     }
   ]
 }
