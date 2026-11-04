@@ -1,5 +1,7 @@
 # Role navigation release, November 3, 2026
 
+Push receipt: implementation `0fee320` and final snapshot/verification `883574f` were pushed to `origin/main` on November 3, 2026. Production deployment and live-site verification remain outside this batch.
+
 Owner-approved scope: audit, refreshed preview, measured verification, documentation/validation, commit and push to `main`. Save is unchanged. No new source, service, paid infrastructure, category or relaxed eligibility rule was introduced. Automatic deployment may follow the push; production verification is a separate step.
 
 ## Final behavior
