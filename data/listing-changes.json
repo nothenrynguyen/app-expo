@@ -1,52 +1,150 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-05T01:25:37.618Z",
-  "previousGeneratedAt": "2026-11-05T00:25:18.799Z",
-  "currentSnapshotGeneratedAt": "2026-11-05T01:25:37.618Z",
+  "generatedAt": "2026-11-05T02:25:18.682Z",
+  "previousGeneratedAt": "2026-11-05T01:25:37.618Z",
+  "currentSnapshotGeneratedAt": "2026-11-05T02:25:18.682Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6848,
+    "previous": 6840,
     "current": 6840,
-    "retained": 6835,
-    "added": 5,
-    "removed": 13,
-    "net": -8
+    "retained": 6832,
+    "added": 8,
+    "removed": 8,
+    "net": 0
   },
   "categoryCounts": {
     "confirmed-closed": 0,
     "scope-exclusion": 0,
-    "verification-pending": 5,
-    "source-unavailable": 8,
-    "unresolved": 0,
+    "verification-pending": 1,
+    "source-unavailable": 5,
+    "unresolved": 2,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01885356",
-      "id": "7c18b80407e0b6c239fef024",
-      "company": "RTX",
-      "title": "Entry-Level Software Developer - Application Support & Sustainment (Remote)",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-108--400-Collins-Rd-NE--BLDG-108/Entry-Level-Software-Developer---Application-Support---Sustainment--Remote-_01885356",
-      "reason": "pendingVerification",
+      "identity": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site:r26366",
+      "id": "3c0afdbc064b80cad0fe72d5",
+      "company": "Sierra Space",
+      "title": "Test Engineer I",
+      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Durham-NC/Test-Engineer-II_R26366-1",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "7c18b80407e0b6c239fef024"
+        "3c0afdbc064b80cad0fe72d5"
       ],
       "previousUrls": [
-        "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-108--400-Collins-Rd-NE--BLDG-108/Entry-Level-Software-Developer---Application-Support---Sustainment--Remote-_01885356"
+        "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Durham-NC/Test-Engineer-II_R26366-1"
       ],
       "sources": [
-        "Aprameya New Grad 2027"
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-05T02:18:37.822Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:leidos.wd5.myworkdayjobs.com:external:r-00196049",
+      "id": "763be85a1cc7eccfcc177886",
+      "company": "Leidos",
+      "title": "Data Science Intern",
+      "applyUrl": "https://leidos.wd5.myworkdayjobs.com/External/job/Arlington-VA/Data-Science-Intern_R-00196049",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "763be85a1cc7eccfcc177886"
+      ],
+      "previousUrls": [
+        "https://leidos.wd5.myworkdayjobs.com/External/job/Arlington-VA/Data-Science-Intern_R-00196049"
+      ],
+      "sources": [
+        "Internship Engine"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-108--400-Collins-Rd-NE--BLDG-108/Entry-Level-Software-Developer---Application-Support---Sustainment--Remote-_01885356",
+            "url": "https://leidos.wd5.myworkdayjobs.com/External/job/Arlington-VA/Data-Science-Intern_R-00196049",
             "reason": "pendingVerification",
             "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://leidos.wd5.myworkdayjobs.com/en-US/External/job/Arlington-VA/Data-Science-Intern_R-00196049",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://leidos.wd5.myworkdayjobs.com/External/job/Arlington-VA/Data-Science-Intern_R-00196049",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-05T01:18:35.828Z",
+        "runStartedAt": "2026-11-05T02:18:37.822Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:leidos.wd5.myworkdayjobs.com:external",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1245
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01885577",
+      "id": "6f236bdee354d7e0a956f27b",
+      "company": "Raytheon",
+      "title": "Systems Engineering Intern, BMC2 (Onsite)",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-FL-ST-PETERSBURG-381BD--7401-22nd-Ave-N--BLDG-D/Systems-Engineering-Intern--BMC2--Onsite-_01885577",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "6f236bdee354d7e0a956f27b"
+      ],
+      "previousUrls": [
+        "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-FL-ST-PETERSBURG-381BD--7401-22nd-Ave-N--BLDG-D/Systems-Engineering-Intern--BMC2--Onsite-_01885577"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-05T02:18:37.822Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
@@ -58,102 +156,6 @@
         },
         "sources": [
           {
-            "name": "Aprameya New Grad 2027",
-            "diagnosticName": "Aprameya New Grad 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 511
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:dealertire.wd5.myworkdayjobs.com:dealertirellc-careers:r13774",
-      "id": "92a351339312172817171801",
-      "company": "Dealer Tire",
-      "title": "Associate Data Scientist",
-      "applyUrl": "https://dealertire.wd5.myworkdayjobs.com/DealerTireLLC-Careers/job/OH1-Corporate-Office/Associate-Data-Scientist_R13774",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "92a351339312172817171801"
-      ],
-      "previousUrls": [
-        "https://dealertire.wd5.myworkdayjobs.com/DealerTireLLC-Careers/job/OH1-Corporate-Office/Associate-Data-Scientist_R13774"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-05T01:18:35.828Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:dealertire.wd5.myworkdayjobs.com:dealertirellc-careers",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1316
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers:r69922",
-      "id": "25601e63ac37613e72fce287",
-      "company": "Motorola",
-      "title": "Presales Engineering Intern- Summer 2027 Internship",
-      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/Presales-Engineering-Intern--Summer-2027-Internship_R69922",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "25601e63ac37613e72fce287"
-      ],
-      "previousUrls": [
-        "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/Presales-Engineering-Intern--Summer-2027-Internship_R69922"
-      ],
-      "sources": [
-        "Keryx Non-Software Summer 2027",
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-05T01:18:35.828Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1504
-          },
-          {
             "name": "Direct ATS (Workday)",
             "diagnosticName": null,
             "status": "not-checked",
@@ -162,293 +164,23 @@
           }
         ]
       },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:transunion.wd5.myworkdayjobs.com:transunion:19042627",
-      "id": "13a5fa69d126f35a382ff58c",
-      "company": "TransUnion",
-      "title": "Financial Services - Argus Advisory Internship - Summer 2027",
-      "applyUrl": "https://transunion.wd5.myworkdayjobs.com/TransUnion/job/White-Plains-New-York/Financial-Services---Argus-Advisory-Internship---Summer-2027_19042627",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "13a5fa69d126f35a382ff58c"
-      ],
-      "previousUrls": [
-        "https://transunion.wd5.myworkdayjobs.com/TransUnion/job/White-Plains-New-York/Financial-Services---Argus-Advisory-Internship---Summer-2027_19042627"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://transunion.wd5.myworkdayjobs.com/transunion/job/White-Plains-New-York/Financial-Services---Argus-Advisory-Internship---Summer-2027_19042627",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-05T01:18:35.828Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:transunion.wd5.myworkdayjobs.com:transunion",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1316
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:bdx.wd1.myworkdayjobs.com:external_career_site_usa:r-557002",
-      "id": "5782e29f015646700b7e19e6",
-      "company": "Becton Dickinson and Company",
-      "title": "Software Engineer I",
-      "applyUrl": "https://bdx.wd1.myworkdayjobs.com/EXTERNAL_CAREER_SITE_USA/job/USA-MD---Sparks---7-Loveton-Circle/Software-Engineer-I_R-557002-1",
+      "identity": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site:r26402",
+      "id": "9818955d763239d185b6d107",
+      "company": "Sierra Space",
+      "title": "Test Engineer I",
+      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Test-Engineer-I_R26402-1",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "5782e29f015646700b7e19e6"
+        "9818955d763239d185b6d107"
       ],
       "previousUrls": [
-        "https://bdx.wd1.myworkdayjobs.com/EXTERNAL_CAREER_SITE_USA/job/USA-MD---Sparks---7-Loveton-Circle/Software-Engineer-I_R-557002-1"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-05T01:18:35.828Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:bdx.wd1.myworkdayjobs.com:external_career_site_usa",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1316
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:elkay.wd1.myworkdayjobs.com:elkay_external:req-020015",
-      "id": "f5843b050c0450dfb35ee393",
-      "company": "Zurn Elkay Water Solutions",
-      "title": "Sales Analytics Intern (Summer 2027)",
-      "applyUrl": "https://elkay.wd1.myworkdayjobs.com/Elkay_External/job/Milwaukee-WI/Sales-Analytics-Intern--Summer-2027-_REQ-020015-1",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "f5843b050c0450dfb35ee393"
-      ],
-      "previousUrls": [
-        "https://elkay.wd1.myworkdayjobs.com/Elkay_External/job/Milwaukee-WI/Sales-Analytics-Intern--Summer-2027-_REQ-020015-1"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-05T01:18:35.828Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:elkay.wd1.myworkdayjobs.com:elkay_external",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1316
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:regeneron.wd1.myworkdayjobs.com:careers:r51082",
-      "id": "5d6eae581288f5e00b4ec730",
-      "company": "Regeneron Pharmaceuticals",
-      "title": "2027 Co-op Precision Medicine Operations",
-      "applyUrl": "https://regeneron.wd1.myworkdayjobs.com/Careers/job/Armonk/XMLNAME-2027-Co-op-Precision-Medicine-Operations_R51082-1",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "5d6eae581288f5e00b4ec730"
-      ],
-      "previousUrls": [
-        "https://regeneron.wd1.myworkdayjobs.com/Careers/job/Armonk/XMLNAME-2027-Co-op-Precision-Medicine-Operations_R51082-1"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-05T01:18:35.828Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:regeneron.wd1.myworkdayjobs.com:careers",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1316
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:costar.wd1.myworkdayjobs.com:costar_campus:r39942",
-      "id": "5484a705e7a661face5312d6",
-      "company": "CoStar Group",
-      "title": "Associate Software Engineer - Sunnyvale, CA",
-      "applyUrl": "https://costar.wd1.myworkdayjobs.com/Costar_Campus/job/Sunnyvale-US/Associate-Software-Engineer---Sunnyvale--CA_R39942",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "5484a705e7a661face5312d6"
-      ],
-      "previousUrls": [
-        "https://costar.wd1.myworkdayjobs.com/Costar_Campus/job/Sunnyvale-US/Associate-Software-Engineer---Sunnyvale--CA_R39942"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-05T01:18:35.828Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:costar.wd1.myworkdayjobs.com:costar_campus",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1316
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:bracco.wd103.myworkdayjobs.com:braccocareers:jr100319",
-      "id": "0e06857b3812d9044c09e2b9",
-      "company": "Bracco",
-      "title": "Firmware Engineering Co-op",
-      "applyUrl": "https://bracco.wd103.myworkdayjobs.com/BraccoCareers/job/USA-Pleasanton-California-94566/Firmware-Engineering-Co-op_JR100319",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "0e06857b3812d9044c09e2b9"
-      ],
-      "previousUrls": [
-        "https://bracco.wd103.myworkdayjobs.com/BraccoCareers/job/USA-Pleasanton-California-94566/Firmware-Engineering-Co-op_JR100319"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-05T01:18:35.828Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:bracco.wd103.myworkdayjobs.com:braccocareers",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1316
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers:r68739",
-      "id": "35edf7ebe5bb78ec4fe722a7",
-      "company": "Motorola",
-      "title": "VS&A Supply Chain Intern 2027 internship",
-      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/VS-A-Supply-Chain-Intern_R68739",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "35edf7ebe5bb78ec4fe722a7"
-      ],
-      "previousUrls": [
-        "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/VS-A-Supply-Chain-Intern_R68739"
+        "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Test-Engineer-I_R26402-1"
       ],
       "sources": [
         "Direct ATS (Workday)"
@@ -456,11 +188,11 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-05T01:18:35.828Z",
+        "runStartedAt": "2026-11-05T02:18:37.822Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers",
+          "id": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site",
           "status": "failed",
           "outcome": "cooldown",
           "membership": "unknown",
@@ -482,112 +214,167 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "job-boards.greenhouse.io:4386032009",
-      "id": "33deb0a2cea20f9c6984601a",
-      "company": "Castelion",
-      "title": "Mechanical Engineer Intern (Winter/Spring 2027)",
-      "applyUrl": "https://job-boards.greenhouse.io/castelioncorporation/jobs/4386032009",
-      "reason": "pendingVerification",
+      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10258242",
+      "id": "6fa19e2b5742d489e386ba3a",
+      "company": "Northrop Grumman",
+      "title": "2027 Parts Materials and Process Engineering Intern- Roy UT",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Utah-Roy/XMLNAME-2027-Parts-Materials-and-Process-Engineering-Intern--Roy-UT_R10258242-1",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "33deb0a2cea20f9c6984601a"
+        "6fa19e2b5742d489e386ba3a"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/castelioncorporation/jobs/4386032009"
+        "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Utah-Roy/XMLNAME-2027-Parts-Materials-and-Process-Engineering-Intern--Roy-UT_R10258242-1"
       ],
       "sources": [
-        "Keryx Non-Software Spring 2027",
-        "Direct ATS (Greenhouse)"
+        "Direct ATS (Workday)"
       ],
-      "candidateSeen": true,
+      "candidateSeen": false,
       "evidence": {
-        "screening": [
-          {
-            "url": "https://job-boards.greenhouse.io/castelioncorporation/jobs/4386032009",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-05T01:18:35.828Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-10-29T13:24:26.270Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
+        "screening": [],
+        "runStartedAt": "2026-11-05T02:18:37.822Z",
+        "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:castelioncorporation",
+          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site:r26359",
+      "id": "f33431da1208df262fe626bd",
+      "company": "Sierra Space",
+      "title": "Configuration Management Analyst I (Analyst & Data Librarian)",
+      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Configuration-Management-Analyst---Data-Librarian_R26359-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "f33431da1208df262fe626bd"
+      ],
+      "previousUrls": [
+        "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Configuration-Management-Analyst---Data-Librarian_R26359-1"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-05T02:18:37.822Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site:r26360",
+      "id": "3df88ffa640fb4ebe6374da4",
+      "company": "Sierra Space",
+      "title": "Material Science Engineer I",
+      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Material-Science-Engineer-I_R26360-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "3df88ffa640fb4ebe6374da4"
+      ],
+      "previousUrls": [
+        "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Material-Science-Engineer-I_R26360-1"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-05T02:18:37.822Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:amat.wd1.myworkdayjobs.com:external:r2627689",
+      "id": "5b5f80b086aafe69b6aac98c",
+      "company": "Applied Materials",
+      "title": "Electrical Engineer New College Grad - BS/MS Degree (Santa Clara, CA)",
+      "applyUrl": "https://amat.wd1.myworkdayjobs.com/External/job/Santa-ClaraCA/Electrical-Engineer-New-College-Grad---BS-MS-Degree--Santa-Clara--CA-_R2627689",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "5b5f80b086aafe69b6aac98c"
+      ],
+      "previousUrls": [
+        "https://amat.wd1.myworkdayjobs.com/External/job/Santa-ClaraCA/Electrical-Engineer-New-College-Grad---BS-MS-Degree--Santa-Clara--CA-_R2627689"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-05T02:18:37.822Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:amat.wd1.myworkdayjobs.com:external",
           "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Keryx Non-Software Spring 2027",
-            "diagnosticName": "Keryx Non-Software Spring 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 274
-          },
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31435",
-      "id": "48d0774191df9234015b9c9f",
-      "company": "HNTB",
-      "title": "WED - Intern Civil Engineer (Summer 2027) (For Current & Recent HNTB Interns Only)",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "48d0774191df9234015b9c9f"
-      ],
-      "previousUrls": [
-        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435"
-      ],
-      "sources": [
-        "Keryx Non-Software Summer 2027",
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-05T01:18:35.828Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
-          "status": "failed",
-          "outcome": "cooldown",
+          "outcome": "healthy",
           "membership": "unknown",
           "retired": false
         },
         "sources": [
-          {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1504
-          },
           {
             "name": "Direct ATS (Workday)",
             "diagnosticName": null,
@@ -597,196 +384,82 @@
           }
         ]
       },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "jobs.ashbyhq.com:1e8d195c-e28e-423d-a06a-9eeb401ed4fc",
-      "id": "0eec99d3709f81baf339edab",
-      "company": "Persona AI",
-      "title": "Robotics Software Intern - Manipulation",
-      "applyUrl": "https://jobs.ashbyhq.com/persona.ai/1e8d195c-e28e-423d-a06a-9eeb401ed4fc/application?embed=true",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "0eec99d3709f81baf339edab"
-      ],
-      "previousUrls": [
-        "https://jobs.ashbyhq.com/persona.ai/1e8d195c-e28e-423d-a06a-9eeb401ed4fc/application?embed=true"
-      ],
-      "sources": [
-        "Aprameya Summer Internships 2027",
-        "Direct ATS (Ashby)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.ashbyhq.com/persona.ai/1e8d195c-e28e-423d-a06a-9eeb401ed4fc/application?embed=true",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-05T01:18:35.828Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "ashby:persona.ai",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2381
-          },
-          {
-            "name": "Direct ATS (Ashby)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
       "requiresInvestigation": true
     }
   ],
   "rowCounts": {
-    "previous": 6848,
+    "previous": 6840,
     "current": 6840,
-    "net": -8,
+    "net": 0,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 5,
-  "removedCount": 13,
+  "added": 8,
+  "removedCount": 8,
   "counts": {
-    "pendingVerification": 5,
-    "not-returned-by-sources": 8
+    "not-returned-by-sources": 7,
+    "pendingVerification": 1
   },
   "removed": [
     {
-      "id": "7c18b80407e0b6c239fef024",
-      "company": "RTX",
-      "title": "Entry-Level Software Developer - Application Support & Sustainment (Remote)",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-108--400-Collins-Rd-NE--BLDG-108/Entry-Level-Software-Developer---Application-Support---Sustainment--Remote-_01885356",
+      "id": "3c0afdbc064b80cad0fe72d5",
+      "company": "Sierra Space",
+      "title": "Test Engineer I",
+      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Durham-NC/Test-Engineer-II_R26366-1",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "763be85a1cc7eccfcc177886",
+      "company": "Leidos",
+      "title": "Data Science Intern",
+      "applyUrl": "https://leidos.wd5.myworkdayjobs.com/External/job/Arlington-VA/Data-Science-Intern_R-00196049",
       "reason": "pendingVerification"
     },
     {
-      "id": "92a351339312172817171801",
-      "company": "Dealer Tire",
-      "title": "Associate Data Scientist",
-      "applyUrl": "https://dealertire.wd5.myworkdayjobs.com/DealerTireLLC-Careers/job/OH1-Corporate-Office/Associate-Data-Scientist_R13774",
+      "id": "6f236bdee354d7e0a956f27b",
+      "company": "Raytheon",
+      "title": "Systems Engineering Intern, BMC2 (Onsite)",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-FL-ST-PETERSBURG-381BD--7401-22nd-Ave-N--BLDG-D/Systems-Engineering-Intern--BMC2--Onsite-_01885577",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "25601e63ac37613e72fce287",
-      "company": "Motorola",
-      "title": "Presales Engineering Intern- Summer 2027 Internship",
-      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/Presales-Engineering-Intern--Summer-2027-Internship_R69922",
+      "id": "9818955d763239d185b6d107",
+      "company": "Sierra Space",
+      "title": "Test Engineer I",
+      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Test-Engineer-I_R26402-1",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "13a5fa69d126f35a382ff58c",
-      "company": "TransUnion",
-      "title": "Financial Services - Argus Advisory Internship - Summer 2027",
-      "applyUrl": "https://transunion.wd5.myworkdayjobs.com/TransUnion/job/White-Plains-New-York/Financial-Services---Argus-Advisory-Internship---Summer-2027_19042627",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "5782e29f015646700b7e19e6",
-      "company": "Becton Dickinson and Company",
-      "title": "Software Engineer I",
-      "applyUrl": "https://bdx.wd1.myworkdayjobs.com/EXTERNAL_CAREER_SITE_USA/job/USA-MD---Sparks---7-Loveton-Circle/Software-Engineer-I_R-557002-1",
+      "id": "6fa19e2b5742d489e386ba3a",
+      "company": "Northrop Grumman",
+      "title": "2027 Parts Materials and Process Engineering Intern- Roy UT",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Utah-Roy/XMLNAME-2027-Parts-Materials-and-Process-Engineering-Intern--Roy-UT_R10258242-1",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "f5843b050c0450dfb35ee393",
-      "company": "Zurn Elkay Water Solutions",
-      "title": "Sales Analytics Intern (Summer 2027)",
-      "applyUrl": "https://elkay.wd1.myworkdayjobs.com/Elkay_External/job/Milwaukee-WI/Sales-Analytics-Intern--Summer-2027-_REQ-020015-1",
+      "id": "f33431da1208df262fe626bd",
+      "company": "Sierra Space",
+      "title": "Configuration Management Analyst I (Analyst & Data Librarian)",
+      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Configuration-Management-Analyst---Data-Librarian_R26359-1",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "5d6eae581288f5e00b4ec730",
-      "company": "Regeneron Pharmaceuticals",
-      "title": "2027 Co-op Precision Medicine Operations",
-      "applyUrl": "https://regeneron.wd1.myworkdayjobs.com/Careers/job/Armonk/XMLNAME-2027-Co-op-Precision-Medicine-Operations_R51082-1",
+      "id": "3df88ffa640fb4ebe6374da4",
+      "company": "Sierra Space",
+      "title": "Material Science Engineer I",
+      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Material-Science-Engineer-I_R26360-1",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "5484a705e7a661face5312d6",
-      "company": "CoStar Group",
-      "title": "Associate Software Engineer - Sunnyvale, CA",
-      "applyUrl": "https://costar.wd1.myworkdayjobs.com/Costar_Campus/job/Sunnyvale-US/Associate-Software-Engineer---Sunnyvale--CA_R39942",
+      "id": "5b5f80b086aafe69b6aac98c",
+      "company": "Applied Materials",
+      "title": "Electrical Engineer New College Grad - BS/MS Degree (Santa Clara, CA)",
+      "applyUrl": "https://amat.wd1.myworkdayjobs.com/External/job/Santa-ClaraCA/Electrical-Engineer-New-College-Grad---BS-MS-Degree--Santa-Clara--CA-_R2627689",
       "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "0e06857b3812d9044c09e2b9",
-      "company": "Bracco",
-      "title": "Firmware Engineering Co-op",
-      "applyUrl": "https://bracco.wd103.myworkdayjobs.com/BraccoCareers/job/USA-Pleasanton-California-94566/Firmware-Engineering-Co-op_JR100319",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "35edf7ebe5bb78ec4fe722a7",
-      "company": "Motorola",
-      "title": "VS&A Supply Chain Intern 2027 internship",
-      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/VS-A-Supply-Chain-Intern_R68739",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "33deb0a2cea20f9c6984601a",
-      "company": "Castelion",
-      "title": "Mechanical Engineer Intern (Winter/Spring 2027)",
-      "applyUrl": "https://job-boards.greenhouse.io/castelioncorporation/jobs/4386032009",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "48d0774191df9234015b9c9f",
-      "company": "HNTB",
-      "title": "WED - Intern Civil Engineer (Summer 2027) (For Current & Recent HNTB Interns Only)",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "0eec99d3709f81baf339edab",
-      "company": "Persona AI",
-      "title": "Robotics Software Intern - Manipulation",
-      "applyUrl": "https://jobs.ashbyhq.com/persona.ai/1e8d195c-e28e-423d-a06a-9eeb401ed4fc/application?embed=true",
-      "reason": "pendingVerification"
     }
   ],
-  "urlChanges": [
-    {
-      "id": "2b3f7f6f7f7e44d7387d5622",
-      "previousUrl": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Sunnyvale-California-United-States-of-America/XMLNAME-2027-Summer-Intern--AI-Research--Embodied-AI_JR-202622146",
-      "applyUrl": "https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Sunnyvale-California-United-States-of-America/XMLNAME-2027-Summer-Intern--AI-Research--Embodied-AI_JR-202622146"
-    },
-    {
-      "id": "eb6f69f7d4acbb37e4434753",
-      "previousUrl": "https://lifefitness.wd1.myworkdayjobs.com/searchLFN/job/Schaumburg-IL-60173/Android-Software-Intern_JR-025277",
-      "applyUrl": "https://lifefitness.wd1.myworkdayjobs.com/searchLFN/job/Schaumburg-IL/Android-Software-Intern_JR-025277"
-    },
-    {
-      "id": "2d72ec9a4979f70ebf12907d",
-      "previousUrl": "https://lifefitness.wd1.myworkdayjobs.com/searchLFN/job/Schaumburg-IL-60173/Embedded-Software-Intern_JR-025276",
-      "applyUrl": "https://lifefitness.wd1.myworkdayjobs.com/searchLFN/job/Schaumburg-IL/Embedded-Software-Intern_JR-025276"
-    },
-    {
-      "id": "af25515264c9c9abc2c082aa",
-      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037"
-    }
-  ]
+  "urlChanges": []
 }
