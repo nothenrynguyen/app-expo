@@ -1,58 +1,58 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-05T02:25:18.682Z",
-  "previousGeneratedAt": "2026-11-05T01:25:37.618Z",
-  "currentSnapshotGeneratedAt": "2026-11-05T02:25:18.682Z",
+  "generatedAt": "2026-11-05T03:24:35.888Z",
+  "previousGeneratedAt": "2026-11-05T02:25:18.682Z",
+  "currentSnapshotGeneratedAt": "2026-11-05T03:24:35.888Z",
   "reconciliation": {
     "unit": "opportunities",
     "previous": 6840,
-    "current": 6840,
-    "retained": 6832,
-    "added": 8,
-    "removed": 8,
-    "net": 0
+    "current": 6850,
+    "retained": 6838,
+    "added": 12,
+    "removed": 2,
+    "net": 10
   },
   "categoryCounts": {
     "confirmed-closed": 0,
     "scope-exclusion": 0,
     "verification-pending": 1,
-    "source-unavailable": 5,
-    "unresolved": 2,
+    "source-unavailable": 0,
+    "unresolved": 1,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site:r26366",
-      "id": "3c0afdbc064b80cad0fe72d5",
-      "company": "Sierra Space",
-      "title": "Test Engineer I",
-      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Durham-NC/Test-Engineer-II_R26366-1",
-      "reason": "not-returned-by-sources",
+      "identity": "boards.greenhouse.io:8603368002",
+      "id": "f3bf6453328fdd767c1008d4",
+      "company": "SpaceX",
+      "title": "Integration Engineer, Heatshield (Starship)",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8603368002",
+      "reason": "absent-from-employer-board",
       "previousIds": [
-        "3c0afdbc064b80cad0fe72d5"
+        "f3bf6453328fdd767c1008d4"
       ],
       "previousUrls": [
-        "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Durham-NC/Test-Engineer-II_R26366-1"
+        "https://boards.greenhouse.io/spacex/jobs/8603368002"
       ],
       "sources": [
-        "Direct ATS (Workday)"
+        "Direct ATS (Greenhouse)"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-05T02:18:37.822Z",
+        "runStartedAt": "2026-11-05T03:18:17.153Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
+          "id": "greenhouse:spacex",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
           "retired": false
         },
         "sources": [
           {
-            "name": "Direct ATS (Workday)",
+            "name": "Direct ATS (Greenhouse)",
             "diagnosticName": null,
             "status": "not-checked",
             "outcome": null,
@@ -60,63 +60,53 @@
           }
         ]
       },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:leidos.wd5.myworkdayjobs.com:external:r-00196049",
-      "id": "763be85a1cc7eccfcc177886",
-      "company": "Leidos",
-      "title": "Data Science Intern",
-      "applyUrl": "https://leidos.wd5.myworkdayjobs.com/External/job/Arlington-VA/Data-Science-Intern_R-00196049",
+      "identity": "workday:iko.wd3.myworkdayjobs.com:iko_careers:req-13883",
+      "id": "4584d87440fb1a25095c7dbd",
+      "company": "IKO North America",
+      "title": "Mechanical Process Engineer Co-Op - Spring 2027",
+      "applyUrl": "https://iko.wd3.myworkdayjobs.com/IKO_Careers/job/Seville-OH/Mechanical-Process-Engineer-Co-Op---Spring-2027_REQ-13883",
       "reason": "pendingVerification",
       "previousIds": [
-        "763be85a1cc7eccfcc177886"
+        "4584d87440fb1a25095c7dbd"
       ],
       "previousUrls": [
-        "https://leidos.wd5.myworkdayjobs.com/External/job/Arlington-VA/Data-Science-Intern_R-00196049"
+        "https://iko.wd3.myworkdayjobs.com/IKO_Careers/job/Seville-OH/Mechanical-Process-Engineer-Co-Op---Spring-2027_REQ-13883"
       ],
       "sources": [
-        "Internship Engine"
+        "Employer recovery"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://leidos.wd5.myworkdayjobs.com/External/job/Arlington-VA/Data-Science-Intern_R-00196049",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          },
-          {
-            "url": "https://leidos.wd5.myworkdayjobs.com/en-US/External/job/Arlington-VA/Data-Science-Intern_R-00196049",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          },
-          {
-            "url": "https://leidos.wd5.myworkdayjobs.com/External/job/Arlington-VA/Data-Science-Intern_R-00196049",
+            "url": "https://iko.wd3.myworkdayjobs.com/IKO_Careers/job/Seville-OH/Mechanical-Process-Engineer-Co-Op---Spring-2027_REQ-13883",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-05T02:18:37.822Z",
+        "runStartedAt": "2026-11-05T03:18:17.153Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:leidos.wd5.myworkdayjobs.com:external",
-          "status": "ok",
-          "outcome": "healthy",
+          "id": "workday:iko.wd3.myworkdayjobs.com:iko_careers",
+          "status": "not-checked",
+          "outcome": null,
           "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
             "status": "ok",
-            "outcome": null,
-            "rows": 1245
+            "outcome": "partial",
+            "rows": 1322
           }
         ]
       },
@@ -124,342 +114,42 @@
       "explanation": "Required evidence was insufficient for publication; closure is not established.",
       "nextAction": "Inspect employer and destination verification evidence before admission.",
       "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01885577",
-      "id": "6f236bdee354d7e0a956f27b",
-      "company": "Raytheon",
-      "title": "Systems Engineering Intern, BMC2 (Onsite)",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-FL-ST-PETERSBURG-381BD--7401-22nd-Ave-N--BLDG-D/Systems-Engineering-Intern--BMC2--Onsite-_01885577",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "6f236bdee354d7e0a956f27b"
-      ],
-      "previousUrls": [
-        "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-FL-ST-PETERSBURG-381BD--7401-22nd-Ave-N--BLDG-D/Systems-Engineering-Intern--BMC2--Onsite-_01885577"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-05T02:18:37.822Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site:r26402",
-      "id": "9818955d763239d185b6d107",
-      "company": "Sierra Space",
-      "title": "Test Engineer I",
-      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Test-Engineer-I_R26402-1",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "9818955d763239d185b6d107"
-      ],
-      "previousUrls": [
-        "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Test-Engineer-I_R26402-1"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-05T02:18:37.822Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10258242",
-      "id": "6fa19e2b5742d489e386ba3a",
-      "company": "Northrop Grumman",
-      "title": "2027 Parts Materials and Process Engineering Intern- Roy UT",
-      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Utah-Roy/XMLNAME-2027-Parts-Materials-and-Process-Engineering-Intern--Roy-UT_R10258242-1",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "6fa19e2b5742d489e386ba3a"
-      ],
-      "previousUrls": [
-        "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Utah-Roy/XMLNAME-2027-Parts-Materials-and-Process-Engineering-Intern--Roy-UT_R10258242-1"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-05T02:18:37.822Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site:r26359",
-      "id": "f33431da1208df262fe626bd",
-      "company": "Sierra Space",
-      "title": "Configuration Management Analyst I (Analyst & Data Librarian)",
-      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Configuration-Management-Analyst---Data-Librarian_R26359-1",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "f33431da1208df262fe626bd"
-      ],
-      "previousUrls": [
-        "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Configuration-Management-Analyst---Data-Librarian_R26359-1"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-05T02:18:37.822Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site:r26360",
-      "id": "3df88ffa640fb4ebe6374da4",
-      "company": "Sierra Space",
-      "title": "Material Science Engineer I",
-      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Material-Science-Engineer-I_R26360-1",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "3df88ffa640fb4ebe6374da4"
-      ],
-      "previousUrls": [
-        "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Material-Science-Engineer-I_R26360-1"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-05T02:18:37.822Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:amat.wd1.myworkdayjobs.com:external:r2627689",
-      "id": "5b5f80b086aafe69b6aac98c",
-      "company": "Applied Materials",
-      "title": "Electrical Engineer New College Grad - BS/MS Degree (Santa Clara, CA)",
-      "applyUrl": "https://amat.wd1.myworkdayjobs.com/External/job/Santa-ClaraCA/Electrical-Engineer-New-College-Grad---BS-MS-Degree--Santa-Clara--CA-_R2627689",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "5b5f80b086aafe69b6aac98c"
-      ],
-      "previousUrls": [
-        "https://amat.wd1.myworkdayjobs.com/External/job/Santa-ClaraCA/Electrical-Engineer-New-College-Grad---BS-MS-Degree--Santa-Clara--CA-_R2627689"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-05T02:18:37.822Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:amat.wd1.myworkdayjobs.com:external",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
     }
   ],
   "rowCounts": {
     "previous": 6840,
-    "current": 6840,
-    "net": 0,
+    "current": 6850,
+    "net": 10,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 8,
-  "removedCount": 8,
+  "added": 12,
+  "removedCount": 2,
   "counts": {
-    "not-returned-by-sources": 7,
+    "absent-from-employer-board": 1,
     "pendingVerification": 1
   },
   "removed": [
     {
-      "id": "3c0afdbc064b80cad0fe72d5",
-      "company": "Sierra Space",
-      "title": "Test Engineer I",
-      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Durham-NC/Test-Engineer-II_R26366-1",
-      "reason": "not-returned-by-sources"
+      "id": "f3bf6453328fdd767c1008d4",
+      "company": "SpaceX",
+      "title": "Integration Engineer, Heatshield (Starship)",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8603368002",
+      "reason": "absent-from-employer-board"
     },
     {
-      "id": "763be85a1cc7eccfcc177886",
-      "company": "Leidos",
-      "title": "Data Science Intern",
-      "applyUrl": "https://leidos.wd5.myworkdayjobs.com/External/job/Arlington-VA/Data-Science-Intern_R-00196049",
+      "id": "4584d87440fb1a25095c7dbd",
+      "company": "IKO North America",
+      "title": "Mechanical Process Engineer Co-Op - Spring 2027",
+      "applyUrl": "https://iko.wd3.myworkdayjobs.com/IKO_Careers/job/Seville-OH/Mechanical-Process-Engineer-Co-Op---Spring-2027_REQ-13883",
       "reason": "pendingVerification"
-    },
-    {
-      "id": "6f236bdee354d7e0a956f27b",
-      "company": "Raytheon",
-      "title": "Systems Engineering Intern, BMC2 (Onsite)",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-FL-ST-PETERSBURG-381BD--7401-22nd-Ave-N--BLDG-D/Systems-Engineering-Intern--BMC2--Onsite-_01885577",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "9818955d763239d185b6d107",
-      "company": "Sierra Space",
-      "title": "Test Engineer I",
-      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Test-Engineer-I_R26402-1",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "6fa19e2b5742d489e386ba3a",
-      "company": "Northrop Grumman",
-      "title": "2027 Parts Materials and Process Engineering Intern- Roy UT",
-      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Utah-Roy/XMLNAME-2027-Parts-Materials-and-Process-Engineering-Intern--Roy-UT_R10258242-1",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "f33431da1208df262fe626bd",
-      "company": "Sierra Space",
-      "title": "Configuration Management Analyst I (Analyst & Data Librarian)",
-      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Configuration-Management-Analyst---Data-Librarian_R26359-1",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "3df88ffa640fb4ebe6374da4",
-      "company": "Sierra Space",
-      "title": "Material Science Engineer I",
-      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Material-Science-Engineer-I_R26360-1",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "5b5f80b086aafe69b6aac98c",
-      "company": "Applied Materials",
-      "title": "Electrical Engineer New College Grad - BS/MS Degree (Santa Clara, CA)",
-      "applyUrl": "https://amat.wd1.myworkdayjobs.com/External/job/Santa-ClaraCA/Electrical-Engineer-New-College-Grad---BS-MS-Degree--Santa-Clara--CA-_R2627689",
-      "reason": "not-returned-by-sources"
     }
   ],
-  "urlChanges": []
+  "urlChanges": [
+    {
+      "id": "af25515264c9c9abc2c082aa",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037"
+    }
+  ]
 }
