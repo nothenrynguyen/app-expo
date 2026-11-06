@@ -1,50 +1,61 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-06T08:25:07.284Z",
-  "previousGeneratedAt": "2026-11-06T07:26:12.899Z",
-  "currentSnapshotGeneratedAt": "2026-11-06T08:25:07.284Z",
+  "generatedAt": "2026-11-06T09:24:55.799Z",
+  "previousGeneratedAt": "2026-11-06T08:25:07.284Z",
+  "currentSnapshotGeneratedAt": "2026-11-06T09:24:55.799Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6859,
-    "current": 6855,
-    "retained": 6855,
-    "added": 0,
-    "removed": 4,
-    "net": -4
+    "previous": 6855,
+    "current": 6854,
+    "retained": 6852,
+    "added": 2,
+    "removed": 3,
+    "net": -1
   },
   "categoryCounts": {
     "confirmed-closed": 0,
     "scope-exclusion": 0,
     "verification-pending": 3,
     "source-unavailable": 0,
-    "unresolved": 1,
+    "unresolved": 0,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0252702",
-      "id": "6171a8a5b13b3d51325c0f6e",
-      "company": "Booz Allen",
-      "title": "Data Scientist, Junior",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Washington-DC/Data-Scientist--Junior_R0252702",
-      "reason": "not-returned-by-sources",
+      "identity": "workday:visa.wd5.myworkdayjobs.com:visa:ref089879w",
+      "id": "39ddea3bdd2401a224730606",
+      "company": "Visa",
+      "title": "Software Engineer, Intern - 2027 Ashburn, VA",
+      "applyUrl": "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Ashburn-VA/Software-Engineer--Intern---2027-Ashburn--VA_REF089879W-1",
+      "reason": "pendingVerification",
       "previousIds": [
-        "6171a8a5b13b3d51325c0f6e"
+        "39ddea3bdd2401a224730606"
       ],
       "previousUrls": [
-        "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Washington-DC/Data-Scientist--Junior_R0252702"
+        "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Ashburn-VA/Software-Engineer--Intern---2027-Ashburn--VA_REF089879W-1"
       ],
       "sources": [
-        "Direct ATS (Workday)"
+        "Employer recovery"
       ],
-      "candidateSeen": false,
+      "candidateSeen": true,
       "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-06T08:18:34.580Z",
+        "screening": [
+          {
+            "url": "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Ashburn-VA/Software-Engineer--Intern---2027-Ashburn--VA_REF089879W-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://visa.wd5.myworkdayjobs.com/en-US/Visa/job/US---Ashburn-VA/Software-Engineer--Intern---2027-Ashburn--VA_REF089879W-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T09:18:36.728Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "id": "workday:visa.wd5.myworkdayjobs.com:visa",
           "status": "ok",
           "outcome": "healthy",
           "membership": "unknown",
@@ -52,69 +63,11 @@
         },
         "sources": [
           {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31682",
-      "id": "df790fef5e5d5027758ba2e0",
-      "company": "HNTB",
-      "title": "New Grad Electrical Engineering I (2027)",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "df790fef5e5d5027758ba2e0"
-      ],
-      "previousUrls": [
-        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1"
-      ],
-      "sources": [
-        "Keryx Non-Software New Grad 2027",
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-06T08:18:34.580Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Keryx Non-Software New Grad 2027",
-            "diagnosticName": "Keryx Non-Software New Grad 2027",
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
             "status": "ok",
-            "outcome": null,
-            "rows": 134
-          },
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
+            "outcome": "partial",
+            "rows": 1257
           }
         ]
       },
@@ -124,55 +77,52 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31630",
-      "id": "d8a30447ed31200e6a60f505",
-      "company": "HNTB",
-      "title": "New Grad Civil Engineer I: Transportation - Summer 2027",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2",
+      "identity": "workday:visa.wd5.myworkdayjobs.com:visa:ref089875w",
+      "id": "d1876c48c90d5e48d891fc25",
+      "company": "Visa",
+      "title": "Software Engineer, Intern - Foster City 2027",
+      "applyUrl": "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Foster-City-CA/Software-Engineer--Intern---Foster-City-2027_REF089875W-1",
       "reason": "pendingVerification",
       "previousIds": [
-        "d8a30447ed31200e6a60f505"
+        "d1876c48c90d5e48d891fc25"
       ],
       "previousUrls": [
-        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2"
+        "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Foster-City-CA/Software-Engineer--Intern---Foster-City-2027_REF089875W-1"
       ],
       "sources": [
-        "Keryx Non-Software New Grad 2027",
-        "Direct ATS (Workday)"
+        "Employer recovery"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2",
+            "url": "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Foster-City-CA/Software-Engineer--Intern---Foster-City-2027_REF089875W-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://visa.wd5.myworkdayjobs.com/en-US/Visa/job/US---Foster-City-CA/Software-Engineer--Intern---Foster-City-2027_REF089875W-1",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-06T08:18:34.580Z",
+        "runStartedAt": "2026-11-06T09:18:36.728Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
-          "status": "failed",
-          "outcome": "cooldown",
+          "id": "workday:visa.wd5.myworkdayjobs.com:visa",
+          "status": "ok",
+          "outcome": "healthy",
           "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Keryx Non-Software New Grad 2027",
-            "diagnosticName": "Keryx Non-Software New Grad 2027",
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
             "status": "ok",
-            "outcome": null,
-            "rows": 134
-          },
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
+            "outcome": "partial",
+            "rows": 1257
           }
         ]
       },
@@ -182,55 +132,52 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31435",
-      "id": "48d0774191df9234015b9c9f",
-      "company": "HNTB",
-      "title": "WED - Intern Civil Engineer (Summer 2027) (For Current & Recent HNTB Interns Only)",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
+      "identity": "workday:visa.wd5.myworkdayjobs.com:visa:ref089919w",
+      "id": "4a28dde4a3a0e9756071829b",
+      "company": "Visa",
+      "title": "2027 Sophomore Internship Program - Software Engineer Intern, Foster City",
+      "applyUrl": "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Foster-City-CA/XMLNAME-2027-Sophomore-Internship-Program---Software-Engineer-Intern--Foster-City_REF089919W-1",
       "reason": "pendingVerification",
       "previousIds": [
-        "48d0774191df9234015b9c9f"
+        "4a28dde4a3a0e9756071829b"
       ],
       "previousUrls": [
-        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435"
+        "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Foster-City-CA/XMLNAME-2027-Sophomore-Internship-Program---Software-Engineer-Intern--Foster-City_REF089919W-1"
       ],
       "sources": [
-        "Keryx Non-Software Summer 2027",
-        "Direct ATS (Workday)"
+        "Employer recovery"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
+            "url": "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Foster-City-CA/XMLNAME-2027-Sophomore-Internship-Program---Software-Engineer-Intern--Foster-City_REF089919W-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://visa.wd5.myworkdayjobs.com/en-US/Visa/job/US---Foster-City-CA/XMLNAME-2027-Sophomore-Internship-Program---Software-Engineer-Intern--Foster-City_REF089919W-1",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-06T08:18:34.580Z",
+        "runStartedAt": "2026-11-06T09:18:36.728Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
-          "status": "failed",
-          "outcome": "cooldown",
+          "id": "workday:visa.wd5.myworkdayjobs.com:visa",
+          "status": "ok",
+          "outcome": "healthy",
           "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
             "status": "ok",
-            "outcome": null,
-            "rows": 1504
-          },
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
+            "outcome": "partial",
+            "rows": 1257
           }
         ]
       },
@@ -241,53 +188,39 @@
     }
   ],
   "rowCounts": {
-    "previous": 6859,
-    "current": 6855,
-    "net": -4,
+    "previous": 6855,
+    "current": 6854,
+    "net": -1,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 0,
-  "removedCount": 4,
+  "added": 2,
+  "removedCount": 3,
   "counts": {
-    "not-returned-by-sources": 1,
     "pendingVerification": 3
   },
   "removed": [
     {
-      "id": "6171a8a5b13b3d51325c0f6e",
-      "company": "Booz Allen",
-      "title": "Data Scientist, Junior",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Washington-DC/Data-Scientist--Junior_R0252702",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "df790fef5e5d5027758ba2e0",
-      "company": "HNTB",
-      "title": "New Grad Electrical Engineering I (2027)",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
+      "id": "39ddea3bdd2401a224730606",
+      "company": "Visa",
+      "title": "Software Engineer, Intern - 2027 Ashburn, VA",
+      "applyUrl": "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Ashburn-VA/Software-Engineer--Intern---2027-Ashburn--VA_REF089879W-1",
       "reason": "pendingVerification"
     },
     {
-      "id": "d8a30447ed31200e6a60f505",
-      "company": "HNTB",
-      "title": "New Grad Civil Engineer I: Transportation - Summer 2027",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2",
+      "id": "d1876c48c90d5e48d891fc25",
+      "company": "Visa",
+      "title": "Software Engineer, Intern - Foster City 2027",
+      "applyUrl": "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Foster-City-CA/Software-Engineer--Intern---Foster-City-2027_REF089875W-1",
       "reason": "pendingVerification"
     },
     {
-      "id": "48d0774191df9234015b9c9f",
-      "company": "HNTB",
-      "title": "WED - Intern Civil Engineer (Summer 2027) (For Current & Recent HNTB Interns Only)",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
+      "id": "4a28dde4a3a0e9756071829b",
+      "company": "Visa",
+      "title": "2027 Sophomore Internship Program - Software Engineer Intern, Foster City",
+      "applyUrl": "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Foster-City-CA/XMLNAME-2027-Sophomore-Internship-Program---Software-Engineer-Intern--Foster-City_REF089919W-1",
       "reason": "pendingVerification"
     }
   ],
-  "urlChanges": [
-    {
-      "id": "af25515264c9c9abc2c082aa",
-      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037"
-    }
-  ]
+  "urlChanges": []
 }
