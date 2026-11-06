@@ -1,62 +1,111 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-06T17:26:14.974Z",
-  "previousGeneratedAt": "2026-11-06T16:26:30.839Z",
-  "currentSnapshotGeneratedAt": "2026-11-06T17:26:14.974Z",
+  "generatedAt": "2026-11-06T18:26:23.638Z",
+  "previousGeneratedAt": "2026-11-06T17:26:14.974Z",
+  "currentSnapshotGeneratedAt": "2026-11-06T18:26:23.638Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6847,
-    "current": 6855,
-    "retained": 6837,
-    "added": 18,
-    "removed": 10,
-    "net": 8
+    "previous": 6855,
+    "current": 6873,
+    "retained": 6812,
+    "added": 61,
+    "removed": 43,
+    "net": 18
   },
   "categoryCounts": {
     "confirmed-closed": 0,
     "scope-exclusion": 0,
-    "verification-pending": 5,
-    "source-unavailable": 2,
-    "unresolved": 3,
+    "verification-pending": 19,
+    "source-unavailable": 3,
+    "unresolved": 21,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0252999",
-      "id": "a30fa61d64fae9148ab83b42",
-      "company": "Booz Allen",
-      "title": "Program Controls Organization Financial Analyst, Junior",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/McLean-VA/Program-Controls-Organization-Financial-Analyst--Junior_R0252999",
-      "reason": "not-returned-by-sources",
+      "identity": "https://momentive.wd1.myworkdayjobs.com/mc/job/us-in-garrett/summer-2027-intern---process-engineering_r9801",
+      "id": "f06acf1a71df524795c6038f",
+      "company": "Momentive",
+      "title": "Summer 2027 Intern - Process Engineering",
+      "applyUrl": "https://momentive.wd1.myworkdayjobs.com/MC/job/US-IN-Garrett/Summer-2027-Intern---Process-Engineering_R9801",
+      "reason": "pendingVerification",
       "previousIds": [
-        "a30fa61d64fae9148ab83b42"
+        "f06acf1a71df524795c6038f"
       ],
       "previousUrls": [
-        "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/McLean-VA/Program-Controls-Organization-Financial-Analyst--Junior_R0252999"
+        "https://momentive.wd1.myworkdayjobs.com/MC/job/US-IN-Garrett/Summer-2027-Intern---Process-Engineering_R9801"
       ],
       "sources": [
-        "Direct ATS (Workday)"
+        "Keryx Non-Software Summer 2027"
       ],
-      "candidateSeen": false,
+      "candidateSeen": true,
       "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-06T17:18:30.358Z",
+        "screening": [
+          {
+            "url": "https://momentive.wd1.myworkdayjobs.com/MC/job/US-IN-Garrett/Summer-2027-Intern---Process-Engineering_R9801",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
-          "status": "ok",
-          "outcome": "healthy",
+          "id": "workday:momentive.wd1.myworkdayjobs.com:mc",
+          "status": "not-checked",
+          "outcome": null,
           "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
             "outcome": null,
-            "rows": null
+            "rows": 1504
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "www.dreamworkhq.com:a968a8f8-4945-4103-a5d6-8206c3b5dd02",
+      "id": "f7b4012c69b969cce3b41a9a",
+      "company": "Google",
+      "title": "Software Engineer, App Ads Bidding and Optimization",
+      "applyUrl": "https://www.dreamworkhq.com/job/a968a8f8-4945-4103-a5d6-8206c3b5dd02",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "f7b4012c69b969cce3b41a9a"
+      ],
+      "previousUrls": [
+        "https://www.dreamworkhq.com/job/a968a8f8-4945-4103-a5d6-8206c3b5dd02"
+      ],
+      "sources": [
+        "Dreamwork New Grad US"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-11-06T16:25:59.304Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork New Grad US",
+            "diagnosticName": "Dreamwork New Grad US",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1308
           }
         ]
       },
@@ -66,17 +115,17 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "job-boards.greenhouse.io:8927156002",
-      "id": "fb7e7561543bbe3ac78cd8db",
-      "company": "Bottomline Technologies",
-      "title": "AI Enablement Sales Analyst",
-      "applyUrl": "https://job-boards.greenhouse.io/bottomlinetechnologies/jobs/8927156002",
+      "identity": "job-boards.greenhouse.io:8165883003",
+      "id": "2f0ced6c4c3a9b1f0f8b7d46",
+      "company": "Rocket Lab",
+      "title": "Test and Launch Operations Engineer I",
+      "applyUrl": "https://job-boards.greenhouse.io/rocketlab/jobs/8165883003",
       "reason": "absent-from-employer-board",
       "previousIds": [
-        "fb7e7561543bbe3ac78cd8db"
+        "2f0ced6c4c3a9b1f0f8b7d46"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/bottomlinetechnologies/jobs/8927156002"
+        "https://job-boards.greenhouse.io/rocketlab/jobs/8165883003"
       ],
       "sources": [
         "Direct ATS (Greenhouse)"
@@ -84,11 +133,11 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-06T17:18:30.358Z",
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:bottomlinetechnologies",
+          "id": "greenhouse:rocketlab",
           "status": "ok",
           "outcome": null,
           "membership": "absent",
@@ -110,17 +159,155 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site:r26402",
-      "id": "9818955d763239d185b6d107",
-      "company": "Sierra Space",
-      "title": "Test Engineer I",
-      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Test-Engineer-I_R26402-1",
+      "identity": "www.dreamworkhq.com:5e7cdad9-b798-4231-8d40-04794876fc86",
+      "id": "41b38589ed2b1ba38d0ed138",
+      "company": "Apple",
+      "title": "Software Engineer (Framework Solutions), AI & Data Platforms (AiDP)",
+      "applyUrl": "https://www.dreamworkhq.com/job/5e7cdad9-b798-4231-8d40-04794876fc86",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "9818955d763239d185b6d107"
+        "41b38589ed2b1ba38d0ed138"
       ],
       "previousUrls": [
-        "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Test-Engineer-I_R26402-1"
+        "https://www.dreamworkhq.com/job/5e7cdad9-b798-4231-8d40-04794876fc86"
+      ],
+      "sources": [
+        "Dreamwork New Grad US"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "unknown",
+          "checkedAt": "2026-11-06T04:24:29.429Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork New Grad US",
+            "diagnosticName": "Dreamwork New Grad US",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1308
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "amazon.jobs:10592766",
+      "id": "c9a6670e12f252692ec37437",
+      "company": "Amazon",
+      "title": "UX Designer Intern – Summer 2027",
+      "applyUrl": "https://amazon.jobs/jobs/10592766",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "c9a6670e12f252692ec37437"
+      ],
+      "previousUrls": [
+        "https://amazon.jobs/jobs/10592766"
+      ],
+      "sources": [
+        "Open-Tech-Internships-2027 2027",
+        "Dreamwork Tech Internships 2027"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-11-06T05:24:41.142Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1918
+          },
+          {
+            "name": "Dreamwork Tech Internships 2027",
+            "diagnosticName": "Dreamwork Tech Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1225
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "boards.greenhouse.io:5261162007",
+      "id": "3c404e04cd834cad5b7a4c1d",
+      "company": "Anduril",
+      "title": "Project Engineer, AD&S",
+      "applyUrl": "https://boards.greenhouse.io/andurilindustries/jobs/5261162007",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "3c404e04cd834cad5b7a4c1d"
+      ],
+      "previousUrls": [
+        "https://boards.greenhouse.io/andurilindustries/jobs/5261162007"
+      ],
+      "sources": [
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:andurilindustries",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://avav.wd1.myworkdayjobs.com/avav/job/albuquerque-nm/mechanical-engineering-intern---space-technologies_9247",
+      "id": "d719fad4fa84f8ac233102dc",
+      "company": "AeroVironment",
+      "title": "Mechanical Engineering Intern - Space Technologies",
+      "applyUrl": "https://avav.wd1.myworkdayjobs.com/AVAV/job/Albuquerque-NM/Mechanical-Engineering-Intern---Space-Technologies_9247",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "d719fad4fa84f8ac233102dc"
+      ],
+      "previousUrls": [
+        "https://avav.wd1.myworkdayjobs.com/AVAV/job/Albuquerque-NM/Mechanical-Engineering-Intern---Space-Technologies_9247"
       ],
       "sources": [
         "Direct ATS (Workday)"
@@ -128,11 +315,11 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-06T17:18:30.358Z",
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site",
+          "id": "workday:avav.wd1.myworkdayjobs.com:avav",
           "status": "ok",
           "outcome": "healthy",
           "membership": "unknown",
@@ -154,91 +341,150 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:toyota.wd503.myworkdayjobs.com:tmna:10325071",
-      "id": "2f360dda86d41cee7c03c75b",
-      "company": "Toyota",
-      "title": "Software Engineer (Early Career Professional)",
-      "applyUrl": "https://toyota.wd503.myworkdayjobs.com/TMNA/job/Plano-Texas/Software-Engineer--Early-Career-Professional-_10325071",
-      "reason": "not-returned-by-sources",
+      "identity": "workday:generac.wd5.myworkdayjobs.com:external:jr17736",
+      "id": "8fb293cf6c19ed6ef3da7154",
+      "company": "Generac",
+      "title": "Intern AI Engineering",
+      "applyUrl": "https://generac.wd5.myworkdayjobs.com/External/job/Waukesha-WI---USA/Intern-AI-Engineering_JR17736",
+      "reason": "pendingVerification",
       "previousIds": [
-        "2f360dda86d41cee7c03c75b"
+        "8fb293cf6c19ed6ef3da7154"
       ],
       "previousUrls": [
-        "https://toyota.wd503.myworkdayjobs.com/TMNA/job/Plano-Texas/Software-Engineer--Early-Career-Professional-_10325071"
+        "https://generac.wd5.myworkdayjobs.com/External/job/Waukesha-WI---USA/Intern-AI-Engineering_JR17736"
       ],
       "sources": [
         "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://generac.wd5.myworkdayjobs.com/external/job/Waukesha-WI---USA/Intern-AI-Engineering_JR17736",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://generac.wd5.myworkdayjobs.com/en-US/external/job/Waukesha-WI---USA/Intern-AI-Engineering_JR17736",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:generac.wd5.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1247
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "www.dreamworkhq.com:8cd8f88b-7c64-49e8-8c08-2b9e003ec7db",
+      "id": "df4f1fd65693a2251b478943",
+      "company": "Amazon",
+      "title": "Security Engineer I, Secure Third Party Tools (S3T)",
+      "applyUrl": "https://www.dreamworkhq.com/job/8cd8f88b-7c64-49e8-8c08-2b9e003ec7db",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "df4f1fd65693a2251b478943"
+      ],
+      "previousUrls": [
+        "https://www.dreamworkhq.com/job/8cd8f88b-7c64-49e8-8c08-2b9e003ec7db"
+      ],
+      "sources": [
+        "Dreamwork New Grad US"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-06T17:18:30.358Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:toyota.wd503.myworkdayjobs.com:tmna",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "unknown",
+          "checkedAt": "2026-11-05T14:26:16.233Z",
+          "httpStatus": 200,
+          "currentRun": false
         },
+        "workdayChecks": [],
+        "board": null,
         "sources": [
           {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
+            "name": "Dreamwork New Grad US",
+            "diagnosticName": "Dreamwork New Grad US",
             "status": "ok",
-            "outcome": "partial",
-            "rows": 1252
+            "outcome": null,
+            "rows": 1308
           }
         ]
       },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:jabil.wd5.myworkdayjobs.com:jabil_careers:j2468699",
-      "id": "ae86bbdb053058073a542f5c",
-      "company": "Jabil",
-      "title": "IT Audit Intern",
-      "applyUrl": "https://jabil.wd5.myworkdayjobs.com/Jabil_Careers/job/St-PetersburgTampa-FL/IT-Audit-Intern_J2468699",
+      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01881520",
+      "id": "9b4e3950519b08bcfad9aa23",
+      "company": "RTX",
+      "title": "Software Engineering Intern (Summer 2027)",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S77--16470-E-Hughes-Dr--BLDG-S77/Software-Engineering--Intern--Summer-2027-_01881520",
       "reason": "pendingVerification",
       "previousIds": [
-        "ae86bbdb053058073a542f5c"
+        "9b4e3950519b08bcfad9aa23"
       ],
       "previousUrls": [
-        "https://jabil.wd5.myworkdayjobs.com/Jabil_Careers/job/St-PetersburgTampa-FL/IT-Audit-Intern_J2468699"
+        "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S77--16470-E-Hughes-Dr--BLDG-S77/Software-Engineering--Intern--Summer-2027-_01881520"
       ],
       "sources": [
-        "Employer recovery"
+        "Aprameya Summer Internships 2027"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://jabil.wd5.myworkdayjobs.com/en-US/Jabil_Careers/job/St-PetersburgTampa-FL/IT-Audit-Intern_J2468699",
+            "url": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S77--16470-E-Hughes-Dr--BLDG-S77/Software-Engineering--Intern--Summer-2027-_01881520",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S77--16470-E-Hughes-Dr--BLDG-S77/Software-Engineering--Intern--Summer-2027-_01881520",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-06T17:18:30.358Z",
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:jabil.wd5.myworkdayjobs.com:jabil_careers",
-          "status": "not-checked",
-          "outcome": null,
+          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
+          "status": "ok",
+          "outcome": "healthy",
           "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
             "status": "ok",
-            "outcome": "partial",
-            "rows": 1252
+            "outcome": null,
+            "rows": 2480
           }
         ]
       },
@@ -248,67 +494,68 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:bristolmyerssquibb.wd5.myworkdayjobs.com:bms:r1607432",
-      "id": "d6aa0f40a16f09926f8fffcf",
-      "company": "Bristol Myers Squibb",
-      "title": "Equipment Engineering Intern – Summer 2027",
-      "applyUrl": "https://bristolmyerssquibb.wd5.myworkdayjobs.com/BMS/job/Indianapolis---RayzeBio---IN/Equipment-Engineering-Intern---Summer-2027_R1607432",
-      "reason": "pendingVerification",
+      "identity": "https://www.metacareers.com/profile/job_details/1111723361506997",
+      "id": "dc80ee89c201221a0188f61b",
+      "company": "Meta",
+      "title": "Softgoods Product Design Engineering Intern",
+      "applyUrl": "https://www.metacareers.com/profile/job_details/1111723361506997",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "d6aa0f40a16f09926f8fffcf"
+        "dc80ee89c201221a0188f61b"
       ],
       "previousUrls": [
-        "https://bristolmyerssquibb.wd5.myworkdayjobs.com/BMS/job/Indianapolis---RayzeBio---IN/Equipment-Engineering-Intern---Summer-2027_R1607432"
+        "https://www.metacareers.com/profile/job_details/1111723361506997"
       ],
       "sources": [
-        "Employer recovery"
+        "Open-Tech-Internships-2027 2027",
+        "Dreamwork Tech Internships 2027"
       ],
-      "candidateSeen": true,
+      "candidateSeen": false,
       "evidence": {
-        "screening": [
-          {
-            "url": "https://bristolmyerssquibb.wd5.myworkdayjobs.com/bms/job/Indianapolis---RayzeBio---IN/Equipment-Engineering-Intern---Summer-2027_R1607432",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-06T17:18:30.358Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:bristolmyerssquibb.wd5.myworkdayjobs.com:bms",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "unknown",
+          "checkedAt": "2026-11-05T05:24:09.716Z",
+          "httpStatus": 200,
+          "currentRun": false
         },
+        "workdayChecks": [],
+        "board": null,
         "sources": [
           {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
             "status": "ok",
-            "outcome": "partial",
-            "rows": 1252
+            "outcome": null,
+            "rows": 1918
+          },
+          {
+            "name": "Dreamwork Tech Internships 2027",
+            "diagnosticName": "Dreamwork Tech Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1225
           }
         ]
       },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:rockwellautomation.wd1.myworkdayjobs.com:external-rockwell-automation-early-careers:r26-6980",
-      "id": "ec06b1a41c57f55b3c8150ac",
+      "identity": "workday:rockwellautomation.wd1.myworkdayjobs.com:external-rockwell-automation-early-careers:r26-5043",
+      "id": "1998057aeb1e2f155df214a0",
       "company": "Rockwell Automation",
-      "title": "Intern, AI Software Engineering (June-August 2027)",
-      "applyUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/External-Rockwell-Automation-Early-Careers/job/Mayfield-Heights-Ohio-United-States/Intern--AI-Software-Engineering--June-August-2027-_R26-6980",
+      "title": "Intern - Embedded Controls Engineering",
+      "applyUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/External-Rockwell-Automation-Early-Careers/job/Orlando-Florida-United-States/Intern---Embedded-Controls-Engineering_R26-5043-1",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "ec06b1a41c57f55b3c8150ac"
+        "1998057aeb1e2f155df214a0"
       ],
       "previousUrls": [
-        "https://rockwellautomation.wd1.myworkdayjobs.com/External-Rockwell-Automation-Early-Careers/job/Mayfield-Heights-Ohio-United-States/Intern--AI-Software-Engineering--June-August-2027-_R26-6980"
+        "https://rockwellautomation.wd1.myworkdayjobs.com/External-Rockwell-Automation-Early-Careers/job/Orlando-Florida-United-States/Intern---Embedded-Controls-Engineering_R26-5043-1"
       ],
       "sources": [
         "Employer recovery"
@@ -316,7 +563,7 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-06T17:18:30.358Z",
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
@@ -332,7 +579,7 @@
             "diagnosticName": "Original employer link recovery",
             "status": "ok",
             "outcome": "partial",
-            "rows": 1252
+            "rows": 1247
           }
         ]
       },
@@ -342,49 +589,35 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "job-boards.greenhouse.io:5238411007",
-      "id": "8553b25d02a6bd4f449cc4d5",
-      "company": "Together AI",
-      "title": "Systems Research Engineer Intern - GPU Programming (Winter 2027)",
-      "applyUrl": "https://job-boards.greenhouse.io/togetherai/jobs/5238411007",
-      "reason": "pendingVerification",
+      "identity": "job-boards.greenhouse.io:5377107008",
+      "id": "96c15e27a35cd8875547ea6e",
+      "company": "General Matter",
+      "title": "Summer 2027 Internship - Mechanical Engineering",
+      "applyUrl": "https://job-boards.greenhouse.io/generalmatter/jobs/5377107008",
+      "reason": "absent-from-employer-board",
       "previousIds": [
-        "8553b25d02a6bd4f449cc4d5"
+        "96c15e27a35cd8875547ea6e"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/togetherai/jobs/5238411007"
+        "https://job-boards.greenhouse.io/generalmatter/jobs/5377107008"
       ],
       "sources": [
-        "Aprameya Off-Cycle Internships 2027",
         "Direct ATS (Greenhouse)"
       ],
-      "candidateSeen": true,
+      "candidateSeen": false,
       "evidence": {
-        "screening": [
-          {
-            "url": "https://job-boards.greenhouse.io/togetherai/jobs/5238411007",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-06T17:18:30.358Z",
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:togetherai",
+          "id": "greenhouse:generalmatter",
           "status": "ok",
           "outcome": null,
           "membership": "absent",
           "retired": false
         },
         "sources": [
-          {
-            "name": "Aprameya Off-Cycle Internships 2027",
-            "diagnosticName": "Aprameya Off-Cycle Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 706
-          },
           {
             "name": "Direct ATS (Greenhouse)",
             "diagnosticName": null,
@@ -394,47 +627,35 @@
           }
         ]
       },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
       "requiresInvestigation": true
     },
     {
-      "identity": "https://flextronics.wd1.myworkdayjobs.com/careers/job/usa-il-libertyville/manufacturing-data---analytics-co-op---spring-2027_wd229700",
-      "id": "f014871400afb1617b37f635",
-      "company": "Flex",
-      "title": "Manufacturing Data & Analytics Co-Op - Spring 2027",
-      "applyUrl": "https://flextronics.wd1.myworkdayjobs.com/Careers/job/USA-IL-Libertyville/Manufacturing-Data---Analytics-Co-Op---Spring-2027_WD229700",
-      "reason": "pendingVerification",
+      "identity": "workday:dxctechnology.wd1.myworkdayjobs.com:dxcjobs:51586935",
+      "id": "852fb41b04a796d22b202081",
+      "company": "DXC Technology",
+      "title": "Analyst I Software Engineering",
+      "applyUrl": "https://dxctechnology.wd1.myworkdayjobs.com/DXCJobs/job/USA---CT---ANY-CITY/Analyst-I-Software-Engineering_51586935",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "f014871400afb1617b37f635"
+        "852fb41b04a796d22b202081"
       ],
       "previousUrls": [
-        "https://flextronics.wd1.myworkdayjobs.com/Careers/job/USA-IL-Libertyville/Manufacturing-Data---Analytics-Co-Op---Spring-2027_WD229700"
+        "https://dxctechnology.wd1.myworkdayjobs.com/DXCJobs/job/USA---CT---ANY-CITY/Analyst-I-Software-Engineering_51586935"
       ],
       "sources": [
-        "Dreamwork Business Internships 2027",
         "Employer recovery"
       ],
-      "candidateSeen": true,
+      "candidateSeen": false,
       "evidence": {
-        "screening": [
-          {
-            "url": "https://flextronics.wd1.myworkdayjobs.com/Careers/job/USA-IL-Libertyville/Manufacturing-Data---Analytics-Co-Op---Spring-2027_WD229700",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          },
-          {
-            "url": "https://flextronics.wd1.myworkdayjobs.com/Careers/job/USA-IL-Libertyville/Manufacturing-Data---Analytics-Co-Op---Spring-2027_WD229700",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-06T17:18:30.358Z",
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:flextronics.wd1.myworkdayjobs.com:careers",
+          "id": "workday:dxctechnology.wd1.myworkdayjobs.com:dxcjobs",
           "status": "not-checked",
           "outcome": null,
           "membership": "unknown",
@@ -442,18 +663,104 @@
         },
         "sources": [
           {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1247
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "www.dreamworkhq.com:2826e33f-c288-4aa8-a9e4-0e5f9cc9cb53",
+      "id": "ef7b4d75a82866395e837a45",
+      "company": "Google",
+      "title": "Security Engineer, Platforms and Devices",
+      "applyUrl": "https://www.dreamworkhq.com/job/2826e33f-c288-4aa8-a9e4-0e5f9cc9cb53",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "ef7b4d75a82866395e837a45"
+      ],
+      "previousUrls": [
+        "https://www.dreamworkhq.com/job/2826e33f-c288-4aa8-a9e4-0e5f9cc9cb53"
+      ],
+      "sources": [
+        "Dreamwork New Grad US"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-11-05T17:26:02.127Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork New Grad US",
+            "diagnosticName": "Dreamwork New Grad US",
             "status": "ok",
             "outcome": null,
-            "rows": 452
-          },
+            "rows": 1308
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:parsons.wd5.myworkdayjobs.com:search:r187147",
+      "id": "e960790de43e92bb9f6f7c3e",
+      "company": "Parsons Corporation",
+      "title": "Software Engineer Co-Op - TS/SCI",
+      "applyUrl": "https://parsons.wd5.myworkdayjobs.com/Search/job/US---VA-Centreville/Software-Engineer-Co-Op---TS-SCI_R187147",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "e960790de43e92bb9f6f7c3e"
+      ],
+      "previousUrls": [
+        "https://parsons.wd5.myworkdayjobs.com/Search/job/US---VA-Centreville/Software-Engineer-Co-Op---TS-SCI_R187147"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://parsons.wd5.myworkdayjobs.com/Search/job/US---VA-Centreville/Software-Engineer-Co-Op---TS-SCI_R187147",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:parsons.wd5.myworkdayjobs.com:search",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
           {
             "name": "Employer recovery",
             "diagnosticName": "Original employer link recovery",
             "status": "ok",
             "outcome": "partial",
-            "rows": 1252
+            "rows": 1247
           }
         ]
       },
@@ -463,17 +770,723 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31355",
-      "id": "e40074ef200d40c15b63eb3e",
-      "company": "HNTB",
-      "title": "New Grad Structural Engineer I - Winter/Summer 2027",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
-      "reason": "pendingVerification",
+      "identity": "www.dreamworkhq.com:042fa430-2519-44c1-a677-7378e9061c87",
+      "id": "9e5824b4c612b9f65dd8f2e3",
+      "company": "Adobe",
+      "title": "2027 University Graduate - Software Engineer",
+      "applyUrl": "https://www.dreamworkhq.com/job/042fa430-2519-44c1-a677-7378e9061c87",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "e40074ef200d40c15b63eb3e"
+        "9e5824b4c612b9f65dd8f2e3"
       ],
       "previousUrls": [
-        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355"
+        "https://www.dreamworkhq.com/job/042fa430-2519-44c1-a677-7378e9061c87"
+      ],
+      "sources": [
+        "Dreamwork New Grad US"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "unknown",
+          "checkedAt": "2026-11-05T13:25:27.062Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork New Grad US",
+            "diagnosticName": "Dreamwork New Grad US",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1308
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "www.dreamworkhq.com:fd906618-993c-4e4f-800f-d52544114bf4",
+      "id": "d0ed6a77fb0a0a726e4cc2c3",
+      "company": "Adobe",
+      "title": "2027 University Graduate - Machine Learning Engineer",
+      "applyUrl": "https://www.dreamworkhq.com/job/fd906618-993c-4e4f-800f-d52544114bf4",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "d0ed6a77fb0a0a726e4cc2c3"
+      ],
+      "previousUrls": [
+        "https://www.dreamworkhq.com/job/fd906618-993c-4e4f-800f-d52544114bf4"
+      ],
+      "sources": [
+        "Dreamwork New Grad US"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "unknown",
+          "checkedAt": "2026-11-05T13:25:27.089Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork New Grad US",
+            "diagnosticName": "Dreamwork New Grad US",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1308
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:generalmotors.wd5.myworkdayjobs.com:careers_gm:jr-202621695",
+      "id": "7a80d584587449a8905cd216",
+      "company": "General Motors",
+      "title": "2027 Summer Intern – Machine Learning Engineer, AV/AI Platform",
+      "applyUrl": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Sunnyvale-California-United-States-of-America/XMLNAME-2027-Summer-Intern---Machine-Learning-Engineer--AV-AI-Platform_JR-202621695",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "7a80d584587449a8905cd216"
+      ],
+      "previousUrls": [
+        "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Sunnyvale-California-United-States-of-America/XMLNAME-2027-Summer-Intern---Machine-Learning-Engineer--AV-AI-Platform_JR-202621695"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Sunnyvale-California-United-States-of-America/XMLNAME-2027-Summer-Intern---Machine-Learning-Engineer--AV-AI-Platform_JR-202621695",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Sunnyvale-California-United-States-of-America/XMLNAME-2027-Summer-Intern---Machine-Learning-Engineer--AV-AI-Platform_JR-202621695",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Sunnyvale-California-United-States-of-America/XMLNAME-2027-Summer-Intern---Machine-Learning-Engineer--AV-AI-Platform_JR-202621695",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:generalmotors.wd5.myworkdayjobs.com:careers_gm",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1256
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:generalmotors.wd5.myworkdayjobs.com:careers_gm:jr-202621697",
+      "id": "6cbcdce77861539bcbfa53c1",
+      "company": "General Motors",
+      "title": "2027 Summer Intern – Software Verification Engineer, AV/AI Platform",
+      "applyUrl": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Warren-Michigan-United-States-of-America/XMLNAME-2027-Summer-Intern---Software-Verification-Engineer--AV-AI-Platform_JR-202621697",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "6cbcdce77861539bcbfa53c1"
+      ],
+      "previousUrls": [
+        "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Warren-Michigan-United-States-of-America/XMLNAME-2027-Summer-Intern---Software-Verification-Engineer--AV-AI-Platform_JR-202621697"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Warren-Michigan-United-States-of-America/XMLNAME-2027-Summer-Intern---Software-Verification-Engineer--AV-AI-Platform_JR-202621697",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Warren-Michigan-United-States-of-America/XMLNAME-2027-Summer-Intern---Software-Verification-Engineer--AV-AI-Platform_JR-202621697",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Warren-Michigan-United-States-of-America/XMLNAME-2027-Summer-Intern---Software-Verification-Engineer--AV-AI-Platform_JR-202621697",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:generalmotors.wd5.myworkdayjobs.com:careers_gm",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1256
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "www.dreamworkhq.com:4d05cafa-b536-4e8f-afad-f6c3587a1bf5",
+      "id": "c0190b0211fe370d0049846d",
+      "company": "Amazon",
+      "title": "Security Engineer, CS Security",
+      "applyUrl": "https://www.dreamworkhq.com/job/4d05cafa-b536-4e8f-afad-f6c3587a1bf5",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "c0190b0211fe370d0049846d"
+      ],
+      "previousUrls": [
+        "https://www.dreamworkhq.com/job/4d05cafa-b536-4e8f-afad-f6c3587a1bf5"
+      ],
+      "sources": [
+        "Dreamwork New Grad US"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "unknown",
+          "checkedAt": "2026-11-06T14:25:30.806Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork New Grad US",
+            "diagnosticName": "Dreamwork New Grad US",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1308
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "www.dreamworkhq.com:f100a777-43ec-4dfe-9303-3ed311aecd03",
+      "id": "bca2d7c3d2ea7ab5ad3ed117",
+      "company": "Apple",
+      "title": "Software Engineer, Information Systems & Technology",
+      "applyUrl": "https://www.dreamworkhq.com/job/f100a777-43ec-4dfe-9303-3ed311aecd03",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "bca2d7c3d2ea7ab5ad3ed117"
+      ],
+      "previousUrls": [
+        "https://www.dreamworkhq.com/job/f100a777-43ec-4dfe-9303-3ed311aecd03"
+      ],
+      "sources": [
+        "Dreamwork New Grad US"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-11-06T14:25:30.619Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork New Grad US",
+            "diagnosticName": "Dreamwork New Grad US",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1308
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "www.dreamworkhq.com:417fbafa-9461-4521-8bb4-a8ecd3eca30a",
+      "id": "a36b6c30f496d42adac9e875",
+      "company": "Nvidia",
+      "title": "Applied Machine Learning Engineer, AI for VLSI Design - New College Gra…",
+      "applyUrl": "https://www.dreamworkhq.com/job/417fbafa-9461-4521-8bb4-a8ecd3eca30a",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "a36b6c30f496d42adac9e875"
+      ],
+      "previousUrls": [
+        "https://www.dreamworkhq.com/job/417fbafa-9461-4521-8bb4-a8ecd3eca30a"
+      ],
+      "sources": [
+        "Dreamwork New Grad US"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "unknown",
+          "checkedAt": "2026-11-06T14:25:30.669Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork New Grad US",
+            "diagnosticName": "Dreamwork New Grad US",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1308
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "www.dreamworkhq.com:ed68cabe-953c-40a8-8ea2-a51da23da8b6",
+      "id": "d59d7c0bc2905ed66488eabc",
+      "company": "Amazon",
+      "title": "Software Development Engineer, FinTech/Customer Service Tech",
+      "applyUrl": "https://www.dreamworkhq.com/job/ed68cabe-953c-40a8-8ea2-a51da23da8b6",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "d59d7c0bc2905ed66488eabc"
+      ],
+      "previousUrls": [
+        "https://www.dreamworkhq.com/job/ed68cabe-953c-40a8-8ea2-a51da23da8b6"
+      ],
+      "sources": [
+        "Dreamwork New Grad US"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "unknown",
+          "checkedAt": "2026-11-06T14:25:30.705Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork New Grad US",
+            "diagnosticName": "Dreamwork New Grad US",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1308
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "www.dreamworkhq.com:b9428dda-be8a-4c82-aa4d-29a41d9f6550",
+      "id": "1a4503ec093ff77981ca68ab",
+      "company": "Amazon",
+      "title": "Robotics Systems Engineer I, Tech Deployment",
+      "applyUrl": "https://www.dreamworkhq.com/job/b9428dda-be8a-4c82-aa4d-29a41d9f6550",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "1a4503ec093ff77981ca68ab"
+      ],
+      "previousUrls": [
+        "https://www.dreamworkhq.com/job/b9428dda-be8a-4c82-aa4d-29a41d9f6550"
+      ],
+      "sources": [
+        "Dreamwork New Grad US"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "unknown",
+          "checkedAt": "2026-11-06T13:24:50.577Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork New Grad US",
+            "diagnosticName": "Dreamwork New Grad US",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1308
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "www.dreamworkhq.com:cc6e1e16-be56-4720-ae03-877e3ef4dd23",
+      "id": "b6ae3a293037fe5ecf30aa70",
+      "company": "Google",
+      "title": "Software Engineer, Consumer Shopping Quality, Commerce, Recommendations…",
+      "applyUrl": "https://www.dreamworkhq.com/job/cc6e1e16-be56-4720-ae03-877e3ef4dd23",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "b6ae3a293037fe5ecf30aa70"
+      ],
+      "previousUrls": [
+        "https://www.dreamworkhq.com/job/cc6e1e16-be56-4720-ae03-877e3ef4dd23"
+      ],
+      "sources": [
+        "Dreamwork New Grad US"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "unknown",
+          "checkedAt": "2026-11-06T13:24:50.649Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork New Grad US",
+            "diagnosticName": "Dreamwork New Grad US",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1308
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "www.dreamworkhq.com:12154ca8-7f07-443e-8d5d-e502fb7b5c1f",
+      "id": "b19d482c2cefe396b179c884",
+      "company": "Meta",
+      "title": "Lab Engineer, Hardware Infrastructure",
+      "applyUrl": "https://www.dreamworkhq.com/job/12154ca8-7f07-443e-8d5d-e502fb7b5c1f",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "b19d482c2cefe396b179c884"
+      ],
+      "previousUrls": [
+        "https://www.dreamworkhq.com/job/12154ca8-7f07-443e-8d5d-e502fb7b5c1f"
+      ],
+      "sources": [
+        "Dreamwork New Grad US"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-11-06T09:24:27.173Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork New Grad US",
+            "diagnosticName": "Dreamwork New Grad US",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1308
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "www.dreamworkhq.com:13c646c1-4eea-4567-874e-f91578bf0ec7",
+      "id": "442b71a607ccb9fd7f1eaa28",
+      "company": "Amazon",
+      "title": "Network Infrastructure Engineer I, Amazon Dedicated Cloud (NIDD)",
+      "applyUrl": "https://www.dreamworkhq.com/job/13c646c1-4eea-4567-874e-f91578bf0ec7",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "442b71a607ccb9fd7f1eaa28"
+      ],
+      "previousUrls": [
+        "https://www.dreamworkhq.com/job/13c646c1-4eea-4567-874e-f91578bf0ec7"
+      ],
+      "sources": [
+        "Dreamwork New Grad US"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-11-06T13:24:48.542Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork New Grad US",
+            "diagnosticName": "Dreamwork New Grad US",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1308
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "www.dreamworkhq.com:3d0ede87-a00e-43bb-8bb1-4ec17afec18d",
+      "id": "4b6096405ca10342160ce9d0",
+      "company": "Amazon",
+      "title": "Software Development Engineer, Consumer Domains",
+      "applyUrl": "https://www.dreamworkhq.com/job/3d0ede87-a00e-43bb-8bb1-4ec17afec18d",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "4b6096405ca10342160ce9d0"
+      ],
+      "previousUrls": [
+        "https://www.dreamworkhq.com/job/3d0ede87-a00e-43bb-8bb1-4ec17afec18d"
+      ],
+      "sources": [
+        "Dreamwork New Grad US"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "unknown",
+          "checkedAt": "2026-11-05T16:26:55.392Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork New Grad US",
+            "diagnosticName": "Dreamwork New Grad US",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1308
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://jobs.smartrecruiters.com/abbvie/3743990014697918",
+      "id": "73e2a80793dbad90666f9eb5",
+      "company": "AbbVie",
+      "title": "Business Technology Solutions Intern - Data & Software Engineering",
+      "applyUrl": "https://jobs.smartrecruiters.com/AbbVie/3743990014697918",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "73e2a80793dbad90666f9eb5"
+      ],
+      "previousUrls": [
+        "https://jobs.smartrecruiters.com/AbbVie/3743990014697918"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://jobs.smartrecruiters.com/AbbVie/3743990014697918",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-11-05T01:25:14.087Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": {
+          "id": "jobs.smartrecruiters.com:abbvie",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2480
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1247
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:generac.wd5.myworkdayjobs.com:external:jr17048",
+      "id": "0b8d222e52be21883dcff874",
+      "company": "Generac",
+      "title": "Mechanical Engineering Intern - Transfer Switch - Summer 2027",
+      "applyUrl": "https://generac.wd5.myworkdayjobs.com/External/job/Waukesha-WI---USA/Mechanical-Engineering-Intern---Transfer-Switch---Summer-2027_JR17048",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "0b8d222e52be21883dcff874"
+      ],
+      "previousUrls": [
+        "https://generac.wd5.myworkdayjobs.com/External/job/Waukesha-WI---USA/Mechanical-Engineering-Intern---Transfer-Switch---Summer-2027_JR17048"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://generac.wd5.myworkdayjobs.com/external/job/Waukesha-WI---USA/Mechanical-Engineering-Intern---Transfer-Switch---Summer-2027_JR17048",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:generac.wd5.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1247
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31682",
+      "id": "df790fef5e5d5027758ba2e0",
+      "company": "HNTB",
+      "title": "New Grad Electrical Engineering I (2027)",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "df790fef5e5d5027758ba2e0"
+      ],
+      "previousUrls": [
+        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1"
       ],
       "sources": [
         "Keryx Non-Software New Grad 2027",
@@ -483,23 +1496,18 @@
       "evidence": {
         "screening": [
           {
-            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-06T17:18:30.358Z",
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
         "postingCheck": null,
-        "workdayChecks": [
-          {
-            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
-            "status": "unknown"
-          }
-        ],
+        "workdayChecks": [],
         "board": {
           "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
-          "status": "ok",
-          "outcome": "rate_limited",
+          "status": "failed",
+          "outcome": "cooldown",
           "membership": "unknown",
           "retired": false
         },
@@ -524,109 +1532,1293 @@
       "explanation": "Required evidence was insufficient for publication; closure is not established.",
       "nextAction": "Inspect employer and destination verification evidence before admission.",
       "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rjet.wd108.myworkdayjobs.com:external_career_site:jr-007628",
+      "id": "7becf920067def1369291f64",
+      "company": "Republic Airways 🛂",
+      "title": "Data Analytics Intern - Summer 2027",
+      "applyUrl": "https://rjet.wd108.myworkdayjobs.com/External_Career_Site/job/Carmel-Headquarters/Data-Analytics-Intern---Summer-2027_JR-007628",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "7becf920067def1369291f64"
+      ],
+      "previousUrls": [
+        "https://rjet.wd108.myworkdayjobs.com/External_Career_Site/job/Carmel-Headquarters/Data-Analytics-Intern---Summer-2027_JR-007628"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://rjet.wd108.myworkdayjobs.com/External_Career_Site/job/Carmel-Headquarters/Data-Analytics-Intern---Summer-2027_JR-007628",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:rjet.wd108.myworkdayjobs.com:external_career_site",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1247
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "jobs.lever.co:0e76f3a3-6d77-4bca-88d8-f37092a94dc1",
+      "id": "ff2d9073bb8f85884b7b0841",
+      "company": "Protective Life",
+      "title": "2027 Internal IT Audit Summer Internship Program",
+      "applyUrl": "https://jobs.lever.co/protective/0e76f3a3-6d77-4bca-88d8-f37092a94dc1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "ff2d9073bb8f85884b7b0841"
+      ],
+      "previousUrls": [
+        "https://jobs.lever.co/protective/0e76f3a3-6d77-4bca-88d8-f37092a94dc1"
+      ],
+      "sources": [
+        "Keryx Non-Software Summer 2027",
+        "Direct ATS (Lever)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://jobs.lever.co/protective/0e76f3a3-6d77-4bca-88d8-f37092a94dc1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "lever:api.lever.co:protective",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1504
+          },
+          {
+            "name": "Direct ATS (Lever)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31630",
+      "id": "d8a30447ed31200e6a60f505",
+      "company": "HNTB",
+      "title": "New Grad Civil Engineer I: Transportation - Summer 2027",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "d8a30447ed31200e6a60f505"
+      ],
+      "previousUrls": [
+        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2"
+      ],
+      "sources": [
+        "Keryx Non-Software New Grad 2027",
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Keryx Non-Software New Grad 2027",
+            "diagnosticName": "Keryx Non-Software New Grad 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 134
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:capitalone.wd12.myworkdayjobs.com:capital_one:r249110",
+      "id": "a743ae975851a3f2fe0e8fcb",
+      "company": "Capital One 🛂",
+      "title": "AI Engineering Intern (PhD) - Summer 2027",
+      "applyUrl": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/New-York-NY/Current-PhD--AI-Engineering-Internship-Program---Summer-2027_R249110-1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "a743ae975851a3f2fe0e8fcb"
+      ],
+      "previousUrls": [
+        "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/New-York-NY/Current-PhD--AI-Engineering-Internship-Program---Summer-2027_R249110-1"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/New-York-NY/Current-PhD--AI-Engineering-Internship-Program---Summer-2027_R249110-1",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:capitalone.wd12.myworkdayjobs.com:capital_one",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2480
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://momentive.wd1.myworkdayjobs.com/mc/job/us-ny-niskayuna/summer-2027-intern---enterprise-reporting---analytics---data-science_r9807-1",
+      "id": "987eba45d857ddf6368f065d",
+      "company": "Momentive",
+      "title": "Summer 2027 Intern - Enterprise Reporting & Analytics - Data Science",
+      "applyUrl": "https://momentive.wd1.myworkdayjobs.com/MC/job/US-NY-Niskayuna/Summer-2027-Intern---Enterprise-Reporting---Analytics---Data-Science_R9807-1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "987eba45d857ddf6368f065d"
+      ],
+      "previousUrls": [
+        "https://momentive.wd1.myworkdayjobs.com/MC/job/US-NY-Niskayuna/Summer-2027-Intern---Enterprise-Reporting---Analytics---Data-Science_R9807-1"
+      ],
+      "sources": [
+        "Internship Engine",
+        "Dreamwork Business Internships 2027",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://momentive.wd1.myworkdayjobs.com/MC/job/US-NY-Niskayuna/Summer-2027-Intern---Enterprise-Reporting---Analytics---Data-Science_R9807-1",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://momentive.wd1.myworkdayjobs.com/MC/job/US-NY-Niskayuna/Summer-2027-Intern---Enterprise-Reporting---Analytics---Data-Science_R9807-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:momentive.wd1.myworkdayjobs.com:mc",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1256
+          },
+          {
+            "name": "Dreamwork Business Internships 2027",
+            "diagnosticName": "Dreamwork Business Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 452
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1247
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31435",
+      "id": "48d0774191df9234015b9c9f",
+      "company": "HNTB",
+      "title": "WED - Intern Civil Engineer (Summer 2027) (For Current & Recent HNTB Interns Only)",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "48d0774191df9234015b9c9f"
+      ],
+      "previousUrls": [
+        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435"
+      ],
+      "sources": [
+        "Keryx Non-Software Summer 2027",
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1504
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://jobs.smartrecruiters.com/boschgroup/744000146546699-calibration-process-data-science-intern-8-months-40-hours-per-week-?oga=true",
+      "id": "3ebc47ab0984f171bef47430",
+      "company": "Bosch",
+      "title": "Calibration Process Data Science Intern - 8 months/40 hours per week",
+      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000146546699-calibration-process-data-science-intern-8-months-40-hours-per-week-?oga=true",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "3ebc47ab0984f171bef47430"
+      ],
+      "previousUrls": [
+        "https://jobs.smartrecruiters.com/BoschGroup/744000146546699-calibration-process-data-science-intern-8-months-40-hours-per-week-?oga=true"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Open-Tech-Internships-2027 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://jobs.smartrecruiters.com/BoschGroup/744000146546699-calibration-process-data-science-intern-8-months-40-hours-per-week-?oga=true",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "unknown",
+          "checkedAt": "2026-11-05T09:24:46.821Z",
+          "httpStatus": 403,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": {
+          "id": "jobs.smartrecruiters.com:boschgroup",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2480
+          },
+          {
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1918
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://jobs.smartrecruiters.com/boschgroup/744000146546699",
+      "id": "8621fbd9150eb2a0eefae2d4",
+      "company": "Bosch",
+      "title": "Calibration Process Data Science Intern (8 months/40 hours per week)",
+      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000146546699",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "8621fbd9150eb2a0eefae2d4"
+      ],
+      "previousUrls": [
+        "https://jobs.smartrecruiters.com/BoschGroup/744000146546699"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://jobs.smartrecruiters.com/BoschGroup/744000146546699",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-11-04T23:25:14.346Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": {
+          "id": "jobs.smartrecruiters.com:boschgroup",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2480
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1247
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:generac.wd5.myworkdayjobs.com:external:jr15318",
+      "id": "f3ab41a7e06f9f60134abf91",
+      "company": "Generac",
+      "title": "Data Science Analyst",
+      "applyUrl": "https://generac.wd5.myworkdayjobs.com/External/job/Waukesha-WI---USA/Data-Science-Analyst_JR15318",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "f3ab41a7e06f9f60134abf91"
+      ],
+      "previousUrls": [
+        "https://generac.wd5.myworkdayjobs.com/External/job/Waukesha-WI---USA/Data-Science-Analyst_JR15318"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:generac.wd5.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1247
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://jobs.smartrecruiters.com/westerndigital/744000138727213",
+      "id": "4e351b76e2fa9c4a3c9c5a97",
+      "company": "Western Digital",
+      "title": "Software Engineering Intern",
+      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000138727213",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "4e351b76e2fa9c4a3c9c5a97"
+      ],
+      "previousUrls": [
+        "https://jobs.smartrecruiters.com/WesternDigital/744000138727213"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://jobs.smartrecruiters.com/WesternDigital/744000138727213",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-11-05T00:24:53.492Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": {
+          "id": "jobs.smartrecruiters.com:westerndigital",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2480
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1247
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://jobs.smartrecruiters.com/westerndigital/744000138727213-summer-2027-software-engineering-internship",
+      "id": "5aa949a35e0bf1138d3a2afe",
+      "company": "Western Digital",
+      "title": "Software Engineering Intern (Summer 2027)",
+      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000138727213-summer-2027-software-engineering-internship",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "5aa949a35e0bf1138d3a2afe"
+      ],
+      "previousUrls": [
+        "https://jobs.smartrecruiters.com/WesternDigital/744000138727213-summer-2027-software-engineering-internship"
+      ],
+      "sources": [
+        "Summer 2027 Tech Internships"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://jobs.smartrecruiters.com/WesternDigital/744000138727213-summer-2027-software-engineering-internship",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T18:18:32.871Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-11-06T15:25:34.458Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": {
+          "id": "jobs.smartrecruiters.com:westerndigital",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Summer 2027 Tech Internships",
+            "diagnosticName": "Summer 2027 Tech Internships",
+            "status": "ok",
+            "outcome": null,
+            "rows": 100
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
     }
   ],
   "rowCounts": {
-    "previous": 6847,
-    "current": 6855,
-    "net": 8,
+    "previous": 6855,
+    "current": 6873,
+    "net": 18,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 18,
-  "removedCount": 10,
+  "added": 61,
+  "removedCount": 43,
   "counts": {
-    "not-returned-by-sources": 4,
-    "absent-from-employer-board": 1,
-    "pendingVerification": 5
+    "pendingVerification": 19,
+    "not-returned-by-sources": 21,
+    "absent-from-employer-board": 3
   },
   "removed": [
     {
-      "id": "a30fa61d64fae9148ab83b42",
-      "company": "Booz Allen",
-      "title": "Program Controls Organization Financial Analyst, Junior",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/McLean-VA/Program-Controls-Organization-Financial-Analyst--Junior_R0252999",
+      "id": "f06acf1a71df524795c6038f",
+      "company": "Momentive",
+      "title": "Summer 2027 Intern - Process Engineering",
+      "applyUrl": "https://momentive.wd1.myworkdayjobs.com/MC/job/US-IN-Garrett/Summer-2027-Intern---Process-Engineering_R9801",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "f7b4012c69b969cce3b41a9a",
+      "company": "Google",
+      "title": "Software Engineer, App Ads Bidding and Optimization",
+      "applyUrl": "https://www.dreamworkhq.com/job/a968a8f8-4945-4103-a5d6-8206c3b5dd02",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "fb7e7561543bbe3ac78cd8db",
-      "company": "Bottomline Technologies",
-      "title": "AI Enablement Sales Analyst",
-      "applyUrl": "https://job-boards.greenhouse.io/bottomlinetechnologies/jobs/8927156002",
+      "id": "2f0ced6c4c3a9b1f0f8b7d46",
+      "company": "Rocket Lab",
+      "title": "Test and Launch Operations Engineer I",
+      "applyUrl": "https://job-boards.greenhouse.io/rocketlab/jobs/8165883003",
       "reason": "absent-from-employer-board"
     },
     {
-      "id": "9818955d763239d185b6d107",
-      "company": "Sierra Space",
-      "title": "Test Engineer I",
-      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Test-Engineer-I_R26402-1",
+      "id": "41b38589ed2b1ba38d0ed138",
+      "company": "Apple",
+      "title": "Software Engineer (Framework Solutions), AI & Data Platforms (AiDP)",
+      "applyUrl": "https://www.dreamworkhq.com/job/5e7cdad9-b798-4231-8d40-04794876fc86",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "2f360dda86d41cee7c03c75b",
-      "company": "Toyota",
-      "title": "Software Engineer (Early Career Professional)",
-      "applyUrl": "https://toyota.wd503.myworkdayjobs.com/TMNA/job/Plano-Texas/Software-Engineer--Early-Career-Professional-_10325071",
+      "id": "c9a6670e12f252692ec37437",
+      "company": "Amazon",
+      "title": "UX Designer Intern – Summer 2027",
+      "applyUrl": "https://amazon.jobs/jobs/10592766",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "ae86bbdb053058073a542f5c",
-      "company": "Jabil",
-      "title": "IT Audit Intern",
-      "applyUrl": "https://jabil.wd5.myworkdayjobs.com/Jabil_Careers/job/St-PetersburgTampa-FL/IT-Audit-Intern_J2468699",
+      "id": "3c404e04cd834cad5b7a4c1d",
+      "company": "Anduril",
+      "title": "Project Engineer, AD&S",
+      "applyUrl": "https://boards.greenhouse.io/andurilindustries/jobs/5261162007",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "d719fad4fa84f8ac233102dc",
+      "company": "AeroVironment",
+      "title": "Mechanical Engineering Intern - Space Technologies",
+      "applyUrl": "https://avav.wd1.myworkdayjobs.com/AVAV/job/Albuquerque-NM/Mechanical-Engineering-Intern---Space-Technologies_9247",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "8fb293cf6c19ed6ef3da7154",
+      "company": "Generac",
+      "title": "Intern AI Engineering",
+      "applyUrl": "https://generac.wd5.myworkdayjobs.com/External/job/Waukesha-WI---USA/Intern-AI-Engineering_JR17736",
       "reason": "pendingVerification"
     },
     {
-      "id": "d6aa0f40a16f09926f8fffcf",
-      "company": "Bristol Myers Squibb",
-      "title": "Equipment Engineering Intern – Summer 2027",
-      "applyUrl": "https://bristolmyerssquibb.wd5.myworkdayjobs.com/BMS/job/Indianapolis---RayzeBio---IN/Equipment-Engineering-Intern---Summer-2027_R1607432",
+      "id": "df4f1fd65693a2251b478943",
+      "company": "Amazon",
+      "title": "Security Engineer I, Secure Third Party Tools (S3T)",
+      "applyUrl": "https://www.dreamworkhq.com/job/8cd8f88b-7c64-49e8-8c08-2b9e003ec7db",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "9b4e3950519b08bcfad9aa23",
+      "company": "RTX",
+      "title": "Software Engineering Intern (Summer 2027)",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S77--16470-E-Hughes-Dr--BLDG-S77/Software-Engineering--Intern--Summer-2027-_01881520",
       "reason": "pendingVerification"
     },
     {
-      "id": "ec06b1a41c57f55b3c8150ac",
+      "id": "dc80ee89c201221a0188f61b",
+      "company": "Meta",
+      "title": "Softgoods Product Design Engineering Intern",
+      "applyUrl": "https://www.metacareers.com/profile/job_details/1111723361506997",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "1998057aeb1e2f155df214a0",
       "company": "Rockwell Automation",
-      "title": "Intern, AI Software Engineering (June-August 2027)",
-      "applyUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/External-Rockwell-Automation-Early-Careers/job/Mayfield-Heights-Ohio-United-States/Intern--AI-Software-Engineering--June-August-2027-_R26-6980",
+      "title": "Intern - Embedded Controls Engineering",
+      "applyUrl": "https://rockwellautomation.wd1.myworkdayjobs.com/External-Rockwell-Automation-Early-Careers/job/Orlando-Florida-United-States/Intern---Embedded-Controls-Engineering_R26-5043-1",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "8553b25d02a6bd4f449cc4d5",
-      "company": "Together AI",
-      "title": "Systems Research Engineer Intern - GPU Programming (Winter 2027)",
-      "applyUrl": "https://job-boards.greenhouse.io/togetherai/jobs/5238411007",
+      "id": "96c15e27a35cd8875547ea6e",
+      "company": "General Matter",
+      "title": "Summer 2027 Internship - Mechanical Engineering",
+      "applyUrl": "https://job-boards.greenhouse.io/generalmatter/jobs/5377107008",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "852fb41b04a796d22b202081",
+      "company": "DXC Technology",
+      "title": "Analyst I Software Engineering",
+      "applyUrl": "https://dxctechnology.wd1.myworkdayjobs.com/DXCJobs/job/USA---CT---ANY-CITY/Analyst-I-Software-Engineering_51586935",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "ef7b4d75a82866395e837a45",
+      "company": "Google",
+      "title": "Security Engineer, Platforms and Devices",
+      "applyUrl": "https://www.dreamworkhq.com/job/2826e33f-c288-4aa8-a9e4-0e5f9cc9cb53",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "e960790de43e92bb9f6f7c3e",
+      "company": "Parsons Corporation",
+      "title": "Software Engineer Co-Op - TS/SCI",
+      "applyUrl": "https://parsons.wd5.myworkdayjobs.com/Search/job/US---VA-Centreville/Software-Engineer-Co-Op---TS-SCI_R187147",
       "reason": "pendingVerification"
     },
     {
-      "id": "f014871400afb1617b37f635",
-      "company": "Flex",
-      "title": "Manufacturing Data & Analytics Co-Op - Spring 2027",
-      "applyUrl": "https://flextronics.wd1.myworkdayjobs.com/Careers/job/USA-IL-Libertyville/Manufacturing-Data---Analytics-Co-Op---Spring-2027_WD229700",
+      "id": "9e5824b4c612b9f65dd8f2e3",
+      "company": "Adobe",
+      "title": "2027 University Graduate - Software Engineer",
+      "applyUrl": "https://www.dreamworkhq.com/job/042fa430-2519-44c1-a677-7378e9061c87",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "d0ed6a77fb0a0a726e4cc2c3",
+      "company": "Adobe",
+      "title": "2027 University Graduate - Machine Learning Engineer",
+      "applyUrl": "https://www.dreamworkhq.com/job/fd906618-993c-4e4f-800f-d52544114bf4",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "7a80d584587449a8905cd216",
+      "company": "General Motors",
+      "title": "2027 Summer Intern – Machine Learning Engineer, AV/AI Platform",
+      "applyUrl": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Sunnyvale-California-United-States-of-America/XMLNAME-2027-Summer-Intern---Machine-Learning-Engineer--AV-AI-Platform_JR-202621695",
       "reason": "pendingVerification"
     },
     {
-      "id": "e40074ef200d40c15b63eb3e",
+      "id": "6cbcdce77861539bcbfa53c1",
+      "company": "General Motors",
+      "title": "2027 Summer Intern – Software Verification Engineer, AV/AI Platform",
+      "applyUrl": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Warren-Michigan-United-States-of-America/XMLNAME-2027-Summer-Intern---Software-Verification-Engineer--AV-AI-Platform_JR-202621697",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "c0190b0211fe370d0049846d",
+      "company": "Amazon",
+      "title": "Security Engineer, CS Security",
+      "applyUrl": "https://www.dreamworkhq.com/job/4d05cafa-b536-4e8f-afad-f6c3587a1bf5",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "bca2d7c3d2ea7ab5ad3ed117",
+      "company": "Apple",
+      "title": "Software Engineer, Information Systems & Technology",
+      "applyUrl": "https://www.dreamworkhq.com/job/f100a777-43ec-4dfe-9303-3ed311aecd03",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "a36b6c30f496d42adac9e875",
+      "company": "Nvidia",
+      "title": "Applied Machine Learning Engineer, AI for VLSI Design - New College Gra…",
+      "applyUrl": "https://www.dreamworkhq.com/job/417fbafa-9461-4521-8bb4-a8ecd3eca30a",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "d59d7c0bc2905ed66488eabc",
+      "company": "Amazon",
+      "title": "Software Development Engineer, FinTech/Customer Service Tech",
+      "applyUrl": "https://www.dreamworkhq.com/job/ed68cabe-953c-40a8-8ea2-a51da23da8b6",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "1a4503ec093ff77981ca68ab",
+      "company": "Amazon",
+      "title": "Robotics Systems Engineer I, Tech Deployment",
+      "applyUrl": "https://www.dreamworkhq.com/job/b9428dda-be8a-4c82-aa4d-29a41d9f6550",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "b6ae3a293037fe5ecf30aa70",
+      "company": "Google",
+      "title": "Software Engineer, Consumer Shopping Quality, Commerce, Recommendations…",
+      "applyUrl": "https://www.dreamworkhq.com/job/cc6e1e16-be56-4720-ae03-877e3ef4dd23",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "b19d482c2cefe396b179c884",
+      "company": "Meta",
+      "title": "Lab Engineer, Hardware Infrastructure",
+      "applyUrl": "https://www.dreamworkhq.com/job/12154ca8-7f07-443e-8d5d-e502fb7b5c1f",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "442b71a607ccb9fd7f1eaa28",
+      "company": "Amazon",
+      "title": "Network Infrastructure Engineer I, Amazon Dedicated Cloud (NIDD)",
+      "applyUrl": "https://www.dreamworkhq.com/job/13c646c1-4eea-4567-874e-f91578bf0ec7",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "4b6096405ca10342160ce9d0",
+      "company": "Amazon",
+      "title": "Software Development Engineer, Consumer Domains",
+      "applyUrl": "https://www.dreamworkhq.com/job/3d0ede87-a00e-43bb-8bb1-4ec17afec18d",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "73e2a80793dbad90666f9eb5",
+      "company": "AbbVie",
+      "title": "Business Technology Solutions Intern - Data & Software Engineering",
+      "applyUrl": "https://jobs.smartrecruiters.com/AbbVie/3743990014697918",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "0b8d222e52be21883dcff874",
+      "company": "Generac",
+      "title": "Mechanical Engineering Intern - Transfer Switch - Summer 2027",
+      "applyUrl": "https://generac.wd5.myworkdayjobs.com/External/job/Waukesha-WI---USA/Mechanical-Engineering-Intern---Transfer-Switch---Summer-2027_JR17048",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "df790fef5e5d5027758ba2e0",
       "company": "HNTB",
-      "title": "New Grad Structural Engineer I - Winter/Summer 2027",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
+      "title": "New Grad Electrical Engineering I (2027)",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "7becf920067def1369291f64",
+      "company": "Republic Airways 🛂",
+      "title": "Data Analytics Intern - Summer 2027",
+      "applyUrl": "https://rjet.wd108.myworkdayjobs.com/External_Career_Site/job/Carmel-Headquarters/Data-Analytics-Intern---Summer-2027_JR-007628",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "ff2d9073bb8f85884b7b0841",
+      "company": "Protective Life",
+      "title": "2027 Internal IT Audit Summer Internship Program",
+      "applyUrl": "https://jobs.lever.co/protective/0e76f3a3-6d77-4bca-88d8-f37092a94dc1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "d8a30447ed31200e6a60f505",
+      "company": "HNTB",
+      "title": "New Grad Civil Engineer I: Transportation - Summer 2027",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Boston-MA/New-Grad-Civil-Engineer-I--Transportation---Summer-2027_R-31630-2",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "a743ae975851a3f2fe0e8fcb",
+      "company": "Capital One 🛂",
+      "title": "AI Engineering Intern (PhD) - Summer 2027",
+      "applyUrl": "https://capitalone.wd12.myworkdayjobs.com/en-US/Capital_One/job/New-York-NY/Current-PhD--AI-Engineering-Internship-Program---Summer-2027_R249110-1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "987eba45d857ddf6368f065d",
+      "company": "Momentive",
+      "title": "Summer 2027 Intern - Enterprise Reporting & Analytics - Data Science",
+      "applyUrl": "https://momentive.wd1.myworkdayjobs.com/MC/job/US-NY-Niskayuna/Summer-2027-Intern---Enterprise-Reporting---Analytics---Data-Science_R9807-1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "48d0774191df9234015b9c9f",
+      "company": "HNTB",
+      "title": "WED - Intern Civil Engineer (Summer 2027) (For Current & Recent HNTB Interns Only)",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "3ebc47ab0984f171bef47430",
+      "company": "Bosch",
+      "title": "Calibration Process Data Science Intern - 8 months/40 hours per week",
+      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000146546699-calibration-process-data-science-intern-8-months-40-hours-per-week-?oga=true",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "8621fbd9150eb2a0eefae2d4",
+      "company": "Bosch",
+      "title": "Calibration Process Data Science Intern (8 months/40 hours per week)",
+      "applyUrl": "https://jobs.smartrecruiters.com/BoschGroup/744000146546699",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "f3ab41a7e06f9f60134abf91",
+      "company": "Generac",
+      "title": "Data Science Analyst",
+      "applyUrl": "https://generac.wd5.myworkdayjobs.com/External/job/Waukesha-WI---USA/Data-Science-Analyst_JR15318",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "4e351b76e2fa9c4a3c9c5a97",
+      "company": "Western Digital",
+      "title": "Software Engineering Intern",
+      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000138727213",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "5aa949a35e0bf1138d3a2afe",
+      "company": "Western Digital",
+      "title": "Software Engineering Intern (Summer 2027)",
+      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000138727213-summer-2027-software-engineering-internship",
       "reason": "pendingVerification"
     }
   ],
   "urlChanges": [
     {
-      "id": "04a5d004fbdd6d04f93e83f2",
-      "previousUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603",
-      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603"
+      "id": "8a811024e12175135cd75016",
+      "previousUrl": "https://jobs.ashbyhq.com/regent/1eec51d3-41c8-445f-817a-65c732a573a2/application",
+      "applyUrl": "https://jobs.ashbyhq.com/REGENT/1eec51d3-41c8-445f-817a-65c732a573a2/application"
     },
     {
-      "id": "cd9ab86f753f801b68068408",
-      "previousUrl": "https://globalfoundries.wd1.myworkdayjobs.com/en-US/External/job/USA---Texas---Richardson/AI-ML-Systems-Engineer--2027-New-College-Graduate-_JR-2604163",
-      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Richardson/AI-ML-Systems-Engineer--2027-New-College-Graduate-_JR-2604163"
+      "id": "a2d47868a88fbaf4c1841484",
+      "previousUrl": "https://jobs.ashbyhq.com/crusoe/1d5b5af1-bfde-44d3-a250-3cd37cea9e99/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Crusoe/1d5b5af1-bfde-44d3-a250-3cd37cea9e99/application"
     },
     {
-      "id": "c22a9ded3705b29620d52318",
-      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---2027-New-Grad-Civil-Engineer-I--For-Current---Recent-HNTB-Interns-Only-_R-31314-1",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Salt-Lake-City-UT/WED---2027-New-Grad-Civil-Engineer-I--For-Current---Recent-HNTB-Interns-Only-_R-31314-1"
+      "id": "05dfd53759e54c4f4f63ce50",
+      "previousUrl": "https://jobs.ashbyhq.com/regent/6d1fc228-f66c-4780-b358-7be3f6f64ed9/application",
+      "applyUrl": "https://jobs.ashbyhq.com/REGENT/6d1fc228-f66c-4780-b358-7be3f6f64ed9/application"
+    },
+    {
+      "id": "960220842a31e449290df26c",
+      "previousUrl": "https://jobs.ashbyhq.com/astro-mechanica/6ee33f39-7a07-4b46-8caf-5f6f7b62eb40/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Astro-Mechanica/6ee33f39-7a07-4b46-8caf-5f6f7b62eb40/application"
+    },
+    {
+      "id": "eb8af3eff8a219134eae4651",
+      "previousUrl": "https://jobs.ashbyhq.com/astro-mechanica/746a6647-a07d-41ef-91e4-0dfe3a10800b/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Astro-Mechanica/746a6647-a07d-41ef-91e4-0dfe3a10800b/application"
+    },
+    {
+      "id": "a7e0d3d0b3de740aa68bfcf2",
+      "previousUrl": "https://jobs.ashbyhq.com/astro-mechanica/8406a0b9-d8d6-40ff-b3e1-081a3e68968f/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Astro-Mechanica/8406a0b9-d8d6-40ff-b3e1-081a3e68968f/application"
+    },
+    {
+      "id": "bdc03ac34dcf172b8b5cbb00",
+      "previousUrl": "https://jobs.ashbyhq.com/astro-mechanica/0916ad59-846f-4635-a68a-276da216a906/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Astro-Mechanica/0916ad59-846f-4635-a68a-276da216a906/application"
+    },
+    {
+      "id": "0a2b894d869c1dfd50996836",
+      "previousUrl": "https://jobs.lever.co/zoox/0c32245b-f51d-40d2-8e57-a0be1b744c5b/apply",
+      "applyUrl": "https://jobs.lever.co/zoox/0c32245b-f51d-40d2-8e57-a0be1b744c5b"
+    },
+    {
+      "id": "2f093978a457602a732766cb",
+      "previousUrl": "https://jobs.lever.co/zoox/0accbf9e-9b09-4733-b495-fb6dce13ba62/apply",
+      "applyUrl": "https://jobs.lever.co/zoox/0accbf9e-9b09-4733-b495-fb6dce13ba62"
+    },
+    {
+      "id": "30fcfe1f4d03825ae6b6f81c",
+      "previousUrl": "https://jobs.ashbyhq.com/jerry.ai/c978ccf6-ebe4-4799-b40a-ee18a277fa30/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Jerry.ai/c978ccf6-ebe4-4799-b40a-ee18a277fa30/application"
+    },
+    {
+      "id": "2525269d99eaefcb1ddaa730",
+      "previousUrl": "https://jobs.ashbyhq.com/jerry.ai/7a417376-e6e8-45ff-820e-0a6cfcfe5987/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Jerry.ai/7a417376-e6e8-45ff-820e-0a6cfcfe5987/application"
+    },
+    {
+      "id": "73ac1e44ae9e3b58301b1092",
+      "previousUrl": "https://jobs.ashbyhq.com/jerry.ai/fbff12c7-2445-4bb5-9738-08a0ded724af/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Jerry.ai/fbff12c7-2445-4bb5-9738-08a0ded724af/application"
+    },
+    {
+      "id": "56f1daff4e176f6e8e2b3637",
+      "previousUrl": "https://jobs.ashbyhq.com/jerry.ai/18efcfbf-bfb6-4186-9109-323cfda29f13/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Jerry.ai/18efcfbf-bfb6-4186-9109-323cfda29f13/application"
+    },
+    {
+      "id": "0cd0a83a558758bf301889b0",
+      "previousUrl": "https://jobs.ashbyhq.com/fuel-cycle/0d24c1b6-e79b-4880-890f-a8ddb53b6d0d/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Fuel-Cycle/0d24c1b6-e79b-4880-890f-a8ddb53b6d0d/application"
+    },
+    {
+      "id": "d4e6666de6556f0bb627b59d",
+      "previousUrl": "https://jobs.ashbyhq.com/sierra/d0e78ab0-92ac-4fec-a667-837fa371b1db/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Sierra/d0e78ab0-92ac-4fec-a667-837fa371b1db/application"
+    },
+    {
+      "id": "1ced4ca0b653443681043f06",
+      "previousUrl": "https://jobs.ashbyhq.com/clark/e62f6ecd-48a2-42fa-8725-599673e354d5/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Clark/e62f6ecd-48a2-42fa-8725-599673e354d5/application"
+    },
+    {
+      "id": "72ec7a95d48b99264ffd2626",
+      "previousUrl": "https://jobs.ashbyhq.com/sierra/cfecdf07-ee22-45a0-b472-5de10f167984/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Sierra/cfecdf07-ee22-45a0-b472-5de10f167984/application"
+    },
+    {
+      "id": "8d17b57c607bd6938003d42d",
+      "previousUrl": "https://jobs.ashbyhq.com/sierra/7af8aa4e-ba84-49ba-bc53-19358f4564ff/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Sierra/7af8aa4e-ba84-49ba-bc53-19358f4564ff/application"
+    },
+    {
+      "id": "81bc803e0a8477b604fcc497",
+      "previousUrl": "https://jobs.ashbyhq.com/juicebox/9d7111d6-a010-424e-b5b6-c4bf154576d9/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Juicebox/9d7111d6-a010-424e-b5b6-c4bf154576d9/application"
+    },
+    {
+      "id": "3c3b842a1a239e8fd9c37b35",
+      "previousUrl": "https://jobs.ashbyhq.com/clark/48f2711d-f53d-4cc3-9824-0a5c340d5c26/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Clark/48f2711d-f53d-4cc3-9824-0a5c340d5c26/application"
+    },
+    {
+      "id": "2a7ca5a80cca7692aa03d1c1",
+      "previousUrl": "https://jobs.ashbyhq.com/maticrobots/655f8bb2-26f0-4324-acd6-f9c0d0d24f6b/application",
+      "applyUrl": "https://jobs.ashbyhq.com/MaticRobots/655f8bb2-26f0-4324-acd6-f9c0d0d24f6b/application"
+    },
+    {
+      "id": "3eee15890877d02d62dc6fd1",
+      "previousUrl": "https://jobs.ashbyhq.com/tensorwave/29520054-32ae-4adf-a746-82059bcf1a12/application",
+      "applyUrl": "https://jobs.ashbyhq.com/TensorWave/29520054-32ae-4adf-a746-82059bcf1a12/application"
+    },
+    {
+      "id": "6cd27d31250b8c1df310193e",
+      "previousUrl": "https://jobs.ashbyhq.com/commure/acbaac88-2c5f-4249-ae6a-790991ebc358/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Commure/acbaac88-2c5f-4249-ae6a-790991ebc358/application"
+    },
+    {
+      "id": "26cf0bd79c14cde3cd1cf976",
+      "previousUrl": "https://jobs.ashbyhq.com/skyband%20systems/1e68c6d9-c810-418d-9171-f2a23f013d06/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Skyband%20Systems/1e68c6d9-c810-418d-9171-f2a23f013d06/application"
+    },
+    {
+      "id": "9ac93d10afab89386be061e1",
+      "previousUrl": "https://jobs.ashbyhq.com/skyband%20systems/99786584-f5fa-42e2-966b-1a3df82d9b97/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Skyband%20Systems/99786584-f5fa-42e2-966b-1a3df82d9b97/application"
+    },
+    {
+      "id": "e360ad9ebe934a6680f73315",
+      "previousUrl": "https://jobs.ashbyhq.com/skyband%20systems/74d42f88-5265-4879-9c6d-61f532e89b20/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Skyband%20Systems/74d42f88-5265-4879-9c6d-61f532e89b20/application"
+    },
+    {
+      "id": "746c49197dcdde4cbd54192d",
+      "previousUrl": "https://jobs.ashbyhq.com/skyband%20systems/84c94947-8a35-46a7-86b2-1867b31c92e9/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Skyband%20Systems/84c94947-8a35-46a7-86b2-1867b31c92e9/application"
+    },
+    {
+      "id": "ecb0ab8819ea98e93f818656",
+      "previousUrl": "https://jobs.ashbyhq.com/skyband%20systems/5ff35a40-2ded-45b2-9211-004025902fc6/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Skyband%20Systems/5ff35a40-2ded-45b2-9211-004025902fc6/application"
+    },
+    {
+      "id": "1694ec11a34774025ba9579b",
+      "previousUrl": "https://jobs.ashbyhq.com/skyband%20systems/36bb9bd3-7ecb-42fe-908a-7d7486620d77/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Skyband%20Systems/36bb9bd3-7ecb-42fe-908a-7d7486620d77/application"
+    },
+    {
+      "id": "82e319dc33dd275804891d73",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1"
+    },
+    {
+      "id": "869d8eee70b4072c04436c08",
+      "previousUrl": "https://jobs.ashbyhq.com/terranova/7ba048ea-818d-46b5-8ff8-3ce58d39bcc6/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Terranova/7ba048ea-818d-46b5-8ff8-3ce58d39bcc6/application"
+    },
+    {
+      "id": "72403f5edd7af8432f4cc804",
+      "previousUrl": "https://jobs.ashbyhq.com/anori/5a86f1e2-2e30-49d7-853f-5083e8b558de/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Anori/5a86f1e2-2e30-49d7-853f-5083e8b558de/application"
+    },
+    {
+      "id": "9fd6055367e79d26bbb95c92",
+      "previousUrl": "https://jobs.ashbyhq.com/talos-trading/f2a0aaa2-af88-4715-9f2d-8f61bd5e2935/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Talos-Trading/f2a0aaa2-af88-4715-9f2d-8f61bd5e2935/application"
+    },
+    {
+      "id": "36ec6c985c85961c758208f6",
+      "previousUrl": "https://jobs.ashbyhq.com/talos-trading/42cad756-c312-4142-a9b7-18ed76f61c5d/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Talos-Trading/42cad756-c312-4142-a9b7-18ed76f61c5d/application"
+    },
+    {
+      "id": "28e4a57dd18a4f81e348e454",
+      "previousUrl": "https://jobs.ashbyhq.com/rivianvw.tech/be70e02f-46d3-488e-b3c2-8dadc3bb34b8",
+      "applyUrl": "https://jobs.ashbyhq.com/rivianvw.tech/be70e02f-46d3-488e-b3c2-8dadc3bb34b8/application"
+    },
+    {
+      "id": "27c0210b45ff744f01dd33c8",
+      "previousUrl": "https://jobs.ashbyhq.com/maticrobots/a0d77cc5-555f-46d8-89b1-e1df201a77dc/application",
+      "applyUrl": "https://jobs.ashbyhq.com/MaticRobots/a0d77cc5-555f-46d8-89b1-e1df201a77dc/application"
+    },
+    {
+      "id": "0bdf40a765c9fa8eff0ad22a",
+      "previousUrl": "https://jobs.ashbyhq.com/fab2/ada329fa-d8f5-4210-9722-82b1a33487df/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Fab2/ada329fa-d8f5-4210-9722-82b1a33487df/application"
+    },
+    {
+      "id": "61f36d3a1051c2b03e20a533",
+      "previousUrl": "https://jobs.ashbyhq.com/fab2/832baa82-d5e1-44b9-bd6f-ef9dbf200a54/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Fab2/832baa82-d5e1-44b9-bd6f-ef9dbf200a54/application"
+    },
+    {
+      "id": "737144c6a202fd6703b243d2",
+      "previousUrl": "https://jobs.ashbyhq.com/fab2/602d73a8-d190-4fc1-97e9-99b7f5fa7475/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Fab2/602d73a8-d190-4fc1-97e9-99b7f5fa7475/application"
+    },
+    {
+      "id": "5b0d68b3cc06bf8f92cc3c97",
+      "previousUrl": "https://jobs.ashbyhq.com/fab2/15020e6e-be1c-4455-95a3-aa798474cec4/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Fab2/15020e6e-be1c-4455-95a3-aa798474cec4/application"
+    },
+    {
+      "id": "2c66d54bb8816d70ce66ddba",
+      "previousUrl": "https://jobs.ashbyhq.com/fab2/36ab33ab-82e7-4cc4-8137-f451fd6036a0/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Fab2/36ab33ab-82e7-4cc4-8137-f451fd6036a0/application"
+    },
+    {
+      "id": "620bed7a7c0a8291e8d7e83f",
+      "previousUrl": "https://jobs.ashbyhq.com/fab2/53f3fe23-9d2d-4eef-bd28-968d011f86c7/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Fab2/53f3fe23-9d2d-4eef-bd28-968d011f86c7/application"
+    },
+    {
+      "id": "3f73f647fc2a683af7d0ec0d",
+      "previousUrl": "https://jobs.ashbyhq.com/fab2/c8c9b760-8c9f-4481-8566-27282f8c0a07/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Fab2/c8c9b760-8c9f-4481-8566-27282f8c0a07/application"
+    },
+    {
+      "id": "3b300624bb3b9bcfaaa1aab8",
+      "previousUrl": "https://jobs.ashbyhq.com/fab2/b3628272-a336-4dd6-968d-041bc4de5bc5/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Fab2/b3628272-a336-4dd6-968d-041bc4de5bc5/application"
+    },
+    {
+      "id": "e249e4660a3cb6f6f31fcb14",
+      "previousUrl": "https://jobs.ashbyhq.com/fab2/aec19ef8-2257-4295-abc2-87afd05224ae/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Fab2/aec19ef8-2257-4295-abc2-87afd05224ae/application"
+    },
+    {
+      "id": "c728f225b9526348235a9dad",
+      "previousUrl": "https://jobs.ashbyhq.com/fab2/2b0ab443-c7d8-4547-9766-111747f0b361/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Fab2/2b0ab443-c7d8-4547-9766-111747f0b361/application"
+    },
+    {
+      "id": "4014fa6dfe2f0b3144220a29",
+      "previousUrl": "https://jobs.ashbyhq.com/sierra/149f368c-52d5-408f-ba26-ad888f318a00/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Sierra/149f368c-52d5-408f-ba26-ad888f318a00/application"
+    },
+    {
+      "id": "e4bf58f925ac39e75f8064e9",
+      "previousUrl": "https://jobs.ashbyhq.com/fab2/4e4f8c44-2f9b-4cb4-9e44-01d24b367b2f/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Fab2/4e4f8c44-2f9b-4cb4-9e44-01d24b367b2f/application"
+    },
+    {
+      "id": "40f1da27d6cf994072e6f581",
+      "previousUrl": "https://jobs.ashbyhq.com/fab2/476007f4-4f8c-4160-86c2-8be11c5efee4/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Fab2/476007f4-4f8c-4160-86c2-8be11c5efee4/application"
+    },
+    {
+      "id": "f86def515df0202912fc2089",
+      "previousUrl": "https://jobs.ashbyhq.com/fab2/3c7fd0f1-b25f-413c-8e62-6ef00a9d47da/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Fab2/3c7fd0f1-b25f-413c-8e62-6ef00a9d47da/application"
+    },
+    {
+      "id": "591c84980fce214c384c172a",
+      "previousUrl": "https://jobs.ashbyhq.com/fab2/4e3958f5-4e0d-4acc-9072-e40822ddf904/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Fab2/4e3958f5-4e0d-4acc-9072-e40822ddf904/application"
+    },
+    {
+      "id": "e1135bb99afea408c036c1aa",
+      "previousUrl": "https://jobs.ashbyhq.com/fab2/49926e1f-ef43-41fc-bce5-1d9a0a7b295b/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Fab2/49926e1f-ef43-41fc-bce5-1d9a0a7b295b/application"
+    },
+    {
+      "id": "e044c36f04c5b1a73b1c2bdd",
+      "previousUrl": "https://jobs.ashbyhq.com/fab2/96e96a9c-8419-4a67-ba4a-4b28e87b3f16/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Fab2/96e96a9c-8419-4a67-ba4a-4b28e87b3f16/application"
+    },
+    {
+      "id": "af25515264c9c9abc2c082aa",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037"
+    },
+    {
+      "id": "e21e2edacf96f99bd3479a95",
+      "previousUrl": "https://jobs.ashbyhq.com/crusoe/f581dfe7-d2c4-4a22-9974-b9d93e8c3293/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Crusoe/f581dfe7-d2c4-4a22-9974-b9d93e8c3293/application"
+    },
+    {
+      "id": "e53d80912be662b792aeb922",
+      "previousUrl": "https://jobs.ashbyhq.com/solace/db008474-d93e-41a7-939e-8d5825eb0d0f/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Solace/db008474-d93e-41a7-939e-8d5825eb0d0f/application"
+    },
+    {
+      "id": "f18b8bbcb49046d2c878a4d7",
+      "previousUrl": "https://jobs.ashbyhq.com/agave/685cc476-4e5d-4406-86d8-b9835fed6d9b/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Agave/685cc476-4e5d-4406-86d8-b9835fed6d9b/application"
+    },
+    {
+      "id": "7787428a78c1bc17eda5ce96",
+      "previousUrl": "https://jobs.ashbyhq.com/agave/a8b424c2-ccef-4b16-8614-6973e79581a4/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Agave/a8b424c2-ccef-4b16-8614-6973e79581a4/application"
+    },
+    {
+      "id": "54b68374421d7f95776f160a",
+      "previousUrl": "https://jobs.ashbyhq.com/pear-vc/f48cecb3-841e-4e38-87db-0ad1115a7a46/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Pear-VC/f48cecb3-841e-4e38-87db-0ad1115a7a46/application"
+    },
+    {
+      "id": "b23d23854a7763bd21020b02",
+      "previousUrl": "https://jobs.ashbyhq.com/astro-mechanica/f25cc28c-9932-4e4d-a7e8-53a10a7fbd55/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Astro-Mechanica/f25cc28c-9932-4e4d-a7e8-53a10a7fbd55/application"
+    },
+    {
+      "id": "749aca090552f138f300815e",
+      "previousUrl": "https://jobs.ashbyhq.com/pear-vc/e681cf11-9b8a-4630-86ac-b995a76a77d7/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Pear-VC/e681cf11-9b8a-4630-86ac-b995a76a77d7/application"
+    },
+    {
+      "id": "318f5ad611290749bef7b103",
+      "previousUrl": "https://jobs.ashbyhq.com/pear-vc/0338b819-66e5-4874-9cdd-2cc411f91aac/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Pear-VC/0338b819-66e5-4874-9cdd-2cc411f91aac/application"
+    },
+    {
+      "id": "a140f742b5286418fe37a5e6",
+      "previousUrl": "https://jobs.ashbyhq.com/pear-vc/d795e78b-a5bd-42ef-8fc2-76cc298e24b9/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Pear-VC/d795e78b-a5bd-42ef-8fc2-76cc298e24b9/application"
+    },
+    {
+      "id": "5f58bbfda9954cb797adf954",
+      "previousUrl": "https://jobs.ashbyhq.com/kastle/a4bd5818-3b58-4e6d-880c-2c4ca2d989f6/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Kastle/a4bd5818-3b58-4e6d-880c-2c4ca2d989f6/application"
+    },
+    {
+      "id": "a7817932bff56788f6de157e",
+      "previousUrl": "https://jobs.ashbyhq.com/pear-vc/560ddf48-6f96-4a9c-855f-992854168db5/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Pear-VC/560ddf48-6f96-4a9c-855f-992854168db5/application"
+    },
+    {
+      "id": "76658055eb885e348f391ce5",
+      "previousUrl": "https://jobs.ashbyhq.com/juicebox/87f4bd6a-2433-426d-8390-a5561de4a5b6/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Juicebox/87f4bd6a-2433-426d-8390-a5561de4a5b6/application"
+    },
+    {
+      "id": "48e009604e59e7fb17262824",
+      "previousUrl": "https://jobs.ashbyhq.com/pear-vc/071c27d4-8cc8-4658-a00e-13a9f27a1cfc/application",
+      "applyUrl": "https://jobs.ashbyhq.com/Pear-VC/071c27d4-8cc8-4658-a00e-13a9f27a1cfc/application"
     }
   ]
 }
