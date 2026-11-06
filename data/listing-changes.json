@@ -1,38 +1,213 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-06T04:24:47.996Z",
-  "previousGeneratedAt": "2026-11-06T03:24:32.696Z",
-  "currentSnapshotGeneratedAt": "2026-11-06T04:24:47.996Z",
+  "generatedAt": "2026-11-06T05:25:06.410Z",
+  "previousGeneratedAt": "2026-11-06T04:24:47.996Z",
+  "currentSnapshotGeneratedAt": "2026-11-06T05:25:06.410Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6888,
-    "current": 6887,
-    "retained": 6886,
-    "added": 1,
-    "removed": 2,
-    "net": -1
+    "previous": 6887,
+    "current": 6868,
+    "retained": 6868,
+    "added": 0,
+    "removed": 19,
+    "net": -19
   },
   "categoryCounts": {
     "confirmed-closed": 0,
-    "scope-exclusion": 0,
-    "verification-pending": 1,
-    "source-unavailable": 0,
-    "unresolved": 1,
+    "scope-exclusion": 2,
+    "verification-pending": 3,
+    "source-unavailable": 7,
+    "unresolved": 7,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "job-boards.greenhouse.io:8806119002",
-      "id": "5718962735efd77077600f35",
-      "company": "ExodusPoint Capital Management",
-      "title": "Quant Credit Intern - PA (Hybrid) - December 2026",
-      "applyUrl": "https://job-boards.greenhouse.io/exoduspoint/jobs/8806119002",
-      "reason": "absent-from-employer-board",
+      "identity": "www.usajobs.gov:891272800",
+      "id": "c632019cfe9d50c8901c3429",
+      "company": "Department of Energy Headquarters",
+      "title": "Management and Program Analyst - Recent Graduate",
+      "applyUrl": "https://www.usajobs.gov/job/891272800",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "5718962735efd77077600f35"
+        "c632019cfe9d50c8901c3429"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/exoduspoint/jobs/8806119002"
+        "https://www.usajobs.gov/job/891272800"
+      ],
+      "sources": [
+        "USAJOBS selective review"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-11-05T02:24:52.524Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "USAJOBS selective review",
+            "diagnosticName": "USAJOBS selective review",
+            "status": "ok",
+            "outcome": null,
+            "rows": 10
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site:r26402",
+      "id": "9818955d763239d185b6d107",
+      "company": "Sierra Space",
+      "title": "Test Engineer I",
+      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Test-Engineer-I_R26402-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "9818955d763239d185b6d107"
+      ],
+      "previousUrls": [
+        "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Test-Engineer-I_R26402-1"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10258708",
+      "id": "77646bf5b4d35995ee83475a",
+      "company": "Northrop Grumman",
+      "title": "2027 Associate Structural Engineer / Structural Engineer - Huntsville AL",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Alabama-Huntsville/XMLNAME-2027-Associate-Structural-Engineer---Structural-Engineer---Huntsville-AL_R10258708",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "77646bf5b4d35995ee83475a"
+      ],
+      "previousUrls": [
+        "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Alabama-Huntsville/XMLNAME-2027-Associate-Structural-Engineer---Structural-Engineer---Huntsville-AL_R10258708"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10258890",
+      "id": "9b77ef5af16f651ffe3a3617",
+      "company": "Northrop Grumman",
+      "title": "2027 Associate Systems Engineer - San Diego CA",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-California-San-Diego/XMLNAME-2027-Associate-Systems-Engineer---San-Diego-CA_R10258890",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "9b77ef5af16f651ffe3a3617"
+      ],
+      "previousUrls": [
+        "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-California-San-Diego/XMLNAME-2027-Associate-Systems-Engineer---San-Diego-CA_R10258890"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "job-boards.greenhouse.io:8742458002",
+      "id": "1bbda5895b74624be1162552",
+      "company": "Atoms",
+      "title": "Middleware Solutions Engineer I",
+      "applyUrl": "https://job-boards.greenhouse.io/cssmerge/jobs/8742458002",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "1bbda5895b74624be1162552"
+      ],
+      "previousUrls": [
+        "https://job-boards.greenhouse.io/cssmerge/jobs/8742458002"
       ],
       "sources": [
         "Direct ATS (Greenhouse)"
@@ -40,11 +215,11 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-06T04:18:27.038Z",
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:exoduspoint",
+          "id": "greenhouse:cssmerge",
           "status": "ok",
           "outcome": null,
           "membership": "absent",
@@ -66,17 +241,105 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:visa.wd5.myworkdayjobs.com:visa:ref089918w",
-      "id": "10a024ba0ad560c8bfe40f8f",
-      "company": "Visa",
-      "title": "Software Engineer, Intern - 2027 Austin, TX",
-      "applyUrl": "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Austin-TX/Software-Engineer--Intern---2027-Austin--TX_REF089918W-1",
-      "reason": "pendingVerification",
+      "identity": "workday:keybank.wd5.myworkdayjobs.com:external_career_site:r-41376",
+      "id": "cd88bdc78ec313014687add8",
+      "company": "KeyBank",
+      "title": "2027 Summer Internal Audit Internship- Remote",
+      "applyUrl": "https://keybank.wd5.myworkdayjobs.com/External_Career_Site/job/Remote-United-States/XMLNAME-2027-Summer-Internal-Audit-Inernship--Remote_R-41376",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "10a024ba0ad560c8bfe40f8f"
+        "cd88bdc78ec313014687add8"
       ],
       "previousUrls": [
-        "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Austin-TX/Software-Engineer--Intern---2027-Austin--TX_REF089918W-1"
+        "https://keybank.wd5.myworkdayjobs.com/External_Career_Site/job/Remote-United-States/XMLNAME-2027-Summer-Internal-Audit-Inernship--Remote_R-41376"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:keybank.wd5.myworkdayjobs.com:external_career_site",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:globalfoundries.wd1.myworkdayjobs.com:external:jr-2604583",
+      "id": "e51c85a30ed36f29fe0aa02f",
+      "company": "GlobalFoundries",
+      "title": "Advanced Manufacturing Engineering Intern, Process & Equipment (Summer 2027)",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---New-York---Malta/Advanced-Manufacturing-Engineering-Intern--Process---Equipment--Summer-2027-_JR-2604583",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "e51c85a30ed36f29fe0aa02f"
+      ],
+      "previousUrls": [
+        "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---New-York---Malta/Advanced-Manufacturing-Engineering-Intern--Process---Equipment--Summer-2027-_JR-2604583"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:globalfoundries.wd1.myworkdayjobs.com:external",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:biibhr.wd3.myworkdayjobs.com:external:req24281",
+      "id": "653d6606e21aad25dadf2a91",
+      "company": "Biogen",
+      "title": "Co-op, Integrated Insights & Analytics, Nephrology",
+      "applyUrl": "https://biibhr.wd3.myworkdayjobs.com/external/job/Cambridge-MA/Co-op--Integrated-Insights---Analytics--Nephrology_REQ24281",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "653d6606e21aad25dadf2a91"
+      ],
+      "previousUrls": [
+        "https://biibhr.wd3.myworkdayjobs.com/external/job/Cambridge-MA/Co-op--Integrated-Insights---Analytics--Nephrology_REQ24281"
       ],
       "sources": [
         "Employer recovery"
@@ -85,18 +348,18 @@
       "evidence": {
         "screening": [
           {
-            "url": "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Austin-TX/Software-Engineer--Intern---2027-Austin--TX_REF089918W-1",
+            "url": "https://biibhr.wd3.myworkdayjobs.com/en-US/external/job/Cambridge-MA/Co-op--Integrated-Insights---Analytics--Nephrology_REQ24281",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-06T04:18:27.038Z",
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:visa.wd5.myworkdayjobs.com:visa",
-          "status": "ok",
-          "outcome": "healthy",
+          "id": "workday:biibhr.wd3.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
           "membership": "unknown",
           "retired": false
         },
@@ -106,7 +369,7 @@
             "diagnosticName": "Original employer link recovery",
             "status": "ok",
             "outcome": "partial",
-            "rows": 1274
+            "rows": 1264
           }
         ]
       },
@@ -114,47 +377,699 @@
       "explanation": "Required evidence was insufficient for publication; closure is not established.",
       "nextAction": "Inspect employer and destination verification evidence before admission.",
       "requiresInvestigation": true
+    },
+    {
+      "identity": "boards.greenhouse.io:8534765002",
+      "id": "b1e959eff457371f03152ed9",
+      "company": "SpaceX",
+      "title": "Hardware Development Engineer, Power (Starlink)",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8534765002",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "b1e959eff457371f03152ed9"
+      ],
+      "previousUrls": [
+        "https://boards.greenhouse.io/spacex/jobs/8534765002"
+      ],
+      "sources": [
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:spacex",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "boards.greenhouse.io:8534757002",
+      "id": "d80e15bc23eef23c6de8df74",
+      "company": "SpaceX",
+      "title": "Power Electronics Engineer, Satellites (Starlink)",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8534757002",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "d80e15bc23eef23c6de8df74"
+      ],
+      "previousUrls": [
+        "https://boards.greenhouse.io/spacex/jobs/8534757002"
+      ],
+      "sources": [
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:spacex",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0240412",
+      "id": "de6a865476ddac20131de80c",
+      "company": "Booz Allen",
+      "title": "C++ Software Engineer, Junior",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Beavercreek-OH/C---Software-Engineer--Junior_R0240412",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "de6a865476ddac20131de80c"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Beavercreek-OH/C---Software-Engineer--Junior_R0240412"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:semtech.wd1.myworkdayjobs.com:semtechcareers:req3623",
+      "id": "5c29871509f76afe1bc2383b",
+      "company": "Semtech",
+      "title": "Analog Design Engineer Intern",
+      "applyUrl": "https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Calgary-AB/Analog-Design-Engineer-Intern_REQ3623",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "5c29871509f76afe1bc2383b"
+      ],
+      "previousUrls": [
+        "https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Calgary-AB/Analog-Design-Engineer-Intern_REQ3623"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:semtech.wd1.myworkdayjobs.com:semtechcareers",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1264
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:semtech.wd1.myworkdayjobs.com:semtechcareers:req3622",
+      "id": "c340a7f547663103a38e83a8",
+      "company": "Semtech",
+      "title": "Analog Design Engineer Intern",
+      "applyUrl": "https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Burlington-ON/Analog-Design-Engineer-Intern_REQ3622",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "c340a7f547663103a38e83a8"
+      ],
+      "previousUrls": [
+        "https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Burlington-ON/Analog-Design-Engineer-Intern_REQ3622"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:semtech.wd1.myworkdayjobs.com:semtechcareers",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1264
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:semtech.wd1.myworkdayjobs.com:semtechcareers:req3624",
+      "id": "eb981c98ee118dd7587a50e6",
+      "company": "Semtech",
+      "title": "Analog Design Engineer Intern",
+      "applyUrl": "https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Calgary-AB/Analog-Design-Engineer-Intern_REQ3624",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "eb981c98ee118dd7587a50e6"
+      ],
+      "previousUrls": [
+        "https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Calgary-AB/Analog-Design-Engineer-Intern_REQ3624"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:semtech.wd1.myworkdayjobs.com:semtechcareers",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1264
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:semtech.wd1.myworkdayjobs.com:semtechcareers:req3628",
+      "id": "d57edad7b27ffeb78dce4566",
+      "company": "Semtech",
+      "title": "Validation Engineering Intern",
+      "applyUrl": "https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Burlington-ON/Validation-Engineering-Intern_REQ3628",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "d57edad7b27ffeb78dce4566"
+      ],
+      "previousUrls": [
+        "https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Burlington-ON/Validation-Engineering-Intern_REQ3628"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:semtech.wd1.myworkdayjobs.com:semtechcareers",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1264
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://flextronics.wd1.myworkdayjobs.com/careers/job/usa-il-libertyville/manufacturing-data---analytics-co-op---spring-2027_wd229700",
+      "id": "f014871400afb1617b37f635",
+      "company": "Flex",
+      "title": "Manufacturing Data & Analytics Co-Op - Spring 2027",
+      "applyUrl": "https://flextronics.wd1.myworkdayjobs.com/Careers/job/USA-IL-Libertyville/Manufacturing-Data---Analytics-Co-Op---Spring-2027_WD229700",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "f014871400afb1617b37f635"
+      ],
+      "previousUrls": [
+        "https://flextronics.wd1.myworkdayjobs.com/Careers/job/USA-IL-Libertyville/Manufacturing-Data---Analytics-Co-Op---Spring-2027_WD229700"
+      ],
+      "sources": [
+        "Dreamwork Business Internships 2027",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://flextronics.wd1.myworkdayjobs.com/Careers/job/USA-IL-Libertyville/Manufacturing-Data---Analytics-Co-Op---Spring-2027_WD229700",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://flextronics.wd1.myworkdayjobs.com/Careers/job/USA-IL-Libertyville/Manufacturing-Data---Analytics-Co-Op---Spring-2027_WD229700",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:flextronics.wd1.myworkdayjobs.com:careers",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Dreamwork Business Internships 2027",
+            "diagnosticName": "Dreamwork Business Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 452
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1264
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bdo.wd3.myworkdayjobs.com:bdo:jr7061",
+      "id": "579a1d9d2763c1f0569bb2ee",
+      "company": "BDO Canada",
+      "title": "Co-op or Intern, Data & Analytics (January 2027)",
+      "applyUrl": "https://bdo.wd3.myworkdayjobs.com/BDO/job/Toronto---Bay-St/Co-op-or-Intern--Data---Analytics--January-2027-_JR7061",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "579a1d9d2763c1f0569bb2ee"
+      ],
+      "previousUrls": [
+        "https://bdo.wd3.myworkdayjobs.com/BDO/job/Toronto---Bay-St/Co-op-or-Intern--Data---Analytics--January-2027-_JR7061"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://bdo.wd3.myworkdayjobs.com/BDO/job/Toronto---Bay-St/Co-op-or-Intern--Data---Analytics--January-2027-_JR7061",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:bdo.wd3.myworkdayjobs.com:bdo",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1264
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:geaerospace.wd5.myworkdayjobs.com:ge_externalsite:r5029622",
+      "id": "8f7393e6bddbf2df1530a256",
+      "company": "GE Aerospace 🛂",
+      "title": "Engines Engineering Intern – Computer or Software Engineering – US – Summer 2027",
+      "applyUrl": "https://geaerospace.wd5.myworkdayjobs.com/GE_ExternalSite/job/Evendale/Engines-Engineering-Intern---Computer-or-Software-Engineering---US---Summer-2027_R5029622-1",
+      "reason": "location",
+      "previousIds": [
+        "8f7393e6bddbf2df1530a256"
+      ],
+      "previousUrls": [
+        "https://geaerospace.wd5.myworkdayjobs.com/GE_ExternalSite/job/Evendale/Engines-Engineering-Intern---Computer-or-Software-Engineering---US---Summer-2027_R5029622-1"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://geaerospace.wd5.myworkdayjobs.com/ge_externalsite/job/Evendale/Engines-Engineering-Intern---Computer-or-Software-Engineering---US---Summer-2027_R5029622-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://geaerospace.wd5.myworkdayjobs.com/GE_ExternalSite/job/Evendale/Engines-Engineering-Intern---Computer-or-Software-Engineering---US---Summer-2027_R5029622-1",
+            "reason": "location",
+            "detail": null
+          }
+        ],
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:geaerospace.wd5.myworkdayjobs.com:ge_externalsite",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1264
+          }
+        ]
+      },
+      "category": "scope-exclusion",
+      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
+      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
+      "requiresInvestigation": false
+    },
+    {
+      "identity": "workday:geaerospace.wd5.myworkdayjobs.com:ge_externalsite:r5029637",
+      "id": "08c4d3389a2b8e3b482fc744",
+      "company": "GE Aerospace 🛂",
+      "title": "Engines Engineering Co-op – Computer or Software Engineering – US – Fall 2027",
+      "applyUrl": "https://geaerospace.wd5.myworkdayjobs.com/GE_ExternalSite/job/Evendale/Engines-Engineering-Co-op---Computer-or-Software-Engineering---US---Fall-2027_R5029637-1",
+      "reason": "location",
+      "previousIds": [
+        "08c4d3389a2b8e3b482fc744"
+      ],
+      "previousUrls": [
+        "https://geaerospace.wd5.myworkdayjobs.com/GE_ExternalSite/job/Evendale/Engines-Engineering-Co-op---Computer-or-Software-Engineering---US---Fall-2027_R5029637-1"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://geaerospace.wd5.myworkdayjobs.com/ge_externalsite/job/Evendale/Engines-Engineering-Co-op---Computer-or-Software-Engineering---US---Fall-2027_R5029637-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://geaerospace.wd5.myworkdayjobs.com/GE_ExternalSite/job/Evendale/Engines-Engineering-Co-op---Computer-or-Software-Engineering---US---Fall-2027_R5029637-1",
+            "reason": "location",
+            "detail": null
+          }
+        ],
+        "runStartedAt": "2026-11-06T05:18:32.103Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:geaerospace.wd5.myworkdayjobs.com:ge_externalsite",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1264
+          }
+        ]
+      },
+      "category": "scope-exclusion",
+      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
+      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
+      "requiresInvestigation": false
     }
   ],
   "rowCounts": {
-    "previous": 6888,
-    "current": 6887,
-    "net": -1,
+    "previous": 6887,
+    "current": 6868,
+    "net": -19,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 1,
-  "removedCount": 2,
+  "added": 0,
+  "removedCount": 19,
   "counts": {
-    "absent-from-employer-board": 1,
-    "pendingVerification": 1
+    "not-returned-by-sources": 11,
+    "absent-from-employer-board": 3,
+    "pendingVerification": 3,
+    "location": 2
   },
   "removed": [
     {
-      "id": "5718962735efd77077600f35",
-      "company": "ExodusPoint Capital Management",
-      "title": "Quant Credit Intern - PA (Hybrid) - December 2026",
-      "applyUrl": "https://job-boards.greenhouse.io/exoduspoint/jobs/8806119002",
+      "id": "c632019cfe9d50c8901c3429",
+      "company": "Department of Energy Headquarters",
+      "title": "Management and Program Analyst - Recent Graduate",
+      "applyUrl": "https://www.usajobs.gov/job/891272800",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "9818955d763239d185b6d107",
+      "company": "Sierra Space",
+      "title": "Test Engineer I",
+      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Louisville-CO/Test-Engineer-I_R26402-1",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "77646bf5b4d35995ee83475a",
+      "company": "Northrop Grumman",
+      "title": "2027 Associate Structural Engineer / Structural Engineer - Huntsville AL",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Alabama-Huntsville/XMLNAME-2027-Associate-Structural-Engineer---Structural-Engineer---Huntsville-AL_R10258708",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "9b77ef5af16f651ffe3a3617",
+      "company": "Northrop Grumman",
+      "title": "2027 Associate Systems Engineer - San Diego CA",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-California-San-Diego/XMLNAME-2027-Associate-Systems-Engineer---San-Diego-CA_R10258890",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "1bbda5895b74624be1162552",
+      "company": "Atoms",
+      "title": "Middleware Solutions Engineer I",
+      "applyUrl": "https://job-boards.greenhouse.io/cssmerge/jobs/8742458002",
       "reason": "absent-from-employer-board"
     },
     {
-      "id": "10a024ba0ad560c8bfe40f8f",
-      "company": "Visa",
-      "title": "Software Engineer, Intern - 2027 Austin, TX",
-      "applyUrl": "https://visa.wd5.myworkdayjobs.com/Visa/job/US---Austin-TX/Software-Engineer--Intern---2027-Austin--TX_REF089918W-1",
+      "id": "cd88bdc78ec313014687add8",
+      "company": "KeyBank",
+      "title": "2027 Summer Internal Audit Internship- Remote",
+      "applyUrl": "https://keybank.wd5.myworkdayjobs.com/External_Career_Site/job/Remote-United-States/XMLNAME-2027-Summer-Internal-Audit-Inernship--Remote_R-41376",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "e51c85a30ed36f29fe0aa02f",
+      "company": "GlobalFoundries",
+      "title": "Advanced Manufacturing Engineering Intern, Process & Equipment (Summer 2027)",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---New-York---Malta/Advanced-Manufacturing-Engineering-Intern--Process---Equipment--Summer-2027-_JR-2604583",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "653d6606e21aad25dadf2a91",
+      "company": "Biogen",
+      "title": "Co-op, Integrated Insights & Analytics, Nephrology",
+      "applyUrl": "https://biibhr.wd3.myworkdayjobs.com/external/job/Cambridge-MA/Co-op--Integrated-Insights---Analytics--Nephrology_REQ24281",
       "reason": "pendingVerification"
+    },
+    {
+      "id": "b1e959eff457371f03152ed9",
+      "company": "SpaceX",
+      "title": "Hardware Development Engineer, Power (Starlink)",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8534765002",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "d80e15bc23eef23c6de8df74",
+      "company": "SpaceX",
+      "title": "Power Electronics Engineer, Satellites (Starlink)",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8534757002",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "de6a865476ddac20131de80c",
+      "company": "Booz Allen",
+      "title": "C++ Software Engineer, Junior",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Beavercreek-OH/C---Software-Engineer--Junior_R0240412",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "5c29871509f76afe1bc2383b",
+      "company": "Semtech",
+      "title": "Analog Design Engineer Intern",
+      "applyUrl": "https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Calgary-AB/Analog-Design-Engineer-Intern_REQ3623",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "c340a7f547663103a38e83a8",
+      "company": "Semtech",
+      "title": "Analog Design Engineer Intern",
+      "applyUrl": "https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Burlington-ON/Analog-Design-Engineer-Intern_REQ3622",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "eb981c98ee118dd7587a50e6",
+      "company": "Semtech",
+      "title": "Analog Design Engineer Intern",
+      "applyUrl": "https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Calgary-AB/Analog-Design-Engineer-Intern_REQ3624",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "d57edad7b27ffeb78dce4566",
+      "company": "Semtech",
+      "title": "Validation Engineering Intern",
+      "applyUrl": "https://semtech.wd1.myworkdayjobs.com/SemtechCareers/job/CAN---Burlington-ON/Validation-Engineering-Intern_REQ3628",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "f014871400afb1617b37f635",
+      "company": "Flex",
+      "title": "Manufacturing Data & Analytics Co-Op - Spring 2027",
+      "applyUrl": "https://flextronics.wd1.myworkdayjobs.com/Careers/job/USA-IL-Libertyville/Manufacturing-Data---Analytics-Co-Op---Spring-2027_WD229700",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "579a1d9d2763c1f0569bb2ee",
+      "company": "BDO Canada",
+      "title": "Co-op or Intern, Data & Analytics (January 2027)",
+      "applyUrl": "https://bdo.wd3.myworkdayjobs.com/BDO/job/Toronto---Bay-St/Co-op-or-Intern--Data---Analytics--January-2027-_JR7061",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "8f7393e6bddbf2df1530a256",
+      "company": "GE Aerospace 🛂",
+      "title": "Engines Engineering Intern – Computer or Software Engineering – US – Summer 2027",
+      "applyUrl": "https://geaerospace.wd5.myworkdayjobs.com/GE_ExternalSite/job/Evendale/Engines-Engineering-Intern---Computer-or-Software-Engineering---US---Summer-2027_R5029622-1",
+      "reason": "location"
+    },
+    {
+      "id": "08c4d3389a2b8e3b482fc744",
+      "company": "GE Aerospace 🛂",
+      "title": "Engines Engineering Co-op – Computer or Software Engineering – US – Fall 2027",
+      "applyUrl": "https://geaerospace.wd5.myworkdayjobs.com/GE_ExternalSite/job/Evendale/Engines-Engineering-Co-op---Computer-or-Software-Engineering---US---Fall-2027_R5029637-1",
+      "reason": "location"
     }
   ],
   "urlChanges": [
     {
-      "id": "020aa8e85df85704aa7c5c7c",
-      "previousUrl": "https://kla.wd1.myworkdayjobs.com/en-US/Search/job/Milpitas-CA/Software-Engineering-Intern_2641581-1",
-      "applyUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Software-Engineering-Intern_2641581-1"
+      "id": "04a5d004fbdd6d04f93e83f2",
+      "previousUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603"
     },
     {
-      "id": "8a2e8a2c73156bcf0ee48041",
-      "previousUrl": "https://kla.wd1.myworkdayjobs.com/en-US/Search/job/Milpitas-CA/Software-Engineering-Intern--C----Unix-_2641325-1",
-      "applyUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Software-Engineering-Intern--C----Unix-_2641325-1"
+      "id": "dec17dd7c886c9ef57d35a82",
+      "previousUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603"
     }
   ]
 }
