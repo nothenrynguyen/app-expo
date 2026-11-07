@@ -1,38 +1,93 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-07T06:24:14.053Z",
-  "previousGeneratedAt": "2026-11-07T05:25:00.364Z",
-  "currentSnapshotGeneratedAt": "2026-11-07T06:24:14.053Z",
+  "generatedAt": "2026-11-07T07:20:39.405Z",
+  "previousGeneratedAt": "2026-11-07T06:24:14.053Z",
+  "currentSnapshotGeneratedAt": "2026-11-07T07:20:39.405Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6929,
-    "current": 6920,
-    "retained": 6918,
-    "added": 2,
-    "removed": 11,
-    "net": -9
+    "previous": 6920,
+    "current": 6926,
+    "retained": 6910,
+    "added": 16,
+    "removed": 10,
+    "net": 6
   },
   "categoryCounts": {
-    "confirmed-closed": 0,
-    "scope-exclusion": 4,
-    "verification-pending": 6,
-    "source-unavailable": 0,
-    "unresolved": 1,
+    "confirmed-closed": 1,
+    "scope-exclusion": 0,
+    "verification-pending": 3,
+    "source-unavailable": 6,
+    "unresolved": 0,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01876473",
-      "id": "bec4c415bab747e92984d340",
-      "company": "Raytheon",
-      "title": "Factory Enablement Digital Engineer (Spring/Summer Co-op)",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-105--400-Collins-Rd-NE--BLDG-105/Factory-Enablement-Digital-Engineer--Spring-Summer-Co-op-_01876473",
-      "reason": "not-returned-by-sources",
+      "identity": "workday:freseniusmedicalcare.wd3.myworkdayjobs.com:fme:r0271309",
+      "id": "ee6e408544f27cca2a8e9137",
+      "company": "Fresenius Medical Care",
+      "title": "Software Engineering Co-op",
+      "applyUrl": "https://freseniusmedicalcare.wd3.myworkdayjobs.com/fme/job/Lawrence-MA-USA/Software-Engineering-Co-op_R0271309",
+      "reason": "pendingVerification",
       "previousIds": [
-        "bec4c415bab747e92984d340"
+        "ee6e408544f27cca2a8e9137"
       ],
       "previousUrls": [
-        "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-105--400-Collins-Rd-NE--BLDG-105/Factory-Enablement-Digital-Engineer--Spring-Summer-Co-op-_01876473"
+        "https://freseniusmedicalcare.wd3.myworkdayjobs.com/fme/job/Lawrence-MA-USA/Software-Engineering-Co-op_R0271309"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://freseniusmedicalcare.wd3.myworkdayjobs.com/fme/job/Lawrence-MA-USA/Software-Engineering-Co-op_R0271309",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://freseniusmedicalcare.wd3.myworkdayjobs.com/en-US/fme/job/Lawrence-MA-USA/Software-Engineering-Co-op_R0271309",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-07T07:18:33.419Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:freseniusmedicalcare.wd3.myworkdayjobs.com:fme",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1229
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:relx.wd3.myworkdayjobs.com:lexisnexislegal:r119922",
+      "id": "2941d1ee423277b31c8b0b07",
+      "company": "LexisNexis",
+      "title": "Software Management Analyst I",
+      "applyUrl": "https://relx.wd3.myworkdayjobs.com/LexisNexisLegal/job/USA---Raleigh-NC-RDU/Software-Management-Analyst-I_R119922",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "2941d1ee423277b31c8b0b07"
+      ],
+      "previousUrls": [
+        "https://relx.wd3.myworkdayjobs.com/LexisNexisLegal/job/USA---Raleigh-NC-RDU/Software-Management-Analyst-I_R119922"
       ],
       "sources": [
         "Direct ATS (Workday)"
@@ -40,13 +95,13 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-07T06:18:30.745Z",
+        "runStartedAt": "2026-11-07T07:18:33.419Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
-          "status": "ok",
-          "outcome": "healthy",
+          "id": "workday:relx.wd3.myworkdayjobs.com:lexisnexislegal",
+          "status": "failed",
+          "outcome": "unavailable",
           "membership": "unknown",
           "retired": false
         },
@@ -60,248 +115,23 @@
           }
         ]
       },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:jmfamily.wd1.myworkdayjobs.com:jmfamily_external:jr105120",
-      "id": "8b1bbe15fc3e7bc56c41c30c",
-      "company": "JM Family",
-      "title": "Data Engineer Intern",
-      "applyUrl": "https://jmfamily.wd1.myworkdayjobs.com/JMFamily_External/job/Florida---Deerfield-Beach/Data-Engineer-Intern_JR105120",
-      "reason": "location",
-      "previousIds": [
-        "8b1bbe15fc3e7bc56c41c30c"
-      ],
-      "previousUrls": [
-        "https://jmfamily.wd1.myworkdayjobs.com/JMFamily_External/job/Florida---Deerfield-Beach/Data-Engineer-Intern_JR105120"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jmfamily.wd1.myworkdayjobs.com/jmfamily_external/job/Florida---Deerfield-Beach/Data-Engineer-Intern_JR105120",
-            "reason": "location",
-            "detail": null
-          },
-          {
-            "url": "https://jmfamily.wd1.myworkdayjobs.com/JMFamily_External/job/Florida---Deerfield-Beach/Data-Engineer-Intern_JR105120",
-            "reason": "location",
-            "detail": null
-          }
-        ],
-        "runStartedAt": "2026-11-07T06:18:30.745Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:jmfamily.wd1.myworkdayjobs.com:jmfamily_external",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1232
-          }
-        ]
-      },
-      "category": "scope-exclusion",
-      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
-      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
-      "requiresInvestigation": false
-    },
-    {
-      "identity": "workday:jmfamily.wd1.myworkdayjobs.com:jmfamily_external:jr105133",
-      "id": "68bb3154081aa8921a63834f",
-      "company": "JM Family",
-      "title": "Power Platform & Analytics Intern",
-      "applyUrl": "https://jmfamily.wd1.myworkdayjobs.com/JMFamily_External/job/Alabama---Mobile/Intern--College-NE_JR105133",
-      "reason": "location",
-      "previousIds": [
-        "68bb3154081aa8921a63834f"
-      ],
-      "previousUrls": [
-        "https://jmfamily.wd1.myworkdayjobs.com/JMFamily_External/job/Alabama---Mobile/Intern--College-NE_JR105133"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jmfamily.wd1.myworkdayjobs.com/JMFamily_External/job/Alabama---Mobile/Intern--College-NE_JR105133",
-            "reason": "location",
-            "detail": null
-          }
-        ],
-        "runStartedAt": "2026-11-07T06:18:30.745Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:jmfamily.wd1.myworkdayjobs.com:jmfamily_external",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1232
-          }
-        ]
-      },
-      "category": "scope-exclusion",
-      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
-      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
-      "requiresInvestigation": false
-    },
-    {
-      "identity": "workday:jmfamily.wd1.myworkdayjobs.com:jmfamily_external:jr105132",
-      "id": "b97408d8f1fa5013545f7550",
-      "company": "JM Family",
-      "title": "Automation & Analytics Intern",
-      "applyUrl": "https://jmfamily.wd1.myworkdayjobs.com/JMFamily_External/job/Florida---Deerfield-Beach/Automation---Analytics-Intern_JR105132",
-      "reason": "location",
-      "previousIds": [
-        "b97408d8f1fa5013545f7550"
-      ],
-      "previousUrls": [
-        "https://jmfamily.wd1.myworkdayjobs.com/JMFamily_External/job/Florida---Deerfield-Beach/Automation---Analytics-Intern_JR105132"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jmfamily.wd1.myworkdayjobs.com/JMFamily_External/job/Florida---Deerfield-Beach/Automation---Analytics-Intern_JR105132",
-            "reason": "location",
-            "detail": null
-          }
-        ],
-        "runStartedAt": "2026-11-07T06:18:30.745Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:jmfamily.wd1.myworkdayjobs.com:jmfamily_external",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1232
-          }
-        ]
-      },
-      "category": "scope-exclusion",
-      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
-      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
-      "requiresInvestigation": false
-    },
-    {
-      "identity": "workday:cir.wd108.myworkdayjobs.com:cir_external_career_site:r-2025",
-      "id": "b78af76840ad05c24a4d683c",
-      "company": "Cambridge Investment Research",
-      "title": "IT Operations Intern - Service Desk, Infrastructure, Prod Support",
-      "applyUrl": "https://cir.wd108.myworkdayjobs.com/CIR_External_Career_Site/job/Fairfield-IA/IT-Operations-Intern---Service-Desk--Infrastructure--Prod-Support_R-2025-235",
-      "reason": "role",
-      "previousIds": [
-        "b78af76840ad05c24a4d683c"
-      ],
-      "previousUrls": [
-        "https://cir.wd108.myworkdayjobs.com/CIR_External_Career_Site/job/Fairfield-IA/IT-Operations-Intern---Service-Desk--Infrastructure--Prod-Support_R-2025-235"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://cir.wd108.myworkdayjobs.com/CIR_External_Career_Site/job/Fairfield-IA/IT-Operations-Intern---Service-Desk--Infrastructure--Prod-Support_R-2025-235",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          },
-          {
-            "url": "https://cir.wd108.myworkdayjobs.com/CIR_External_Career_Site/job/Fairfield-IA/Consulting-Services-AI---Automation-Intern_R-2025-223",
-            "reason": "role",
-            "detail": null
-          },
-          {
-            "url": "https://cir.wd108.myworkdayjobs.com/en-US/CIR_External_Career_Site/job/Phoenix-AZ/UX-Design-Intern_R-2025-237",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          },
-          {
-            "url": "https://cir.wd108.myworkdayjobs.com/en-US/CIR_External_Career_Site/job/Fairfield-IA/Consulting-Services-AI---Automation-Intern_R-2025-223",
-            "reason": "role",
-            "detail": null
-          },
-          {
-            "url": "https://cir.wd108.myworkdayjobs.com/en-US/CIR_External_Career_Site/job/Fairfield-IA/IT-Operations-Intern---Service-Desk--Infrastructure--Prod-Support_R-2025-235",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-07T06:18:30.745Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:cir.wd108.myworkdayjobs.com:cir_external_career_site",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1232
-          }
-        ]
-      },
-      "category": "scope-exclusion",
-      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
-      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
-      "requiresInvestigation": false
-    },
-    {
-      "identity": "https://cree.wd108.myworkdayjobs.com/ext/job/marcy-new-york/process-integration-engineering-intern---summer-2027_26-931",
-      "id": "1fa0a355cd0bd0cab965c7f5",
-      "company": "This is CNY",
-      "title": "Process Integration Engineering Intern - Summer 2027",
-      "applyUrl": "https://cree.wd108.myworkdayjobs.com/EXT/job/Marcy-New-York/Process-Integration-Engineering-Intern---Summer-2027_26-931",
+      "identity": "workday:intel.wd1.myworkdayjobs.com:external:jr0288136",
+      "id": "cc9f1cdca9015bafe303b18a",
+      "company": "Intel",
+      "title": "AI Data Science / Software Engineering PhD Intern New 2027",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288136",
       "reason": "pendingVerification",
       "previousIds": [
-        "1fa0a355cd0bd0cab965c7f5"
+        "cc9f1cdca9015bafe303b18a"
       ],
       "previousUrls": [
-        "https://cree.wd108.myworkdayjobs.com/EXT/job/Marcy-New-York/Process-Integration-Engineering-Intern---Summer-2027_26-931"
+        "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288136"
       ],
       "sources": [
         "Employer recovery"
@@ -310,18 +140,23 @@
       "evidence": {
         "screening": [
           {
-            "url": "https://cree.wd108.myworkdayjobs.com/EXT/job/Marcy-New-York/Process-Integration-Engineering-Intern---Summer-2027_26-931",
+            "url": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/US-Oregon-Hillsboro/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288136",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288136",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-07T06:18:30.745Z",
+        "runStartedAt": "2026-11-07T07:18:33.419Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:cree.wd108.myworkdayjobs.com:ext",
-          "status": "not-checked",
-          "outcome": null,
+          "id": "workday:intel.wd1.myworkdayjobs.com:external",
+          "status": "failed",
+          "outcome": "unavailable",
           "membership": "unknown",
           "retired": false
         },
@@ -331,7 +166,7 @@
             "diagnosticName": "Original employer link recovery",
             "status": "ok",
             "outcome": "partial",
-            "rows": 1232
+            "rows": 1229
           }
         ]
       },
@@ -341,91 +176,173 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "https://modmed.wd501.myworkdayjobs.com/modmed12/job/boca-raton-fl/software-engineering-intern_r5148",
-      "id": "9a63a94663b90fe4e4ef1435",
-      "company": "Modmed",
-      "title": "Software Engineering Intern",
-      "applyUrl": "https://modmed.wd501.myworkdayjobs.com/ModMed12/job/Boca-Raton-FL/Software-Engineering-Intern_R5148",
-      "reason": "pendingVerification",
+      "identity": "workday:spgi.wd5.myworkdayjobs.com:kensho_careers:330647",
+      "id": "94e6f9495f994545e3193280",
+      "company": "Kensho",
+      "title": "Machine Learning Operations Engineer I",
+      "applyUrl": "https://spgi.wd5.myworkdayjobs.com/Kensho_Careers/job/Cambridge-MA/ML-Ops-Engineer-II_330647",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "9a63a94663b90fe4e4ef1435"
+        "94e6f9495f994545e3193280"
       ],
       "previousUrls": [
-        "https://modmed.wd501.myworkdayjobs.com/ModMed12/job/Boca-Raton-FL/Software-Engineering-Intern_R5148"
+        "https://spgi.wd5.myworkdayjobs.com/Kensho_Careers/job/Cambridge-MA/ML-Ops-Engineer-II_330647"
       ],
       "sources": [
-        "Employer recovery"
+        "Direct ATS (Workday)"
       ],
-      "candidateSeen": true,
+      "candidateSeen": false,
       "evidence": {
-        "screening": [
-          {
-            "url": "https://modmed.wd501.myworkdayjobs.com/ModMed12/job/Boca-Raton-FL/Software-Engineering-Intern_R5148",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-07T06:18:30.745Z",
+        "screening": [],
+        "runStartedAt": "2026-11-07T07:18:33.419Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:modmed.wd501.myworkdayjobs.com:modmed12",
-          "status": "not-checked",
-          "outcome": null,
+          "id": "workday:spgi.wd5.myworkdayjobs.com:kensho_careers",
+          "status": "failed",
+          "outcome": "unavailable",
           "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1232
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
           }
         ]
       },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
       "requiresInvestigation": true
     },
     {
-      "identity": "https://flextronics.wd1.myworkdayjobs.com/careers/job/usa-il-libertyville/manufacturing-data---analytics-co-op---spring-2027_wd229700",
-      "id": "f014871400afb1617b37f635",
-      "company": "Flex",
-      "title": "Manufacturing Data & Analytics Co-Op - Spring 2027",
-      "applyUrl": "https://flextronics.wd1.myworkdayjobs.com/Careers/job/USA-IL-Libertyville/Manufacturing-Data---Analytics-Co-Op---Spring-2027_WD229700",
-      "reason": "pendingVerification",
+      "identity": "workday:hpe.wd5.myworkdayjobs.com:acjobsite:1203341",
+      "id": "31b555987959e0c2b859515a",
+      "company": "Hewlett Packard Enterprise",
+      "title": "Site Reliability Engineer I - Sales Operations",
+      "applyUrl": "https://hpe.wd5.myworkdayjobs.com/ACJobSite/job/Dallas-Texas-United-States-of-America/Site-Reliability-Engineer-I---Sales-Operations_1203341-3",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "f014871400afb1617b37f635"
+        "31b555987959e0c2b859515a"
       ],
       "previousUrls": [
-        "https://flextronics.wd1.myworkdayjobs.com/Careers/job/USA-IL-Libertyville/Manufacturing-Data---Analytics-Co-Op---Spring-2027_WD229700"
+        "https://hpe.wd5.myworkdayjobs.com/ACJobSite/job/Dallas-Texas-United-States-of-America/Site-Reliability-Engineer-I---Sales-Operations_1203341-3"
       ],
       "sources": [
-        "Dreamwork Business Internships 2027",
-        "Employer recovery"
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-07T07:18:33.419Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:hpe.wd5.myworkdayjobs.com:acjobsite",
+          "status": "failed",
+          "outcome": "unavailable",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:allegion.wd5.myworkdayjobs.com:careers:jr37369",
+      "id": "50849cb899785f042208eb49",
+      "company": "Allegion",
+      "title": "Summer Intern - Product Management",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Product-Management_JR37369-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "50849cb899785f042208eb49"
+      ],
+      "previousUrls": [
+        "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Product-Management_JR37369-1"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-07T07:18:33.419Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:allegion.wd5.myworkdayjobs.com:careers",
+          "status": "failed",
+          "outcome": "unavailable",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "boards.greenhouse.io:8243097",
+      "id": "f0258a9533d9eed1e0ae7a2a",
+      "company": "Gemini",
+      "title": "Brand Design Intern (Winter 2027)",
+      "applyUrl": "https://boards.greenhouse.io/embed/job_app?for=gemini&token=8243097",
+      "reason": "closed",
+      "previousIds": [
+        "f0258a9533d9eed1e0ae7a2a"
+      ],
+      "previousUrls": [
+        "https://boards.greenhouse.io/embed/job_app?for=gemini&token=8243097"
+      ],
+      "sources": [
+        "Keryx Non-Software Winter 2027",
+        "Open-Tech-Internships-2027 2027"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://flextronics.wd1.myworkdayjobs.com/Careers/job/USA-IL-Libertyville/Manufacturing-Data---Analytics-Co-Op---Spring-2027_WD229700",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          },
-          {
-            "url": "https://flextronics.wd1.myworkdayjobs.com/Careers/job/USA-IL-Libertyville/Manufacturing-Data---Analytics-Co-Op---Spring-2027_WD229700",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
+            "url": "https://boards.greenhouse.io/embed/job_app?for=gemini&token=8243097",
+            "reason": "closed",
+            "detail": null
           }
         ],
-        "runStartedAt": "2026-11-07T06:18:30.745Z",
-        "postingCheck": null,
+        "runStartedAt": "2026-11-07T07:18:33.419Z",
+        "postingCheck": {
+          "status": "closed",
+          "checkedAt": "2026-11-07T07:20:22.735Z",
+          "httpStatus": 404,
+          "currentRun": true
+        },
         "workdayChecks": [],
         "board": {
-          "id": "workday:flextronics.wd1.myworkdayjobs.com:careers",
+          "id": "greenhouse:us:embed",
           "status": "not-checked",
           "outcome": null,
           "membership": "unknown",
@@ -433,18 +350,76 @@
         },
         "sources": [
           {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
+            "name": "Keryx Non-Software Winter 2027",
+            "diagnosticName": "Keryx Non-Software Winter 2027",
             "status": "ok",
             "outcome": null,
-            "rows": 487
+            "rows": 89
           },
           {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
             "status": "ok",
-            "outcome": "partial",
-            "rows": 1232
+            "outcome": null,
+            "rows": 1918
+          }
+        ]
+      },
+      "category": "confirmed-closed",
+      "explanation": "A posting-specific check in this refresh explicitly reported closure.",
+      "nextAction": "No recovery based only on prior publication.",
+      "requiresInvestigation": false
+    },
+    {
+      "identity": "workday:allegion.wd5.myworkdayjobs.com:careers:jr37413",
+      "id": "79fc4765a5953f41d0397ed8",
+      "company": "Allegion",
+      "title": "Summer Intern - Hardware Engineering",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering_JR37413-1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "79fc4765a5953f41d0397ed8"
+      ],
+      "previousUrls": [
+        "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering_JR37413-1"
+      ],
+      "sources": [
+        "Open-Tech-Internships-2027 2027",
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering_JR37413-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-07T07:18:33.419Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:allegion.wd5.myworkdayjobs.com:careers",
+          "status": "failed",
+          "outcome": "unavailable",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1918
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
           }
         ]
       },
@@ -454,260 +429,475 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:lego.wd103.myworkdayjobs.com:lego_executive:0000037663",
-      "id": "6349a395e1d01b33cc17a1c2",
-      "company": "LEGO",
-      "title": "Electrical Engineering Co-op Spring 2027",
-      "applyUrl": "https://lego.wd103.myworkdayjobs.com/LEGO_Executive/job/Boston-Hub/Electrical-Engineering-Co-op-Spring-2027_0000037663",
-      "reason": "pendingVerification",
+      "identity": "workday:allegion.wd5.myworkdayjobs.com:careers:jr37467",
+      "id": "c2e19afff7231bb046a4edaa",
+      "company": "Allegion",
+      "title": "Summer Intern - Hardware Engineering - Indianapolis, Indiana",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering---Indianapolis--Indiana_JR37467-1",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "6349a395e1d01b33cc17a1c2"
+        "c2e19afff7231bb046a4edaa"
       ],
       "previousUrls": [
-        "https://lego.wd103.myworkdayjobs.com/LEGO_Executive/job/Boston-Hub/Electrical-Engineering-Co-op-Spring-2027_0000037663"
+        "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering---Indianapolis--Indiana_JR37467-1"
       ],
       "sources": [
-        "Employer recovery"
+        "Direct ATS (Workday)"
       ],
-      "candidateSeen": true,
+      "candidateSeen": false,
       "evidence": {
-        "screening": [
-          {
-            "url": "https://lego.wd103.myworkdayjobs.com/lego_executive/job/Boston-Hub/Electrical-Engineering-Co-op-Spring-2027_0000037663",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-07T06:18:30.745Z",
+        "screening": [],
+        "runStartedAt": "2026-11-07T07:18:33.419Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:lego.wd103.myworkdayjobs.com:lego_executive",
-          "status": "not-checked",
-          "outcome": null,
+          "id": "workday:allegion.wd5.myworkdayjobs.com:careers",
+          "status": "failed",
+          "outcome": "unavailable",
           "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1232
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
           }
         ]
       },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:ambarella.wd108.myworkdayjobs.com:ambarella:jr100363",
-      "id": "b209727a27497dbe8a805f7d",
-      "company": "Ambarella",
-      "title": "Software Engineer Intern",
-      "applyUrl": "https://ambarella.wd108.myworkdayjobs.com/Ambarella/job/US-Headquarters/Software-Engineer-Intern_JR100363",
-      "reason": "pendingVerification",
+      "identity": "workday:allegion.wd5.myworkdayjobs.com:careers:jr37380",
+      "id": "6df28b43b16a70579b67bff6",
+      "company": "Allegion",
+      "title": "Summer Intern - Product Assurance Test Engineer",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Colorado-Springs-CO/Summer-Intern---Product-Assurance-Test-Engineer_JR37380-1",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "b209727a27497dbe8a805f7d"
+        "6df28b43b16a70579b67bff6"
       ],
       "previousUrls": [
-        "https://ambarella.wd108.myworkdayjobs.com/Ambarella/job/US-Headquarters/Software-Engineer-Intern_JR100363"
+        "https://allegion.wd5.myworkdayjobs.com/careers/job/Colorado-Springs-CO/Summer-Intern---Product-Assurance-Test-Engineer_JR37380-1"
       ],
       "sources": [
-        "Employer recovery"
+        "Direct ATS (Workday)"
       ],
-      "candidateSeen": true,
+      "candidateSeen": false,
       "evidence": {
-        "screening": [
-          {
-            "url": "https://ambarella.wd108.myworkdayjobs.com/ambarella/job/US-Headquarters/Software-Engineer-Intern_JR100363",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-07T06:18:30.745Z",
+        "screening": [],
+        "runStartedAt": "2026-11-07T07:18:33.419Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:ambarella.wd108.myworkdayjobs.com:ambarella",
-          "status": "not-checked",
-          "outcome": null,
+          "id": "workday:allegion.wd5.myworkdayjobs.com:careers",
+          "status": "failed",
+          "outcome": "unavailable",
           "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1232
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
           }
         ]
       },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:ambarella.wd108.myworkdayjobs.com:ambarella:jr100366",
-      "id": "5344da6fe938f949fad62d09",
-      "company": "Ambarella",
-      "title": "Software Development Engineer Intern",
-      "applyUrl": "https://ambarella.wd108.myworkdayjobs.com/Ambarella/job/US-Headquarters/Software-Development-Engineer-Intern_JR100366-1",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "5344da6fe938f949fad62d09"
-      ],
-      "previousUrls": [
-        "https://ambarella.wd108.myworkdayjobs.com/Ambarella/job/US-Headquarters/Software-Development-Engineer-Intern_JR100366-1"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://ambarella.wd108.myworkdayjobs.com/ambarella/job/US-Headquarters/Software-Development-Engineer-Intern_JR100366-1",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-07T06:18:30.745Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:ambarella.wd108.myworkdayjobs.com:ambarella",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1232
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
       "requiresInvestigation": true
     }
   ],
   "rowCounts": {
-    "previous": 6929,
-    "current": 6920,
-    "net": -9,
+    "previous": 6920,
+    "current": 6926,
+    "net": 6,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 2,
-  "removedCount": 11,
+  "added": 16,
+  "removedCount": 10,
   "counts": {
-    "not-returned-by-sources": 1,
-    "location": 3,
-    "role": 1,
-    "pendingVerification": 6
+    "pendingVerification": 3,
+    "not-returned-by-sources": 6,
+    "closed": 1
   },
   "removed": [
     {
-      "id": "bec4c415bab747e92984d340",
-      "company": "Raytheon",
-      "title": "Factory Enablement Digital Engineer (Spring/Summer Co-op)",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-105--400-Collins-Rd-NE--BLDG-105/Factory-Enablement-Digital-Engineer--Spring-Summer-Co-op-_01876473",
+      "id": "ee6e408544f27cca2a8e9137",
+      "company": "Fresenius Medical Care",
+      "title": "Software Engineering Co-op",
+      "applyUrl": "https://freseniusmedicalcare.wd3.myworkdayjobs.com/fme/job/Lawrence-MA-USA/Software-Engineering-Co-op_R0271309",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "2941d1ee423277b31c8b0b07",
+      "company": "LexisNexis",
+      "title": "Software Management Analyst I",
+      "applyUrl": "https://relx.wd3.myworkdayjobs.com/LexisNexisLegal/job/USA---Raleigh-NC-RDU/Software-Management-Analyst-I_R119922",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "8b1bbe15fc3e7bc56c41c30c",
-      "company": "JM Family",
-      "title": "Data Engineer Intern",
-      "applyUrl": "https://jmfamily.wd1.myworkdayjobs.com/JMFamily_External/job/Florida---Deerfield-Beach/Data-Engineer-Intern_JR105120",
-      "reason": "location"
-    },
-    {
-      "id": "68bb3154081aa8921a63834f",
-      "company": "JM Family",
-      "title": "Power Platform & Analytics Intern",
-      "applyUrl": "https://jmfamily.wd1.myworkdayjobs.com/JMFamily_External/job/Alabama---Mobile/Intern--College-NE_JR105133",
-      "reason": "location"
-    },
-    {
-      "id": "b97408d8f1fa5013545f7550",
-      "company": "JM Family",
-      "title": "Automation & Analytics Intern",
-      "applyUrl": "https://jmfamily.wd1.myworkdayjobs.com/JMFamily_External/job/Florida---Deerfield-Beach/Automation---Analytics-Intern_JR105132",
-      "reason": "location"
-    },
-    {
-      "id": "b78af76840ad05c24a4d683c",
-      "company": "Cambridge Investment Research",
-      "title": "IT Operations Intern - Service Desk, Infrastructure, Prod Support",
-      "applyUrl": "https://cir.wd108.myworkdayjobs.com/CIR_External_Career_Site/job/Fairfield-IA/IT-Operations-Intern---Service-Desk--Infrastructure--Prod-Support_R-2025-235",
-      "reason": "role"
-    },
-    {
-      "id": "1fa0a355cd0bd0cab965c7f5",
-      "company": "This is CNY",
-      "title": "Process Integration Engineering Intern - Summer 2027",
-      "applyUrl": "https://cree.wd108.myworkdayjobs.com/EXT/job/Marcy-New-York/Process-Integration-Engineering-Intern---Summer-2027_26-931",
+      "id": "cc9f1cdca9015bafe303b18a",
+      "company": "Intel",
+      "title": "AI Data Science / Software Engineering PhD Intern New 2027",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288136",
       "reason": "pendingVerification"
     },
     {
-      "id": "9a63a94663b90fe4e4ef1435",
-      "company": "Modmed",
-      "title": "Software Engineering Intern",
-      "applyUrl": "https://modmed.wd501.myworkdayjobs.com/ModMed12/job/Boca-Raton-FL/Software-Engineering-Intern_R5148",
+      "id": "94e6f9495f994545e3193280",
+      "company": "Kensho",
+      "title": "Machine Learning Operations Engineer I",
+      "applyUrl": "https://spgi.wd5.myworkdayjobs.com/Kensho_Careers/job/Cambridge-MA/ML-Ops-Engineer-II_330647",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "31b555987959e0c2b859515a",
+      "company": "Hewlett Packard Enterprise",
+      "title": "Site Reliability Engineer I - Sales Operations",
+      "applyUrl": "https://hpe.wd5.myworkdayjobs.com/ACJobSite/job/Dallas-Texas-United-States-of-America/Site-Reliability-Engineer-I---Sales-Operations_1203341-3",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "50849cb899785f042208eb49",
+      "company": "Allegion",
+      "title": "Summer Intern - Product Management",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Product-Management_JR37369-1",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "f0258a9533d9eed1e0ae7a2a",
+      "company": "Gemini",
+      "title": "Brand Design Intern (Winter 2027)",
+      "applyUrl": "https://boards.greenhouse.io/embed/job_app?for=gemini&token=8243097",
+      "reason": "closed"
+    },
+    {
+      "id": "79fc4765a5953f41d0397ed8",
+      "company": "Allegion",
+      "title": "Summer Intern - Hardware Engineering",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering_JR37413-1",
       "reason": "pendingVerification"
     },
     {
-      "id": "f014871400afb1617b37f635",
-      "company": "Flex",
-      "title": "Manufacturing Data & Analytics Co-Op - Spring 2027",
-      "applyUrl": "https://flextronics.wd1.myworkdayjobs.com/Careers/job/USA-IL-Libertyville/Manufacturing-Data---Analytics-Co-Op---Spring-2027_WD229700",
-      "reason": "pendingVerification"
+      "id": "c2e19afff7231bb046a4edaa",
+      "company": "Allegion",
+      "title": "Summer Intern - Hardware Engineering - Indianapolis, Indiana",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering---Indianapolis--Indiana_JR37467-1",
+      "reason": "not-returned-by-sources"
     },
     {
-      "id": "6349a395e1d01b33cc17a1c2",
-      "company": "LEGO",
-      "title": "Electrical Engineering Co-op Spring 2027",
-      "applyUrl": "https://lego.wd103.myworkdayjobs.com/LEGO_Executive/job/Boston-Hub/Electrical-Engineering-Co-op-Spring-2027_0000037663",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "b209727a27497dbe8a805f7d",
-      "company": "Ambarella",
-      "title": "Software Engineer Intern",
-      "applyUrl": "https://ambarella.wd108.myworkdayjobs.com/Ambarella/job/US-Headquarters/Software-Engineer-Intern_JR100363",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "5344da6fe938f949fad62d09",
-      "company": "Ambarella",
-      "title": "Software Development Engineer Intern",
-      "applyUrl": "https://ambarella.wd108.myworkdayjobs.com/Ambarella/job/US-Headquarters/Software-Development-Engineer-Intern_JR100366-1",
-      "reason": "pendingVerification"
+      "id": "6df28b43b16a70579b67bff6",
+      "company": "Allegion",
+      "title": "Summer Intern - Product Assurance Test Engineer",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Colorado-Springs-CO/Summer-Intern---Product-Assurance-Test-Engineer_JR37380-1",
+      "reason": "not-returned-by-sources"
     }
   ],
   "urlChanges": [
     {
-      "id": "020aa8e85df85704aa7c5c7c",
-      "previousUrl": "https://kla.wd1.myworkdayjobs.com/en-US/Search/job/Milpitas-CA/Software-Engineering-Intern_2641581-1",
-      "applyUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Software-Engineering-Intern_2641581-1"
+      "id": "649e09853d544cf8317afa63",
+      "previousUrl": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Supervision---Regulation--Analytics--Innovation-and-Modeling-_R-0000033861",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Supervision---Regulation--Analytics--Innovation-and-Modeling-_R-0000033861"
     },
     {
-      "id": "8a2e8a2c73156bcf0ee48041",
-      "previousUrl": "https://kla.wd1.myworkdayjobs.com/en-US/Search/job/Milpitas-CA/Software-Engineering-Intern--C----Unix-_2641325-1",
-      "applyUrl": "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Software-Engineering-Intern--C----Unix-_2641325-1"
+      "id": "c9fb3c4fbeccfe2be94bfeaf",
+      "previousUrl": "https://asml.wd3.myworkdayjobs.com/asmlext1/job/San-Diego-CA-USA/Internship--Software-Development-Engineer-in-Test_J-00354459",
+      "applyUrl": "https://asml.wd3.myworkdayjobs.com/ASMLEXT1/job/San-Diego-CA-USA/Internship--Software-Development-Engineer-in-Test_J-00354459"
+    },
+    {
+      "id": "18289980deb0ed0f0bdee58f",
+      "previousUrl": "https://gdit.wd5.myworkdayjobs.com/gdit_earlytalent/job/USA-VA-Falls-Church/Summer-2027-Financial-Analyst-Intern_RQ231091",
+      "applyUrl": "https://gdit.wd5.myworkdayjobs.com/GDIT_EarlyTalent/job/USA-VA-Falls-Church/Summer-2027-Financial-Analyst-Intern_RQ231091"
+    },
+    {
+      "id": "d40c01fd3e94b95b7e18f65d",
+      "previousUrl": "https://asml.wd3.myworkdayjobs.com/asmlext1/job/San-Jose-CA-USA/Internship---Frontend-Developer_J-00354852",
+      "applyUrl": "https://asml.wd3.myworkdayjobs.com/ASMLEXT1/job/San-Jose-CA-USA/Internship---Frontend-Developer_J-00354852"
+    },
+    {
+      "id": "cfa3b8188a91ac12e8d65ba7",
+      "previousUrl": "https://asml.wd3.myworkdayjobs.com/asmlext1/job/San-Jose-CA-USA/Platform-Software-Engineer-In-Test---Internship-_J-00354558",
+      "applyUrl": "https://asml.wd3.myworkdayjobs.com/ASMLEXT1/job/San-Jose-CA-USA/Platform-Software-Engineer-In-Test---Internship-_J-00354558"
+    },
+    {
+      "id": "04a5d004fbdd6d04f93e83f2",
+      "previousUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603"
+    },
+    {
+      "id": "ac981aeab60c20bd330d903b",
+      "previousUrl": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Server--May-2027---12-Months-_R10647",
+      "applyUrl": "https://soti.wd3.myworkdayjobs.com/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Server--May-2027---12-Months-_R10647"
+    },
+    {
+      "id": "cdb3887366f4b4ef889d2483",
+      "previousUrl": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Android--May-2027---12-Months-_R10620",
+      "applyUrl": "https://soti.wd3.myworkdayjobs.com/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Android--May-2027---12-Months-_R10620"
+    },
+    {
+      "id": "456a41d9e53e1db90e2a17de",
+      "previousUrl": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Newark-NJ/XMLNAME-2027-Summer-Internship-Program---Office-of-Employee-Benefits--Investment-Management-_R-0000033872",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Newark-NJ/XMLNAME-2027-Summer-Internship-Program---Office-of-Employee-Benefits--Investment-Management-_R-0000033872"
+    },
+    {
+      "id": "18938610c4dc5e746cca2c2e",
+      "previousUrl": "https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Warren-Michigan-United-States-of-America/XMLNAME-2027-Summer-Intern--AI-ML-Engineer--Mapping_JR-202621778",
+      "applyUrl": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Warren-Michigan-United-States-of-America/XMLNAME-2027-Summer-Intern--AI-ML-Engineer--Mapping_JR-202621778"
+    },
+    {
+      "id": "acdc00c5adf63625c44c80d7",
+      "previousUrl": "https://asml.wd3.myworkdayjobs.com/asmlext1/job/San-Jose-CA-USA/Internship---Application-Software-QA-Engineer_J-00354565",
+      "applyUrl": "https://asml.wd3.myworkdayjobs.com/ASMLEXT1/job/San-Jose-CA-USA/Internship---Application-Software-QA-Engineer_J-00354565"
+    },
+    {
+      "id": "7319d77e5555c858b405833b",
+      "previousUrl": "https://asml.wd3.myworkdayjobs.com/asmlext1/job/San-Jose-CA-USA/Internship---Software-Engineer-In-Test--MOD-_J-00354568",
+      "applyUrl": "https://asml.wd3.myworkdayjobs.com/ASMLEXT1/job/San-Jose-CA-USA/Internship---Software-Engineer-In-Test--MOD-_J-00354568"
+    },
+    {
+      "id": "41523d816aa07fb2b9353f46",
+      "previousUrl": "https://asml.wd3.myworkdayjobs.com/asmlext1/job/San-Jose-CA-USA/Internship---Software-Quality-Assurance_J-00354562",
+      "applyUrl": "https://asml.wd3.myworkdayjobs.com/ASMLEXT1/job/San-Jose-CA-USA/Internship---Software-Quality-Assurance_J-00354562"
+    },
+    {
+      "id": "33615f4c5406eb2b33917d19",
+      "previousUrl": "https://asml.wd3.myworkdayjobs.com/asmlext1/job/San-Jose-CA-USA/Internship---Software-Quality-Assurance_J-00354563",
+      "applyUrl": "https://asml.wd3.myworkdayjobs.com/ASMLEXT1/job/San-Jose-CA-USA/Internship---Software-Quality-Assurance_J-00354563"
+    },
+    {
+      "id": "5a0420fb78f3c9322cd2c142",
+      "previousUrl": "https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Ottawa/Software-Developer-Intern---Winter-2027_R031953-1",
+      "applyUrl": "https://ciena.wd5.myworkdayjobs.com/Careers/job/Ottawa/Software-Developer-Intern---Winter-2027_R031953-1"
+    },
+    {
+      "id": "42dbe1b84f45aa4fcbcabac2",
+      "previousUrl": "https://keybank.wd5.myworkdayjobs.com/en-US/External_Career_Site/job/Brooklyn-OH/XMLNAME-2027-Summer-Marketing-Analytics-Internship---Cleveland_R-42822",
+      "applyUrl": "https://keybank.wd5.myworkdayjobs.com/External_Career_Site/job/Brooklyn-OH/XMLNAME-2027-Summer-Marketing-Analytics-Internship---Cleveland_R-42822"
+    },
+    {
+      "id": "9937fd1bff3b8cb8889c9111",
+      "previousUrl": "https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Atlanta/Software-Engineer--Security----Intern--Winter-2027-_R031926",
+      "applyUrl": "https://ciena.wd5.myworkdayjobs.com/Careers/job/Atlanta/Software-Engineer--Security----Intern--Winter-2027-_R031926"
+    },
+    {
+      "id": "8b5689c1d5b57466f43b8112",
+      "previousUrl": "https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Warren-Michigan-United-States-of-America/XMLNAME-2027-Summer-Intern---GM-OneOps-Deploy-Engineer_JR-202621896",
+      "applyUrl": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Warren-Michigan-United-States-of-America/XMLNAME-2027-Summer-Intern---GM-OneOps-Deploy-Engineer_JR-202621896"
+    },
+    {
+      "id": "8cf07989c1ee5e45144a103c",
+      "previousUrl": "https://caci.wd1.myworkdayjobs.com/en-US/external/job/Florham-Park-NJ-US/Junior-Data-Analyst_332671",
+      "applyUrl": "https://caci.wd1.myworkdayjobs.com/External/job/Florham-Park-NJ-US/Junior-Data-Analyst_332671"
+    },
+    {
+      "id": "2b3f7f6f7f7e44d7387d5622",
+      "previousUrl": "https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Sunnyvale-California-United-States-of-America/XMLNAME-2027-Summer-Intern--AI-Research--Embodied-AI_JR-202622146",
+      "applyUrl": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Sunnyvale-California-United-States-of-America/XMLNAME-2027-Summer-Intern--AI-Research--Embodied-AI_JR-202622146"
+    },
+    {
+      "id": "53d1560835c4eb88ffd9fe9a",
+      "previousUrl": "https://allegion.wd5.myworkdayjobs.com/en-US/careers/job/Carmel-IN/Summer-Intern---Software-Operations-Engineer_JR37722-1",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Software-Operations-Engineer_JR37722-1"
+    },
+    {
+      "id": "75bb8140e8abb0860a915465",
+      "previousUrl": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---SOTI-MobiControl-Apple-HQ--January-2027-12-Months-_R10551-2",
+      "applyUrl": "https://soti.wd3.myworkdayjobs.com/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---SOTI-MobiControl-Apple-HQ--January-2027-12-Months-_R10551-2"
+    },
+    {
+      "id": "f77e7d1b150cbd4d665b10c8",
+      "previousUrl": "https://blueorigin.wd5.myworkdayjobs.com/en-US/blueorigin/job/Greater-Seattle-Area/Summer-2027-Software-Developer-Internship---Graduate_R71434",
+      "applyUrl": "https://blueorigin.wd5.myworkdayjobs.com/BlueOrigin/job/Greater-Seattle-Area/Summer-2027-Software-Developer-Internship---Graduate_R71434"
+    },
+    {
+      "id": "0238d513689c161b1bef36b2",
+      "previousUrl": "https://blueorigin.wd5.myworkdayjobs.com/blueorigin/job/Greater-Seattle-Area/Summer-2027-Software-Developer-Internship---Undergraduate_R71425",
+      "applyUrl": "https://blueorigin.wd5.myworkdayjobs.com/BlueOrigin/job/Greater-Seattle-Area/Summer-2027-Software-Developer-Internship---Undergraduate_R71425"
+    },
+    {
+      "id": "c140050ba0f21b4aae7a82b5",
+      "previousUrl": "https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Mountain-View-California-United-States-of-America/Entry-Level---AI-Machine-Learning-Researcher_JR-202621753",
+      "applyUrl": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Mountain-View-California-United-States-of-America/Entry-Level---AI-Machine-Learning-Researcher_JR-202621753"
+    },
+    {
+      "id": "bbe572715626c4500b227351",
+      "previousUrl": "https://caci.wd1.myworkdayjobs.com/en-US/external/job/Virginia-Beach-VA-US/Entry-Level-C--Software-Engineer_333249",
+      "applyUrl": "https://caci.wd1.myworkdayjobs.com/External/job/Virginia-Beach-VA-US/Entry-Level-C--Software-Engineer_333249"
+    },
+    {
+      "id": "82e629127adc0843fb3d5dba",
+      "previousUrl": "https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Sunnyvale-California-United-States-of-America/XMLNAME-2027-Summer-Intern---Machine-Learning-Intern--Autonomous-Vehicles--Software-Validation--PhD-_JR-202621649",
+      "applyUrl": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Sunnyvale-California-United-States-of-America/XMLNAME-2027-Summer-Intern---Machine-Learning-Intern--Autonomous-Vehicles--Software-Validation--PhD-_JR-202621649"
+    },
+    {
+      "id": "75cb3f0cd14563e162f9b59c",
+      "previousUrl": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/US-Oregon-Hillsboro/Software-Engineering-PhD-Intern-New-2027_JR0287458-1",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering-PhD-Intern-New-2027_JR0287458-1"
+    },
+    {
+      "id": "b22c93f5de0742485063ac7a",
+      "previousUrl": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634"
+    },
+    {
+      "id": "ea9d5928e289d68056f9a1b4",
+      "previousUrl": "https://allegion.wd5.myworkdayjobs.com/en-US/careers/job/Golden-CO/Summer-Intern---Summer-Intern---Software-Engineering---Quality-Assurance_JR37856-1",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Golden-CO/Summer-Intern---Summer-Intern---Software-Engineering---Quality-Assurance_JR37856-1"
+    },
+    {
+      "id": "76d6f6d8506a8facad58426c",
+      "previousUrl": "https://allegion.wd5.myworkdayjobs.com/en-US/careers/job/Golden-CO/Summer-Intern---Software-Engineering_JR37795-1",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Golden-CO/Summer-Intern---Software-Engineering_JR37795-1"
+    },
+    {
+      "id": "4451145d2178fff6581c49e7",
+      "previousUrl": "https://leidos.wd5.myworkdayjobs.com/en-US/External/job/Huntsville-AL/Junior-Software-Developer_R-00193099",
+      "applyUrl": "https://leidos.wd5.myworkdayjobs.com/External/job/Huntsville-AL/Junior-Software-Developer_R-00193099"
+    },
+    {
+      "id": "e495c163e9ff0b8fa82b7f58",
+      "previousUrl": "https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Atlanta/WaveLogic-Software-Intern-Spring-2027_R031692",
+      "applyUrl": "https://ciena.wd5.myworkdayjobs.com/Careers/job/Atlanta/WaveLogic-Software-Intern-Spring-2027_R031692"
+    },
+    {
+      "id": "5de568452af5b4e0653b8862",
+      "previousUrl": "https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Atlanta/WaveLogic-Software-Intern--Summer-2027-_R031695",
+      "applyUrl": "https://ciena.wd5.myworkdayjobs.com/Careers/job/Atlanta/WaveLogic-Software-Intern--Summer-2027-_R031695"
+    },
+    {
+      "id": "547d136cb8d7e3a2518ba26e",
+      "previousUrl": "https://clearwateranalytics.wd1.myworkdayjobs.com/en-US/Clearwater_Analytics_Careers/job/Office---New-York/UX-UI-Technical-Content-Intern_R12196",
+      "applyUrl": "https://clearwateranalytics.wd1.myworkdayjobs.com/Clearwater_Analytics_Careers/job/Office---New-York/UX-UI-Technical-Content-Intern_R12196"
+    },
+    {
+      "id": "bf2c1fd16c7c49dc7657209a",
+      "previousUrl": "https://caci.wd1.myworkdayjobs.com/en-US/external/job/Aberdeen-Proving-Ground-MD-US/Junior-Cyber-Software-Engineer_332339",
+      "applyUrl": "https://caci.wd1.myworkdayjobs.com/External/job/Aberdeen-Proving-Ground-MD-US/Junior-Cyber-Software-Engineer_332339"
+    },
+    {
+      "id": "ffb72ef6c825ca954704b44c",
+      "previousUrl": "https://generalmotors.wd5.myworkdayjobs.com/en-CA/Careers_GM/job/Warren-Michigan-United-States-of-America/XMLNAME-2027-Summer-Intern---Digital-Product--Product-Management--MBA-_JR-202620538",
+      "applyUrl": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Warren-Michigan-United-States-of-America/XMLNAME-2027-Summer-Intern---Digital-Product--Product-Management--MBA-_JR-202620538"
+    },
+    {
+      "id": "20d96af8f8544bd732d48122",
+      "previousUrl": "https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Ottawa/AI---Automation-Intern---GCN-Services-Business-Operations_R031664",
+      "applyUrl": "https://ciena.wd5.myworkdayjobs.com/Careers/job/Ottawa/AI---Automation-Intern---GCN-Services-Business-Operations_R031664"
+    },
+    {
+      "id": "94b48811a355ad21a62aad2c",
+      "previousUrl": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/US-Arizona-Phoenix/Operations-Research--Engineering-Analytics-Graduate-Intern_JR0286502",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Arizona-Phoenix/Operations-Research--Engineering-Analytics-Graduate-Intern_JR0286502"
+    },
+    {
+      "id": "5c1f6f1c302a6bd0b036e695",
+      "previousUrl": "https://kbr.wd5.myworkdayjobs.com/en-US/kbr_careers/job/Sioux-Falls-South-Dakota/Image-Processing-Software-Engineer-Intern_R2130067",
+      "applyUrl": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Sioux-Falls-South-Dakota/Image-Processing-Software-Engineer-Intern_R2130067"
+    },
+    {
+      "id": "d57968f68170626f4b62e1a1",
+      "previousUrl": "https://kbr.wd5.myworkdayjobs.com/en-US/kbr_careers/job/Sioux-Falls-South-Dakota/Data-Processing-Systems-Engineer-Intern_R2130060",
+      "applyUrl": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Sioux-Falls-South-Dakota/Data-Processing-Systems-Engineer-Intern_R2130060"
+    },
+    {
+      "id": "40bc5043d299587d9e8d23c1",
+      "previousUrl": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Global-Capital-Markets---New-York_R266468",
+      "applyUrl": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Global-Capital-Markets---New-York_R266468"
+    },
+    {
+      "id": "ed534691d501100a247acc11",
+      "previousUrl": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Global-Capital-Markets---San-Francisco_R266469",
+      "applyUrl": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Global-Capital-Markets---San-Francisco_R266469"
+    },
+    {
+      "id": "490bc4f653b5e8a3f058d25f",
+      "previousUrl": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/Atlanta-GA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Portfolio-Management---Atlanta_R266470",
+      "applyUrl": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/Atlanta-GA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Portfolio-Management---Atlanta_R266470"
+    },
+    {
+      "id": "5920deb94e35d30f7d141987",
+      "previousUrl": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Portfolio-Management---New-York_R266471",
+      "applyUrl": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Portfolio-Management---New-York_R266471"
+    },
+    {
+      "id": "e32264c905ba2e15888d53e7",
+      "previousUrl": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Portfolio-Management---San-Francisco_R266472",
+      "applyUrl": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Portfolio-Management---San-Francisco_R266472"
+    },
+    {
+      "id": "02ed6cebaa3e103d84e8e455",
+      "previousUrl": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Quantitative-Investing---New-York_R266473",
+      "applyUrl": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Quantitative-Investing---New-York_R266473"
+    },
+    {
+      "id": "5b45435e3080b3782b8ec161",
+      "previousUrl": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Quantitative-Investing---San-Francisco_R266474",
+      "applyUrl": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Quantitative-Investing---San-Francisco_R266474"
+    },
+    {
+      "id": "db19ff5968b02bbef238b0f7",
+      "previousUrl": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Technology---Analytics---Modeling---New-York_R266477",
+      "applyUrl": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/New-York-NY/XMLNAME-2027-Quantitative-Masters-Internship-Program---Technology---Analytics---Modeling---New-York_R266477"
+    },
+    {
+      "id": "fa0514283a3bb11101af07cb",
+      "previousUrl": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Technology---Analytics---Modeling---San-Francisco_R266476",
+      "applyUrl": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Technology---Analytics---Modeling---San-Francisco_R266476"
+    },
+    {
+      "id": "06ed362ab3037d5ebcbff4a6",
+      "previousUrl": "https://allegion.wd5.myworkdayjobs.com/en-US/careers/job/Carmel-IN/Summer-Intern--User-Experience--UX--Research_JR37497",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern--User-Experience--UX--Research_JR37497"
+    },
+    {
+      "id": "b56e01ad51dfd35ab2d3d343",
+      "previousUrl": "https://allegion.wd5.myworkdayjobs.com/en-US/careers/job/Carmel-IN/Software-Engineering-Intern---DevOps_JR37379",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Software-Engineering-Intern---DevOps_JR37379"
+    },
+    {
+      "id": "954be17a9f48eecf4c15f4da",
+      "previousUrl": "https://snc.wd1.myworkdayjobs.com/snc_external_career_site/job/Dayton-OH/Mechanical-Engineer-Intern--Summer-2027-_R0030744",
+      "applyUrl": "https://snc.wd1.myworkdayjobs.com/SNC_External_Career_Site/job/Dayton-OH/Mechanical-Engineer-Intern--Summer-2027-_R0030744"
+    },
+    {
+      "id": "f8fd23e6741557b0746e77b1",
+      "previousUrl": "https://intel.wd1.myworkdayjobs.com/en-US/external/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Bachelor-s_JR0286834",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Bachelor-s_JR0286834"
+    },
+    {
+      "id": "ce91345ac9ad28e840f28d31",
+      "previousUrl": "https://intel.wd1.myworkdayjobs.com/en-us/external/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Graduate_JR0286836",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Graduate_JR0286836"
+    },
+    {
+      "id": "c152aaeef29d4094fa0377ee",
+      "previousUrl": "https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Atlanta/WaveLogic-Software-Developer---New-Grad_R031608",
+      "applyUrl": "https://ciena.wd5.myworkdayjobs.com/Careers/job/Atlanta/WaveLogic-Software-Developer---New-Grad_R031608"
+    },
+    {
+      "id": "a2b326c354e0e52de8ee6150",
+      "previousUrl": "https://clearwateranalytics.wd1.myworkdayjobs.com/en-US/Clearwater_Analytics_Careers/job/Office---New-York/UX-UI-Technical-Content-Intern_R12195",
+      "applyUrl": "https://clearwateranalytics.wd1.myworkdayjobs.com/Clearwater_Analytics_Careers/job/Office---New-York/UX-UI-Technical-Content-Intern_R12195"
+    },
+    {
+      "id": "dec17dd7c886c9ef57d35a82",
+      "previousUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603"
+    },
+    {
+      "id": "42a905dcdea532b0330e663c",
+      "previousUrl": "https://amat.wd1.myworkdayjobs.com/external/job/Santa-ClaraCA/XMLNAME-2026-Summer-Intern---Physics---AI-modeling-Engineering_R2616095",
+      "applyUrl": "https://amat.wd1.myworkdayjobs.com/External/job/Santa-ClaraCA/XMLNAME-2026-Summer-Intern---Physics---AI-modeling-Engineering_R2616095"
     }
   ]
 }
