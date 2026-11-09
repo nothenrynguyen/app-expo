@@ -1,62 +1,164 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-09T01:24:33.537Z",
-  "previousGeneratedAt": "2026-11-09T00:24:04.342Z",
-  "currentSnapshotGeneratedAt": "2026-11-09T01:24:33.537Z",
+  "generatedAt": "2026-11-09T02:24:57.314Z",
+  "previousGeneratedAt": "2026-11-09T01:24:33.537Z",
+  "currentSnapshotGeneratedAt": "2026-11-09T02:24:57.314Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6832,
-    "current": 6858,
-    "retained": 6831,
-    "added": 27,
-    "removed": 1,
-    "net": 26
+    "previous": 6858,
+    "current": 6856,
+    "retained": 6855,
+    "added": 1,
+    "removed": 3,
+    "net": -2
   },
   "categoryCounts": {
     "confirmed-closed": 0,
     "scope-exclusion": 0,
-    "verification-pending": 0,
+    "verification-pending": 1,
     "source-unavailable": 0,
-    "unresolved": 1,
+    "unresolved": 2,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "boards.greenhouse.io:8785502002",
-      "id": "b2fb6befb1d0a13919a4189e",
-      "company": "SpaceX",
-      "title": "Full Stack Software Engineer, Internal Systems",
-      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8785502002",
-      "reason": "absent-from-employer-board",
+      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31435",
+      "id": "48d0774191df9234015b9c9f",
+      "company": "HNTB",
+      "title": "WED - Intern Civil Engineer (Summer 2027) (For Current & Recent HNTB Interns Only)",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
+      "reason": "pendingVerification",
       "previousIds": [
-        "b2fb6befb1d0a13919a4189e"
+        "48d0774191df9234015b9c9f"
       ],
       "previousUrls": [
-        "https://boards.greenhouse.io/spacex/jobs/8785502002"
+        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435"
       ],
       "sources": [
-        "Direct ATS (Greenhouse)"
+        "Keryx Non-Software Summer 2027",
+        "Direct ATS (Workday)"
       ],
-      "candidateSeen": false,
+      "candidateSeen": true,
       "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-09T01:18:23.002Z",
+        "screening": [
+          {
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-09T02:18:32.121Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:spacex",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
+          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Direct ATS (Greenhouse)",
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1520
+          },
+          {
+            "name": "Direct ATS (Workday)",
             "diagnosticName": null,
             "status": "not-checked",
             "outcome": null,
             "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:biibhr.wd3.myworkdayjobs.com:external:req24209",
+      "id": "be34ebdc1eb618a9d0af3903",
+      "company": "Biogen",
+      "title": "Co-op, Data Science & AI Innovation",
+      "applyUrl": "https://biibhr.wd3.myworkdayjobs.com/external/job/Remote-USA/Co-op--Data-Science---AI-Innovation_REQ24209",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "be34ebdc1eb618a9d0af3903"
+      ],
+      "previousUrls": [
+        "https://biibhr.wd3.myworkdayjobs.com/external/job/Remote-USA/Co-op--Data-Science---AI-Innovation_REQ24209"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-09T02:18:32.121Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:biibhr.wd3.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1244
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:leidos.wd5.myworkdayjobs.com:external:r-00192632",
+      "id": "008a40c4c482b91c8a206f90",
+      "company": "Leidos",
+      "title": "Software Developer Intern",
+      "applyUrl": "https://leidos.wd5.myworkdayjobs.com/External/job/St-Louis-MO/Software-Developer-Intern_R-00192632",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "008a40c4c482b91c8a206f90"
+      ],
+      "previousUrls": [
+        "https://leidos.wd5.myworkdayjobs.com/External/job/St-Louis-MO/Software-Developer-Intern_R-00192632"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-09T02:18:32.121Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:leidos.wd5.myworkdayjobs.com:external",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1244
           }
         ]
       },
@@ -67,36 +169,66 @@
     }
   ],
   "rowCounts": {
-    "previous": 6832,
-    "current": 6858,
-    "net": 26,
+    "previous": 6858,
+    "current": 6856,
+    "net": -2,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 27,
-  "removedCount": 1,
+  "added": 1,
+  "removedCount": 3,
   "counts": {
-    "absent-from-employer-board": 1
+    "pendingVerification": 1,
+    "not-returned-by-sources": 2
   },
   "removed": [
     {
-      "id": "b2fb6befb1d0a13919a4189e",
-      "company": "SpaceX",
-      "title": "Full Stack Software Engineer, Internal Systems",
-      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8785502002",
-      "reason": "absent-from-employer-board"
+      "id": "48d0774191df9234015b9c9f",
+      "company": "HNTB",
+      "title": "WED - Intern Civil Engineer (Summer 2027) (For Current & Recent HNTB Interns Only)",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31435",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "be34ebdc1eb618a9d0af3903",
+      "company": "Biogen",
+      "title": "Co-op, Data Science & AI Innovation",
+      "applyUrl": "https://biibhr.wd3.myworkdayjobs.com/external/job/Remote-USA/Co-op--Data-Science---AI-Innovation_REQ24209",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "008a40c4c482b91c8a206f90",
+      "company": "Leidos",
+      "title": "Software Developer Intern",
+      "applyUrl": "https://leidos.wd5.myworkdayjobs.com/External/job/St-Louis-MO/Software-Developer-Intern_R-00192632",
+      "reason": "not-returned-by-sources"
     }
   ],
   "urlChanges": [
     {
-      "id": "cd9ab86f753f801b68068408",
-      "previousUrl": "https://globalfoundries.wd1.myworkdayjobs.com/en-US/External/job/USA---Texas---Richardson/AI-ML-Systems-Engineer--2027-New-College-Graduate-_JR-2604163",
-      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Richardson/AI-ML-Systems-Engineer--2027-New-College-Graduate-_JR-2604163"
+      "id": "c57e4937c2d4c88244a85053",
+      "previousUrl": "https://jobs.ashbyhq.com/reflect-orbital/c394615d-26c6-4435-ad84-3ca3269c2952",
+      "applyUrl": "https://jobs.ashbyhq.com/reflect-orbital/c394615d-26c6-4435-ad84-3ca3269c2952/application"
+    },
+    {
+      "id": "e4ab718af9ca185973620ca4",
+      "previousUrl": "https://jobs.ashbyhq.com/ramp/b66be397-240b-41a6-9b05-493299b270a9",
+      "applyUrl": "https://jobs.ashbyhq.com/ramp/b66be397-240b-41a6-9b05-493299b270a9/application"
+    },
+    {
+      "id": "68a7559c71ad41bc58308e3f",
+      "previousUrl": "https://jobs.ashbyhq.com/ramp/fcf118cc-521a-4a62-9d13-945e5b6e3cb8",
+      "applyUrl": "https://jobs.ashbyhq.com/ramp/fcf118cc-521a-4a62-9d13-945e5b6e3cb8/application"
+    },
+    {
+      "id": "4df3164ed57c354582ae573a",
+      "previousUrl": "https://jobs.ashbyhq.com/ramp/a13ae586-f4cb-4385-8822-c42b9b54ed74",
+      "applyUrl": "https://jobs.ashbyhq.com/ramp/a13ae586-f4cb-4385-8822-c42b9b54ed74/application"
     },
     {
       "id": "af25515264c9c9abc2c082aa",
-      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037"
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037"
     }
   ]
 }
