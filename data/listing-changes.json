@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-09T11:24:23.130Z",
-  "previousGeneratedAt": "2026-11-09T10:25:30.611Z",
-  "currentSnapshotGeneratedAt": "2026-11-09T11:24:23.130Z",
+  "generatedAt": "2026-11-09T12:25:56.479Z",
+  "previousGeneratedAt": "2026-11-09T11:24:23.130Z",
+  "currentSnapshotGeneratedAt": "2026-11-09T12:25:56.479Z",
   "reconciliation": {
     "unit": "opportunities",
     "previous": 6856,
     "current": 6856,
-    "retained": 6856,
-    "added": 0,
-    "removed": 0,
+    "retained": 6855,
+    "added": 1,
+    "removed": 1,
     "net": 0
   },
   "categoryCounts": {
@@ -17,10 +17,55 @@
     "scope-exclusion": 0,
     "verification-pending": 0,
     "source-unavailable": 0,
-    "unresolved": 0,
+    "unresolved": 1,
     "deduplicated": 0
   },
-  "removedOpportunities": [],
+  "removedOpportunities": [
+    {
+      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01886761",
+      "id": "185316139312e45c72c5beeb",
+      "company": "Raytheon",
+      "title": "Test Solutions Northeast Electrical Engineer I",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-MA-TEWKSBURY-TB2--50-Apple-Hill-Dr--SUDBURY-BLDG-Tewksbury-Tb2-200-Sudbury/Test-Solutions-Northeast-Electrical-Engineer-I_01886761",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "185316139312e45c72c5beeb"
+      ],
+      "previousUrls": [
+        "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-MA-TEWKSBURY-TB2--50-Apple-Hill-Dr--SUDBURY-BLDG-Tewksbury-Tb2-200-Sudbury/Test-Solutions-Northeast-Electrical-Engineer-I_01886761"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-09T12:18:38.176Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    }
+  ],
   "rowCounts": {
     "previous": 6856,
     "current": 6856,
@@ -28,9 +73,30 @@
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 0,
-  "removedCount": 0,
-  "counts": {},
-  "removed": [],
-  "urlChanges": []
+  "added": 1,
+  "removedCount": 1,
+  "counts": {
+    "not-returned-by-sources": 1
+  },
+  "removed": [
+    {
+      "id": "185316139312e45c72c5beeb",
+      "company": "Raytheon",
+      "title": "Test Solutions Northeast Electrical Engineer I",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-MA-TEWKSBURY-TB2--50-Apple-Hill-Dr--SUDBURY-BLDG-Tewksbury-Tb2-200-Sudbury/Test-Solutions-Northeast-Electrical-Engineer-I_01886761",
+      "reason": "not-returned-by-sources"
+    }
+  ],
+  "urlChanges": [
+    {
+      "id": "7a90a21aa3ff02ea7b0eb4aa",
+      "previousUrl": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers/job/Portage-Michigan/Product-Interaction-Design-Intern---Portage--MI_R572833",
+      "applyUrl": "https://stryker.wd1.myworkdayjobs.com/strykercareers/job/Portage-Michigan/Product-Interaction-Design-Intern---Portage--MI_R572833"
+    },
+    {
+      "id": "dea94e21e0a5fb68a216f733",
+      "previousUrl": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers/job/Portage-Michigan/Industrial-Design-Intern---Portage--MI_R572730",
+      "applyUrl": "https://stryker.wd1.myworkdayjobs.com/strykercareers/job/Portage-Michigan/Industrial-Design-Intern---Portage--MI_R572730"
+    }
+  ]
 }
