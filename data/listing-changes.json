@@ -1,38 +1,38 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-10T04:25:16.723Z",
-  "previousGeneratedAt": "2026-11-10T03:25:30.858Z",
-  "currentSnapshotGeneratedAt": "2026-11-10T04:25:16.723Z",
+  "generatedAt": "2026-11-10T05:24:27.798Z",
+  "previousGeneratedAt": "2026-11-10T04:25:16.723Z",
+  "currentSnapshotGeneratedAt": "2026-11-10T05:24:27.798Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6875,
-    "current": 6883,
-    "retained": 6867,
-    "added": 16,
-    "removed": 8,
-    "net": 8
+    "previous": 6883,
+    "current": 6879,
+    "retained": 6874,
+    "added": 5,
+    "removed": 9,
+    "net": -4
   },
   "categoryCounts": {
-    "confirmed-closed": 0,
-    "scope-exclusion": 0,
-    "verification-pending": 1,
-    "source-unavailable": 0,
-    "unresolved": 7,
+    "confirmed-closed": 2,
+    "scope-exclusion": 2,
+    "verification-pending": 2,
+    "source-unavailable": 1,
+    "unresolved": 2,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "workday:medtronic.wd1.myworkdayjobs.com:medtroniccareers:r80934",
-      "id": "de62b94b2f8d532feb5040ca",
-      "company": "Medtronic",
-      "title": "Quality Engineer I (CAS), Rice Creek, MN",
-      "applyUrl": "https://medtronic.wd1.myworkdayjobs.com/MedtronicCareers/job/Minneapolis-Minnesota-United-States-of-America/Quality-Engineer-I---CAS---Rice-Creek--MN_R80934-1",
+      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01868898",
+      "id": "36b0d30ef87c3b47dac3ec9f",
+      "company": "Raytheon",
+      "title": "Intern: Quality Engineering (Summer 2027)",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-CT-EAST-HARTFORD-ETC--400-Main-St--BLDG-ETC/Intern--Quality-Engineering--Summer-2027-_01868898",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "de62b94b2f8d532feb5040ca"
+        "36b0d30ef87c3b47dac3ec9f"
       ],
       "previousUrls": [
-        "https://medtronic.wd1.myworkdayjobs.com/MedtronicCareers/job/Minneapolis-Minnesota-United-States-of-America/Quality-Engineer-I---CAS---Rice-Creek--MN_R80934-1"
+        "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-CT-EAST-HARTFORD-ETC--400-Main-St--BLDG-ETC/Intern--Quality-Engineering--Summer-2027-_01868898"
       ],
       "sources": [
         "Direct ATS (Workday)"
@@ -40,13 +40,13 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-10T04:18:31.745Z",
+        "runStartedAt": "2026-11-10T05:18:15.364Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:medtronic.wd1.myworkdayjobs.com:medtroniccareers",
-          "status": "ok",
-          "outcome": "healthy",
+          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
+          "status": "failed",
+          "outcome": "cooldown",
           "membership": "unknown",
           "retired": false
         },
@@ -60,125 +60,53 @@
           }
         ]
       },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
       "requiresInvestigation": true
     },
     {
-      "identity": "job-boards.greenhouse.io:5382146008",
-      "id": "3898017f3312c414a54897b2",
-      "company": "GITAI",
-      "title": "Mechanical Engineer, Interceptor",
-      "applyUrl": "https://job-boards.greenhouse.io/gitai/jobs/5382146008",
-      "reason": "absent-from-employer-board",
+      "identity": "workday:leidos.wd5.myworkdayjobs.com:external:r-00195980",
+      "id": "fccdc63dc43d12030cd26920",
+      "company": "Leidos",
+      "title": "Software Engineering Intern",
+      "applyUrl": "https://leidos.wd5.myworkdayjobs.com/External/job/Arlington-VA/Software-Engineering-Intern_R-00195980",
+      "reason": "pendingVerification",
       "previousIds": [
-        "3898017f3312c414a54897b2"
+        "fccdc63dc43d12030cd26920"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/gitai/jobs/5382146008"
-      ],
-      "sources": [
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-10T04:18:31.745Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:gitai",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "job-boards.greenhouse.io:5200820008",
-      "id": "af0e26f5bd2d9dd3e5d50073",
-      "company": "GITAI",
-      "title": "Mechanical Engineer, Space Robotics",
-      "applyUrl": "https://job-boards.greenhouse.io/gitai/jobs/5200820008",
-      "reason": "absent-from-employer-board",
-      "previousIds": [
-        "af0e26f5bd2d9dd3e5d50073"
-      ],
-      "previousUrls": [
-        "https://job-boards.greenhouse.io/gitai/jobs/5200820008"
-      ],
-      "sources": [
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-10T04:18:31.745Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:gitai",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "https://sonos.wd1.myworkdayjobs.com/sonos/job/boston-ma/software-partner-engineering-intern--boston-_r2886-1",
-      "id": "dee7e0a4144f2223794ef66a",
-      "company": "Sonos",
-      "title": "Software Partner Engineering Intern (Boston)",
-      "applyUrl": "https://sonos.wd1.myworkdayjobs.com/Sonos/job/Boston-MA/Software-Partner-Engineering-Intern--Boston-_R2886-1",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "dee7e0a4144f2223794ef66a"
-      ],
-      "previousUrls": [
-        "https://sonos.wd1.myworkdayjobs.com/Sonos/job/Boston-MA/Software-Partner-Engineering-Intern--Boston-_R2886-1"
+        "https://leidos.wd5.myworkdayjobs.com/External/job/Arlington-VA/Software-Engineering-Intern_R-00195980"
       ],
       "sources": [
         "Internship Engine"
       ],
-      "candidateSeen": false,
+      "candidateSeen": true,
       "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-10T04:18:31.745Z",
+        "screening": [
+          {
+            "url": "https://leidos.wd5.myworkdayjobs.com/External/job/Arlington-VA/Software-Engineering-Intern_R-00195980",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://leidos.wd5.myworkdayjobs.com/en-US/External/job/Arlington-VA/Software-Engineering-Intern_R-00195980",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://leidos.wd5.myworkdayjobs.com/External/job/Arlington-VA/Software-Engineering-Intern_R-00195980",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T05:18:15.364Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:sonos.wd1.myworkdayjobs.com:sonos",
-          "status": "not-checked",
-          "outcome": null,
+          "id": "workday:leidos.wd5.myworkdayjobs.com:external",
+          "status": "ok",
+          "outcome": "healthy",
           "membership": "unknown",
           "retired": false
         },
@@ -192,23 +120,23 @@
           }
         ]
       },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
       "requiresInvestigation": true
     },
     {
-      "identity": "boards.greenhouse.io:8483977002",
-      "id": "e1c9951fc4f53426483b9e46",
+      "identity": "boards.greenhouse.io:8504994002",
+      "id": "3023e1613fbf6a8f8499c134",
       "company": "SpaceX",
-      "title": "Civil Engineer, Land Development (Starship Launch Pad)",
-      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8483977002",
+      "title": "Launch Engineer, Fluid Systems (Starship)",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8504994002",
       "reason": "absent-from-employer-board",
       "previousIds": [
-        "e1c9951fc4f53426483b9e46"
+        "3023e1613fbf6a8f8499c134"
       ],
       "previousUrls": [
-        "https://boards.greenhouse.io/spacex/jobs/8483977002"
+        "https://boards.greenhouse.io/spacex/jobs/8504994002"
       ],
       "sources": [
         "Direct ATS (Greenhouse)"
@@ -216,7 +144,7 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-10T04:18:31.745Z",
+        "runStartedAt": "2026-11-10T05:18:15.364Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
@@ -242,135 +170,312 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:gdit.wd5.myworkdayjobs.com:gdit_earlytalent:rq230643",
-      "id": "4f1f9551dbfe5f944810689a",
-      "company": "General Dynamics Information Technology",
-      "title": "GDIT Summer Internship Program-Summer 2027 Software Development Internship -Egg Harbor Township New Jersey",
-      "applyUrl": "https://gdit.wd5.myworkdayjobs.com/gdit_earlytalent/job/USA-NJ-Egg-Harbor-Township/GDIT-Summer-Internship-Program---Summer-2027-Software-Development-Internship--_RQ230643",
-      "reason": "not-returned-by-sources",
+      "identity": "us-erac.icims.com:571270",
+      "id": "bde9e3bd81d6bfd1bb64f2a3",
+      "company": "Enterprise Mobility",
+      "title": "Accounting Internship - Summer 2027",
+      "applyUrl": "https://us-erac.icims.com/jobs/571270/accounting-internship---summer-2027/job",
+      "reason": "closed",
       "previousIds": [
-        "4f1f9551dbfe5f944810689a"
+        "bde9e3bd81d6bfd1bb64f2a3"
       ],
       "previousUrls": [
-        "https://gdit.wd5.myworkdayjobs.com/gdit_earlytalent/job/USA-NJ-Egg-Harbor-Township/GDIT-Summer-Internship-Program---Summer-2027-Software-Development-Internship--_RQ230643"
+        "https://us-erac.icims.com/jobs/571270/accounting-internship---summer-2027/job"
       ],
       "sources": [
-        "Internship Engine"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-10T04:18:31.745Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:gdit.wd5.myworkdayjobs.com:gdit_earlytalent",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1243
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:leidos.wd5.myworkdayjobs.com:external:r-00193103",
-      "id": "7557287709a6cd59b1ccf7c9",
-      "company": "Leidos",
-      "title": "Software Development Intern",
-      "applyUrl": "https://leidos.wd5.myworkdayjobs.com/External/job/Gaithersburg-MD/Software-Development-Intern_R-00193103",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "7557287709a6cd59b1ccf7c9"
-      ],
-      "previousUrls": [
-        "https://leidos.wd5.myworkdayjobs.com/External/job/Gaithersburg-MD/Software-Development-Intern_R-00193103"
-      ],
-      "sources": [
-        "Internship Engine"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-10T04:18:31.745Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:leidos.wd5.myworkdayjobs.com:external",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1243
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:crowe.wd12.myworkdayjobs.com:external_careers:r-71033",
-      "id": "dade26c66c5a57aab2b76314",
-      "company": "Crowe",
-      "title": "Third Party Risk Intern",
-      "applyUrl": "https://crowe.wd12.myworkdayjobs.com/External_Careers/job/Chicago-IL-USA/Third-Party-Risk-Intern_R-71033",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "dade26c66c5a57aab2b76314"
-      ],
-      "previousUrls": [
-        "https://crowe.wd12.myworkdayjobs.com/External_Careers/job/Chicago-IL-USA/Third-Party-Risk-Intern_R-71033"
-      ],
-      "sources": [
-        "Employer recovery"
+        "Dreamwork Business Internships 2027"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://crowe.wd12.myworkdayjobs.com/External_Careers/job/Chicago-IL-USA/Third-Party-Risk-Intern_R-71033",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
+            "url": "https://us-erac.icims.com/jobs/571270/accounting-internship---summer-2027/job",
+            "reason": "closed",
+            "detail": null
           }
         ],
-        "runStartedAt": "2026-11-10T04:18:31.745Z",
+        "runStartedAt": "2026-11-10T05:18:15.364Z",
+        "postingCheck": {
+          "status": "closed",
+          "checkedAt": "2026-11-10T05:24:00.386Z",
+          "httpStatus": 410,
+          "currentRun": true
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork Business Internships 2027",
+            "diagnosticName": "Dreamwork Business Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 475
+          }
+        ]
+      },
+      "category": "confirmed-closed",
+      "explanation": "A posting-specific check in this refresh explicitly reported closure.",
+      "nextAction": "No recovery based only on prior publication.",
+      "requiresInvestigation": false
+    },
+    {
+      "identity": "us-erac.icims.com:571650",
+      "id": "a8a8ff06a8d8596245153c5f",
+      "company": "Enterprise Mobility",
+      "title": "Tax Accounting Internship - Summer 2027",
+      "applyUrl": "https://us-erac.icims.com/jobs/571650/tax-accounting-internship---summer-2027/job",
+      "reason": "closed",
+      "previousIds": [
+        "a8a8ff06a8d8596245153c5f"
+      ],
+      "previousUrls": [
+        "https://us-erac.icims.com/jobs/571650/tax-accounting-internship---summer-2027/job"
+      ],
+      "sources": [
+        "Dreamwork Business Internships 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://us-erac.icims.com/jobs/571650/tax-accounting-internship---summer-2027/job",
+            "reason": "closed",
+            "detail": null
+          }
+        ],
+        "runStartedAt": "2026-11-10T05:18:15.364Z",
+        "postingCheck": {
+          "status": "closed",
+          "checkedAt": "2026-11-10T05:24:00.416Z",
+          "httpStatus": 410,
+          "currentRun": true
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork Business Internships 2027",
+            "diagnosticName": "Dreamwork Business Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 475
+          }
+        ]
+      },
+      "category": "confirmed-closed",
+      "explanation": "A posting-specific check in this refresh explicitly reported closure.",
+      "nextAction": "No recovery based only on prior publication.",
+      "requiresInvestigation": false
+    },
+    {
+      "identity": "https://go.vansh.nyc/bp?s=y",
+      "id": "1d77916e27d3e945e38b24ab",
+      "company": "RTX",
+      "title": "Embedded Software Engineering Intern 🇺🇸",
+      "applyUrl": "https://go.vansh.nyc/BP?s=y",
+      "reason": "role",
+      "previousIds": [
+        "1d77916e27d3e945e38b24ab"
+      ],
+      "previousUrls": [
+        "https://go.vansh.nyc/BP?s=y"
+      ],
+      "sources": [
+        "Vansh Summer 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://go.vansh.nyc/bp?s=y",
+            "reason": "role",
+            "detail": null
+          }
+        ],
+        "runStartedAt": "2026-11-10T05:18:15.364Z",
+        "postingCheck": {
+          "status": "unknown",
+          "checkedAt": "2026-11-10T00:25:21.089Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Vansh Summer 2027",
+            "diagnosticName": "Vansh Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1858
+          }
+        ]
+      },
+      "category": "scope-exclusion",
+      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
+      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
+      "requiresInvestigation": false
+    },
+    {
+      "identity": "boards.greenhouse.io:8504788002",
+      "id": "eaa9b13d0c0679509d1b6c0d",
+      "company": "SpaceX",
+      "title": "Mechanical Engineer, Tower/Launch and Test",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8504788002",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "eaa9b13d0c0679509d1b6c0d"
+      ],
+      "previousUrls": [
+        "https://boards.greenhouse.io/spacex/jobs/8504788002"
+      ],
+      "sources": [
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-10T05:18:15.364Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:crowe.wd12.myworkdayjobs.com:external_careers",
+          "id": "greenhouse:spacex",
           "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
+          "outcome": null,
+          "membership": "absent",
           "retired": false
         },
         "sources": [
           {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "boards.greenhouse.io:4653930007",
+      "id": "26db499ac8e1c74ceab8fe7d",
+      "company": "Anduril",
+      "title": "Warehouse Forklift Associate, Supply Chain",
+      "applyUrl": "https://boards.greenhouse.io/andurilindustries/jobs/4653930007",
+      "reason": "role",
+      "previousIds": [
+        "26db499ac8e1c74ceab8fe7d"
+      ],
+      "previousUrls": [
+        "https://boards.greenhouse.io/andurilindustries/jobs/4653930007"
+      ],
+      "sources": [
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://boards.greenhouse.io/andurilindustries/jobs/4653930007",
+            "reason": "role",
+            "detail": null
+          }
+        ],
+        "runStartedAt": "2026-11-10T05:18:15.364Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:andurilindustries",
+          "status": "ok",
+          "outcome": null,
+          "membership": "present",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "scope-exclusion",
+      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
+      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
+      "requiresInvestigation": false
+    },
+    {
+      "identity": "job-boards.greenhouse.io:6202755004",
+      "id": "1bed59019407b587f8743e22",
+      "company": "Viking Global",
+      "title": "Data Science Intern - Summer 2027",
+      "applyUrl": "https://job-boards.greenhouse.io/vikingglobalinvestors/jobs/6202755004",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "1bed59019407b587f8743e22"
+      ],
+      "previousUrls": [
+        "https://job-boards.greenhouse.io/vikingglobalinvestors/jobs/6202755004"
+      ],
+      "sources": [
+        "Internship Engine",
+        "Aprameya Summer Internships 2027",
+        "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://job-boards.greenhouse.io/vikingglobalinvestors/jobs/6202755004",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T05:18:15.364Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:vikingglobalinvestors",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
             "status": "ok",
-            "outcome": "partial",
-            "rows": 1208
+            "outcome": null,
+            "rows": 1243
+          },
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2639
+          },
+          {
+            "name": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
+            "diagnosticName": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 555
+          },
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
           }
         ]
       },
@@ -381,97 +486,96 @@
     }
   ],
   "rowCounts": {
-    "previous": 6875,
-    "current": 6883,
-    "net": 8,
+    "previous": 6883,
+    "current": 6879,
+    "net": -4,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 16,
-  "removedCount": 8,
+  "added": 5,
+  "removedCount": 9,
   "counts": {
-    "not-returned-by-sources": 4,
-    "absent-from-employer-board": 3,
-    "pendingVerification": 1
+    "not-returned-by-sources": 1,
+    "pendingVerification": 2,
+    "absent-from-employer-board": 2,
+    "closed": 2,
+    "role": 2
   },
   "removed": [
     {
-      "id": "de62b94b2f8d532feb5040ca",
-      "company": "Medtronic",
-      "title": "Quality Engineer I (CAS), Rice Creek, MN",
-      "applyUrl": "https://medtronic.wd1.myworkdayjobs.com/MedtronicCareers/job/Minneapolis-Minnesota-United-States-of-America/Quality-Engineer-I---CAS---Rice-Creek--MN_R80934-1",
+      "id": "36b0d30ef87c3b47dac3ec9f",
+      "company": "Raytheon",
+      "title": "Intern: Quality Engineering (Summer 2027)",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-CT-EAST-HARTFORD-ETC--400-Main-St--BLDG-ETC/Intern--Quality-Engineering--Summer-2027-_01868898",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "3898017f3312c414a54897b2",
-      "company": "GITAI",
-      "title": "Mechanical Engineer, Interceptor",
-      "applyUrl": "https://job-boards.greenhouse.io/gitai/jobs/5382146008",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "af0e26f5bd2d9dd3e5d50073",
-      "company": "GITAI",
-      "title": "Mechanical Engineer, Space Robotics",
-      "applyUrl": "https://job-boards.greenhouse.io/gitai/jobs/5200820008",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "dee7e0a4144f2223794ef66a",
-      "company": "Sonos",
-      "title": "Software Partner Engineering Intern (Boston)",
-      "applyUrl": "https://sonos.wd1.myworkdayjobs.com/Sonos/job/Boston-MA/Software-Partner-Engineering-Intern--Boston-_R2886-1",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "e1c9951fc4f53426483b9e46",
-      "company": "SpaceX",
-      "title": "Civil Engineer, Land Development (Starship Launch Pad)",
-      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8483977002",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "4f1f9551dbfe5f944810689a",
-      "company": "General Dynamics Information Technology",
-      "title": "GDIT Summer Internship Program-Summer 2027 Software Development Internship -Egg Harbor Township New Jersey",
-      "applyUrl": "https://gdit.wd5.myworkdayjobs.com/gdit_earlytalent/job/USA-NJ-Egg-Harbor-Township/GDIT-Summer-Internship-Program---Summer-2027-Software-Development-Internship--_RQ230643",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "7557287709a6cd59b1ccf7c9",
+      "id": "fccdc63dc43d12030cd26920",
       "company": "Leidos",
-      "title": "Software Development Intern",
-      "applyUrl": "https://leidos.wd5.myworkdayjobs.com/External/job/Gaithersburg-MD/Software-Development-Intern_R-00193103",
-      "reason": "not-returned-by-sources"
+      "title": "Software Engineering Intern",
+      "applyUrl": "https://leidos.wd5.myworkdayjobs.com/External/job/Arlington-VA/Software-Engineering-Intern_R-00195980",
+      "reason": "pendingVerification"
     },
     {
-      "id": "dade26c66c5a57aab2b76314",
-      "company": "Crowe",
-      "title": "Third Party Risk Intern",
-      "applyUrl": "https://crowe.wd12.myworkdayjobs.com/External_Careers/job/Chicago-IL-USA/Third-Party-Risk-Intern_R-71033",
+      "id": "3023e1613fbf6a8f8499c134",
+      "company": "SpaceX",
+      "title": "Launch Engineer, Fluid Systems (Starship)",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8504994002",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "bde9e3bd81d6bfd1bb64f2a3",
+      "company": "Enterprise Mobility",
+      "title": "Accounting Internship - Summer 2027",
+      "applyUrl": "https://us-erac.icims.com/jobs/571270/accounting-internship---summer-2027/job",
+      "reason": "closed"
+    },
+    {
+      "id": "a8a8ff06a8d8596245153c5f",
+      "company": "Enterprise Mobility",
+      "title": "Tax Accounting Internship - Summer 2027",
+      "applyUrl": "https://us-erac.icims.com/jobs/571650/tax-accounting-internship---summer-2027/job",
+      "reason": "closed"
+    },
+    {
+      "id": "1d77916e27d3e945e38b24ab",
+      "company": "RTX",
+      "title": "Embedded Software Engineering Intern 🇺🇸",
+      "applyUrl": "https://go.vansh.nyc/BP?s=y",
+      "reason": "role"
+    },
+    {
+      "id": "eaa9b13d0c0679509d1b6c0d",
+      "company": "SpaceX",
+      "title": "Mechanical Engineer, Tower/Launch and Test",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8504788002",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "26db499ac8e1c74ceab8fe7d",
+      "company": "Anduril",
+      "title": "Warehouse Forklift Associate, Supply Chain",
+      "applyUrl": "https://boards.greenhouse.io/andurilindustries/jobs/4653930007",
+      "reason": "role"
+    },
+    {
+      "id": "1bed59019407b587f8743e22",
+      "company": "Viking Global",
+      "title": "Data Science Intern - Summer 2027",
+      "applyUrl": "https://job-boards.greenhouse.io/vikingglobalinvestors/jobs/6202755004",
       "reason": "pendingVerification"
     }
   ],
   "urlChanges": [
     {
-      "id": "e112d3ea9584751acc7b003e",
-      "previousUrl": "https://jobs.ashbyhq.com/REGENT/1da518a0-9030-48d1-a58c-15d1f88f0eaa/application",
-      "applyUrl": "https://jobs.ashbyhq.com/REGENT/1da518a0-9030-48d1-a58c-15d1f88f0eaa"
+      "id": "04a5d004fbdd6d04f93e83f2",
+      "previousUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603"
     },
     {
-      "id": "66006340d0f81104bae2fc2a",
-      "previousUrl": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Florida-Apopka/XMLNAME-2027-Software-Testing-Engineering-Intern---Apopka-FL_R10259820-1",
-      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Florida-Apopka/XMLNAME-2027-Software-Testing-Engineering-Intern---Apopka-FL_R10259820-1"
-    },
-    {
-      "id": "64c57b2f7401e7264f7b42da",
-      "previousUrl": "https://gdit.wd5.myworkdayjobs.com/gdit_earlytalent/job/USA-VA-Falls-Church/Financial-Data-Analyst-Intern--Seasonal-_RQ230761",
-      "applyUrl": "https://gdit.wd5.myworkdayjobs.com/GDIT_EarlyTalent/job/USA-VA-Falls-Church/Financial-Data-Analyst-Intern--Seasonal-_RQ230761"
-    },
-    {
-      "id": "dec17dd7c886c9ef57d35a82",
-      "previousUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603",
-      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603"
+      "id": "cd9ab86f753f801b68068408",
+      "previousUrl": "https://globalfoundries.wd1.myworkdayjobs.com/en-US/External/job/USA---Texas---Richardson/AI-ML-Systems-Engineer--2027-New-College-Graduate-_JR-2604163",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Richardson/AI-ML-Systems-Engineer--2027-New-College-Graduate-_JR-2604163"
     }
   ]
 }
