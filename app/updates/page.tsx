@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 
 // Monthly summaries cover meaningful changes, not routine job refreshes.
 const updates = [
-  { date: "2026-11", label: "November 2026", title: "Find your field more easily", description: "Added a dedicated Design category and clearer Product / Program browsing, including technical program management. Regrouped solutions and support roles, improved role matching, and clarified total versus filtered listing counts." },
+  { date: "2026-11", label: "November 2026", title: "Find your field more easily", description: "Added a dedicated Design category and clearer Product / Program browsing, including technical program management. Improved role matching and clarified total versus filtered listing counts." },
   { date: "2026-10", label: "October 2026", title: "More opportunities and a clearer experience", description: "Expanded student and new-grad coverage, added federal opportunities, and strengthened employer and listing checks. Introduced optional activity analytics, hourly job refreshes, and this updates page." },
-  { date: "2026-09", label: "September 2026", title: "Tools for your job search", description: "Added saved jobs and an application tracker with statuses, notes, and downloadable backups. Broadened early-career roles, introduced metro-area filters, and made listing sources easier to explore." },
+  { date: "2026-09", label: "September 2026", title: "Tools for your job search", description: "Added saved jobs and an application tracker with statuses, notes, and downloadable backups. Expanded early-career coverage and added metro-area filters and clearer source links." },
   { date: "2026-08", label: "August 2026", title: "The project begins", description: "Launched the first version of the job board that became empluzzed. Expanded the initial listings and added multi-select filters and prefiltered role views to make browsing easier." },
 ];
 
