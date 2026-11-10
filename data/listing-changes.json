@@ -1,38 +1,38 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-10T12:25:15.592Z",
-  "previousGeneratedAt": "2026-11-10T11:24:51.034Z",
-  "currentSnapshotGeneratedAt": "2026-11-10T12:25:15.592Z",
+  "generatedAt": "2026-11-10T13:26:36.609Z",
+  "previousGeneratedAt": "2026-11-10T12:25:15.592Z",
+  "currentSnapshotGeneratedAt": "2026-11-10T13:26:36.609Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6836,
-    "current": 6842,
-    "retained": 6833,
-    "added": 9,
-    "removed": 3,
-    "net": 6
+    "previous": 6842,
+    "current": 6825,
+    "retained": 6823,
+    "added": 2,
+    "removed": 19,
+    "net": -17
   },
   "categoryCounts": {
     "confirmed-closed": 0,
     "scope-exclusion": 0,
-    "verification-pending": 0,
-    "source-unavailable": 0,
-    "unresolved": 3,
+    "verification-pending": 11,
+    "source-unavailable": 2,
+    "unresolved": 6,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site:r26480",
-      "id": "5fdd656669307202261ab395",
-      "company": "Sierra Space",
-      "title": "Mechanical Engineer I",
-      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Centennial-CO/Mechanical-Engineer-I_R26480",
+      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01885871",
+      "id": "ee6cab0ff303f01a3a1b08a1",
+      "company": "Raytheon",
+      "title": "Software Engineer I",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-MA-TEWKSBURY-TB3--50-Apple-Hill-Dr--CONCORD-BLDG-Tewksbury-Tb3-300-Concord/Software-Engineer-I_01885871-1",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "5fdd656669307202261ab395"
+        "ee6cab0ff303f01a3a1b08a1"
       ],
       "previousUrls": [
-        "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Centennial-CO/Mechanical-Engineer-I_R26480"
+        "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-MA-TEWKSBURY-TB3--50-Apple-Hill-Dr--CONCORD-BLDG-Tewksbury-Tb3-300-Concord/Software-Engineer-I_01885871-1"
       ],
       "sources": [
         "Direct ATS (Workday)"
@@ -40,11 +40,55 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-10T12:18:19.053Z",
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:sierraspace.wd1.myworkdayjobs.com:sierra_space_external_career_site",
+          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:micron.wd1.myworkdayjobs.com:external:jr116753",
+      "id": "605809f240f451dc4bfa06f6",
+      "company": "Micron",
+      "title": "New College Grad - PCVD Process Engineer",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/PCVD-Process-Engineer_JR116753-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "605809f240f451dc4bfa06f6"
+      ],
+      "previousUrls": [
+        "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/PCVD-Process-Engineer_JR116753-1"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:micron.wd1.myworkdayjobs.com:external",
           "status": "ok",
           "outcome": "healthy",
           "membership": "unknown",
@@ -66,27 +110,89 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:pae.wd1.myworkdayjobs.com:amentum_careers:r0174696",
-      "id": "8d3e55a484ced4fd0601f461",
-      "company": "Amentum",
-      "title": "Plant Engineer I – Flowsheet Integration",
-      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-WA-Richland/Plant-Engineer-I---Flowsheet-Integration_R0174696-1",
+      "identity": "workday:abbott.wd5.myworkdayjobs.com:abbottcareers:31163046",
+      "id": "cc536b038e7bed5b25200d8c",
+      "company": "Abbott",
+      "title": "Quality Engineer I",
+      "applyUrl": "https://abbott.wd5.myworkdayjobs.com/abbottcareers/job/United-States---Maine---Scarborough/Quality-Engineer-I_31163046-1",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "8d3e55a484ced4fd0601f461"
+        "cc536b038e7bed5b25200d8c"
       ],
       "previousUrls": [
-        "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-WA-Richland/Plant-Engineer-I---Flowsheet-Integration_R0174696-1"
+        "https://abbott.wd5.myworkdayjobs.com/abbottcareers/job/United-States---Maine---Scarborough/Quality-Engineer-I_31163046-1"
       ],
       "sources": [
-        "Direct ATS (Workday)"
+        "Employer recovery"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-10T12:18:19.053Z",
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
         "postingCheck": null,
         "workdayChecks": [],
+        "board": {
+          "id": "workday:abbott.wd5.myworkdayjobs.com:abbottcareers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1201
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:pae.wd1.myworkdayjobs.com:amentum_careers:r0172603",
+      "id": "04a5d004fbdd6d04f93e83f2",
+      "company": "Amentum",
+      "title": "Junior Web Developer",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "04a5d004fbdd6d04f93e83f2"
+      ],
+      "previousUrls": [
+        "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603"
+      ],
+      "sources": [
+        "Aprameya Off-Cycle Internships 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603",
+            "status": "live"
+          }
+        ],
         "board": {
           "id": "workday:pae.wd1.myworkdayjobs.com:amentum_careers",
           "status": "ok",
@@ -96,6 +202,829 @@
         },
         "sources": [
           {
+            "name": "Aprameya Off-Cycle Internships 2027",
+            "diagnosticName": "Aprameya Off-Cycle Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 731
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1201
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:soti.wd3.myworkdayjobs.com:soti-next-gen:r10647",
+      "id": "ac981aeab60c20bd330d903b",
+      "company": "SOTI",
+      "title": "Software Developer Intern - Server (May 2027 - 12 Months)",
+      "applyUrl": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Server--May-2027---12-Months-_R10647",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "ac981aeab60c20bd330d903b"
+      ],
+      "previousUrls": [
+        "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Server--May-2027---12-Months-_R10647"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Server--May-2027---12-Months-_R10647",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://soti.wd3.myworkdayjobs.com/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Server--May-2027---12-Months-_R10647",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://soti.wd3.myworkdayjobs.com/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Server--May-2027---12-Months-_R10647",
+            "status": "live"
+          }
+        ],
+        "board": {
+          "id": "workday:soti.wd3.myworkdayjobs.com:soti-next-gen",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2639
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1201
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:soti.wd3.myworkdayjobs.com:soti-next-gen:r10620",
+      "id": "cdb3887366f4b4ef889d2483",
+      "company": "SOTI",
+      "title": "Software Developer Intern - Android (May 2027 - 12 Months)",
+      "applyUrl": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Android--May-2027---12-Months-_R10620",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "cdb3887366f4b4ef889d2483"
+      ],
+      "previousUrls": [
+        "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Android--May-2027---12-Months-_R10620"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Android--May-2027---12-Months-_R10620",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://soti.wd3.myworkdayjobs.com/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Android--May-2027---12-Months-_R10620",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://soti.wd3.myworkdayjobs.com/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Android--May-2027---12-Months-_R10620",
+            "status": "live"
+          }
+        ],
+        "board": {
+          "id": "workday:soti.wd3.myworkdayjobs.com:soti-next-gen",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2639
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1201
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033872",
+      "id": "456a41d9e53e1db90e2a17de",
+      "company": "The Federal Reserve System",
+      "title": "2027 Summer Internship Program - Office of Employee Benefits (Investment Management)",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Newark-NJ/XMLNAME-2027-Summer-Internship-Program---Office-of-Employee-Benefits--Investment-Management-_R-0000033872",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "456a41d9e53e1db90e2a17de"
+      ],
+      "previousUrls": [
+        "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Newark-NJ/XMLNAME-2027-Summer-Internship-Program---Office-of-Employee-Benefits--Investment-Management-_R-0000033872"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Newark-NJ/XMLNAME-2027-Summer-Internship-Program---Office-of-Employee-Benefits--Investment-Management-_R-0000033872",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Newark-NJ/XMLNAME-2027-Summer-Internship-Program---Office-of-Employee-Benefits--Investment-Management-_R-0000033872",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Newark-NJ/XMLNAME-2027-Summer-Internship-Program---Office-of-Employee-Benefits--Investment-Management-_R-0000033872",
+            "status": "live"
+          }
+        ],
+        "board": {
+          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2639
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1201
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:soti.wd3.myworkdayjobs.com:soti-next-gen:r10551",
+      "id": "75bb8140e8abb0860a915465",
+      "company": "SOTI",
+      "title": "Software Developer Intern - SOTI MobiControl Apple HQ (January 2027 12 Months)",
+      "applyUrl": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---SOTI-MobiControl-Apple-HQ--January-2027-12-Months-_R10551-2",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "75bb8140e8abb0860a915465"
+      ],
+      "previousUrls": [
+        "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---SOTI-MobiControl-Apple-HQ--January-2027-12-Months-_R10551-2"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---SOTI-MobiControl-Apple-HQ--January-2027-12-Months-_R10551-2",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://soti.wd3.myworkdayjobs.com/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---SOTI-MobiControl-Apple-HQ--January-2027-12-Months-_R10551-2",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://soti.wd3.myworkdayjobs.com/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---SOTI-MobiControl-Apple-HQ--January-2027-12-Months-_R10551-2",
+            "status": "live"
+          }
+        ],
+        "board": {
+          "id": "workday:soti.wd3.myworkdayjobs.com:soti-next-gen",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2639
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1201
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033614",
+      "id": "c0692df8f30ea81ef809d203",
+      "company": "The Federal Reserve System",
+      "title": "Summer 2027 Intern-Cloud Engineering",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Cloud-Engineering_R-0000033614",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "c0692df8f30ea81ef809d203"
+      ],
+      "previousUrls": [
+        "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Cloud-Engineering_R-0000033614"
+      ],
+      "sources": [
+        "Internship Engine",
+        "Aprameya Summer Internships 2027",
+        "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Cloud-Engineering_R-0000033614",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Chicago-IL/Summer-2027-Intern-Cloud-Engineering_R-0000033614",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/en-US/frs/job/Chicago-IL/Summer-2027-Intern-Cloud-Engineering_R-0000033614",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Cloud-Engineering_R-0000033614",
+            "status": "live"
+          }
+        ],
+        "board": {
+          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1235
+          },
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2639
+          },
+          {
+            "name": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
+            "diagnosticName": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 553
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1201
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033637",
+      "id": "20f74fa9906a0bc3129a3a71",
+      "company": "The Federal Reserve System",
+      "title": "Summer 2027 Intern-Computer Science and Software Engineering",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Computer-Science-and-Software-Engineering_R-0000033637",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "20f74fa9906a0bc3129a3a71"
+      ],
+      "previousUrls": [
+        "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Computer-Science-and-Software-Engineering_R-0000033637"
+      ],
+      "sources": [
+        "Internship Engine",
+        "Aprameya Summer Internships 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Computer-Science-and-Software-Engineering_R-0000033637",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Chicago-IL/Summer-2027-Intern-Computer-Science-and-Software-Engineering_R-0000033637",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Computer-Science-and-Software-Engineering_R-0000033637",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Computer-Science-and-Software-Engineering_R-0000033637",
+            "status": "live"
+          }
+        ],
+        "board": {
+          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1235
+          },
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2639
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1201
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033612",
+      "id": "c4d738daf24d3b58cacb4cd1",
+      "company": "The Federal Reserve System",
+      "title": "Summer 2027 Intern-Cybersecurity and Information Security",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Cybersecurity-and-Information-Security_R-0000033612-1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "c4d738daf24d3b58cacb4cd1"
+      ],
+      "previousUrls": [
+        "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Cybersecurity-and-Information-Security_R-0000033612-1"
+      ],
+      "sources": [
+        "Internship Engine",
+        "Aprameya Summer Internships 2027",
+        "Keryx Non-Software Summer 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Cybersecurity-and-Information-Security_R-0000033612-1",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Chicago-IL/Summer-2027-Intern-Cybersecurity-and-Information-Security_R-0000033612-1",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Cybersecurity-and-Information-Security_R-0000033612-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Cybersecurity-and-Information-Security_R-0000033612-1",
+            "status": "live"
+          }
+        ],
+        "board": {
+          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1235
+          },
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2639
+          },
+          {
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1532
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1201
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033609",
+      "id": "14240a7b575a7f706ee53888",
+      "company": "The Federal Reserve System",
+      "title": "Summer 2027 Intern-Data Science and Business Analytics",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Data-Science-and-Business-Analytics_R-0000033609",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "14240a7b575a7f706ee53888"
+      ],
+      "previousUrls": [
+        "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Data-Science-and-Business-Analytics_R-0000033609"
+      ],
+      "sources": [
+        "Internship Engine",
+        "Aprameya Summer Internships 2027",
+        "Dreamwork Business Internships 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Data-Science-and-Business-Analytics_R-0000033609",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Chicago-IL/Summer-2027-Intern-Data-Science-and-Business-Analytics_R-0000033609",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Data-Science-and-Business-Analytics_R-0000033609",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Data-Science-and-Business-Analytics_R-0000033609",
+            "status": "live"
+          }
+        ],
+        "board": {
+          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1235
+          },
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2639
+          },
+          {
+            "name": "Dreamwork Business Internships 2027",
+            "diagnosticName": "Dreamwork Business Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 475
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1201
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033634",
+      "id": "b22c93f5de0742485063ac7a",
+      "company": "The Federal Reserve System",
+      "title": "Summer 2027 Intern- PhD Data Science or Computer Science",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "b22c93f5de0742485063ac7a"
+      ],
+      "previousUrls": [
+        "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634",
+            "status": "live"
+          }
+        ],
+        "board": {
+          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2639
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1201
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:globalfoundries.wd1.myworkdayjobs.com:external:jr-2604483",
+      "id": "3eb39899081ee36e31abbbe4",
+      "company": "GlobalFoundries",
+      "title": "SEC Reporting & Accounting Intern (Summer 2027)",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Austin/SEC-Reporting---Accounting-Intern--Summer-2027-_JR-2604483",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "3eb39899081ee36e31abbbe4"
+      ],
+      "previousUrls": [
+        "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Austin/SEC-Reporting---Accounting-Intern--Summer-2027-_JR-2604483"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:globalfoundries.wd1.myworkdayjobs.com:external",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
             "name": "Direct ATS (Workday)",
             "diagnosticName": null,
             "status": "not-checked",
@@ -110,37 +1039,37 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "jobs.ashbyhq.com:2449a05b-81da-40de-b64d-3436c8ddb1df",
-      "id": "61d93645e597eb8e06038417",
-      "company": "Redgate",
-      "title": "Software Engineer Intern",
-      "applyUrl": "https://jobs.ashbyhq.com/red-gate/2449a05b-81da-40de-b64d-3436c8ddb1df/application",
-      "reason": "absent-from-employer-board",
+      "identity": "workday:globalfoundries.wd1.myworkdayjobs.com:external:jr-2604217",
+      "id": "917c631328dfca9710169042",
+      "company": "GlobalFoundries",
+      "title": "Sales Account Manager Intern, Electrical Engineering, Santa Clara (Summer 2027)",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---California---Santa-Clara/Sales-Account-Manager-Intern--Electrical-Engineering--Santa-Clara--Summer-2027-_JR-2604217",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "61d93645e597eb8e06038417"
+        "917c631328dfca9710169042"
       ],
       "previousUrls": [
-        "https://jobs.ashbyhq.com/red-gate/2449a05b-81da-40de-b64d-3436c8ddb1df/application"
+        "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---California---Santa-Clara/Sales-Account-Manager-Intern--Electrical-Engineering--Santa-Clara--Summer-2027-_JR-2604217"
       ],
       "sources": [
-        "Direct ATS (Ashby)"
+        "Direct ATS (Workday)"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-10T12:18:19.053Z",
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "ashby:red-gate",
+          "id": "workday:globalfoundries.wd1.myworkdayjobs.com:external",
           "status": "ok",
-          "outcome": null,
-          "membership": "absent",
+          "outcome": "healthy",
+          "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Direct ATS (Ashby)",
+            "name": "Direct ATS (Workday)",
             "diagnosticName": null,
             "status": "not-checked",
             "outcome": null,
@@ -152,69 +1081,370 @@
       "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
       "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
       "requiresInvestigation": true
+    },
+    {
+      "identity": "jobs.lever.co:f087e106-e541-458c-a3d2-6101c4f04465",
+      "id": "1c595a6621db5a7b80892003",
+      "company": "Wadetrim",
+      "title": "Engineer Summer Intern - #3029",
+      "applyUrl": "https://jobs.lever.co/wadetrim/f087e106-e541-458c-a3d2-6101c4f04465/apply",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "1c595a6621db5a7b80892003"
+      ],
+      "previousUrls": [
+        "https://jobs.lever.co/wadetrim/f087e106-e541-458c-a3d2-6101c4f04465/apply"
+      ],
+      "sources": [
+        "Direct ATS (Lever)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "lever:api.lever.co:wadetrim",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Lever)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:stryker.wd1.myworkdayjobs.com:strykercareers:r572604",
+      "id": "c62efd50140a3cebc0266bfd",
+      "company": "Stryker",
+      "title": "Summer 2027 Internship - Electrical Engineering - California",
+      "applyUrl": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers/job/San-Jose-California/Summer-2027-Internship---Electrical-Engineering---California_R572604",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "c62efd50140a3cebc0266bfd"
+      ],
+      "previousUrls": [
+        "https://stryker.wd1.myworkdayjobs.com/StrykerCareers/job/San-Jose-California/Summer-2027-Internship---Electrical-Engineering---California_R572604"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:stryker.wd1.myworkdayjobs.com:strykercareers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:globalfoundries.wd1.myworkdayjobs.com:external:jr-2604665",
+      "id": "473e5a97b0b4ab02ed5b2b7e",
+      "company": "GlobalFoundries",
+      "title": "Advanced Manufacturing Process Engineering Intern, Sophomore (Summer 2027)",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Vermont---Essex-Junction/Advanced-Manufacturing-Process-Engineering-Intern--Sophomore--Summer-2027-_JR-2604665",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "473e5a97b0b4ab02ed5b2b7e"
+      ],
+      "previousUrls": [
+        "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Vermont---Essex-Junction/Advanced-Manufacturing-Process-Engineering-Intern--Sophomore--Summer-2027-_JR-2604665"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:globalfoundries.wd1.myworkdayjobs.com:external",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:pae.wd1.myworkdayjobs.com:amentum_careers:r0167603",
+      "id": "dec17dd7c886c9ef57d35a82",
+      "company": "Amentum",
+      "title": "Software Developer - Junior (Team 01)",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "dec17dd7c886c9ef57d35a82"
+      ],
+      "previousUrls": [
+        "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T13:18:34.813Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603",
+            "status": "live"
+          }
+        ],
+        "board": {
+          "id": "workday:pae.wd1.myworkdayjobs.com:amentum_careers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2639
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1201
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
     }
   ],
   "rowCounts": {
-    "previous": 6836,
-    "current": 6842,
-    "net": 6,
+    "previous": 6842,
+    "current": 6825,
+    "net": -17,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 9,
-  "removedCount": 3,
+  "added": 2,
+  "removedCount": 19,
   "counts": {
-    "not-returned-by-sources": 2,
+    "not-returned-by-sources": 7,
+    "pendingVerification": 11,
     "absent-from-employer-board": 1
   },
   "removed": [
     {
-      "id": "5fdd656669307202261ab395",
-      "company": "Sierra Space",
-      "title": "Mechanical Engineer I",
-      "applyUrl": "https://sierraspace.wd1.myworkdayjobs.com/Sierra_Space_External_Career_Site/job/Centennial-CO/Mechanical-Engineer-I_R26480",
+      "id": "ee6cab0ff303f01a3a1b08a1",
+      "company": "Raytheon",
+      "title": "Software Engineer I",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-MA-TEWKSBURY-TB3--50-Apple-Hill-Dr--CONCORD-BLDG-Tewksbury-Tb3-300-Concord/Software-Engineer-I_01885871-1",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "8d3e55a484ced4fd0601f461",
+      "id": "605809f240f451dc4bfa06f6",
+      "company": "Micron",
+      "title": "New College Grad - PCVD Process Engineer",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/PCVD-Process-Engineer_JR116753-1",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "cc536b038e7bed5b25200d8c",
+      "company": "Abbott",
+      "title": "Quality Engineer I",
+      "applyUrl": "https://abbott.wd5.myworkdayjobs.com/abbottcareers/job/United-States---Maine---Scarborough/Quality-Engineer-I_31163046-1",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "04a5d004fbdd6d04f93e83f2",
       "company": "Amentum",
-      "title": "Plant Engineer I – Flowsheet Integration",
-      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-WA-Richland/Plant-Engineer-I---Flowsheet-Integration_R0174696-1",
+      "title": "Junior Web Developer",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "ac981aeab60c20bd330d903b",
+      "company": "SOTI",
+      "title": "Software Developer Intern - Server (May 2027 - 12 Months)",
+      "applyUrl": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Server--May-2027---12-Months-_R10647",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "cdb3887366f4b4ef889d2483",
+      "company": "SOTI",
+      "title": "Software Developer Intern - Android (May 2027 - 12 Months)",
+      "applyUrl": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---Android--May-2027---12-Months-_R10620",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "456a41d9e53e1db90e2a17de",
+      "company": "The Federal Reserve System",
+      "title": "2027 Summer Internship Program - Office of Employee Benefits (Investment Management)",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Newark-NJ/XMLNAME-2027-Summer-Internship-Program---Office-of-Employee-Benefits--Investment-Management-_R-0000033872",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "75bb8140e8abb0860a915465",
+      "company": "SOTI",
+      "title": "Software Developer Intern - SOTI MobiControl Apple HQ (January 2027 12 Months)",
+      "applyUrl": "https://soti.wd3.myworkdayjobs.com/en-US/SOTI-Next-Gen/job/Mississauga-Canada--Meadowvale-Office-HQ/Software-Developer-Intern---SOTI-MobiControl-Apple-HQ--January-2027-12-Months-_R10551-2",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "c0692df8f30ea81ef809d203",
+      "company": "The Federal Reserve System",
+      "title": "Summer 2027 Intern-Cloud Engineering",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Cloud-Engineering_R-0000033614",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "20f74fa9906a0bc3129a3a71",
+      "company": "The Federal Reserve System",
+      "title": "Summer 2027 Intern-Computer Science and Software Engineering",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Computer-Science-and-Software-Engineering_R-0000033637",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "c4d738daf24d3b58cacb4cd1",
+      "company": "The Federal Reserve System",
+      "title": "Summer 2027 Intern-Cybersecurity and Information Security",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Cybersecurity-and-Information-Security_R-0000033612-1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "14240a7b575a7f706ee53888",
+      "company": "The Federal Reserve System",
+      "title": "Summer 2027 Intern-Data Science and Business Analytics",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern-Data-Science-and-Business-Analytics_R-0000033609",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "b22c93f5de0742485063ac7a",
+      "company": "The Federal Reserve System",
+      "title": "Summer 2027 Intern- PhD Data Science or Computer Science",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "3eb39899081ee36e31abbbe4",
+      "company": "GlobalFoundries",
+      "title": "SEC Reporting & Accounting Intern (Summer 2027)",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Austin/SEC-Reporting---Accounting-Intern--Summer-2027-_JR-2604483",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "61d93645e597eb8e06038417",
-      "company": "Redgate",
-      "title": "Software Engineer Intern",
-      "applyUrl": "https://jobs.ashbyhq.com/red-gate/2449a05b-81da-40de-b64d-3436c8ddb1df/application",
+      "id": "917c631328dfca9710169042",
+      "company": "GlobalFoundries",
+      "title": "Sales Account Manager Intern, Electrical Engineering, Santa Clara (Summer 2027)",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---California---Santa-Clara/Sales-Account-Manager-Intern--Electrical-Engineering--Santa-Clara--Summer-2027-_JR-2604217",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "1c595a6621db5a7b80892003",
+      "company": "Wadetrim",
+      "title": "Engineer Summer Intern - #3029",
+      "applyUrl": "https://jobs.lever.co/wadetrim/f087e106-e541-458c-a3d2-6101c4f04465/apply",
       "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "c62efd50140a3cebc0266bfd",
+      "company": "Stryker",
+      "title": "Summer 2027 Internship - Electrical Engineering - California",
+      "applyUrl": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers/job/San-Jose-California/Summer-2027-Internship---Electrical-Engineering---California_R572604",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "473e5a97b0b4ab02ed5b2b7e",
+      "company": "GlobalFoundries",
+      "title": "Advanced Manufacturing Process Engineering Intern, Sophomore (Summer 2027)",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Vermont---Essex-Junction/Advanced-Manufacturing-Process-Engineering-Intern--Sophomore--Summer-2027-_JR-2604665",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "dec17dd7c886c9ef57d35a82",
+      "company": "Amentum",
+      "title": "Software Developer - Junior (Team 01)",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603",
+      "reason": "pendingVerification"
     }
   ],
   "urlChanges": [
     {
-      "id": "04a5d004fbdd6d04f93e83f2",
-      "previousUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603",
-      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603"
-    },
-    {
-      "id": "dd9292c2ef462a976abb6ba8",
-      "previousUrl": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Sunnyvale-California-United-States-of-America/XMLNAME-2027-Intern---AI-ML-Engineer---Capacity---Performance-Engineering--Autonomous-Vehicles_JR-202622406",
-      "applyUrl": "https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Sunnyvale-California-United-States-of-America/XMLNAME-2027-Intern---AI-ML-Engineer---Capacity---Performance-Engineering--Autonomous-Vehicles_JR-202622406"
-    },
-    {
-      "id": "e295753b222edb3a9ac75138",
-      "previousUrl": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Sunnyvale-California-United-States-of-America/XMLNAME-2027-Intern---AI-ML-Engineer--Autonomous-Vehicle-ML-Infrastructure_JR-202622410",
-      "applyUrl": "https://generalmotors.wd5.myworkdayjobs.com/en-US/Careers_GM/job/Sunnyvale-California-United-States-of-America/XMLNAME-2027-Intern---AI-ML-Engineer--Autonomous-Vehicle-ML-Infrastructure_JR-202622410"
-    },
-    {
-      "id": "e38060a26f18c088282202ff",
-      "previousUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/McLean-VA/University---Summer-27--Cybersecurity-Analyst-Intern_R0248214",
-      "applyUrl": "https://bah.wd1.myworkdayjobs.com/en-US/BAH_Jobs/job/McLean-VA/University---Summer-27--Cybersecurity-Analyst-Intern_R0248214"
-    },
-    {
-      "id": "dec17dd7c886c9ef57d35a82",
-      "previousUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603",
-      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603"
+      "id": "cd9ab86f753f801b68068408",
+      "previousUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Richardson/AI-ML-Systems-Engineer--2027-New-College-Graduate-_JR-2604163",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/en-US/External/job/USA---Texas---Richardson/AI-ML-Systems-Engineer--2027-New-College-Graduate-_JR-2604163"
     }
   ]
 }
