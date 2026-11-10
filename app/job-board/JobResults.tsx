@@ -3,11 +3,30 @@ import { useState } from "react";
 import { trackActivity } from "@/lib/activity-client";
 import { ApplicationStatusSelect } from "./ApplicationStatusSelect";
 import { companyTierLabel } from "@/lib/company-tiers";
-import { daysAgo, type PublicJob } from "@/lib/jobs";
+import type { PublicJob } from "@/lib/jobs";
 import { displayText, getLinkedInUrl, getLocationDisplay, modeLabels, type ViewMode } from "./job-board-utils";
 
 const logoToken = process.env.NEXT_PUBLIC_LOGO_DEV_TOKEN;
 const showCompanyLogos = Boolean(logoToken);
+
+const listingDateFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
+function ListingDate({ job }: { job: PublicJob }) {
+  const timestamp = Date.parse(job.postedAt);
+  if (!Number.isFinite(timestamp)) return <span>Date unavailable</span>;
+
+  const label = job.postedAtSource === "first_seen"
+    ? "Discovered"
+    : job.postedAtSource === "relative_derived"
+      ? "Estimated date"
+      : "Listing date";
+  return <span>{label} <time dateTime={job.postedAt.slice(0, 10)}>{listingDateFormatter.format(timestamp)}</time></span>;
+}
 
 type JobResultsProps = {
   activeView: ViewMode;
@@ -97,7 +116,11 @@ function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJob
           return (
             <article className={`job-table-row ${onHideCompany ? "with-more-actions" : ""}`} role="row" key={job.id}>
               <div className="job-table-company" role="cell" data-label="Company">{displayText(job.company)}</div>
-              <div className="job-table-title" role="cell" data-label="Position">{displayText(job.title)}<FederalEligibility job={job} /></div>
+              <div className="job-table-title" role="cell" data-label="Position">
+                {displayText(job.title)}
+                <div className="job-table-date"><ListingDate job={job} /></div>
+                <FederalEligibility job={job} />
+              </div>
               <div className="job-table-location" role="cell" data-label="Location">
                 {location.hasMore
                   ? <span className="location-with-more" tabIndex={0}><span className="location-label">{location.compact}</span><span className="location-popover" role="tooltip">{location.full}</span></span>
@@ -141,9 +164,9 @@ function CardJobView({ className, jobs, totalJobCount, emptyMessage, savedJobIds
                 <span>{getLocationDisplay(job.location, job.workMode).full}</span>
                 {modeLabels[job.workMode] ? <span>{modeLabels[job.workMode]}</span> : null}
                 {job.term !== "Not stated" ? <span>{displayText(job.term)}</span> : null}
+                <ListingDate job={job} />
               </div>
             </div>
-            <div className="posted-age">{daysAgo(job.postedAt)} days</div>
             <div className="actions">
               <SaveButton isSaved={savedJobIds.has(job.id)} job={job} onToggle={() => onToggleSaved(job.id)} />
               <a className="button secondary" href={getLinkedInUrl(job)} target="_blank" rel="noreferrer">LinkedIn</a>
@@ -153,7 +176,6 @@ function CardJobView({ className, jobs, totalJobCount, emptyMessage, savedJobIds
             </div>
             {expandedJobId === job.id ? (
               <div className="job-info">
-                <p><strong>Posted:</strong> {new Date(job.postedAt).toLocaleDateString()}</p>
                 <p><strong>Employees:</strong> {job.employeeCount ? `${job.employeeCount.toLocaleString()}+` : "Not listed"}</p>
                 <p><strong>Status:</strong> {companyTierLabel(job.company)}</p>
               </div>
