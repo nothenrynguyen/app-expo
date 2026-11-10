@@ -1,105 +1,50 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-10T17:27:22.556Z",
-  "previousGeneratedAt": "2026-11-10T16:27:35.853Z",
-  "currentSnapshotGeneratedAt": "2026-11-10T17:27:22.556Z",
+  "generatedAt": "2026-11-10T18:28:04.536Z",
+  "previousGeneratedAt": "2026-11-10T17:27:22.556Z",
+  "currentSnapshotGeneratedAt": "2026-11-10T18:28:04.536Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6810,
-    "current": 6842,
-    "retained": 6786,
-    "added": 56,
-    "removed": 24,
-    "net": 32
+    "previous": 6842,
+    "current": 6836,
+    "retained": 6819,
+    "added": 17,
+    "removed": 23,
+    "net": -6
   },
   "categoryCounts": {
     "confirmed-closed": 0,
-    "scope-exclusion": 4,
-    "verification-pending": 8,
-    "source-unavailable": 3,
-    "unresolved": 9,
+    "scope-exclusion": 1,
+    "verification-pending": 14,
+    "source-unavailable": 2,
+    "unresolved": 6,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "job-boards.greenhouse.io:7976602003",
-      "id": "617f95f02a05b966e6aabe05",
-      "company": "Axon",
-      "title": "AI Research Scientist II",
-      "applyUrl": "https://job-boards.greenhouse.io/axon/jobs/7976602003",
-      "reason": "absent-from-employer-board",
+      "identity": "workday:micron.wd1.myworkdayjobs.com:external:jr116753",
+      "id": "605809f240f451dc4bfa06f6",
+      "company": "Micron",
+      "title": "New College Grad - PCVD Process Engineer",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/PCVD-Process-Engineer_JR116753-1",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "617f95f02a05b966e6aabe05"
+        "605809f240f451dc4bfa06f6"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/axon/jobs/7976602003"
+        "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/PCVD-Process-Engineer_JR116753-1"
       ],
       "sources": [
-        "Direct ATS (Greenhouse)"
+        "Direct ATS (Workday)"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:axon",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01886102",
-      "id": "439e28e38f16fad222d03b80",
-      "company": "RTX",
-      "title": "Part Time Systems Engineer Co-Op (Remote)",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-Time-Systems-Engineer-Co-Op--Remote-_01886102",
-      "reason": "role",
-      "previousIds": [
-        "439e28e38f16fad222d03b80"
-      ],
-      "previousUrls": [
-        "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-Time-Systems-Engineer-Co-Op--Remote-_01886102"
-      ],
-      "sources": [
-        "Aprameya Off-Cycle Internships 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-Time-Systems-Engineer-Co-Op--Remote-_01886102",
-            "reason": "role",
-            "detail": null
-          }
-        ],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
-        "postingCheck": null,
-        "workdayChecks": [
-          {
-            "url": "https://globalhr.wd5.myworkdayjobs.com/rec_rtx_ext_gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-Time-Systems-Engineer-Co-Op--Remote-_01886102",
-            "status": "ineligible"
-          }
-        ],
-        "board": {
-          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
+          "id": "workday:micron.wd1.myworkdayjobs.com:external",
           "status": "ok",
           "outcome": "healthy",
           "membership": "unknown",
@@ -107,31 +52,31 @@
         },
         "sources": [
           {
-            "name": "Aprameya Off-Cycle Internships 2027",
-            "diagnosticName": "Aprameya Off-Cycle Internships 2027",
-            "status": "ok",
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
             "outcome": null,
-            "rows": 731
+            "rows": null
           }
         ]
       },
-      "category": "scope-exclusion",
-      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
-      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
-      "requiresInvestigation": false
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
     },
     {
-      "identity": "job-boards.greenhouse.io:8259786",
-      "id": "c665d763687d6614f9f1081e",
-      "company": "CLEAR",
-      "title": "Forward Deployed AI Engineer I",
-      "applyUrl": "https://job-boards.greenhouse.io/clear/jobs/8259786",
+      "identity": "job-boards.greenhouse.io:4729848005",
+      "id": "ae52b2f3e072d19a8fb24c94",
+      "company": "Rebuildmanufacturing",
+      "title": "Manufacturing Engineer Intern Fall 2026",
+      "applyUrl": "https://job-boards.greenhouse.io/rebuildmanufacturing/jobs/4729848005",
       "reason": "absent-from-employer-board",
       "previousIds": [
-        "c665d763687d6614f9f1081e"
+        "ae52b2f3e072d19a8fb24c94"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/clear/jobs/8259786"
+        "https://job-boards.greenhouse.io/rebuildmanufacturing/jobs/4729848005"
       ],
       "sources": [
         "Direct ATS (Greenhouse)"
@@ -139,11 +84,11 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:clear",
+          "id": "greenhouse:rebuildmanufacturing",
           "status": "ok",
           "outcome": null,
           "membership": "absent",
@@ -165,198 +110,41 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "job-boards.greenhouse.io:6211309004",
-      "id": "c4194f91569f2393f1325dbb",
-      "company": "edmentum",
-      "title": "Research Scientist, Applied AI Research",
-      "applyUrl": "https://job-boards.greenhouse.io/edmentum/jobs/6211309004",
-      "reason": "absent-from-employer-board",
-      "previousIds": [
-        "c4194f91569f2393f1325dbb"
-      ],
-      "previousUrls": [
-        "https://job-boards.greenhouse.io/edmentum/jobs/6211309004"
-      ],
-      "sources": [
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:edmentum",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:itron.wd5.myworkdayjobs.com:itron:jr102942",
-      "id": "657b761f24054df81167713c",
-      "company": "Itron",
-      "title": "Intern - Data Engineering",
-      "applyUrl": "https://itron.wd5.myworkdayjobs.com/Itron/job/United-States-of-America-Washington-Liberty-Lake/Intern---Data-Science--Distributed-Intelligence_JR102942",
+      "identity": "workday:micron.wd1.myworkdayjobs.com:external:jr115682",
+      "id": "fb31e2fc1d3a9848bcc4f53f",
+      "company": "Micron",
+      "title": "New College Grad - Data Scientist, AI for Business Functions",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/New-College-Grad---Data-Scientist--AI-for-Business-Functions_JR115682",
       "reason": "pendingVerification",
       "previousIds": [
-        "657b761f24054df81167713c"
+        "fb31e2fc1d3a9848bcc4f53f"
       ],
       "previousUrls": [
-        "https://itron.wd5.myworkdayjobs.com/Itron/job/United-States-of-America-Washington-Liberty-Lake/Intern---Data-Science--Distributed-Intelligence_JR102942"
+        "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/New-College-Grad---Data-Scientist--AI-for-Business-Functions_JR115682"
       ],
       "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://itron.wd5.myworkdayjobs.com/en-US/Itron/job/United-States-of-America-Washington-Liberty-Lake/Intern---Data-Science--Distributed-Intelligence_JR102942",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          },
-          {
-            "url": "https://itron.wd5.myworkdayjobs.com/itron/job/United-States-of-America-Washington-Liberty-Lake/Intern---Data-Science--Distributed-Intelligence_JR102942",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:itron.wd5.myworkdayjobs.com:itron",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1182
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:itron.wd5.myworkdayjobs.com:early_careers:jr102949",
-      "id": "fdfbe88e77162692976405a6",
-      "company": "Itron",
-      "title": "Intern - Product Marketing & Sales Enablement (Summer 2027)",
-      "applyUrl": "https://itron.wd5.myworkdayjobs.com/Early_Careers/job/United-States-of-America-Washington-Liberty-Lake/Intern---Product-Marketing---Sales-Enablement--Summer-2027-_JR102949",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "fdfbe88e77162692976405a6"
-      ],
-      "previousUrls": [
-        "https://itron.wd5.myworkdayjobs.com/Early_Careers/job/United-States-of-America-Washington-Liberty-Lake/Intern---Product-Marketing---Sales-Enablement--Summer-2027-_JR102949"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://itron.wd5.myworkdayjobs.com/Early_Careers/job/United-States-of-America-Washington-Liberty-Lake/Intern---Product-Marketing---Sales-Enablement--Summer-2027-_JR102949",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:itron.wd5.myworkdayjobs.com:early_careers",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1182
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers:r69922",
-      "id": "25601e63ac37613e72fce287",
-      "company": "Motorola",
-      "title": "Presales Engineering Intern- Summer 2027 Internship",
-      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/Presales-Engineering-Intern--Summer-2027-Internship_R69922",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "25601e63ac37613e72fce287"
-      ],
-      "previousUrls": [
-        "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/Presales-Engineering-Intern--Summer-2027-Internship_R69922"
-      ],
-      "sources": [
-        "Keryx Non-Software Summer 2027",
         "Direct ATS (Workday)"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/Presales-Engineering-Intern--Summer-2027-Internship_R69922",
+            "url": "https://micron.wd1.myworkdayjobs.com/en-US/External/job/Boise-ID---Main-Site/New-College-Grad---Data-Scientist--AI-for-Business-Functions_JR115682",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers",
+          "id": "workday:micron.wd1.myworkdayjobs.com:external",
           "status": "ok",
           "outcome": "healthy",
           "membership": "unknown",
           "retired": false
         },
         "sources": [
-          {
-            "name": "Keryx Non-Software Summer 2027",
-            "diagnosticName": "Keryx Non-Software Summer 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1532
-          },
           {
             "name": "Direct ATS (Workday)",
             "diagnosticName": null,
@@ -372,215 +160,210 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:itron.wd5.myworkdayjobs.com:itron:jr102923",
-      "id": "d44e053478db587828e60af0",
-      "company": "Itron",
-      "title": "Software Quality Assurance Engineer",
-      "applyUrl": "https://itron.wd5.myworkdayjobs.com/Itron/job/United-States-of-America-Washington-Liberty-Lake/Software-Quality-Assurance-Engineer_JR102923-1",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "d44e053478db587828e60af0"
-      ],
-      "previousUrls": [
-        "https://itron.wd5.myworkdayjobs.com/Itron/job/United-States-of-America-Washington-Liberty-Lake/Software-Quality-Assurance-Engineer_JR102923-1"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:itron.wd5.myworkdayjobs.com:itron",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1182
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:abbott.wd5.myworkdayjobs.com:abbottcareers:31165569",
-      "id": "4acccf8eaab697aa10c92076",
-      "company": "Abbott",
-      "title": "Associate Manufacturing Engineer",
-      "applyUrl": "https://abbott.wd5.myworkdayjobs.com/abbottcareers/job/United-States---Massachusetts---Westford/Associate-Manufacturing-Engineer_31165569-1",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "4acccf8eaab697aa10c92076"
-      ],
-      "previousUrls": [
-        "https://abbott.wd5.myworkdayjobs.com/abbottcareers/job/United-States---Massachusetts---Westford/Associate-Manufacturing-Engineer_31165569-1"
-      ],
-      "sources": [
-        "Employer recovery"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:abbott.wd5.myworkdayjobs.com:abbottcareers",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1182
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01883866",
-      "id": "c0ed69aeff74100e9ac7bd6f",
-      "company": "RTX",
-      "title": "Part Time Systems Engineer Co-Op (Remote)",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-Time-Systems-Engineer-Co-Op--Remote-_01883866",
-      "reason": "role",
-      "previousIds": [
-        "c0ed69aeff74100e9ac7bd6f"
-      ],
-      "previousUrls": [
-        "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-Time-Systems-Engineer-Co-Op--Remote-_01883866"
-      ],
-      "sources": [
-        "Aprameya Off-Cycle Internships 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-Time-Systems-Engineer-Co-Op--Remote-_01883866",
-            "reason": "role",
-            "detail": null
-          }
-        ],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
-        "postingCheck": null,
-        "workdayChecks": [
-          {
-            "url": "https://globalhr.wd5.myworkdayjobs.com/rec_rtx_ext_gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-Time-Systems-Engineer-Co-Op--Remote-_01883866",
-            "status": "ineligible"
-          }
-        ],
-        "board": {
-          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Off-Cycle Internships 2027",
-            "diagnosticName": "Aprameya Off-Cycle Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 731
-          }
-        ]
-      },
-      "category": "scope-exclusion",
-      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
-      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
-      "requiresInvestigation": false
-    },
-    {
-      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01883862",
-      "id": "6d6adc8b5c279a4e84e8a5ce",
-      "company": "RTX",
-      "title": "Part Time Systems Engineer Co-Op (Remote)",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-Time-Systems-Engineer-Co-Op--Remote-_01883862",
-      "reason": "role",
-      "previousIds": [
-        "6d6adc8b5c279a4e84e8a5ce"
-      ],
-      "previousUrls": [
-        "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-Time-Systems-Engineer-Co-Op--Remote-_01883862"
-      ],
-      "sources": [
-        "Aprameya Off-Cycle Internships 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-Time-Systems-Engineer-Co-Op--Remote-_01883862",
-            "reason": "role",
-            "detail": null
-          }
-        ],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
-        "postingCheck": null,
-        "workdayChecks": [
-          {
-            "url": "https://globalhr.wd5.myworkdayjobs.com/rec_rtx_ext_gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-Time-Systems-Engineer-Co-Op--Remote-_01883862",
-            "status": "ineligible"
-          }
-        ],
-        "board": {
-          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Off-Cycle Internships 2027",
-            "diagnosticName": "Aprameya Off-Cycle Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 731
-          }
-        ]
-      },
-      "category": "scope-exclusion",
-      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
-      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
-      "requiresInvestigation": false
-    },
-    {
-      "identity": "boards.greenhouse.io:8516581002",
-      "id": "63783aaba765a6dbe80e9f81",
-      "company": "SpaceX",
-      "title": "Supply Chain Planner, Gateway and Solar (Starlink)",
-      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8516581002",
+      "identity": "jobs.lever.co:67982bee-811b-453b-8596-b53c13f7a78d",
+      "id": "360b05933a5b1de1248d62f9",
+      "company": "Zoox",
+      "title": "Contract Student Worker - Software Engineer (40 hrs/wk)",
+      "applyUrl": "https://jobs.lever.co/zoox/67982bee-811b-453b-8596-b53c13f7a78d/apply",
       "reason": "absent-from-employer-board",
       "previousIds": [
-        "63783aaba765a6dbe80e9f81"
+        "360b05933a5b1de1248d62f9"
       ],
       "previousUrls": [
-        "https://boards.greenhouse.io/spacex/jobs/8516581002"
+        "https://jobs.lever.co/zoox/67982bee-811b-453b-8596-b53c13f7a78d/apply"
+      ],
+      "sources": [
+        "Direct ATS (Lever)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "lever:api.lever.co:zoox",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Lever)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:micron.wd1.myworkdayjobs.com:external:jr115941",
+      "id": "a739c9f988153242f68ef0e8",
+      "company": "Micron Technology",
+      "title": "Intern – CMBU Product Management",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/San-Jose-CA/Intern---CMBU-Product-Management_JR115941",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "a739c9f988153242f68ef0e8"
+      ],
+      "previousUrls": [
+        "https://micron.wd1.myworkdayjobs.com/External/job/San-Jose-CA/Intern---CMBU-Product-Management_JR115941"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://micron.wd1.myworkdayjobs.com/en-US/External/job/San-Jose-CA/Intern---CMBU-Product-Management_JR115941",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://micron.wd1.myworkdayjobs.com/External/job/San-Jose-CA/Intern---CMBU-Product-Management_JR115941",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:micron.wd1.myworkdayjobs.com:external",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1176
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:micron.wd1.myworkdayjobs.com:external:jr115692",
+      "id": "5313047851aa69f55e793cb1",
+      "company": "Micron",
+      "title": "Intern - Technical Program Manager, Program Management Office (PMO)",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---Technical-Program-Manager--Program-Management-Office--PMO-_JR115692",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "5313047851aa69f55e793cb1"
+      ],
+      "previousUrls": [
+        "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---Technical-Program-Manager--Program-Management-Office--PMO-_JR115692"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://micron.wd1.myworkdayjobs.com/en-US/External/job/Boise-ID---Main-Site/Intern---Technical-Program-Manager--Program-Management-Office--PMO-_JR115692",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:micron.wd1.myworkdayjobs.com:external",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "jobs.ashbyhq.com:a57427a9-f04a-4f95-b8a0-0fa404cf75da",
+      "id": "ec2f91e414867a35dd195629",
+      "company": "AI Intern to the CEO",
+      "title": "Account Executive",
+      "applyUrl": "https://jobs.ashbyhq.com/cyvl/a57427a9-f04a-4f95-b8a0-0fa404cf75da/application",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "ec2f91e414867a35dd195629"
+      ],
+      "previousUrls": [
+        "https://jobs.ashbyhq.com/cyvl/a57427a9-f04a-4f95-b8a0-0fa404cf75da/application"
+      ],
+      "sources": [
+        "Direct ATS (Ashby)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "ashby:cyvl",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Ashby)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "boards.greenhouse.io:8578082002",
+      "id": "8bd136779a19470dc082388a",
+      "company": "SpaceX",
+      "title": "Mechanical Engineer, Fluid Systems (Design & Build)",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8578082002",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "8bd136779a19470dc082388a"
+      ],
+      "previousUrls": [
+        "https://boards.greenhouse.io/spacex/jobs/8578082002"
       ],
       "sources": [
         "Direct ATS (Greenhouse)"
@@ -588,7 +371,7 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
@@ -614,121 +397,17 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "job-boards.greenhouse.io:5405904008",
-      "id": "81a1483a19fc87fe1b9ec13c",
-      "company": "Olsson",
-      "title": "Structural Engineering Internship - Rail Bridge",
-      "applyUrl": "https://job-boards.greenhouse.io/olsson/jobs/5405904008",
-      "reason": "absent-from-employer-board",
-      "previousIds": [
-        "81a1483a19fc87fe1b9ec13c"
-      ],
-      "previousUrls": [
-        "https://job-boards.greenhouse.io/olsson/jobs/5405904008"
-      ],
-      "sources": [
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:olsson",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01883452",
-      "id": "f151e304ececb2956352f08f",
-      "company": "RTX",
-      "title": "Part time Software Engineer Co-op (Remote)",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-time-Software-Engineer-Co-op--Remote-_01883452",
-      "reason": "role",
-      "previousIds": [
-        "f151e304ececb2956352f08f"
-      ],
-      "previousUrls": [
-        "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-time-Software-Engineer-Co-op--Remote-_01883452"
-      ],
-      "sources": [
-        "Aprameya Off-Cycle Internships 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-time-Software-Engineer-Co-op--Remote-_01883452",
-            "reason": "role",
-            "detail": null
-          },
-          {
-            "url": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-time-Software-Engineer-Co-op--Remote-_01883452",
-            "reason": "role",
-            "detail": null
-          }
-        ],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
-        "postingCheck": null,
-        "workdayChecks": [
-          {
-            "url": "https://globalhr.wd5.myworkdayjobs.com/rec_rtx_ext_gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-time-Software-Engineer-Co-op--Remote-_01883452",
-            "status": "ineligible"
-          }
-        ],
-        "board": {
-          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Off-Cycle Internships 2027",
-            "diagnosticName": "Aprameya Off-Cycle Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 731
-          }
-        ]
-      },
-      "category": "scope-exclusion",
-      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
-      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
-      "requiresInvestigation": false
-    },
-    {
-      "identity": "workday:amfam.wd1.myworkdayjobs.com:amfamgroupinterncareers:r39407",
-      "id": "45493a31cfe746a535c00fd0",
-      "company": "American Family Insurance Group",
-      "title": "Summer 2027 Intern - Application Billing Center Developer",
-      "applyUrl": "https://amfam.wd1.myworkdayjobs.com/AmFamGroupInternCareers/job/WI-Madison/Intern---Application-Billing-Center-Developer_R39407",
+      "identity": "workday:thehartford.wd5.myworkdayjobs.com:careers_external:r2627500",
+      "id": "c94f6e2715011a76fa625e65",
+      "company": "The Hartford",
+      "title": "2027 Summer Intern - Rotational (IT, Operations, Risk, and Fund Treasury)",
+      "applyUrl": "https://thehartford.wd5.myworkdayjobs.com/Careers_External/job/Wayne-PA/XMLNAME-2027-Summer-Intern---Rotational--IT--Operations--Risk--and-Fund-Treasury-_R2627500",
       "reason": "pendingVerification",
       "previousIds": [
-        "45493a31cfe746a535c00fd0"
+        "c94f6e2715011a76fa625e65"
       ],
       "previousUrls": [
-        "https://amfam.wd1.myworkdayjobs.com/AmFamGroupInternCareers/job/WI-Madison/Intern---Application-Billing-Center-Developer_R39407"
+        "https://thehartford.wd5.myworkdayjobs.com/Careers_External/job/Wayne-PA/XMLNAME-2027-Summer-Intern---Rotational--IT--Operations--Risk--and-Fund-Treasury-_R2627500"
       ],
       "sources": [
         "Employer recovery"
@@ -737,16 +416,21 @@
       "evidence": {
         "screening": [
           {
-            "url": "https://amfam.wd1.myworkdayjobs.com/AmFamGroupInternCareers/job/WI-Madison/Intern---Application-Billing-Center-Developer_R39407",
+            "url": "https://thehartford.wd5.myworkdayjobs.com/en-US/Careers_External/job/Wayne-PA/XMLNAME-2027-Summer-Intern---Rotational--IT--Operations--Risk--and-Fund-Treasury-_R2627500",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://thehartford.wd5.myworkdayjobs.com/Careers_External/job/Wayne-PA/XMLNAME-2027-Summer-Intern---Rotational--IT--Operations--Risk--and-Fund-Treasury-_R2627500",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:amfam.wd1.myworkdayjobs.com:amfamgroupinterncareers",
+          "id": "workday:thehartford.wd5.myworkdayjobs.com:careers_external",
           "status": "not-checked",
           "outcome": null,
           "membership": "unknown",
@@ -758,7 +442,7 @@
             "diagnosticName": "Original employer link recovery",
             "status": "ok",
             "outcome": "partial",
-            "rows": 1182
+            "rows": 1176
           }
         ]
       },
@@ -768,17 +452,66 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033634",
-      "id": "b22c93f5de0742485063ac7a",
-      "company": "The Federal Reserve System",
-      "title": "Summer 2027 Intern- PhD Data Science or Computer Science",
-      "applyUrl": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634",
-      "reason": "pendingVerification",
+      "identity": "https://jobs.smartrecruiters.com/paconsulting/744000155685700",
+      "id": "8bef457e4f5b0d875e098bf8",
+      "company": "PA Consulting",
+      "title": "2027 Summer Internship - Software & AI Systems – Cambridge",
+      "applyUrl": "https://jobs.smartrecruiters.com/PAConsulting/744000155685700",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "b22c93f5de0742485063ac7a"
+        "8bef457e4f5b0d875e098bf8"
       ],
       "previousUrls": [
-        "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634"
+        "https://jobs.smartrecruiters.com/PAConsulting/744000155685700"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-10-28T15:21:06.144Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": {
+          "id": "jobs.smartrecruiters.com:paconsulting",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1176
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:blueorigin.wd5.myworkdayjobs.com:blueorigin:r71434",
+      "id": "f77e7d1b150cbd4d665b10c8",
+      "company": "Blue Origin",
+      "title": "Summer 2027 Software Developer Internship - Graduate",
+      "applyUrl": "https://blueorigin.wd5.myworkdayjobs.com/en-US/blueorigin/job/Greater-Seattle-Area/Summer-2027-Software-Developer-Internship---Graduate_R71434",
+      "reason": "location",
+      "previousIds": [
+        "f77e7d1b150cbd4d665b10c8"
+      ],
+      "previousUrls": [
+        "https://blueorigin.wd5.myworkdayjobs.com/en-US/blueorigin/job/Greater-Seattle-Area/Summer-2027-Software-Developer-Internship---Graduate_R71434"
       ],
       "sources": [
         "Aprameya Summer Internships 2027",
@@ -789,31 +522,31 @@
       "evidence": {
         "screening": [
           {
-            "url": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634",
+            "url": "https://blueorigin.wd5.myworkdayjobs.com/en-US/blueorigin/job/Greater-Seattle-Area/Summer-2027-Software-Developer-Internship---Graduate_R71434",
             "reason": "pendingVerification",
             "detail": "Current employer listing availability could not be verified."
           },
           {
-            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
+            "url": "https://blueorigin.wd5.myworkdayjobs.com/BlueOrigin/job/Greater-Seattle-Area/Summer-2027-Software-Developer-Internship---Graduate_R71434",
+            "reason": "location",
+            "detail": null
           },
           {
-            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634",
+            "url": "https://blueorigin.wd5.myworkdayjobs.com/BlueOrigin/job/Greater-Seattle-Area/Summer-2027-Software-Developer-Internship---Graduate_R71434",
             "reason": "pendingVerification",
             "detail": "Current employer listing availability could not be verified."
           }
         ],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
         "postingCheck": null,
         "workdayChecks": [
           {
-            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634",
+            "url": "https://blueorigin.wd5.myworkdayjobs.com/BlueOrigin/job/Greater-Seattle-Area/Summer-2027-Software-Developer-Internship---Graduate_R71434",
             "status": "live"
           }
         ],
         "board": {
-          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "id": "workday:blueorigin.wd5.myworkdayjobs.com:blueorigin",
           "status": "ok",
           "outcome": "healthy",
           "membership": "unknown",
@@ -839,7 +572,122 @@
             "diagnosticName": "Original employer link recovery",
             "status": "ok",
             "outcome": "partial",
-            "rows": 1182
+            "rows": 1176
+          }
+        ]
+      },
+      "category": "scope-exclusion",
+      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
+      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
+      "requiresInvestigation": false
+    },
+    {
+      "identity": "workday:blueorigin.wd5.myworkdayjobs.com:blueorigin:r71424",
+      "id": "61362d3f414dbce53d5115d9",
+      "company": "Blue Origin",
+      "title": "Summer 2027 Avionics Software Internship - Undergraduate",
+      "applyUrl": "https://blueorigin.wd5.myworkdayjobs.com/BlueOrigin/job/Greater-Seattle-Area/Summer-2027-Avionics-Software-Internship---Undergraduate_R71424",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "61362d3f414dbce53d5115d9"
+      ],
+      "previousUrls": [
+        "https://blueorigin.wd5.myworkdayjobs.com/BlueOrigin/job/Greater-Seattle-Area/Summer-2027-Avionics-Software-Internship---Undergraduate_R71424"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:blueorigin.wd5.myworkdayjobs.com:blueorigin",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1176
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:kla.wd1.myworkdayjobs.com:search:2642044",
+      "id": "daeeda074bed623d6ec5a087",
+      "company": "KLA",
+      "title": "Algorithm Engineering Intern (GPU/CUDA)",
+      "applyUrl": "https://kla.wd1.myworkdayjobs.com/en-US/Search/job/Milpitas-CA/Algorithm-Engineering-Intern--GPU-CUDA-_2642044",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "daeeda074bed623d6ec5a087"
+      ],
+      "previousUrls": [
+        "https://kla.wd1.myworkdayjobs.com/en-US/Search/job/Milpitas-CA/Algorithm-Engineering-Intern--GPU-CUDA-_2642044"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Open-Tech-Internships-2027 2027",
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://kla.wd1.myworkdayjobs.com/en-US/Search/job/Milpitas-CA/Algorithm-Engineering-Intern--GPU-CUDA-_2642044",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://kla.wd1.myworkdayjobs.com/Search/job/Milpitas-CA/Algorithm-Engineering-Intern--GPU-CUDA-_2642044",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:kla.wd1.myworkdayjobs.com:search",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2646
+          },
+          {
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1876
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
           }
         ]
       },
@@ -849,46 +697,332 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "jobs.ashbyhq.com:92bfe88a-4c23-48c8-8f7b-4959ab6cd8d8",
-      "id": "69d6c9f106941dba981427de",
-      "company": "Grow Therapy",
-      "title": "Software Engineering Intern (Summer 2027)",
-      "applyUrl": "https://jobs.ashbyhq.com/grow-therapy/92bfe88a-4c23-48c8-8f7b-4959ab6cd8d8",
+      "identity": "job-boards.greenhouse.io:8199928",
+      "id": "3edb609eee4753499109ed7d",
+      "company": "Formlabsinternships",
+      "title": "Mechanical Engineering Intern (Summer 2027)",
+      "applyUrl": "https://job-boards.greenhouse.io/formlabsinternships/jobs/8199928",
       "reason": "pendingVerification",
       "previousIds": [
-        "69d6c9f106941dba981427de"
+        "3edb609eee4753499109ed7d"
       ],
       "previousUrls": [
-        "https://jobs.ashbyhq.com/grow-therapy/92bfe88a-4c23-48c8-8f7b-4959ab6cd8d8"
+        "https://job-boards.greenhouse.io/formlabsinternships/jobs/8199928"
       ],
       "sources": [
-        "Internship Engine",
-        "Aprameya Summer Internships 2027",
-        "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-        "Direct ATS (Ashby)"
+        "Keryx Non-Software Summer 2027",
+        "Direct ATS (Greenhouse)"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://jobs.ashbyhq.com/grow-therapy/92bfe88a-4c23-48c8-8f7b-4959ab6cd8d8",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          },
-          {
-            "url": "https://jobs.ashbyhq.com/grow-therapy/92bfe88a-4c23-48c8-8f7b-4959ab6cd8d8/application",
+            "url": "https://job-boards.greenhouse.io/formlabsinternships/jobs/8199928",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "ashby:grow-therapy",
+          "id": "greenhouse:formlabsinternships",
           "status": "ok",
           "outcome": null,
           "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1532
+          },
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "job-boards.greenhouse.io:8212694",
+      "id": "b804be42c6a81be9c9c706ae",
+      "company": "Formlabsinternships",
+      "title": "PhD Intern - Materials Science (Summer 2027)",
+      "applyUrl": "https://job-boards.greenhouse.io/formlabsinternships/jobs/8212694",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "b804be42c6a81be9c9c706ae"
+      ],
+      "previousUrls": [
+        "https://job-boards.greenhouse.io/formlabsinternships/jobs/8212694"
+      ],
+      "sources": [
+        "Keryx Non-Software Summer 2027",
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://job-boards.greenhouse.io/formlabsinternships/jobs/8212694",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:formlabsinternships",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1532
+          },
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "job-boards.greenhouse.io:8148251",
+      "id": "9c60d8402a5071b4de4a5086",
+      "company": "Formlabsinternships",
+      "title": "Electrical Engineering Intern (Summer 2027)",
+      "applyUrl": "https://job-boards.greenhouse.io/formlabsinternships/jobs/8148251",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "9c60d8402a5071b4de4a5086"
+      ],
+      "previousUrls": [
+        "https://job-boards.greenhouse.io/formlabsinternships/jobs/8148251"
+      ],
+      "sources": [
+        "Keryx Non-Software Summer 2027",
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://job-boards.greenhouse.io/formlabsinternships/jobs/8148251",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:formlabsinternships",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1532
+          },
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "job-boards.greenhouse.io:8172394",
+      "id": "af93cb9c9b73d8167120679f",
+      "company": "Formlabsinternships",
+      "title": "Hardware R&D Engineering Intern (Summer 2027)",
+      "applyUrl": "https://job-boards.greenhouse.io/formlabsinternships/jobs/8172394",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "af93cb9c9b73d8167120679f"
+      ],
+      "previousUrls": [
+        "https://job-boards.greenhouse.io/formlabsinternships/jobs/8172394"
+      ],
+      "sources": [
+        "Keryx Non-Software Summer 2027",
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://job-boards.greenhouse.io/formlabsinternships/jobs/8172394",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:formlabsinternships",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1532
+          },
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:thehartford.wd5.myworkdayjobs.com:careers_external:r2626424",
+      "id": "89bba5697a7a323bb75a3fe6",
+      "company": "The Hartford",
+      "title": "Intern, Product Analytics Leadership Development Program",
+      "applyUrl": "https://thehartford.wd5.myworkdayjobs.com/Careers_External/job/Hartford-CT/Intern--Product-Analytics-Leadership-Development-Program_R2626424-1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "89bba5697a7a323bb75a3fe6"
+      ],
+      "previousUrls": [
+        "https://thehartford.wd5.myworkdayjobs.com/Careers_External/job/Hartford-CT/Intern--Product-Analytics-Leadership-Development-Program_R2626424-1"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://thehartford.wd5.myworkdayjobs.com/en-US/Careers_External/job/Hartford-CT/Intern--Product-Analytics-Leadership-Development-Program_R2626424-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://thehartford.wd5.myworkdayjobs.com/Careers_External/job/Hartford-CT/Intern--Product-Analytics-Leadership-Development-Program_R2626424-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:thehartford.wd5.myworkdayjobs.com:careers_external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1176
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248138",
+      "id": "5bab33dc8b1b954225b472e5",
+      "company": "Booz Allen",
+      "title": "University - 2027 Summer Games Software Developer Intern - Atlanta, GA",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University---2027-Summer-Games-Software-Developer-Intern---Atlanta--GA_R0248138",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "5bab33dc8b1b954225b472e5"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University---2027-Summer-Games-Software-Developer-Intern---Atlanta--GA_R0248138"
+      ],
+      "sources": [
+        "Internship Engine",
+        "Aprameya Summer Internships 2027",
+        "Open-Tech-Internships-2027 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University---2027-Summer-Games-Software-Developer-Intern---Atlanta--GA_R0248138",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Atlanta-GA/University---2027-Summer-Games-Software-Developer-Intern---Atlanta--GA_R0248138",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
           "retired": false
         },
         "sources": [
@@ -907,18 +1041,11 @@
             "rows": 2646
           },
           {
-            "name": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-            "diagnosticName": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
             "status": "ok",
             "outcome": null,
-            "rows": 553
-          },
-          {
-            "name": "Direct ATS (Ashby)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
+            "rows": 1876
           }
         ]
       },
@@ -928,97 +1055,55 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers:r68739",
-      "id": "35edf7ebe5bb78ec4fe722a7",
-      "company": "Motorola",
-      "title": "VS&A Supply Chain Intern 2027 internship",
-      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/VS-A-Supply-Chain-Intern_R68739",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "35edf7ebe5bb78ec4fe722a7"
-      ],
-      "previousUrls": [
-        "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/VS-A-Supply-Chain-Intern_R68739"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:blackrock.wd1.myworkdayjobs.com:blackrock_professional:r266474",
-      "id": "5b45435e3080b3782b8ec161",
-      "company": "BlackRock",
-      "title": "2027 Quantitative Masters Internship Program - Investments - Quantitative Investing - San Francisco",
-      "applyUrl": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Quantitative-Investing---San-Francisco_R266474",
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248140",
+      "id": "b81248fee36ce32514f5a151",
+      "company": "Booz Allen",
+      "title": "University, 2027 Summer Games Data Scientist Intern - Atlanta, GA",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University--2027-Summer-Games-Data-Scientist-Intern_R0248140",
       "reason": "pendingVerification",
       "previousIds": [
-        "5b45435e3080b3782b8ec161"
+        "b81248fee36ce32514f5a151"
       ],
       "previousUrls": [
-        "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Quantitative-Investing---San-Francisco_R266474"
+        "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University--2027-Summer-Games-Data-Scientist-Intern_R0248140"
       ],
       "sources": [
+        "Internship Engine",
         "Aprameya Summer Internships 2027",
-        "Direct ATS (Workday)",
-        "Employer recovery"
+        "Open-Tech-Internships-2027 2027"
       ],
       "candidateSeen": true,
       "evidence": {
         "screening": [
           {
-            "url": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Quantitative-Investing---San-Francisco_R266474",
+            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University--2027-Summer-Games-Data-Scientist-Intern_R0248140",
             "reason": "pendingVerification",
             "detail": "Current employer listing availability could not be verified."
           },
           {
-            "url": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Quantitative-Investing---San-Francisco_R266474",
+            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Atlanta-GA/University--2027-Summer-Games-Data-Scientist-Intern_R0248140",
             "reason": "pendingVerification",
             "detail": "Current employer listing availability could not be verified."
           }
         ],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
         "postingCheck": null,
-        "workdayChecks": [
-          {
-            "url": "https://blackrock.wd1.myworkdayjobs.com/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Quantitative-Investing---San-Francisco_R266474",
-            "status": "live"
-          }
-        ],
+        "workdayChecks": [],
         "board": {
-          "id": "workday:blackrock.wd1.myworkdayjobs.com:blackrock_professional",
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
           "status": "ok",
           "outcome": "healthy",
           "membership": "unknown",
           "retired": false
         },
         "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1235
+          },
           {
             "name": "Aprameya Summer Internships 2027",
             "diagnosticName": "Aprameya Summer Internships 2027",
@@ -1027,18 +1112,11 @@
             "rows": 2646
           },
           {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
             "status": "ok",
-            "outcome": "partial",
-            "rows": 1182
+            "outcome": null,
+            "rows": 1876
           }
         ]
       },
@@ -1048,149 +1126,88 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:allegion.wd5.myworkdayjobs.com:careers:jr37651",
-      "id": "7076953869d5cb97db19eedd",
-      "company": "Allegion",
-      "title": "Summer Intern - Supply Chain",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Mount-Comfort-IN/Supply-Chain-Intern_JR37651-1",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "7076953869d5cb97db19eedd"
-      ],
-      "previousUrls": [
-        "https://allegion.wd5.myworkdayjobs.com/careers/job/Mount-Comfort-IN/Supply-Chain-Intern_JR37651-1"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:allegion.wd5.myworkdayjobs.com:careers",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "jobs.ashbyhq.com:0512183c-2373-499c-8459-91d0fd2d72f3",
-      "id": "c9636963956c2b71b658240f",
-      "company": "Pangram Labs",
-      "title": "Software Engineer - Customer Solutions",
-      "applyUrl": "https://jobs.ashbyhq.com/pangramlabs/0512183c-2373-499c-8459-91d0fd2d72f3/application",
-      "reason": "absent-from-employer-board",
-      "previousIds": [
-        "c9636963956c2b71b658240f"
-      ],
-      "previousUrls": [
-        "https://jobs.ashbyhq.com/pangramlabs/0512183c-2373-499c-8459-91d0fd2d72f3/application"
-      ],
-      "sources": [
-        "Direct ATS (Ashby)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "ashby:pangramlabs",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Ashby)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:pae.wd1.myworkdayjobs.com:amentum_careers:r0169466",
-      "id": "7be46751d2a9c7c61c184752",
-      "company": "Amentum",
-      "title": "Entry-Level Electrical Engineer",
-      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-IN-Crane/Entry-Level-Electrical-Engineer_R0169466",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "7be46751d2a9c7c61c184752"
-      ],
-      "previousUrls": [
-        "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-IN-Crane/Entry-Level-Electrical-Engineer_R0169466"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:pae.wd1.myworkdayjobs.com:amentum_careers",
-          "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:genpt.wd1.myworkdayjobs.com:careers:0000029133",
-      "id": "1a474f177b1a3ec0aa6467a7",
-      "company": "Genuine Parts Company",
-      "title": "Cloud Developer Intern",
-      "applyUrl": "https://genpt.wd1.myworkdayjobs.com/Careers/job/Birmingham-AL-USA/Cloud-Developer-Intern_R26_0000029133",
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0248137",
+      "id": "a1e212db7d05643b9989f535",
+      "company": "Booz Allen",
+      "title": "University - 2027 Summer Games Data Scientist Intern - Charleston, SC",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Charleston-SC/University---2027-Summer-Games-Data-Scientist-Intern_R0248137",
       "reason": "pendingVerification",
       "previousIds": [
-        "1a474f177b1a3ec0aa6467a7"
+        "a1e212db7d05643b9989f535"
       ],
       "previousUrls": [
-        "https://genpt.wd1.myworkdayjobs.com/Careers/job/Birmingham-AL-USA/Cloud-Developer-Intern_R26_0000029133"
+        "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Charleston-SC/University---2027-Summer-Games-Data-Scientist-Intern_R0248137"
+      ],
+      "sources": [
+        "Internship Engine",
+        "Aprameya Summer Internships 2027",
+        "Open-Tech-Internships-2027 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Charleston-SC/University---2027-Summer-Games-Data-Scientist-Intern_R0248137",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/Charleston-SC/University---2027-Summer-Games-Data-Scientist-Intern_R0248137",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1235
+          },
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2646
+          },
+          {
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1876
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://qtsdatacenters.wd5.myworkdayjobs.com/qts/job/duluth-ga/summer-2027-internship--oracle-functional-business-analyst_r2026-1899",
+      "id": "af19041a54288f8b1e4c7606",
+      "company": "QTS",
+      "title": "Summer 2027 Internship: Oracle Functional Business Analyst",
+      "applyUrl": "https://qtsdatacenters.wd5.myworkdayjobs.com/QTS/job/Duluth-GA/Summer-2027-Internship--Oracle-Functional-Business-Analyst_R2026-1899",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "af19041a54288f8b1e4c7606"
+      ],
+      "previousUrls": [
+        "https://qtsdatacenters.wd5.myworkdayjobs.com/QTS/job/Duluth-GA/Summer-2027-Internship--Oracle-Functional-Business-Analyst_R2026-1899"
       ],
       "sources": [
         "Employer recovery"
@@ -1199,16 +1216,16 @@
       "evidence": {
         "screening": [
           {
-            "url": "https://genpt.wd1.myworkdayjobs.com/en-US/Careers/job/Birmingham-AL-USA/Cloud-Developer-Intern_R26_0000029133",
+            "url": "https://qtsdatacenters.wd5.myworkdayjobs.com/qts/job/Duluth-GA/Summer-2027-Internship--Oracle-Functional-Business-Analyst_R2026-1899",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:genpt.wd1.myworkdayjobs.com:careers",
+          "id": "workday:qtsdatacenters.wd5.myworkdayjobs.com:qts",
           "status": "not-checked",
           "outcome": null,
           "membership": "unknown",
@@ -1220,7 +1237,7 @@
             "diagnosticName": "Original employer link recovery",
             "status": "ok",
             "outcome": "partial",
-            "rows": 1182
+            "rows": 1176
           }
         ]
       },
@@ -1230,234 +1247,266 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:nvidia.wd5.myworkdayjobs.com:nvidiaexternalcareersite:jr2010391",
-      "id": "e1f042b5942680921714b572",
-      "company": "NVIDIA",
-      "title": "ASIC Design Verification Engineer - New College Grad 2026",
-      "applyUrl": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-TX-Austin/ASIC-Design-Verification-Engineer---New-College-Grad-2026_JR2010391",
-      "reason": "not-returned-by-sources",
+      "identity": "job-boards.greenhouse.io:8624408002",
+      "id": "798feb7f71b14dd5ea9f9bf4",
+      "company": "Virtu Financial",
+      "title": "2027 Internship - Quantitative Trading",
+      "applyUrl": "https://job-boards.greenhouse.io/virtu/jobs/8624408002",
+      "reason": "closed",
       "previousIds": [
-        "e1f042b5942680921714b572"
+        "798feb7f71b14dd5ea9f9bf4"
       ],
       "previousUrls": [
-        "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-TX-Austin/ASIC-Design-Verification-Engineer---New-College-Grad-2026_JR2010391"
+        "https://job-boards.greenhouse.io/virtu/jobs/8624408002"
       ],
       "sources": [
-        "Employer recovery"
+        "Internship Engine",
+        "Keryx Non-Software Summer 2027",
+        "Direct ATS (Greenhouse)"
       ],
-      "candidateSeen": false,
+      "candidateSeen": true,
       "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-10T17:18:30.361Z",
+        "screening": [
+          {
+            "url": "https://job-boards.greenhouse.io/virtu/jobs/8624408002",
+            "reason": "closed",
+            "detail": null
+          },
+          {
+            "url": "https://job-boards.greenhouse.io/virtu/jobs/8624408002",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-10T18:18:28.133Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:nvidia.wd5.myworkdayjobs.com:nvidiaexternalcareersite",
+          "id": "greenhouse:virtu",
           "status": "ok",
-          "outcome": "healthy",
-          "membership": "unknown",
+          "outcome": null,
+          "membership": "absent",
           "retired": false
         },
         "sources": [
           {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
             "status": "ok",
-            "outcome": "partial",
-            "rows": 1182
+            "outcome": null,
+            "rows": 1235
+          },
+          {
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1532
+          },
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
           }
         ]
       },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
       "requiresInvestigation": true
     }
   ],
   "rowCounts": {
-    "previous": 6810,
-    "current": 6842,
-    "net": 32,
+    "previous": 6842,
+    "current": 6836,
+    "net": -6,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 56,
-  "removedCount": 24,
+  "added": 17,
+  "removedCount": 23,
   "counts": {
-    "absent-from-employer-board": 6,
-    "role": 4,
-    "pendingVerification": 8,
-    "not-returned-by-sources": 6
+    "not-returned-by-sources": 3,
+    "absent-from-employer-board": 4,
+    "pendingVerification": 14,
+    "location": 1,
+    "closed": 1
   },
   "removed": [
     {
-      "id": "617f95f02a05b966e6aabe05",
-      "company": "Axon",
-      "title": "AI Research Scientist II",
-      "applyUrl": "https://job-boards.greenhouse.io/axon/jobs/7976602003",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "439e28e38f16fad222d03b80",
-      "company": "RTX",
-      "title": "Part Time Systems Engineer Co-Op (Remote)",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-Time-Systems-Engineer-Co-Op--Remote-_01886102",
-      "reason": "role"
-    },
-    {
-      "id": "c665d763687d6614f9f1081e",
-      "company": "CLEAR",
-      "title": "Forward Deployed AI Engineer I",
-      "applyUrl": "https://job-boards.greenhouse.io/clear/jobs/8259786",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "c4194f91569f2393f1325dbb",
-      "company": "edmentum",
-      "title": "Research Scientist, Applied AI Research",
-      "applyUrl": "https://job-boards.greenhouse.io/edmentum/jobs/6211309004",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "657b761f24054df81167713c",
-      "company": "Itron",
-      "title": "Intern - Data Engineering",
-      "applyUrl": "https://itron.wd5.myworkdayjobs.com/Itron/job/United-States-of-America-Washington-Liberty-Lake/Intern---Data-Science--Distributed-Intelligence_JR102942",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "fdfbe88e77162692976405a6",
-      "company": "Itron",
-      "title": "Intern - Product Marketing & Sales Enablement (Summer 2027)",
-      "applyUrl": "https://itron.wd5.myworkdayjobs.com/Early_Careers/job/United-States-of-America-Washington-Liberty-Lake/Intern---Product-Marketing---Sales-Enablement--Summer-2027-_JR102949",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "25601e63ac37613e72fce287",
-      "company": "Motorola",
-      "title": "Presales Engineering Intern- Summer 2027 Internship",
-      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/Presales-Engineering-Intern--Summer-2027-Internship_R69922",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "d44e053478db587828e60af0",
-      "company": "Itron",
-      "title": "Software Quality Assurance Engineer",
-      "applyUrl": "https://itron.wd5.myworkdayjobs.com/Itron/job/United-States-of-America-Washington-Liberty-Lake/Software-Quality-Assurance-Engineer_JR102923-1",
+      "id": "605809f240f451dc4bfa06f6",
+      "company": "Micron",
+      "title": "New College Grad - PCVD Process Engineer",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/PCVD-Process-Engineer_JR116753-1",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "4acccf8eaab697aa10c92076",
-      "company": "Abbott",
-      "title": "Associate Manufacturing Engineer",
-      "applyUrl": "https://abbott.wd5.myworkdayjobs.com/abbottcareers/job/United-States---Massachusetts---Westford/Associate-Manufacturing-Engineer_31165569-1",
-      "reason": "not-returned-by-sources"
+      "id": "ae52b2f3e072d19a8fb24c94",
+      "company": "Rebuildmanufacturing",
+      "title": "Manufacturing Engineer Intern Fall 2026",
+      "applyUrl": "https://job-boards.greenhouse.io/rebuildmanufacturing/jobs/4729848005",
+      "reason": "absent-from-employer-board"
     },
     {
-      "id": "c0ed69aeff74100e9ac7bd6f",
-      "company": "RTX",
-      "title": "Part Time Systems Engineer Co-Op (Remote)",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-Time-Systems-Engineer-Co-Op--Remote-_01883866",
-      "reason": "role"
+      "id": "fb31e2fc1d3a9848bcc4f53f",
+      "company": "Micron",
+      "title": "New College Grad - Data Scientist, AI for Business Functions",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/New-College-Grad---Data-Scientist--AI-for-Business-Functions_JR115682",
+      "reason": "pendingVerification"
     },
     {
-      "id": "6d6adc8b5c279a4e84e8a5ce",
-      "company": "RTX",
-      "title": "Part Time Systems Engineer Co-Op (Remote)",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-Time-Systems-Engineer-Co-Op--Remote-_01883862",
-      "reason": "role"
+      "id": "360b05933a5b1de1248d62f9",
+      "company": "Zoox",
+      "title": "Contract Student Worker - Software Engineer (40 hrs/wk)",
+      "applyUrl": "https://jobs.lever.co/zoox/67982bee-811b-453b-8596-b53c13f7a78d/apply",
+      "reason": "absent-from-employer-board"
     },
     {
-      "id": "63783aaba765a6dbe80e9f81",
+      "id": "a739c9f988153242f68ef0e8",
+      "company": "Micron Technology",
+      "title": "Intern – CMBU Product Management",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/San-Jose-CA/Intern---CMBU-Product-Management_JR115941",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "5313047851aa69f55e793cb1",
+      "company": "Micron",
+      "title": "Intern - Technical Program Manager, Program Management Office (PMO)",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---Technical-Program-Manager--Program-Management-Office--PMO-_JR115692",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "ec2f91e414867a35dd195629",
+      "company": "AI Intern to the CEO",
+      "title": "Account Executive",
+      "applyUrl": "https://jobs.ashbyhq.com/cyvl/a57427a9-f04a-4f95-b8a0-0fa404cf75da/application",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "8bd136779a19470dc082388a",
       "company": "SpaceX",
-      "title": "Supply Chain Planner, Gateway and Solar (Starlink)",
-      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8516581002",
+      "title": "Mechanical Engineer, Fluid Systems (Design & Build)",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8578082002",
       "reason": "absent-from-employer-board"
     },
     {
-      "id": "81a1483a19fc87fe1b9ec13c",
-      "company": "Olsson",
-      "title": "Structural Engineering Internship - Rail Bridge",
-      "applyUrl": "https://job-boards.greenhouse.io/olsson/jobs/5405904008",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "f151e304ececb2956352f08f",
-      "company": "RTX",
-      "title": "Part time Software Engineer Co-op (Remote)",
-      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-CO-AURORA-S75--16800-E-Centretech-Pkwy--BLDG-S75/Part-time-Software-Engineer-Co-op--Remote-_01883452",
-      "reason": "role"
-    },
-    {
-      "id": "45493a31cfe746a535c00fd0",
-      "company": "American Family Insurance Group",
-      "title": "Summer 2027 Intern - Application Billing Center Developer",
-      "applyUrl": "https://amfam.wd1.myworkdayjobs.com/AmFamGroupInternCareers/job/WI-Madison/Intern---Application-Billing-Center-Developer_R39407",
+      "id": "c94f6e2715011a76fa625e65",
+      "company": "The Hartford",
+      "title": "2027 Summer Intern - Rotational (IT, Operations, Risk, and Fund Treasury)",
+      "applyUrl": "https://thehartford.wd5.myworkdayjobs.com/Careers_External/job/Wayne-PA/XMLNAME-2027-Summer-Intern---Rotational--IT--Operations--Risk--and-Fund-Treasury-_R2627500",
       "reason": "pendingVerification"
     },
     {
-      "id": "b22c93f5de0742485063ac7a",
-      "company": "The Federal Reserve System",
-      "title": "Summer 2027 Intern- PhD Data Science or Computer Science",
-      "applyUrl": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "69d6c9f106941dba981427de",
-      "company": "Grow Therapy",
-      "title": "Software Engineering Intern (Summer 2027)",
-      "applyUrl": "https://jobs.ashbyhq.com/grow-therapy/92bfe88a-4c23-48c8-8f7b-4959ab6cd8d8",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "35edf7ebe5bb78ec4fe722a7",
-      "company": "Motorola",
-      "title": "VS&A Supply Chain Intern 2027 internship",
-      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/VS-A-Supply-Chain-Intern_R68739",
+      "id": "8bef457e4f5b0d875e098bf8",
+      "company": "PA Consulting",
+      "title": "2027 Summer Internship - Software & AI Systems – Cambridge",
+      "applyUrl": "https://jobs.smartrecruiters.com/PAConsulting/744000155685700",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "5b45435e3080b3782b8ec161",
-      "company": "BlackRock",
-      "title": "2027 Quantitative Masters Internship Program - Investments - Quantitative Investing - San Francisco",
-      "applyUrl": "https://blackrock.wd1.myworkdayjobs.com/en-US/BlackRock_Professional/job/San-Francisco-CA/XMLNAME-2027-Quantitative-Masters-Internship-Program---Investments---Quantitative-Investing---San-Francisco_R266474",
+      "id": "f77e7d1b150cbd4d665b10c8",
+      "company": "Blue Origin",
+      "title": "Summer 2027 Software Developer Internship - Graduate",
+      "applyUrl": "https://blueorigin.wd5.myworkdayjobs.com/en-US/blueorigin/job/Greater-Seattle-Area/Summer-2027-Software-Developer-Internship---Graduate_R71434",
+      "reason": "location"
+    },
+    {
+      "id": "61362d3f414dbce53d5115d9",
+      "company": "Blue Origin",
+      "title": "Summer 2027 Avionics Software Internship - Undergraduate",
+      "applyUrl": "https://blueorigin.wd5.myworkdayjobs.com/BlueOrigin/job/Greater-Seattle-Area/Summer-2027-Avionics-Software-Internship---Undergraduate_R71424",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "daeeda074bed623d6ec5a087",
+      "company": "KLA",
+      "title": "Algorithm Engineering Intern (GPU/CUDA)",
+      "applyUrl": "https://kla.wd1.myworkdayjobs.com/en-US/Search/job/Milpitas-CA/Algorithm-Engineering-Intern--GPU-CUDA-_2642044",
       "reason": "pendingVerification"
     },
     {
-      "id": "7076953869d5cb97db19eedd",
-      "company": "Allegion",
-      "title": "Summer Intern - Supply Chain",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Mount-Comfort-IN/Supply-Chain-Intern_JR37651-1",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "c9636963956c2b71b658240f",
-      "company": "Pangram Labs",
-      "title": "Software Engineer - Customer Solutions",
-      "applyUrl": "https://jobs.ashbyhq.com/pangramlabs/0512183c-2373-499c-8459-91d0fd2d72f3/application",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "7be46751d2a9c7c61c184752",
-      "company": "Amentum",
-      "title": "Entry-Level Electrical Engineer",
-      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-IN-Crane/Entry-Level-Electrical-Engineer_R0169466",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "1a474f177b1a3ec0aa6467a7",
-      "company": "Genuine Parts Company",
-      "title": "Cloud Developer Intern",
-      "applyUrl": "https://genpt.wd1.myworkdayjobs.com/Careers/job/Birmingham-AL-USA/Cloud-Developer-Intern_R26_0000029133",
+      "id": "3edb609eee4753499109ed7d",
+      "company": "Formlabsinternships",
+      "title": "Mechanical Engineering Intern (Summer 2027)",
+      "applyUrl": "https://job-boards.greenhouse.io/formlabsinternships/jobs/8199928",
       "reason": "pendingVerification"
     },
     {
-      "id": "e1f042b5942680921714b572",
-      "company": "NVIDIA",
-      "title": "ASIC Design Verification Engineer - New College Grad 2026",
-      "applyUrl": "https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite/job/US-TX-Austin/ASIC-Design-Verification-Engineer---New-College-Grad-2026_JR2010391",
-      "reason": "not-returned-by-sources"
+      "id": "b804be42c6a81be9c9c706ae",
+      "company": "Formlabsinternships",
+      "title": "PhD Intern - Materials Science (Summer 2027)",
+      "applyUrl": "https://job-boards.greenhouse.io/formlabsinternships/jobs/8212694",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "9c60d8402a5071b4de4a5086",
+      "company": "Formlabsinternships",
+      "title": "Electrical Engineering Intern (Summer 2027)",
+      "applyUrl": "https://job-boards.greenhouse.io/formlabsinternships/jobs/8148251",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "af93cb9c9b73d8167120679f",
+      "company": "Formlabsinternships",
+      "title": "Hardware R&D Engineering Intern (Summer 2027)",
+      "applyUrl": "https://job-boards.greenhouse.io/formlabsinternships/jobs/8172394",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "89bba5697a7a323bb75a3fe6",
+      "company": "The Hartford",
+      "title": "Intern, Product Analytics Leadership Development Program",
+      "applyUrl": "https://thehartford.wd5.myworkdayjobs.com/Careers_External/job/Hartford-CT/Intern--Product-Analytics-Leadership-Development-Program_R2626424-1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "5bab33dc8b1b954225b472e5",
+      "company": "Booz Allen",
+      "title": "University - 2027 Summer Games Software Developer Intern - Atlanta, GA",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University---2027-Summer-Games-Software-Developer-Intern---Atlanta--GA_R0248138",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "b81248fee36ce32514f5a151",
+      "company": "Booz Allen",
+      "title": "University, 2027 Summer Games Data Scientist Intern - Atlanta, GA",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Atlanta-GA/University--2027-Summer-Games-Data-Scientist-Intern_R0248140",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "a1e212db7d05643b9989f535",
+      "company": "Booz Allen",
+      "title": "University - 2027 Summer Games Data Scientist Intern - Charleston, SC",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/bah_jobs/job/Charleston-SC/University---2027-Summer-Games-Data-Scientist-Intern_R0248137",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "af19041a54288f8b1e4c7606",
+      "company": "QTS",
+      "title": "Summer 2027 Internship: Oracle Functional Business Analyst",
+      "applyUrl": "https://qtsdatacenters.wd5.myworkdayjobs.com/QTS/job/Duluth-GA/Summer-2027-Internship--Oracle-Functional-Business-Analyst_R2026-1899",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "798feb7f71b14dd5ea9f9bf4",
+      "company": "Virtu Financial",
+      "title": "2027 Internship - Quantitative Trading",
+      "applyUrl": "https://job-boards.greenhouse.io/virtu/jobs/8624408002",
+      "reason": "closed"
     }
   ],
-  "urlChanges": []
+  "urlChanges": [
+    {
+      "id": "b9178d1bf6348715a4ec97b6",
+      "previousUrl": "https://jobs.ashbyhq.com/parspec/aa7b7f63-b31f-47fa-a711-b76d93028e56/application",
+      "applyUrl": "https://jobs.ashbyhq.com/parspec/aa7b7f63-b31f-47fa-a711-b76d93028e56"
+    },
+    {
+      "id": "cd9ab86f753f801b68068408",
+      "previousUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Richardson/AI-ML-Systems-Engineer--2027-New-College-Graduate-_JR-2604163",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/en-US/External/job/USA---Texas---Richardson/AI-ML-Systems-Engineer--2027-New-College-Graduate-_JR-2604163"
+    }
+  ]
 }
