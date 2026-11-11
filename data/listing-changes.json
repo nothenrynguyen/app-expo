@@ -1,58 +1,108 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-11T03:24:55.064Z",
-  "previousGeneratedAt": "2026-11-11T02:24:45.443Z",
-  "currentSnapshotGeneratedAt": "2026-11-11T03:24:55.064Z",
+  "generatedAt": "2026-11-11T04:25:05.029Z",
+  "previousGeneratedAt": "2026-11-11T03:24:55.064Z",
+  "currentSnapshotGeneratedAt": "2026-11-11T04:25:05.029Z",
   "reconciliation": {
     "unit": "opportunities",
     "previous": 6829,
-    "current": 6829,
-    "retained": 6826,
-    "added": 3,
-    "removed": 3,
-    "net": 0
+    "current": 6827,
+    "retained": 6822,
+    "added": 5,
+    "removed": 7,
+    "net": -2
   },
   "categoryCounts": {
-    "confirmed-closed": 0,
+    "confirmed-closed": 1,
     "scope-exclusion": 0,
-    "verification-pending": 0,
-    "source-unavailable": 0,
-    "unresolved": 3,
+    "verification-pending": 3,
+    "source-unavailable": 2,
+    "unresolved": 1,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "job-boards.greenhouse.io:5237890007",
-      "id": "7581241fdc0799950b479471",
-      "company": "xAI",
-      "title": "Production Coordinator, Logistics - Memphis",
-      "applyUrl": "https://job-boards.greenhouse.io/xai/jobs/5237890007",
-      "reason": "absent-from-employer-board",
+      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10257912",
+      "id": "f40f42dc9c71ef6a7afed524",
+      "company": "Northrop Grumman",
+      "title": "Associate Software Engineer - Colorado Springs",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Colorado-Colorado-Springs/Associate-Software-Engineer---Colorado-Springs_R10257912",
+      "reason": "pendingVerification",
       "previousIds": [
-        "7581241fdc0799950b479471"
+        "f40f42dc9c71ef6a7afed524"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/xai/jobs/5237890007"
+        "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Colorado-Colorado-Springs/Associate-Software-Engineer---Colorado-Springs_R10257912"
       ],
       "sources": [
-        "Direct ATS (Greenhouse)"
+        "Aprameya New Grad 2027"
       ],
-      "candidateSeen": false,
+      "candidateSeen": true,
       "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-11T03:18:23.918Z",
+        "screening": [
+          {
+            "url": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Colorado-Colorado-Springs/Associate-Software-Engineer---Colorado-Springs_R10257912",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-11T04:18:35.927Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:xai",
+          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
           "status": "ok",
-          "outcome": null,
-          "membership": "absent",
+          "outcome": "rate_limited",
+          "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Direct ATS (Greenhouse)",
+            "name": "Aprameya New Grad 2027",
+            "diagnosticName": "Aprameya New Grad 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 550
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:pae.wd1.myworkdayjobs.com:amentum_careers:r0174696",
+      "id": "8d3e55a484ced4fd0601f461",
+      "company": "Amentum",
+      "title": "Plant Engineer I – Flowsheet Integration",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-WA-Richland/Plant-Engineer-I---Flowsheet-Integration_R0174696-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "8d3e55a484ced4fd0601f461"
+      ],
+      "previousUrls": [
+        "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-WA-Richland/Plant-Engineer-I---Flowsheet-Integration_R0174696-1"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-11T04:18:35.927Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:pae.wd1.myworkdayjobs.com:amentum_careers",
+          "status": "ok",
+          "outcome": "rate_limited",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
             "diagnosticName": null,
             "status": "not-checked",
             "outcome": null,
@@ -60,43 +110,43 @@
           }
         ]
       },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
       "requiresInvestigation": true
     },
     {
-      "identity": "job-boards.greenhouse.io:5241152007",
-      "id": "5707ad72e37884e1c0caa01f",
-      "company": "xAI",
-      "title": "Supervisor, Production Coordination (Logistics) - Memphis",
-      "applyUrl": "https://job-boards.greenhouse.io/xai/jobs/5241152007",
-      "reason": "absent-from-employer-board",
+      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10259022",
+      "id": "de6c5b0d8751c55a65e76a3e",
+      "company": "Northrop Grumman",
+      "title": "2027 Electrical Engineering Intern - Colorado Springs",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Colorado-Colorado-Springs/XMLNAME-2027-Electrical-Engineering-Intern---Colorado-Springs_R10259022",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "5707ad72e37884e1c0caa01f"
+        "de6c5b0d8751c55a65e76a3e"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/xai/jobs/5241152007"
+        "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Colorado-Colorado-Springs/XMLNAME-2027-Electrical-Engineering-Intern---Colorado-Springs_R10259022"
       ],
       "sources": [
-        "Direct ATS (Greenhouse)"
+        "Direct ATS (Workday)"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-11T03:18:23.918Z",
+        "runStartedAt": "2026-11-11T04:18:35.927Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:xai",
+          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
           "status": "ok",
-          "outcome": null,
-          "membership": "absent",
+          "outcome": "rate_limited",
+          "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Direct ATS (Greenhouse)",
+            "name": "Direct ATS (Workday)",
             "diagnosticName": null,
             "status": "not-checked",
             "outcome": null,
@@ -104,43 +154,213 @@
           }
         ]
       },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
       "requiresInvestigation": true
     },
     {
-      "identity": "jobs.lever.co:61e35c3c-3156-4760-a088-4a3765e37f8e",
-      "id": "2d0420bea399477db43b28c9",
-      "company": "Match Group",
-      "title": "Software Engineer, iOS",
-      "applyUrl": "https://jobs.lever.co/matchgroup/61e35c3c-3156-4760-a088-4a3765e37f8e/apply",
-      "reason": "absent-from-employer-board",
+      "identity": "workday:micron.wd1.myworkdayjobs.com:external:jr115941",
+      "id": "a739c9f988153242f68ef0e8",
+      "company": "Micron",
+      "title": "Intern – CMBU Product Management",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/San-Jose-CA/Intern---CMBU-Product-Management_JR115941",
+      "reason": "pendingVerification",
       "previousIds": [
-        "2d0420bea399477db43b28c9"
+        "a739c9f988153242f68ef0e8"
       ],
       "previousUrls": [
-        "https://jobs.lever.co/matchgroup/61e35c3c-3156-4760-a088-4a3765e37f8e/apply"
+        "https://micron.wd1.myworkdayjobs.com/External/job/San-Jose-CA/Intern---CMBU-Product-Management_JR115941"
       ],
       "sources": [
-        "Direct ATS (Lever)"
+        "Open-Tech-Internships-2027 2027",
+        "Direct ATS (Workday)",
+        "Employer recovery"
       ],
-      "candidateSeen": false,
+      "candidateSeen": true,
       "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-11T03:18:23.918Z",
+        "screening": [
+          {
+            "url": "https://micron.wd1.myworkdayjobs.com/en-US/External/job/San-Jose-CA/Intern---CMBU-Product-Management_JR115941",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://micron.wd1.myworkdayjobs.com/External/job/San-Jose-CA/Intern---CMBU-Product-Management_JR115941",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-11T04:18:35.927Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "lever:api.lever.co:matchgroup",
+          "id": "workday:micron.wd1.myworkdayjobs.com:external",
           "status": "ok",
-          "outcome": null,
-          "membership": "absent",
+          "outcome": "healthy",
+          "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Direct ATS (Lever)",
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1860
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1154
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:micron.wd1.myworkdayjobs.com:external:jr115692",
+      "id": "5313047851aa69f55e793cb1",
+      "company": "Micron",
+      "title": "Intern - Technical Program Manager, Program Management Office (PMO)",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---Technical-Program-Manager--Program-Management-Office--PMO-_JR115692",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "5313047851aa69f55e793cb1"
+      ],
+      "previousUrls": [
+        "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---Technical-Program-Manager--Program-Management-Office--PMO-_JR115692"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://micron.wd1.myworkdayjobs.com/en-US/External/job/Boise-ID---Main-Site/Intern---Technical-Program-Manager--Program-Management-Office--PMO-_JR115692",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-11T04:18:35.927Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:micron.wd1.myworkdayjobs.com:external",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "careers-brightspring.icims.com:196469",
+      "id": "c7d1b5c3327d1057338eadd8",
+      "company": "Brightspring",
+      "title": "Accounting Intern",
+      "applyUrl": "https://careers-brightspring.icims.com/jobs/196469/accounting-intern/job",
+      "reason": "closed",
+      "previousIds": [
+        "c7d1b5c3327d1057338eadd8"
+      ],
+      "previousUrls": [
+        "https://careers-brightspring.icims.com/jobs/196469/accounting-intern/job"
+      ],
+      "sources": [
+        "Dreamwork Business Internships 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://careers-brightspring.icims.com/jobs/196469/accounting-intern/job",
+            "reason": "closed",
+            "detail": null
+          }
+        ],
+        "runStartedAt": "2026-11-11T04:18:35.927Z",
+        "postingCheck": {
+          "status": "closed",
+          "checkedAt": "2026-11-11T04:24:43.948Z",
+          "httpStatus": 410,
+          "currentRun": true
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "Dreamwork Business Internships 2027",
+            "diagnosticName": "Dreamwork Business Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 459
+          }
+        ]
+      },
+      "category": "confirmed-closed",
+      "explanation": "A posting-specific check in this refresh explicitly reported closure.",
+      "nextAction": "No recovery based only on prior publication.",
+      "requiresInvestigation": false
+    },
+    {
+      "identity": "workday:micron.wd1.myworkdayjobs.com:external:jr109696",
+      "id": "ea334cdb216029c7896f208f",
+      "company": "Micron",
+      "title": "New College Grad - Engineer - HBM Design for Test (DFT)",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Richardson-TX/New-College-Grad---Engineer---HBM-Design-for-Test--DFT-_JR109696",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "ea334cdb216029c7896f208f"
+      ],
+      "previousUrls": [
+        "https://micron.wd1.myworkdayjobs.com/External/job/Richardson-TX/New-College-Grad---Engineer---HBM-Design-for-Test--DFT-_JR109696"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-11T04:18:35.927Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:micron.wd1.myworkdayjobs.com:external",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
             "diagnosticName": null,
             "status": "not-checked",
             "outcome": null,
@@ -156,38 +376,79 @@
   ],
   "rowCounts": {
     "previous": 6829,
-    "current": 6829,
-    "net": 0,
+    "current": 6827,
+    "net": -2,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 3,
-  "removedCount": 3,
+  "added": 5,
+  "removedCount": 7,
   "counts": {
-    "absent-from-employer-board": 3
+    "pendingVerification": 3,
+    "not-returned-by-sources": 3,
+    "closed": 1
   },
   "removed": [
     {
-      "id": "7581241fdc0799950b479471",
-      "company": "xAI",
-      "title": "Production Coordinator, Logistics - Memphis",
-      "applyUrl": "https://job-boards.greenhouse.io/xai/jobs/5237890007",
-      "reason": "absent-from-employer-board"
+      "id": "f40f42dc9c71ef6a7afed524",
+      "company": "Northrop Grumman",
+      "title": "Associate Software Engineer - Colorado Springs",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Colorado-Colorado-Springs/Associate-Software-Engineer---Colorado-Springs_R10257912",
+      "reason": "pendingVerification"
     },
     {
-      "id": "5707ad72e37884e1c0caa01f",
-      "company": "xAI",
-      "title": "Supervisor, Production Coordination (Logistics) - Memphis",
-      "applyUrl": "https://job-boards.greenhouse.io/xai/jobs/5241152007",
-      "reason": "absent-from-employer-board"
+      "id": "8d3e55a484ced4fd0601f461",
+      "company": "Amentum",
+      "title": "Plant Engineer I – Flowsheet Integration",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-WA-Richland/Plant-Engineer-I---Flowsheet-Integration_R0174696-1",
+      "reason": "not-returned-by-sources"
     },
     {
-      "id": "2d0420bea399477db43b28c9",
-      "company": "Match Group",
-      "title": "Software Engineer, iOS",
-      "applyUrl": "https://jobs.lever.co/matchgroup/61e35c3c-3156-4760-a088-4a3765e37f8e/apply",
-      "reason": "absent-from-employer-board"
+      "id": "de6c5b0d8751c55a65e76a3e",
+      "company": "Northrop Grumman",
+      "title": "2027 Electrical Engineering Intern - Colorado Springs",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Colorado-Colorado-Springs/XMLNAME-2027-Electrical-Engineering-Intern---Colorado-Springs_R10259022",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "a739c9f988153242f68ef0e8",
+      "company": "Micron",
+      "title": "Intern – CMBU Product Management",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/San-Jose-CA/Intern---CMBU-Product-Management_JR115941",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "5313047851aa69f55e793cb1",
+      "company": "Micron",
+      "title": "Intern - Technical Program Manager, Program Management Office (PMO)",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---Technical-Program-Manager--Program-Management-Office--PMO-_JR115692",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "c7d1b5c3327d1057338eadd8",
+      "company": "Brightspring",
+      "title": "Accounting Intern",
+      "applyUrl": "https://careers-brightspring.icims.com/jobs/196469/accounting-intern/job",
+      "reason": "closed"
+    },
+    {
+      "id": "ea334cdb216029c7896f208f",
+      "company": "Micron",
+      "title": "New College Grad - Engineer - HBM Design for Test (DFT)",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Richardson-TX/New-College-Grad---Engineer---HBM-Design-for-Test--DFT-_JR109696",
+      "reason": "not-returned-by-sources"
     }
   ],
-  "urlChanges": []
+  "urlChanges": [
+    {
+      "id": "7a90a21aa3ff02ea7b0eb4aa",
+      "previousUrl": "https://stryker.wd1.myworkdayjobs.com/strykercareers/job/Portage-Michigan/Product-Interaction-Design-Intern---Portage--MI_R572833",
+      "applyUrl": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers/job/Portage-Michigan/Product-Interaction-Design-Intern---Portage--MI_R572833"
+    },
+    {
+      "id": "dea94e21e0a5fb68a216f733",
+      "previousUrl": "https://stryker.wd1.myworkdayjobs.com/strykercareers/job/Portage-Michigan/Industrial-Design-Intern---Portage--MI_R572730",
+      "applyUrl": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers/job/Portage-Michigan/Industrial-Design-Intern---Portage--MI_R572730"
+    }
+  ]
 }
