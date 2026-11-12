@@ -1,337 +1,38 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-12T20:26:31.416Z",
-  "previousGeneratedAt": "2026-11-12T19:27:34.723Z",
-  "currentSnapshotGeneratedAt": "2026-11-12T20:26:31.416Z",
+  "generatedAt": "2026-11-12T21:25:22.815Z",
+  "previousGeneratedAt": "2026-11-12T20:26:31.416Z",
+  "currentSnapshotGeneratedAt": "2026-11-12T21:25:22.815Z",
   "reconciliation": {
     "unit": "opportunities",
     "previous": 6880,
-    "current": 6880,
-    "retained": 6861,
+    "current": 6888,
+    "retained": 6869,
     "added": 19,
-    "removed": 19,
-    "net": 0
+    "removed": 11,
+    "net": 8
   },
   "categoryCounts": {
     "confirmed-closed": 0,
-    "scope-exclusion": 2,
-    "verification-pending": 9,
-    "source-unavailable": 1,
-    "unresolved": 7,
+    "scope-exclusion": 0,
+    "verification-pending": 1,
+    "source-unavailable": 0,
+    "unresolved": 10,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "job-boards.greenhouse.io:7989324003",
-      "id": "98889c46fb55aa0fe50a34c3",
-      "company": "Klaviyo",
-      "title": "Software Engineer I",
-      "applyUrl": "https://job-boards.greenhouse.io/klaviyocampus/jobs/7989324003",
-      "reason": "absent-from-employer-board",
-      "previousIds": [
-        "98889c46fb55aa0fe50a34c3"
-      ],
-      "previousUrls": [
-        "https://job-boards.greenhouse.io/klaviyocampus/jobs/7989324003"
-      ],
-      "sources": [
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:klaviyocampus",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "job-boards.greenhouse.io:4366797009",
-      "id": "9a7fc936fac5819d8f9722eb",
-      "company": "Quantiq",
-      "title": "Market Operations Analyst",
-      "applyUrl": "https://job-boards.greenhouse.io/quantiq/jobs/4366797009",
-      "reason": "location",
-      "previousIds": [
-        "9a7fc936fac5819d8f9722eb"
-      ],
-      "previousUrls": [
-        "https://job-boards.greenhouse.io/quantiq/jobs/4366797009"
-      ],
-      "sources": [
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://job-boards.greenhouse.io/quantiq/jobs/4366797009",
-            "reason": "location",
-            "detail": null
-          }
-        ],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:quantiq",
-          "status": "ok",
-          "outcome": null,
-          "membership": "present",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "scope-exclusion",
-      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
-      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
-      "requiresInvestigation": false
-    },
-    {
-      "identity": "jobs.ashbyhq.com:f6857594-645c-4833-aa5b-763e9759b555",
-      "id": "9a9c8db6a6a767d814087c79",
-      "company": "UiPath",
-      "title": "AI Engineer Intern",
-      "applyUrl": "https://jobs.ashbyhq.com/uipath/f6857594-645c-4833-aa5b-763e9759b555/application",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "9a9c8db6a6a767d814087c79"
-      ],
-      "previousUrls": [
-        "https://jobs.ashbyhq.com/uipath/f6857594-645c-4833-aa5b-763e9759b555/application"
-      ],
-      "sources": [
-        "Aprameya Summer Internships 2027",
-        "Direct ATS (Ashby)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.ashbyhq.com/uipath/f6857594-645c-4833-aa5b-763e9759b555/application",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
-        "postingCheck": {
-          "status": "unknown",
-          "checkedAt": "2026-11-10T02:19:41.387Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": {
-          "id": "ashby:uipath",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2727
-          },
-          {
-            "name": "Direct ATS (Ashby)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:formfactor.wd1.myworkdayjobs.com:ffi-careers:jr101288",
-      "id": "f1941c20804930b6594a38ef",
-      "company": "FormFactor",
-      "title": "Software Engineer Intern",
-      "applyUrl": "https://formfactor.wd1.myworkdayjobs.com/FFI-Careers/job/Livermore-CA/Software-Engineer-Intern_JR101288",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "f1941c20804930b6594a38ef"
-      ],
-      "previousUrls": [
-        "https://formfactor.wd1.myworkdayjobs.com/FFI-Careers/job/Livermore-CA/Software-Engineer-Intern_JR101288"
-      ],
-      "sources": [
-        "Internship Engine"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://formfactor.wd1.myworkdayjobs.com/en-US/FFI-Careers/job/Livermore-CA/Software-Engineer-Intern_JR101288",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:formfactor.wd1.myworkdayjobs.com:ffi-careers",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1280
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "www.dreamworkhq.com:b26c3ca5-78d3-4828-b960-a4a0968b080d",
-      "id": "1a3615d21f00de22f41a5513",
-      "company": "Salesforce",
-      "title": "Summer 2027 Intern - Product Management",
-      "applyUrl": "https://www.dreamworkhq.com/job/b26c3ca5-78d3-4828-b960-a4a0968b080d",
-      "reason": "location",
-      "previousIds": [
-        "1a3615d21f00de22f41a5513"
-      ],
-      "previousUrls": [
-        "https://www.dreamworkhq.com/job/b26c3ca5-78d3-4828-b960-a4a0968b080d"
-      ],
-      "sources": [
-        "Dreamwork Tech Internships 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://www.dreamworkhq.com/job/b26c3ca5-78d3-4828-b960-a4a0968b080d",
-            "reason": "location",
-            "detail": null
-          }
-        ],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
-        "postingCheck": {
-          "status": "unknown",
-          "checkedAt": "2026-11-11T16:27:30.030Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": null,
-        "sources": [
-          {
-            "name": "Dreamwork Tech Internships 2027",
-            "diagnosticName": "Dreamwork Tech Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1315
-          }
-        ]
-      },
-      "category": "scope-exclusion",
-      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
-      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
-      "requiresInvestigation": false
-    },
-    {
-      "identity": "www.dreamworkhq.com:6ce52014-878f-4a6b-bdad-b16965646745",
-      "id": "32c3254df79078c57b1d03b1",
-      "company": "RTX",
-      "title": "Mechanical Design Engineering Intern (Summer 2027)",
-      "applyUrl": "https://www.dreamworkhq.com/job/6ce52014-878f-4a6b-bdad-b16965646745",
+      "identity": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site:r10260129",
+      "id": "817dbbc3fc6887c1a9f530e6",
+      "company": "Northrop Grumman",
+      "title": "2027 Associate Engineer / Engineer Aeronautical - Mission Plan Analysis - ND",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-North-Dakota-Emerado/XMLNAME-2027-Associate-Engineer---Engineer-Aeronautical---Mission-Plan-Analysis---ND_R10260129",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "32c3254df79078c57b1d03b1"
+        "817dbbc3fc6887c1a9f530e6"
       ],
       "previousUrls": [
-        "https://www.dreamworkhq.com/job/6ce52014-878f-4a6b-bdad-b16965646745"
-      ],
-      "sources": [
-        "Dreamwork Tech Internships 2027"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-12T17:28:24.080Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
-        "workdayChecks": [],
-        "board": null,
-        "sources": [
-          {
-            "name": "Dreamwork Tech Internships 2027",
-            "diagnosticName": "Dreamwork Tech Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1315
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:abbott.wd5.myworkdayjobs.com:abbottcareers:31166976",
-      "id": "5c352caf1c2fa6c73dc60d1a",
-      "company": "Abbott",
-      "title": "Electrical Engineer I Neuromodulation",
-      "applyUrl": "https://abbott.wd5.myworkdayjobs.com/abbottcareers/job/United-States---Texas---Plano/Electrical-Engineer-I_31166976",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "5c352caf1c2fa6c73dc60d1a"
-      ],
-      "previousUrls": [
-        "https://abbott.wd5.myworkdayjobs.com/abbottcareers/job/United-States---Texas---Plano/Electrical-Engineer-I_31166976"
+        "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-North-Dakota-Emerado/XMLNAME-2027-Associate-Engineer---Engineer-Aeronautical---Mission-Plan-Analysis---ND_R10260129"
       ],
       "sources": [
         "Direct ATS (Workday)"
@@ -339,11 +40,11 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
+        "runStartedAt": "2026-11-12T21:18:31.436Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:abbott.wd5.myworkdayjobs.com:abbottcareers",
+          "id": "workday:ngc.wd1.myworkdayjobs.com:northrop_grumman_external_site",
           "status": "ok",
           "outcome": "healthy",
           "membership": "unknown",
@@ -365,17 +66,61 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "job-boards.greenhouse.io:8010772003",
-      "id": "c143da06a52c70bc2c2dd20d",
-      "company": "Axon",
-      "title": "AfroTech 2026 Inside Sales Representative",
-      "applyUrl": "https://job-boards.greenhouse.io/axontalentcommunity/jobs/8010772003",
-      "reason": "absent-from-employer-board",
+      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01887812",
+      "id": "58657e28d2a5824ae98d85fe",
+      "company": "Raytheon",
+      "title": "Software Engineer I (Onsite)",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-FL-ST-PETERSBURG-381BD--7401-22nd-Ave-N--BLDG-D/Software-Engineer-I--Onsite-_01887812",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "c143da06a52c70bc2c2dd20d"
+        "58657e28d2a5824ae98d85fe"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/axontalentcommunity/jobs/8010772003"
+        "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-FL-ST-PETERSBURG-381BD--7401-22nd-Ave-N--BLDG-D/Software-Engineer-I--Onsite-_01887812"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-12T21:18:31.436Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "boards.greenhouse.io:8557208002",
+      "id": "86385af275f43284763aa7b0",
+      "company": "SpaceX",
+      "title": "AI Engineer, Special Programs",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8557208002",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "86385af275f43284763aa7b0"
+      ],
+      "previousUrls": [
+        "https://boards.greenhouse.io/spacex/jobs/8557208002"
       ],
       "sources": [
         "Direct ATS (Greenhouse)"
@@ -383,11 +128,11 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
+        "runStartedAt": "2026-11-12T21:18:31.436Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:axontalentcommunity",
+          "id": "greenhouse:spacex",
           "status": "ok",
           "outcome": null,
           "membership": "absent",
@@ -409,21 +154,241 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "jobs.ashbyhq.com:ec0f1de8-c589-4637-b3f8-4a87dd06882a",
-      "id": "d9d6a97c292c925f2081612a",
-      "company": "Zus Health",
-      "title": "Platform Software Engineering Co-op",
-      "applyUrl": "https://jobs.ashbyhq.com/zus-health/ec0f1de8-c589-4637-b3f8-4a87dd06882a",
-      "reason": "pendingVerification",
+      "identity": "boards.greenhouse.io:8557038002",
+      "id": "0c53d5f71eb9c3d164dfd5c7",
+      "company": "SpaceX",
+      "title": "AI Engineer, Special Programs",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8557038002",
+      "reason": "absent-from-employer-board",
       "previousIds": [
-        "d9d6a97c292c925f2081612a"
+        "0c53d5f71eb9c3d164dfd5c7"
       ],
       "previousUrls": [
-        "https://jobs.ashbyhq.com/zus-health/ec0f1de8-c589-4637-b3f8-4a87dd06882a"
+        "https://boards.greenhouse.io/spacex/jobs/8557038002"
+      ],
+      "sources": [
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-12T21:18:31.436Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:spacex",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "boards.greenhouse.io:8508315002",
+      "id": "b7b0afff62fef318b31ca9bf",
+      "company": "SpaceX",
+      "title": "Manufacturing Engineer, Machining (Starship)",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8508315002",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "b7b0afff62fef318b31ca9bf"
+      ],
+      "previousUrls": [
+        "https://boards.greenhouse.io/spacex/jobs/8508315002"
+      ],
+      "sources": [
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-12T21:18:31.436Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:spacex",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "boards.greenhouse.io:8646650002",
+      "id": "6fd6df629d93c0d1b4131f8f",
+      "company": "SpaceX",
+      "title": "Operations Engineer, Supply Chain (Starlink)",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8646650002",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "6fd6df629d93c0d1b4131f8f"
+      ],
+      "previousUrls": [
+        "https://boards.greenhouse.io/spacex/jobs/8646650002"
+      ],
+      "sources": [
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-12T21:18:31.436Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:spacex",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "boards.greenhouse.io:8571958002",
+      "id": "d35eb40556da96760eb74032",
+      "company": "SpaceX",
+      "title": "Operations Engineer, Supply Chain (Starlink)",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8571958002",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "d35eb40556da96760eb74032"
+      ],
+      "previousUrls": [
+        "https://boards.greenhouse.io/spacex/jobs/8571958002"
+      ],
+      "sources": [
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-12T21:18:31.436Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:spacex",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "jobs.lever.co:483be3c4-99f8-4dba-89f6-b2643cf9aa8e",
+      "id": "723c61c15e3feb8e992ae8b7",
+      "company": "Hermeus",
+      "title": "Avionics Electrical Engineer",
+      "applyUrl": "https://jobs.lever.co/hermeus/483be3c4-99f8-4dba-89f6-b2643cf9aa8e/apply",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "723c61c15e3feb8e992ae8b7"
+      ],
+      "previousUrls": [
+        "https://jobs.lever.co/hermeus/483be3c4-99f8-4dba-89f6-b2643cf9aa8e/apply"
+      ],
+      "sources": [
+        "Direct ATS (Lever)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-12T21:18:31.436Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "lever:api.lever.co:hermeus",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Lever)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "jobs.ashbyhq.com:5b7eced2-36bd-4265-a2a8-da0f786e47aa",
+      "id": "e3a2aba2d299e997f1313635",
+      "company": "Clay",
+      "title": "Software Engineering Intern",
+      "applyUrl": "https://jobs.ashbyhq.com/claylabs/5b7eced2-36bd-4265-a2a8-da0f786e47aa",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "e3a2aba2d299e997f1313635"
+      ],
+      "previousUrls": [
+        "https://jobs.ashbyhq.com/claylabs/5b7eced2-36bd-4265-a2a8-da0f786e47aa"
       ],
       "sources": [
         "Internship Engine",
-        "Aprameya Off-Cycle Internships 2027",
+        "Aprameya Summer Internships 2027",
         "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
         "Direct ATS (Ashby)"
       ],
@@ -431,21 +396,21 @@
       "evidence": {
         "screening": [
           {
-            "url": "https://jobs.ashbyhq.com/zus-health/ec0f1de8-c589-4637-b3f8-4a87dd06882a",
+            "url": "https://jobs.ashbyhq.com/claylabs/5b7eced2-36bd-4265-a2a8-da0f786e47aa",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           },
           {
-            "url": "https://jobs.ashbyhq.com/zus-health/ec0f1de8-c589-4637-b3f8-4a87dd06882a/application",
+            "url": "https://jobs.ashbyhq.com/claylabs/5b7eced2-36bd-4265-a2a8-da0f786e47aa/application",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
+        "runStartedAt": "2026-11-12T21:18:31.436Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "ashby:zus-health",
+          "id": "ashby:claylabs",
           "status": "ok",
           "outcome": null,
           "membership": "absent",
@@ -460,11 +425,11 @@
             "rows": 1280
           },
           {
-            "name": "Aprameya Off-Cycle Internships 2027",
-            "diagnosticName": "Aprameya Off-Cycle Internships 2027",
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
             "status": "ok",
             "outcome": null,
-            "rows": 745
+            "rows": 2727
           },
           {
             "name": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
@@ -488,239 +453,29 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "boards.greenhouse.io:8853324002",
-      "id": "dcfd968e1d460de15e1657f3",
-      "company": "SpaceX",
-      "title": "Embedded Software Engineer, RF Payloads (Starshield)",
-      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8853324002",
-      "reason": "absent-from-employer-board",
-      "previousIds": [
-        "dcfd968e1d460de15e1657f3"
-      ],
-      "previousUrls": [
-        "https://boards.greenhouse.io/spacex/jobs/8853324002"
-      ],
-      "sources": [
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:spacex",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "boards.greenhouse.io:8517637002",
-      "id": "733b4f4e4b6b53ca58a08d1d",
-      "company": "SpaceX",
-      "title": "RF Software Engineer (Starshield)",
-      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8517637002",
-      "reason": "absent-from-employer-board",
-      "previousIds": [
-        "733b4f4e4b6b53ca58a08d1d"
-      ],
-      "previousUrls": [
-        "https://boards.greenhouse.io/spacex/jobs/8517637002"
-      ],
-      "sources": [
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:spacex",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:vrtx.wd501.myworkdayjobs.com:vertex_careers:req-31112",
-      "id": "a7831a59d5deb67757d75224",
-      "company": "Vertex",
-      "title": "Spring Co-Op 2027, Commercial Analytics",
-      "applyUrl": "https://vrtx.wd501.myworkdayjobs.com/Vertex_Careers/job/Boston-MA/Spring-Co-Op-2027--Commercial-Analytics_REQ-31112-1",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "a7831a59d5deb67757d75224"
-      ],
-      "previousUrls": [
-        "https://vrtx.wd501.myworkdayjobs.com/Vertex_Careers/job/Boston-MA/Spring-Co-Op-2027--Commercial-Analytics_REQ-31112-1"
-      ],
-      "sources": [
-        "Dreamwork Business Internships 2027"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://vrtx.wd501.myworkdayjobs.com/en-US/vertex_careers/job/Boston-MA/Spring-Co-Op-2027--Commercial-Analytics_REQ-31112-1",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          },
-          {
-            "url": "https://vrtx.wd501.myworkdayjobs.com/Vertex_Careers/job/Boston-MA/Spring-Co-Op-2027--Commercial-Analytics_REQ-31112-1",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          },
-          {
-            "url": "https://vrtx.wd501.myworkdayjobs.com/Vertex_Careers/job/Boston-MA/Spring-Co-Op-2027--Commercial-Analytics_REQ-31112-1",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:vrtx.wd501.myworkdayjobs.com:vertex_careers",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Dreamwork Business Internships 2027",
-            "diagnosticName": "Dreamwork Business Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 521
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:capitalone.wd12.myworkdayjobs.com:capital_one:r244815",
-      "id": "c6ce411dac79c7eac42ba8e8",
-      "company": "Capital One",
-      "title": "MBA Product Intern - Summer 2027",
-      "applyUrl": "https://capitalone.wd12.myworkdayjobs.com/Capital_One/job/McLean-VA/MBA-Product-Intern---Summer-2027_R244815-1",
+      "identity": "workday:allegion.wd5.myworkdayjobs.com:careers:jr37366",
+      "id": "60897d6e7e0c3e19c9ccc130",
+      "company": "Allegion",
+      "title": "Summer Intern - Controls Engineering",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Tobey-Dr/Summer-Intern---Controls-Engineering_JR37366-1",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "c6ce411dac79c7eac42ba8e8"
+        "60897d6e7e0c3e19c9ccc130"
       ],
       "previousUrls": [
-        "https://capitalone.wd12.myworkdayjobs.com/Capital_One/job/McLean-VA/MBA-Product-Intern---Summer-2027_R244815-1"
+        "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Tobey-Dr/Summer-Intern---Controls-Engineering_JR37366-1"
       ],
       "sources": [
-        "Employer recovery"
+        "Direct ATS (Workday)"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
+        "runStartedAt": "2026-11-12T21:18:31.436Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:capitalone.wd12.myworkdayjobs.com:capital_one",
-          "status": "not-checked",
-          "outcome": null,
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1107
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:ciena.wd5.myworkdayjobs.com:careers:r031695",
-      "id": "5de568452af5b4e0653b8862",
-      "company": "Ciena",
-      "title": "WaveLogic Software Intern (Summer 2027)",
-      "applyUrl": "https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Atlanta/WaveLogic-Software-Intern--Summer-2027-_R031695",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "5de568452af5b4e0653b8862"
-      ],
-      "previousUrls": [
-        "https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Atlanta/WaveLogic-Software-Intern--Summer-2027-_R031695"
-      ],
-      "sources": [
-        "Aprameya Summer Internships 2027",
-        "Direct ATS (Workday)",
-        "Employer recovery"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Atlanta/WaveLogic-Software-Intern--Summer-2027-_R031695",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          },
-          {
-            "url": "https://ciena.wd5.myworkdayjobs.com/Careers/job/Atlanta/WaveLogic-Software-Intern--Summer-2027-_R031695",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
-          }
-        ],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
-        "postingCheck": null,
-        "workdayChecks": [
-          {
-            "url": "https://ciena.wd5.myworkdayjobs.com/Careers/job/Atlanta/WaveLogic-Software-Intern--Summer-2027-_R031695",
-            "status": "live"
-          }
-        ],
-        "board": {
-          "id": "workday:ciena.wd5.myworkdayjobs.com:careers",
+          "id": "workday:allegion.wd5.myworkdayjobs.com:careers",
           "status": "ok",
           "outcome": "healthy",
           "membership": "unknown",
@@ -728,81 +483,7 @@
         },
         "sources": [
           {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2727
-          },
-          {
             "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          },
-          {
-            "name": "Employer recovery",
-            "diagnosticName": "Original employer link recovery",
-            "status": "ok",
-            "outcome": "partial",
-            "rows": 1107
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "job-boards.greenhouse.io:7993376003",
-      "id": "267634fc5f8511d5ad76bee2",
-      "company": "Axon",
-      "title": "AfroTech 2026 Software Engineering Internship",
-      "applyUrl": "https://job-boards.greenhouse.io/axontalentcommunity/jobs/7993376003",
-      "reason": "absent-from-employer-board",
-      "previousIds": [
-        "267634fc5f8511d5ad76bee2"
-      ],
-      "previousUrls": [
-        "https://job-boards.greenhouse.io/axontalentcommunity/jobs/7993376003"
-      ],
-      "sources": [
-        "Internship Engine",
-        "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:axontalentcommunity",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1280
-          },
-          {
-            "name": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-            "diagnosticName": "Automated-List-Of-Summer-2027-and-Fall-2026-Tech-Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 572
-          },
-          {
-            "name": "Direct ATS (Greenhouse)",
             "diagnosticName": null,
             "status": "not-checked",
             "outcome": null,
@@ -816,157 +497,17 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "job-boards.greenhouse.io:5418727008",
-      "id": "57dc97eda314b82dd703b687",
-      "company": "K2 Space",
-      "title": "Simulation Software Engineering Intern - Summer 2027",
-      "applyUrl": "https://job-boards.greenhouse.io/k2spacecorporation/jobs/5418727008",
-      "reason": "pendingVerification",
+      "identity": "job-boards.greenhouse.io:5397402008",
+      "id": "91d919c789fc48fe5d2e4cc1",
+      "company": "Olsson",
+      "title": "Civil Engineering Internship - Site Design",
+      "applyUrl": "https://job-boards.greenhouse.io/olsson/jobs/5397402008",
+      "reason": "closed",
       "previousIds": [
-        "57dc97eda314b82dd703b687"
+        "91d919c789fc48fe5d2e4cc1"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/k2spacecorporation/jobs/5418727008"
-      ],
-      "sources": [
-        "Internship Engine",
-        "Aprameya Summer Internships 2027",
-        "Open-Tech-Internships-2027 2027",
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://job-boards.greenhouse.io/k2spacecorporation/jobs/5418727008",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:k2spacecorporation",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1280
-          },
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2727
-          },
-          {
-            "name": "Open-Tech-Internships-2027 2027",
-            "diagnosticName": "Open-Tech-Internships-2027 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2011
-          },
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "job-boards.greenhouse.io:5411920008",
-      "id": "2dae865fad499e2fec9a3cba",
-      "company": "K2 Space",
-      "title": "Software Engineering Intern – Summer 2027",
-      "applyUrl": "https://job-boards.greenhouse.io/k2spacecorporation/jobs/5411920008",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "2dae865fad499e2fec9a3cba"
-      ],
-      "previousUrls": [
-        "https://job-boards.greenhouse.io/k2spacecorporation/jobs/5411920008"
-      ],
-      "sources": [
-        "Internship Engine",
-        "Aprameya Summer Internships 2027",
-        "Direct ATS (Greenhouse)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://job-boards.greenhouse.io/k2spacecorporation/jobs/5411920008",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "greenhouse:k2spacecorporation",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Internship Engine",
-            "diagnosticName": "Internship Engine",
-            "status": "ok",
-            "outcome": null,
-            "rows": 1280
-          },
-          {
-            "name": "Aprameya Summer Internships 2027",
-            "diagnosticName": "Aprameya Summer Internships 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 2727
-          },
-          {
-            "name": "Direct ATS (Greenhouse)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "job-boards.greenhouse.io:5411917008",
-      "id": "30a30e07f47ba0900d3ad88c",
-      "company": "K2 Space",
-      "title": "GNC Engineering Intern – Summer 2027",
-      "applyUrl": "https://job-boards.greenhouse.io/k2spacecorporation/jobs/5411917008",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "30a30e07f47ba0900d3ad88c"
-      ],
-      "previousUrls": [
-        "https://job-boards.greenhouse.io/k2spacecorporation/jobs/5411917008"
+        "https://job-boards.greenhouse.io/olsson/jobs/5397402008"
       ],
       "sources": [
         "Keryx Non-Software Summer 2027",
@@ -976,16 +517,21 @@
       "evidence": {
         "screening": [
           {
-            "url": "https://job-boards.greenhouse.io/k2spacecorporation/jobs/5411917008",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
+            "url": "https://job-boards.greenhouse.io/olsson/jobs/5397402008",
+            "reason": "closed",
+            "detail": null
           }
         ],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
-        "postingCheck": null,
+        "runStartedAt": "2026-11-12T21:18:31.436Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-10-19T20:02:51.429Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:k2spacecorporation",
+          "id": "greenhouse:olsson",
           "status": "ok",
           "outcome": null,
           "membership": "absent",
@@ -1008,265 +554,111 @@
           }
         ]
       },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "jobs.ashbyhq.com:fc93a467-773d-4805-b342-bf470950732d",
-      "id": "b793513c649efdd2dd434c02",
-      "company": "Lightfield",
-      "title": "Software Engineer, New Grad - Applied AI",
-      "applyUrl": "https://jobs.ashbyhq.com/Lightfield/fc93a467-773d-4805-b342-bf470950732d",
-      "reason": "pendingVerification",
-      "previousIds": [
-        "b793513c649efdd2dd434c02"
-      ],
-      "previousUrls": [
-        "https://jobs.ashbyhq.com/Lightfield/fc93a467-773d-4805-b342-bf470950732d"
-      ],
-      "sources": [
-        "Aprameya New Grad 2027",
-        "Direct ATS (Ashby)"
-      ],
-      "candidateSeen": true,
-      "evidence": {
-        "screening": [
-          {
-            "url": "https://jobs.ashbyhq.com/Lightfield/fc93a467-773d-4805-b342-bf470950732d",
-            "reason": "pendingVerification",
-            "detail": "Company size and substantial U.S. operating presence have not been verified."
-          }
-        ],
-        "runStartedAt": "2026-11-12T20:18:29.533Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "ashby:lightfield",
-          "status": "ok",
-          "outcome": null,
-          "membership": "absent",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Aprameya New Grad 2027",
-            "diagnosticName": "Aprameya New Grad 2027",
-            "status": "ok",
-            "outcome": null,
-            "rows": 561
-          },
-          {
-            "name": "Direct ATS (Ashby)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "verification-pending",
-      "explanation": "Required evidence was insufficient for publication; closure is not established.",
-      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
       "requiresInvestigation": true
     }
   ],
   "rowCounts": {
     "previous": 6880,
-    "current": 6880,
-    "net": 0,
+    "current": 6888,
+    "net": 8,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
   "added": 19,
-  "removedCount": 19,
+  "removedCount": 11,
   "counts": {
-    "absent-from-employer-board": 5,
-    "location": 2,
-    "pendingVerification": 9,
-    "not-returned-by-sources": 3
+    "not-returned-by-sources": 3,
+    "absent-from-employer-board": 6,
+    "pendingVerification": 1,
+    "closed": 1
   },
   "removed": [
     {
-      "id": "98889c46fb55aa0fe50a34c3",
-      "company": "Klaviyo",
-      "title": "Software Engineer I",
-      "applyUrl": "https://job-boards.greenhouse.io/klaviyocampus/jobs/7989324003",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "9a7fc936fac5819d8f9722eb",
-      "company": "Quantiq",
-      "title": "Market Operations Analyst",
-      "applyUrl": "https://job-boards.greenhouse.io/quantiq/jobs/4366797009",
-      "reason": "location"
-    },
-    {
-      "id": "9a9c8db6a6a767d814087c79",
-      "company": "UiPath",
-      "title": "AI Engineer Intern",
-      "applyUrl": "https://jobs.ashbyhq.com/uipath/f6857594-645c-4833-aa5b-763e9759b555/application",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "f1941c20804930b6594a38ef",
-      "company": "FormFactor",
-      "title": "Software Engineer Intern",
-      "applyUrl": "https://formfactor.wd1.myworkdayjobs.com/FFI-Careers/job/Livermore-CA/Software-Engineer-Intern_JR101288",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "1a3615d21f00de22f41a5513",
-      "company": "Salesforce",
-      "title": "Summer 2027 Intern - Product Management",
-      "applyUrl": "https://www.dreamworkhq.com/job/b26c3ca5-78d3-4828-b960-a4a0968b080d",
-      "reason": "location"
-    },
-    {
-      "id": "32c3254df79078c57b1d03b1",
-      "company": "RTX",
-      "title": "Mechanical Design Engineering Intern (Summer 2027)",
-      "applyUrl": "https://www.dreamworkhq.com/job/6ce52014-878f-4a6b-bdad-b16965646745",
+      "id": "817dbbc3fc6887c1a9f530e6",
+      "company": "Northrop Grumman",
+      "title": "2027 Associate Engineer / Engineer Aeronautical - Mission Plan Analysis - ND",
+      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-North-Dakota-Emerado/XMLNAME-2027-Associate-Engineer---Engineer-Aeronautical---Mission-Plan-Analysis---ND_R10260129",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "5c352caf1c2fa6c73dc60d1a",
-      "company": "Abbott",
-      "title": "Electrical Engineer I Neuromodulation",
-      "applyUrl": "https://abbott.wd5.myworkdayjobs.com/abbottcareers/job/United-States---Texas---Plano/Electrical-Engineer-I_31166976",
+      "id": "58657e28d2a5824ae98d85fe",
+      "company": "Raytheon",
+      "title": "Software Engineer I (Onsite)",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-FL-ST-PETERSBURG-381BD--7401-22nd-Ave-N--BLDG-D/Software-Engineer-I--Onsite-_01887812",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "c143da06a52c70bc2c2dd20d",
-      "company": "Axon",
-      "title": "AfroTech 2026 Inside Sales Representative",
-      "applyUrl": "https://job-boards.greenhouse.io/axontalentcommunity/jobs/8010772003",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "d9d6a97c292c925f2081612a",
-      "company": "Zus Health",
-      "title": "Platform Software Engineering Co-op",
-      "applyUrl": "https://jobs.ashbyhq.com/zus-health/ec0f1de8-c589-4637-b3f8-4a87dd06882a",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "dcfd968e1d460de15e1657f3",
+      "id": "86385af275f43284763aa7b0",
       "company": "SpaceX",
-      "title": "Embedded Software Engineer, RF Payloads (Starshield)",
-      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8853324002",
+      "title": "AI Engineer, Special Programs",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8557208002",
       "reason": "absent-from-employer-board"
     },
     {
-      "id": "733b4f4e4b6b53ca58a08d1d",
+      "id": "0c53d5f71eb9c3d164dfd5c7",
       "company": "SpaceX",
-      "title": "RF Software Engineer (Starshield)",
-      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8517637002",
+      "title": "AI Engineer, Special Programs",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8557038002",
       "reason": "absent-from-employer-board"
     },
     {
-      "id": "a7831a59d5deb67757d75224",
-      "company": "Vertex",
-      "title": "Spring Co-Op 2027, Commercial Analytics",
-      "applyUrl": "https://vrtx.wd501.myworkdayjobs.com/Vertex_Careers/job/Boston-MA/Spring-Co-Op-2027--Commercial-Analytics_REQ-31112-1",
+      "id": "b7b0afff62fef318b31ca9bf",
+      "company": "SpaceX",
+      "title": "Manufacturing Engineer, Machining (Starship)",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8508315002",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "6fd6df629d93c0d1b4131f8f",
+      "company": "SpaceX",
+      "title": "Operations Engineer, Supply Chain (Starlink)",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8646650002",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "d35eb40556da96760eb74032",
+      "company": "SpaceX",
+      "title": "Operations Engineer, Supply Chain (Starlink)",
+      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8571958002",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "723c61c15e3feb8e992ae8b7",
+      "company": "Hermeus",
+      "title": "Avionics Electrical Engineer",
+      "applyUrl": "https://jobs.lever.co/hermeus/483be3c4-99f8-4dba-89f6-b2643cf9aa8e/apply",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "e3a2aba2d299e997f1313635",
+      "company": "Clay",
+      "title": "Software Engineering Intern",
+      "applyUrl": "https://jobs.ashbyhq.com/claylabs/5b7eced2-36bd-4265-a2a8-da0f786e47aa",
       "reason": "pendingVerification"
     },
     {
-      "id": "c6ce411dac79c7eac42ba8e8",
-      "company": "Capital One",
-      "title": "MBA Product Intern - Summer 2027",
-      "applyUrl": "https://capitalone.wd12.myworkdayjobs.com/Capital_One/job/McLean-VA/MBA-Product-Intern---Summer-2027_R244815-1",
+      "id": "60897d6e7e0c3e19c9ccc130",
+      "company": "Allegion",
+      "title": "Summer Intern - Controls Engineering",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Tobey-Dr/Summer-Intern---Controls-Engineering_JR37366-1",
       "reason": "not-returned-by-sources"
     },
     {
-      "id": "5de568452af5b4e0653b8862",
-      "company": "Ciena",
-      "title": "WaveLogic Software Intern (Summer 2027)",
-      "applyUrl": "https://ciena.wd5.myworkdayjobs.com/en-US/Careers/job/Atlanta/WaveLogic-Software-Intern--Summer-2027-_R031695",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "267634fc5f8511d5ad76bee2",
-      "company": "Axon",
-      "title": "AfroTech 2026 Software Engineering Internship",
-      "applyUrl": "https://job-boards.greenhouse.io/axontalentcommunity/jobs/7993376003",
-      "reason": "absent-from-employer-board"
-    },
-    {
-      "id": "57dc97eda314b82dd703b687",
-      "company": "K2 Space",
-      "title": "Simulation Software Engineering Intern - Summer 2027",
-      "applyUrl": "https://job-boards.greenhouse.io/k2spacecorporation/jobs/5418727008",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "2dae865fad499e2fec9a3cba",
-      "company": "K2 Space",
-      "title": "Software Engineering Intern – Summer 2027",
-      "applyUrl": "https://job-boards.greenhouse.io/k2spacecorporation/jobs/5411920008",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "30a30e07f47ba0900d3ad88c",
-      "company": "K2 Space",
-      "title": "GNC Engineering Intern – Summer 2027",
-      "applyUrl": "https://job-boards.greenhouse.io/k2spacecorporation/jobs/5411917008",
-      "reason": "pendingVerification"
-    },
-    {
-      "id": "b793513c649efdd2dd434c02",
-      "company": "Lightfield",
-      "title": "Software Engineer, New Grad - Applied AI",
-      "applyUrl": "https://jobs.ashbyhq.com/Lightfield/fc93a467-773d-4805-b342-bf470950732d",
-      "reason": "pendingVerification"
+      "id": "91d919c789fc48fe5d2e4cc1",
+      "company": "Olsson",
+      "title": "Civil Engineering Internship - Site Design",
+      "applyUrl": "https://job-boards.greenhouse.io/olsson/jobs/5397402008",
+      "reason": "closed"
     }
   ],
   "urlChanges": [
     {
-      "id": "f6687bad8e12a32a101c8499",
-      "previousUrl": "https://snc.wd1.myworkdayjobs.com/en-US/SNC_External_Career_Site/job/Lone-Tree-CO/Software-Engineer-I--For-2026-Interns-Only-_R0031346",
-      "applyUrl": "https://snc.wd1.myworkdayjobs.com/snc_external_career_site/job/Lone-Tree-CO/Software-Engineer-I--For-2026-Interns-Only-_R0031346"
-    },
-    {
-      "id": "66006340d0f81104bae2fc2a",
-      "previousUrl": "https://ngc.wd1.myworkdayjobs.com/Northrop_Grumman_External_Site/job/United-States-Florida-Apopka/XMLNAME-2027-Software-Testing-Engineering-Intern---Apopka-FL_R10259820-1",
-      "applyUrl": "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-Florida-Apopka/XMLNAME-2027-Software-Testing-Engineering-Intern---Apopka-FL_R10259820-1"
-    },
-    {
-      "id": "04a5d004fbdd6d04f93e83f2",
-      "previousUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603",
-      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603"
-    },
-    {
-      "id": "e95750cceb3ed599c15b3fe6",
-      "previousUrl": "https://jobs.lever.co/pattern/ad978732-7171-473d-9400-0a6fc9e23cf7/apply",
-      "applyUrl": "https://jobs.lever.co/pattern/ad978732-7171-473d-9400-0a6fc9e23cf7"
-    },
-    {
-      "id": "75cb3f0cd14563e162f9b59c",
-      "previousUrl": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/US-Oregon-Hillsboro/Software-Engineering-PhD-Intern-New-2027_JR0287458-1",
-      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering-PhD-Intern-New-2027_JR0287458-1"
-    },
-    {
-      "id": "0d2b34b01a825265d4f6e1e9",
-      "previousUrl": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/US-Oregon-Hillsboro/System-Software-Engineering---PhD-Intern_JR0287457",
-      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/System-Software-Engineering---PhD-Intern_JR0287457"
-    },
-    {
-      "id": "dec17dd7c886c9ef57d35a82",
-      "previousUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603",
-      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603"
-    },
-    {
-      "id": "ce91345ac9ad28e840f28d31",
-      "previousUrl": "https://intel.wd1.myworkdayjobs.com/en-us/external/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Graduate_JR0286836",
-      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Graduate_JR0286836"
-    },
-    {
-      "id": "f8fd23e6741557b0746e77b1",
-      "previousUrl": "https://intel.wd1.myworkdayjobs.com/en-US/external/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Bachelor-s_JR0286834",
-      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Bachelor-s_JR0286834"
+      "id": "c22a9ded3705b29620d52318",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---2027-New-Grad-Civil-Engineer-I--For-Current---Recent-HNTB-Interns-Only-_R-31314-1",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Salt-Lake-City-UT/WED---2027-New-Grad-Civil-Engineer-I--For-Current---Recent-HNTB-Interns-Only-_R-31314-1"
     }
   ]
 }
