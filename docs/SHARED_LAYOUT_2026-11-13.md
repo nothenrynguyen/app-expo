@@ -1,6 +1,6 @@
 # Shared page width and persistent gravity field
 
-Implemented November 13, 2026. Owner approved commit and push. Production verification remains separate.
+Pushed to origin/main November 13, 2026 as implementation commit `477e332`. All 194 tests, lint and TypeScript/static export pass. Production deployment and live verification remain unverified.
 
 - Shared public page containers and navigation use the board's 1,440px desktop cap. Footer edges follow the content gutter. Homepage collection cards expand to 1,120px; prose and feedback retain readable inner measures. The private analytics dashboard keeps its existing layout.
 - One fixed HeroGravity canvas is mounted in the root layout, outside page transitions. Removed route-level canvases and variant changes, preserving pointer attraction and click ripples across client navigation. Reduced-motion behavior, ignored interactive controls and effect cleanup remain intact.
