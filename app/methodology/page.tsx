@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { MethodologyStats } from "../MethodologyStats";
 import { PageTransition } from "../PageTransition";
-import { HeroGravity } from "../HeroGravity";
 import { SiteFooter } from "../SiteFooter";
 
 export const metadata: Metadata = {
@@ -44,7 +43,7 @@ const steps = [
 
 export default function MethodologyPage() {
   return <PageTransition>
-    <main className="board-page"><HeroGravity variant="board" />
+    <main className="board-page">
       <section className="methodology-shell">
         <div className="methodology-hero">
           <p className="eyebrow">How the board works</p>

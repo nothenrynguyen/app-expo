@@ -1,5 +1,7 @@
 # empluzzed Roadmap
 
+November 13: owner approved publishing the wider shared layout, persistent gravity field, transparent logo, shorter homepage copy and hover/focus-only admin link. All 194 tests, lint, TypeScript/static export and local desktop/mobile browser checks pass. Production verification remains separate. See [release evidence](docs/SHARED_LAYOUT_2026-11-13.md).
+
 November 12: shared location display cleanup implemented locally for spacing, location order, recognized site/address formats and state-specific remote labels. Bare San Jose has an explicit CA alias; unmatched cities remain unchanged. See [scope and verification](docs/LOCATION_DISPLAY_2026-11-12.md). Publication approved November 12. All 194 tests, lint, TypeScript and production export pass. Production deployment verification remains separate.
 
 November 12: wider desktop board and dedicated Date column implemented locally. Dates display without visible labels or qualifiers at the owner's request; hover explanations retain the date basis. Source dates are not guaranteed employer posting dates. See [date notes](docs/DECEMBER_DATE_LABELS_2026-11-09.md). Publication approved November 12. All 194 tests, lint, TypeScript and production export pass. Production deployment verification remains separate.

@@ -2,14 +2,13 @@
 
 import { useEffect, useRef } from "react";
 
-export function HeroGravity({ variant = "hero" }: { variant?: "hero" | "board" }) {
+export function HeroGravity() {
   const canvas = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
     const surface = canvas.current;
-    const hero = surface?.parentElement;
+    const interactionArea = document.body;
     const context = surface?.getContext("2d");
-    if (!surface || !hero || !context) return;
-    const interactionArea = hero.closest(variant === "hero" ? "main" : "body") ?? hero;
+    if (!surface || !context) return;
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const pointer = window.matchMedia("(hover: hover) and (pointer: fine)");
     let width = 0;
@@ -21,8 +20,8 @@ export function HeroGravity({ variant = "hero" }: { variant?: "hero" | "board" }
     let target = 0;
     let ripples: { x: number; y: number; started: number }[] = [];
     const rippleDuration = 1100;
-    const radius = variant === "board" ? 300 : 150;
-    const pullAmount = variant === "board" ? .11 : .18;
+    const radius = 300;
+    const pullAmount = .11;
     const draw = () => {
       const now = performance.now();
       context.clearRect(0, 0, width, height);
@@ -47,7 +46,7 @@ export function HeroGravity({ variant = "hero" }: { variant?: "hero" | "board" }
         }
         return [projectedX, projectedY];
       };
-      context.fillStyle = variant === "board" ? "rgba(176, 139, 255, 0.24)" : "rgba(176, 139, 255, 0.32)";
+      context.fillStyle = "rgba(176, 139, 255, 0.24)";
       context.beginPath();
       for (let col = 14; col < width; col += 28) {
         for (let row = 14; row < height; row += 28) {
@@ -107,6 +106,6 @@ export function HeroGravity({ variant = "hero" }: { variant?: "hero" | "board" }
       interactionArea.removeEventListener("click", click);
       motion.removeEventListener("change", preference); pointer.removeEventListener("change", preference);
     };
-  }, [variant]);
-  return <canvas ref={canvas} className={`hero-gravity${variant === "board" ? " board-gravity" : ""}`} aria-hidden="true" />;
+  }, []);
+  return <canvas ref={canvas} className="hero-gravity" aria-hidden="true" />;
 }

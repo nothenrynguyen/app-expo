@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { HeroGravity } from "../HeroGravity";
 import { SiteFooter } from "../SiteFooter";
 
 export const metadata: Metadata = {
@@ -17,7 +16,7 @@ const updates = [
 ];
 
 export default function UpdatesPage() {
-  return <><main className="board-page updates-page"><HeroGravity variant="board" />
+  return <><main className="board-page updates-page">
     <section className="updates-hero">
       <p className="eyebrow">Updates</p>
       <h1>Always moving <span>forward.</span></h1>

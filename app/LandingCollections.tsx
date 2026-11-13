@@ -28,7 +28,6 @@ export function LandingCollections() {
         <span className="collection-link">Browse Early Career Jobs <b>→</b></span>
       </Link>
     </div>
-    <p className="collection-count-note">Board counts reflect your filters and hidden companies.</p>
     {summary?.screening?.version === 1 && <p className="landing-screening"><span aria-hidden="true">✦ </span><Link className="screening-total" href="/methodology" aria-label={`${summary.screening.reviewed.toLocaleString()} total job links screened. Learn about the screening methodology.`}>{summary.screening.reviewed.toLocaleString()}</Link> total job links screened</p>}
   </>;
 }

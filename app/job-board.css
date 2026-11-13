@@ -32,7 +32,7 @@
   color:var(--ink);
 }
 
-.board-shell { max-width:1440px; display:grid; grid-template-columns:minmax(0,1fr) auto; padding-top:34px; }
+.board-shell { max-width:var(--site-width); display:grid; grid-template-columns:minmax(0,1fr) auto; padding-top:34px; }
 .board-shell>* { grid-column:1/-1; }
 .board-intro { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:24px; }
 .board-intro { grid-column:1; grid-row:1; }

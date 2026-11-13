@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { SiteFooter } from "../SiteFooter";
-import { HeroGravity } from "../HeroGravity";
 import { validActivityEndpoint } from "@/lib/activity-contract";
 
 export const metadata: Metadata = { title: "Privacy | empluzzed" };
 
 export default function PrivacyPage() {
   const owned = validActivityEndpoint(process.env.NEXT_PUBLIC_ACTIVITY_ENDPOINT ?? "");
-  return <main className="board-page"><HeroGravity variant="board" />
+  return <main className="board-page">
     <section className="methodology-shell privacy-notice">
       <p className="eyebrow">Privacy notice</p>
       <h1>Your browsing, your choice.</h1>
