@@ -20,12 +20,14 @@ function ListingDate({ job }: { job: PublicJob }) {
   const timestamp = Date.parse(job.postedAt);
   if (!Number.isFinite(timestamp)) return <span>Date unavailable</span>;
 
-  const label = job.postedAtSource === "first_seen"
-    ? "Discovered"
+  const explanation = job.postedAtSource === "first_seen"
+    ? "When empluzzed first found this listing. The employer may have posted it earlier."
     : job.postedAtSource === "relative_derived"
-      ? "Estimated date"
-      : "Listing date";
-  return <span>{label} <time dateTime={job.postedAt.slice(0, 10)}>{listingDateFormatter.format(timestamp)}</time></span>;
+      ? "Estimated from a relative source date, such as 3 days ago."
+      : "Date supplied by the listing source. It may reflect publication or creation.";
+  return <span title={explanation}>
+    <time dateTime={job.postedAt.slice(0, 10)}>{listingDateFormatter.format(timestamp)}</time>
+  </span>;
 }
 
 type JobResultsProps = {
@@ -106,6 +108,7 @@ function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJob
           <span role="columnheader">Company</span>
           <span role="columnheader">Position</span>
           <span role="columnheader">Location</span>
+          <span role="columnheader">Date</span>
           <span role="columnheader">Save</span>
           <span role="columnheader">Apply</span>
           <span role="columnheader">LinkedIn</span>
@@ -118,7 +121,6 @@ function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJob
               <div className="job-table-company" role="cell" data-label="Company">{displayText(job.company)}</div>
               <div className="job-table-title" role="cell" data-label="Position">
                 {displayText(job.title)}
-                <div className="job-table-date"><ListingDate job={job} /></div>
                 <FederalEligibility job={job} />
               </div>
               <div className="job-table-location" role="cell" data-label="Location">
@@ -126,6 +128,7 @@ function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJob
                   ? <span className="location-with-more" tabIndex={0}><span className="location-label">{location.compact}</span><span className="location-popover" role="tooltip">{location.full}</span></span>
                   : <span className="location-label" title={location.full}>{location.compact}</span>}
               </div>
+              <div className="job-table-date" role="cell" data-label="Date"><ListingDate job={job} /></div>
               <div className="job-table-action" role="cell" data-label="Save"><SaveButton compact isSaved={savedJobIds.has(job.id)} job={job} onToggle={() => onToggleSaved(job.id)} /></div>
               <div className="job-table-action" role="cell" data-label="Apply"><a className="button table-button primary" href={job.applyUrl} target="_blank" rel="noreferrer" onClick={() => trackActivity("apply_click")}>Apply</a></div>
               <div className="job-table-action" role="cell" data-label="LinkedIn"><a className="button table-button secondary" href={getLinkedInUrl(job)} target="_blank" rel="noreferrer">LinkedIn</a></div>

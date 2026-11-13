@@ -1,4 +1,4 @@
-import { normalizeJobLocation } from "@/lib/job-locations";
+import { formatJobLocation, normalizeJobLocation } from "@/lib/job-locations";
 import type { PublicJob } from "@/lib/jobs";
 
 export const PAGE_SIZE = 100;
@@ -33,7 +33,7 @@ function splitLocations(location: string): string[] {
 }
 
 export function getLocationDisplay(location: string, workMode?: PublicJob["workMode"]) {
-  const normalized = displayText(normalizeJobLocation(location));
+  const normalized = displayText(formatJobLocation(location));
   // Remote country restrictions and country-only locations are meaningful.
   const countryOnly = /^(?:United States(?: of America)?|USA|US)$/i;
   const parts = normalized.split(/\s*[;|]\s*/).filter(Boolean);

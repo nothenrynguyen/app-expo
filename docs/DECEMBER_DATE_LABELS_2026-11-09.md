@@ -10,4 +10,10 @@ All 193 tests, lint, and static export passed. The original publication test fai
 
 **Clearer dates on the job board**
 
-See dates beneath job titles in List view and on cards, with separate labels for estimates and when empluzzed discovered a listing.
+See dates in a dedicated column in List view and in card metadata, with the date basis available on hover.
+
+## November 12 local layout revision
+
+Desktop board width increases from 1120px to 1440px. Compact results move dates to a separate Date column after Location. At the owner's request, all dates show only the formatted date without visible labels or qualifiers. Hover explanations describe the date basis. Discovery can be later than publication, and source dates can represent creation, so a universal Posted date label would overstate the evidence.
+
+Intermediate widths scroll the table horizontally; phone layouts retain a separate metadata row. No ingestion or sorting changes. No Updates entry for this minor layout refinement. Focused ESLint, TypeScript and production export pass locally (build rerun with write permission after an initial EPERM); browser visual verification remains outstanding. Publication approved November 12. All 194 tests, full lint, TypeScript and production export pass. Production deployment verification remains separate.

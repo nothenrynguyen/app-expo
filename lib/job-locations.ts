@@ -105,6 +105,37 @@ export function normalizeJobLocation(location: string): string {
     });
 }
 
+// Presentation only: keep source strings intact for eligibility, identity and filtering.
+export function formatJobLocation(location: string): string {
+  const titleCase = (city: string) => city === city.toUpperCase()
+    ? city.toLowerCase().replace(/\b[a-z]/g, (letter) => letter.toUpperCase())
+    : city;
+  return location.split(/\s*[;|]\s*/).map((raw) => {
+    let part = raw.trim().replace(/\s*,\s*/g, ", ").replace(/\s+/g, " ");
+    const coded = part.match(/^(US|CA)[-_]([A-Z]{2})[-_]([A-Za-z .'-]+)(?:[-_].*)?$/i);
+    if (coded && (coded[1].toUpperCase() === "US" ? US_STATE_CODES.has(coded[2].toUpperCase()) : /^(AB|BC|MB|NB|NL|NS|NT|NU|ON|PE|QC|SK|YT)$/i.test(coded[2]))) {
+      const mode = part.match(/\s*\((?:Hybrid|Remote)\)\s*$/i)?.[0] ?? "";
+      return `${titleCase(coded[3].trim())}, ${coded[2].toUpperCase()}${coded[1].toUpperCase() === "CA" ? ", Canada" : ""}${mode}`;
+    }
+    const reversed = part.match(/^(?:US|USA|United States), ([A-Z]{2}), ([^,]+)$/i);
+    if (reversed && US_STATE_CODES.has(reversed[1].toUpperCase())) {
+      part = `${titleCase(reversed[2])}, ${reversed[1].toUpperCase()}`;
+    }
+    // Recognizable postal addresses may carry a ZIP and building description.
+    const postal = part.match(/^([^,]+?)\s+([A-Z]{2}), \d{5}(?:-\d{4})?(?:,.*)?$/);
+    if (postal && US_STATE_CODES.has(postal[2])) {
+      const mode = part.match(/\s*\((?:Hybrid|Remote)\)\s*$/i)?.[0] ?? "";
+      part = `${postal[1]}, ${postal[2]}${mode}`;
+    }
+    const remoteState = part.match(/^Remote \(([A-Z]{2}), Working at Home - ([A-Za-z ]+)\)$/i);
+    if (remoteState && STATE_NAMES[remoteState[2]] === remoteState[1].toUpperCase()) {
+      return `Remote (${remoteState[1].toUpperCase()})`;
+    }
+    if (/^San Jose$/i.test(part)) return "San Jose, CA";
+    return normalizeJobLocation(part);
+  }).filter(Boolean).join("; ");
+}
+
 export function classifyJobRegions(location: string): DetectedJobRegion[] {
   const regions = new Set<DetectedJobRegion>();
   // A country suffix cannot override a foreign city in the same location.

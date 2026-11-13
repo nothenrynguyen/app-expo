@@ -1397,3 +1397,29 @@ test("ambiguous engineering titles do not invent design or customer-facing speci
   assert.deepEqual(getJobRoleTags({ title: "Applications Engineer Intern", category: "Internship", rawText: "Build internal company tools.", roleTags: ["solutions-support"] }), ["general-engineering"]);
   assert.deepEqual(getJobRoleTags({ title: "Applications Engineer Intern", category: "Internship", roleTags: ["solutions-support"] }), ["general-engineering", "solutions-support"]);
 });
+
+
+test("location display standardizes source formats without changing source data", () => {
+  const cases = [
+    ["Billerica,MA", "Billerica, MA"],
+    ["San Jose", "San Jose, CA"],
+    ["North Kingstown, RI", "North Kingstown, RI"],
+    ["US, CA, Santa Clara", "Santa Clara, CA"],
+    ["US-TX-MIDLAND-2101 MARKET STREET", "Midland, TX"],
+    ["US-OK-CLAREMORE-200 W STUART ROOSA DR", "Claremore, OK"],
+    ["US-CA-EL SEGUNDO-E01 2000 E El Segundo Blvd BLDG E01", "El Segundo, CA"],
+    ["CA-QC-LONGUEUIL-MD 1000 Blvd Marie-Victorin", "Longueuil, QC, Canada"],
+    ["CA-QC-SAINT-HUBERT-H05 7007 Chemin", "Saint-Hubert, QC, Canada"],
+    ["Camp Hill PA, 17011, Center Street Building 2A", "Camp Hill, PA"],
+    ["Pittsburgh PA, 15222, PAP, Penn Avenue Place (Hybrid)", "Pittsburgh, PA (Hybrid)"],
+    ["Remote (PA, Working at Home - Pennsylvania)", "Remote (PA)"],
+    ["Cambridge", "Cambridge"],
+    ["San Jose, Costa Rica", "San Jose, Costa Rica"],
+    ["US-ZZ-UNKNOWN-123 STREET", "US-ZZ-UNKNOWN-123 STREET"],
+  ];
+  for (const [source, expected] of cases) {
+    assert.equal(getLocationDisplay(source).full, expected, source);
+    assert.equal(getLocationDisplay(expected).full, expected, `idempotent: ${source}`);
+  }
+  assert.equal(getLocationDisplay("US-TX-MIDLAND-2101 MARKET STREET; Billerica,MA").compact, "Midland, TX + 1 more");
+});
