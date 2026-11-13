@@ -1,38 +1,1192 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-12T23:24:56.070Z",
-  "previousGeneratedAt": "2026-11-12T22:46:52.901Z",
-  "currentSnapshotGeneratedAt": "2026-11-12T23:24:56.070Z",
+  "generatedAt": "2026-11-13T00:25:35.939Z",
+  "previousGeneratedAt": "2026-11-12T23:24:56.070Z",
+  "currentSnapshotGeneratedAt": "2026-11-13T00:25:35.939Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6847,
-    "current": 6897,
-    "retained": 6845,
-    "added": 52,
-    "removed": 2,
-    "net": 50
+    "previous": 6897,
+    "current": 6883,
+    "retained": 6873,
+    "added": 10,
+    "removed": 24,
+    "net": -14
   },
   "categoryCounts": {
     "confirmed-closed": 0,
     "scope-exclusion": 0,
-    "verification-pending": 0,
+    "verification-pending": 18,
     "source-unavailable": 0,
-    "unresolved": 2,
+    "unresolved": 6,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "job-boards.greenhouse.io:8882544002",
-      "id": "155520a84bbdea3a7cb2ab0d",
-      "company": "Alarm.com",
-      "title": "Quality Engineer I",
-      "applyUrl": "https://job-boards.greenhouse.io/alarmcom/jobs/8882544002",
-      "reason": "absent-from-employer-board",
+      "identity": "workday:tmobile.wd1.myworkdayjobs.com:external:req381319",
+      "id": "e72eafc732acf308c62db508",
+      "company": "T-Mobile",
+      "title": "Summer 2027 Business Analytics & Reporting Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Business-Analytics---Reporting-Internship_REQ381319",
+      "reason": "pendingVerification",
       "previousIds": [
-        "155520a84bbdea3a7cb2ab0d"
+        "e72eafc732acf308c62db508"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/alarmcom/jobs/8882544002"
+        "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Business-Analytics---Reporting-Internship_REQ381319"
+      ],
+      "sources": [
+        "Dreamwork Business Internships 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/en-US/External/job/Bellevue-Washington/Summer-2027-Business-Analytics---Reporting-Internship_REQ381319",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Business-Analytics---Reporting-Internship_REQ381319",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Business-Analytics---Reporting-Internship_REQ381319",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:tmobile.wd1.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Dreamwork Business Internships 2027",
+            "diagnosticName": "Dreamwork Business Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 547
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01888812",
+      "id": "203484a746c635f4be13ac6b",
+      "company": "Raytheon",
+      "title": "Manufacturing Engineer I (Onsite)",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-CA-GOLETA-B03--75-Coromar-Dr--BLDG-B03/Manufacturing-Engineer-I--Onsite-_01888812",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "203484a746c635f4be13ac6b"
+      ],
+      "previousUrls": [
+        "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-CA-GOLETA-B03--75-Coromar-Dr--BLDG-B03/Manufacturing-Engineer-I--Onsite-_01888812"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:tmobile.wd1.myworkdayjobs.com:external:req381219",
+      "id": "a7e82b9f42d5cdf7baf9bd50",
+      "company": "T-Mobile",
+      "title": "Summer 2027 T-Ads Software Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Philadelphia-Pennsylvania/Summer-2027-T-Ads-Software-Engineering-Internship_REQ381219",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "a7e82b9f42d5cdf7baf9bd50"
+      ],
+      "previousUrls": [
+        "https://tmobile.wd1.myworkdayjobs.com/External/job/Philadelphia-Pennsylvania/Summer-2027-T-Ads-Software-Engineering-Internship_REQ381219"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/External/job/Philadelphia-Pennsylvania/Summer-2027-T-Ads-Software-Engineering-Internship_REQ381219",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/en-US/External/job/Philadelphia-Pennsylvania/Summer-2027-T-Ads-Software-Engineering-Internship_REQ381219",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/external/job/philadelphia-pennsylvania/summer-2027-t-ads-software-engineering-internship_req381219",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:tmobile.wd1.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1280
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:tmobile.wd1.myworkdayjobs.com:external:req381225",
+      "id": "78eca7cf15ff8fa9d66d95dc",
+      "company": "T-Mobile",
+      "title": "Summer 2027 T-Ads Software Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Philadelphia-Pennsylvania/Summer-2027-T-Ads-Software-Engineering-Internship_REQ381225",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "78eca7cf15ff8fa9d66d95dc"
+      ],
+      "previousUrls": [
+        "https://tmobile.wd1.myworkdayjobs.com/External/job/Philadelphia-Pennsylvania/Summer-2027-T-Ads-Software-Engineering-Internship_REQ381225"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/External/job/Philadelphia-Pennsylvania/Summer-2027-T-Ads-Software-Engineering-Internship_REQ381225",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/en-US/External/job/Philadelphia-Pennsylvania/Summer-2027-T-Ads-Software-Engineering-Internship_REQ381225",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:tmobile.wd1.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1280
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "www.usajobs.gov:892377900",
+      "id": "69bf788eed6fb2200c17da2c",
+      "company": "Defense Information Systems Agency",
+      "title": "IT Cybersecurity Specialists (Sysadmin/Infosec) - CES Recent Graduate",
+      "applyUrl": "https://www.usajobs.gov/job/892377900",
+      "reason": "closed",
+      "previousIds": [
+        "69bf788eed6fb2200c17da2c"
+      ],
+      "previousUrls": [
+        "https://www.usajobs.gov/job/892377900"
+      ],
+      "sources": [
+        "USAJOBS selective review"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://www.usajobs.gov/job/892377900",
+            "reason": "closed",
+            "detail": null
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-11-12T15:26:16.070Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
+        "workdayChecks": [],
+        "board": null,
+        "sources": [
+          {
+            "name": "USAJOBS selective review",
+            "diagnosticName": "USAJOBS selective review",
+            "status": "ok",
+            "outcome": null,
+            "rows": 10
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:uhaul.wd1.myworkdayjobs.com:uhauljobs:r258909",
+      "id": "61b8811977782a1baa1b5bbd",
+      "company": "Uhaul",
+      "title": "Data Analyst Spring Internship",
+      "applyUrl": "https://uhaul.wd1.myworkdayjobs.com/UhaulJobs/job/Phoenix-Arizona/Data-Analyst-Spring-Internship_R258909",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "61b8811977782a1baa1b5bbd"
+      ],
+      "previousUrls": [
+        "https://uhaul.wd1.myworkdayjobs.com/UhaulJobs/job/Phoenix-Arizona/Data-Analyst-Spring-Internship_R258909"
+      ],
+      "sources": [
+        "Dreamwork Business Internships 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://uhaul.wd1.myworkdayjobs.com/en-US/UhaulJobs/job/Phoenix-Arizona/Data-Analyst-Spring-Internship_R258909",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://uhaul.wd1.myworkdayjobs.com/UhaulJobs/job/Phoenix-Arizona/Data-Analyst-Spring-Internship_R258909",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://uhaul.wd1.myworkdayjobs.com/UhaulJobs/job/Phoenix-Arizona/Data-Analyst-Spring-Internship_R258909",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:uhaul.wd1.myworkdayjobs.com:uhauljobs",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Dreamwork Business Internships 2027",
+            "diagnosticName": "Dreamwork Business Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 547
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:tmobile.wd1.myworkdayjobs.com:external:req380765",
+      "id": "7d3d12aae538f4ad14219894",
+      "company": "T-Mobile",
+      "title": "Summer 2027 AI Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-AI-Engineering-Internship_REQ380765",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "7d3d12aae538f4ad14219894"
+      ],
+      "previousUrls": [
+        "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-AI-Engineering-Internship_REQ380765"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-AI-Engineering-Internship_REQ380765",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/en-US/External/job/Bellevue-Washington/Summer-2027-AI-Engineering-Internship_REQ380765",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-AI-Engineering-Internship_REQ380765",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:tmobile.wd1.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1280
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:tmobile.wd1.myworkdayjobs.com:external:req381194",
+      "id": "af982f766ed077f8a8846f28",
+      "company": "T-Mobile",
+      "title": "Summer 2027 AI Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-AI-Engineering-Internship_REQ381194",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "af982f766ed077f8a8846f28"
+      ],
+      "previousUrls": [
+        "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-AI-Engineering-Internship_REQ381194"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-AI-Engineering-Internship_REQ381194",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/en-US/External/job/Bellevue-Washington/Summer-2027-AI-Engineering-Internship_REQ381194",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:tmobile.wd1.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1280
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:tmobile.wd1.myworkdayjobs.com:external:req381198",
+      "id": "7a5e4b9ca8382abe28b798b8",
+      "company": "T-Mobile",
+      "title": "Summer 2027 AI Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-AI-Engineering-Internship_REQ381198",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "7a5e4b9ca8382abe28b798b8"
+      ],
+      "previousUrls": [
+        "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-AI-Engineering-Internship_REQ381198"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-AI-Engineering-Internship_REQ381198",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/en-US/External/job/Bellevue-Washington/Summer-2027-AI-Engineering-Internship_REQ381198",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:tmobile.wd1.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1280
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:tmobile.wd1.myworkdayjobs.com:external:req380766",
+      "id": "5388a02623991e57664af73a",
+      "company": "T-Mobile",
+      "title": "Summer 2027 Software Engineer HR Data Products Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineer-HR-Data-Products-Internship_REQ380766",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "5388a02623991e57664af73a"
+      ],
+      "previousUrls": [
+        "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineer-HR-Data-Products-Internship_REQ380766"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineer-HR-Data-Products-Internship_REQ380766",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/en-US/External/job/Bellevue-Washington/Summer-2027-Software-Engineer-HR-Data-Products-Internship_REQ380766",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineer-HR-Data-Products-Internship_REQ380766",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:tmobile.wd1.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1280
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:tmobile.wd1.myworkdayjobs.com:external:req380916",
+      "id": "ed64ccd2e3886f2af8fd25ec",
+      "company": "T-Mobile",
+      "title": "Summer 2027 Software Engineer HR Data Products Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineer-HR-Data-Products-Internship_REQ380916",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "ed64ccd2e3886f2af8fd25ec"
+      ],
+      "previousUrls": [
+        "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineer-HR-Data-Products-Internship_REQ380916"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineer-HR-Data-Products-Internship_REQ380916",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/en-US/External/job/Bellevue-Washington/Summer-2027-Software-Engineer-HR-Data-Products-Internship_REQ380916",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:tmobile.wd1.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1280
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:tmobile.wd1.myworkdayjobs.com:external:req380757",
+      "id": "877442c15eaf020117f83347",
+      "company": "T-Mobile",
+      "title": "Summer 2027 Software Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineering-Internship_REQ380757",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "877442c15eaf020117f83347"
+      ],
+      "previousUrls": [
+        "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineering-Internship_REQ380757"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineering-Internship_REQ380757",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/en-US/External/job/Bellevue-Washington/Summer-2027-Software-Engineering-Internship_REQ380757",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineering-Internship_REQ380757",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:tmobile.wd1.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1280
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:tmobile.wd1.myworkdayjobs.com:external:req380768",
+      "id": "9b4b11a93f1465388aad04c3",
+      "company": "T-Mobile",
+      "title": "Summer 2027 Software Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineering-Internship_REQ380768",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "9b4b11a93f1465388aad04c3"
+      ],
+      "previousUrls": [
+        "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineering-Internship_REQ380768"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineering-Internship_REQ380768",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/en-US/External/job/Bellevue-Washington/Summer-2027-Software-Engineering-Internship_REQ380768",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:tmobile.wd1.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1280
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:tmobile.wd1.myworkdayjobs.com:external:req380917",
+      "id": "b2143ec8a4ea1d311b947d69",
+      "company": "T-Mobile",
+      "title": "Summer 2027 Software Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineering-Internship_REQ380917",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "b2143ec8a4ea1d311b947d69"
+      ],
+      "previousUrls": [
+        "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineering-Internship_REQ380917"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineering-Internship_REQ380917",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/en-US/External/job/Bellevue-Washington/Summer-2027-Software-Engineering-Internship_REQ380917",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:tmobile.wd1.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1280
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:tmobile.wd1.myworkdayjobs.com:external:req380734",
+      "id": "27689ca2ed273764a42498d4",
+      "company": "T-Mobile",
+      "title": "Summer 2027 Software Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Overland-Park-Kansas/Summer-2027-Software-Engineering-Internship_REQ380734",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "27689ca2ed273764a42498d4"
+      ],
+      "previousUrls": [
+        "https://tmobile.wd1.myworkdayjobs.com/External/job/Overland-Park-Kansas/Summer-2027-Software-Engineering-Internship_REQ380734"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/External/job/Overland-Park-Kansas/Summer-2027-Software-Engineering-Internship_REQ380734",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/en-US/External/job/Overland-Park-Kansas/Summer-2027-Software-Engineering-Internship_REQ380734",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:tmobile.wd1.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1280
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:tmobile.wd1.myworkdayjobs.com:external:req380739",
+      "id": "8c5a75dfac21a7351163b843",
+      "company": "T-Mobile",
+      "title": "Summer 2027 Software Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Overland-Park-Kansas/Summer-2027-Software-Engineering-Internship_REQ380739",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "8c5a75dfac21a7351163b843"
+      ],
+      "previousUrls": [
+        "https://tmobile.wd1.myworkdayjobs.com/External/job/Overland-Park-Kansas/Summer-2027-Software-Engineering-Internship_REQ380739"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/External/job/Overland-Park-Kansas/Summer-2027-Software-Engineering-Internship_REQ380739",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/en-US/External/job/Overland-Park-Kansas/Summer-2027-Software-Engineering-Internship_REQ380739",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:tmobile.wd1.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1280
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:tmobile.wd1.myworkdayjobs.com:external:req380650",
+      "id": "9b235365a1beab98e42dcddb",
+      "company": "T-Mobile",
+      "title": "Summer 2027 Software Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Atlanta-Georgia/Summer-2027-Software-Engineering-Internship_REQ380650",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "9b235365a1beab98e42dcddb"
+      ],
+      "previousUrls": [
+        "https://tmobile.wd1.myworkdayjobs.com/External/job/Atlanta-Georgia/Summer-2027-Software-Engineering-Internship_REQ380650"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/External/job/Atlanta-Georgia/Summer-2027-Software-Engineering-Internship_REQ380650",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/en-US/External/job/Atlanta-Georgia/Summer-2027-Software-Engineering-Internship_REQ380650",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://tmobile.wd1.myworkdayjobs.com/external/job/atlanta-georgia/summer-2027-software-engineering-internship_req380650",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:tmobile.wd1.myworkdayjobs.com:external",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1280
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers:r69922",
+      "id": "25601e63ac37613e72fce287",
+      "company": "Motorola",
+      "title": "Presales Engineering Intern- Summer 2027 Internship",
+      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/Presales-Engineering-Intern--Summer-2027-Internship_R69922",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "25601e63ac37613e72fce287"
+      ],
+      "previousUrls": [
+        "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/Presales-Engineering-Intern--Summer-2027-Internship_R69922"
+      ],
+      "sources": [
+        "Keryx Non-Software Summer 2027",
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/Presales-Engineering-Intern--Summer-2027-Internship_R69922",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1591
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers:r68739",
+      "id": "35edf7ebe5bb78ec4fe722a7",
+      "company": "Motorola",
+      "title": "VS&A Supply Chain Intern 2027 internship",
+      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/VS-A-Supply-Chain-Intern_R68739",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "35edf7ebe5bb78ec4fe722a7"
+      ],
+      "previousUrls": [
+        "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/VS-A-Supply-Chain-Intern_R68739"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01871347",
+      "id": "41f7d21372bd9fa005102af5",
+      "company": "RTX 🛂",
+      "title": "Software Engineer Co-op (Summer/Fall 2027) - Onsite",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-182--1100-Cimmie-Ave-Ne--BLDG-182/Software-Engineer-Co-op--Summer-Fall-2027----Onsite_01871347",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "41f7d21372bd9fa005102af5"
+      ],
+      "previousUrls": [
+        "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-182--1100-Cimmie-Ave-Ne--BLDG-182/Software-Engineer-Co-op--Summer-Fall-2027----Onsite_01871347"
+      ],
+      "sources": [
+        "Aprameya Off-Cycle Internships 2027"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-182--1100-Cimmie-Ave-Ne--BLDG-182/Software-Engineer-Co-op--Summer-Fall-2027----Onsite_01871347",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-182--1100-Cimmie-Ave-Ne--BLDG-182/Software-Engineer-Co-op--Summer-Fall-2027----Onsite_01871347",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Off-Cycle Internships 2027",
+            "diagnosticName": "Aprameya Off-Cycle Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 746
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31590",
+      "id": "567e9e175792b77de4c33850",
+      "company": "HNTB",
+      "title": "New Grad Engineer I: Rail Operations Modeling and Planning - Summer 2027",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Boston-MA/New-Grad-Engineer-I--Rail-Operations-Modeling-and-Planning---Summer-2027_R-31590-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "567e9e175792b77de4c33850"
+      ],
+      "previousUrls": [
+        "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Boston-MA/New-Grad-Engineer-I--Rail-Operations-Modeling-and-Planning---Summer-2027_R-31590-1"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "job-boards.greenhouse.io:4731591005",
+      "id": "4e4a5328fff8d427ed0b0dd6",
+      "company": "Astera Labs",
+      "title": "Firmware Engineer Intern (DevSecOps)",
+      "applyUrl": "https://job-boards.greenhouse.io/asteraearlycareer2027/jobs/4731591005",
+      "reason": "absent-from-employer-board",
+      "previousIds": [
+        "4e4a5328fff8d427ed0b0dd6"
+      ],
+      "previousUrls": [
+        "https://job-boards.greenhouse.io/asteraearlycareer2027/jobs/4731591005"
       ],
       "sources": [
         "Direct ATS (Greenhouse)"
@@ -40,11 +1194,11 @@
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-12T23:18:35.365Z",
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:alarmcom",
+          "id": "greenhouse:asteraearlycareer2027",
           "status": "ok",
           "outcome": null,
           "membership": "absent",
@@ -66,37 +1220,37 @@
       "requiresInvestigation": true
     },
     {
-      "identity": "boards.greenhouse.io:8583707002",
-      "id": "81a31c7cd65ff7caa9ddf210",
-      "company": "SpaceX",
-      "title": "Electrical Engineer, Facilities Infrastructure",
-      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8583707002",
-      "reason": "absent-from-employer-board",
+      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31386",
+      "id": "4d351964c3ffbd656642d122",
+      "company": "HNTB",
+      "title": "Intern Engineer - Summer 2027",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Indianapolis-IN/Intern-Engineer---Summer-2027_R-31386-1",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "81a31c7cd65ff7caa9ddf210"
+        "4d351964c3ffbd656642d122"
       ],
       "previousUrls": [
-        "https://boards.greenhouse.io/spacex/jobs/8583707002"
+        "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Indianapolis-IN/Intern-Engineer---Summer-2027_R-31386-1"
       ],
       "sources": [
-        "Direct ATS (Greenhouse)"
+        "Direct ATS (Workday)"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-12T23:18:35.365Z",
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:spacex",
+          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
           "status": "ok",
-          "outcome": null,
-          "membership": "absent",
+          "outcome": "healthy",
+          "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Direct ATS (Greenhouse)",
+            "name": "Direct ATS (Workday)",
             "diagnosticName": null,
             "status": "not-checked",
             "outcome": null,
@@ -107,42 +1261,284 @@
       "category": "unresolved",
       "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
       "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:synchronyfinancial.wd5.myworkdayjobs.com:university:2601688",
+      "id": "d0c12e67f21c15f47bb8aa45",
+      "company": "Synchrony 🛂",
+      "title": "BLP Intern – Data Analytics",
+      "applyUrl": "https://synchronyfinancial.wd5.myworkdayjobs.com/University/job/Stamford-Hub/BLP-Intern---Data-Analytics_2601688",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "d0c12e67f21c15f47bb8aa45"
+      ],
+      "previousUrls": [
+        "https://synchronyfinancial.wd5.myworkdayjobs.com/University/job/Stamford-Hub/BLP-Intern---Data-Analytics_2601688"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://synchronyfinancial.wd5.myworkdayjobs.com/University/job/Stamford-Hub/BLP-Intern---Data-Analytics_2601688",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-13T00:18:38.045Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:synchronyfinancial.wd5.myworkdayjobs.com:university",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 1101
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
       "requiresInvestigation": true
     }
   ],
   "rowCounts": {
-    "previous": 6847,
-    "current": 6897,
-    "net": 50,
+    "previous": 6897,
+    "current": 6883,
+    "net": -14,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 52,
-  "removedCount": 2,
+  "added": 10,
+  "removedCount": 24,
   "counts": {
-    "absent-from-employer-board": 2
+    "pendingVerification": 18,
+    "not-returned-by-sources": 4,
+    "closed": 1,
+    "absent-from-employer-board": 1
   },
   "removed": [
     {
-      "id": "155520a84bbdea3a7cb2ab0d",
-      "company": "Alarm.com",
-      "title": "Quality Engineer I",
-      "applyUrl": "https://job-boards.greenhouse.io/alarmcom/jobs/8882544002",
+      "id": "e72eafc732acf308c62db508",
+      "company": "T-Mobile",
+      "title": "Summer 2027 Business Analytics & Reporting Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Business-Analytics---Reporting-Internship_REQ381319",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "203484a746c635f4be13ac6b",
+      "company": "Raytheon",
+      "title": "Manufacturing Engineer I (Onsite)",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-CA-GOLETA-B03--75-Coromar-Dr--BLDG-B03/Manufacturing-Engineer-I--Onsite-_01888812",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "a7e82b9f42d5cdf7baf9bd50",
+      "company": "T-Mobile",
+      "title": "Summer 2027 T-Ads Software Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Philadelphia-Pennsylvania/Summer-2027-T-Ads-Software-Engineering-Internship_REQ381219",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "78eca7cf15ff8fa9d66d95dc",
+      "company": "T-Mobile",
+      "title": "Summer 2027 T-Ads Software Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Philadelphia-Pennsylvania/Summer-2027-T-Ads-Software-Engineering-Internship_REQ381225",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "69bf788eed6fb2200c17da2c",
+      "company": "Defense Information Systems Agency",
+      "title": "IT Cybersecurity Specialists (Sysadmin/Infosec) - CES Recent Graduate",
+      "applyUrl": "https://www.usajobs.gov/job/892377900",
+      "reason": "closed"
+    },
+    {
+      "id": "61b8811977782a1baa1b5bbd",
+      "company": "Uhaul",
+      "title": "Data Analyst Spring Internship",
+      "applyUrl": "https://uhaul.wd1.myworkdayjobs.com/UhaulJobs/job/Phoenix-Arizona/Data-Analyst-Spring-Internship_R258909",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "7d3d12aae538f4ad14219894",
+      "company": "T-Mobile",
+      "title": "Summer 2027 AI Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-AI-Engineering-Internship_REQ380765",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "af982f766ed077f8a8846f28",
+      "company": "T-Mobile",
+      "title": "Summer 2027 AI Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-AI-Engineering-Internship_REQ381194",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "7a5e4b9ca8382abe28b798b8",
+      "company": "T-Mobile",
+      "title": "Summer 2027 AI Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-AI-Engineering-Internship_REQ381198",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "5388a02623991e57664af73a",
+      "company": "T-Mobile",
+      "title": "Summer 2027 Software Engineer HR Data Products Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineer-HR-Data-Products-Internship_REQ380766",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "ed64ccd2e3886f2af8fd25ec",
+      "company": "T-Mobile",
+      "title": "Summer 2027 Software Engineer HR Data Products Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineer-HR-Data-Products-Internship_REQ380916",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "877442c15eaf020117f83347",
+      "company": "T-Mobile",
+      "title": "Summer 2027 Software Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineering-Internship_REQ380757",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "9b4b11a93f1465388aad04c3",
+      "company": "T-Mobile",
+      "title": "Summer 2027 Software Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineering-Internship_REQ380768",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "b2143ec8a4ea1d311b947d69",
+      "company": "T-Mobile",
+      "title": "Summer 2027 Software Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Bellevue-Washington/Summer-2027-Software-Engineering-Internship_REQ380917",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "27689ca2ed273764a42498d4",
+      "company": "T-Mobile",
+      "title": "Summer 2027 Software Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Overland-Park-Kansas/Summer-2027-Software-Engineering-Internship_REQ380734",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "8c5a75dfac21a7351163b843",
+      "company": "T-Mobile",
+      "title": "Summer 2027 Software Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Overland-Park-Kansas/Summer-2027-Software-Engineering-Internship_REQ380739",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "9b235365a1beab98e42dcddb",
+      "company": "T-Mobile",
+      "title": "Summer 2027 Software Engineering Internship",
+      "applyUrl": "https://tmobile.wd1.myworkdayjobs.com/External/job/Atlanta-Georgia/Summer-2027-Software-Engineering-Internship_REQ380650",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "25601e63ac37613e72fce287",
+      "company": "Motorola",
+      "title": "Presales Engineering Intern- Summer 2027 Internship",
+      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/Presales-Engineering-Intern--Summer-2027-Internship_R69922",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "35edf7ebe5bb78ec4fe722a7",
+      "company": "Motorola",
+      "title": "VS&A Supply Chain Intern 2027 internship",
+      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/VS-A-Supply-Chain-Intern_R68739",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "41f7d21372bd9fa005102af5",
+      "company": "RTX 🛂",
+      "title": "Software Engineer Co-op (Summer/Fall 2027) - Onsite",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/en-US/REC_RTX_Ext_Gateway/job/US-IA-CEDAR-RAPIDS-182--1100-Cimmie-Ave-Ne--BLDG-182/Software-Engineer-Co-op--Summer-Fall-2027----Onsite_01871347",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "567e9e175792b77de4c33850",
+      "company": "HNTB",
+      "title": "New Grad Engineer I: Rail Operations Modeling and Planning - Summer 2027",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Boston-MA/New-Grad-Engineer-I--Rail-Operations-Modeling-and-Planning---Summer-2027_R-31590-1",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "4e4a5328fff8d427ed0b0dd6",
+      "company": "Astera Labs",
+      "title": "Firmware Engineer Intern (DevSecOps)",
+      "applyUrl": "https://job-boards.greenhouse.io/asteraearlycareer2027/jobs/4731591005",
       "reason": "absent-from-employer-board"
     },
     {
-      "id": "81a31c7cd65ff7caa9ddf210",
-      "company": "SpaceX",
-      "title": "Electrical Engineer, Facilities Infrastructure",
-      "applyUrl": "https://boards.greenhouse.io/spacex/jobs/8583707002",
-      "reason": "absent-from-employer-board"
+      "id": "4d351964c3ffbd656642d122",
+      "company": "HNTB",
+      "title": "Intern Engineer - Summer 2027",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Indianapolis-IN/Intern-Engineer---Summer-2027_R-31386-1",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "d0c12e67f21c15f47bb8aa45",
+      "company": "Synchrony 🛂",
+      "title": "BLP Intern – Data Analytics",
+      "applyUrl": "https://synchronyfinancial.wd5.myworkdayjobs.com/University/job/Stamford-Hub/BLP-Intern---Data-Analytics_2601688",
+      "reason": "pendingVerification"
     }
   ],
   "urlChanges": [
     {
-      "id": "0d2b34b01a825265d4f6e1e9",
-      "previousUrl": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/US-Oregon-Hillsboro/System-Software-Engineering---PhD-Intern_JR0287457",
-      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/System-Software-Engineering---PhD-Intern_JR0287457"
+      "id": "0dfeeff7d829ada3b6b619e7",
+      "previousUrl": "https://jobs.lever.co/redhorsecorp/be90f883-2ec0-460f-8d20-241e4c54951f/apply",
+      "applyUrl": "https://jobs.lever.co/redhorsecorp/be90f883-2ec0-460f-8d20-241e4c54951f"
+    },
+    {
+      "id": "75cb3f0cd14563e162f9b59c",
+      "previousUrl": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/US-Oregon-Hillsboro/Software-Engineering-PhD-Intern-New-2027_JR0287458-1",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering-PhD-Intern-New-2027_JR0287458-1"
+    },
+    {
+      "id": "82e319dc33dd275804891d73",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1"
+    },
+    {
+      "id": "ce91345ac9ad28e840f28d31",
+      "previousUrl": "https://intel.wd1.myworkdayjobs.com/en-us/external/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Graduate_JR0286836",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Graduate_JR0286836"
+    },
+    {
+      "id": "954be17a9f48eecf4c15f4da",
+      "previousUrl": "https://snc.wd1.myworkdayjobs.com/snc_external_career_site/job/Dayton-OH/Mechanical-Engineer-Intern--Summer-2027-_R0030744",
+      "applyUrl": "https://snc.wd1.myworkdayjobs.com/SNC_External_Career_Site/job/Dayton-OH/Mechanical-Engineer-Intern--Summer-2027-_R0030744"
+    },
+    {
+      "id": "f8fd23e6741557b0746e77b1",
+      "previousUrl": "https://intel.wd1.myworkdayjobs.com/en-US/external/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Bachelor-s_JR0286834",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Engineering---Intern--Bachelor-s_JR0286834"
+    },
+    {
+      "id": "af25515264c9c9abc2c082aa",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037"
+    },
+    {
+      "id": "c22a9ded3705b29620d52318",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Salt-Lake-City-UT/WED---2027-New-Grad-Civil-Engineer-I--For-Current---Recent-HNTB-Interns-Only-_R-31314-1",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Salt-Lake-City-UT/WED---2027-New-Grad-Civil-Engineer-I--For-Current---Recent-HNTB-Interns-Only-_R-31314-1"
     }
   ]
 }
