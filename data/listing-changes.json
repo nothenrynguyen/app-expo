@@ -1,163 +1,172 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-14T14:20:50.513Z",
-  "previousGeneratedAt": "2026-11-14T14:16:08.961Z",
-  "currentSnapshotGeneratedAt": "2026-11-14T14:20:50.513Z",
+  "generatedAt": "2026-11-14T15:20:54.427Z",
+  "previousGeneratedAt": "2026-11-14T14:20:50.513Z",
+  "currentSnapshotGeneratedAt": "2026-11-14T15:20:54.427Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6442,
+    "previous": 6444,
     "current": 6444,
-    "retained": 6440,
-    "added": 4,
-    "removed": 2,
-    "net": 2
+    "retained": 6443,
+    "added": 1,
+    "removed": 1,
+    "net": 0
   },
   "categoryCounts": {
     "confirmed-closed": 0,
     "scope-exclusion": 0,
     "verification-pending": 0,
-    "source-unavailable": 2,
-    "unresolved": 0,
+    "source-unavailable": 0,
+    "unresolved": 1,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "workday:gdit.wd5.myworkdayjobs.com:gdit_earlytalent:rq232200",
-      "id": "42243b3eed9ca0edb7a53ce9",
-      "company": "General Dynamics Information Technology",
-      "title": "Summer 2027 Data Analytics Associate Intern",
-      "applyUrl": "https://gdit.wd5.myworkdayjobs.com/GDIT_EarlyTalent/job/USA-VA-Falls-Church/Summer-2027-Technical-Intern_RQ232200",
+      "identity": "https://jobs.smartrecruiters.com/westerndigital/744000140949875",
+      "id": "969209b0e5922c6705d164a0",
+      "company": "Western Digital",
+      "title": "Summer 2027 Intern - Hardware Engineering",
+      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000140949875",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "42243b3eed9ca0edb7a53ce9"
+        "969209b0e5922c6705d164a0"
       ],
       "previousUrls": [
-        "https://gdit.wd5.myworkdayjobs.com/GDIT_EarlyTalent/job/USA-VA-Falls-Church/Summer-2027-Technical-Intern_RQ232200"
+        "https://jobs.smartrecruiters.com/WesternDigital/744000140949875"
       ],
       "sources": [
-        "Direct ATS (Workday)"
+        "Keryx Non-Software Summer 2027"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-14T14:18:34.469Z",
-        "postingCheck": null,
+        "runStartedAt": "2026-11-14T15:18:39.390Z",
+        "postingCheck": {
+          "status": "live",
+          "checkedAt": "2026-11-14T14:15:42.392Z",
+          "httpStatus": 200,
+          "currentRun": false
+        },
         "workdayChecks": [],
         "board": {
-          "id": "workday:gdit.wd5.myworkdayjobs.com:gdit_earlytalent",
-          "status": "failed",
-          "outcome": "unavailable",
+          "id": "jobs.smartrecruiters.com:westerndigital",
+          "status": "not-checked",
+          "outcome": null,
           "membership": "unknown",
           "retired": false
         },
         "sources": [
           {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
+            "name": "Keryx Non-Software Summer 2027",
+            "diagnosticName": "Keryx Non-Software Summer 2027",
+            "status": "ok",
             "outcome": null,
-            "rows": null
+            "rows": 1596
           }
         ]
       },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:globalfoundries.wd1.myworkdayjobs.com:external:jr-2604200",
-      "id": "0afe3198e818d2f5cea10cbd",
-      "company": "GlobalFoundries",
-      "title": "Business Analyst (2027 New College Graduate)",
-      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Austin/Business-Analyst--2027-New-College-Graduate-_JR-2604200",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "0afe3198e818d2f5cea10cbd"
-      ],
-      "previousUrls": [
-        "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Austin/Business-Analyst--2027-New-College-Graduate-_JR-2604200"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-14T14:18:34.469Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:globalfoundries.wd1.myworkdayjobs.com:external",
-          "status": "failed",
-          "outcome": "cooldown",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
       "requiresInvestigation": true
     }
   ],
   "rowCounts": {
-    "previous": 6442,
+    "previous": 6444,
     "current": 6444,
-    "net": 2,
+    "net": 0,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 4,
-  "removedCount": 2,
+  "added": 1,
+  "removedCount": 1,
   "counts": {
-    "not-returned-by-sources": 2
+    "not-returned-by-sources": 1
   },
   "removed": [
     {
-      "id": "42243b3eed9ca0edb7a53ce9",
-      "company": "General Dynamics Information Technology",
-      "title": "Summer 2027 Data Analytics Associate Intern",
-      "applyUrl": "https://gdit.wd5.myworkdayjobs.com/GDIT_EarlyTalent/job/USA-VA-Falls-Church/Summer-2027-Technical-Intern_RQ232200",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "0afe3198e818d2f5cea10cbd",
-      "company": "GlobalFoundries",
-      "title": "Business Analyst (2027 New College Graduate)",
-      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Austin/Business-Analyst--2027-New-College-Graduate-_JR-2604200",
+      "id": "969209b0e5922c6705d164a0",
+      "company": "Western Digital",
+      "title": "Summer 2027 Intern - Hardware Engineering",
+      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000140949875",
       "reason": "not-returned-by-sources"
     }
   ],
   "urlChanges": [
     {
-      "id": "82e319dc33dd275804891d73",
-      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1"
+      "id": "acd6605cd1e1879afaaef93e",
+      "previousUrl": "https://jobs.ashbyhq.com/reliable-robotics/1d020651-71bb-4e47-baa6-2286dc780d96/application",
+      "applyUrl": "https://jobs.ashbyhq.com/reliable-robotics/1d020651-71bb-4e47-baa6-2286dc780d96"
     },
     {
-      "id": "d57968f68170626f4b62e1a1",
-      "previousUrl": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Sioux-Falls-South-Dakota/Data-Processing-Systems-Engineer-Intern_R2130060",
-      "applyUrl": "https://kbr.wd5.myworkdayjobs.com/en-US/kbr_careers/job/Sioux-Falls-South-Dakota/Data-Processing-Systems-Engineer-Intern_R2130060"
+      "id": "3c109a46099dda9561914ae6",
+      "previousUrl": "https://jobs.ashbyhq.com/reliable-robotics/bac27e34-c847-42f7-96d6-2bbd42df649c/application",
+      "applyUrl": "https://jobs.ashbyhq.com/reliable-robotics/bac27e34-c847-42f7-96d6-2bbd42df649c"
     },
     {
-      "id": "5c1f6f1c302a6bd0b036e695",
-      "previousUrl": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Sioux-Falls-South-Dakota/Image-Processing-Software-Engineer-Intern_R2130067",
-      "applyUrl": "https://kbr.wd5.myworkdayjobs.com/en-US/kbr_careers/job/Sioux-Falls-South-Dakota/Image-Processing-Software-Engineer-Intern_R2130067"
+      "id": "9deee4cb670d81eb46792b66",
+      "previousUrl": "https://jobs.ashbyhq.com/reliable-robotics/1085bdf8-f023-4cf6-90ed-93a2f4f6ded8/application",
+      "applyUrl": "https://jobs.ashbyhq.com/reliable-robotics/1085bdf8-f023-4cf6-90ed-93a2f4f6ded8"
     },
     {
-      "id": "af25515264c9c9abc2c082aa",
-      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037",
-      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037"
+      "id": "7f861fe42c6a30d3c622507f",
+      "previousUrl": "https://jobs.ashbyhq.com/reliable-robotics/0cd44e07-169f-4664-bf31-cded94b93deb/application",
+      "applyUrl": "https://jobs.ashbyhq.com/reliable-robotics/0cd44e07-169f-4664-bf31-cded94b93deb"
+    },
+    {
+      "id": "fc1581fbbaa2f529ed064635",
+      "previousUrl": "https://jobs.ashbyhq.com/reliable-robotics/131987a0-ede9-4291-9cd2-1aaadabd2a54/application",
+      "applyUrl": "https://jobs.ashbyhq.com/reliable-robotics/131987a0-ede9-4291-9cd2-1aaadabd2a54"
+    },
+    {
+      "id": "07f4cdeaf1eef61101d66755",
+      "previousUrl": "https://jobs.ashbyhq.com/reliable-robotics/4aa17839-d94c-478f-9ce9-9974df00314b/application",
+      "applyUrl": "https://jobs.ashbyhq.com/reliable-robotics/4aa17839-d94c-478f-9ce9-9974df00314b"
+    },
+    {
+      "id": "27ba667cc5e40464a8e9dc64",
+      "previousUrl": "https://jobs.ashbyhq.com/reliable-robotics/0af72d5a-87b7-49a1-b49e-424d28758c9e/application",
+      "applyUrl": "https://jobs.ashbyhq.com/reliable-robotics/0af72d5a-87b7-49a1-b49e-424d28758c9e"
+    },
+    {
+      "id": "9a5891c85dcd0386d111bb41",
+      "previousUrl": "https://jobs.ashbyhq.com/reliable-robotics/f4324206-46a8-460d-b674-53d6e0c4423a/application",
+      "applyUrl": "https://jobs.ashbyhq.com/reliable-robotics/f4324206-46a8-460d-b674-53d6e0c4423a"
+    },
+    {
+      "id": "5d67b3876827390e2c92f362",
+      "previousUrl": "https://jobs.ashbyhq.com/reliable-robotics/9e609f4f-cf1c-4171-9140-54e05c5195de/application",
+      "applyUrl": "https://jobs.ashbyhq.com/reliable-robotics/9e609f4f-cf1c-4171-9140-54e05c5195de"
+    },
+    {
+      "id": "29fcc333b9759b237af756f0",
+      "previousUrl": "https://jobs.lever.co/pivotal/442a0450-f911-4ac1-a112-03374217f7fb/apply",
+      "applyUrl": "https://jobs.lever.co/pivotal/442a0450-f911-4ac1-a112-03374217f7fb"
+    },
+    {
+      "id": "380d3630d982ec685ee418a7",
+      "previousUrl": "https://jobs.ashbyhq.com/skydio/6f5caf41-fa1d-4208-9bdc-82c72e5d3f17",
+      "applyUrl": "https://jobs.ashbyhq.com/skydio/6f5caf41-fa1d-4208-9bdc-82c72e5d3f17/application?embed=true"
+    },
+    {
+      "id": "fd2395fedad48fd147a11ff2",
+      "previousUrl": "https://jobs.ashbyhq.com/skydio/57336f0f-a8ed-4ede-b6da-d399e5335fe4",
+      "applyUrl": "https://jobs.ashbyhq.com/skydio/57336f0f-a8ed-4ede-b6da-d399e5335fe4/application?embed=true"
+    },
+    {
+      "id": "f778c6f90903d878da58df1a",
+      "previousUrl": "https://jobs.ashbyhq.com/skydio/1ac972b1-8094-4765-8869-63e1c4d50dea",
+      "applyUrl": "https://jobs.ashbyhq.com/skydio/1ac972b1-8094-4765-8869-63e1c4d50dea/application?embed=true"
+    },
+    {
+      "id": "256261bba229eb4d5ca244df",
+      "previousUrl": "https://jobs.ashbyhq.com/old-mission-capital/a7b34fe6-cd82-4f17-b5d7-983aa354b505",
+      "applyUrl": "https://jobs.ashbyhq.com/old-mission-capital/a7b34fe6-cd82-4f17-b5d7-983aa354b505/application"
+    },
+    {
+      "id": "92c642259fc65d28f69106c0",
+      "previousUrl": "https://jobs.ashbyhq.com/old-mission-capital/a8bad54c-405b-469c-8a7d-b7794dfb54b3",
+      "applyUrl": "https://jobs.ashbyhq.com/old-mission-capital/a8bad54c-405b-469c-8a7d-b7794dfb54b3/application"
     }
   ]
 }
