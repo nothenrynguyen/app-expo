@@ -1,67 +1,994 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-14T15:20:54.427Z",
-  "previousGeneratedAt": "2026-11-14T14:20:50.513Z",
-  "currentSnapshotGeneratedAt": "2026-11-14T15:20:54.427Z",
+  "generatedAt": "2026-11-14T16:22:21.886Z",
+  "previousGeneratedAt": "2026-11-14T15:20:54.427Z",
+  "currentSnapshotGeneratedAt": "2026-11-14T16:22:21.886Z",
   "reconciliation": {
     "unit": "opportunities",
     "previous": 6444,
-    "current": 6444,
-    "retained": 6443,
-    "added": 1,
-    "removed": 1,
-    "net": 0
+    "current": 6432,
+    "retained": 6424,
+    "added": 8,
+    "removed": 20,
+    "net": -12
   },
   "categoryCounts": {
     "confirmed-closed": 0,
-    "scope-exclusion": 0,
-    "verification-pending": 0,
-    "source-unavailable": 0,
-    "unresolved": 1,
+    "scope-exclusion": 1,
+    "verification-pending": 5,
+    "source-unavailable": 5,
+    "unresolved": 9,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "https://jobs.smartrecruiters.com/westerndigital/744000140949875",
-      "id": "969209b0e5922c6705d164a0",
-      "company": "Western Digital",
-      "title": "Summer 2027 Intern - Hardware Engineering",
-      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000140949875",
+      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01887669",
+      "id": "1e40ee81c4b356b91b1a6694",
+      "company": "Raytheon",
+      "title": "Electrical Engineering Intern - Test Solutions",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-MA-TEWKSBURY-TB2--50-Apple-Hill-Dr--SUDBURY-BLDG-Tewksbury-Tb2-200-Sudbury/Electrical-Engineering-Intern---Test-Solutions_01887669",
       "reason": "not-returned-by-sources",
       "previousIds": [
-        "969209b0e5922c6705d164a0"
+        "1e40ee81c4b356b91b1a6694"
       ],
       "previousUrls": [
-        "https://jobs.smartrecruiters.com/WesternDigital/744000140949875"
+        "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-MA-TEWKSBURY-TB2--50-Apple-Hill-Dr--SUDBURY-BLDG-Tewksbury-Tb2-200-Sudbury/Electrical-Engineering-Intern---Test-Solutions_01887669"
       ],
       "sources": [
-        "Keryx Non-Software Summer 2027"
+        "Direct ATS (Workday)"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-14T15:18:39.390Z",
-        "postingCheck": {
-          "status": "live",
-          "checkedAt": "2026-11-14T14:15:42.392Z",
-          "httpStatus": 200,
-          "currentRun": false
-        },
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "jobs.smartrecruiters.com:westerndigital",
-          "status": "not-checked",
-          "outcome": null,
+          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
+          "status": "failed",
+          "outcome": "cooldown",
           "membership": "unknown",
           "retired": false
         },
         "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:globalfoundries.wd1.myworkdayjobs.com:external:jr-2604640",
+      "id": "fd094fa68674b5f3fe5fc003",
+      "company": "GlobalFoundries",
+      "title": "Fab Systems Setup & Routing Intern (Summer 2027)",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Vermont---Essex-Junction/Fab-Systems-Setup---Routing-Intern--Summer-2027-_JR-2604640",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "fd094fa68674b5f3fe5fc003"
+      ],
+      "previousUrls": [
+        "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Vermont---Essex-Junction/Fab-Systems-Setup---Routing-Intern--Summer-2027-_JR-2604640"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:globalfoundries.wd1.myworkdayjobs.com:external",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:bah.wd1.myworkdayjobs.com:bah_jobs:r0253162",
+      "id": "8deeb8f2f00611f7549c3d25",
+      "company": "Booz Allen",
+      "title": "Model-Based Systems Engineer, Junior",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/El-Segundo-CA/Model-Based-Systems-Engineer--Junior_R0253162",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "8deeb8f2f00611f7549c3d25"
+      ],
+      "previousUrls": [
+        "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/El-Segundo-CA/Model-Based-Systems-Engineer--Junior_R0253162"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:micron.wd1.myworkdayjobs.com:external:jr101714",
+      "id": "798ddb6876f3d812bec2284f",
+      "company": "Micron",
+      "title": "New College Grad - Photolithography Process Engineer",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---ID1/New-College-Grad---Photolithography-Process-Engineer_JR101714",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "798ddb6876f3d812bec2284f"
+      ],
+      "previousUrls": [
+        "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---ID1/New-College-Grad---Photolithography-Process-Engineer_JR101714"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:micron.wd1.myworkdayjobs.com:external",
+          "status": "failed",
+          "outcome": "unavailable",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:abbott.wd5.myworkdayjobs.com:abbottcareers:31166505",
+      "id": "e0e0d8fa2977fb63620adb9d",
+      "company": "Abbott",
+      "title": "Associate Manufacturing Engineer",
+      "applyUrl": "https://abbott.wd5.myworkdayjobs.com/abbottcareers/job/United-States---Texas---Irving/Associate-Manufacturing-Engineer_31166505",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "e0e0d8fa2977fb63620adb9d"
+      ],
+      "previousUrls": [
+        "https://abbott.wd5.myworkdayjobs.com/abbottcareers/job/United-States---Texas---Irving/Associate-Manufacturing-Engineer_31166505"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:abbott.wd5.myworkdayjobs.com:abbottcareers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033866",
+      "id": "fb0ab45dbbec00be6eff61af",
+      "company": "The Federal Reserve System",
+      "title": "2027 Summer Internship Program - Supervision & Regulation (Cybersecurity)",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Supervision---Regulation--Cybersecurity-_R-0000033866",
+      "reason": "role",
+      "previousIds": [
+        "fb0ab45dbbec00be6eff61af"
+      ],
+      "previousUrls": [
+        "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Supervision---Regulation--Cybersecurity-_R-0000033866"
+      ],
+      "sources": [
+        "Internship Engine",
+        "Aprameya Summer Internships 2027",
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Supervision---Regulation--Cybersecurity-_R-0000033866",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Supervision---Regulation--Cybersecurity-_R-0000033866",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Supervision---Regulation--Cybersecurity-_R-0000033866",
+            "reason": "role",
+            "detail": null
+          }
+        ],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1272
+          },
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2805
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "scope-exclusion",
+      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
+      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
+      "requiresInvestigation": false
+    },
+    {
+      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033912",
+      "id": "747a2c86b0de92139dcbfe2c",
+      "company": "The Federal Reserve System",
+      "title": "2027 Summer Internship Program - IT Asset Management Intern",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---IT-Asset-Management-Intern_R-0000033912",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "747a2c86b0de92139dcbfe2c"
+      ],
+      "previousUrls": [
+        "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---IT-Asset-Management-Intern_R-0000033912"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Keryx Non-Software Summer 2027",
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---IT-Asset-Management-Intern_R-0000033912",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---IT-Asset-Management-Intern_R-0000033912",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2805
+          },
           {
             "name": "Keryx Non-Software Summer 2027",
             "diagnosticName": "Keryx Non-Software Summer 2027",
             "status": "ok",
             "outcome": null,
             "rows": 1596
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033877",
+      "id": "4e681f7490097bb443560294",
+      "company": "The Federal Reserve System",
+      "title": "2027 Summer Internship Program - Accounting Intern",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Accounting-Intern_R-0000033877",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "4e681f7490097bb443560294"
+      ],
+      "previousUrls": [
+        "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Accounting-Intern_R-0000033877"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033865",
+      "id": "253a7116a63e8bbc85a78a4f",
+      "company": "The Federal Reserve System",
+      "title": "2027 Summer Internship Program - Supervision & Regulation (Regional Banking)",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Supervision---Regulation--Regional-Banking-_R-0000033865",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "253a7116a63e8bbc85a78a4f"
+      ],
+      "previousUrls": [
+        "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Supervision---Regulation--Regional-Banking-_R-0000033865"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033892",
+      "id": "82b1000102988591c4c38af0",
+      "company": "The Federal Reserve System",
+      "title": "2027 Summer Internship Program - Internal Audit Intern",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Internal-Audit-Intern_R-0000033892",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "82b1000102988591c4c38af0"
+      ],
+      "previousUrls": [
+        "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Internal-Audit-Intern_R-0000033892"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:leidos.wd5.myworkdayjobs.com:external:r-00195608",
+      "id": "cbfae155f0063d3edd664e61",
+      "company": "Leidos",
+      "title": "Junior Offensive Cyber Engineer",
+      "applyUrl": "https://leidos.wd5.myworkdayjobs.com/External/job/Lawton-OK/Junior-Offensive-Cyber-Engineer_R-00195608",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "cbfae155f0063d3edd664e61"
+      ],
+      "previousUrls": [
+        "https://leidos.wd5.myworkdayjobs.com/External/job/Lawton-OK/Junior-Offensive-Cyber-Engineer_R-00195608"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:leidos.wd5.myworkdayjobs.com:external",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:rb.wd5.myworkdayjobs.com:frs:r-0000033871",
+      "id": "984793681e91a61eb6100a56",
+      "company": "The Federal Reserve System",
+      "title": "2027 Summer Internship Program - Office of Employee Benefits (Finance and Accounting)",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Newark-NJ/XMLNAME-2027-Summer-Internship-Program---Office-of-Employee-Benefits--Finance-and-Accounting-_R-0000033871",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "984793681e91a61eb6100a56"
+      ],
+      "previousUrls": [
+        "https://rb.wd5.myworkdayjobs.com/FRS/job/Newark-NJ/XMLNAME-2027-Summer-Internship-Program---Office-of-Employee-Benefits--Finance-and-Accounting-_R-0000033871"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:rb.wd5.myworkdayjobs.com:frs",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:tti.wd1.myworkdayjobs.com:milwaukee:r78371",
+      "id": "b80e7c186f65a439ac7e0f96",
+      "company": "Milwaukee Tool",
+      "title": "Quality Assurance Engineer I- Digital Platforms",
+      "applyUrl": "https://tti.wd1.myworkdayjobs.com/Milwaukee/job/Milwaukee-WI/Quality-Assurance-Engineer-I--Digital-Platforms_R78371",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "b80e7c186f65a439ac7e0f96"
+      ],
+      "previousUrls": [
+        "https://tti.wd1.myworkdayjobs.com/Milwaukee/job/Milwaukee-WI/Quality-Assurance-Engineer-I--Digital-Platforms_R78371"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:tti.wd1.myworkdayjobs.com:milwaukee",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:allegion.wd5.myworkdayjobs.com:careers:jr37413",
+      "id": "79fc4765a5953f41d0397ed8",
+      "company": "Allegion",
+      "title": "Summer Intern - Hardware Engineering",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering_JR37413-1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "79fc4765a5953f41d0397ed8"
+      ],
+      "previousUrls": [
+        "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering_JR37413-1"
+      ],
+      "sources": [
+        "Open-Tech-Internships-2027 2027",
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering_JR37413-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:allegion.wd5.myworkdayjobs.com:careers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Open-Tech-Internships-2027 2027",
+            "diagnosticName": "Open-Tech-Internships-2027 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2013
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers:r68894",
+      "id": "3b38c23a98bbe894bc93a949",
+      "company": "Motorola Solutions",
+      "title": "Systems Integration Engineering Intern (Summer 2027)",
+      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Greater-Chicago-Area/Systems-Integration-Engineering-Intern--Summer-2027-_R68894",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "3b38c23a98bbe894bc93a949"
+      ],
+      "previousUrls": [
+        "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Greater-Chicago-Area/Systems-Integration-Engineering-Intern--Summer-2027-_R68894"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://motorolasolutions.wd5.myworkdayjobs.com/en-US/Careers/job/Greater-Chicago-Area/Systems-Integration-Engineering-Intern--Summer-2027-_R68894",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 687
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers:r68401",
+      "id": "b53203151bb65676ba31b140",
+      "company": "Motorola",
+      "title": "FPGA Design Engineering Intern - Summer 2027",
+      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Schaumburg-IL/FPGA-Design-Engineering-Intern---Summer-2027_R68401",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "b53203151bb65676ba31b140"
+      ],
+      "previousUrls": [
+        "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Schaumburg-IL/FPGA-Design-Engineering-Intern---Summer-2027_R68401"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Schaumburg-IL/FPGA-Design-Engineering-Intern---Summer-2027_R68401",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 687
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:allegion.wd5.myworkdayjobs.com:careers:jr37384",
+      "id": "e3d4bd1d7b1efc8613193f16",
+      "company": "Allegion",
+      "title": "Summer Intern - Mechanical Engineering",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Everett-WA/Mechanical-Engineering-Intern_JR37384-2",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "e3d4bd1d7b1efc8613193f16"
+      ],
+      "previousUrls": [
+        "https://allegion.wd5.myworkdayjobs.com/careers/job/Everett-WA/Mechanical-Engineering-Intern_JR37384-2"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:allegion.wd5.myworkdayjobs.com:careers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:allegion.wd5.myworkdayjobs.com:careers:jr37550",
+      "id": "b7148f5c10a5a937b72e6bf8",
+      "company": "Allegion",
+      "title": "Summer Intern - Channel Marketing, ResPro",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Channel-Marketing--ResPro_JR37550-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "b7148f5c10a5a937b72e6bf8"
+      ],
+      "previousUrls": [
+        "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Channel-Marketing--ResPro_JR37550-1"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:allegion.wd5.myworkdayjobs.com:careers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers:r67740",
+      "id": "570ed5204df489a969dbff5f",
+      "company": "Motorola Solutions",
+      "title": "Android Applications Developer Intern - Summer 2027",
+      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/Android-Applications-Developer-Intern---Summer-2027_R67740",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "570ed5204df489a969dbff5f"
+      ],
+      "previousUrls": [
+        "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/Android-Applications-Developer-Intern---Summer-2027_R67740"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/Android-Applications-Developer-Intern---Summer-2027_R67740",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://motorolasolutions.wd5.myworkdayjobs.com/en-US/Careers/job/Chicago-IL/Android-Applications-Developer-Intern---Summer-2027_R67740",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 687
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers:r64786",
+      "id": "6cabd9c41b8f1a527f384862",
+      "company": "Motorola",
+      "title": "Associate Research and Development (R&D) Test Engineer",
+      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Los-Angeles-CA/Associate-Research-and-Development--R-D--Test-Engineer_R64786-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "6cabd9c41b8f1a527f384862"
+      ],
+      "previousUrls": [
+        "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Los-Angeles-CA/Associate-Research-and-Development--R-D--Test-Engineer_R64786-1"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-14T16:18:32.915Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
           }
         ]
       },
@@ -73,100 +1000,195 @@
   ],
   "rowCounts": {
     "previous": 6444,
-    "current": 6444,
-    "net": 0,
+    "current": 6432,
+    "net": -12,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 1,
-  "removedCount": 1,
+  "added": 8,
+  "removedCount": 20,
   "counts": {
-    "not-returned-by-sources": 1
+    "not-returned-by-sources": 14,
+    "role": 1,
+    "pendingVerification": 5
   },
   "removed": [
     {
-      "id": "969209b0e5922c6705d164a0",
-      "company": "Western Digital",
-      "title": "Summer 2027 Intern - Hardware Engineering",
-      "applyUrl": "https://jobs.smartrecruiters.com/WesternDigital/744000140949875",
+      "id": "1e40ee81c4b356b91b1a6694",
+      "company": "Raytheon",
+      "title": "Electrical Engineering Intern - Test Solutions",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-MA-TEWKSBURY-TB2--50-Apple-Hill-Dr--SUDBURY-BLDG-Tewksbury-Tb2-200-Sudbury/Electrical-Engineering-Intern---Test-Solutions_01887669",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "fd094fa68674b5f3fe5fc003",
+      "company": "GlobalFoundries",
+      "title": "Fab Systems Setup & Routing Intern (Summer 2027)",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Vermont---Essex-Junction/Fab-Systems-Setup---Routing-Intern--Summer-2027-_JR-2604640",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "8deeb8f2f00611f7549c3d25",
+      "company": "Booz Allen",
+      "title": "Model-Based Systems Engineer, Junior",
+      "applyUrl": "https://bah.wd1.myworkdayjobs.com/BAH_Jobs/job/El-Segundo-CA/Model-Based-Systems-Engineer--Junior_R0253162",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "798ddb6876f3d812bec2284f",
+      "company": "Micron",
+      "title": "New College Grad - Photolithography Process Engineer",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---ID1/New-College-Grad---Photolithography-Process-Engineer_JR101714",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "e0e0d8fa2977fb63620adb9d",
+      "company": "Abbott",
+      "title": "Associate Manufacturing Engineer",
+      "applyUrl": "https://abbott.wd5.myworkdayjobs.com/abbottcareers/job/United-States---Texas---Irving/Associate-Manufacturing-Engineer_31166505",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "fb0ab45dbbec00be6eff61af",
+      "company": "The Federal Reserve System",
+      "title": "2027 Summer Internship Program - Supervision & Regulation (Cybersecurity)",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Supervision---Regulation--Cybersecurity-_R-0000033866",
+      "reason": "role"
+    },
+    {
+      "id": "747a2c86b0de92139dcbfe2c",
+      "company": "The Federal Reserve System",
+      "title": "2027 Summer Internship Program - IT Asset Management Intern",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---IT-Asset-Management-Intern_R-0000033912",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "4e681f7490097bb443560294",
+      "company": "The Federal Reserve System",
+      "title": "2027 Summer Internship Program - Accounting Intern",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Accounting-Intern_R-0000033877",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "253a7116a63e8bbc85a78a4f",
+      "company": "The Federal Reserve System",
+      "title": "2027 Summer Internship Program - Supervision & Regulation (Regional Banking)",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Supervision---Regulation--Regional-Banking-_R-0000033865",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "82b1000102988591c4c38af0",
+      "company": "The Federal Reserve System",
+      "title": "2027 Summer Internship Program - Internal Audit Intern",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Atlanta-GA/XMLNAME-2027-Summer-Internship-Program---Internal-Audit-Intern_R-0000033892",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "cbfae155f0063d3edd664e61",
+      "company": "Leidos",
+      "title": "Junior Offensive Cyber Engineer",
+      "applyUrl": "https://leidos.wd5.myworkdayjobs.com/External/job/Lawton-OK/Junior-Offensive-Cyber-Engineer_R-00195608",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "984793681e91a61eb6100a56",
+      "company": "The Federal Reserve System",
+      "title": "2027 Summer Internship Program - Office of Employee Benefits (Finance and Accounting)",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Newark-NJ/XMLNAME-2027-Summer-Internship-Program---Office-of-Employee-Benefits--Finance-and-Accounting-_R-0000033871",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "b80e7c186f65a439ac7e0f96",
+      "company": "Milwaukee Tool",
+      "title": "Quality Assurance Engineer I- Digital Platforms",
+      "applyUrl": "https://tti.wd1.myworkdayjobs.com/Milwaukee/job/Milwaukee-WI/Quality-Assurance-Engineer-I--Digital-Platforms_R78371",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "79fc4765a5953f41d0397ed8",
+      "company": "Allegion",
+      "title": "Summer Intern - Hardware Engineering",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering_JR37413-1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "3b38c23a98bbe894bc93a949",
+      "company": "Motorola Solutions",
+      "title": "Systems Integration Engineering Intern (Summer 2027)",
+      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Greater-Chicago-Area/Systems-Integration-Engineering-Intern--Summer-2027-_R68894",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "b53203151bb65676ba31b140",
+      "company": "Motorola",
+      "title": "FPGA Design Engineering Intern - Summer 2027",
+      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Schaumburg-IL/FPGA-Design-Engineering-Intern---Summer-2027_R68401",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "e3d4bd1d7b1efc8613193f16",
+      "company": "Allegion",
+      "title": "Summer Intern - Mechanical Engineering",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Everett-WA/Mechanical-Engineering-Intern_JR37384-2",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "b7148f5c10a5a937b72e6bf8",
+      "company": "Allegion",
+      "title": "Summer Intern - Channel Marketing, ResPro",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Channel-Marketing--ResPro_JR37550-1",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "570ed5204df489a969dbff5f",
+      "company": "Motorola Solutions",
+      "title": "Android Applications Developer Intern - Summer 2027",
+      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Chicago-IL/Android-Applications-Developer-Intern---Summer-2027_R67740",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "6cabd9c41b8f1a527f384862",
+      "company": "Motorola",
+      "title": "Associate Research and Development (R&D) Test Engineer",
+      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Los-Angeles-CA/Associate-Research-and-Development--R-D--Test-Engineer_R64786-1",
       "reason": "not-returned-by-sources"
     }
   ],
   "urlChanges": [
     {
-      "id": "acd6605cd1e1879afaaef93e",
-      "previousUrl": "https://jobs.ashbyhq.com/reliable-robotics/1d020651-71bb-4e47-baa6-2286dc780d96/application",
-      "applyUrl": "https://jobs.ashbyhq.com/reliable-robotics/1d020651-71bb-4e47-baa6-2286dc780d96"
+      "id": "0238d513689c161b1bef36b2",
+      "previousUrl": "https://blueorigin.wd5.myworkdayjobs.com/BlueOrigin/job/Greater-Seattle-Area/Summer-2027-Software-Developer-Internship---Undergraduate_R71425",
+      "applyUrl": "https://blueorigin.wd5.myworkdayjobs.com/blueorigin/job/Greater-Seattle-Area/Summer-2027-Software-Developer-Internship---Undergraduate_R71425"
     },
     {
-      "id": "3c109a46099dda9561914ae6",
-      "previousUrl": "https://jobs.ashbyhq.com/reliable-robotics/bac27e34-c847-42f7-96d6-2bbd42df649c/application",
-      "applyUrl": "https://jobs.ashbyhq.com/reliable-robotics/bac27e34-c847-42f7-96d6-2bbd42df649c"
+      "id": "53d1560835c4eb88ffd9fe9a",
+      "previousUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Software-Operations-Engineer_JR37722-1",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/en-US/careers/job/Carmel-IN/Summer-Intern---Software-Operations-Engineer_JR37722-1"
     },
     {
-      "id": "9deee4cb670d81eb46792b66",
-      "previousUrl": "https://jobs.ashbyhq.com/reliable-robotics/1085bdf8-f023-4cf6-90ed-93a2f4f6ded8/application",
-      "applyUrl": "https://jobs.ashbyhq.com/reliable-robotics/1085bdf8-f023-4cf6-90ed-93a2f4f6ded8"
+      "id": "b22c93f5de0742485063ac7a",
+      "previousUrl": "https://rb.wd5.myworkdayjobs.com/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634",
+      "applyUrl": "https://rb.wd5.myworkdayjobs.com/en-US/FRS/job/Chicago-IL/Summer-2027-Intern--PhD-Data-Science-or-Computer-Science_R-0000033634"
     },
     {
-      "id": "7f861fe42c6a30d3c622507f",
-      "previousUrl": "https://jobs.ashbyhq.com/reliable-robotics/0cd44e07-169f-4664-bf31-cded94b93deb/application",
-      "applyUrl": "https://jobs.ashbyhq.com/reliable-robotics/0cd44e07-169f-4664-bf31-cded94b93deb"
+      "id": "f77e7d1b150cbd4d665b10c8",
+      "previousUrl": "https://blueorigin.wd5.myworkdayjobs.com/BlueOrigin/job/Greater-Seattle-Area/Summer-2027-Software-Developer-Internship---Graduate_R71434",
+      "applyUrl": "https://blueorigin.wd5.myworkdayjobs.com/en-US/blueorigin/job/Greater-Seattle-Area/Summer-2027-Software-Developer-Internship---Graduate_R71434"
     },
     {
-      "id": "fc1581fbbaa2f529ed064635",
-      "previousUrl": "https://jobs.ashbyhq.com/reliable-robotics/131987a0-ede9-4291-9cd2-1aaadabd2a54/application",
-      "applyUrl": "https://jobs.ashbyhq.com/reliable-robotics/131987a0-ede9-4291-9cd2-1aaadabd2a54"
+      "id": "7a90a21aa3ff02ea7b0eb4aa",
+      "previousUrl": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers/job/Portage-Michigan/Product-Interaction-Design-Intern---Portage--MI_R572833",
+      "applyUrl": "https://stryker.wd1.myworkdayjobs.com/strykercareers/job/Portage-Michigan/Product-Interaction-Design-Intern---Portage--MI_R572833"
     },
     {
-      "id": "07f4cdeaf1eef61101d66755",
-      "previousUrl": "https://jobs.ashbyhq.com/reliable-robotics/4aa17839-d94c-478f-9ce9-9974df00314b/application",
-      "applyUrl": "https://jobs.ashbyhq.com/reliable-robotics/4aa17839-d94c-478f-9ce9-9974df00314b"
+      "id": "dea94e21e0a5fb68a216f733",
+      "previousUrl": "https://stryker.wd1.myworkdayjobs.com/StrykerCareers/job/Portage-Michigan/Industrial-Design-Intern---Portage--MI_R572730",
+      "applyUrl": "https://stryker.wd1.myworkdayjobs.com/strykercareers/job/Portage-Michigan/Industrial-Design-Intern---Portage--MI_R572730"
     },
     {
-      "id": "27ba667cc5e40464a8e9dc64",
-      "previousUrl": "https://jobs.ashbyhq.com/reliable-robotics/0af72d5a-87b7-49a1-b49e-424d28758c9e/application",
-      "applyUrl": "https://jobs.ashbyhq.com/reliable-robotics/0af72d5a-87b7-49a1-b49e-424d28758c9e"
-    },
-    {
-      "id": "9a5891c85dcd0386d111bb41",
-      "previousUrl": "https://jobs.ashbyhq.com/reliable-robotics/f4324206-46a8-460d-b674-53d6e0c4423a/application",
-      "applyUrl": "https://jobs.ashbyhq.com/reliable-robotics/f4324206-46a8-460d-b674-53d6e0c4423a"
-    },
-    {
-      "id": "5d67b3876827390e2c92f362",
-      "previousUrl": "https://jobs.ashbyhq.com/reliable-robotics/9e609f4f-cf1c-4171-9140-54e05c5195de/application",
-      "applyUrl": "https://jobs.ashbyhq.com/reliable-robotics/9e609f4f-cf1c-4171-9140-54e05c5195de"
-    },
-    {
-      "id": "29fcc333b9759b237af756f0",
-      "previousUrl": "https://jobs.lever.co/pivotal/442a0450-f911-4ac1-a112-03374217f7fb/apply",
-      "applyUrl": "https://jobs.lever.co/pivotal/442a0450-f911-4ac1-a112-03374217f7fb"
-    },
-    {
-      "id": "380d3630d982ec685ee418a7",
-      "previousUrl": "https://jobs.ashbyhq.com/skydio/6f5caf41-fa1d-4208-9bdc-82c72e5d3f17",
-      "applyUrl": "https://jobs.ashbyhq.com/skydio/6f5caf41-fa1d-4208-9bdc-82c72e5d3f17/application?embed=true"
-    },
-    {
-      "id": "fd2395fedad48fd147a11ff2",
-      "previousUrl": "https://jobs.ashbyhq.com/skydio/57336f0f-a8ed-4ede-b6da-d399e5335fe4",
-      "applyUrl": "https://jobs.ashbyhq.com/skydio/57336f0f-a8ed-4ede-b6da-d399e5335fe4/application?embed=true"
-    },
-    {
-      "id": "f778c6f90903d878da58df1a",
-      "previousUrl": "https://jobs.ashbyhq.com/skydio/1ac972b1-8094-4765-8869-63e1c4d50dea",
-      "applyUrl": "https://jobs.ashbyhq.com/skydio/1ac972b1-8094-4765-8869-63e1c4d50dea/application?embed=true"
-    },
-    {
-      "id": "256261bba229eb4d5ca244df",
-      "previousUrl": "https://jobs.ashbyhq.com/old-mission-capital/a7b34fe6-cd82-4f17-b5d7-983aa354b505",
-      "applyUrl": "https://jobs.ashbyhq.com/old-mission-capital/a7b34fe6-cd82-4f17-b5d7-983aa354b505/application"
-    },
-    {
-      "id": "92c642259fc65d28f69106c0",
-      "previousUrl": "https://jobs.ashbyhq.com/old-mission-capital/a8bad54c-405b-469c-8a7d-b7794dfb54b3",
-      "applyUrl": "https://jobs.ashbyhq.com/old-mission-capital/a8bad54c-405b-469c-8a7d-b7794dfb54b3/application"
+      "id": "1a8c8de86e2bd43e27044f89",
+      "previousUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Austin/Global-Tapeout-and-Mask-Operations--Biz-App-and-Data-Engineer--2026-New-College-Graduate-_JR-2502471-1",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/en-US/External/job/USA---Texas---Austin/Global-Tapeout-and-Mask-Operations--Biz-App-and-Data-Engineer--2026-New-College-Graduate-_JR-2502471-1"
     }
   ]
 }
