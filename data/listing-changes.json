@@ -1,42 +1,238 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-15T06:24:46.503Z",
-  "previousGeneratedAt": "2026-11-15T05:24:49.031Z",
-  "currentSnapshotGeneratedAt": "2026-11-15T06:24:46.503Z",
+  "generatedAt": "2026-11-15T07:24:38.208Z",
+  "previousGeneratedAt": "2026-11-15T06:24:46.503Z",
+  "currentSnapshotGeneratedAt": "2026-11-15T07:24:38.208Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6612,
-    "current": 6618,
-    "retained": 6612,
-    "added": 6,
-    "removed": 0,
-    "net": 6
+    "previous": 6618,
+    "current": 6617,
+    "retained": 6615,
+    "added": 2,
+    "removed": 3,
+    "net": -1
   },
   "categoryCounts": {
     "confirmed-closed": 0,
     "scope-exclusion": 0,
-    "verification-pending": 0,
+    "verification-pending": 2,
     "source-unavailable": 0,
-    "unresolved": 0,
+    "unresolved": 1,
     "deduplicated": 0
   },
-  "removedOpportunities": [],
+  "removedOpportunities": [
+    {
+      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01877298",
+      "id": "90d117e6d3a98b280da2ec2c",
+      "company": "Raytheon",
+      "title": "Mechanical Producibility Engineer I (Onsite)",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-AZ-TUCSON-M10--3360-E-Hemisphere-Loop--BLDG-M10/Mechanical-Producibility-Engineer-I--Onsite-_01877298",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "90d117e6d3a98b280da2ec2c"
+      ],
+      "previousUrls": [
+        "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-AZ-TUCSON-M10--3360-E-Hemisphere-Loop--BLDG-M10/Mechanical-Producibility-Engineer-I--Onsite-_01877298"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-15T07:18:27.079Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31682",
+      "id": "df790fef5e5d5027758ba2e0",
+      "company": "HNTB",
+      "title": "New Grad Electrical Engineering I (2027)",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "df790fef5e5d5027758ba2e0"
+      ],
+      "previousUrls": [
+        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1"
+      ],
+      "sources": [
+        "Keryx Non-Software New Grad 2027",
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-15T07:18:27.079Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
+            "status": "unknown"
+          }
+        ],
+        "board": {
+          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
+          "status": "ok",
+          "outcome": "rate_limited",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Keryx Non-Software New Grad 2027",
+            "diagnosticName": "Keryx Non-Software New Grad 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 131
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31355",
+      "id": "e40074ef200d40c15b63eb3e",
+      "company": "HNTB",
+      "title": "New Grad Structural Engineer I - Winter/Summer 2027",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "e40074ef200d40c15b63eb3e"
+      ],
+      "previousUrls": [
+        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355"
+      ],
+      "sources": [
+        "Keryx Non-Software New Grad 2027",
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-15T07:18:27.079Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
+            "status": "unknown"
+          }
+        ],
+        "board": {
+          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
+          "status": "ok",
+          "outcome": "rate_limited",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Keryx Non-Software New Grad 2027",
+            "diagnosticName": "Keryx Non-Software New Grad 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 131
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    }
+  ],
   "rowCounts": {
-    "previous": 6612,
-    "current": 6618,
-    "net": 6,
+    "previous": 6618,
+    "current": 6617,
+    "net": -1,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 6,
-  "removedCount": 0,
-  "counts": {},
-  "removed": [],
+  "added": 2,
+  "removedCount": 3,
+  "counts": {
+    "not-returned-by-sources": 1,
+    "pendingVerification": 2
+  },
+  "removed": [
+    {
+      "id": "90d117e6d3a98b280da2ec2c",
+      "company": "Raytheon",
+      "title": "Mechanical Producibility Engineer I (Onsite)",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-AZ-TUCSON-M10--3360-E-Hemisphere-Loop--BLDG-M10/Mechanical-Producibility-Engineer-I--Onsite-_01877298",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "df790fef5e5d5027758ba2e0",
+      "company": "HNTB",
+      "title": "New Grad Electrical Engineering I (2027)",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "e40074ef200d40c15b63eb3e",
+      "company": "HNTB",
+      "title": "New Grad Structural Engineer I - Winter/Summer 2027",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
+      "reason": "pendingVerification"
+    }
+  ],
   "urlChanges": [
     {
-      "id": "47c4e1b9bc82b9c35bcf2df5",
-      "previousUrl": "https://lplfinancial.wd1.myworkdayjobs.com/university/job/Fort-MillCharlotte/Summer-Intern-2027--Software-Engineer_R-052921",
-      "applyUrl": "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/Summer-Intern-2027--Software-Engineer_R-052921"
+      "id": "82e319dc33dd275804891d73",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1"
     }
   ]
 }
