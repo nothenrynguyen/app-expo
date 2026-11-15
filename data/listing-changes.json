@@ -1,117 +1,269 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-15T11:23:56.916Z",
-  "previousGeneratedAt": "2026-11-15T10:24:15.486Z",
-  "currentSnapshotGeneratedAt": "2026-11-15T11:23:56.916Z",
+  "generatedAt": "2026-11-15T12:25:04.038Z",
+  "previousGeneratedAt": "2026-11-15T11:23:56.916Z",
+  "currentSnapshotGeneratedAt": "2026-11-15T12:25:04.038Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6698,
-    "current": 6704,
-    "retained": 6698,
-    "added": 6,
-    "removed": 0,
+    "previous": 6704,
+    "current": 6710,
+    "retained": 6701,
+    "added": 9,
+    "removed": 3,
     "net": 6
   },
   "categoryCounts": {
     "confirmed-closed": 0,
-    "scope-exclusion": 0,
-    "verification-pending": 0,
+    "scope-exclusion": 1,
+    "verification-pending": 2,
     "source-unavailable": 0,
     "unresolved": 0,
     "deduplicated": 0
   },
-  "removedOpportunities": [],
+  "removedOpportunities": [
+    {
+      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31682",
+      "id": "df790fef5e5d5027758ba2e0",
+      "company": "HNTB",
+      "title": "New Grad Electrical Engineering I (2027)",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "df790fef5e5d5027758ba2e0"
+      ],
+      "previousUrls": [
+        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1"
+      ],
+      "sources": [
+        "Keryx Non-Software New Grad 2027",
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-15T12:18:34.706Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
+            "status": "unknown"
+          }
+        ],
+        "board": {
+          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
+          "status": "ok",
+          "outcome": "rate_limited",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Keryx Non-Software New Grad 2027",
+            "diagnosticName": "Keryx Non-Software New Grad 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 124
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:micron.wd1.myworkdayjobs.com:external:jr111582",
+      "id": "f90f0c7ac0c6a341e502803d",
+      "company": "Micron Technology",
+      "title": "Intern - IT Software Engineer",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---IT-Software-Engineer_JR111582",
+      "reason": "role",
+      "previousIds": [
+        "f90f0c7ac0c6a341e502803d"
+      ],
+      "previousUrls": [
+        "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---IT-Software-Engineer_JR111582"
+      ],
+      "sources": [
+        "Internship Engine"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---IT-Software-Engineer_JR111582",
+            "reason": "role",
+            "detail": null
+          }
+        ],
+        "runStartedAt": "2026-11-15T12:18:34.706Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---IT-Software-Engineer_JR111582",
+            "status": "ineligible"
+          }
+        ],
+        "board": {
+          "id": "workday:micron.wd1.myworkdayjobs.com:external",
+          "status": "ok",
+          "outcome": "healthy",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1265
+          }
+        ]
+      },
+      "category": "scope-exclusion",
+      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
+      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
+      "requiresInvestigation": false
+    },
+    {
+      "identity": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers:r-31355",
+      "id": "e40074ef200d40c15b63eb3e",
+      "company": "HNTB",
+      "title": "New Grad Structural Engineer I - Winter/Summer 2027",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "e40074ef200d40c15b63eb3e"
+      ],
+      "previousUrls": [
+        "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355"
+      ],
+      "sources": [
+        "Keryx Non-Software New Grad 2027",
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-15T12:18:34.706Z",
+        "postingCheck": null,
+        "workdayChecks": [
+          {
+            "url": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
+            "status": "unknown"
+          }
+        ],
+        "board": {
+          "id": "workday:hntb.wd5.myworkdayjobs.com:hntb_careers",
+          "status": "ok",
+          "outcome": "rate_limited",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Keryx Non-Software New Grad 2027",
+            "diagnosticName": "Keryx Non-Software New Grad 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 124
+          },
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    }
+  ],
   "rowCounts": {
-    "previous": 6698,
-    "current": 6704,
+    "previous": 6704,
+    "current": 6710,
     "net": 6,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 6,
-  "removedCount": 0,
-  "counts": {},
-  "removed": [],
+  "added": 9,
+  "removedCount": 3,
+  "counts": {
+    "pendingVerification": 2,
+    "role": 1
+  },
+  "removed": [
+    {
+      "id": "df790fef5e5d5027758ba2e0",
+      "company": "HNTB",
+      "title": "New Grad Electrical Engineering I (2027)",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/New-Grad-Electrical-Engineering-I--2027-_R-31682-1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "f90f0c7ac0c6a341e502803d",
+      "company": "Micron Technology",
+      "title": "Intern - IT Software Engineer",
+      "applyUrl": "https://micron.wd1.myworkdayjobs.com/External/job/Boise-ID---Main-Site/Intern---IT-Software-Engineer_JR111582",
+      "reason": "role"
+    },
+    {
+      "id": "e40074ef200d40c15b63eb3e",
+      "company": "HNTB",
+      "title": "New Grad Structural Engineer I - Winter/Summer 2027",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Los-Angeles-CA-Figueroa-Street/New-Grad-Structural-Engineer-I---Winter-Summer-2027_R-31355",
+      "reason": "pendingVerification"
+    }
+  ],
   "urlChanges": [
     {
-      "id": "a4a8b7ae07200760a2d2cd6f",
-      "previousUrl": "https://jobs.lever.co/CesiumAstro/fc86b32c-9320-4da0-80ae-18f02bc37316/apply",
-      "applyUrl": "https://jobs.lever.co/CesiumAstro/fc86b32c-9320-4da0-80ae-18f02bc37316"
+      "id": "11911b8413f11499e310a8d9",
+      "previousUrl": "https://hp.wd5.myworkdayjobs.com/externalcareersite/job/Fort-Collins-Colorado-United-States-of-America/Performance-Engineering-Co-op_UNI4986-2",
+      "applyUrl": "https://hp.wd5.myworkdayjobs.com/ExternalCareerSite/job/Fort-Collins-Colorado-United-States-of-America/Performance-Engineering-Co-op_UNI4986-2"
     },
     {
-      "id": "c70ee9e9ed68605d969a8ca0",
-      "previousUrl": "https://jobs.lever.co/CesiumAstro/8f54cb68-5803-4fbe-93a9-da5873a67435/apply",
-      "applyUrl": "https://jobs.lever.co/CesiumAstro/8f54cb68-5803-4fbe-93a9-da5873a67435"
+      "id": "04a5d004fbdd6d04f93e83f2",
+      "previousUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603"
     },
     {
-      "id": "380d3630d982ec685ee418a7",
-      "previousUrl": "https://jobs.ashbyhq.com/skydio/6f5caf41-fa1d-4208-9bdc-82c72e5d3f17",
-      "applyUrl": "https://jobs.ashbyhq.com/skydio/6f5caf41-fa1d-4208-9bdc-82c72e5d3f17/application?embed=true"
+      "id": "82e319dc33dd275804891d73",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1"
     },
     {
-      "id": "fd2395fedad48fd147a11ff2",
-      "previousUrl": "https://jobs.ashbyhq.com/skydio/57336f0f-a8ed-4ede-b6da-d399e5335fe4",
-      "applyUrl": "https://jobs.ashbyhq.com/skydio/57336f0f-a8ed-4ede-b6da-d399e5335fe4/application?embed=true"
+      "id": "c435fab90bbd613f847e2c0c",
+      "previousUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Danvers-Massachusetts-United-States-of-America/Software-Engineering-Co-Op_R-098277",
+      "applyUrl": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Danvers-Massachusetts-United-States-of-America/Software-Engineering-Co-Op_R-098277"
     },
     {
-      "id": "f778c6f90903d878da58df1a",
-      "previousUrl": "https://jobs.ashbyhq.com/skydio/1ac972b1-8094-4765-8869-63e1c4d50dea",
-      "applyUrl": "https://jobs.ashbyhq.com/skydio/1ac972b1-8094-4765-8869-63e1c4d50dea/application?embed=true"
-    },
-    {
-      "id": "d3f6875f4f72d5c3613ccd79",
-      "previousUrl": "https://jobs.ashbyhq.com/amplify/c95f690f-28af-42b1-8847-5dcf14c1155e/application?embed=true",
-      "applyUrl": "https://jobs.ashbyhq.com/amplify/c95f690f-28af-42b1-8847-5dcf14c1155e"
-    },
-    {
-      "id": "54ffd2f4a2b4509dc4b96f3e",
-      "previousUrl": "https://generalmotors.wd5.myworkdayjobs.com/en-CA/Careers_GM/job/Milford-Michigan-United-States-of-America/XMLNAME-2027-Summer-Intern---Systems-Calibration-Engineer--ADAS-Drive_JR-202621623",
-      "applyUrl": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Milford-Michigan-United-States-of-America/XMLNAME-2027-Summer-Intern---Systems-Calibration-Engineer--ADAS-Drive_JR-202621623"
-    },
-    {
-      "id": "d56b90fac7b1ec2165696284",
-      "previousUrl": "https://generalmotors.wd5.myworkdayjobs.com/en-CA/Careers_GM/job/Sunnyvale-California-United-States-of-America/XMLNAME-2027-Intern---Product-Management--Vehicle-Autonomy--MS-or-MBA-_JR-202622449",
-      "applyUrl": "https://generalmotors.wd5.myworkdayjobs.com/Careers_GM/job/Sunnyvale-California-United-States-of-America/XMLNAME-2027-Intern---Product-Management--Vehicle-Autonomy--MS-or-MBA-_JR-202622449"
-    },
-    {
-      "id": "89774e8ca7457b593fd00699",
-      "previousUrl": "https://vanguard.wd5.myworkdayjobs.com/vanguard_external/job/Malvern-PA/College-to-Corporate-IT-Internship-Investment-Systems--PA-_182782",
-      "applyUrl": "https://vanguard.wd5.myworkdayjobs.com/en-US/vanguard_external/job/Malvern-PA/College-to-Corporate-IT-Internship-Investment-Systems--PA-_182782"
-    },
-    {
-      "id": "3eee84903c61574f1952888e",
-      "previousUrl": "https://jobs.lever.co/CesiumAstro/ccb0f99f-0cc7-4517-8d1c-faeca53b5e5c/apply",
-      "applyUrl": "https://jobs.lever.co/CesiumAstro/ccb0f99f-0cc7-4517-8d1c-faeca53b5e5c"
-    },
-    {
-      "id": "c71e474a3b5aa8e9c311cc4c",
-      "previousUrl": "https://jobs.lever.co/CesiumAstro/ab7dd1c4-7196-4cae-8fbd-cddec993b9b8/apply",
-      "applyUrl": "https://jobs.lever.co/CesiumAstro/ab7dd1c4-7196-4cae-8fbd-cddec993b9b8"
-    },
-    {
-      "id": "8553b409583cf19e553fa9b2",
-      "previousUrl": "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/New-Grad-2027---Software-Engineering_R-052475",
-      "applyUrl": "https://lplfinancial.wd1.myworkdayjobs.com/university/job/Fort-MillCharlotte/New-Grad-2027---Software-Engineering_R-052475"
-    },
-    {
-      "id": "9a224ab2da05c0bcb97ce3a5",
-      "previousUrl": "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/New-Grad---2027---Data-Engineering_R-052493-1",
-      "applyUrl": "https://lplfinancial.wd1.myworkdayjobs.com/university/job/Fort-MillCharlotte/New-Grad---2027---Data-Engineering_R-052493-1"
-    },
-    {
-      "id": "47c4e1b9bc82b9c35bcf2df5",
-      "previousUrl": "https://lplfinancial.wd1.myworkdayjobs.com/University/job/Fort-MillCharlotte/Summer-Intern-2027--Software-Engineer_R-052921",
-      "applyUrl": "https://lplfinancial.wd1.myworkdayjobs.com/university/job/Fort-MillCharlotte/Summer-Intern-2027--Software-Engineer_R-052921"
-    },
-    {
-      "id": "256261bba229eb4d5ca244df",
-      "previousUrl": "https://jobs.ashbyhq.com/old-mission-capital/a7b34fe6-cd82-4f17-b5d7-983aa354b505",
-      "applyUrl": "https://jobs.ashbyhq.com/old-mission-capital/a7b34fe6-cd82-4f17-b5d7-983aa354b505/application"
-    },
-    {
-      "id": "92c642259fc65d28f69106c0",
-      "previousUrl": "https://jobs.ashbyhq.com/old-mission-capital/a8bad54c-405b-469c-8a7d-b7794dfb54b3",
-      "applyUrl": "https://jobs.ashbyhq.com/old-mission-capital/a8bad54c-405b-469c-8a7d-b7794dfb54b3/application"
+      "id": "dec17dd7c886c9ef57d35a82",
+      "previousUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603"
     }
   ]
 }
