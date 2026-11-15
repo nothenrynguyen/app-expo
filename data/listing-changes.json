@@ -1,58 +1,72 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-15T14:23:42.883Z",
-  "previousGeneratedAt": "2026-11-15T13:24:24.448Z",
-  "currentSnapshotGeneratedAt": "2026-11-15T14:23:42.883Z",
+  "generatedAt": "2026-11-15T15:24:50.231Z",
+  "previousGeneratedAt": "2026-11-15T14:23:42.883Z",
+  "currentSnapshotGeneratedAt": "2026-11-15T15:24:50.231Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6746,
-    "current": 6744,
+    "previous": 6744,
+    "current": 6748,
     "retained": 6743,
-    "added": 1,
-    "removed": 3,
-    "net": -2
+    "added": 5,
+    "removed": 1,
+    "net": 4
   },
   "categoryCounts": {
     "confirmed-closed": 0,
     "scope-exclusion": 0,
-    "verification-pending": 0,
-    "source-unavailable": 3,
+    "verification-pending": 1,
+    "source-unavailable": 0,
     "unresolved": 0,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "workday:allegion.wd5.myworkdayjobs.com:careers:jr37433",
-      "id": "f6cea1fb6acbaf0e1ba7d661",
-      "company": "Allegion",
-      "title": "Summer Intern - Advanced Manufacturing Engineering, Computer Engineering",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Advanced-Manufacturing-Engineering--Computer-Engineering_JR37433-1",
-      "reason": "not-returned-by-sources",
+      "identity": "job-boards.greenhouse.io:7989724003",
+      "id": "1ea33ec023432b76ff5391b0",
+      "company": "Rocket Lab",
+      "title": "Flight Software Intern",
+      "applyUrl": "https://job-boards.greenhouse.io/rocketlab/jobs/7989724003",
+      "reason": "pendingVerification",
       "previousIds": [
-        "f6cea1fb6acbaf0e1ba7d661"
+        "1ea33ec023432b76ff5391b0"
       ],
       "previousUrls": [
-        "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Advanced-Manufacturing-Engineering--Computer-Engineering_JR37433-1"
+        "https://job-boards.greenhouse.io/rocketlab/jobs/7989724003"
       ],
       "sources": [
-        "Direct ATS (Workday)"
+        "Aprameya Off-Cycle Internships 2027",
+        "Direct ATS (Greenhouse)"
       ],
-      "candidateSeen": false,
+      "candidateSeen": true,
       "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-15T14:18:25.762Z",
+        "screening": [
+          {
+            "url": "https://job-boards.greenhouse.io/rocketlab/jobs/7989724003",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-15T15:18:30.924Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:allegion.wd5.myworkdayjobs.com:careers",
-          "status": "failed",
-          "outcome": "rate_limited",
-          "membership": "unknown",
+          "id": "greenhouse:rocketlab",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
           "retired": false
         },
         "sources": [
           {
-            "name": "Direct ATS (Workday)",
+            "name": "Aprameya Off-Cycle Internships 2027",
+            "diagnosticName": "Aprameya Off-Cycle Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 760
+          },
+          {
+            "name": "Direct ATS (Greenhouse)",
             "diagnosticName": null,
             "status": "not-checked",
             "outcome": null,
@@ -60,155 +74,63 @@
           }
         ]
       },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:allegion.wd5.myworkdayjobs.com:careers:jr37369",
-      "id": "50849cb899785f042208eb49",
-      "company": "Allegion",
-      "title": "Summer Intern - Product Management",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Product-Management_JR37369-1",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "50849cb899785f042208eb49"
-      ],
-      "previousUrls": [
-        "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Product-Management_JR37369-1"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-15T14:18:25.762Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:allegion.wd5.myworkdayjobs.com:careers",
-          "status": "failed",
-          "outcome": "rate_limited",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
-      "requiresInvestigation": true
-    },
-    {
-      "identity": "workday:allegion.wd5.myworkdayjobs.com:careers:jr37467",
-      "id": "c2e19afff7231bb046a4edaa",
-      "company": "Allegion",
-      "title": "Summer Intern - Hardware Engineering - Indianapolis, Indiana",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering---Indianapolis--Indiana_JR37467-1",
-      "reason": "not-returned-by-sources",
-      "previousIds": [
-        "c2e19afff7231bb046a4edaa"
-      ],
-      "previousUrls": [
-        "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering---Indianapolis--Indiana_JR37467-1"
-      ],
-      "sources": [
-        "Direct ATS (Workday)"
-      ],
-      "candidateSeen": false,
-      "evidence": {
-        "screening": [],
-        "runStartedAt": "2026-11-15T14:18:25.762Z",
-        "postingCheck": null,
-        "workdayChecks": [],
-        "board": {
-          "id": "workday:allegion.wd5.myworkdayjobs.com:careers",
-          "status": "failed",
-          "outcome": "rate_limited",
-          "membership": "unknown",
-          "retired": false
-        },
-        "sources": [
-          {
-            "name": "Direct ATS (Workday)",
-            "diagnosticName": null,
-            "status": "not-checked",
-            "outcome": null,
-            "rows": null
-          }
-        ]
-      },
-      "category": "source-unavailable",
-      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
-      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
       "requiresInvestigation": true
     }
   ],
   "rowCounts": {
-    "previous": 6746,
-    "current": 6744,
-    "net": -2,
+    "previous": 6744,
+    "current": 6748,
+    "net": 4,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 1,
-  "removedCount": 3,
+  "added": 5,
+  "removedCount": 1,
   "counts": {
-    "not-returned-by-sources": 3
+    "pendingVerification": 1
   },
   "removed": [
     {
-      "id": "f6cea1fb6acbaf0e1ba7d661",
-      "company": "Allegion",
-      "title": "Summer Intern - Advanced Manufacturing Engineering, Computer Engineering",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Advanced-Manufacturing-Engineering--Computer-Engineering_JR37433-1",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "50849cb899785f042208eb49",
-      "company": "Allegion",
-      "title": "Summer Intern - Product Management",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Product-Management_JR37369-1",
-      "reason": "not-returned-by-sources"
-    },
-    {
-      "id": "c2e19afff7231bb046a4edaa",
-      "company": "Allegion",
-      "title": "Summer Intern - Hardware Engineering - Indianapolis, Indiana",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering---Indianapolis--Indiana_JR37467-1",
-      "reason": "not-returned-by-sources"
+      "id": "1ea33ec023432b76ff5391b0",
+      "company": "Rocket Lab",
+      "title": "Flight Software Intern",
+      "applyUrl": "https://job-boards.greenhouse.io/rocketlab/jobs/7989724003",
+      "reason": "pendingVerification"
     }
   ],
   "urlChanges": [
     {
-      "id": "53d1560835c4eb88ffd9fe9a",
-      "previousUrl": "https://allegion.wd5.myworkdayjobs.com/en-US/careers/job/Carmel-IN/Summer-Intern---Software-Operations-Engineer_JR37722-1",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern---Software-Operations-Engineer_JR37722-1"
+      "id": "04a5d004fbdd6d04f93e83f2",
+      "previousUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-VA-Dahlgren/Junior-Web-Developer_R0172603"
     },
     {
-      "id": "ea9d5928e289d68056f9a1b4",
-      "previousUrl": "https://allegion.wd5.myworkdayjobs.com/en-US/careers/job/Golden-CO/Summer-Intern---Summer-Intern---Software-Engineering---Quality-Assurance_JR37856-1",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Golden-CO/Summer-Intern---Summer-Intern---Software-Engineering---Quality-Assurance_JR37856-1"
+      "id": "82e319dc33dd275804891d73",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Kansas-City-MO/New-Grad-Structural-Engineer-I---Summer-2027_R-31801-1"
     },
     {
-      "id": "76d6f6d8506a8facad58426c",
-      "previousUrl": "https://allegion.wd5.myworkdayjobs.com/en-US/careers/job/Golden-CO/Summer-Intern---Software-Engineering_JR37795-1",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Golden-CO/Summer-Intern---Software-Engineering_JR37795-1"
+      "id": "c435fab90bbd613f847e2c0c",
+      "previousUrl": "https://jj.wd5.myworkdayjobs.com/en-US/JJ/job/Danvers-Massachusetts-United-States-of-America/Software-Engineering-Co-Op_R-098277",
+      "applyUrl": "https://jj.wd5.myworkdayjobs.com/JJ/job/Danvers-Massachusetts-United-States-of-America/Software-Engineering-Co-Op_R-098277"
     },
     {
-      "id": "06ed362ab3037d5ebcbff4a6",
-      "previousUrl": "https://allegion.wd5.myworkdayjobs.com/en-US/careers/job/Carmel-IN/Summer-Intern--User-Experience--UX--Research_JR37497",
-      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/careers/job/Carmel-IN/Summer-Intern--User-Experience--UX--Research_JR37497"
+      "id": "dec17dd7c886c9ef57d35a82",
+      "previousUrl": "https://pae.wd1.myworkdayjobs.com/Amentum_Careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603",
+      "applyUrl": "https://pae.wd1.myworkdayjobs.com/en-US/amentum_careers/job/US-DC-Washington/Software-Developer---Junior--Team-01-_R0167603"
+    },
+    {
+      "id": "af25515264c9c9abc2c082aa",
+      "previousUrl": "https://hntb.wd5.myworkdayjobs.com/HNTB_Careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037",
+      "applyUrl": "https://hntb.wd5.myworkdayjobs.com/hntb_careers/job/Bellevue-WA-Seattle/WED---Intern-Civil-Engineer--Summer-2027---For-Current---Recent-HNTB-Interns-Only-_R-31037"
+    },
+    {
+      "id": "1a8c8de86e2bd43e27044f89",
+      "previousUrl": "https://globalfoundries.wd1.myworkdayjobs.com/External/job/USA---Texas---Austin/Global-Tapeout-and-Mask-Operations--Biz-App-and-Data-Engineer--2026-New-College-Graduate-_JR-2502471-1",
+      "applyUrl": "https://globalfoundries.wd1.myworkdayjobs.com/en-US/External/job/USA---Texas---Austin/Global-Tapeout-and-Mask-Operations--Biz-App-and-Data-Engineer--2026-New-College-Graduate-_JR-2502471-1"
     }
   ]
 }
