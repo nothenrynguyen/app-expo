@@ -1,26 +1,82 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-16T10:20:06.486Z",
-  "previousGeneratedAt": "2026-11-16T09:20:18.700Z",
-  "currentSnapshotGeneratedAt": "2026-11-16T10:20:06.486Z",
+  "generatedAt": "2026-11-16T11:19:52.458Z",
+  "previousGeneratedAt": "2026-11-16T10:20:06.486Z",
+  "currentSnapshotGeneratedAt": "2026-11-16T11:19:52.458Z",
   "reconciliation": {
     "unit": "opportunities",
     "previous": 6413,
     "current": 6413,
-    "retained": 6413,
-    "added": 0,
-    "removed": 0,
+    "retained": 6412,
+    "added": 1,
+    "removed": 1,
     "net": 0
   },
   "categoryCounts": {
     "confirmed-closed": 0,
     "scope-exclusion": 0,
-    "verification-pending": 0,
+    "verification-pending": 1,
     "source-unavailable": 0,
     "unresolved": 0,
     "deduplicated": 0
   },
-  "removedOpportunities": [],
+  "removedOpportunities": [
+    {
+      "identity": "workday:nwis.wd12.myworkdayjobs.com:nw:01677525",
+      "id": "d97ac3fece7455a4d4c8971d",
+      "company": "Nightwing",
+      "title": "Junior Software Engineer (SWE0)",
+      "applyUrl": "https://nwis.wd12.myworkdayjobs.com/NW/job/Annapolis-Junction-MD/Junior-Software-Engineer_01677525",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "d97ac3fece7455a4d4c8971d"
+      ],
+      "previousUrls": [
+        "https://nwis.wd12.myworkdayjobs.com/NW/job/Annapolis-Junction-MD/Junior-Software-Engineer_01677525"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://nwis.wd12.myworkdayjobs.com/en-US/NW/job/Annapolis-Junction-MD/Junior-Software-Engineer_01677525",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://nwis.wd12.myworkdayjobs.com/NW/job/Annapolis-Junction-MD/Junior-Software-Engineer_01677525",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T11:18:16.259Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:nwis.wd12.myworkdayjobs.com:nw",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 666
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    }
+  ],
   "rowCounts": {
     "previous": 6413,
     "current": 6413,
@@ -28,9 +84,19 @@
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 0,
-  "removedCount": 0,
-  "counts": {},
-  "removed": [],
+  "added": 1,
+  "removedCount": 1,
+  "counts": {
+    "pendingVerification": 1
+  },
+  "removed": [
+    {
+      "id": "d97ac3fece7455a4d4c8971d",
+      "company": "Nightwing",
+      "title": "Junior Software Engineer (SWE0)",
+      "applyUrl": "https://nwis.wd12.myworkdayjobs.com/NW/job/Annapolis-Junction-MD/Junior-Software-Engineer_01677525",
+      "reason": "pendingVerification"
+    }
+  ],
   "urlChanges": []
 }
