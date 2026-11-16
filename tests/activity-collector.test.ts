@@ -204,3 +204,16 @@ test("monthly summaries keep quota warnings and daily employer click counts", as
   assert.equal((await db.prepare("SELECT limited FROM monthly_reports").all()).results[0].limited,1);
   db.native.close();
 });
+
+
+test("daily chart board counts separate repeat openings and exclude private tracker clicks", async () => {
+  const {db,env}=await fixture();
+  for (const board of ["internships","internships","fulltime","none"] as const) {
+    await handleRequest(request(event({name:"apply_click",page:board==="none" ? "/applications" : board==="fulltime" ? "/jobs" : "/internships",board,device:"unknown"})),env,day);
+  }
+  const report=await buildReport(db,"all",day);
+  assert.equal(report.daily[0].internshipClicks,2);
+  assert.equal(report.daily[0].newGradClicks,1);
+  assert.equal(report.daily[0].clicks,4);
+  db.native.close();
+});

@@ -48,6 +48,11 @@ export function AnalyticsDashboard() {
       if (request.current === controller) setLoading(false);
     }
   }
+  useEffect(() => {
+    if (process.env.NODE_ENV === "development" && new URLSearchParams(window.location.search).get("preview") === "charts") {
+      void import("./chart-preview").then(({chartPreview}) => { setReport(chartPreview); setUnlocked(true); });
+    }
+  }, []);
   function connect(event: FormEvent) { event.preventDefault(); void loadReport(draft.trim(), range); }
   function lock() { request.current?.abort(); request.current = null; token.current = ""; setUnlocked(false); setDraft(""); setReport(null); setMessage(""); setLoading(false); }
   return <section className={`analytics-shell${unlocked ? "" : " analytics-locked"}`}>
@@ -60,6 +65,7 @@ export function AnalyticsDashboard() {
     </form>}
     {unlocked && message ? <p role="status" aria-live="polite">{message}</p> : null}
     {unlocked ? <div className="analytics-toolbar"><div><button type="button" className="button secondary" disabled={loading} onClick={() => void loadReport(token.current, range)}>{loading ? "Loading..." : "Refresh"}</button><button type="button" className="button secondary" onClick={lock}>Lock dashboard</button></div></div> : null}
+    {process.env.NODE_ENV === "development" && report?.generatedAt === "preview" ? <p className="analytics-warning">Local chart preview with fictional data. Refresh loads the authenticated live report.</p> : null}
     {report ? <ReportContent report={report} /> : null}
   </section>;
 }
@@ -98,9 +104,9 @@ function ReportContent({ report }: { report: ActivityReport }) {
       <Metric title="Employer-link clickers" value={number(report.totals.applied)} detail={`${percent(report.totals.applied,report.totals.visitors)} of visitors opened an employer link. This does not confirm an application.`} />
       <Metric title="Returning visitors" value={number(report.totals.returning)} detail={`${percent(report.totals.returning,report.totals.visitors)} were seen on an earlier UTC day, including earlier in this period.`} />
     </div>}
-    <section aria-label="Overview" className="analytics-section analytics-overview"><div className="analytics-workspace"><ActivityTrend key={`${view}-${month}`} report={report} month={monthlyView ? month : null} />
-    <div className="analytics-sidebar">{!monthlyView ? <section className="analytics-panel analytics-actions"><h2>What people actually use</h2><p className="analytics-caption">Unique browsers per feature. Actions include repeat use.</p><div className="analytics-table-scroll"><table className="analytics-table"><thead><tr><th scope="col">Feature</th><th scope="col">Visitors</th><th scope="col">Share of visitors</th><th scope="col">Actions</th></tr></thead><tbody>{features.map(([name,people,actions]) => <tr key={name}><th scope="row">{name}</th><td>{number(people)}</td><td>{percent(people,report.totals.visitors)}</td><td>{number(actions)}</td></tr>)}</tbody></table></div><p className="analytics-caption">Zero-result filter uses: {number(zero)} of {number(events("filter_use"))} ({percent(zero,events("filter_use"))}).</p></section> : null}
-    <section className="analytics-panel analytics-months"><h2>Monthly totals</h2>{report.monthly?.length ? <div className="analytics-table-scroll"><table className="analytics-table"><thead><tr><th scope="col">Month</th><th scope="col">Visitors</th><th scope="col">Engaged</th><th scope="col">Link clickers</th><th scope="col">Clicks</th></tr></thead><tbody>{report.monthly.map(row => <tr key={row.month}><th scope="row">{new Date(row.month+"-01T00:00Z").toLocaleDateString("en-US",{month:"long",year:"numeric",timeZone:"UTC"})}<small>{row.month === report.end.slice(0,7) ? "In progress" : "Closed month"}{report.trackingSince?.startsWith(row.month) ? " · Collection started " + report.trackingSince.slice(0,10) : ""}{row.limited ? " · Incomplete collection" : ""}</small></th><td>{number(row.visitors)}</td><td>{number(row.active)}</td><td>{number(row.applied)}</td><td>{number(row.clicks)}</td></tr>)}</tbody></table></div> : <p className="analytics-caption">Monthly history will appear after the collector update. No estimates are substituted for unavailable months.</p>}</section>
+    <section aria-label="Overview" className="analytics-section analytics-overview"><div className="analytics-workspace"><ActivityTrend key={`${view}-${month}`} report={report} />
+    <div className="analytics-sidebar"><ApplicationsTrend key={`applications-${view}-${month}`} report={report} />{!monthlyView ? <section className="analytics-panel analytics-actions"><h2>What people actually use</h2><p className="analytics-caption">Unique browsers per feature. Actions include repeat use.</p><div className="analytics-table-scroll"><table className="analytics-table"><thead><tr><th scope="col">Feature</th><th scope="col">Visitors</th><th scope="col">Share of visitors</th><th scope="col">Actions</th></tr></thead><tbody>{features.map(([name,people,actions]) => <tr key={name}><th scope="row">{name}</th><td>{number(people)}</td><td>{percent(people,report.totals.visitors)}</td><td>{number(actions)}</td></tr>)}</tbody></table></div><p className="analytics-caption">Zero-result filter uses: {number(zero)} of {number(events("filter_use"))} ({percent(zero,events("filter_use"))}).</p></section> : null}
+    <section className="analytics-panel analytics-months"><h2>Monthly totals</h2>{report.monthly?.length ? <div className="analytics-table-scroll"><table className="analytics-table"><thead><tr><th scope="col">Month</th><th scope="col">Visitors</th><th scope="col">Clicks</th></tr></thead><tbody>{report.monthly.map(row => <tr key={row.month}><th scope="row">{new Date(row.month+"-01T00:00Z").toLocaleDateString("en-US",{month:"long",year:"numeric",timeZone:"UTC"})}<small>{row.month === report.end.slice(0,7) ? "In progress" : "Closed month"}{report.trackingSince?.startsWith(row.month) ? " · Collection started " + report.trackingSince.slice(0,10) : ""}{row.limited ? " · Incomplete collection" : ""}</small></th><td>{number(row.visitors)}</td><td>{number(row.clicks)}</td></tr>)}</tbody></table></div> : <p className="analytics-caption">Monthly history will appear after the collector update. No estimates are substituted for unavailable months.</p>}</section>
     </div></div></section>
     <section aria-labelledby="analytics-traffic-heading" className="analytics-section analytics-traffic">
       <h2 id="analytics-traffic-heading" className="analytics-traffic-heading">Traffic &amp; health</h2>
@@ -117,65 +123,85 @@ function Metric({ title, value, detail }: { title: string; value: string; detail
 function CountTable({title,rows,subtitle}:{title:string;rows:[string,number][];subtitle:string}) {
   return <section className="analytics-panel"><h2>{title}</h2><p className="analytics-caption">{subtitle}</p><table className="analytics-table"><thead><tr><th scope="col">Category</th><th scope="col">Views</th></tr></thead><tbody>{rows.map(([name,count]) => <tr key={name}><th scope="row">{label(name)}</th><td>{number(count)}</td></tr>)}{!rows.length ? <tr><td colSpan={2}>No recorded views.</td></tr> : null}</tbody></table></section>;
 }
-function ActivityTrend({report, month}:{report:ActivityReport; month:string | null}) {
-  const daily = month !== null;
+function recentDays(report:ActivityReport) {
+  const end=Date.parse(report.end+"T00:00:00Z");
+  const start=end-29*86400000;
+  const rows=report.daily.filter(row=>Date.parse(row.day)>=start && Date.parse(row.day)<=end).sort((a,b)=>a.day.localeCompare(b.day));
+  const ticks=[0,7,14,21,29].map(offset=>new Date(start+offset*86400000).toISOString().slice(0,10));
+  const days=Array.from({length:30},(_,i)=>new Date(start+i*86400000).toISOString().slice(0,10));
+  return {start,rows,ticks,days};
+}
+function ActivityTrend({report}:{report:ActivityReport}) {
   const [selected,setSelected]=useState<string | null>(null);
   const [table,setTable]=useState(false);
-  const monthRows=(report.monthly ?? []).slice().sort((a,b)=>a.month.localeCompare(b.month));
-  const rows=report.daily.filter(row=>!month || row.day.startsWith(month));
-  const selectedRow=rows.find(row=>row.day===selected) ?? rows.at(-1);
-  const selectedMonthRow=monthRows.find(row=>row.month===selected) ?? monthRows.at(-1);
-  const monthIndex=(value:string)=>Number(value.slice(0,4))*12+Number(value.slice(5,7));
-  const firstMonthIndex=monthRows.length ? monthIndex(monthRows[0].month) : 0;
-  const monthSpan=Math.max(1,monthRows.length ? monthIndex(monthRows.at(-1)!.month)-firstMonthIndex : 0);
-  const monthX=(value:string)=>monthRows.length===1 ? 450 : 48+(monthIndex(value)-firstMonthIndex)/monthSpan*804;
-  const monthLabel=(value:string)=>new Date(value+"-01T00:00Z").toLocaleDateString("en-US",{month:"short",year:"numeric",timeZone:"UTC"});
-  const peak=Math.max(1,...(daily ? rows.map(row=>row.visitors) : monthRows.map(row=>row.visitors)));
-  const monthStart=month ? Date.parse(month+"-01T00:00Z") : 0;
-  const monthEnd=month ? Date.UTC(Number(month.slice(0,4)),Number(month.slice(5,7)),0) : 0;
-  const span=Math.max(86400000,monthEnd-monthStart);
-  const x=(day:string)=>48+(Date.parse(day)-monthStart)/span*804;
-  const y=(value:number)=>188-value/peak*144;
-  const lastDay=month ? new Date(monthEnd).getUTCDate() : 31;
-  const ticks=[1,8,15,22,lastDay].filter((day,i,all)=>all.indexOf(day)===i);
-  return <section className="analytics-panel analytics-trend"><div className="analytics-section-heading"><h2>{daily ? "Daily visitors" : "Monthly visitors"}</h2></div>
-    {daily ? <>
-      <div className="analytics-point" aria-live="polite">{selectedRow ? <><strong>{number(selectedRow.visitors)}</strong> visitors on {selectedRow.day}{selectedRow.limited ? " · Incomplete collection" : ""}</> : "No daily observations available for this month."}</div>
-      <svg viewBox="0 0 900 230" role="group" aria-label="Daily visitors over the full calendar month">
-        {[0,.5,1].map(t=><g key={t}><line x1="48" y1={y(peak*t)} x2="852" y2={y(peak*t)} stroke="currentColor" opacity=".12"/><text x="35" y={y(peak*t)+4} textAnchor="end" fill="currentColor" fontSize="12">{Number((peak*t).toFixed(1))}</text></g>)}
-        {report.trackingSince && month && report.trackingSince.slice(0,10)>month+"-01" ? <><rect x="48" y="35" width={Math.max(0,Math.min(804,x(report.trackingSince.slice(0,10))-48))} height="153" fill="#bba2ff" opacity=".06"/><text x="60" y="60" fill="currentColor" fontSize="12">Before tracking began</text></> : null}
-        {rows.map((row,i)=><g key={row.day}>{i>0 && Date.parse(row.day)-Date.parse(rows[i-1].day)===86400000 ? <g><line x1={x(rows[i-1].day)} y1={y(rows[i-1].visitors)} x2={x(row.day)} y2={y(row.visitors)} stroke="#bba2ff" strokeWidth="3" pointerEvents="none"/><line x1={x(rows[i-1].day)} y1={y(rows[i-1].visitors)} x2={x(row.day)} y2={y(row.visitors)} stroke="transparent" strokeWidth="20" pointerEvents="stroke" onPointerMove={event => {
-          const svg = event.currentTarget.ownerSVGElement;
-          const transform = svg?.getScreenCTM();
-          if (!svg || !transform) return;
-          const point = svg.createSVGPoint();
-          point.x = event.clientX; point.y = event.clientY;
-          const pointerX = point.matrixTransform(transform.inverse()).x;
-          setSelected(pointerX < (x(rows[i-1].day) + x(row.day)) / 2 ? rows[i-1].day : row.day);
-        }} style={{cursor:"pointer"}} /></g> : null}<circle cx={x(row.day)} cy={y(row.visitors)} r={selectedRow?.day===row.day ? 7 : 5} fill={row.limited ? "#f3d398" : "#bba2ff"} tabIndex={0} role="button" aria-label={`${row.day}: ${row.visitors} visitors`} onFocus={()=>setSelected(row.day)} onPointerEnter={()=>setSelected(row.day)} onClick={()=>setSelected(row.day)} onKeyDown={event=>{if(event.key==="Enter" || event.key===" "){event.preventDefault();setSelected(row.day);}}}><title>{row.day}: {row.visitors}</title></circle></g>)}
-        {ticks.map(day=><text key={day} x={48+(day-1)/(lastDay-1)*804} y="217" textAnchor="middle" fill="currentColor" fontSize="12">{month?.slice(5)}-{String(day).padStart(2,"0")}</text>)}
-      </svg>
-      {rows.length ? <label className="analytics-day-picker">Inspect a day<select value={selectedRow?.day ?? ""} onChange={event=>setSelected(event.target.value)}>{rows.map(row=><option key={row.day} value={row.day}>{row.day}</option>)}</select></label> : <p className="analytics-caption">Daily detail is retained for 90 days. Older monthly totals remain available when archived.</p>}
-      <button type="button" className="analytics-text-button" aria-expanded={table} onClick={()=>setTable(!table)}>{table ? "Hide" : "Show"} daily table</button>
-      {table ? <div className="analytics-table-scroll"><table className="analytics-table"><thead><tr><th scope="col">UTC day</th><th scope="col">Visitors</th><th scope="col">Engaged</th><th scope="col">Collection</th></tr></thead><tbody>{rows.map(row=><tr key={row.day}><th scope="row">{row.day}</th><td>{row.visitors}</td><td>{row.active}</td><td>{row.limited ? "Incomplete" : "No recorded limit"}</td></tr>)}</tbody></table></div> : null}
-    </> : <>
-      {selectedMonthRow ? <div className="analytics-point" aria-live="polite"><strong>{number(selectedMonthRow.visitors)}</strong> visitors in {monthLabel(selectedMonthRow.month)}{selectedMonthRow.month===report.end.slice(0,7) ? " (in progress)" : ""}{selectedMonthRow.limited ? " · Incomplete collection" : ""}</div> : null}
-      {monthRows.length ? <svg viewBox="0 0 900 230" role="group" aria-label="All-time chart of unique visitors per month">
-        {[0,.5,1].map(t=><g key={t}><line x1="48" y1={y(peak*t)} x2="852" y2={y(peak*t)} stroke="currentColor" opacity=".12"/><text x="35" y={y(peak*t)+4} textAnchor="end" fill="currentColor" fontSize="12">{Number((peak*t).toFixed(1))}</text></g>)}
-        {monthRows.map((row,i)=><g key={row.month}>
-          {i>0 && monthIndex(row.month)-monthIndex(monthRows[i-1].month)===1 ? <g><line x1={monthX(monthRows[i-1].month)} y1={y(monthRows[i-1].visitors)} x2={monthX(row.month)} y2={y(row.visitors)} stroke="#bba2ff" strokeWidth="3" pointerEvents="none"/><line x1={monthX(monthRows[i-1].month)} y1={y(monthRows[i-1].visitors)} x2={monthX(row.month)} y2={y(row.visitors)} stroke="transparent" strokeWidth="20" pointerEvents="stroke" style={{cursor:"pointer"}} onPointerMove={event=>{
-            const svg=event.currentTarget.ownerSVGElement; const transform=svg?.getScreenCTM();
-            if(!svg || !transform) return;
-            const point=svg.createSVGPoint(); point.x=event.clientX; point.y=event.clientY;
-            setSelected(point.matrixTransform(transform.inverse()).x < (monthX(monthRows[i-1].month)+monthX(row.month))/2 ? monthRows[i-1].month : row.month);
-          }}/></g> : null}
-          <circle cx={monthX(row.month)} cy={y(row.visitors)} r={selectedMonthRow?.month===row.month ? 7 : 5} fill={row.limited ? "#f3d398" : "#bba2ff"} tabIndex={0} role="button" aria-label={`${monthLabel(row.month)}: ${row.visitors} visitors`} onPointerEnter={()=>setSelected(row.month)} onFocus={()=>setSelected(row.month)} onClick={()=>setSelected(row.month)} onKeyDown={event=>{if(event.key==="Enter" || event.key===" "){event.preventDefault();setSelected(row.month);}}}><title>{monthLabel(row.month)}: {row.visitors}</title></circle>
-          {i===0 || i===monthRows.length-1 || i % Math.max(1,Math.ceil(monthRows.length/6))===0 ? <text x={monthX(row.month)} y="217" textAnchor="middle" fill="currentColor" fontSize="12">{monthLabel(row.month)}</text> : null}
+  const [detailPage,setDetailPage]=useState(0);
+  const {start,rows,ticks,days}=recentDays(report);
+  const selectedRow=selected ? rows.find(row=>row.day===selected) : rows.at(-1);
+  const detailPages=Math.max(1,Math.ceil(days.length/7));
+  const pageEnd=days.length-detailPage*7;
+  const detailDays=days.slice(Math.max(0,pageEnd-7),pageEnd);
+
+  const peak=Math.max(1,...rows.map(row=>row.visitors));
+  const barStep=504/30;
+  const x=(day:string)=>48+((Date.parse(day)-start)/86400000+.5)*barStep;
+  const y=(value:number)=>288-value/peak*244;
+  return <section className="analytics-panel analytics-trend" data-table-open={table}><div className="analytics-section-heading"><h2 title="Last 30 UTC days">Daily visitors</h2></div>
+    <>
+      <div className="analytics-point" aria-live="polite">{selectedRow ? <><strong>{number(selectedRow.visitors)}</strong> visitors on {selectedRow.day}{selectedRow.limited ? " · Incomplete collection" : ""}</> : `No data${selected ? " on " + selected : " in the last 30 days"}.`}</div>
+      <svg viewBox="0 0 600 340" role="group" aria-label="Daily visitors over the last 30 UTC days">
+        {[0,.5,1].map(t=><g key={t}><line x1="48" y1={y(peak*t)} x2="552" y2={y(peak*t)} stroke="currentColor" opacity=".12"/><text x="35" y={y(peak*t)+4} textAnchor="end" fill="currentColor" fontSize="12">{Number((peak*t).toFixed(1))}</text></g>)}
+
+        {rows.map(row=><g key={row.day}>
+          <rect x={x(row.day)-barStep/2} y="35" width={barStep} height="253" fill="#bba2ff" opacity={selectedRow?.day===row.day ? .1 : 0} />
+          <rect x={x(row.day)-barStep*.34} y={y(row.visitors)} width={barStep*.68} height={288-y(row.visitors)} rx="2" fill={row.limited ? "#f3d398" : "#bba2ff"} pointerEvents="none" />
+          <rect className="analytics-column-target" x={x(row.day)-barStep/2} y="35" width={barStep} height="253" fill="transparent" tabIndex={0} role="button" aria-label={`${row.day}: ${row.visitors} visitors${row.limited ? ", incomplete collection" : ""}`} onFocus={()=>setSelected(row.day)} onPointerEnter={()=>setSelected(row.day)} onPointerMove={()=>setSelected(row.day)} onClick={()=>setSelected(row.day)} onKeyDown={event=>{if(event.key==="Enter" || event.key===" "){event.preventDefault();setSelected(row.day);}}}><title>{row.day}: {row.visitors} visitors</title></rect>
         </g>)}
-      </svg> : null}
-      {monthRows.length ? <label className="analytics-day-picker"><span className="sr-only">Inspect a month</span><select value={selectedMonthRow?.month ?? ""} onChange={event=>setSelected(event.target.value)}>{monthRows.map(row=><option key={row.month} value={row.month}>{monthLabel(row.month)}</option>)}</select></label> : null}
-      {!monthRows.length ? <p className="analytics-caption">Monthly summaries are not available yet. No daily counts are added together to estimate unique visitors.</p> : null}
-    </>}
+
+        {days.filter(day=>!rows.some(item=>item.day===day)).map(day=><g key={day}>
+          <rect x={x(day)-barStep/2} y="35" width={barStep} height="253" fill="#bba2ff" opacity={selected===day ? .1 : 0} pointerEvents="none"/>
+          <rect className="analytics-column-target" x={x(day)-barStep/2} y="35" width={barStep} height="253" fill="transparent" tabIndex={0} role="button" aria-label={`${day}: No data`} onPointerEnter={()=>setSelected(day)} onPointerMove={()=>setSelected(day)} onFocus={()=>setSelected(day)} onClick={()=>setSelected(day)} onKeyDown={event=>{if(event.key==="Enter" || event.key===" "){event.preventDefault();setSelected(day);}}}><title>{day}: No data</title></rect>
+        </g>)}
+        {ticks.map(day=><text key={day} x={x(day)} y="322" textAnchor="middle" fill="currentColor" fontSize="12">{day.slice(5)}</text>)}
+      </svg>
+
+      <button type="button" className="analytics-text-button" aria-expanded={table} onClick={()=>setTable(!table)}>{table ? "Hide" : "Show"} daily table</button>
+      <div className="analytics-daily-drawer" aria-hidden={!table} inert={!table}><div className="analytics-daily-drawer-inner">
+        <div className="analytics-detail-heading"><h3>Daily detail</h3><div className="analytics-detail-navigation"><button type="button" aria-label="Previous seven days" disabled={detailPage>=detailPages-1} onClick={()=>setDetailPage(page=>page+1)}>‹</button><button type="button" aria-label="Next seven days" disabled={detailPage===0} onClick={()=>setDetailPage(page=>page-1)}>›</button></div></div>
+        <p className="analytics-caption">{detailDays[0]} to {detailDays.at(-1)} (UTC)</p>
+        <table className="analytics-table analytics-detail-table"><thead><tr><th scope="col">Day</th><th scope="col">Visitors</th><th scope="col">Engaged</th><th scope="col">Collection</th></tr></thead><tbody>{detailDays.map(day=>{const row=rows.find(item=>item.day===day);return <tr key={day}><th scope="row">{day.slice(5)}</th><td>{row?.visitors ?? "No data"}</td><td>{row?.active ?? "No data"}</td><td>{row ? row.limited ? "Incomplete" : "No limit" : "No data"}</td></tr>;})}</tbody></table>
+      </div></div>
+    </>
+  </section>;
+}
+function ApplicationsTrend({report}:{report:ActivityReport}) {
+  const {start,rows,ticks,days}=recentDays(report);
+  const [selected,setSelected]=useState<string | null>(null);
+  const row=selected ? rows.find(item=>item.day===selected) : rows.at(-1);
+  const available=rows.every(item=>item.internshipClicks!==undefined && item.newGradClicks!==undefined);
+  const step=504/30;
+  const x=(day:string)=>48+((Date.parse(day)-start)/86400000+.5)*step;
+  const peak=Math.max(1,...rows.map(item=>(item.internshipClicks ?? 0)+(item.newGradClicks ?? 0)));
+  const y=(value:number)=>288-value/peak*244;
+  return <section className="analytics-panel analytics-applications"><h2 title="Last 30 UTC days">Applications opened</h2>
+
+    <div className="analytics-chart-legend"><span><i style={{background:"#bba2ff"}} />Internships</span><span><i style={{background:"#54c9b6"}} />New grad / early career</span></div>
+    {available ? <>{row ? <div className="analytics-point analytics-openings-stats" aria-live="polite" title={`${row.day}${row.limited ? ": incomplete collection" : ""}. Includes repeat employer-link openings; private-tracker openings excluded.`}><span><strong>{number((row.internshipClicks ?? 0)+(row.newGradClicks ?? 0))}</strong> total</span><span><strong>{number(row.internshipClicks ?? 0)}</strong> internships</span><span><strong>{number(row.newGradClicks ?? 0)}</strong> fulltime</span></div> : <div className="analytics-point" aria-live="polite">No data{selected ? ` on ${selected}` : ""}.</div>}
+
+    <svg viewBox="0 0 600 340" role="group" aria-label="Daily employer-link openings by board">
+      {[0,.5,1].map(t=><g key={t}><line x1="48" x2="552" y1={y(peak*t)} y2={y(peak*t)} stroke="currentColor" opacity=".12"/><text x="35" y={y(peak*t)+4} textAnchor="end" fill="currentColor" fontSize="12">{Number((peak*t).toFixed(1))}</text></g>)}
+      {rows.map(item=>{const internships=item.internshipClicks ?? 0; const total=internships+(item.newGradClicks ?? 0); return <g key={item.day}>
+        <rect x={x(item.day)-step/2} y="35" width={step} height="253" fill="#bba2ff" opacity={row?.day===item.day ? .1 : 0}/>
+        <rect x={x(item.day)-step*.34} y={y(internships)} width={step*.68} height={288-y(internships)} fill="#bba2ff" pointerEvents="none"/>
+        <rect x={x(item.day)-step*.34} y={y(total)} width={step*.68} height={y(internships)-y(total)} fill="#54c9b6" pointerEvents="none"/>
+        <rect className="analytics-column-target" x={x(item.day)-step/2} y="35" width={step} height="253" fill="transparent" tabIndex={0} role="button" aria-label={`${item.day}: ${internships} internships, ${item.newGradClicks} new grad / early career openings${item.limited ? ", incomplete collection" : ""}`} onPointerEnter={()=>setSelected(item.day)} onPointerMove={()=>setSelected(item.day)} onFocus={()=>setSelected(item.day)} onClick={()=>setSelected(item.day)} onKeyDown={event=>{if(event.key==="Enter" || event.key===" "){event.preventDefault();setSelected(item.day);}}}><title>{item.day}: {internships} internships, {item.newGradClicks} new grad / early career</title></rect>
+      </g>;})}
+
+        {days.filter(day=>!rows.some(item=>item.day===day)).map(day=><g key={day}>
+          <rect x={x(day)-step/2} y="35" width={step} height="253" fill="#bba2ff" opacity={selected===day ? .1 : 0} pointerEvents="none"/>
+          <rect className="analytics-column-target" x={x(day)-step/2} y="35" width={step} height="253" fill="transparent" tabIndex={0} role="button" aria-label={`${day}: No data`} onPointerEnter={()=>setSelected(day)} onPointerMove={()=>setSelected(day)} onFocus={()=>setSelected(day)} onClick={()=>setSelected(day)} onKeyDown={event=>{if(event.key==="Enter" || event.key===" "){event.preventDefault();setSelected(day);}}}><title>{day}: No data</title></rect>
+        </g>)}
+      {ticks.map(day=><text key={day} x={x(day)} y="322" textAnchor="middle" fill="currentColor" fontSize="12">{day.slice(5)}</text>)}
+    </svg></> : <p className="analytics-caption">{rows.length ? "Daily board counts are unavailable in this report. The collector update is required." : "No retained daily observations for this period."}</p>}
   </section>;
 }
 function BoardHealth() {

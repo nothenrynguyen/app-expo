@@ -1,5 +1,7 @@
 # Active project tasks
 
+November 16: owner-approved rolling 30-day analytics bars, stacked employer-link openings and paged daily detail pass all 195 tests, lint and static export. Publication and live verification are in progress. See [release evidence](ANALYTICS_DAILY_CHARTS_2026-11-16.md).
+
 November 13: wider shared layout, persistent gravity field, transparent logo, shorter homepage copy and hover/focus-only admin link are pushed to origin/main as `477e332`. All 194 tests, lint, TypeScript/static export and local desktop/mobile browser checks pass. Production verification remains separate. See [release evidence](SHARED_LAYOUT_2026-11-13.md).
 
 November 12: shared location display cleanup implemented locally for spacing, location order, recognized site/address formats and state-specific remote labels. Bare San Jose has an explicit CA alias; unmatched cities remain unchanged. See [scope and verification](LOCATION_DISPLAY_2026-11-12.md). Publication approved November 12. All 194 tests, lint, TypeScript and production export pass. Production deployment verification remains separate.

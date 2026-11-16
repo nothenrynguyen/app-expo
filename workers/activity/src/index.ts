@@ -162,7 +162,7 @@ export async function buildReport(db: Database, range: ActivityReport["range"], 
       FROM visitor_days WHERE day>=? AND day<=? GROUP BY visitor) period`;
   const statements = [
     range === "all" ? db.prepare(totalsSql) : db.prepare(totalsSql).bind(start, end),
-    db.prepare(`SELECT day,visitors,active,is_returning AS "returning",events,limited,COALESCE((SELECT SUM(count) FROM counters c WHERE c.day=daily_stats.day AND c.name='apply_click'),0) AS clicks FROM daily_stats WHERE day>=? AND day<=? ORDER BY day`).bind(range === "all" ? daysAgo(now, 89) : start, end),
+    db.prepare(`SELECT day,visitors,active,is_returning AS "returning",events,limited,COALESCE((SELECT SUM(count) FROM counters c WHERE c.day=daily_stats.day AND c.name='apply_click'),0) AS clicks,COALESCE((SELECT SUM(count) FROM counters c WHERE c.day=daily_stats.day AND c.name='apply_click' AND c.board='internships'),0) AS internshipClicks,COALESCE((SELECT SUM(count) FROM counters c WHERE c.day=daily_stats.day AND c.name='apply_click' AND c.board='fulltime'),0) AS newGradClicks FROM daily_stats WHERE day>=? AND day<=? ORDER BY day`).bind(range === "all" ? daysAgo(now, 89) : start, end),
     db.prepare("SELECT name,page,board,dimension,SUM(count) AS count FROM counters WHERE day>=? AND day<=? GROUP BY name,page,board,dimension ORDER BY count DESC").bind(start, end),
     db.prepare("SELECT value FROM metadata WHERE key='tracking_since'"),
     db.prepare("SELECT MAX(last_received_at) AS last FROM daily_stats"),
