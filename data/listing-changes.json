@@ -1,38 +1,82 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-16T11:19:52.458Z",
-  "previousGeneratedAt": "2026-11-16T10:20:06.486Z",
-  "currentSnapshotGeneratedAt": "2026-11-16T11:19:52.458Z",
+  "generatedAt": "2026-11-16T12:19:43.094Z",
+  "previousGeneratedAt": "2026-11-16T11:19:52.458Z",
+  "currentSnapshotGeneratedAt": "2026-11-16T12:19:43.094Z",
   "reconciliation": {
     "unit": "opportunities",
     "previous": 6413,
-    "current": 6413,
-    "retained": 6412,
+    "current": 6412,
+    "retained": 6411,
     "added": 1,
-    "removed": 1,
-    "net": 0
+    "removed": 2,
+    "net": -1
   },
   "categoryCounts": {
     "confirmed-closed": 0,
     "scope-exclusion": 0,
     "verification-pending": 1,
     "source-unavailable": 0,
-    "unresolved": 0,
+    "unresolved": 1,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "workday:nwis.wd12.myworkdayjobs.com:nw:01677525",
-      "id": "d97ac3fece7455a4d4c8971d",
-      "company": "Nightwing",
-      "title": "Junior Software Engineer (SWE0)",
-      "applyUrl": "https://nwis.wd12.myworkdayjobs.com/NW/job/Annapolis-Junction-MD/Junior-Software-Engineer_01677525",
-      "reason": "pendingVerification",
+      "identity": "job-boards.greenhouse.io:8465838002",
+      "id": "48b6e7ae9d09685c52ecc7f6",
+      "company": "Impact",
+      "title": "Full Stack Software Engineer",
+      "applyUrl": "https://job-boards.greenhouse.io/impact/jobs/8465838002",
+      "reason": "absent-from-employer-board",
       "previousIds": [
-        "d97ac3fece7455a4d4c8971d"
+        "48b6e7ae9d09685c52ecc7f6"
       ],
       "previousUrls": [
-        "https://nwis.wd12.myworkdayjobs.com/NW/job/Annapolis-Junction-MD/Junior-Software-Engineer_01677525"
+        "https://job-boards.greenhouse.io/impact/jobs/8465838002"
+      ],
+      "sources": [
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-16T12:18:16.290Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:impact",
+          "status": "ok",
+          "outcome": null,
+          "membership": "absent",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Greenhouse)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "unresolved",
+      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
+      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers:r68401",
+      "id": "b53203151bb65676ba31b140",
+      "company": "Motorola",
+      "title": "FPGA Design Engineering Intern - Summer 2027",
+      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Schaumburg-IL/FPGA-Design-Engineering-Intern---Summer-2027_R68401",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "b53203151bb65676ba31b140"
+      ],
+      "previousUrls": [
+        "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Schaumburg-IL/FPGA-Design-Engineering-Intern---Summer-2027_R68401"
       ],
       "sources": [
         "Employer recovery"
@@ -41,21 +85,16 @@
       "evidence": {
         "screening": [
           {
-            "url": "https://nwis.wd12.myworkdayjobs.com/en-US/NW/job/Annapolis-Junction-MD/Junior-Software-Engineer_01677525",
+            "url": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Schaumburg-IL/FPGA-Design-Engineering-Intern---Summer-2027_R68401",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
-          },
-          {
-            "url": "https://nwis.wd12.myworkdayjobs.com/NW/job/Annapolis-Junction-MD/Junior-Software-Engineer_01677525",
-            "reason": "pendingVerification",
-            "detail": "Current employer listing availability could not be verified."
           }
         ],
-        "runStartedAt": "2026-11-16T11:18:16.259Z",
+        "runStartedAt": "2026-11-16T12:18:16.290Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:nwis.wd12.myworkdayjobs.com:nw",
+          "id": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers",
           "status": "failed",
           "outcome": "cooldown",
           "membership": "unknown",
@@ -67,7 +106,7 @@
             "diagnosticName": "Original employer link recovery",
             "status": "ok",
             "outcome": "partial",
-            "rows": 666
+            "rows": 665
           }
         ]
       },
@@ -79,22 +118,30 @@
   ],
   "rowCounts": {
     "previous": 6413,
-    "current": 6413,
-    "net": 0,
+    "current": 6412,
+    "net": -1,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
   "added": 1,
-  "removedCount": 1,
+  "removedCount": 2,
   "counts": {
+    "absent-from-employer-board": 1,
     "pendingVerification": 1
   },
   "removed": [
     {
-      "id": "d97ac3fece7455a4d4c8971d",
-      "company": "Nightwing",
-      "title": "Junior Software Engineer (SWE0)",
-      "applyUrl": "https://nwis.wd12.myworkdayjobs.com/NW/job/Annapolis-Junction-MD/Junior-Software-Engineer_01677525",
+      "id": "48b6e7ae9d09685c52ecc7f6",
+      "company": "Impact",
+      "title": "Full Stack Software Engineer",
+      "applyUrl": "https://job-boards.greenhouse.io/impact/jobs/8465838002",
+      "reason": "absent-from-employer-board"
+    },
+    {
+      "id": "b53203151bb65676ba31b140",
+      "company": "Motorola",
+      "title": "FPGA Design Engineering Intern - Summer 2027",
+      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Schaumburg-IL/FPGA-Design-Engineering-Intern---Summer-2027_R68401",
       "reason": "pendingVerification"
     }
   ],
