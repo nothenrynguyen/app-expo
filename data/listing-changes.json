@@ -1,56 +1,214 @@
 {
   "version": 2,
-  "generatedAt": "2026-11-16T12:19:43.094Z",
-  "previousGeneratedAt": "2026-11-16T11:19:52.458Z",
-  "currentSnapshotGeneratedAt": "2026-11-16T12:19:43.094Z",
+  "generatedAt": "2026-11-16T13:20:12.234Z",
+  "previousGeneratedAt": "2026-11-16T12:19:43.094Z",
+  "currentSnapshotGeneratedAt": "2026-11-16T13:20:12.234Z",
   "reconciliation": {
     "unit": "opportunities",
-    "previous": 6413,
-    "current": 6412,
-    "retained": 6411,
-    "added": 1,
-    "removed": 2,
-    "net": -1
+    "previous": 6412,
+    "current": 6361,
+    "retained": 6357,
+    "added": 4,
+    "removed": 55,
+    "net": -51
   },
   "categoryCounts": {
     "confirmed-closed": 0,
-    "scope-exclusion": 0,
-    "verification-pending": 1,
-    "source-unavailable": 0,
-    "unresolved": 1,
+    "scope-exclusion": 4,
+    "verification-pending": 41,
+    "source-unavailable": 10,
+    "unresolved": 0,
     "deduplicated": 0
   },
   "removedOpportunities": [
     {
-      "identity": "job-boards.greenhouse.io:8465838002",
-      "id": "48b6e7ae9d09685c52ecc7f6",
-      "company": "Impact",
-      "title": "Full Stack Software Engineer",
-      "applyUrl": "https://job-boards.greenhouse.io/impact/jobs/8465838002",
-      "reason": "absent-from-employer-board",
+      "identity": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway:01878692",
+      "id": "4f66583e2db2cdedab10b6ab",
+      "company": "Raytheon",
+      "title": "Embedded Software Security Engineer I - S3E",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-AZ-TUCSON-801--1151-E-Hermans-Rd--BLDG-801-External-Site/Embedded-Software-Security-Engineer-I---S3E_01878692",
+      "reason": "not-returned-by-sources",
       "previousIds": [
-        "48b6e7ae9d09685c52ecc7f6"
+        "4f66583e2db2cdedab10b6ab"
       ],
       "previousUrls": [
-        "https://job-boards.greenhouse.io/impact/jobs/8465838002"
+        "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-AZ-TUCSON-801--1151-E-Hermans-Rd--BLDG-801-External-Site/Embedded-Software-Security-Engineer-I---S3E_01878692"
       ],
       "sources": [
-        "Direct ATS (Greenhouse)"
+        "Direct ATS (Workday)"
       ],
       "candidateSeen": false,
       "evidence": {
         "screening": [],
-        "runStartedAt": "2026-11-16T12:18:16.290Z",
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "greenhouse:impact",
+          "id": "workday:globalhr.wd5.myworkdayjobs.com:rec_rtx_ext_gateway",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://arrowstreetcapital.wd5.myworkdayjobs.com/campus_careers/job/boston/quantitative-developer-intern--summer-2027_r1506",
+      "id": "da80682d989d6cce7a4e4d6b",
+      "company": "Arrowstreet Capital",
+      "title": "Quantitative Developer Intern, Summer 2027",
+      "applyUrl": "https://arrowstreetcapital.wd5.myworkdayjobs.com/Campus_Careers/job/Boston/Quantitative-Developer-Intern--Summer-2027_R1506",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "da80682d989d6cce7a4e4d6b"
+      ],
+      "previousUrls": [
+        "https://arrowstreetcapital.wd5.myworkdayjobs.com/Campus_Careers/job/Boston/Quantitative-Developer-Intern--Summer-2027_R1506"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://arrowstreetcapital.wd5.myworkdayjobs.com/Campus_Careers/job/Boston/Quantitative-Developer-Intern--Summer-2027_R1506",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:arrowstreetcapital.wd5.myworkdayjobs.com:campus_careers",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://thomsonreuters.wd5.myworkdayjobs.com/external_career_site/job/united-states-of-america-rochester-new-york/software-engineer-co-op_jreq203587",
+      "id": "ff11daaae105a96a315f64ee",
+      "company": "Thomson Reuters",
+      "title": "Software Engineer Co-Op",
+      "applyUrl": "https://thomsonreuters.wd5.myworkdayjobs.com/External_Career_Site/job/United-States-of-America-Rochester-New-York/Software-Engineer-Co-Op_JREQ203587",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "ff11daaae105a96a315f64ee"
+      ],
+      "previousUrls": [
+        "https://thomsonreuters.wd5.myworkdayjobs.com/External_Career_Site/job/United-States-of-America-Rochester-New-York/Software-Engineer-Co-Op_JREQ203587"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://thomsonreuters.wd5.myworkdayjobs.com/External_Career_Site/job/United-States-of-America-Rochester-New-York/Software-Engineer-Co-Op_JREQ203587",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:thomsonreuters.wd5.myworkdayjobs.com:external_career_site",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "job-boards.greenhouse.io:4436912009",
+      "id": "72bad49d0a3e1d1cbb779532",
+      "company": "ASSYST 🇺🇸",
+      "title": "Full Stack Developer (Entry Level)",
+      "applyUrl": "https://job-boards.greenhouse.io/assystinc/jobs/4436912009",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "72bad49d0a3e1d1cbb779532"
+      ],
+      "previousUrls": [
+        "https://job-boards.greenhouse.io/assystinc/jobs/4436912009"
+      ],
+      "sources": [
+        "Aprameya New Grad 2027",
+        "Direct ATS (Greenhouse)"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://job-boards.greenhouse.io/assystinc/jobs/4436912009",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "greenhouse:assystinc",
           "status": "ok",
           "outcome": null,
           "membership": "absent",
           "retired": false
         },
         "sources": [
+          {
+            "name": "Aprameya New Grad 2027",
+            "diagnosticName": "Aprameya New Grad 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 572
+          },
           {
             "name": "Direct ATS (Greenhouse)",
             "diagnosticName": null,
@@ -60,23 +218,23 @@
           }
         ]
       },
-      "category": "unresolved",
-      "explanation": "No conclusive posting-specific closure evidence. Board absence or an inactive input alone is insufficient.",
-      "nextAction": "Compare candidate presence, screening, exact board membership and posting checks; do not label closed or restore automatically.",
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
       "requiresInvestigation": true
     },
     {
-      "identity": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers:r68401",
-      "id": "b53203151bb65676ba31b140",
-      "company": "Motorola",
-      "title": "FPGA Design Engineering Intern - Summer 2027",
-      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Schaumburg-IL/FPGA-Design-Engineering-Intern---Summer-2027_R68401",
+      "identity": "workday:jainglobal.wd5.myworkdayjobs.com:externalsite:jr100571",
+      "id": "fa767da62bf6ccc9e8218455",
+      "company": "Jain Global",
+      "title": "Data Management & Vendor Operations Intern, Summer 2027",
+      "applyUrl": "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Data-Management---Vendor-Operations-Intern--Summer-2027_JR100571-1",
       "reason": "pendingVerification",
       "previousIds": [
-        "b53203151bb65676ba31b140"
+        "fa767da62bf6ccc9e8218455"
       ],
       "previousUrls": [
-        "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Schaumburg-IL/FPGA-Design-Engineering-Intern---Summer-2027_R68401"
+        "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Data-Management---Vendor-Operations-Intern--Summer-2027_JR100571-1"
       ],
       "sources": [
         "Employer recovery"
@@ -85,16 +243,552 @@
       "evidence": {
         "screening": [
           {
-            "url": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Schaumburg-IL/FPGA-Design-Engineering-Intern---Summer-2027_R68401",
+            "url": "https://jainglobal.wd5.myworkdayjobs.com/en-US/ExternalSite/job/New-York-New-York/Data-Management---Vendor-Operations-Intern--Summer-2027_JR100571-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Data-Management---Vendor-Operations-Intern--Summer-2027_JR100571-1",
             "reason": "pendingVerification",
             "detail": "Company size and substantial U.S. operating presence have not been verified."
           }
         ],
-        "runStartedAt": "2026-11-16T12:18:16.290Z",
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
         "postingCheck": null,
         "workdayChecks": [],
         "board": {
-          "id": "workday:motorolasolutions.wd5.myworkdayjobs.com:careers",
+          "id": "workday:jainglobal.wd5.myworkdayjobs.com:externalsite",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:jainglobal.wd5.myworkdayjobs.com:externalsite:jr100616",
+      "id": "d82fe7c0bdeb9dff2247669f",
+      "company": "Jain Global",
+      "title": "Quant Modelling Intern",
+      "applyUrl": "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Quant-Modelling-Intern_JR100616",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "d82fe7c0bdeb9dff2247669f"
+      ],
+      "previousUrls": [
+        "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Quant-Modelling-Intern_JR100616"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://jainglobal.wd5.myworkdayjobs.com/en-US/ExternalSite/job/New-York-New-York/Quant-Modelling-Intern_JR100616",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:jainglobal.wd5.myworkdayjobs.com:externalsite",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:jainglobal.wd5.myworkdayjobs.com:externalsite:jr100605",
+      "id": "c2de7e67b7c1b5f306c0de9e",
+      "company": "Jain Global",
+      "title": "Data Engineer Intern",
+      "applyUrl": "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Data-Engineer-Intern_JR100605-1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "c2de7e67b7c1b5f306c0de9e"
+      ],
+      "previousUrls": [
+        "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Data-Engineer-Intern_JR100605-1"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Data-Engineer-Intern_JR100605-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://jainglobal.wd5.myworkdayjobs.com/en-US/ExternalSite/job/New-York-New-York/Data-Engineer-Intern_JR100605-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:jainglobal.wd5.myworkdayjobs.com:externalsite",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:jainglobal.wd5.myworkdayjobs.com:externalsite:jr100603",
+      "id": "e588052f5a55e23356b79608",
+      "company": "Jain Global",
+      "title": "Quant Research Intern, Systematic Trading",
+      "applyUrl": "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Quant-Research-Intern--Systematic-Trading_JR100603-1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "e588052f5a55e23356b79608"
+      ],
+      "previousUrls": [
+        "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Quant-Research-Intern--Systematic-Trading_JR100603-1"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Quant-Research-Intern--Systematic-Trading_JR100603-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://jainglobal.wd5.myworkdayjobs.com/en-US/ExternalSite/job/New-York-New-York/Quant-Research-Intern--Systematic-Trading_JR100603-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:jainglobal.wd5.myworkdayjobs.com:externalsite",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:jainglobal.wd5.myworkdayjobs.com:externalsite:jr100617",
+      "id": "2d9d875104a841840d38d7d1",
+      "company": "Jain Global",
+      "title": "Quantitative Research Intern – Equity Arbitrage",
+      "applyUrl": "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Quantitative-Research-Intern---Equity-Arbitrage_JR100617-1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "2d9d875104a841840d38d7d1"
+      ],
+      "previousUrls": [
+        "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Quantitative-Research-Intern---Equity-Arbitrage_JR100617-1"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Quantitative-Research-Intern---Equity-Arbitrage_JR100617-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://jainglobal.wd5.myworkdayjobs.com/en-US/ExternalSite/job/New-York-New-York/Quantitative-Research-Intern---Equity-Arbitrage_JR100617-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:jainglobal.wd5.myworkdayjobs.com:externalsite",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:fticonsulting.wd108.myworkdayjobs.com:fticonsultingcareers:jr260771",
+      "id": "c000a45f373307c9ab5a21f5",
+      "company": "FTI Consulting",
+      "title": "2027 Summer Internship, Data & Analytics",
+      "applyUrl": "https://fticonsulting.wd108.myworkdayjobs.com/FTIConsultingCareers/job/London-United-Kingdom/XMLNAME-2027-Summer-Internship--Data---Analytics_JR260771",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "c000a45f373307c9ab5a21f5"
+      ],
+      "previousUrls": [
+        "https://fticonsulting.wd108.myworkdayjobs.com/FTIConsultingCareers/job/London-United-Kingdom/XMLNAME-2027-Summer-Internship--Data---Analytics_JR260771"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:fticonsulting.wd108.myworkdayjobs.com:fticonsultingcareers",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:axos.wd5.myworkdayjobs.com:axos:jr5658",
+      "id": "2989618c191634817cd52629",
+      "company": "Axos Bank",
+      "title": "AI Engineer Intern",
+      "applyUrl": "https://axos.wd5.myworkdayjobs.com/Axos/job/HQ---San-Diego-CA/AI-Engineer-Intern_JR5658",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "2989618c191634817cd52629"
+      ],
+      "previousUrls": [
+        "https://axos.wd5.myworkdayjobs.com/Axos/job/HQ---San-Diego-CA/AI-Engineer-Intern_JR5658"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://axos.wd5.myworkdayjobs.com/Axos/job/HQ---San-Diego-CA/AI-Engineer-Intern_JR5658",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://axos.wd5.myworkdayjobs.com/en-US/Axos/job/HQ---San-Diego-CA/AI-Engineer-Intern_JR5658",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:axos.wd5.myworkdayjobs.com:axos",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:axos.wd5.myworkdayjobs.com:axos:jr5647",
+      "id": "4a60b04dcb48a471f2bbb966",
+      "company": "Axos Bank",
+      "title": "Software Development Intern",
+      "applyUrl": "https://axos.wd5.myworkdayjobs.com/Axos/job/HQ---San-Diego-CA/Software-Development-Intern_JR5647",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "4a60b04dcb48a471f2bbb966"
+      ],
+      "previousUrls": [
+        "https://axos.wd5.myworkdayjobs.com/Axos/job/HQ---San-Diego-CA/Software-Development-Intern_JR5647"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://axos.wd5.myworkdayjobs.com/Axos/job/HQ---San-Diego-CA/Software-Development-Intern_JR5647",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://axos.wd5.myworkdayjobs.com/en-US/Axos/job/HQ---San-Diego-CA/Software-Development-Intern_JR5647",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:axos.wd5.myworkdayjobs.com:axos",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://gafsgi.wd5.myworkdayjobs.com/gaf_careers/job/parsippany-nj/r-d-product-development-engineer-co-op_26449",
+      "id": "c97c8718bbd29dea4f3311f0",
+      "company": "Gafsgi",
+      "title": "R&D Product Development Engineer Co-Op",
+      "applyUrl": "https://gafsgi.wd5.myworkdayjobs.com/GAF_Careers/job/Parsippany-NJ/R-D-Product-Development-Engineer-Co-Op_26449",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "c97c8718bbd29dea4f3311f0"
+      ],
+      "previousUrls": [
+        "https://gafsgi.wd5.myworkdayjobs.com/GAF_Careers/job/Parsippany-NJ/R-D-Product-Development-Engineer-Co-Op_26449"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://gafsgi.wd5.myworkdayjobs.com/GAF_Careers/job/Parsippany-NJ/R-D-Product-Development-Engineer-Co-Op_26449",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:gafsgi.wd5.myworkdayjobs.com:gaf_careers",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:aptiv.wd5.myworkdayjobs.com:aptiv_careers:j000704861",
+      "id": "1b7a97e4dc2094cd92b0295f",
+      "company": "Aptiv",
+      "title": "Software Development Intern",
+      "applyUrl": "https://aptiv.wd5.myworkdayjobs.com/aptiv_careers/job/Troy-MI---USA/Software-Development-Intern_J000704861",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "1b7a97e4dc2094cd92b0295f"
+      ],
+      "previousUrls": [
+        "https://aptiv.wd5.myworkdayjobs.com/aptiv_careers/job/Troy-MI---USA/Software-Development-Intern_J000704861"
+      ],
+      "sources": [
+        "Internship Engine",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://aptiv.wd5.myworkdayjobs.com/aptiv_careers/job/Troy-MI---USA/Software-Development-Intern_J000704861",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://aptiv.wd5.myworkdayjobs.com/en-US/aptiv_careers/job/Troy-MI---USA/Software-Development-Intern_J000704861",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://aptiv.wd5.myworkdayjobs.com/aptiv_careers/job/Troy-MI---USA/Software-Development-Intern_J000704861",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:aptiv.wd5.myworkdayjobs.com:aptiv_careers",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Internship Engine",
+            "diagnosticName": "Internship Engine",
+            "status": "ok",
+            "outcome": null,
+            "rows": 1236
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:cvshealth.wd1.myworkdayjobs.com:cvs_health_careers:r1052342",
+      "id": "651806d85f18d76acab67458",
+      "company": "CVS Health",
+      "title": "Medicaid Data Analytics Corporate Internship - Summer 2027 (Undergraduate)",
+      "applyUrl": "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/CT---Hartford/Medicaid-Data-Analytics-Corporate-Internship---Summer-2027--Undergraduate-_R1052342",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "651806d85f18d76acab67458"
+      ],
+      "previousUrls": [
+        "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/CT---Hartford/Medicaid-Data-Analytics-Corporate-Internship---Summer-2027--Undergraduate-_R1052342"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:cvshealth.wd1.myworkdayjobs.com:cvs_health_careers",
           "status": "failed",
           "outcome": "cooldown",
           "membership": "unknown",
@@ -106,7 +800,57 @@
             "diagnosticName": "Original employer link recovery",
             "status": "ok",
             "outcome": "partial",
-            "rows": 665
+            "rows": 604
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:aptiv.wd5.myworkdayjobs.com:aptiv_careers:j000704380",
+      "id": "ff63ba08476a8aa434e26a4f",
+      "company": "Aptiv",
+      "title": "Cloud Engineer Intern",
+      "applyUrl": "https://aptiv.wd5.myworkdayjobs.com/APTIV_CAREERS/job/CAN-Kanata-2-ON---WR/Cloud-Engineer-Intern_J000704380",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "ff63ba08476a8aa434e26a4f"
+      ],
+      "previousUrls": [
+        "https://aptiv.wd5.myworkdayjobs.com/APTIV_CAREERS/job/CAN-Kanata-2-ON---WR/Cloud-Engineer-Intern_J000704380"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://aptiv.wd5.myworkdayjobs.com/en-US/aptiv_careers/job/CAN-Kanata-2-ON---WR/Cloud-Engineer-Intern_J000704380",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:aptiv.wd5.myworkdayjobs.com:aptiv_careers",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
           }
         ]
       },
@@ -114,35 +858,2366 @@
       "explanation": "Required evidence was insufficient for publication; closure is not established.",
       "nextAction": "Inspect employer and destination verification evidence before admission.",
       "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:aptiv.wd5.myworkdayjobs.com:aptiv_careers:j000704376",
+      "id": "c7859107cd32cc71992bec2d",
+      "company": "Aptiv",
+      "title": "Cloud Engineer Intern",
+      "applyUrl": "https://aptiv.wd5.myworkdayjobs.com/APTIV_CAREERS/job/CAN-Kanata-2-ON---WR/Cloud-Engineer-Intern_J000704376",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "c7859107cd32cc71992bec2d"
+      ],
+      "previousUrls": [
+        "https://aptiv.wd5.myworkdayjobs.com/APTIV_CAREERS/job/CAN-Kanata-2-ON---WR/Cloud-Engineer-Intern_J000704376"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://aptiv.wd5.myworkdayjobs.com/en-US/aptiv_careers/job/CAN-Kanata-2-ON---WR/Cloud-Engineer-Intern_J000704376",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:aptiv.wd5.myworkdayjobs.com:aptiv_careers",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:aptiv.wd5.myworkdayjobs.com:aptiv_careers:j000704375",
+      "id": "0dcf73660612c8d8189ca542",
+      "company": "Aptiv",
+      "title": "Cloud Software Engineer Intern",
+      "applyUrl": "https://aptiv.wd5.myworkdayjobs.com/APTIV_CAREERS/job/CAN-Kanata-2-ON---WR/Cloud-Software-Engineer-Intern_J000704375",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "0dcf73660612c8d8189ca542"
+      ],
+      "previousUrls": [
+        "https://aptiv.wd5.myworkdayjobs.com/APTIV_CAREERS/job/CAN-Kanata-2-ON---WR/Cloud-Software-Engineer-Intern_J000704375"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://aptiv.wd5.myworkdayjobs.com/en-US/aptiv_careers/job/CAN-Kanata-2-ON---WR/Cloud-Software-Engineer-Intern_J000704375",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:aptiv.wd5.myworkdayjobs.com:aptiv_careers",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:allstate.wd5.myworkdayjobs.com:sourcing_event:r36280",
+      "id": "92cb877cf6e74e636772263f",
+      "company": "Allstate",
+      "title": "Arity - Product Management Advertising Intern",
+      "applyUrl": "https://allstate.wd5.myworkdayjobs.com/sourcing_event/job/USA---IL-Remote/Arity---Product-Management-Advertising-Intern_R36280",
+      "reason": "location",
+      "previousIds": [
+        "92cb877cf6e74e636772263f"
+      ],
+      "previousUrls": [
+        "https://allstate.wd5.myworkdayjobs.com/sourcing_event/job/USA---IL-Remote/Arity---Product-Management-Advertising-Intern_R36280"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://allstate.wd5.myworkdayjobs.com/sourcing_event/job/USA---IL-Remote/Arity---Product-Management-Advertising-Intern_R36280",
+            "reason": "location",
+            "detail": null
+          },
+          {
+            "url": "https://allstate.wd5.myworkdayjobs.com/sourcing_event/job/USA---IL-Remote/Arity---Product-Management-Advertising-Intern_R36280",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:allstate.wd5.myworkdayjobs.com:sourcing_event",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "scope-exclusion",
+      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
+      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
+      "requiresInvestigation": false
+    },
+    {
+      "identity": "workday:aptiv.wd5.myworkdayjobs.com:aptiv_careers:j000704368",
+      "id": "be446e7622f5043ea38bfe01",
+      "company": "Aptiv",
+      "title": "Software Engineering Intern",
+      "applyUrl": "https://aptiv.wd5.myworkdayjobs.com/APTIV_CAREERS/job/CAN-Kanata-2-ON---WR/Software-Engineering-Intern_J000704368-1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "be446e7622f5043ea38bfe01"
+      ],
+      "previousUrls": [
+        "https://aptiv.wd5.myworkdayjobs.com/APTIV_CAREERS/job/CAN-Kanata-2-ON---WR/Software-Engineering-Intern_J000704368-1"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://aptiv.wd5.myworkdayjobs.com/en-US/aptiv_careers/job/CAN-Kanata-2-ON---WR/Software-Engineering-Intern_J000704368-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:aptiv.wd5.myworkdayjobs.com:aptiv_careers",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:northmark.wd108.myworkdayjobs.com:nms:r13431",
+      "id": "4e60ace9006106d9383f0b98",
+      "company": "NorthMark Strategies",
+      "title": "AI Engineer I",
+      "applyUrl": "https://northmark.wd108.myworkdayjobs.com/NMS/job/Dallas-TX/AI-Engineer-I_R13431",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "4e60ace9006106d9383f0b98"
+      ],
+      "previousUrls": [
+        "https://northmark.wd108.myworkdayjobs.com/NMS/job/Dallas-TX/AI-Engineer-I_R13431"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:northmark.wd108.myworkdayjobs.com:nms",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:directsupply.wd501.myworkdayjobs.com:direct-supply-careers:req-2026-2598",
+      "id": "8611283d8f5c7b57b399376b",
+      "company": "Direct Supply",
+      "title": "Mobile Software Engineer",
+      "applyUrl": "https://directsupply.wd501.myworkdayjobs.com/direct-supply-careers/job/Milwaukee-WI/Mobile-Software-Engineer_REQ-2026-2598-1",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "8611283d8f5c7b57b399376b"
+      ],
+      "previousUrls": [
+        "https://directsupply.wd501.myworkdayjobs.com/direct-supply-careers/job/Milwaukee-WI/Mobile-Software-Engineer_REQ-2026-2598-1"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:directsupply.wd501.myworkdayjobs.com:direct-supply-careers",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:intel.wd1.myworkdayjobs.com:external:jr0288139",
+      "id": "9369ee2241ed4a518833e73c",
+      "company": "Intel",
+      "title": "AI Data Science / Software Engineering PhD Intern New 2027",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288139",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "9369ee2241ed4a518833e73c"
+      ],
+      "previousUrls": [
+        "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288139"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/US-Oregon-Hillsboro/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288139",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:intel.wd1.myworkdayjobs.com:external",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:intel.wd1.myworkdayjobs.com:external:jr0288138",
+      "id": "bd5261feaa7371f44669e1b0",
+      "company": "Intel",
+      "title": "AI Data Science / Software Engineering PhD Intern New 2027",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-California-Santa-Clara/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288138",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "bd5261feaa7371f44669e1b0"
+      ],
+      "previousUrls": [
+        "https://intel.wd1.myworkdayjobs.com/External/job/US-California-Santa-Clara/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288138"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/US-California-Santa-Clara/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288138",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://intel.wd1.myworkdayjobs.com/External/job/US-California-Santa-Clara/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288138",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:intel.wd1.myworkdayjobs.com:external",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:intel.wd1.myworkdayjobs.com:external:jr0288136",
+      "id": "cc9f1cdca9015bafe303b18a",
+      "company": "Intel",
+      "title": "AI Data Science / Software Engineering PhD Intern New 2027",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288136",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "cc9f1cdca9015bafe303b18a"
+      ],
+      "previousUrls": [
+        "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288136"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/US-Oregon-Hillsboro/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288136",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288136",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:intel.wd1.myworkdayjobs.com:external",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:intel.wd1.myworkdayjobs.com:external:jr0288140",
+      "id": "08859758886f252128790999",
+      "company": "Intel",
+      "title": "AI Data Science / Software Engineering PhD Intern New 2027",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288140",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "08859758886f252128790999"
+      ],
+      "previousUrls": [
+        "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288140"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/US-Oregon-Hillsboro/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288140",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:intel.wd1.myworkdayjobs.com:external",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:allegion.wd5.myworkdayjobs.com:earlytalent_careers:jr37433",
+      "id": "0d951f8253e1a45dcae4dfc9",
+      "company": "Allegion",
+      "title": "Summer Intern - Advanced Manufacturing Engineering, Computer Engineering",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/EarlyTalent_Careers/job/Carmel-IN/Summer-Intern---Advanced-Manufacturing-Engineering--Computer-Engineering_JR37433",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "0d951f8253e1a45dcae4dfc9"
+      ],
+      "previousUrls": [
+        "https://allegion.wd5.myworkdayjobs.com/EarlyTalent_Careers/job/Carmel-IN/Summer-Intern---Advanced-Manufacturing-Engineering--Computer-Engineering_JR37433"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:allegion.wd5.myworkdayjobs.com:earlytalent_careers",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:essc.wd501.myworkdayjobs.com:essc_careers:r-1000002439",
+      "id": "311ddfca91cbddca9c27f8e6",
+      "company": "Easterseals Southern California",
+      "title": "Vocational Specialist - M-F Days - Job Developer - *Meaningful Employment* - Disability Services",
+      "applyUrl": "https://essc.wd501.myworkdayjobs.com/ESSC_Careers/job/US-CA-Culver-City/Spclst-1--Vocational_R-1000002439",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "311ddfca91cbddca9c27f8e6"
+      ],
+      "previousUrls": [
+        "https://essc.wd501.myworkdayjobs.com/ESSC_Careers/job/US-CA-Culver-City/Spclst-1--Vocational_R-1000002439"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:essc.wd501.myworkdayjobs.com:essc_careers",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:intel.wd1.myworkdayjobs.com:external:jr0287950",
+      "id": "405ef17b22a37ae47577e8b4",
+      "company": "Intel",
+      "title": "Module Development Engineer PhD Intern New 2027",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Module-Development-Engineer-PhD-Intern-New-2027_JR0287950",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "405ef17b22a37ae47577e8b4"
+      ],
+      "previousUrls": [
+        "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Module-Development-Engineer-PhD-Intern-New-2027_JR0287950"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/US-Oregon-Hillsboro/Module-Development-Engineer-PhD-Intern-New-2027_JR0287950",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:intel.wd1.myworkdayjobs.com:external",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:intel.wd1.myworkdayjobs.com:external:jr0287859",
+      "id": "9ca66bc69f3f35cf7af7e380",
+      "company": "Intel",
+      "title": "Data Science and Analytics - PhD Intern",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Data-Science-and-Analytics---PhD-Intern_JR0287859",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "9ca66bc69f3f35cf7af7e380"
+      ],
+      "previousUrls": [
+        "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Data-Science-and-Analytics---PhD-Intern_JR0287859"
+      ],
+      "sources": [
+        "Dreamwork Business Internships 2027",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/US-Oregon-Hillsboro/Data-Science-and-Analytics---PhD-Intern_JR0287859",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Data-Science-and-Analytics---PhD-Intern_JR0287859",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Data-Science-and-Analytics---PhD-Intern_JR0287859",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:intel.wd1.myworkdayjobs.com:external",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Dreamwork Business Internships 2027",
+            "diagnosticName": "Dreamwork Business Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 566
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:allegion.wd5.myworkdayjobs.com:earlytalent_careers:jr37369",
+      "id": "b43ea92cd17286ac5fce26b1",
+      "company": "Allegion",
+      "title": "Summer Intern - Product Management",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/EarlyTalent_Careers/job/Carmel-IN/Summer-Intern---Product-Management_JR37369",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "b43ea92cd17286ac5fce26b1"
+      ],
+      "previousUrls": [
+        "https://allegion.wd5.myworkdayjobs.com/EarlyTalent_Careers/job/Carmel-IN/Summer-Intern---Product-Management_JR37369"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:allegion.wd5.myworkdayjobs.com:earlytalent_careers",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://ffive.wd5.myworkdayjobs.com/f5jobs/job/seattle/software-development-engineer-intern--seattle--wa-_rp1039073",
+      "id": "b86f034f6cf6a92e9f36500a",
+      "company": "F5",
+      "title": "Software Development Engineer Intern (Seattle, WA)",
+      "applyUrl": "https://ffive.wd5.myworkdayjobs.com/f5jobs/job/Seattle/Software-Development-Engineer-Intern--Seattle--WA-_RP1039073",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "b86f034f6cf6a92e9f36500a"
+      ],
+      "previousUrls": [
+        "https://ffive.wd5.myworkdayjobs.com/f5jobs/job/Seattle/Software-Development-Engineer-Intern--Seattle--WA-_RP1039073"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://ffive.wd5.myworkdayjobs.com/f5jobs/job/Seattle/Software-Development-Engineer-Intern--Seattle--WA-_RP1039073",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:ffive.wd5.myworkdayjobs.com:f5jobs",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://ffive.wd5.myworkdayjobs.com/f5jobs/job/san-jose/software-development-engineer-intern--san-jose--ca-_rp1039076",
+      "id": "4e3b0cc65bdd36c7a5bca2f8",
+      "company": "F5",
+      "title": "Software Development Engineer Intern (San Jose, CA)",
+      "applyUrl": "https://ffive.wd5.myworkdayjobs.com/f5jobs/job/San-Jose/Software-Development-Engineer-Intern--San-Jose--CA-_RP1039076",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "4e3b0cc65bdd36c7a5bca2f8"
+      ],
+      "previousUrls": [
+        "https://ffive.wd5.myworkdayjobs.com/f5jobs/job/San-Jose/Software-Development-Engineer-Intern--San-Jose--CA-_RP1039076"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://ffive.wd5.myworkdayjobs.com/f5jobs/job/San-Jose/Software-Development-Engineer-Intern--San-Jose--CA-_RP1039076",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:ffive.wd5.myworkdayjobs.com:f5jobs",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:adobe.wd5.myworkdayjobs.com:external_experienced:r171519",
+      "id": "b415173187e460eb60d34c50",
+      "company": "Adobe",
+      "title": "2027 Intern - Machine Learning Engineer",
+      "applyUrl": "https://adobe.wd5.myworkdayjobs.com/external_experienced/job/San-Jose/XMLNAME-2027-Intern---Machine-Learning-Engineer_R171519",
+      "reason": "location",
+      "previousIds": [
+        "b415173187e460eb60d34c50"
+      ],
+      "previousUrls": [
+        "https://adobe.wd5.myworkdayjobs.com/external_experienced/job/San-Jose/XMLNAME-2027-Intern---Machine-Learning-Engineer_R171519"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://adobe.wd5.myworkdayjobs.com/external_experienced/job/San-Jose/XMLNAME-2027-Intern---Machine-Learning-Engineer_R171519",
+            "reason": "location",
+            "detail": null
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:adobe.wd5.myworkdayjobs.com:external_experienced",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "scope-exclusion",
+      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
+      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
+      "requiresInvestigation": false
+    },
+    {
+      "identity": "workday:adobe.wd5.myworkdayjobs.com:external_experienced:r172261",
+      "id": "985efdd1f9dc0518ff8888fc",
+      "company": "Adobe",
+      "title": "2027 MBA Intern – Product Manager",
+      "applyUrl": "https://adobe.wd5.myworkdayjobs.com/external_experienced/job/San-Jose/XMLNAME-2027-MBA-Intern---Product-Manager_R172261",
+      "reason": "location",
+      "previousIds": [
+        "985efdd1f9dc0518ff8888fc"
+      ],
+      "previousUrls": [
+        "https://adobe.wd5.myworkdayjobs.com/external_experienced/job/San-Jose/XMLNAME-2027-MBA-Intern---Product-Manager_R172261"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://adobe.wd5.myworkdayjobs.com/external_experienced/job/San-Jose/XMLNAME-2027-MBA-Intern---Product-Manager_R172261",
+            "reason": "location",
+            "detail": null
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:adobe.wd5.myworkdayjobs.com:external_experienced",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "scope-exclusion",
+      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
+      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
+      "requiresInvestigation": false
+    },
+    {
+      "identity": "workday:kbr.wd5.myworkdayjobs.com:kbr_careers:r2123987",
+      "id": "bca172837b516bb36da3ec96",
+      "company": "KBR",
+      "title": "Junior Systems Engineer",
+      "applyUrl": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Beavercreek-Ohio/Junior-Systems-Engineer_R2123987-1",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "bca172837b516bb36da3ec96"
+      ],
+      "previousUrls": [
+        "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Beavercreek-Ohio/Junior-Systems-Engineer_R2123987-1"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://kbr.wd5.myworkdayjobs.com/en-US/kbr_careers/job/Beavercreek-Ohio/Junior-Systems-Engineer_R2123987-1",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:kbr.wd5.myworkdayjobs.com:kbr_careers",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:essc.wd501.myworkdayjobs.com:essc_careers:r-1000001345",
+      "id": "817b3b1e7859d57a8e590fc2",
+      "company": "Easterseals Southern California",
+      "title": "Vocational Specialist - M-F Days - Job Developer - *Meaningful Employment* - Disability Services",
+      "applyUrl": "https://essc.wd501.myworkdayjobs.com/ESSC_Careers/job/US-CA-Irvine/Vocational-Specialist_R-1000001345",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "817b3b1e7859d57a8e590fc2"
+      ],
+      "previousUrls": [
+        "https://essc.wd501.myworkdayjobs.com/ESSC_Careers/job/US-CA-Irvine/Vocational-Specialist_R-1000001345"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:essc.wd501.myworkdayjobs.com:essc_careers",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:intel.wd1.myworkdayjobs.com:external:jr0287314",
+      "id": "0a2e97a0def21144ec39aab6",
+      "company": "Intel",
+      "title": "Software Solutions PhD Intern New 2027",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Solutions-PhD-Intern-New-2027_JR0287314",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "0a2e97a0def21144ec39aab6"
+      ],
+      "previousUrls": [
+        "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Solutions-PhD-Intern-New-2027_JR0287314"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://intel.wd1.myworkdayjobs.com/en-US/External/job/US-Oregon-Hillsboro/Software-Solutions-PhD-Intern-New-2027_JR0287314",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:intel.wd1.myworkdayjobs.com:external",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:adobe.wd5.myworkdayjobs.com:external_experienced:r171666",
+      "id": "446b2492e1ab7531da488af2",
+      "company": "Adobe",
+      "title": "Software Engineer Intern",
+      "applyUrl": "https://adobe.wd5.myworkdayjobs.com/en-US/external_experienced/job/San-Jose/XMLNAME-2027-Intern---Software-Engineer_R171666",
+      "reason": "location",
+      "previousIds": [
+        "446b2492e1ab7531da488af2"
+      ],
+      "previousUrls": [
+        "https://adobe.wd5.myworkdayjobs.com/en-US/external_experienced/job/San-Jose/XMLNAME-2027-Intern---Software-Engineer_R171666"
+      ],
+      "sources": [
+        "Aprameya Summer Internships 2027",
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://adobe.wd5.myworkdayjobs.com/en-US/external_experienced/job/San-Jose/XMLNAME-2027-Intern---Software-Engineer_R171666",
+            "reason": "pendingVerification",
+            "detail": "Current employer listing availability could not be verified."
+          },
+          {
+            "url": "https://adobe.wd5.myworkdayjobs.com/external_experienced/job/San-Jose/XMLNAME-2027-Intern---Software-Engineer_R171666",
+            "reason": "location",
+            "detail": null
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:adobe.wd5.myworkdayjobs.com:external_experienced",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Aprameya Summer Internships 2027",
+            "diagnosticName": "Aprameya Summer Internships 2027",
+            "status": "ok",
+            "outcome": null,
+            "rows": 2826
+          },
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "scope-exclusion",
+      "explanation": "A recorded role, location, employer, freshness or permission rule, or provider eligibility check, excluded this opening.",
+      "nextAction": "Inspect the recorded policy reason if the exclusion appears incorrect.",
+      "requiresInvestigation": false
+    },
+    {
+      "identity": "workday:campbellsoup.wd5.myworkdayjobs.com:externalcareers_globalsite:req-68193",
+      "id": "618d7cca2479de40fea2ad86",
+      "company": "Campbell Soup Company",
+      "title": "Information Technology Internship Program - Summer 2027",
+      "applyUrl": "https://campbellsoup.wd5.myworkdayjobs.com/ExternalCareers_GlobalSite/job/USA---NJ---Camden/Information-Technology-Internship-Program---Summer-2027_Req-68193",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "618d7cca2479de40fea2ad86"
+      ],
+      "previousUrls": [
+        "https://campbellsoup.wd5.myworkdayjobs.com/ExternalCareers_GlobalSite/job/USA---NJ---Camden/Information-Technology-Internship-Program---Summer-2027_Req-68193"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://campbellsoup.wd5.myworkdayjobs.com/en-US/externalcareers_globalsite/job/USA---NJ---Camden/Information-Technology-Internship-Program---Summer-2027_Req-68193",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          },
+          {
+            "url": "https://campbellsoup.wd5.myworkdayjobs.com/externalcareers_globalsite/job/USA---NJ---Camden/Information-Technology-Internship-Program---Summer-2027_Req-68193",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:campbellsoup.wd5.myworkdayjobs.com:externalcareers_globalsite",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:allegion.wd5.myworkdayjobs.com:earlytalent_careers:jr37467",
+      "id": "8a971849ec118339b09b98ab",
+      "company": "Allegion",
+      "title": "Summer Intern - Hardware Engineering - Indianapolis, Indiana",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/EarlyTalent_Careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering---Indianapolis--Indiana_JR37467",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "8a971849ec118339b09b98ab"
+      ],
+      "previousUrls": [
+        "https://allegion.wd5.myworkdayjobs.com/EarlyTalent_Careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering---Indianapolis--Indiana_JR37467"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://allegion.wd5.myworkdayjobs.com/EarlyTalent_Careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering---Indianapolis--Indiana_JR37467",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:allegion.wd5.myworkdayjobs.com:earlytalent_careers",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:hcmportal.wd5.myworkdayjobs.com:search:r26030513",
+      "id": "a8379f3e24b5adda0e88fed9",
+      "company": "United Parcel Service",
+      "title": "Americas Region Business Analytics Summer 2027 Intern",
+      "applyUrl": "https://hcmportal.wd5.myworkdayjobs.com/Search/job/US---UPS-CORPORATE-OFFICES-GACOR/Americas-Region-Business-Analytics-Summer-2027-Intern_R26030513",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "a8379f3e24b5adda0e88fed9"
+      ],
+      "previousUrls": [
+        "https://hcmportal.wd5.myworkdayjobs.com/Search/job/US---UPS-CORPORATE-OFFICES-GACOR/Americas-Region-Business-Analytics-Summer-2027-Intern_R26030513"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://hcmportal.wd5.myworkdayjobs.com/en-US/Search/job/US---UPS-CORPORATE-OFFICES-GACOR/Americas-Region-Business-Analytics-Summer-2027-Intern_R26030513",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:hcmportal.wd5.myworkdayjobs.com:search",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:hcmportal.wd5.myworkdayjobs.com:search:r26030589",
+      "id": "17c24b098914bf8e83c864ff",
+      "company": "United Parcel Service",
+      "title": "UPS Global Finance Summer 2027 Analytics Internship",
+      "applyUrl": "https://hcmportal.wd5.myworkdayjobs.com/Search/job/US---UPS-CORPORATE-OFFICES-GACOR/UPS-Global-Finance-Summer-2027-Analytics-Internship_R26030589",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "17c24b098914bf8e83c864ff"
+      ],
+      "previousUrls": [
+        "https://hcmportal.wd5.myworkdayjobs.com/Search/job/US---UPS-CORPORATE-OFFICES-GACOR/UPS-Global-Finance-Summer-2027-Analytics-Internship_R26030589"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://hcmportal.wd5.myworkdayjobs.com/en-US/Search/job/US---UPS-CORPORATE-OFFICES-GACOR/UPS-Global-Finance-Summer-2027-Analytics-Internship_R26030589",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:hcmportal.wd5.myworkdayjobs.com:search",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:gehc.wd5.myworkdayjobs.com:gehc_externalsite:r4043933",
+      "id": "7a9f99e87d75fb73bde48ac7",
+      "company": "GE Healthcare 🛂",
+      "title": "Edison Engineering Development Program Intern – Software",
+      "applyUrl": "https://gehc.wd5.myworkdayjobs.com/GEHC_ExternalSite/job/Waukesha/Edison-Engineering-Development-Program-Intern---Software_R4043933-2",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "7a9f99e87d75fb73bde48ac7"
+      ],
+      "previousUrls": [
+        "https://gehc.wd5.myworkdayjobs.com/GEHC_ExternalSite/job/Waukesha/Edison-Engineering-Development-Program-Intern---Software_R4043933-2"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://gehc.wd5.myworkdayjobs.com/GEHC_ExternalSite/job/Waukesha/Edison-Engineering-Development-Program-Intern---Software_R4043933-2",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:gehc.wd5.myworkdayjobs.com:gehc_externalsite",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:kbr.wd5.myworkdayjobs.com:kbr_careers:r2128745",
+      "id": "651b6453da0834e2b66344fc",
+      "company": "KBR",
+      "title": "JR Software Engineer",
+      "applyUrl": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Chantilly-Virginia/JR-Software-Engineer_R2128745",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "651b6453da0834e2b66344fc"
+      ],
+      "previousUrls": [
+        "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Chantilly-Virginia/JR-Software-Engineer_R2128745"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Chantilly-Virginia/JR-Software-Engineer_R2128745",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:kbr.wd5.myworkdayjobs.com:kbr_careers",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:kbr.wd5.myworkdayjobs.com:kbr_careers:r2128783",
+      "id": "f79a7d81573bd6ffa44cf632",
+      "company": "KBR",
+      "title": "Data Engineer, JR",
+      "applyUrl": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Chantilly-Virginia/Data-Engineer--JR_R2128783",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "f79a7d81573bd6ffa44cf632"
+      ],
+      "previousUrls": [
+        "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Chantilly-Virginia/Data-Engineer--JR_R2128783"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Chantilly-Virginia/Data-Engineer--JR_R2128783",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:kbr.wd5.myworkdayjobs.com:kbr_careers",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:icf.wd5.myworkdayjobs.com:icfexternal_career_site:r2600165",
+      "id": "09ecd698cc648c34beda5c0e",
+      "company": "ICF International 🇺🇸",
+      "title": "Computer Scientist / Software Developer, Junior - Security Clearance Required",
+      "applyUrl": "https://icf.wd5.myworkdayjobs.com/ICFExternal_Career_Site/job/Adelphi-MD/Computer-Scientist---Software-Developer--Junior---Security-Clearance-Required_R2600165",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "09ecd698cc648c34beda5c0e"
+      ],
+      "previousUrls": [
+        "https://icf.wd5.myworkdayjobs.com/ICFExternal_Career_Site/job/Adelphi-MD/Computer-Scientist---Software-Developer--Junior---Security-Clearance-Required_R2600165"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://icf.wd5.myworkdayjobs.com/en-US/icfexternal_career_site/job/Adelphi-MD/Computer-Scientist---Software-Developer--Junior---Security-Clearance-Required_R2600165",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:icf.wd5.myworkdayjobs.com:icfexternal_career_site",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "https://arrowstreetcapital.wd5.myworkdayjobs.com/campus_careers/job/boston/quantitative-researcher-intern--summer-2027_r1505",
+      "id": "c765928f91ea514e358ccc55",
+      "company": "Arrowstreet Capital",
+      "title": "Quantitative Researcher Intern, Summer 2027",
+      "applyUrl": "https://arrowstreetcapital.wd5.myworkdayjobs.com/Campus_Careers/job/Boston/Quantitative-Researcher-Intern--Summer-2027_R1505",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "c765928f91ea514e358ccc55"
+      ],
+      "previousUrls": [
+        "https://arrowstreetcapital.wd5.myworkdayjobs.com/Campus_Careers/job/Boston/Quantitative-Researcher-Intern--Summer-2027_R1505"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://arrowstreetcapital.wd5.myworkdayjobs.com/Campus_Careers/job/Boston/Quantitative-Researcher-Intern--Summer-2027_R1505",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:arrowstreetcapital.wd5.myworkdayjobs.com:campus_careers",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:kbr.wd5.myworkdayjobs.com:kbr_careers:r2127554",
+      "id": "c0abe4c373589d47ea788fb7",
+      "company": "KBR",
+      "title": "Junior Systems Engineer",
+      "applyUrl": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Beavercreek-Ohio/Junior-Systems-Engineer_R2127554",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "c0abe4c373589d47ea788fb7"
+      ],
+      "previousUrls": [
+        "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Beavercreek-Ohio/Junior-Systems-Engineer_R2127554"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://kbr.wd5.myworkdayjobs.com/en-US/kbr_careers/job/Beavercreek-Ohio/Junior-Systems-Engineer_R2127554",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:kbr.wd5.myworkdayjobs.com:kbr_careers",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:campbellsoup.wd5.myworkdayjobs.com:externalcareers_globalsite:req-65844",
+      "id": "597b1d94671da0746619a836",
+      "company": "Campbell Soup Company",
+      "title": "Data Science Intern",
+      "applyUrl": "https://campbellsoup.wd5.myworkdayjobs.com/ExternalCareers_GlobalSite/job/USA---NJ---Camden/Data-Science-Intern_Req-65844",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "597b1d94671da0746619a836"
+      ],
+      "previousUrls": [
+        "https://campbellsoup.wd5.myworkdayjobs.com/ExternalCareers_GlobalSite/job/USA---NJ---Camden/Data-Science-Intern_Req-65844"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://campbellsoup.wd5.myworkdayjobs.com/en-US/externalcareers_globalsite/job/USA---NJ---Camden/Data-Science-Intern_Req-65844",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:campbellsoup.wd5.myworkdayjobs.com:externalcareers_globalsite",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:campbellsoup.wd5.myworkdayjobs.com:externalcareers_globalsite:req-65838",
+      "id": "241118269887c3b753f03777",
+      "company": "Campbell Soup Company",
+      "title": "Data Engineer, DA&AI Co-Op",
+      "applyUrl": "https://campbellsoup.wd5.myworkdayjobs.com/ExternalCareers_GlobalSite/job/USA---NJ---Camden/Data-Engineer--DA-AI-Co-Op_Req-65838",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "241118269887c3b753f03777"
+      ],
+      "previousUrls": [
+        "https://campbellsoup.wd5.myworkdayjobs.com/ExternalCareers_GlobalSite/job/USA---NJ---Camden/Data-Engineer--DA-AI-Co-Op_Req-65838"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://campbellsoup.wd5.myworkdayjobs.com/en-US/externalcareers_globalsite/job/USA---NJ---Camden/Data-Engineer--DA-AI-Co-Op_Req-65838",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:campbellsoup.wd5.myworkdayjobs.com:externalcareers_globalsite",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:campbellsoup.wd5.myworkdayjobs.com:externalcareers_globalsite:req-65837",
+      "id": "428dd9391bac381610d8b9b1",
+      "company": "Campbell Soup Company",
+      "title": "Data Engineer, DA&AI Co-Op",
+      "applyUrl": "https://campbellsoup.wd5.myworkdayjobs.com/ExternalCareers_GlobalSite/job/USA---NJ---Camden/Data-Engineer--DA-AI-Co-Op_Req-65837",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "428dd9391bac381610d8b9b1"
+      ],
+      "previousUrls": [
+        "https://campbellsoup.wd5.myworkdayjobs.com/ExternalCareers_GlobalSite/job/USA---NJ---Camden/Data-Engineer--DA-AI-Co-Op_Req-65837"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://campbellsoup.wd5.myworkdayjobs.com/en-US/externalcareers_globalsite/job/USA---NJ---Camden/Data-Engineer--DA-AI-Co-Op_Req-65837",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:campbellsoup.wd5.myworkdayjobs.com:externalcareers_globalsite",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:campbellsoup.wd5.myworkdayjobs.com:externalcareers_globalsite:req-65842",
+      "id": "cff483529c426347e08f7c2a",
+      "company": "Campbell Soup Company",
+      "title": "Data Engineer - Operational Support (Co-op)",
+      "applyUrl": "https://campbellsoup.wd5.myworkdayjobs.com/ExternalCareers_GlobalSite/job/USA---NJ---Camden/Data-Engineer---Operational-Support--Co-op-_Req-65842",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "cff483529c426347e08f7c2a"
+      ],
+      "previousUrls": [
+        "https://campbellsoup.wd5.myworkdayjobs.com/ExternalCareers_GlobalSite/job/USA---NJ---Camden/Data-Engineer---Operational-Support--Co-op-_Req-65842"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://campbellsoup.wd5.myworkdayjobs.com/en-US/externalcareers_globalsite/job/USA---NJ---Camden/Data-Engineer---Operational-Support--Co-op-_Req-65842",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:campbellsoup.wd5.myworkdayjobs.com:externalcareers_globalsite",
+          "status": "not-checked",
+          "outcome": null,
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:kbr.wd5.myworkdayjobs.com:kbr_careers:r2122294",
+      "id": "8886488c38df1cb52cd4652c",
+      "company": "KBR",
+      "title": "Junior Software Engineer",
+      "applyUrl": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Beavercreek-Ohio/Junior-Software-Engineer_R2122294",
+      "reason": "pendingVerification",
+      "previousIds": [
+        "8886488c38df1cb52cd4652c"
+      ],
+      "previousUrls": [
+        "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Beavercreek-Ohio/Junior-Software-Engineer_R2122294"
+      ],
+      "sources": [
+        "Employer recovery"
+      ],
+      "candidateSeen": true,
+      "evidence": {
+        "screening": [
+          {
+            "url": "https://kbr.wd5.myworkdayjobs.com/en-US/KBR_Careers/job/Beavercreek-Ohio/Junior-Software-Engineer_R2122294",
+            "reason": "pendingVerification",
+            "detail": "Company size and substantial U.S. operating presence have not been verified."
+          }
+        ],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:kbr.wd5.myworkdayjobs.com:kbr_careers",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Employer recovery",
+            "diagnosticName": "Original employer link recovery",
+            "status": "ok",
+            "outcome": "partial",
+            "rows": 604
+          }
+        ]
+      },
+      "category": "verification-pending",
+      "explanation": "Required evidence was insufficient for publication; closure is not established.",
+      "nextAction": "Inspect employer and destination verification evidence before admission.",
+      "requiresInvestigation": true
+    },
+    {
+      "identity": "workday:amat.wd1.myworkdayjobs.com:external:r2518866",
+      "id": "4ac2df3ecc649dc72bfe8b44",
+      "company": "Applied Materials",
+      "title": "Technical Program Manager New College Grad - MS/PHD Degree (Santa Clara, CA)",
+      "applyUrl": "https://amat.wd1.myworkdayjobs.com/External/job/Santa-ClaraCA/Technical-Program-Manager-New-College-Grad---MS-PHD-Degree--Santa-Clara--CA-_R2518866",
+      "reason": "not-returned-by-sources",
+      "previousIds": [
+        "4ac2df3ecc649dc72bfe8b44"
+      ],
+      "previousUrls": [
+        "https://amat.wd1.myworkdayjobs.com/External/job/Santa-ClaraCA/Technical-Program-Manager-New-College-Grad---MS-PHD-Degree--Santa-Clara--CA-_R2518866"
+      ],
+      "sources": [
+        "Direct ATS (Workday)"
+      ],
+      "candidateSeen": false,
+      "evidence": {
+        "screening": [],
+        "runStartedAt": "2026-11-16T13:18:30.378Z",
+        "postingCheck": null,
+        "workdayChecks": [],
+        "board": {
+          "id": "workday:amat.wd1.myworkdayjobs.com:external",
+          "status": "failed",
+          "outcome": "cooldown",
+          "membership": "unknown",
+          "retired": false
+        },
+        "sources": [
+          {
+            "name": "Direct ATS (Workday)",
+            "diagnosticName": null,
+            "status": "not-checked",
+            "outcome": null,
+            "rows": null
+          }
+        ]
+      },
+      "category": "source-unavailable",
+      "explanation": "A relevant source or posting check was unreliable; closure is not established.",
+      "nextAction": "Inspect the exact board/source health and retry after cooldown; do not renew stale evidence.",
+      "requiresInvestigation": true
     }
   ],
   "rowCounts": {
-    "previous": 6413,
-    "current": 6412,
-    "net": -1,
+    "previous": 6412,
+    "current": 6361,
+    "net": -51,
     "previousDuplicateRows": 0,
     "currentDuplicateRows": 0
   },
-  "added": 1,
-  "removedCount": 2,
+  "added": 4,
+  "removedCount": 55,
   "counts": {
-    "absent-from-employer-board": 1,
-    "pendingVerification": 1
+    "not-returned-by-sources": 10,
+    "pendingVerification": 41,
+    "location": 4
   },
   "removed": [
     {
-      "id": "48b6e7ae9d09685c52ecc7f6",
-      "company": "Impact",
-      "title": "Full Stack Software Engineer",
-      "applyUrl": "https://job-boards.greenhouse.io/impact/jobs/8465838002",
-      "reason": "absent-from-employer-board"
+      "id": "4f66583e2db2cdedab10b6ab",
+      "company": "Raytheon",
+      "title": "Embedded Software Security Engineer I - S3E",
+      "applyUrl": "https://globalhr.wd5.myworkdayjobs.com/REC_RTX_Ext_Gateway/job/US-AZ-TUCSON-801--1151-E-Hermans-Rd--BLDG-801-External-Site/Embedded-Software-Security-Engineer-I---S3E_01878692",
+      "reason": "not-returned-by-sources"
     },
     {
-      "id": "b53203151bb65676ba31b140",
-      "company": "Motorola",
-      "title": "FPGA Design Engineering Intern - Summer 2027",
-      "applyUrl": "https://motorolasolutions.wd5.myworkdayjobs.com/Careers/job/Schaumburg-IL/FPGA-Design-Engineering-Intern---Summer-2027_R68401",
+      "id": "da80682d989d6cce7a4e4d6b",
+      "company": "Arrowstreet Capital",
+      "title": "Quantitative Developer Intern, Summer 2027",
+      "applyUrl": "https://arrowstreetcapital.wd5.myworkdayjobs.com/Campus_Careers/job/Boston/Quantitative-Developer-Intern--Summer-2027_R1506",
       "reason": "pendingVerification"
+    },
+    {
+      "id": "ff11daaae105a96a315f64ee",
+      "company": "Thomson Reuters",
+      "title": "Software Engineer Co-Op",
+      "applyUrl": "https://thomsonreuters.wd5.myworkdayjobs.com/External_Career_Site/job/United-States-of-America-Rochester-New-York/Software-Engineer-Co-Op_JREQ203587",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "72bad49d0a3e1d1cbb779532",
+      "company": "ASSYST 🇺🇸",
+      "title": "Full Stack Developer (Entry Level)",
+      "applyUrl": "https://job-boards.greenhouse.io/assystinc/jobs/4436912009",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "fa767da62bf6ccc9e8218455",
+      "company": "Jain Global",
+      "title": "Data Management & Vendor Operations Intern, Summer 2027",
+      "applyUrl": "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Data-Management---Vendor-Operations-Intern--Summer-2027_JR100571-1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "d82fe7c0bdeb9dff2247669f",
+      "company": "Jain Global",
+      "title": "Quant Modelling Intern",
+      "applyUrl": "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Quant-Modelling-Intern_JR100616",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "c2de7e67b7c1b5f306c0de9e",
+      "company": "Jain Global",
+      "title": "Data Engineer Intern",
+      "applyUrl": "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Data-Engineer-Intern_JR100605-1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "e588052f5a55e23356b79608",
+      "company": "Jain Global",
+      "title": "Quant Research Intern, Systematic Trading",
+      "applyUrl": "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Quant-Research-Intern--Systematic-Trading_JR100603-1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "2d9d875104a841840d38d7d1",
+      "company": "Jain Global",
+      "title": "Quantitative Research Intern – Equity Arbitrage",
+      "applyUrl": "https://jainglobal.wd5.myworkdayjobs.com/ExternalSite/job/New-York-New-York/Quantitative-Research-Intern---Equity-Arbitrage_JR100617-1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "c000a45f373307c9ab5a21f5",
+      "company": "FTI Consulting",
+      "title": "2027 Summer Internship, Data & Analytics",
+      "applyUrl": "https://fticonsulting.wd108.myworkdayjobs.com/FTIConsultingCareers/job/London-United-Kingdom/XMLNAME-2027-Summer-Internship--Data---Analytics_JR260771",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "2989618c191634817cd52629",
+      "company": "Axos Bank",
+      "title": "AI Engineer Intern",
+      "applyUrl": "https://axos.wd5.myworkdayjobs.com/Axos/job/HQ---San-Diego-CA/AI-Engineer-Intern_JR5658",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "4a60b04dcb48a471f2bbb966",
+      "company": "Axos Bank",
+      "title": "Software Development Intern",
+      "applyUrl": "https://axos.wd5.myworkdayjobs.com/Axos/job/HQ---San-Diego-CA/Software-Development-Intern_JR5647",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "c97c8718bbd29dea4f3311f0",
+      "company": "Gafsgi",
+      "title": "R&D Product Development Engineer Co-Op",
+      "applyUrl": "https://gafsgi.wd5.myworkdayjobs.com/GAF_Careers/job/Parsippany-NJ/R-D-Product-Development-Engineer-Co-Op_26449",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "1b7a97e4dc2094cd92b0295f",
+      "company": "Aptiv",
+      "title": "Software Development Intern",
+      "applyUrl": "https://aptiv.wd5.myworkdayjobs.com/aptiv_careers/job/Troy-MI---USA/Software-Development-Intern_J000704861",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "651806d85f18d76acab67458",
+      "company": "CVS Health",
+      "title": "Medicaid Data Analytics Corporate Internship - Summer 2027 (Undergraduate)",
+      "applyUrl": "https://cvshealth.wd1.myworkdayjobs.com/CVS_Health_Careers/job/CT---Hartford/Medicaid-Data-Analytics-Corporate-Internship---Summer-2027--Undergraduate-_R1052342",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "ff63ba08476a8aa434e26a4f",
+      "company": "Aptiv",
+      "title": "Cloud Engineer Intern",
+      "applyUrl": "https://aptiv.wd5.myworkdayjobs.com/APTIV_CAREERS/job/CAN-Kanata-2-ON---WR/Cloud-Engineer-Intern_J000704380",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "c7859107cd32cc71992bec2d",
+      "company": "Aptiv",
+      "title": "Cloud Engineer Intern",
+      "applyUrl": "https://aptiv.wd5.myworkdayjobs.com/APTIV_CAREERS/job/CAN-Kanata-2-ON---WR/Cloud-Engineer-Intern_J000704376",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "0dcf73660612c8d8189ca542",
+      "company": "Aptiv",
+      "title": "Cloud Software Engineer Intern",
+      "applyUrl": "https://aptiv.wd5.myworkdayjobs.com/APTIV_CAREERS/job/CAN-Kanata-2-ON---WR/Cloud-Software-Engineer-Intern_J000704375",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "92cb877cf6e74e636772263f",
+      "company": "Allstate",
+      "title": "Arity - Product Management Advertising Intern",
+      "applyUrl": "https://allstate.wd5.myworkdayjobs.com/sourcing_event/job/USA---IL-Remote/Arity---Product-Management-Advertising-Intern_R36280",
+      "reason": "location"
+    },
+    {
+      "id": "be446e7622f5043ea38bfe01",
+      "company": "Aptiv",
+      "title": "Software Engineering Intern",
+      "applyUrl": "https://aptiv.wd5.myworkdayjobs.com/APTIV_CAREERS/job/CAN-Kanata-2-ON---WR/Software-Engineering-Intern_J000704368-1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "4e60ace9006106d9383f0b98",
+      "company": "NorthMark Strategies",
+      "title": "AI Engineer I",
+      "applyUrl": "https://northmark.wd108.myworkdayjobs.com/NMS/job/Dallas-TX/AI-Engineer-I_R13431",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "8611283d8f5c7b57b399376b",
+      "company": "Direct Supply",
+      "title": "Mobile Software Engineer",
+      "applyUrl": "https://directsupply.wd501.myworkdayjobs.com/direct-supply-careers/job/Milwaukee-WI/Mobile-Software-Engineer_REQ-2026-2598-1",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "9369ee2241ed4a518833e73c",
+      "company": "Intel",
+      "title": "AI Data Science / Software Engineering PhD Intern New 2027",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288139",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "bd5261feaa7371f44669e1b0",
+      "company": "Intel",
+      "title": "AI Data Science / Software Engineering PhD Intern New 2027",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-California-Santa-Clara/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288138",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "cc9f1cdca9015bafe303b18a",
+      "company": "Intel",
+      "title": "AI Data Science / Software Engineering PhD Intern New 2027",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288136",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "08859758886f252128790999",
+      "company": "Intel",
+      "title": "AI Data Science / Software Engineering PhD Intern New 2027",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/AI-Data-Science---Software-Engineering-PhD-Intern-New-2027_JR0288140",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "0d951f8253e1a45dcae4dfc9",
+      "company": "Allegion",
+      "title": "Summer Intern - Advanced Manufacturing Engineering, Computer Engineering",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/EarlyTalent_Careers/job/Carmel-IN/Summer-Intern---Advanced-Manufacturing-Engineering--Computer-Engineering_JR37433",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "311ddfca91cbddca9c27f8e6",
+      "company": "Easterseals Southern California",
+      "title": "Vocational Specialist - M-F Days - Job Developer - *Meaningful Employment* - Disability Services",
+      "applyUrl": "https://essc.wd501.myworkdayjobs.com/ESSC_Careers/job/US-CA-Culver-City/Spclst-1--Vocational_R-1000002439",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "405ef17b22a37ae47577e8b4",
+      "company": "Intel",
+      "title": "Module Development Engineer PhD Intern New 2027",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Module-Development-Engineer-PhD-Intern-New-2027_JR0287950",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "9ca66bc69f3f35cf7af7e380",
+      "company": "Intel",
+      "title": "Data Science and Analytics - PhD Intern",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Data-Science-and-Analytics---PhD-Intern_JR0287859",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "b43ea92cd17286ac5fce26b1",
+      "company": "Allegion",
+      "title": "Summer Intern - Product Management",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/EarlyTalent_Careers/job/Carmel-IN/Summer-Intern---Product-Management_JR37369",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "b86f034f6cf6a92e9f36500a",
+      "company": "F5",
+      "title": "Software Development Engineer Intern (Seattle, WA)",
+      "applyUrl": "https://ffive.wd5.myworkdayjobs.com/f5jobs/job/Seattle/Software-Development-Engineer-Intern--Seattle--WA-_RP1039073",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "4e3b0cc65bdd36c7a5bca2f8",
+      "company": "F5",
+      "title": "Software Development Engineer Intern (San Jose, CA)",
+      "applyUrl": "https://ffive.wd5.myworkdayjobs.com/f5jobs/job/San-Jose/Software-Development-Engineer-Intern--San-Jose--CA-_RP1039076",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "b415173187e460eb60d34c50",
+      "company": "Adobe",
+      "title": "2027 Intern - Machine Learning Engineer",
+      "applyUrl": "https://adobe.wd5.myworkdayjobs.com/external_experienced/job/San-Jose/XMLNAME-2027-Intern---Machine-Learning-Engineer_R171519",
+      "reason": "location"
+    },
+    {
+      "id": "985efdd1f9dc0518ff8888fc",
+      "company": "Adobe",
+      "title": "2027 MBA Intern – Product Manager",
+      "applyUrl": "https://adobe.wd5.myworkdayjobs.com/external_experienced/job/San-Jose/XMLNAME-2027-MBA-Intern---Product-Manager_R172261",
+      "reason": "location"
+    },
+    {
+      "id": "bca172837b516bb36da3ec96",
+      "company": "KBR",
+      "title": "Junior Systems Engineer",
+      "applyUrl": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Beavercreek-Ohio/Junior-Systems-Engineer_R2123987-1",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "817b3b1e7859d57a8e590fc2",
+      "company": "Easterseals Southern California",
+      "title": "Vocational Specialist - M-F Days - Job Developer - *Meaningful Employment* - Disability Services",
+      "applyUrl": "https://essc.wd501.myworkdayjobs.com/ESSC_Careers/job/US-CA-Irvine/Vocational-Specialist_R-1000001345",
+      "reason": "not-returned-by-sources"
+    },
+    {
+      "id": "0a2e97a0def21144ec39aab6",
+      "company": "Intel",
+      "title": "Software Solutions PhD Intern New 2027",
+      "applyUrl": "https://intel.wd1.myworkdayjobs.com/External/job/US-Oregon-Hillsboro/Software-Solutions-PhD-Intern-New-2027_JR0287314",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "446b2492e1ab7531da488af2",
+      "company": "Adobe",
+      "title": "Software Engineer Intern",
+      "applyUrl": "https://adobe.wd5.myworkdayjobs.com/en-US/external_experienced/job/San-Jose/XMLNAME-2027-Intern---Software-Engineer_R171666",
+      "reason": "location"
+    },
+    {
+      "id": "618d7cca2479de40fea2ad86",
+      "company": "Campbell Soup Company",
+      "title": "Information Technology Internship Program - Summer 2027",
+      "applyUrl": "https://campbellsoup.wd5.myworkdayjobs.com/ExternalCareers_GlobalSite/job/USA---NJ---Camden/Information-Technology-Internship-Program---Summer-2027_Req-68193",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "8a971849ec118339b09b98ab",
+      "company": "Allegion",
+      "title": "Summer Intern - Hardware Engineering - Indianapolis, Indiana",
+      "applyUrl": "https://allegion.wd5.myworkdayjobs.com/EarlyTalent_Careers/job/Indianapolis-IN---Hague-Rd/Summer-Intern---Hardware-Engineering---Indianapolis--Indiana_JR37467",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "a8379f3e24b5adda0e88fed9",
+      "company": "United Parcel Service",
+      "title": "Americas Region Business Analytics Summer 2027 Intern",
+      "applyUrl": "https://hcmportal.wd5.myworkdayjobs.com/Search/job/US---UPS-CORPORATE-OFFICES-GACOR/Americas-Region-Business-Analytics-Summer-2027-Intern_R26030513",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "17c24b098914bf8e83c864ff",
+      "company": "United Parcel Service",
+      "title": "UPS Global Finance Summer 2027 Analytics Internship",
+      "applyUrl": "https://hcmportal.wd5.myworkdayjobs.com/Search/job/US---UPS-CORPORATE-OFFICES-GACOR/UPS-Global-Finance-Summer-2027-Analytics-Internship_R26030589",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "7a9f99e87d75fb73bde48ac7",
+      "company": "GE Healthcare 🛂",
+      "title": "Edison Engineering Development Program Intern – Software",
+      "applyUrl": "https://gehc.wd5.myworkdayjobs.com/GEHC_ExternalSite/job/Waukesha/Edison-Engineering-Development-Program-Intern---Software_R4043933-2",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "651b6453da0834e2b66344fc",
+      "company": "KBR",
+      "title": "JR Software Engineer",
+      "applyUrl": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Chantilly-Virginia/JR-Software-Engineer_R2128745",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "f79a7d81573bd6ffa44cf632",
+      "company": "KBR",
+      "title": "Data Engineer, JR",
+      "applyUrl": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Chantilly-Virginia/Data-Engineer--JR_R2128783",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "09ecd698cc648c34beda5c0e",
+      "company": "ICF International 🇺🇸",
+      "title": "Computer Scientist / Software Developer, Junior - Security Clearance Required",
+      "applyUrl": "https://icf.wd5.myworkdayjobs.com/ICFExternal_Career_Site/job/Adelphi-MD/Computer-Scientist---Software-Developer--Junior---Security-Clearance-Required_R2600165",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "c765928f91ea514e358ccc55",
+      "company": "Arrowstreet Capital",
+      "title": "Quantitative Researcher Intern, Summer 2027",
+      "applyUrl": "https://arrowstreetcapital.wd5.myworkdayjobs.com/Campus_Careers/job/Boston/Quantitative-Researcher-Intern--Summer-2027_R1505",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "c0abe4c373589d47ea788fb7",
+      "company": "KBR",
+      "title": "Junior Systems Engineer",
+      "applyUrl": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Beavercreek-Ohio/Junior-Systems-Engineer_R2127554",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "597b1d94671da0746619a836",
+      "company": "Campbell Soup Company",
+      "title": "Data Science Intern",
+      "applyUrl": "https://campbellsoup.wd5.myworkdayjobs.com/ExternalCareers_GlobalSite/job/USA---NJ---Camden/Data-Science-Intern_Req-65844",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "241118269887c3b753f03777",
+      "company": "Campbell Soup Company",
+      "title": "Data Engineer, DA&AI Co-Op",
+      "applyUrl": "https://campbellsoup.wd5.myworkdayjobs.com/ExternalCareers_GlobalSite/job/USA---NJ---Camden/Data-Engineer--DA-AI-Co-Op_Req-65838",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "428dd9391bac381610d8b9b1",
+      "company": "Campbell Soup Company",
+      "title": "Data Engineer, DA&AI Co-Op",
+      "applyUrl": "https://campbellsoup.wd5.myworkdayjobs.com/ExternalCareers_GlobalSite/job/USA---NJ---Camden/Data-Engineer--DA-AI-Co-Op_Req-65837",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "cff483529c426347e08f7c2a",
+      "company": "Campbell Soup Company",
+      "title": "Data Engineer - Operational Support (Co-op)",
+      "applyUrl": "https://campbellsoup.wd5.myworkdayjobs.com/ExternalCareers_GlobalSite/job/USA---NJ---Camden/Data-Engineer---Operational-Support--Co-op-_Req-65842",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "8886488c38df1cb52cd4652c",
+      "company": "KBR",
+      "title": "Junior Software Engineer",
+      "applyUrl": "https://kbr.wd5.myworkdayjobs.com/KBR_Careers/job/Beavercreek-Ohio/Junior-Software-Engineer_R2122294",
+      "reason": "pendingVerification"
+    },
+    {
+      "id": "4ac2df3ecc649dc72bfe8b44",
+      "company": "Applied Materials",
+      "title": "Technical Program Manager New College Grad - MS/PHD Degree (Santa Clara, CA)",
+      "applyUrl": "https://amat.wd1.myworkdayjobs.com/External/job/Santa-ClaraCA/Technical-Program-Manager-New-College-Grad---MS-PHD-Degree--Santa-Clara--CA-_R2518866",
+      "reason": "not-returned-by-sources"
     }
   ],
   "urlChanges": []
