@@ -24,7 +24,7 @@ export function boardRecoveryPolicy(records: BoardRefreshDiagnostic[], results: 
       const board = discoverAtsBoard(job.applyUrl, job.company, "recovery");
       const result = board && results.get(board.id);
       const identity = jobIdentity(job.applyUrl);
-      return !!result && !!identity && !result.liveIdentities.has(identity);
+      return !!result && !!identity && !result.liveIdentities.has(identity) && !result.unverifiedIdentities?.has(identity);
     },
   };
 }

@@ -190,7 +190,9 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
       for (const url of result.value.ineligibleUrls ?? []) {
         if (previousIdentities.has(jobIdentity(url))) preScreened.push({ url, outcome: "role" });
       }
-      return { id: board.id, provider: board.provider, key: board.key, company: board.company, status: "ok", rows: result.value.liveIdentities.size, retryRequests: retryCounts.has(index) ? 1 : 0, durationMs: result.durationMs };
+      const incomplete = result.value.unverifiedIdentities?.size ?? 0;
+      return { id: board.id, provider: board.provider, key: board.key, company: board.company, status: "ok", rows: result.value.liveIdentities.size, retryRequests: retryCounts.has(index) ? 1 : 0, durationMs: result.durationMs,
+        ...(incomplete ? {outcome: "partial" as const, message: `${incomplete} posting(s) have incomplete titles and remain unverified.`} : {}) };
     }
     return { id: board.id, provider: board.provider, key: board.key, company: board.company, status: "failed", rows: 0, retryRequests: retryCounts.has(index) ? 1 : 0, durationMs: result.durationMs, message: errorMessage(result.reason) };
   });

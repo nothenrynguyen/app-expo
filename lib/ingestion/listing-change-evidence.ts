@@ -33,7 +33,7 @@ export function createListingChangeEvidence(input: {
       workdayChecks: (checks.get(opportunityIdentity(job.applyUrl)) ?? []).map(check => ({ ...check })),
       board: boardId ? {
         id: boardId, status: record?.status ?? "not-checked", outcome: record?.outcome ?? null,
-        membership: result ? (result.liveIdentities.has(jobIdentity(job.applyUrl) ?? "") ? "present" : "absent") : "unknown",
+        membership: result && !result.unverifiedIdentities?.has(jobIdentity(job.applyUrl) ?? "") ? (result.liveIdentities.has(jobIdentity(job.applyUrl) ?? "") ? "present" : "absent") : "unknown",
         retired: input.retired.has(boardId),
       } : null,
       sources: (job.sources ?? []).map(name => {

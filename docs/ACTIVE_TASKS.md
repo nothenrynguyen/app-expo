@@ -1,5 +1,7 @@
 # Active project tasks
 
+November 17 afternoon: Workday's actual post-expiry retries still return 429; the live snapshot remains unchanged. OpenAI/Ashby's empty-title posting now stays unverified while valid board rows are collected. Next.js/lint config 16.4.6, all 199 tests, lint, types/export and zero-advisory production audit pass; finish production verification of this scoped release. Overall refresh recovery remains blocked on current employer evidence. Existing development-tool advisories remain separate. See [follow-up](REFRESH_FAILURES_2026-11-17.md#afternoon-follow-up-november-17).
+
 November 17 refresh repair `17a258f` is published and deployment-verified. All 198 tests, lint, types/export pass. Two real blocked attempts committed verification progress as `00578b6` and `8e2e0f7`, advanced the queue and left public snapshots unchanged. Lever has recovered; 58 Workday source cooldowns still prevent fresh publication. Keep normal bounded retries and unchanged admission/coverage safeguards; confirm provider recovery and a guard-passing snapshot against production before calling the incident recovered. See [incident evidence](REFRESH_FAILURES_2026-11-17.md).
 
 November 16: owner-approved rolling 30-day analytics bars, stacked employer-link openings and paged daily detail pass all 195 tests, lint and static export. Frontend a601835 and collector 0cd957d0 are live. Public assets and authenticated split-count reports are verified; existing settings are preserved. See [release evidence](ANALYTICS_DAILY_CHARTS_2026-11-16.md).

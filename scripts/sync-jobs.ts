@@ -281,7 +281,7 @@ async function main() {
     const board = discoverAtsBoard(canonical, candidate.company, candidate.source);
     const authoritativeBoard = board ? boardResults.get(board.id) : null;
     if (authoritativeBoard && !authoritativeBoard.liveIdentities.has(identity)) {
-      screening.record(candidate.applyUrl, "closed");
+      screening.record(candidate.applyUrl, authoritativeBoard.unverifiedIdentities?.has(identity) ? "pendingVerification" : "closed");
       rejectedCount += 1;
       continue;
     }
@@ -405,6 +405,7 @@ async function main() {
       if (!board) return null;
       if (retired.has(board.id)) return "absent";
       const currentBoard = boardResults.get(board.id);
+      if (currentBoard?.unverifiedIdentities?.has(jobIdentity(prior.applyUrl) ?? "")) return "unavailable";
       if (currentBoard) return currentBoard.liveIdentities.has(jobIdentity(prior.applyUrl) ?? "") ? null : "absent";
       return boardRegistry.some(record => record.status === "failed" && record.provider === board.provider && record.key.toLowerCase() === board.key.toLowerCase()) ? "unavailable" : null;
     },

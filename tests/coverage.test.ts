@@ -147,6 +147,32 @@ test("malformed official responses fail rather than falsely confirming every job
   } finally { globalThis.fetch = original; }
 });
 
+test("an incomplete Ashby title holds only that posting without confirming closure", async () => {
+  const original = globalThis.fetch;
+  const board = createAtsBoard({provider: "ashby", key: "example", company: "Example"});
+  const incompleteUrl = "https://jobs.ashbyhq.com/example/incomplete/application";
+  const validUrl = "https://jobs.ashbyhq.com/example/valid/application";
+  try {
+    globalThis.fetch = async () => Response.json({jobs: [
+      {title: " ", applyUrl: incompleteUrl, isListed: true},
+      {title: "Software Engineer Intern", applyUrl: validUrl, location: "Austin, TX", isListed: true},
+    ]});
+    const result = await fetchAtsBoard(board, now);
+    assert.equal(result.jobs.length, 1);
+    assert.equal(result.jobs[0].applyUrl, validUrl);
+    assert.equal(result.liveIdentities.has(jobIdentity(validUrl)!), true);
+    assert.equal(result.liveIdentities.has(jobIdentity(incompleteUrl)!), false);
+    assert.equal(result.unverifiedIdentities?.has(jobIdentity(incompleteUrl)!), true);
+    const results = new Map([[board.id, result]]);
+    const prior = {...priorJob, applyUrl: incompleteUrl};
+    assert.equal(boardRecoveryPolicy([], results).confirmedClosed(prior), false);
+    assert.equal(evidence({boardResults: results})(prior).board?.membership, "unknown");
+    // A missing URL is still a malformed response, not an empty healthy board.
+    globalThis.fetch = async () => Response.json({jobs: [{title: "", isListed: true}]});
+    await assert.rejects(fetchAtsBoard(board, now), /missing job title or URL/);
+  } finally { globalThis.fetch = original; }
+});
+
 test("coverage guard blocks unexplained removals by collection, even if additions hide total loss", () => {
   const jobs = Array.from({ length: 100 }, (_, i) => ({ id: `${i}`, title: "Software Engineer", category: "New grad", applyUrl: `https://example.com/jobs/${i}` } as PublicJob));
   const current = [...jobs.slice(30), ...jobs.slice(0, 30).map(j => ({ ...j, id: `new${j.id}`, applyUrl: `${j.applyUrl}-new` }))];
