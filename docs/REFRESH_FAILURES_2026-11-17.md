@@ -33,10 +33,29 @@ The owner subsequently requested these fixes end to end, including publication a
 - Include scoped queue and verification diagnostics in blocked artifacts, so future recovery progress can be measured.
 - A bounded local Lever probe returned HTTP 200 for Zoox with both the existing 1,000-row limit (238 rows returned) and a 100-row limit. This does not establish GitHub-runner recovery, but does not support changing the request format. The public [Lever Postings API documentation](https://github.com/lever/postings-api) describes these listing parameters.
 
-Production verification is pending. Provider availability can still block publication; no threshold or evidence lifetime has been relaxed.
+The repair is published and its blocked-run recovery behavior is production-verified below. Job snapshot recovery remains blocked by upstream Workday availability. No threshold or evidence lifetime has been relaxed.
 
 ## Local validation
 
 All 198 tests, lint, TypeScript and static export pass using the isolated checkout's locked dependencies. Regression coverage includes blocked-state restart, unchanged public files, persisted invalidations and expiry, published-listing queue shares, queued host denials, Retry-After and a real temporary Git commit excluding a staged rejected snapshot. Initial restricted-environment file rename failure passed outside that environment; a dependency junction could not satisfy the build boundary, so dependencies were installed independently in the isolated checkout.
 
 Separate dependency finding: the locked Next.js version has a moderate cache-related advisory, [GHSA-mfr8-8qww-v76h](https://github.com/advisories/GHSA-mfr8-8qww-v76h). Production dependency audit reports one moderate advisory and no high/critical advisories. No `unstable_cache` or `use cache` usage was found in `app` or `lib`. This is not the refresh failure and no dependency versions were changed in this repair.
+
+## Publication and first production check
+
+- Repair commit [`17a258f`](https://github.com/nothenrynguyen/app-expo/commit/17a258f1ce42bfe032c89409dd0ef7174de17888) was rebased over the latest automated state commit, scoped-reviewed and pushed to main. GitHub's Vercel status reports a successful deployment.
+- Fresh scheduler [run 44084908207](https://github.com/nothenrynguyen/app-expo/actions/runs/44084908207), attempt 1, checked out the repair and passed all 198 tests. Collection completed in about 95 seconds, then the unchanged coverage safeguard blocked 5,982 + 43 - 779 = 5,246 proposed jobs.
+- Lever recovered: all 100 boards succeed in this run. All 58 Workday board sources remain in cooldown; their recovery requests were not forced. There are still 494 source-unavailable Workday omissions. Other proposed removal diagnoses are 241 verification-pending, 23 unresolved and 21 scope-exclusion.
+- The repaired failure step successfully published [`00578b6`](https://github.com/nothenrynguyen/app-expo/commit/00578b6ddc0ff72764e3f49b77178a9468f2172e). Its five changed files are all in the observation allowlist; all four public job files are byte-for-byte unchanged. The sixth allowed file, employer-recovery state, had no change.
+- Committed scoped cache comparison: 1,807 changed records, of which 1,798 have the run's timestamp: 1,575 live observations and 223 unknown observations. These totals include reused current board membership, not 1,798 extra detail requests. The bounded detail queue selected 150 source checks, 71 for previously published listings, and verified 57. There were no due employer-only checks in this run. 1,007 scoped entries were paused by host cooldowns.
+- Live summary after the run still reports `2026-11-16T20:19:57.212Z`, 5,982 jobs. This verifies preservation, not fresh publication. Earliest seeded Workday retry eligibility is November 17 at 5:40 a.m. Pacific; the latest is 4:19 p.m. Pacific. Expiry permits another bounded attempt and does not guarantee source recovery.
+
+## Second production check and remaining blocker
+
+The same run's controlled attempt 2 passed all 198 tests and completed collection in about 77 seconds. It proposed 5,982 + 46 - 778 = 5,250 jobs, again blocked by the unchanged guard. It successfully published observation-only commit [`8e2e0f7`](https://github.com/nothenrynguyen/app-expo/commit/8e2e0f73ff05928a1c76ef874bee2b958139c5af), changing only listing health, scoped listing health and Workday schedules. Public snapshot files still match the pre-repair version.
+
+The second bounded queue selected only 57 due, unpaused source checks and verified three. Committed records show 56 newly timestamped non-board source observations; none had been timestamped in attempt 1. This verifies queue advancement rather than repeating discarded work. There were no due, unpaused published checks remaining in that queue, and the total paused scoped entries rose from 1,007 to 1,042 as more hosts denied access. All 100 Lever boards still succeeded and all 58 Workday source boards remained in cooldown.
+
+The implementation, release and blocked-run recovery checks are complete. Fresh snapshot recovery is **not** complete: the 494 source-unavailable Workday omissions still block publication. The normal scheduler remains active, and failure emails may continue while that condition persists. Retry eligibility starts at the saved deadlines; it does not prove that Workday will accept the next request. Do not clear cooldowns, extend stale evidence or force a lossy snapshot to turn the workflow green.
+
+Browser-based manual dispatch was attempted after the owner asked to retry browser control, but the UI tool reported an Escape-key stop; no further browser input was used. The fresh run came from the normal scheduler, and the controlled retry used GitHub's authorized workflow rerun tool.

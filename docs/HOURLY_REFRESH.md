@@ -30,6 +30,29 @@ Hourly triggering improves reliability but cannot guarantee exact execution or
 publication time. GitHub queues, source outages, deployment failures, credential
 expiry, provider outages and exhausted free quotas can still delay updates.
 
+## Blocked refresh recovery
+
+The coverage safeguard rejects large unexplained losses and keeps the last
+published snapshot live. A blocked run now preserves six observation/state files:
+generic listing checks, scoped listing checks, source-verification targets,
+accepted Workday continuity, Workday retry schedules and employer-recovery state.
+Its failure commit explicitly excludes public snapshots and accepted reports.
+Persisting an observation does not renew its timestamp or bypass admission.
+
+Scoped positive evidence is due for renewal after 12 hours and still expires
+after 24 hours. Source and employer checks share the existing 150-slot budget;
+each queue reserves 80% of its share for published listings when enough are due,
+with a discovery share and reuse of spare capacity. Checks for an identical URL
+share their request. Workday host pauses apply to generic, scoped and original
+link recovery checks as well as the main collector. A new 401/403/429 stops
+queued secondary requests to that host and preserves the pause for later runs.
+
+Inspect the `blocked-coverage` artifact for proposed removals, provider failures,
+verification totals and scoped queue progress. Confirm that the failure-state
+commit contains only the observation files. Recovery is complete only after a
+guard-passing refresh publishes a new snapshot and production files match it.
+See [November 17 investigation and repair](REFRESH_FAILURES_2026-11-17.md).
+
 ## Open tabs
 
 The board checks `/summary.json` every five minutes while visible and immediately

@@ -1,6 +1,6 @@
 # empluzzed Roadmap
 
-November 17 refresh recovery: owner authorized repair through publication and live verification. Local repair retains verification progress across blocked runs, renews scoped evidence before expiry, prioritizes published listings within the existing budget, and shares Workday cooldowns across checking paths. Admission and coverage safeguards remain unchanged. Production verification is pending. See [incident and repair evidence](docs/REFRESH_FAILURES_2026-11-17.md).
+November 17 refresh recovery repair `17a258f` is published; deployment and two real blocked-run recovery checks are verified. All 198 tests, lint, types and static export pass. Run 44084908207 saved fresh verification state as `00578b6` and `8e2e0f7`, advanced the queue and kept rejected public files unchanged. Lever recovered, but 58 Workday source cooldowns still block fresh snapshot publication. Live jobs remain at the November 16, 12:19 p.m. Pacific snapshot. Admission and coverage safeguards remain unchanged. See [incident and repair evidence](docs/REFRESH_FAILURES_2026-11-17.md).
 
 November 16: owner-approved rolling 30-day analytics bars, stacked employer-link openings and paged daily detail pass all 195 tests, lint and static export. Frontend a601835 and collector 0cd957d0 are live. Public assets and authenticated split-count reports are verified; existing settings are preserved. See [release evidence](docs/ANALYTICS_DAILY_CHARTS_2026-11-16.md).
 
