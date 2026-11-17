@@ -1,5 +1,7 @@
 # empluzzed Roadmap
 
+November 17 refresh recovery: owner authorized repair through publication and live verification. Local repair retains verification progress across blocked runs, renews scoped evidence before expiry, prioritizes published listings within the existing budget, and shares Workday cooldowns across checking paths. Admission and coverage safeguards remain unchanged. Production verification is pending. See [incident and repair evidence](docs/REFRESH_FAILURES_2026-11-17.md).
+
 November 16: owner-approved rolling 30-day analytics bars, stacked employer-link openings and paged daily detail pass all 195 tests, lint and static export. Frontend a601835 and collector 0cd957d0 are live. Public assets and authenticated split-count reports are verified; existing settings are preserved. See [release evidence](docs/ANALYTICS_DAILY_CHARTS_2026-11-16.md).
 
 November 13: wider shared layout, persistent gravity field, transparent logo, shorter homepage copy and hover/focus-only admin link are pushed to origin/main as `477e332`. All 194 tests, lint, TypeScript/static export and local desktop/mobile browser checks pass. Production verification remains separate. See [release evidence](docs/SHARED_LAYOUT_2026-11-13.md).

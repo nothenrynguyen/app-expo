@@ -1,5 +1,7 @@
 # Active project tasks
 
+November 17 refresh incident: owner authorized end-to-end recovery. Local repair persists verification progress on blocked publication, prioritizes existing listings and prevents secondary Workday checks during host cooldowns. Coverage and admission gates remain unchanged. Finish validation, publish the scoped repair, then verify refresh state persistence and the generated snapshot against production. See [incident evidence](REFRESH_FAILURES_2026-11-17.md).
+
 November 16: owner-approved rolling 30-day analytics bars, stacked employer-link openings and paged daily detail pass all 195 tests, lint and static export. Frontend a601835 and collector 0cd957d0 are live. Public assets and authenticated split-count reports are verified; existing settings are preserved. See [release evidence](ANALYTICS_DAILY_CHARTS_2026-11-16.md).
 
 November 13: wider shared layout, persistent gravity field, transparent logo, shorter homepage copy and hover/focus-only admin link are pushed to origin/main as `477e332`. All 194 tests, lint, TypeScript/static export and local desktop/mobile browser checks pass. Production verification remains separate. See [release evidence](SHARED_LAYOUT_2026-11-13.md).

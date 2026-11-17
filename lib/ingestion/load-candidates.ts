@@ -19,6 +19,7 @@ import { loadEmployerRecovery, type RecoverySeed, type RecoveryState } from "./e
 import { recordWorkdayAttempt, workdayCooldown, type WorkdaySchedule } from "./workday-schedule";
 import type { HealthOutcome } from "./source-health";
 import { currentWorkdayEvidence } from "./workday-continuity";
+import { createWorkdayRequestGate } from "./workday-request-gate";
 
 type TimedResult<T> =
   | { status: "fulfilled"; value: T; durationMs: number }
@@ -265,7 +266,9 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
   const recoverySeeds = await readFile(path.join(root, "data/employer-recovery-targets.json"), "utf8").then(value => JSON.parse(value) as RecoverySeed[]).catch((error: NodeJS.ErrnoException) => {if (error.code === "ENOENT") return []; throw error;});
   const savedRecovery = await readFile(path.join(root, "data/employer-recovery-state.json"), "utf8").then(value => JSON.parse(value) as RecoveryState).catch((error: NodeJS.ErrnoException) => {if (error.code === "ENOENT") return {}; throw error;});
   const workdayEvidence = currentWorkdayEvidence(workdayPostings, workdayChecks);
-  const recovery = await loadEmployerRecovery(recoverySeeds, savedRecovery, new Date(), fetch, 500, {
+  const recoveryGate = createWorkdayRequestGate(workdaySchedule);
+  const recovery = await loadEmployerRecovery(recoverySeeds, savedRecovery, new Date(), recoveryGate.fetch, 500, {
+    canRequest: recoveryGate.canRequest,
     previousJobs, seenUrls: candidates.map(job => job.applyUrl), workdayPostings, workdayChecks,
   });
   if (recoverySeeds.length) {

@@ -27,6 +27,24 @@ test("employer and source verification share the cap without starving either que
   assert.equal(selectBalancedScopedChecks(entries, {}, now, 0).length, 0);
 });
 
+test("published listings renew before expiry while discovery retains a bounded share", () => {
+  const now = new Date("2026-11-17T12:00:00Z");
+  const checkedAt = new Date(now.getTime() - 13 * 3600000).toISOString();
+  const cache: ScopedListingCache = {
+    live: { status: "live", checkedAt, firstSeenAt: checkedAt },
+    unknown: { status: "unknown", checkedAt, firstSeenAt: checkedAt },
+  };
+  assert.equal(scopedListingIsLive(cache.live, now), true);
+  assert.deepEqual(selectScopedChecks([["live", url], ["unknown", url]], cache, now).map(([id]) => id), ["live"]);
+  assert.equal(scopedListingIsLive(cache.live, new Date(Date.parse(checkedAt) + 24 * 3600000)), false);
+  const entries = ["employer", "source"].flatMap(group => Array.from({ length: 200 }, (_, i) => [`${group}:${i}`, url] as [string, string]));
+  const published = new Set(entries.filter((_, i) => i % 200 >= 100).map(([id]) => id));
+  const selected = selectBalancedScopedChecks(entries, {}, now, 150, published);
+  assert.equal(selected.length, 150);
+  assert.equal(selected.filter(([id]) => published.has(id)).length, 120);
+  assert.equal(selected.filter(([id]) => id.startsWith("source:")).length, 75);
+});
+
 test("source guard survives aliases, failed/empty feeds, attribution changes and stale evidence", () => {
   const initial = buildSourceVerificationTargets([source], [candidate], [], {});
   const key = sourceVerificationKey(url)!;

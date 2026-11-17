@@ -70,6 +70,7 @@ function recoveryCandidate(candidate: CandidateJob): CandidateJob {
 
 export async function loadEmployerRecovery(seeds: RecoverySeed[], saved: RecoveryState, now = new Date(), fetcher: typeof fetch = fetch, limit = 500, options: {
   previousJobs?: PublicJob[]; seenUrls?: string[]; workdayPostings?: CandidateJob[]; workdayChecks?: WorkdayCheck[];
+  canRequest?: (url: string) => boolean;
 } = {}) {
   if (!Number.isInteger(limit) || limit < 0 || limit > 500) throw new Error("Recovery request budget must be an integer from 0 to 500");
   const state: RecoveryState = {...saved};
@@ -104,7 +105,7 @@ export async function loadEmployerRecovery(seeds: RecoverySeed[], saved: Recover
   }
   const published = new Set((options.previousJobs ?? []).map(job => opportunityIdentity(job.applyUrl)));
   const seen = new Set((options.seenUrls ?? []).map(opportunityIdentity));
-  const allDue = unique.filter(([, seed]) => !stoppedHosts.has(new URL(recoveryEndpoint(seed)!.url).hostname)).filter(([id]) => !state[id] || !Number.isFinite(Date.parse(state[id].checkedAt)) || now.getTime() - Date.parse(state[id].checkedAt) >= (state[id].status === "live" ? 12 : 24) * 60 * 60_000)
+  const allDue = unique.filter(([, seed]) => !stoppedHosts.has(new URL(recoveryEndpoint(seed)!.url).hostname) && (options.canRequest?.(seed.url) ?? true)).filter(([id]) => !state[id] || !Number.isFinite(Date.parse(state[id].checkedAt)) || now.getTime() - Date.parse(state[id].checkedAt) >= (state[id].status === "live" ? 12 : 24) * 60 * 60_000)
     .sort(([a], [b]) => Number(published.has(b) && !seen.has(b)) - Number(published.has(a) && !seen.has(a))
       || (Date.parse(state[a]?.checkedAt ?? "1970-01-01") - Date.parse(state[b]?.checkedAt ?? "1970-01-01")) || a.localeCompare(b));
   const maintenance = allDue.filter(([id]) => published.has(id));
@@ -119,7 +120,7 @@ export async function loadEmployerRecovery(seeds: RecoverySeed[], saved: Recover
   await inBatches(due, 8, async ([id, seed]) => {
     const endpoint = recoveryEndpoint(seed)!;
     const host = new URL(endpoint.url).hostname;
-    if (Date.now() - started >= 120_000 || stoppedHosts.has(host)) return;
+    if (Date.now() - started >= 120_000 || stoppedHosts.has(host) || options.canRequest?.(seed.url) === false) return;
     requests++;
     try {
       const response = await fetcher(endpoint.url, {headers: {accept: "application/json", connection: "close", "user-agent": "empluzzed/0.4"}, signal: AbortSignal.timeout(Math.min(8_000, 120_000 - (Date.now() - started)))});

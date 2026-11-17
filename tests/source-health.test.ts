@@ -12,8 +12,56 @@ import { loadCandidates } from "../lib/ingestion/load-candidates";
 import { mkdtemp, mkdir, writeFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
+import { readFile } from "node:fs/promises";
+import { persistRefreshState } from "../lib/ingestion/refresh-state";
+import { createWorkdayRequestGate } from "../lib/ingestion/workday-request-gate";
+import { selectBalancedScopedChecks, scopedListingIsLive, type ScopedListingCache } from "../lib/ingestion/scoped-listing-cache";
+import { assertCoverageSafe } from "../lib/ingestion/coverage-guard";
 
 const now = new Date("2026-10-29T12:00:00Z");
+
+test("blocked refresh observations survive restart while public files stay untouched", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "empluzzed-blocked-state-"));
+  try {
+    await mkdir(path.join(root, "public"));
+    await writeFile(path.join(root, "public/jobs.json"), "last published snapshot");
+    const cache: ScopedListingCache = {
+      checked: { status: "live", checkedAt: now.toISOString(), firstSeenAt: now.toISOString() },
+      invalidated: { status: "unknown", checkedAt: now.toISOString(), firstSeenAt: now.toISOString() },
+      pending: { status: "unknown", checkedAt: null, firstSeenAt: now.toISOString() },
+    };
+    await persistRefreshState(root, { scopedCache: cache, listingHealth: {}, sourceTargets: {},
+      workdayContinuity: {}, workdaySchedule: {}, recoveryState: {} });
+    assert.throws(() => assertCoverageSafe([{collection: "internships", previous: 100, current: 20,
+      removed: 80, unexplained: 80, previousOpportunities: 100, currentOpportunities: 20, largeDrop: true, blocked: true}]), /Refusing/);
+    const restored = JSON.parse(await readFile(path.join(root, "data/scoped-listing-health.json"), "utf8"));
+    assert.equal(await readFile(path.join(root, "public/jobs.json"), "utf8"), "last published snapshot");
+    assert.equal(scopedListingIsLive(restored.checked, now), true);
+    assert.equal(scopedListingIsLive(restored.invalidated, now), false);
+    assert.equal(scopedListingIsLive(restored.checked, new Date(now.getTime() + 24 * 3600000)), false);
+    assert.deepEqual(selectBalancedScopedChecks(Object.keys(cache).map(id => [id, "https://example.com"]), restored, now).map(([id]) => id), ["pending"]);
+  } finally { await rm(root, {recursive: true, force: true}); }
+});
+
+test("Workday denial pauses queued checks and survives restart with Retry-After", async () => {
+  const state: WorkdaySchedule = {};
+  let requests = 0;
+  const fetcher = (async () => { requests++; return new Response(null, {status: 429, headers: {"retry-after": "10800"}}); }) as typeof fetch;
+  const gate = createWorkdayRequestGate(state, fetcher, () => now, 0);
+  const url = "https://example.wd1.myworkdayjobs.com/External/job/USA/Intern_JR1";
+  const results = await Promise.allSettled([gate.fetch(url), gate.fetch(url.replace("JR1", "JR2"))]);
+  assert.equal(requests, 1);
+  assert.equal(results[0].status, "fulfilled");
+  assert.equal(results[1].status, "rejected");
+  const restored: WorkdaySchedule = JSON.parse(JSON.stringify(state));
+  const later = new Date(now.getTime() + 3600000);
+  const next = createWorkdayRequestGate(restored, fetcher, () => later, 0);
+  assert.equal(next.canRequest(url), false);
+  await assert.rejects(next.fetch(url), /cooldown/);
+  assert.equal(requests, 1);
+  assert.equal(restored["example.wd1.myworkdayjobs.com"].nextAttemptAt, new Date(now.getTime() + 10800000).toISOString());
+  assert.equal(createWorkdayRequestGate(restored, fetcher, () => new Date(now.getTime() + 10800000), 0).canRequest(url), true);
+});
 
 test("collector excludes retired application URLs while preserving unrelated feed candidates", async () => {
   const root = await mkdtemp(path.join(tmpdir(), "empluzzed-retired-board-"));

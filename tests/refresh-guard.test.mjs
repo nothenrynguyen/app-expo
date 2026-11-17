@@ -24,11 +24,11 @@ test("missing snapshot regenerates and invalid scheduler slots are rejected", ()
 
 test("failed refresh retry-state commits cannot include an already staged public snapshot", async () => {
   const workflow=await readFile(new URL('../.github/workflows/sync-jobs.yml',import.meta.url),'utf8');
-  const fallback=workflow.split('- name: Preserve retry state after a blocked refresh')[1];
+  const fallback=workflow.split('- name: Preserve verification progress after a blocked refresh')[1];
   assert.match(fallback,/if: failure\(\)/);
   assert.match(fallback,/git commit --only/);
   const files=fallback.match(/git commit --only[^\n]+ -- ([^\n]+)/)[1].trim().split(/\s+/);
-  assert.deepEqual(files,['data/workday-schedule.json','data/employer-recovery-state.json']);
+  assert.deepEqual(files,['data/workday-schedule.json','data/employer-recovery-state.json','data/listing-health.json','data/scoped-listing-health.json','data/source-verification-targets.json','data/workday-continuity.json']);
   const prefix=path.join(tmpdir(),'empluzzed-retry-state-');
   const root=await mkdtemp(prefix);
   const git=(...args)=>execFileSync('git',['-C',root,...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']});
@@ -41,8 +41,7 @@ test("failed refresh retry-state commits cannot include an already staged public
     for(const file of files)await writeFile(path.join(root,file),'new retry state');
     git('commit','--only','-m','preserve retry facts','--',...files);
     assert.equal(git('show','HEAD:public/jobs.json'),'published');
-    assert.equal(git('show',`HEAD:${files[0]}`),'new retry state');
-    assert.equal(git('show',`HEAD:${files[1]}`),'new retry state');
+    for (const file of files) assert.equal(git('show',`HEAD:${file}`),'new retry state');
     assert.match(git('status','--porcelain'),/public\/jobs.json/);
   } finally {
     assert.ok(path.resolve(root).startsWith(path.resolve(prefix)));

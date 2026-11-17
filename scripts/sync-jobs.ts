@@ -1,4 +1,6 @@
 import { preserveWorkdayJobIds, collectJobIdAliases } from "../lib/ingestion/preserve-job-ids";
+import { persistRefreshState } from "../lib/ingestion/refresh-state";
+import { createWorkdayRequestGate } from "../lib/ingestion/workday-request-gate";
 import publishedJobIdAliases from "../data/job-id-aliases.json";
 import { workdayEvidenceKey, workdayRecoveryPolicy, recentWorkdayEvidence, updateWorkdayContinuity, type WorkdayContinuity } from "../lib/ingestion/workday-continuity";
 import { reviewedFederalCoverage } from "../lib/ingestion/usajobs";
@@ -74,6 +76,7 @@ async function main() {
     retiredBoardIds = [],
   } = await loadCandidates(root, activeSources, previous?.jobs ?? []);
   const retired = new Set(retiredBoardIds);
+  const requestGate = createWorkdayRequestGate(workdaySchedule ?? {});
   const usesRetiredBoard = (job: PublicJob) => {
     const board = discoverAtsBoard(job.applyUrl, job.company, "Retirement check");
     return !!board && retired.has(board.id);
@@ -116,10 +119,11 @@ async function main() {
     if (identity && !isRecoveryLive(candidate) && candidate.source !== "Direct ATS (Workday)" && (!board || !boardResults.has(board.id))) genericUrls.set(identity, candidate.applyUrl);
   }
   const dueChecks = [...genericUrls]
+    .filter(([, url]) => requestGate.canRequest(url))
     .filter(([identity]) => needsListingCheck(listingHealth[identity]))
     .sort(([a], [b]) => new Date(listingHealth[a]?.checkedAt ?? 0).getTime() - new Date(listingHealth[b]?.checkedAt ?? 0).getTime())
     .slice(0, 250);
-  const checked = await inBatches(dueChecks, 20, ([, url]) => verifyListing(url));
+  const checked = await inBatches(dueChecks, 20, ([, url]) => verifyListing(url, startedAt, requestGate.fetch));
   let completedListingChecks = 0;
   for (const result of checked) {
     if (result.status === "fulfilled" && result.value) {
@@ -174,9 +178,17 @@ async function main() {
     const result = board && boardResults.get(board.id);
     if (result) scopedCache[identity] = {status: result.liveIdentities.has(jobIdentity(url) ?? "") ? "live" : "unknown", checkedAt: startedAt.toISOString(), firstSeenAt: scopedCache[identity].firstSeenAt};
   }
-  const scopedChecks = selectBalancedScopedChecks([...scopedUrls], scopedCache, startedAt);
-  const verifySourceListing = createSourceListingVerifier({ boardResults });
-  const scopedResults = await inBatches(scopedChecks, 8, async ([identity, url]) => ({ identity, live: await verifySourceListing(url) }));
+  const publishedScopedIds = new Set((previous?.jobs ?? []).flatMap(job => [jobIdentity(job.applyUrl), sourceVerificationKey(job.applyUrl)]).filter((id): id is string => !!id));
+  const scopedChecks = selectBalancedScopedChecks([...scopedUrls].filter(([, url]) => requestGate.canRequest(url)), scopedCache, startedAt, 150, publishedScopedIds);
+  const verifySourceListing = createSourceListingVerifier({ boardResults, fetchImpl: requestGate.fetch });
+  const postingChecks = new Map<string, Promise<boolean>>();
+  const scopedResults = await inBatches(scopedChecks, 8, async ([identity, url]) => {
+    if (!requestGate.canRequest(url)) throw new Error("Workday host is in cooldown");
+    // The same exact URL may need both employer and source admission checks.
+    // Share that observation without transferring evidence across job sites.
+    if (!postingChecks.has(url)) postingChecks.set(url, verifySourceListing(url));
+    return { identity, live: await postingChecks.get(url)! };
+  });
   for (const result of scopedResults) if (result.status === "fulfilled") scopedCache[result.value.identity] = { status: result.value.live ? "live" : "unknown", checkedAt: startedAt.toISOString(), firstSeenAt: scopedCache[result.value.identity].firstSeenAt };
   const verifiedScopedIds = new Set([...scopedUrls.keys()].filter(identity => scopedListingIsLive(scopedCache[identity], startedAt)));
   for (const [provider, sourceGuard] of [["scoped_employer", false], ["source_listing", true]] as const) {
@@ -403,34 +415,33 @@ async function main() {
   console.log(changeSummary);
   if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY, changeSummary);
   const coverage = { boards: boardCoverage, collections: assessCoverage(previous?.jobs ?? [], jobs, listingChanges) };
-  // Persist retry facts even when the proposed snapshot is rejected. These do
-  // not grant admission; accepted continuity and publication remain gated.
-  if (workdaySchedule) await writeFile(path.join(root, "data/workday-schedule.json"), `${JSON.stringify(workdaySchedule, null, 2)}\n`);
-  if (recoveryState && Object.keys(recoveryState).length) await writeFile(path.join(root, "data/employer-recovery-state.json"), `${JSON.stringify(recoveryState, null, 2)}\n`);
+  // Observations survive blocked publication. This preserves exact checkedAt
+  // values, invalidations and queue progress, without changing admission rules.
+  // Workday continuity is still limited to jobs that passed every admission
+  // gate in this proposed snapshot, and terminal checks remove old evidence.
+  const currentIdentities = new Set(candidates.map((candidate) => jobIdentity(candidate.applyUrl)).filter(Boolean));
+  for (const identity of Object.keys(listingHealth)) {
+    const age = startedAt.getTime() - new Date(listingHealth[identity].checkedAt).getTime();
+    if (!currentIdentities.has(identity) && age > 30 * 86_400_000) delete listingHealth[identity];
+  }
+  for (const [identity, record] of Object.entries(scopedCache)) {
+    if (!scopedUrls.has(identity) && startedAt.getTime() - Date.parse(record.checkedAt ?? record.firstSeenAt) > 30 * 86_400_000) delete scopedCache[identity];
+  }
+  await persistRefreshState(root, { listingHealth, scopedCache, sourceTargets,
+    workdayContinuity: updateWorkdayContinuity(workdayCache, workdayChecks, jobs, startedAt),
+    workdaySchedule: workdaySchedule ?? {}, recoveryState: recoveryState ?? {} });
   if (coverage.collections.some(row => row.largeDrop || row.blocked)) console.warn("Coverage alert:", JSON.stringify(coverage));
   try { assertCoverageSafe(coverage.collections); }
   catch (error) {
     await mkdir(path.join(root, ".cache"), { recursive: true });
-    await writeFile(path.join(root, ".cache/refresh-blocked.json"), `${JSON.stringify({ coverage, listingChanges, refreshDiagnostics: { sources: sourceDiagnostics, boards: boardRegistry } }, null, 2)}\n`);
+    await writeFile(path.join(root, ".cache/refresh-blocked.json"), `${JSON.stringify({ coverage, listingChanges, refreshDiagnostics: { sources: sourceDiagnostics, boards: boardRegistry, verification: verificationDiagnostics, scopedQueue: { eligible: scopedUrls.size, selected: scopedChecks.length, publishedSelected: scopedChecks.filter(([id]) => publishedScopedIds.has(id)).length, verified: verifiedScopedIds.size, paused: [...scopedUrls.values()].filter(url => !requestGate.canRequest(url)).length } } }, null, 2)}\n`);
     throw error;
   }
 
-  const currentIdentities = new Set(candidates.map((candidate) => jobIdentity(candidate.applyUrl)).filter(Boolean));
-  for (const identity of Object.keys(listingHealth)) {
-    const age = Date.now() - new Date(listingHealth[identity].checkedAt).getTime();
-    if (!currentIdentities.has(identity) && age > 30 * 86_400_000) delete listingHealth[identity];
-  }
   await mkdir(path.join(root, "data"), { recursive: true });
   // Public IDs only. Keep compatibility when an opening later leaves the feed.
   const jobIdAliases = collectJobIdAliases(jobs, publishedJobIdAliases);
   await writeFile(path.join(root, "data/job-id-aliases.json"), `${JSON.stringify(jobIdAliases, null, 2)}\n`);
-  await writeFile(path.join(root, "data/workday-continuity.json"), `${JSON.stringify(updateWorkdayContinuity(workdayCache, workdayChecks, jobs, startedAt), null, 2)}\n`);
-  for (const [identity, record] of Object.entries(scopedCache)) {
-    if (!scopedUrls.has(identity) && startedAt.getTime() - Date.parse(record.checkedAt ?? record.firstSeenAt) > 30 * 86_400_000) delete scopedCache[identity];
-  }
-  if (Object.keys(scopedCache).length) await writeFile(scopedCachePath, `${JSON.stringify(scopedCache, null, 2)}\n`);
-  await writeFile(sourceTargetsPath, `${JSON.stringify(sourceTargets, null, 2)}\n`);
-  await writeFile(listingHealthPath, `${JSON.stringify(listingHealth, null, 2)}\n`);
   await writeFile(path.join(root, "data/company-boards.json"), `${JSON.stringify(boardRegistry, null, 2)}\n`);
   await writeFile(path.join(root, "data/board-history.json"), `${JSON.stringify(completeBoardHistory(boardHistory, boardRegistry, startedAt), null, 2)}\n`);
   const refreshReport = buildRefreshReport({

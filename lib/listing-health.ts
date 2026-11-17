@@ -52,11 +52,11 @@ export function classifyListingResponse(status: number, body: string): ListingSt
     : "unknown";
 }
 
-export async function verifyListing(url: string, now = new Date()): Promise<[string, ListingHealthRecord] | null> {
+export async function verifyListing(url: string, now = new Date(), fetchImpl: typeof fetch = fetch): Promise<[string, ListingHealthRecord] | null> {
   const identity = jobIdentity(url);
   if (!identity) return null;
   try {
-    const response = await fetch(url, {
+    const response = await fetchImpl(url, {
       redirect: "follow",
       headers: { accept: "text/html,application/xhtml+xml", "user-agent": "empluzzed-Link-Check/0.2" },
       signal: AbortSignal.timeout(10_000),

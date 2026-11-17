@@ -67,13 +67,14 @@ jobs:
           git add public/jobs.json public/internships.json public/fulltime.json public/summary.json public/insights-history.json data/quarantine.json data/listing-health.json data/scoped-listing-health.json data/source-verification-targets.json data/company-boards.json data/board-history.json data/employer-recovery-state.json data/workday-continuity.json data/workday-schedule.json data/job-id-aliases.json data/refresh-report.json data/listing-changes.json
           git commit -m "data: refresh verified jobs"
           node scripts/publish-refresh.mjs
-      - name: Preserve retry state after a blocked refresh
+      - name: Preserve verification progress after a blocked refresh
         if: failure() && steps.freshness.outputs.needed == 'true'
         run: |
-          if git diff --quiet HEAD -- data/workday-schedule.json data/employer-recovery-state.json; then
+          if git diff --quiet HEAD -- data/workday-schedule.json data/employer-recovery-state.json data/listing-health.json data/scoped-listing-health.json data/source-verification-targets.json data/workday-continuity.json; then
             exit 0
           fi
           git config user.name "app-expo-bot"
           git config user.email "app-expo-bot@users.noreply.github.com"
-          git commit --only -m "data: preserve source retry state after blocked refresh" -- data/workday-schedule.json data/employer-recovery-state.json
+          git add data/workday-schedule.json data/employer-recovery-state.json data/listing-health.json data/scoped-listing-health.json data/source-verification-targets.json data/workday-continuity.json
+          git commit --only -m "data: preserve verification progress after blocked refresh" -- data/workday-schedule.json data/employer-recovery-state.json data/listing-health.json data/scoped-listing-health.json data/source-verification-targets.json data/workday-continuity.json
           node scripts/publish-refresh.mjs
