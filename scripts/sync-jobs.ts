@@ -1,4 +1,5 @@
 import { preserveWorkdayJobIds, collectJobIdAliases } from "../lib/ingestion/preserve-job-ids";
+import { careerPageEvidenceAt, needsCareerPageEvidence } from "../lib/ingestion/reviewed-career-pages";
 import { buildVerificationBacklog } from "../lib/ingestion/verification-backlog";
 import { trustedWorkdayFeedPolicy, type TrustedFeedState } from "../lib/ingestion/trusted-workday-feed";
 import { buildOutageHolds, validateOutageHolds } from "../lib/ingestion/outage-holds";
@@ -67,6 +68,8 @@ async function main() {
     .then((value) => JSON.parse(value) as ListingHealthFile)
     .catch(() => ({} as ListingHealthFile));
   const {
+    reviewedCareerRequests = 0,
+    reviewedCareerObservations = [],
     candidates,
     preScreened = [],
     health,
@@ -83,6 +86,12 @@ async function main() {
     workdaySchedule,
     retiredBoardIds = [],
   } = await loadCandidates(root, activeSources, previousJobs);
+  for(const observation of reviewedCareerObservations) {
+    const id=jobIdentity(observation.url);
+    const old=id?listingHealth[id]:undefined;
+    if(id && (!old || Date.parse(old.checkedAt)<Date.parse(observation.checkedAt)
+      || old.checkedAt===observation.checkedAt && observation.status==="closed")) listingHealth[id]=observation;
+  }
   const retired = new Set(retiredBoardIds);
   const requestGate = createWorkdayRequestGate(workdaySchedule ?? {});
   const usesRetiredBoard = (job: PublicJob) => {
@@ -103,7 +112,7 @@ async function main() {
   const currentBoardEvidence = (candidate: import("../lib/source-normalization").CandidateJob) => {
     const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
     const result = board && boardResults.get(board.id);
-    return isRecoveryLive(candidate) || !!workdayEvidence?.matches(candidate) || !!result && normalizeCompanyName(result.board.company) === normalizeCompanyName(candidate.company)
+    return isRecoveryLive(candidate) || !!careerPageEvidenceAt(candidate) || !!workdayEvidence?.matches(candidate) || !!result && normalizeCompanyName(result.board.company) === normalizeCompanyName(candidate.company)
       && result.liveIdentities.has(jobIdentity(candidate.applyUrl) ?? "");
   };
   const unhealthySources = health.filter((source) => source.status === "failed" || source.rows === 0);
@@ -124,13 +133,13 @@ async function main() {
   for (const candidate of candidates) {
     const identity = jobIdentity(candidate.applyUrl);
     const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
-    if (identity && !isRecoveryLive(candidate) && candidate.source !== "Direct ATS (Workday)" && (!board || !boardResults.has(board.id))) genericUrls.set(identity, candidate.applyUrl);
+    if (identity && !needsCareerPageEvidence(candidate) && !isRecoveryLive(candidate) && candidate.source !== "Direct ATS (Workday)" && (!board || !boardResults.has(board.id))) genericUrls.set(identity, candidate.applyUrl);
   }
   const dueChecks = [...genericUrls]
     .filter(([, url]) => requestGate.canRequest(url))
     .filter(([identity]) => needsListingCheck(listingHealth[identity]))
     .sort(([a], [b]) => new Date(listingHealth[a]?.checkedAt ?? 0).getTime() - new Date(listingHealth[b]?.checkedAt ?? 0).getTime())
-    .slice(0, 250);
+    .slice(0, Math.max(0,250-reviewedCareerRequests));
   const checked = await inBatches(dueChecks, 20, ([, url]) => verifyListing(url, startedAt, requestGate.fetch));
   let completedListingChecks = 0;
   for (const result of checked) {
@@ -172,7 +181,7 @@ async function main() {
   }
   for (const identity of scopedUrls.keys()) if (!scopedCache[identity]) scopedCache[identity] = { status: "unknown", checkedAt: null, firstSeenAt: startedAt.toISOString() };
   for (const candidate of candidates) {
-    const evidence = recoveryEvidenceAt(candidate);
+    const evidence = recoveryEvidenceAt(candidate) ?? careerPageEvidenceAt(candidate);
     if (!evidence) continue;
     for (const key of [jobIdentity(candidate.applyUrl), sourceVerificationKey(candidate.applyUrl)]) {
       if (key && scopedUrls.has(key)) scopedCache[key] = {status: "live", checkedAt: evidence, firstSeenAt: scopedCache[key].firstSeenAt};
@@ -187,7 +196,7 @@ async function main() {
     if (result) scopedCache[identity] = {status: result.liveIdentities.has(jobIdentity(url) ?? "") ? "live" : "unknown", checkedAt: startedAt.toISOString(), firstSeenAt: scopedCache[identity].firstSeenAt};
   }
   const publishedScopedIds = new Set(previousJobs.flatMap(job => [jobIdentity(job.applyUrl), sourceVerificationKey(job.applyUrl)]).filter((id): id is string => !!id));
-  const scopedChecks = selectBalancedScopedChecks([...scopedUrls].filter(([, url]) => requestGate.canRequest(url)), scopedCache, startedAt, 150, publishedScopedIds);
+  const scopedChecks = selectBalancedScopedChecks([...scopedUrls].filter(([, url]) => requestGate.canRequest(url)), scopedCache, new Date(), 150, publishedScopedIds);
   const verifySourceListing = createSourceListingVerifier({ boardResults, fetchImpl: requestGate.fetch });
   const postingChecks = new Map<string, Promise<boolean>>();
   const scopedResults = await inBatches(scopedChecks, 8, async ([identity, url]) => {
@@ -198,8 +207,8 @@ async function main() {
     return { identity, live: await postingChecks.get(url)! };
   });
   for (const result of scopedResults) if (result.status === "fulfilled") scopedCache[result.value.identity] = { status: result.value.live ? "live" : "unknown", checkedAt: startedAt.toISOString(), firstSeenAt: scopedCache[result.value.identity].firstSeenAt };
-  const verifiedScopedIds = new Set([...scopedUrls.keys()].filter(identity => scopedListingIsLive(scopedCache[identity], startedAt)));
   const observationTime = new Date();
+  const verifiedScopedIds = new Set([...scopedUrls.keys()].filter(identity => scopedListingIsLive(scopedCache[identity], observationTime)));
   const feedStatePath = path.join(root, "data/trusted-feed-observations.json");
   const feedState: TrustedFeedState = await readFile(feedStatePath, "utf8").then(value => JSON.parse(value))
     .catch((error: NodeJS.ErrnoException) => { if (error.code === "ENOENT") return {}; throw error; });
@@ -207,8 +216,10 @@ async function main() {
     diagnostics: sourceDiagnostics, boards: boardRegistry, candidates, state: feedState, now: observationTime });
   const fallbackAccepted = new Set<string>();
   const strictSourceIds = new Set(catalog.sources.filter(source => source.requireLiveListing && !source.workdayFeedFallback).map(source => source.id));
+  const careerChecks=new Map(candidates.flatMap(row=>{const checkedAt=careerPageEvidenceAt(row);return checkedAt?[[opportunityIdentity(row.applyUrl)!,{company:row.company,checkedAt}] as const]:[];}));
   const lastPositiveAt = (job: PublicJob) => lastVerificationAt(job, observationTime, {
     workdayCache, workdayChecks, recoveryState: recoveryState ?? {}, listingHealth, scopedCache, boardResults,
+    careerChecks,
   });
   for (const [provider, sourceGuard] of [["scoped_employer", false], ["source_listing", true]] as const) {
     const matches = (identity: string) => Boolean(sourceTargets[identity]) === sourceGuard;
@@ -226,6 +237,13 @@ async function main() {
 
   const workdayTerminalKeys = new Map(workdayChecks.filter(check => check.status === "closed" || check.status === "ineligible").map(check => [workdayEvidenceKey(check.url), check.status] as const).filter(([key]) => key !== null));
   for (const candidate of candidates) {
+    if(needsCareerPageEvidence(candidate) && isListingUnavailable(listingHealth[jobIdentity(candidate.applyUrl)??""])) {
+      screening.record(candidate.applyUrl,"closed");continue;
+    }
+    if (needsCareerPageEvidence(candidate) && !careerPageEvidenceAt(candidate)) {
+      screening.record(candidate.applyUrl,"pendingVerification","The reviewed employer page must confirm the exact job, location and early-career qualifications.");
+      continue;
+    }
     const terminal = workdayTerminalKeys.get(workdayEvidenceKey(candidate.applyUrl));
     if (terminal) {screening.record(candidate.applyUrl, terminal === "closed" ? "closed" : "role"); rejectedCount += 1; continue;}
     if (currentAtsExperienceConflict(candidate, boardResults)) {
@@ -322,7 +340,7 @@ async function main() {
       rejectedCount += 1;
       continue;
     }
-    if (!authoritativeBoard && !isRecoveryLive(candidate) && isListingUnavailable(listingHealth[identity])) {
+    if (!authoritativeBoard && !isRecoveryLive(candidate) && !careerPageEvidenceAt(candidate) && isListingUnavailable(listingHealth[identity])) {
       screening.record(candidate.applyUrl, "closed");
       rejectedCount += 1;
       continue;

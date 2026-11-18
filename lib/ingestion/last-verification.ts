@@ -12,8 +12,11 @@ export function lastVerificationAt(job: PublicJob, now: Date, input: {
   workdayCache: WorkdayContinuity; recoveryState: RecoveryState; listingHealth: ListingHealthFile;
   scopedCache: ScopedListingCache; boardResults: Map<string, AtsBoardResult>;
   workdayChecks?: WorkdayCheck[];
+  careerChecks?: Map<string,{company:string;checkedAt:string}>;
 }): string | null {
   const dates: Array<string | null | undefined> = [job.lastVerifiedAt, job.verification?.lastVerifiedAt];
+  const career=input.careerChecks?.get(opportunityIdentity(job.applyUrl)??"");
+  if(career?.company===job.company)dates.push(career.checkedAt);
   const key = workdayEvidenceKey(job.applyUrl);
   const exact = key && input.workdayCache[key];
   if (exact && exact.job.company === job.company && workdayEvidenceKey(exact.job.applyUrl) === key) dates.push(exact.checkedAt);

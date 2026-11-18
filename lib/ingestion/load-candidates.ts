@@ -1,6 +1,7 @@
 import { parseEngineJobs } from "./engine-source";
 import { loadReviewedUsaJobs } from "./usajobs";
-import { readFile } from "node:fs/promises";
+import { readFile, writeFile, rename } from "node:fs/promises";
+import { enrichReviewedCareerPages, type CareerPageState } from "./reviewed-career-pages";
 import path from "node:path";
 import { createAtsBoard, discoverAtsBoard, fetchAtsBoard, isEarlyCareerTitle, type AtsBoardSeed } from "../ats-boards";
 import { applyMicrosoftCareersPosting, fetchMicrosoftCareersPosting, parseMicrosoftCareersJobUrl } from "../microsoft-careers";
@@ -10,7 +11,7 @@ import { canonicalizeUrl, inferTerm, inferWorkMode, jobIdentity, type CandidateJ
 import { parseApplyGuySource, parseKeryxSource, parseMarkdownSource, sourceAllowsAtsExpansion } from "../source-parsers";
 import { createWorkdayBoard, fetchWorkdayBoard, type WorkdayBoardSeed } from "../workday";
 import { inBatches } from "./concurrency";
-import { partitionSourceReviewHolds } from "./source-review-holds";
+import { partitionSourceReviewHolds, sourceReviewHoldIdentity } from "./source-review-holds";
 import { selectRefreshBoards, type BoardHistory } from "./board-history";
 import type { PublicJob } from "../jobs";
 import type { BoardRefreshDiagnostic, CandidateLoadResult, SourceRefreshDiagnostic } from "./types";
@@ -147,6 +148,14 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
   }
 
   const boards = new Map<string, NonNullable<ReturnType<typeof discoverAtsBoard>>>();
+  const careerStatePath=path.join(root,"data/reviewed-career-pages.json");
+  const careerState: CareerPageState=await readFile(careerStatePath,"utf8").then(value=>JSON.parse(value))
+    .catch((error:NodeJS.ErrnoException)=>{if(error.code==="ENOENT")return {};throw error;});
+  const careerHolds=new Set(sources.flatMap(source=>source.reviewHolds??[]).map(hold=>sourceReviewHoldIdentity(hold.url)).filter((id):id is string=>!!id));
+  const reviewedCareers=await enrichReviewedCareerPages(candidates,careerState,new Date(),fetch,careerHolds);
+  candidates.splice(0,candidates.length,...reviewedCareers.candidates);
+  await writeFile(`${careerStatePath}.tmp`,`${JSON.stringify(reviewedCareers.state,null,2)}\n`);
+  await rename(`${careerStatePath}.tmp`,careerStatePath);
   for (const candidate of candidates) {
     if (!sourceAllowsAtsExpansion(candidate.source, sources)) continue;
     const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
@@ -320,6 +329,8 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     if (diagnostic) diagnostic.message = JSON.stringify({ reviewHoldsConfigured: source.reviewHolds!.length, heldCandidateRowsAcrossSources: reviewed.held.length });
   }
   return {
+    reviewedCareerRequests: reviewedCareers.requests,
+    reviewedCareerObservations: reviewedCareers.observations,
     retiredBoardIds: [...retiredBoardIds],
     workdaySchedule,
     workdayChecks,
@@ -334,6 +345,7 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     boardResults,
     boardRegistry,
     verificationDiagnostics: [
+      {provider:"reviewed_career_pages",attempted:reviewedCareers.attempted,verified:reviewedCareers.verified,requests:reviewedCareers.requests,reused:reviewedCareers.reused},
       { provider: "smartrecruiters", attempted: smartRecruitersEntries.length, verified: smartRecruitersPostings.size },
       { provider: "microsoft", attempted: microsoftEntries.length, verified: microsoftPostings.size },
     ],

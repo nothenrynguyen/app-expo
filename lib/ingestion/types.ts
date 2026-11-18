@@ -34,12 +34,16 @@ export type BoardRefreshDiagnostic = {
 };
 
 export type VerificationDiagnostic = {
-  provider: "smartrecruiters" | "microsoft" | "scoped_employer" | "source_listing";
+  provider: "smartrecruiters" | "microsoft" | "scoped_employer" | "source_listing" | "reviewed_career_pages";
+  requests?: number;
+  reused?: number;
   attempted: number;
   verified: number;
 };
 
 export type CandidateLoadResult = {
+  reviewedCareerRequests?: number;
+  reviewedCareerObservations?: import("../listing-health").ListingHealthRecord[];
   retiredBoardIds?: string[];
   workdaySchedule?: import("./workday-schedule").WorkdaySchedule;
   workdayChecks?: import("./workday-continuity").WorkdayCheck[];
