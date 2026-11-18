@@ -1,5 +1,5 @@
 import { jobIdentity } from "./source-normalization";
-import { load } from "cheerio";
+import { load } from "./html";
 
 export type ListingStatus = "live" | "closed" | "unavailable" | "unknown";
 

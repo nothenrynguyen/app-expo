@@ -1,4 +1,4 @@
-import { load } from "cheerio";
+import { load } from "./html";
 import type { JobSource } from "./source-catalog";
 import { classifyRoleTags, ROLE_TAGS } from "./role-areas";
 import { isEarlyCareerTitle } from "./ats-boards";

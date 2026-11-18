@@ -6,7 +6,7 @@ import { getJobLocationMetadata } from "../lib/job-location-policy";
 import type { JobsSnapshot, PublicJob } from "../lib/jobs";
 import type { ListingHealthFile } from "../lib/listing-health";
 import { classifyListingResponse, isListingUnavailable } from "../lib/listing-health";
-import { load } from "cheerio";
+import { load } from "../lib/html";
 
 // Read-only audit. Cached health belongs to the local checkout, not a live probe.
 const input = process.argv[2] ?? "public/jobs.json";

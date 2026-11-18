@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { semanticJobIdentity, workdayRequisitionIdentity } from "../lib/job-dedup";
 import type { JobsSnapshot } from "../lib/jobs";
-import { load } from "cheerio";
+import { load } from "../lib/html";
 import { classifyListingResponse } from "../lib/listing-health";
 import { inBatches } from "../lib/ingestion/concurrency";
 

@@ -1,4 +1,4 @@
-import { load } from "cheerio";
+import { load } from "./html";
 import { getJobLocationMetadata } from "./job-location-policy";
 import { classifyRoleTags } from "./role-areas";
 import { inferTerm, normalizeDisplayText, type CandidateJob } from "./source-normalization";

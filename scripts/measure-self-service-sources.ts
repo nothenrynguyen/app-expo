@@ -1,5 +1,5 @@
 import { readFile, readdir, writeFile } from "node:fs/promises";
-import { load } from "cheerio";
+import { load } from "../lib/html";
 import { isEarlyCareerTitle } from "../lib/ats-boards";
 import { classifyRoleTags } from "../lib/role-areas";
 import { evaluateCompanyQuality, normalizeCompanyName } from "../lib/company-quality";

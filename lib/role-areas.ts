@@ -141,6 +141,16 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
   if (/\b(?:senior|sr\.?|staff|principal|director|head|lead)\b/i.test(job.title)) return [];
   if (/\bmanager\b/i.test(job.title) && !explicitEarlyCareerTitle && !/\b(?:product|technical program) manager\b/i.test(job.title)) return [];
   const tags = new Set<RoleTag>();
+  // Specific early-career AI titles need functional context, not a bare AI
+  // keyword that could describe marketing, recruiting or unrelated work.
+  if (explicitEarlyCareerTitle && /\b(?:ai|ai\/ml|machine learning|deep learning|generative ai)\b/.test(title)
+    && !/\b(?:education|recruiting|human resources|social media|sales|marketing)\b/.test(title)) {
+    if (/\b(?:ai\/ml|machine learning|deep learning) intern\b/.test(title)
+      || /\b(?:build|building|train|training|deploy|deploying|develop|developing)\b.{0,65}\b(?:ai models?|neural networks?|generative ai algorithms?)\b/.test(rawText)) tags.add("ai-ml-engineering");
+    if (/\b(?:research scientist|computational design|imaging|video r&d)\b/.test(title)) tags.add("data-science");
+    if (/\bit\b/.test(title) && /\b(?:it infrastructure|network security|enterprise applications|it systems)\b/.test(rawText)) tags.add("it-support-network");
+    if (/\bai solutions? intern\b/.test(title) && /\b(?:business discovery|workflow analysis|requirements documentation)\b/.test(rawText)) tags.add("business-analyst");
+  }
   const add = (tag: RoleTag, pattern: RegExp) => { if (pattern.test(text)) tags.add(tag); };
   const addTitle = (tag: RoleTag, pattern: RegExp) => { if (pattern.test(title)) tags.add(tag); };
   const softwareContext = /\bsoftware\b|\bcloud\b|\bsite reliability\b|\bsre\b|\btooling\b|\bdevops\b|\bplatform\b|\bota\b|\bqa\b|\btest automation\b/.test(text);

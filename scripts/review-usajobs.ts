@@ -1,5 +1,5 @@
 import { readFile, mkdir, writeFile } from "node:fs/promises";
-import { load } from "cheerio";
+import { load } from "../lib/html";
 import { officialUsaJobsUrl, reviewUsaJobsPosting, type UsaJobsSeed } from "../lib/usajobs";
 import { jobIdentity } from "../lib/source-normalization";
 

@@ -1,4 +1,4 @@
-import { load } from "cheerio";
+import { load } from "./html";
 import type { CandidateJob } from "./source-normalization";
 
 type SchemaCountry = string | { name?: unknown };
