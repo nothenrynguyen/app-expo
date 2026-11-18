@@ -33,6 +33,8 @@ export function createListingChangeEvidence(input: {
       workdayChecks: (checks.get(opportunityIdentity(job.applyUrl)) ?? []).map(check => ({ ...check })),
       board: boardId ? {
         id: boardId, status: record?.status ?? "not-checked", outcome: record?.outcome ?? null,
+        outage: !!record && !/^(?:404|410)\b/.test(record.message ?? "") && (record.status === "failed"
+          || ["cooldown", "rate_limited", "unavailable", "partial"].includes(record.outcome ?? "")),
         membership: result && !result.unverifiedIdentities?.has(jobIdentity(job.applyUrl) ?? "") ? (result.liveIdentities.has(jobIdentity(job.applyUrl) ?? "") ? "present" : "absent") : "unknown",
         retired: input.retired.has(boardId),
       } : null,
@@ -40,7 +42,8 @@ export function createListingChangeEvidence(input: {
         // Recovery candidates and the run-level health record use different
         // display names. Match this known lane by kind, never by employer text.
         const source = sources.get(name) ?? (name === "Employer recovery" ? input.sourceDiagnostics.find(record => record.kind === "employer_recovery") : undefined);
-        return { name, diagnosticName: source?.name ?? null, status: source?.status ?? "not-checked", outcome: source?.outcome ?? null, rows: source?.rows ?? null };
+        return { name, diagnosticName: source?.name ?? null, status: source?.status ?? "not-checked", outcome: source?.outcome ?? null, rows: source?.rows ?? null,
+          outage: !!source && source.status === "failed" && !/^(?:404|410)\b/.test(source.message ?? "") };
       }),
     };
   };

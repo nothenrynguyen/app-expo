@@ -37,7 +37,7 @@ const steps = [
   {
     number: "06",
     title: "Check freshness",
-    copy: "Refreshes are scheduled hourly. Employer-board records and rotating link checks help catch closed jobs. Recent healthy data may be kept during temporary failures, so a fresh snapshot does not mean every link was checked that hour.",
+    copy: "Refreshes are scheduled hourly. Jobs that cannot be rechecked during a source outage stay out of current results. Previously saved jobs remain accessible with an availability note. Refreshing the snapshot does not renew their last verification time. Confirmed closures and eligibility exclusions follow the normal removal rules.",
   },
 ];
 

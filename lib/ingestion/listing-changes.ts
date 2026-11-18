@@ -104,9 +104,10 @@ export function buildListingChanges(input: {
     removedCount: removed.length, counts, removed, urlChanges };
 }
 
-export function formatListingChangesSummary(report: ReturnType<typeof buildListingChanges>) {
+export function formatListingChangesSummary(report: ReturnType<typeof buildListingChanges> & {availability?: {current: number; awaitingVerification: number; tracked: number}}) {
   const r = report.reconciliation;
-  const lines = ["## Listing changes", "", `Proposed openings: ${r.previous} + ${r.added} added - ${r.removed} removed = ${r.current} (net ${r.net}).`,
+  const lines = ["## Listing changes", "", `${report.availability ? "Tracked" : "Proposed"} openings: ${r.previous} + ${r.added} added - ${r.removed} removed = ${r.current} (net ${r.net}).`,
+    ...(report.availability ? [`Current results: ${report.availability.current}; awaiting verification: ${report.availability.awaitingVerification}. Held jobs are excluded from current results.`] : []),
     `Snapshot rows (proposed): ${report.rowCounts.previous} -> ${report.rowCounts.current}. URL replacements: ${report.urlChanges.length} prior rows.`,
     "", "| Disappearance diagnosis | Openings |", "| --- | ---: |",
     ...Object.entries(report.categoryCounts).map(([category, count]) => `| ${category} | ${count} |`), "",

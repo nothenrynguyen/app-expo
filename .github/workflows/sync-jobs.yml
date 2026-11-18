@@ -14,6 +14,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: app-expo-data-writes
@@ -78,3 +79,17 @@ jobs:
           git add data/workday-schedule.json data/employer-recovery-state.json data/listing-health.json data/scoped-listing-health.json data/source-verification-targets.json data/workday-continuity.json
           git commit --only -m "data: preserve verification progress after blocked refresh" -- data/workday-schedule.json data/employer-recovery-state.json data/listing-health.json data/scoped-listing-health.json data/source-verification-targets.json data/workday-continuity.json
           node scripts/publish-refresh.mjs
+      - name: Update the single refresh incident
+        if: always() && steps.freshness.outputs.needed == 'true'
+        uses: actions/github-script@v7
+        env:
+          REFRESH_CONCLUSION: ${{ job.status }}
+        with:
+          script: |
+            const fs = await import('node:fs/promises');
+            const { updateRefreshIncident } = await import(`${process.env.GITHUB_WORKSPACE}/scripts/refresh-incident.mjs`);
+            const read = async path => JSON.parse(await fs.readFile(path, 'utf8'));
+            const success = process.env.REFRESH_CONCLUSION === 'success';
+            await updateRefreshIncident({ github, context, conclusion: process.env.REFRESH_CONCLUSION,
+              report: success ? await read('data/refresh-report.json') : null,
+              changes: success ? await read('data/listing-changes.json') : null });

@@ -4,7 +4,7 @@ import { PageTransition } from "../PageTransition";
 import { SiteFooter } from "../SiteFooter";
 
 export default function InternshipsPage() {
-  return <BoardPage title="Current Internships" description="No sign-up. No BS. Here are the jobs, with hourly refreshes." type="internships" />;
+  return <BoardPage title="Internships" description="No sign-up. No BS. Here are the jobs, with hourly refreshes." type="internships" />;
 }
 
 function BoardPage({ title, description, type }: { title: string; description: string; type: "internships" | "fulltime" }) {

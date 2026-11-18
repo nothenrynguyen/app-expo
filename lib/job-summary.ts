@@ -4,6 +4,7 @@ import { countHealth, type HealthCounts } from "./ingestion/source-health";
 import type { RefreshReport } from "./ingestion/types";
 
 export type JobsSummary = {
+  awaitingVerification?: { total: number; internships: number; fulltime: number };
   generatedAt: string;
   totalJobs: number;
   internships: number;
@@ -18,6 +19,9 @@ export type JobsSummary = {
 
 export function buildJobsSummary(snapshot: JobsSnapshot, report?: RefreshReport): JobsSummary {
   return {
+    ...(snapshot.awaitingVerification ? { awaitingVerification: { total: snapshot.awaitingVerification.length,
+      internships: (snapshot.awaitingVerification ?? []).filter(job => isInCollection(job, "internships")).length,
+      fulltime: snapshot.awaitingVerification.filter(job => isInCollection(job, "fulltime")).length } } : {}),
     generatedAt: snapshot.generatedAt,
     totalJobs: snapshot.jobs.length,
     internships: snapshot.jobs.filter((job) => isInCollection(job, "internships")).length,

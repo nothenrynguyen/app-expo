@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { trackActivity } from "@/lib/activity-client";
 import { ApplicationStatusSelect } from "./ApplicationStatusSelect";
+import { VerificationStatus } from "./VerificationStatus";
 import { companyTierLabel } from "@/lib/company-tiers";
 import type { PublicJob } from "@/lib/jobs";
 import { displayText, getLinkedInUrl, getLocationDisplay, modeLabels, type ViewMode } from "./job-board-utils";
@@ -110,7 +111,7 @@ function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJob
           <span role="columnheader">Location</span>
           <span role="columnheader">Date</span>
           <span role="columnheader">Save</span>
-          <span role="columnheader">Apply</span>
+          <span role="columnheader">{jobs.some(job => job.verification) ? "Listing" : "Apply"}</span>
           <span role="columnheader">LinkedIn</span>
           {onHideCompany ? <span role="columnheader" aria-label="More actions" /> : null}
         </div>
@@ -121,6 +122,7 @@ function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJob
               <div className="job-table-company" role="cell" data-label="Company">{displayText(job.company)}</div>
               <div className="job-table-title" role="cell" data-label="Position">
                 {displayText(job.title)}
+                <VerificationStatus job={job} />
                 <FederalEligibility job={job} />
               </div>
               <div className="job-table-location" role="cell" data-label="Location">
@@ -130,7 +132,7 @@ function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJob
               </div>
               <div className="job-table-date" role="cell" data-label="Date"><ListingDate job={job} /></div>
               <div className="job-table-action" role="cell" data-label="Save"><SaveButton compact isSaved={savedJobIds.has(job.id)} job={job} onToggle={() => onToggleSaved(job.id)} /></div>
-              <div className="job-table-action" role="cell" data-label="Apply"><a className="button table-button primary" href={job.applyUrl} target="_blank" rel="noreferrer" onClick={() => trackActivity("apply_click")}>Apply</a></div>
+              <div className="job-table-action" role="cell" data-label={job.verification ? "Listing" : "Apply"}><a className="button table-button primary" href={job.applyUrl} target="_blank" rel="noreferrer" title={job.verification ? "Open the employer listing. Availability is awaiting verification." : undefined} onClick={() => trackActivity("apply_click")}>{job.verification ? "Open" : "Apply"}</a></div>
               <div className="job-table-action" role="cell" data-label="LinkedIn"><a className="button table-button secondary" href={getLinkedInUrl(job)} target="_blank" rel="noreferrer">LinkedIn</a></div>
               {onHideCompany ? <div className="job-table-action" role="cell" data-label="More"><CompanyActions company={job.company} onHide={onHideCompany} /></div> : null}
             </article>
@@ -162,6 +164,7 @@ function CardJobView({ className, jobs, totalJobCount, emptyMessage, savedJobIds
             <div className="job-main">
               <p className="company">{displayText(job.company)}</p>
               <h2>{displayText(job.title)}</h2>
+              <VerificationStatus job={job} />
               <FederalEligibility job={job} />
               <div className="job-meta">
                 <span>{getLocationDisplay(job.location, job.workMode).full}</span>
@@ -174,7 +177,7 @@ function CardJobView({ className, jobs, totalJobCount, emptyMessage, savedJobIds
               <SaveButton isSaved={savedJobIds.has(job.id)} job={job} onToggle={() => onToggleSaved(job.id)} />
               <a className="button secondary" href={getLinkedInUrl(job)} target="_blank" rel="noreferrer">LinkedIn</a>
               <button className="button secondary" type="button" onClick={() => onToggleExpanded(job.id)} aria-expanded={expandedJobId === job.id}>Info</button>
-              <a className="button primary" href={job.applyUrl} target="_blank" rel="noreferrer" onClick={() => trackActivity("apply_click")}>Apply</a>
+              <a className="button primary" href={job.applyUrl} target="_blank" rel="noreferrer" onClick={() => trackActivity("apply_click")}>{job.verification ? "Check listing" : "Apply"}</a>
               {onHideCompany ? <CompanyActions company={job.company} onHide={onHideCompany} /> : null}
             </div>
             {expandedJobId === job.id ? (

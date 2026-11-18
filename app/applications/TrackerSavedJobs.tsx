@@ -3,7 +3,8 @@ import { announceJobIdAliases, resolveSnapshotJobIds } from "@/lib/job-id-aliase
 import { useEffect, useState } from "react";
 import { trackActivity } from "@/lib/activity-client";
 import Link from "next/link";
-import type { PublicJob, JobsSnapshot } from "@/lib/jobs";
+import { allSnapshotJobs, type PublicJob, type JobsSnapshot } from "@/lib/jobs";
+import { VerificationStatus } from "../job-board/VerificationStatus";
 import { markSavedJobApplied, safeApplicationUrl } from "@/lib/applications";
 import { useSavedJobs } from "../useSavedJobs";
 import { useSavedJobDetails } from "../useSavedJobDetails";
@@ -28,7 +29,7 @@ export function TrackerSavedJobs() {
     Promise.all(["internships", "fulltime"].map(async (collection) => {
       const response = await fetch(`/${collection}.json`, { signal: controller.signal });
       if (!response.ok) throw new Error("Could not load listings");
-      return (await response.json() as JobsSnapshot).jobs;
+      return allSnapshotJobs(await response.json() as JobsSnapshot);
     })).then((lists) => { announceJobIdAliases(lists.flat()); setJobs(resolveSnapshotJobIds(lists.flat())); setLoaded(true); setFailed(false); }).catch(() => { if (!controller.signal.aborted) setFailed(true); });
     return () => controller.abort();
   }, [hasSaved]);
@@ -46,7 +47,7 @@ export function TrackerSavedJobs() {
       const record = applications.find((item) => item.jobId === id);
       const status = statuses[id] ?? record?.status ?? "Saved";
       const tracked = !!record && status !== "Saved";
-      return <article className="tracker-saved-row" key={id}><div><h3>{job?.title ?? "Saved listing"}</h3><p>{job?.company ?? "Details are not available for this older save."}</p>{!live && loaded ? <small>Not in the current feed. Availability is unverified.</small> : null}</div><div className="tracker-row-actions">{url ? <a className="button primary" href={url} target="_blank" rel="noreferrer" onClick={() => trackActivity("apply_click")}>Apply<span className="sr-only"> for {job?.title} at {job?.company}</span></a> : null}<button type="button" className="button secondary" disabled={!job || tracked} onClick={() => {
+      return <article className="tracker-saved-row" key={id}><div><h3>{job?.title ?? "Saved listing"}</h3><p>{job?.company ?? "Details are not available for this older save."}</p>{live ? <VerificationStatus job={live} /> : null}{!live && loaded ? <small>Not in the current feed. Availability is unverified.</small> : null}</div><div className="tracker-row-actions">{url ? <a className="button primary" href={url} target="_blank" rel="noreferrer" onClick={() => trackActivity("apply_click")}>{live?.verification ? "Check listing" : "Apply"}<span className="sr-only"> for {job?.title} at {job?.company}</span></a> : null}<button type="button" className="button secondary" disabled={!job || tracked} onClick={() => {
         if (!job) return;
         if (!change((existing) => markSavedJobApplied(existing, job))) { setMessage("Could not save the application. Check browser storage."); return; }
         const synced = update(id, "Applied");

@@ -453,6 +453,10 @@
 .federal-eligibility summary { cursor: pointer; color: var(--muted, #a5a4b7); }
 .federal-eligibility p { margin: 0.4rem 0; }
 
+.verification-status { display:flex; flex-direction:column; align-items:flex-start; gap:.25rem; margin-top:.4rem; white-space:normal; line-height:1.4; font-weight:400; }
+.verification-badge { border:1px solid var(--line, #656171); border-radius:.3rem; padding:.15rem .4rem; font-size:.7rem; letter-spacing:.01em; }
+.verification-status small { color:var(--muted, #a5a4b7); font-size:.68rem; }
+
 @media (min-width:621px) and (max-width:1100px) {
   .compact-panel { overflow-x:auto; }
   .job-table { min-width:1040px; }

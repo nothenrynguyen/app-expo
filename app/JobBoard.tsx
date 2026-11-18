@@ -84,9 +84,12 @@ export function JobBoard({ type }: JobBoardProps) {
     return () => window.clearTimeout(timer);
   }, [exitingView]);
 
-  const sourceJobs = snapshot?.jobs ?? EMPTY_JOBS;
-  const { details: savedDetails, storageError: detailsError } = useSavedJobDetails(savedJobIds, sourceJobs, type, snapshot !== null);
-  const unavailableSaved = missingSavedDetails(savedDetails, savedJobIds, sourceJobs, type);
+  const currentJobs = snapshot?.jobs ?? EMPTY_JOBS;
+  const awaitingJobs = snapshot?.awaitingVerification ?? EMPTY_JOBS;
+  const allJobs = useMemo(() => [...currentJobs, ...awaitingJobs], [currentJobs, awaitingJobs]);
+  const sourceJobs = savedOnly ? allJobs : currentJobs;
+  const { details: savedDetails, storageError: detailsError } = useSavedJobDetails(savedJobIds, allJobs, type, snapshot !== null);
+  const unavailableSaved = missingSavedDetails(savedDetails, savedJobIds, allJobs, type);
   const roleSpecialties = useMemo(() => {
     const availableTags = new Set(sourceJobs.flatMap((job) => getJobRoleTags(job)));
     return getRoleTagsForFamily(roleSelection.family).filter((specialty) => roleSelection.family === "product" || roleSelection.family === "design" || availableTags.has(specialty.value));
@@ -123,7 +126,7 @@ export function JobBoard({ type }: JobBoardProps) {
 
   const { pageCount, safePage, startIndex, endIndex } = getPaginationState(jobs.length, page);
   const visibleJobs = jobs.slice(startIndex, endIndex);
-  const savedInCollectionCount = countSavedJobs(snapshot.jobs, type, savedJobIds);
+  const savedInCollectionCount = countSavedJobs(allJobs, type, savedJobIds);
   const emptyMessage = savedOnly
     ? "No saved jobs match these filters."
     : query.trim().toLowerCase() === "henwoo"
@@ -163,9 +166,9 @@ export function JobBoard({ type }: JobBoardProps) {
         const value = event.target.value;
         if (value === "All" || isApplicationStatus(value)) { setStatusFilter(value); resetPage(); }
       }}><option value="All">All statuses</option>{APPLICATION_STATUSES.map((status) => <option key={status}>{status}</option>)}</select></label> : null}
-      <div className="board-stats" title={new Date(snapshot.generatedAt).toLocaleString()}>
-        <span className="live-status"><i />Live</span>
-        <span className="refresh-age">&middot; refreshed {formatSnapshotAge(snapshot.generatedAt, now)}</span>
+      <div className="board-stats" title={`Snapshot updated ${new Date(snapshot.generatedAt).toLocaleString()}. This is not a new verification time for held jobs.`}>
+        <span className="live-status"><i />Snapshot</span>
+        <span className="refresh-age">&middot; updated {formatSnapshotAge(snapshot.generatedAt, now)}</span>
         <span className="matching-count"><strong>{jobs.length}</strong> matching roles</span>
       </div>
       <JobFilters

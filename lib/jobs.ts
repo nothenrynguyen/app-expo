@@ -1,6 +1,9 @@
 export type PostedAtSource = "exact" | "date_only" | "relative_derived" | "first_seen";
 
 export type PublicJob = {
+  lastVerifiedAt?: string | null;
+  verification?: { status: "awaiting"; since: string; lastVerifiedAt: string | null;
+    checkedAt: string; reason: "source-unavailable"; source: string };
   id: string;
   previousIds?: string[];
   company: string;
@@ -24,12 +27,18 @@ export type PublicJob = {
 };
 
 export type JobsSnapshot = {
+  listingCounts?: { current: number; awaitingVerification: number };
+  awaitingVerification?: PublicJob[];
   screening?: import("./ingestion/screening").ScreeningMetrics | null;
   generatedAt: string;
   jobs: PublicJob[];
   quarantinedCount: number;
   sourceHealth: Array<{ name: string; status: "ok" | "failed"; rows: number; outcome?: import("./ingestion/source-health").HealthOutcome }>;
 };
+
+export function allSnapshotJobs(snapshot: JobsSnapshot | null): PublicJob[] {
+  return snapshot ? [...snapshot.jobs, ...(snapshot.awaitingVerification ?? [])] : [];
+}
 
 export function daysAgo(postedAt: string, now = new Date()): number {
   const timestamp = new Date(postedAt).getTime();

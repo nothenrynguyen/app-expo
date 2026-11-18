@@ -1,4 +1,7 @@
 import { preserveWorkdayJobIds, collectJobIdAliases } from "../lib/ingestion/preserve-job-ids";
+import { buildOutageHolds, validateOutageHolds } from "../lib/ingestion/outage-holds";
+import { availabilityInventory } from "../lib/ingestion/availability-inventory";
+import { lastVerificationAt, canRestoreHeldJob } from "../lib/ingestion/last-verification";
 import { persistRefreshState } from "../lib/ingestion/refresh-state";
 import { createWorkdayRequestGate } from "../lib/ingestion/workday-request-gate";
 import publishedJobIdAliases from "../data/job-id-aliases.json";
@@ -34,7 +37,7 @@ import { buildJobInsightsDay, updateJobInsightsHistory, type JobInsightsHistory 
 import { normalizeJobLocation } from "../lib/job-locations";
 import { getJobLocationMetadata } from "../lib/job-location-policy";
 import { buildJobsSummary } from "../lib/job-summary";
-import type { JobsSnapshot, PublicJob } from "../lib/jobs";
+import { allSnapshotJobs, type JobsSnapshot, type PublicJob } from "../lib/jobs";
 import { isListingUnavailable, needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
 import { classifyRoleTags, getJobRoleTags } from "../lib/role-areas";
 import type { SourceCatalog } from "../lib/source-catalog";
@@ -51,7 +54,10 @@ async function main() {
   const trustedCuratedSources = new Set(activeSources.filter((source) => source.trustedCoverage).map((source) => source.name));
   const output = path.join(root, "public/jobs.json");
   const previous = await readFile(output, "utf8").then((value) => JSON.parse(value) as JobsSnapshot).catch(() => null);
-  const previousByUrl = new Map(previous?.jobs.map((job) => [opportunityIdentity(job.applyUrl), job]) ?? []);
+  const previousJobs = allSnapshotJobs(previous);
+  const previousByUrl = new Map(previousJobs.map((job) => [opportunityIdentity(job.applyUrl), job]));
+  const priorHeldById = new Map(previousJobs.filter(job => job.verification?.status === "awaiting")
+    .flatMap(job => [job.id, ...(job.previousIds ?? [])].map(id => [publishedJobIdAliases[id as keyof typeof publishedJobIdAliases] ?? id, job] as const)));
   const registry = JSON.parse(await readFile(path.join(root, "data/verified-companies.json"), "utf8")) as VerifiedCompany[];
   const trustRegistry = JSON.parse(await readFile(path.join(root, "data/company-trust.json"), "utf8")) as CompanyTrustEntry[];
   const listingHealthPath = path.join(root, "data/listing-health.json");
@@ -74,7 +80,7 @@ async function main() {
     workdayEvidence,
     workdaySchedule,
     retiredBoardIds = [],
-  } = await loadCandidates(root, activeSources, previous?.jobs ?? []);
+  } = await loadCandidates(root, activeSources, previousJobs);
   const retired = new Set(retiredBoardIds);
   const requestGate = createWorkdayRequestGate(workdaySchedule ?? {});
   const usesRetiredBoard = (job: PublicJob) => {
@@ -147,7 +153,7 @@ async function main() {
     return getJobLocationMetadata(candidate).eligible && classifyRoleTags(candidate).length > 0 && !getFreshnessRejection(candidate)
       && (decision.status === "approved" || decision.coverageExceptionAllowed && (currentBoardEvidence(candidate) || continuityLive(candidate) || trustedCompanies.has(normalizeCompanyName(candidate.company))));
   });
-  const sourceTargets = buildSourceVerificationTargets(catalog.sources, verificationCandidates, previous?.jobs ?? [], savedSourceTargets);
+  const sourceTargets = buildSourceVerificationTargets(catalog.sources, verificationCandidates, previousJobs, savedSourceTargets);
   for (const candidate of candidates) {
     const decision = evaluateCompanyQuality({ name: candidate.company, h1bApprovals: candidate.h1bApprovals, title: candidate.title, applyUrl: candidate.applyUrl }, candidate.rawText, registry, trustRegistry);
     const identity = jobIdentity(candidate.applyUrl);
@@ -178,7 +184,7 @@ async function main() {
     const result = board && boardResults.get(board.id);
     if (result) scopedCache[identity] = {status: result.liveIdentities.has(jobIdentity(url) ?? "") ? "live" : "unknown", checkedAt: startedAt.toISOString(), firstSeenAt: scopedCache[identity].firstSeenAt};
   }
-  const publishedScopedIds = new Set((previous?.jobs ?? []).flatMap(job => [jobIdentity(job.applyUrl), sourceVerificationKey(job.applyUrl)]).filter((id): id is string => !!id));
+  const publishedScopedIds = new Set(previousJobs.flatMap(job => [jobIdentity(job.applyUrl), sourceVerificationKey(job.applyUrl)]).filter((id): id is string => !!id));
   const scopedChecks = selectBalancedScopedChecks([...scopedUrls].filter(([, url]) => requestGate.canRequest(url)), scopedCache, startedAt, 150, publishedScopedIds);
   const verifySourceListing = createSourceListingVerifier({ boardResults, fetchImpl: requestGate.fetch });
   const postingChecks = new Map<string, Promise<boolean>>();
@@ -191,6 +197,10 @@ async function main() {
   });
   for (const result of scopedResults) if (result.status === "fulfilled") scopedCache[result.value.identity] = { status: result.value.live ? "live" : "unknown", checkedAt: startedAt.toISOString(), firstSeenAt: scopedCache[result.value.identity].firstSeenAt };
   const verifiedScopedIds = new Set([...scopedUrls.keys()].filter(identity => scopedListingIsLive(scopedCache[identity], startedAt)));
+  const observationTime = new Date();
+  const lastPositiveAt = (job: PublicJob) => lastVerificationAt(job, observationTime, {
+    workdayCache, workdayChecks, recoveryState: recoveryState ?? {}, listingHealth, scopedCache, boardResults,
+  });
   for (const [provider, sourceGuard] of [["scoped_employer", false], ["source_listing", true]] as const) {
     const matches = (identity: string) => Boolean(sourceTargets[identity]) === sourceGuard;
     if ([...scopedUrls.keys()].some(matches)) verificationDiagnostics.push({ provider, attempted: scopedChecks.filter(([identity]) => matches(identity)).length, verified: scopedResults.filter(result => result.status === "fulfilled" && matches(result.value.identity) && result.value.live).length });
@@ -273,6 +283,17 @@ async function main() {
 
     const canonical = canonicalizeUrl(candidate.applyUrl)!;
     const identity = jobIdentity(canonical)!;
+    const candidateId = stableJobId(identity, candidate.company, candidate.title);
+    const directPrior = previousByUrl.get(opportunityIdentity(canonical));
+    const heldPrior = directPrior?.verification?.status === "awaiting" ? directPrior
+      : priorHeldById.get(publishedJobIdAliases[candidateId as keyof typeof publishedJobIdAliases] ?? candidateId);
+    if (heldPrior?.verification?.status === "awaiting") {
+      const positive = lastPositiveAt({...heldPrior, lastVerifiedAt: null, verification: undefined});
+      if (!canRestoreHeldJob(heldPrior, positive, observationTime)) {
+        screening.record(candidate.applyUrl, "pendingVerification", "Fresh positive employer evidence is required to restore this held listing.");
+        continue;
+      }
+    }
     if ((scopedUrls.has(identity) && !verifiedScopedIds.has(identity)) || !sourceListingIsAllowed(candidate.applyUrl, sourceTargets, verifiedScopedIds)) {
       screening.record(candidate.applyUrl, "pendingVerification", "Current employer listing availability could not be verified.");
       quarantined.push({ company: candidate.company, title: candidate.title, reason: "Current employer listing availability could not be verified.", source: candidate.source, applyUrl: candidate.applyUrl });
@@ -334,7 +355,11 @@ async function main() {
   const failedSourceNames = new Set(unhealthySources.map(source => source.name));
   const acceptedVerificationKeys = new Set([...merged.values()].map(job => sourceVerificationKey(job.applyUrl)));
   if ((unhealthySources.length > 0 || recovery.hasFailures || workdayRecovery.hasFailures) && previous) {
-    preservedFromLastHealthySnapshot = preserveLastKnownGoodJobs(merged, [...previous.jobs, ...workdayRecovery.jobs], (prior) => {
+    preservedFromLastHealthySnapshot = preserveLastKnownGoodJobs(merged, [...previousJobs, ...workdayRecovery.jobs], (prior) => {
+      // Held jobs return only through normal admission with fresh evidence.
+      // Outage recovery may not silently promote an old unverified listing.
+      const positive = lastPositiveAt(prior);
+      if (prior.verification?.status === "awaiting" || !positive || observationTime.getTime() - Date.parse(positive) >= 24 * 3600_000) return null;
       if (currentAtsExperienceConflict(prior, boardResults)) return null;
       if (workdayRecovery.mayRecover(prior) && acceptedVerificationKeys.has(sourceVerificationKey(prior.applyUrl))) return null;
       // Recovery cannot carry unlicensed feed material forward during failures.
@@ -366,8 +391,8 @@ async function main() {
     });
   }
 
-  const jobs = preserveWorkdayJobIds(deduplicateCrossSourceJobs([...merged.values()]), previous?.jobs ?? [])
-    .map((job) => ({ ...job, roleTags: getJobRoleTags(job) }))
+  let jobs: PublicJob[] = preserveWorkdayJobIds(deduplicateCrossSourceJobs([...merged.values()]), previousJobs)
+    .map((job) => ({ ...job, roleTags: getJobRoleTags(job), lastVerifiedAt: lastPositiveAt(job) }))
     .sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime());
   if (jobs.length < 10) throw new Error(`Refusing to publish anomalous snapshot with only ${jobs.length} approved jobs.`);
   const allSourcesUnhealthy = health.length > 0 && unhealthySources.length === health.length;
@@ -382,22 +407,25 @@ async function main() {
   };
   const closedPostingsCaught = Object.values(listingHealth).filter((entry) => entry.status === "closed").length;
 
-  const materialSnapshot = { jobs: snapshot.jobs, quarantinedCount: snapshot.quarantinedCount, sourceHealth: snapshot.sourceHealth, screening: snapshot.screening };
-  const previousMaterial = previous && { jobs: previous.jobs, quarantinedCount: previous.quarantinedCount, sourceHealth: previous.sourceHealth, screening: previous.screening };
-  const unchanged = !!previous && JSON.stringify(materialSnapshot) === JSON.stringify(previousMaterial);
-
-  const listingChanges = buildListingChanges({
+  const changeInput: Parameters<typeof buildListingChanges>[0] = {
     generatedAt: snapshot.generatedAt, previousGeneratedAt: previous?.generatedAt ?? null,
-    currentSnapshotGeneratedAt: unchanged ? previous!.generatedAt : snapshot.generatedAt,
-    previous: previous?.jobs ?? [], current: jobs, acceptedBeforeDedup: [...merged.values()],
+    currentSnapshotGeneratedAt: snapshot.generatedAt,
+    previous: previousJobs, current: jobs, acceptedBeforeDedup: [...merged.values()],
     candidateUrls: candidates.map(candidate => candidate.applyUrl),
     outcomeFor: url => {
+      const prior = previousByUrl.get(opportunityIdentity(url));
+      if (reviewHoldIds.has(sourceReviewHoldIdentity(url))) return "employer";
+      if (prior) {
+        if (prior.sources.some(source => permissionHeldSources.has(source))) return "source-permission";
+        if (getFreshnessRejection(prior)) return "expired";
+        if (!getJobLocationMetadata(prior).eligible) return "location";
+        if (!classifyRoleTags(prior).length) return "role";
+        if (evaluateCompanyQuality({name: prior.company, title: prior.title, applyUrl: prior.applyUrl}, "", registry, trustRegistry).status === "rejected") return "employer";
+      }
       const outcome = screening.opportunityOutcomeFor(url);
       if (outcome) return outcome;
       const terminal = workdayTerminalKeys.get(workdayEvidenceKey(url));
       if (terminal) return terminal === "closed" ? "closed" : "role";
-      const prior = previousByUrl.get(opportunityIdentity(url));
-      if (prior?.sources.some(source => permissionHeldSources.has(source))) return "source-permission";
       return listingHealth[jobIdentity(url) ?? ""]?.status === "unavailable" ? "application-unavailable" : undefined;
     },
     boardState(prior) {
@@ -411,11 +439,31 @@ async function main() {
     },
     evidenceFor: createListingChangeEvidence({ startedAt, generatedAt: snapshot.generatedAt, listingHealth,
       workdayChecks, boardRegistry, boardResults, sourceDiagnostics, retired, screeningFor: screening.decisionsFor }),
-  });
+  };
+  let proposedChanges = buildListingChanges(changeInput);
+  const awaitingVerification = buildOutageHolds(previousJobs, proposedChanges, observationTime, lastPositiveAt);
+  const publicationAliases = collectJobIdAliases([...jobs, ...awaitingVerification], publishedJobIdAliases);
+  jobs = availabilityInventory(jobs, awaitingVerification, publicationAliases);
+  snapshot.jobs = jobs;
+  changeInput.current = jobs;
+  proposedChanges = buildListingChanges(changeInput);
+  validateOutageHolds(previousJobs, jobs, awaitingVerification, proposedChanges, observationTime, lastPositiveAt);
+  snapshot.awaitingVerification = awaitingVerification;
+  const trackedJobs = [...jobs, ...awaitingVerification];
+  const materialSnapshot = { jobs: snapshot.jobs, awaitingVerification, quarantinedCount: snapshot.quarantinedCount, sourceHealth: snapshot.sourceHealth, screening: snapshot.screening };
+  const previousMaterial = previous && { jobs: previous.jobs, awaitingVerification: previous.awaitingVerification ?? [], quarantinedCount: previous.quarantinedCount, sourceHealth: previous.sourceHealth, screening: previous.screening };
+  const unchanged = !!previous && JSON.stringify(materialSnapshot) === JSON.stringify(previousMaterial);
+  const listingChanges = {...buildListingChanges({...changeInput, current: trackedJobs,
+    currentSnapshotGeneratedAt: unchanged ? previous!.generatedAt : snapshot.generatedAt}),
+    availability: { current: jobs.length, awaitingVerification: awaitingVerification.length, tracked: trackedJobs.length },
+    verificationTransitions: { held: awaitingVerification.filter(job => !previousByUrl.get(opportunityIdentity(job.applyUrl))?.verification).map(job => job.id),
+      restored: jobs.filter(job => previousByUrl.get(opportunityIdentity(job.applyUrl))?.verification?.status === "awaiting").map(job => job.id) },
+    outageEvidence: proposedChanges.removedOpportunities.filter(row => awaitingVerification.some(job => opportunityIdentity(job.applyUrl) === row.identity)) };
   const changeSummary = formatListingChangesSummary(listingChanges);
   console.log(changeSummary);
   if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY, changeSummary);
-  const coverage = { boards: boardCoverage, collections: assessCoverage(previous?.jobs ?? [], jobs, listingChanges) };
+  const coverage = { boards: boardCoverage, availability: listingChanges.availability,
+    collections: assessCoverage(previousJobs, trackedJobs, listingChanges) };
   // Observations survive blocked publication. This preserves exact checkedAt
   // values, invalidations and queue progress, without changing admission rules.
   // Workday continuity is still limited to jobs that passed every admission
@@ -441,7 +489,7 @@ async function main() {
 
   await mkdir(path.join(root, "data"), { recursive: true });
   // Public IDs only. Keep compatibility when an opening later leaves the feed.
-  const jobIdAliases = collectJobIdAliases(jobs, publishedJobIdAliases);
+  const jobIdAliases = collectJobIdAliases(trackedJobs, publicationAliases);
   await writeFile(path.join(root, "data/job-id-aliases.json"), `${JSON.stringify(jobIdAliases, null, 2)}\n`);
   await writeFile(path.join(root, "data/company-boards.json"), `${JSON.stringify(boardRegistry, null, 2)}\n`);
   await writeFile(path.join(root, "data/board-history.json"), `${JSON.stringify(completeBoardHistory(boardHistory, boardRegistry, startedAt), null, 2)}\n`);
@@ -464,6 +512,12 @@ async function main() {
   });
   await writeFile(path.join(root, "data/refresh-report.json"), `${JSON.stringify(refreshReport, null, 2)}\n`);
   await writeFile(path.join(root, "data/listing-changes.json"), `${JSON.stringify(listingChanges, null, 2)}\n`);
+  if (refreshReport.status === "failed") throw new Error("All sources failed; snapshot publication blocked.");
+  if (refreshReport.status === "degraded" || awaitingVerification.length) {
+    console.warn(`Refresh warning: healthy-source updates are ready; ${awaitingVerification.length} prior jobs remain held for verification.`);
+    if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY,
+      `\n### Source availability warning\nRefresh completed with ${jobs.length} current listings. ${awaitingVerification.length} prior jobs are retained internally for verification and excluded from current results. Source warnings do not fail this run; code, publication and coverage failures still do.\n`);
+  }
 
   await mkdir(path.join(root, "public"), { recursive: true });
   const insightsHistoryPath = path.join(root, "public/insights-history.json");
@@ -483,12 +537,12 @@ async function main() {
   await writeFile(temporary, `${JSON.stringify(snapshot, null, 2)}\n`);
   await rename(temporary, output);
   await writeFile(path.join(root, "data/quarantine.json"), `${JSON.stringify({ generatedAt: snapshot.generatedAt, rejectedCount, jobs: quarantined }, null, 2)}\n`);
-  const internships = { ...snapshot, jobs: snapshot.jobs.filter((job) => isInCollection(job, "internships")) };
-  const fulltime = { ...snapshot, jobs: snapshot.jobs.filter((job) => isInCollection(job, "fulltime")) };
+  const internships = { ...snapshot, jobs: snapshot.jobs.filter((job) => isInCollection(job, "internships")), awaitingVerification: awaitingVerification.filter(job => isInCollection(job, "internships")) };
+  const fulltime = { ...snapshot, jobs: snapshot.jobs.filter((job) => isInCollection(job, "fulltime")), awaitingVerification: awaitingVerification.filter(job => isInCollection(job, "fulltime")) };
   await writeFile(path.join(root, "public/internships.json"), `${JSON.stringify(internships, null, 2)}\n`);
   await writeFile(path.join(root, "public/fulltime.json"), `${JSON.stringify(fulltime, null, 2)}\n`);
   await writeFile(path.join(root, "public/summary.json"), `${JSON.stringify(buildJobsSummary(snapshot, refreshReport), null, 2)}\n`);
-  console.log(`Published ${jobs.length} jobs; quarantined ${quarantined.length}; rejected ${rejectedCount}.`);
+  console.log(`Prepared ${jobs.length} current listings and ${awaitingVerification.length} awaiting verification; quarantined ${quarantined.length}; rejected ${rejectedCount}.`);
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) await main();

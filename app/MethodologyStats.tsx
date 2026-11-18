@@ -25,7 +25,7 @@ export function MethodologyStats() {
       <Link href="/jobs"><AnimatedCount value={summary.fulltime} /><span>early-career jobs, all locations</span></Link>
       {summary.screening?.version === 1 && <>
         <div><AnimatedCount value={summary.screening.excluded} /><span>unique application links excluded</span></div>
-        <div><AnimatedCount value={summary.screening.pendingVerification} /><span>awaiting employer verification</span></div>
+        <div><AnimatedCount value={summary.screening.pendingVerification} /><span>source links pending verification</span></div>
       </>}
     </div>
     <SourceHealthSummary summary={summary} />
