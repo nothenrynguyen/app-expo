@@ -1,6 +1,6 @@
 # Intermittent collector crash and audited classification repair
 
-Status: approved repair passes local verification, pending production run and deployment proof. No new source or service is added.
+Status: repair 77ddbd6 is published and production-verified with generated snapshot 48a9a8e. No new source or service is added.
 
 ## Failure evidence
 
@@ -17,3 +17,14 @@ The five official examples from FILTER_COVERAGE_AUDIT_2026-11-17.md replay into 
 ## Verification and next step
 
 All 214 tests, lint, TypeScript and static export pass locally. No unverified generated local snapshot is staged. Next: publish the scoped repair, run the production workflow, inspect admissions and unchanged guards, verify deployment and all four live data files, then record the actual added-job count. Broader verification backlog and new-source expansion remain separate follow-up work; the unique-intake doubling target stays open.
+
+
+## Production receipt
+
+[Run 44262176177](https://github.com/nothenrynguyen/app-expo/actions/runs/44262176177) passed 214 tests, collection, publication and the incident update. Snapshot `48a9a8e`, generated `2026-11-18T07:54:39.457Z` (November 17, 11:54 p.m. Pacific), contains 5,213 current jobs and 620 internal holds. All four live job JSON files match the generated-data commit byte-for-byte. The deployment status is successful.
+
+Nineteen postings were added relative to the immediately preceding snapshot, with the five audited examples now classifying into supported roles and current additions including those employers. This is measured classification/refresh progress, not proof that every pending-verification lead is valid. Workday provider degradation remains distinct from the removed external-client crash path.
+
+Verification dispatch initially stalled because the Git credential manager presented personal/work account selection. Those requests were terminated, GitHub confirmed zero repair runs, and one dispatch using the explicit existing personal account succeeded. Automatic review blocked an unverified duplicate dispatch until that check was performed. No credential was printed or permission expanded.
+
+Further coverage audit: some existing jobs use an unhelpful Greenhouse-board-derived employer display name, `US Internships Public Careers S…`. This predates the new ML additions and should be reviewed against employer identity evidence in the next employer/name-matching pass rather than guessed or broadly trusted.
