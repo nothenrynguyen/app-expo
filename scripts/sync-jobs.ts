@@ -1,4 +1,5 @@
 import { preserveWorkdayJobIds, collectJobIdAliases } from "../lib/ingestion/preserve-job-ids";
+import { buildVerificationBacklog } from "../lib/ingestion/verification-backlog";
 import { trustedWorkdayFeedPolicy, type TrustedFeedState } from "../lib/ingestion/trusted-workday-feed";
 import { buildOutageHolds, validateOutageHolds } from "../lib/ingestion/outage-holds";
 import { availabilityInventory } from "../lib/ingestion/availability-inventory";
@@ -529,7 +530,8 @@ async function main() {
     checksCompleted: completedListingChecks,
     knownClosed: closedPostingsCaught,
     screening: snapshot.screening,
-  }), intake: {
+  }), verificationBacklog: buildVerificationBacklog({ candidates,
+    acceptedUrls: [...jobs, ...merged.values()].map(job => job.applyUrl), outcomeFor: screening.opportunityOutcomeFor }), intake: {
     candidateRows: candidates.length,
     uniqueOpportunities: new Set(candidates.map(candidate => opportunityIdentity(candidate.applyUrl)).filter(Boolean)).size,
     duplicateRows: candidates.length - new Set(candidates.map(candidate => opportunityIdentity(candidate.applyUrl)).filter(Boolean)).size,

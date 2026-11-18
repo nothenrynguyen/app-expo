@@ -64,7 +64,13 @@ const ATS_COMPANY_ALIASES: Array<[RegExp, string]> = [
 export function normalizeCompanyDisplayName(value: string, applyUrl?: string): string {
   if (applyUrl) {
     try {
-      const hostname = new URL(applyUrl).hostname;
+      const url = new URL(applyUrl);
+      const hostname = url.hostname;
+      // Reviewed Sony Interactive Entertainment internship board. This fixes
+      // display only; source names, public IDs and employer admission stay intact.
+      if (url.protocol === "https:" && !url.username && !url.password
+        && ["job-boards.greenhouse.io", "boards.greenhouse.io"].includes(hostname.toLowerCase())
+        && url.pathname.split("/").filter(Boolean)[0]?.toLowerCase() === "usinternshipspubliccareerssite") return "PlayStation (Sony Interactive Entertainment)";
       const alias = ATS_COMPANY_ALIASES.find(([pattern]) => pattern.test(hostname));
       if (alias) return alias[1];
     } catch {
