@@ -20,7 +20,7 @@ The last production snapshot contains no TikTok or ByteDance listings, so this p
 
 ## Validation and release state
 
-All 225 tests pass, including eight focused tests covering identity, redirects, permissions/holds, hidden content, qualifications, timestamps, recheck invalidation, outage versus closure, brand fairness and the 50-request ceiling. The parser accepts the saved real TikTok sample and rejects the saved hidden-content ByteDance sample. Lint and the production build also pass. Implementation is local; production refresh, admissions and deployment remain unverified.
+All 225 tests pass, including eight focused tests covering identity, redirects, permissions/holds, hidden content, qualifications, timestamps, recheck invalidation, outage versus closure, brand fairness and the 50-request ceiling. The parser accepts the saved real TikTok sample and rejects the saved hidden-content ByteDance sample. Lint and the production build also pass. Production completion and measured results are recorded below.
 
 ## Remaining growth work
 
@@ -28,8 +28,24 @@ Measure actual unique admissions after publication before estimating coverage ga
 
 ## First production receipt
 
-Implementation 3d81a01 passed production run 44306929525 and published snapshot a0c0592, generated November 18 at 4:47 a.m. Pacific. The bounded lane checked 25 source URLs using 50 requests and verified 15 official opportunities. Fourteen reached publication: 12 TikTok and two ByteDance. The snapshot has 5,232 current jobs and 621 internal holds. Overall reconciliation is 15 additions and one verification-pending removal, with zero unresolved removals; the extra addition is normal pipeline churn. Some ByteDance pages provide visible details and pass, while hidden-content responses remain pending. Intake is 23,869 rows and 18,797 unique opportunities. Deployed-file verification and the additional explicit-closure safeguard follow.
+Implementation 3d81a01 passed production run 44306929525 and published snapshot a0c0592, generated November 18 at 4:47 a.m. Pacific. The bounded lane checked 25 source URLs using 50 requests and verified 15 official opportunities. Fourteen reached publication: 12 TikTok and two ByteDance. The snapshot has 5,232 current jobs and 621 internal holds. Overall reconciliation is 15 additions and one verification-pending removal, with zero unresolved removals; the extra addition is normal pipeline churn. Some ByteDance pages provide visible details and pass, while hidden-content responses remain pending. Intake is 23,869 rows and 18,797 unique opportunities. All four deployed data files matched this first snapshot; the subsequent explicit-closure safeguard is verified below.
 
 ## Measured classification gap
 
-One of the first 15 verified pages, TikTok requisition 7663389956951918853, was excluded because its title is Research Scientist Graduate rather than Machine Learning Researcher. Official duties explicitly build a recommendation system and deliver machine-learning solutions; qualifications specify completing a computer-science degree. A narrow classifier correction requires a research-scientist graduate/intern title, ML subject matter, and concrete model, algorithm or ML/recommendation-system development duties. Senior and unrelated clinical, marketing and other research titles remain excluded. This corrects a demonstrated false exclusion, rather than relaxing the whole pending queue. The regression suite now has 226 tests; publication and measured admissions follow.
+One of the first 15 verified pages, TikTok requisition 7663389956951918853, was excluded because its title is Research Scientist Graduate rather than Machine Learning Researcher. Official duties explicitly build a recommendation system and deliver machine-learning solutions; qualifications specify completing a computer-science degree. A narrow classifier correction requires a research-scientist graduate/intern title, ML subject matter, and concrete model, algorithm or ML/recommendation-system development duties. Senior and unrelated clinical, marketing and other research titles remain excluded. This corrects a demonstrated false exclusion, rather than relaxing the whole pending queue. All 226 tests, lint and the production build pass. Implementation 402ef24 and its measured admission are production-verified below.
+
+## Production completion
+
+Three successful production refreshes processed 75 bounded source-URL checks and 150 HTTP requests total. Every run stayed within its existing 250 generic-request allowance, reusing prior positives at their original timestamps:
+
+| Run | Implementation | Snapshot | Fresh verified | Reused verified | Newly published reviewed-employer jobs |
+| --- | --- | --- | ---: | ---: | ---: |
+| [44306929525](https://github.com/nothenrynguyen/app-expo/actions/runs/44306929525) | 3d81a01 | a0c0592 | 15 | 0 | 14 |
+| [44307499996](https://github.com/nothenrynguyen/app-expo/actions/runs/44307499996) | 5592601 | 121bdcb | 17 | 15 | 17 |
+| [44308032360](https://github.com/nothenrynguyen/app-expo/actions/runs/44308032360) | 402ef24 | 3899642 | 15 | 32 | 16 |
+
+The final extra admission is the already-verified ML research job recovered by the classifier correction. Snapshot 3899642, generated November 18 at 4:54 a.m. Pacific, contains **5,265 current jobs**, **621 internal holds**, and **47 newly recovered reviewed-employer jobs** compared with the pre-release snapshot: **37 TikTok and 10 ByteDance**. Final-run reconciliation is 16 additions, zero removals and zero unresolved removals. All four live JSON files match the final generated-data commit byte-for-byte. GitHub confirms Vercel deployment success. The previously sampled hidden-content ByteDance page remains inconclusive; other visible ByteDance pages verify normally.
+
+Final intake is 23,870 candidate rows and 18,806 unique opportunities. The pending-candidate measure is 7,729, spanning all employers and changing with source churn; it is not a count of valid jobs that should be published. Four preceding hourly refreshes and all three release checks succeeded. Genuine failures still alert, while source degradation uses the existing single incident rather than creating an issue on every run.
+
+No extra public tab, paid service, source-license exception, broad company approval or Workday cooldown change was introduced. The hourly scheduler will continue bounded verification. The doubling target remains open. Next priorities are the remaining exact-employer evidence gaps and reviewed, permitted sources that add genuinely new opportunities. Empluzzed's one-week deployment retention was saved previously; storage usage reduction has not been reverified in this release.
