@@ -1,6 +1,6 @@
 # Employer evidence and backlog visibility
 
-Owner authorized autonomous evidence-backed implementation and publication, with clear explanations and existing quality, zero-cost and permission boundaries. Local implementation is ready for final checks; production proof follows.
+Owner authorized autonomous evidence-backed implementation and publication, with clear explanations and existing quality, zero-cost and permission boundaries. Implementation b638a2c is published and production-verified with snapshot 3bb0cb5.
 
 ## Decisions
 
@@ -19,3 +19,16 @@ No new source, service, paid tier, larger request cap or relaxed quality thresho
 ## Verification
 
 Tests cover reviewed-board scope and hostile lookalikes, display corrections granting no trust, exact employer application scope, early-career and unpaid rejection, and duplicate/accepted/terminal precedence in backlog counts. Full test, lint, TypeScript and static-export results and actual admissions are recorded in the production receipt after release. The overall target of doubling unique intake remains open; this batch improves attribution and evidence gaps within existing intake.
+
+
+## Production receipt and limits
+
+[Run 44264861485](https://github.com/nothenrynguyen/app-expo/actions/runs/44264861485) passed all 217 tests, collection, publication and the existing incident update. Lint, TypeScript and production static export pass locally. Snapshot `3bb0cb5`, generated `2026-11-18T08:13:34.081Z` (November 18, 12:13 a.m. Pacific), has 5,213 current listings and 620 internal holds. Both collection guards pass unchanged. Deployment status is successful and all four public JSON files match the generated-data commit byte-for-byte.
+
+All 23 current jobs on the reviewed Sony internship board now display PlayStation (Sony Interactive Entertainment), and all 23 retain the exact previous IDs for their application URLs. No Sony employer-trust record was added.
+
+No Martin Marietta job was admitted. Its former company-identity reason is now a listing-availability hold for otherwise eligible candidates. The host's current observation is HTTP 429 with a cooldown until `2026-11-18T20:13:26.682Z`. Further requests were not forced, and strict-source rules were not bypassed. A separate source title contains an invisible character in Infrastructure; it remains a classification review lead rather than being automatically re-admitted. This approval is an evidence correction, not a claim that current availability is verified.
+
+The new backlog reports 7,711 unique pending opportunities present in the candidate batch. Largest source-supplied employer labels: TikTok 127, Booz Allen Hamilton 95, ByteDance 89, Northrop Grumman 87, RTX 72, CACI 70, General Dynamics Mission Systems 69 and Software Technology 66. These are pending leads, not confirmed valid vacancies. Scope and identity review must precede admission. Totals differ from the application-destination ledger by design and should not be combined.
+
+Current job count is unchanged by this batch. Next priorities are targeted evidence reviews for the largest pending groups, exact employer/site aliases and review of the invisible-character title example. Broader new-source expansion and the 37,530-unique-intake target remain open. Normal request budgets, source rights, zero-cost architecture and the seven-day project retention policy remain unchanged.
