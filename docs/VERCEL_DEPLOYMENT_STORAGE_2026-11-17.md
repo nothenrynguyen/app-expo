@@ -20,3 +20,7 @@ The owner explicitly requested automatic deletion of deployments over a week old
 This is a project-only policy, not a team-wide change. Current production aliases and Vercel's protected recent-deployment exceptions remain in force. No deployment was manually purged, paid plan enabled, or security setting changed. Retention processing and usage reporting are asynchronous; storage reduction itself has not yet been verified. The code and generated-data deployments both succeeded while the team storage warning was present.
 
 The Vercel connection could list the team but not its projects; signed-in native Chrome supplied the verified project ID and controls. An optional 2FA setup prompt and an unverifiable coordinate action were rejected by automatic approval review. The prompt disappeared after user interaction; navigation continued through observed URLs and fresh semantic controls. Neither blocked action was performed by the assistant. The requested retention update was ultimately saved successfully.
+
+## November 18 usage clarification
+
+The follow-up verified 10.03 GB of reported team Deployment Storage (9.96 GB app-expo), the saved one-week policy, and a successful current deployment. Vercel records daily maxima over the reporting period, so cleanup does not erase historical usage and a lower cumulative total is not the right success test. Actual retained-footprint reduction remains unverified. See [current evidence and next checks](REFRESH_STORAGE_CHECK_2026-11-18.md).
