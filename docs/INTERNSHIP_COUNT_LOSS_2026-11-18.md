@@ -42,7 +42,7 @@ Before outage mode, November 15 to November 16 produced 621 internship removal e
 
 On November 17, outage mode resumed safe publication while separating 316 internships into internal holds. That alone accounts for 316 of the 475 visible-count reduction in the first new snapshot. The remaining net 159 reflects other additions/removals during the interval. The code preserves those held jobs and their saved details, but public current counts exclude them. The owner explicitly requested no separate availability tab. This is a real availability/presentation-policy effect, not 316 proved closures.
 
-The final current source report still has 36 Workday rate-limit records and 22 cooldown records. A green refresh means healthy sources updated and publication safeguards passed. It does not mean Workday recovered or old jobs were restored. Vercel deployment-storage usage is separate; deployed JSON matches the current generated snapshot, so missing production publication is not the explanation for this measured count loss.
+The 8:19 a.m. source report has 58 Workday cooldown records, with no new requests to those sites. The preceding independently checked 7:20 a.m. report had 36 actual rate-limit records and 22 cooldown records. The live summary confirms 3,263 internships at 8:19 a.m. A green refresh means healthy sources updated and publication safeguards passed. It does not mean Workday recovered or old jobs were restored. Vercel deployment-storage usage is separate; deployed JSON matches the current generated snapshot, so missing production publication is not the explanation for this measured count loss.
 
 ## What recent work achieved
 
