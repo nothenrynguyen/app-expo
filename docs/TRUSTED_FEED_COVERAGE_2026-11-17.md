@@ -1,6 +1,6 @@
 # Trusted-feed availability and ingestion growth
 
-Status: approved implementation, local checks pass; publication and production measurement follow. This extends the published outage repair without adding public controls or paid services.
+Status: implementation `e163a7f` is published; successful production run and live snapshot `240efa6` are verified. This extends the published outage repair without adding public controls or paid services.
 
 ## Quality-preserving Workday fallback
 
@@ -27,3 +27,14 @@ Next expansion order: identify net-new employers and role families from licensed
 ## Verification
 
 All 212 tests pass, including exact-site outage scope, inactive/failed/partial feed rejection, fixed deadlines across feed changes, invalid dates and workflow preservation of observation-only state. Lint, TypeScript and static export pass. Final production receipt is recorded after a real refresh and deployed-data comparison.
+
+
+## Production receipt
+
+[Run 44217830328](https://github.com/nothenrynguyen/app-expo/actions/runs/44217830328) passed all 212 tests, refresh, publication and the consolidated incident update. Snapshot `240efa6`, generated `2026-11-18T01:44:29.993Z` (November 17, 5:44 p.m. Pacific), contains 5,197 current listings and 617 internal holds. All four live JSON files match the commit byte-for-byte and the deployment status is successful. Both collection guards pass with unchanged thresholds.
+
+Final intake: 23,826 candidate rows, 18,765 unique opportunities and 5,061 duplicate rows. The fallback observed 1,895 feed rows, with 262 eligible before downstream quality and strict-source gates, 944 expired and five finally admitted. Counts before admission are row counts, not additional unique jobs. All five source-backed jobs were absent from the prior current-job ID set. Total current count increased by four after other normal refresh churn. Their `lastVerifiedAt` remains null; feed observation times did not become employer verification dates.
+
+The same ongoing issue 3 was updated, with no new incident issue created. Workday remains degraded; this release does not claim provider recovery or unlimited freshness. Local preliminary data is retained in a named stash and was not published.
+
+Growth target remains open: expand toward at least 37,530 unique opportunities and 47,654 candidate rows per comparable refresh without weakening admission. The five-job gain completes the bounded-fallback step, not the doubling objective. Next work is a measured coverage expansion using net-new employers and role-family gaps, with attention to strict-source pending-verification bottlenecks.
