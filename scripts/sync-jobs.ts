@@ -1,4 +1,5 @@
 import { preserveWorkdayJobIds, collectJobIdAliases } from "../lib/ingestion/preserve-job-ids";
+import { trustedWorkdayFeedPolicy, type TrustedFeedState } from "../lib/ingestion/trusted-workday-feed";
 import { buildOutageHolds, validateOutageHolds } from "../lib/ingestion/outage-holds";
 import { availabilityInventory } from "../lib/ingestion/availability-inventory";
 import { lastVerificationAt, canRestoreHeldJob } from "../lib/ingestion/last-verification";
@@ -198,6 +199,13 @@ async function main() {
   for (const result of scopedResults) if (result.status === "fulfilled") scopedCache[result.value.identity] = { status: result.value.live ? "live" : "unknown", checkedAt: startedAt.toISOString(), firstSeenAt: scopedCache[result.value.identity].firstSeenAt };
   const verifiedScopedIds = new Set([...scopedUrls.keys()].filter(identity => scopedListingIsLive(scopedCache[identity], startedAt)));
   const observationTime = new Date();
+  const feedStatePath = path.join(root, "data/trusted-feed-observations.json");
+  const feedState: TrustedFeedState = await readFile(feedStatePath, "utf8").then(value => JSON.parse(value))
+    .catch((error: NodeJS.ErrnoException) => { if (error.code === "ENOENT") return {}; throw error; });
+  const feedPolicy = trustedWorkdayFeedPolicy({ sources: activeSources.filter(source => !permissionHeldSources.has(source.name)),
+    diagnostics: sourceDiagnostics, boards: boardRegistry, candidates, state: feedState, now: observationTime });
+  const fallbackAccepted = new Set<string>();
+  const strictSourceIds = new Set(catalog.sources.filter(source => source.requireLiveListing && !source.workdayFeedFallback).map(source => source.id));
   const lastPositiveAt = (job: PublicJob) => lastVerificationAt(job, observationTime, {
     workdayCache, workdayChecks, recoveryState: recoveryState ?? {}, listingHealth, scopedCache, boardResults,
   });
@@ -282,19 +290,26 @@ async function main() {
     }
 
     const canonical = canonicalizeUrl(candidate.applyUrl)!;
+    // Availability fallback never promotes a quarantined employer. Every role,
+    // location, freshness and employer gate above must already have passed.
+    const strictSourceGate = sourceTargets[sourceVerificationKey(canonical) ?? ""]?.sourceIds.some(id => strictSourceIds.has(id));
+    const feedEvidence = decision.status === "approved" && !strictSourceGate ? feedPolicy.evidenceFor(candidate) : undefined;
     const identity = jobIdentity(canonical)!;
     const candidateId = stableJobId(identity, candidate.company, candidate.title);
     const directPrior = previousByUrl.get(opportunityIdentity(canonical));
     const heldPrior = directPrior?.verification?.status === "awaiting" ? directPrior
       : priorHeldById.get(publishedJobIdAliases[candidateId as keyof typeof publishedJobIdAliases] ?? candidateId);
+    let needsFeedRestoration = false;
     if (heldPrior?.verification?.status === "awaiting") {
       const positive = lastPositiveAt({...heldPrior, lastVerifiedAt: null, verification: undefined});
-      if (!canRestoreHeldJob(heldPrior, positive, observationTime)) {
+      needsFeedRestoration = !canRestoreHeldJob(heldPrior, positive, observationTime);
+      if (needsFeedRestoration && !feedEvidence) {
         screening.record(candidate.applyUrl, "pendingVerification", "Fresh positive employer evidence is required to restore this held listing.");
         continue;
       }
     }
-    if ((scopedUrls.has(identity) && !verifiedScopedIds.has(identity)) || !sourceListingIsAllowed(candidate.applyUrl, sourceTargets, verifiedScopedIds)) {
+    const needsAvailability = (scopedUrls.has(identity) && !verifiedScopedIds.has(identity)) || !sourceListingIsAllowed(candidate.applyUrl, sourceTargets, verifiedScopedIds);
+    if (needsAvailability && !feedEvidence) {
       screening.record(candidate.applyUrl, "pendingVerification", "Current employer listing availability could not be verified.");
       quarantined.push({ company: candidate.company, title: candidate.title, reason: "Current employer listing availability could not be verified.", source: candidate.source, applyUrl: candidate.applyUrl });
       continue;
@@ -312,6 +327,8 @@ async function main() {
       continue;
     }
     const mergeIdentity = opportunityIdentity(candidate.applyUrl)!;
+    const usedFeedFallback = !!feedEvidence && (needsAvailability || needsFeedRestoration);
+    if (usedFeedFallback) fallbackAccepted.add(mergeIdentity);
     const existing = merged.get(mergeIdentity);
     if (existing) {
       if (candidate.federal) existing.federal = candidate.federal;
@@ -346,6 +363,7 @@ async function main() {
       sources: [candidate.source],
       verifiedCompany: !continuityAdmission,
       employeeCount: decision.minimumEmployees,
+      ...(usedFeedFallback ? { availabilityEvidence: feedEvidence } : {}),
       ...(candidate.federal ? { federal: candidate.federal } : {}),
     });
   }
@@ -479,6 +497,8 @@ async function main() {
   await persistRefreshState(root, { listingHealth, scopedCache, sourceTargets,
     workdayContinuity: updateWorkdayContinuity(workdayCache, workdayChecks, jobs, startedAt),
     workdaySchedule: workdaySchedule ?? {}, recoveryState: recoveryState ?? {} });
+  await writeFile(`${feedStatePath}.tmp`, `${JSON.stringify(feedPolicy.state, null, 2)}\n`);
+  await rename(`${feedStatePath}.tmp`, feedStatePath);
   if (coverage.collections.some(row => row.largeDrop || row.blocked)) console.warn("Coverage alert:", JSON.stringify(coverage));
   try { assertCoverageSafe(coverage.collections); }
   catch (error) {
@@ -493,7 +513,7 @@ async function main() {
   await writeFile(path.join(root, "data/job-id-aliases.json"), `${JSON.stringify(jobIdAliases, null, 2)}\n`);
   await writeFile(path.join(root, "data/company-boards.json"), `${JSON.stringify(boardRegistry, null, 2)}\n`);
   await writeFile(path.join(root, "data/board-history.json"), `${JSON.stringify(completeBoardHistory(boardHistory, boardRegistry, startedAt), null, 2)}\n`);
-  const refreshReport = buildRefreshReport({
+  const refreshReport = { ...buildRefreshReport({
     listingChanges: { path: "data/listing-changes.json", reconciliation: listingChanges.reconciliation, categoryCounts: listingChanges.categoryCounts },
     coverage,
     startedAt,
@@ -509,7 +529,16 @@ async function main() {
     checksCompleted: completedListingChecks,
     knownClosed: closedPostingsCaught,
     screening: snapshot.screening,
-  });
+  }), intake: {
+    candidateRows: candidates.length,
+    uniqueOpportunities: new Set(candidates.map(candidate => opportunityIdentity(candidate.applyUrl)).filter(Boolean)).size,
+    duplicateRows: candidates.length - new Set(candidates.map(candidate => opportunityIdentity(candidate.applyUrl)).filter(Boolean)).size,
+    trustedWorkdayFeed: { ...feedPolicy.counts, admitted: jobs.filter(job => fallbackAccepted.has(opportunityIdentity(job.applyUrl)!)).length },
+    bySource: [...Map.groupBy(candidates, candidate => candidate.source)].map(([source, rows]) => ({
+      source, rows: rows.length, uniqueOpportunities: new Set(rows.map(row => opportunityIdentity(row.applyUrl)).filter(Boolean)).size,
+      workdayOpportunities: new Set(rows.map(row => workdayEvidenceKey(row.applyUrl)).filter(Boolean)).size,
+    })).sort((a, b) => b.uniqueOpportunities - a.uniqueOpportunities),
+  } };
   await writeFile(path.join(root, "data/refresh-report.json"), `${JSON.stringify(refreshReport, null, 2)}\n`);
   await writeFile(path.join(root, "data/listing-changes.json"), `${JSON.stringify(listingChanges, null, 2)}\n`);
   if (refreshReport.status === "failed") throw new Error("All sources failed; snapshot publication blocked.");

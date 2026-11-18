@@ -1,6 +1,7 @@
 export type PostedAtSource = "exact" | "date_only" | "relative_derived" | "first_seen";
 
 export type PublicJob = {
+  availabilityEvidence?: { kind: "trusted-feed"; source: string; observedAt: string; expiresAt: string };
   lastVerifiedAt?: string | null;
   verification?: { status: "awaiting"; since: string; lastVerifiedAt: string | null;
     checkedAt: string; reason: "source-unavailable"; source: string };

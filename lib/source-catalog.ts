@@ -13,6 +13,7 @@ export type JobSource = {
   directEarlyCareerOnly?: boolean;
   active: boolean;
   trustedCoverage: boolean;
+  workdayFeedFallback?: boolean;
   reviewHolds?: Array<{ url: string; reason: string; reviewedAt: string }>;
 };
 
