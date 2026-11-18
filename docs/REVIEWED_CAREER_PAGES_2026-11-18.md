@@ -16,7 +16,7 @@ The last production snapshot contains no TikTok or ByteDance listings, so this p
 3. Require a visible job title matching the page title, location, substantive responsibilities and qualifications, and an exact employer application link containing the same job ID. Apply existing early-career and required-experience rules. Hidden fragments, generic shells and HTTP 200 alone provide no positive evidence.
 4. Replace source title, location and application destination with verified employer fields. Preserve source attribution and date provenance. No permanent company approval is added. Normal role, location, freshness, employer and source admission checks still run.
 5. Check at most 25 source URLs per refresh, four at a time, with at most two requests each and 10-second timeouts. Deduct the actual requests from the existing 250 generic-request budget. Workday and 150 scoped-check caps are unchanged. Both brands receive queue slots; due positive evidence receives maintenance priority within each brand.
-6. Renew positives after 12 hours, expire them at 24 hours, and retain their actual verification timestamp on reuse. Unknown results retry after one hour. Any failed recheck immediately invalidates its old positive. Save progress on both successful and blocked runs. Official 404/410 responses are closures; timeouts, 429 and server errors remain unknown and feed the existing outage evidence path.
+6. Renew positives after 12 hours, expire them at 24 hours, and retain their actual verification timestamp on reuse. Unknown results retry after one hour. Any failed recheck immediately invalidates its old positive. Save progress on both successful and blocked runs. Official 404/410 responses and visible closure notices are closures, even when an old Apply button remains; timeouts, 429 and server errors remain unknown and feed the existing outage evidence path.
 
 ## Validation and release state
 
@@ -25,3 +25,7 @@ All 225 tests pass, including eight focused tests covering identity, redirects, 
 ## Remaining growth work
 
 Measure actual unique admissions after publication before estimating coverage gains. This recovers verifiable existing leads and does not itself double ingestion. Continue reviewing the largest evidence-backed gaps, and separately review permitted new sources against the unique-intake target. Do not treat all pending rows as valid or weaken filters to reach a count.
+
+## First production receipt
+
+Implementation 3d81a01 passed production run 44306929525 and published snapshot a0c0592, generated November 18 at 4:47 a.m. Pacific. The bounded lane checked 25 source URLs using 50 requests and verified 15 official opportunities. Fourteen reached publication: 12 TikTok and two ByteDance. The snapshot has 5,232 current jobs and 621 internal holds. Overall reconciliation is 15 additions and one verification-pending removal, with zero unresolved removals; the extra addition is normal pipeline churn. Some ByteDance pages provide visible details and pass, while hidden-content responses remain pending. Intake is 23,869 rows and 18,797 unique opportunities. Deployed-file verification and the additional explicit-closure safeguard follow.

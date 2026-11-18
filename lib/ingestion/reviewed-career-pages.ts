@@ -1,4 +1,5 @@
 import { load } from "../html";
+import { classifyListingResponse } from "../listing-health";
 import { isEarlyCareerTitle } from "../ats-boards";
 import { hasRequiredExperienceConflict } from "../early-career-evidence";
 import { canonicalizeUrl, type CandidateJob } from "../source-normalization";
@@ -7,7 +8,7 @@ import { inBatches } from "./concurrency";
 
 type Brand = "TikTok" | "ByteDance";
 type Posting = { company: Brand; url: string; title: string; location: string; description: string };
-export type CareerPageState = Record<string, { checkedAt: string; targetUrl?: string; httpStatus?: number | null; posting?: Posting }>;
+export type CareerPageState = Record<string, { checkedAt: string; targetUrl?: string; httpStatus?: number | null; closed?: boolean; posting?: Posting }>;
 const evidence = new WeakMap<CandidateJob, string>();
 export const careerPageEvidenceAt = (row: CandidateJob) => evidence.get(row);
 const brandFor = (name: string): Brand | null => name.trim().toLowerCase() === "tiktok" ? "TikTok" : name.trim().toLowerCase() === "bytedance" ? "ByteDance" : null;
@@ -31,7 +32,7 @@ export function needsCareerPageEvidence(row: CandidateJob) {
 
 export function parseOfficialCareerPage(url: string, html: string): Posting | null {
   const ref = officialCareerReference(url);
-  if (!ref) return null;
+  if (!ref || classifyListingResponse(200,html)==="closed") return null;
   const $=load(html);
   $("script,style,template,noscript,[hidden],[aria-hidden='true']").remove();
   const title=$("h2").first().text().trim();
@@ -80,7 +81,9 @@ export async function enrichReviewedCareerPages(candidates: CandidateJob[], stat
       const response=await fetcher(ref.url,{redirect:"error",signal:AbortSignal.timeout(10_000)});
       next[key].httpStatus=response.status;
       if (!response.ok) return;
-      const posting=parseOfficialCareerPage(ref.url,await response.text());
+      const body=await response.text();
+      if(classifyListingResponse(response.status,body)==="closed"){next[key].closed=true;return;}
+      const posting=parseOfficialCareerPage(ref.url,body);
       if (posting) next[key].posting=posting;
     } catch { /* Inconclusive results stay pending, never successful by HTTP alone. */ }
   });
@@ -99,7 +102,7 @@ export async function enrichReviewedCareerPages(candidates: CandidateJob[], stat
   const observations=Object.values(next).flatMap(record=>{
     const url=record.targetUrl??record.posting?.url;
     return url && officialCareerReference(url)?[{url,checkedAt:record.checkedAt,httpStatus:record.httpStatus??null,
-      status:record.posting?"live" as const:[404,410].includes(record.httpStatus??0)?"closed" as const:"unknown" as const}]:[];
+      status:record.posting?"live" as const:record.closed || [404,410].includes(record.httpStatus??0)?"closed" as const:"unknown" as const}]:[];
   });
   return {candidates:rows,state:next,requests,attempted:due.length,verified:verified.size,reused:reused.size,observations};
 }

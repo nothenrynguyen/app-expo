@@ -13,6 +13,7 @@ test("official career evidence requires exact job application ID, body, identity
   assert.equal(parseOfficialCareerPage(official,page(undefined,undefined,"9999999999999999999")),null);
   assert.equal(parseOfficialCareerPage(official,"<title>Jobs</title><h2>Jobs</h2>Apply now"),null);
   assert.equal(parseOfficialCareerPage(official,page("Senior Software Engineer")),null);
+  assert.equal(parseOfficialCareerPage(official,page().replace('<h2>','<p>This job is no longer available</p><h2>')),null);
   assert.equal(parseOfficialCareerPage(official,page(undefined,"Minimum Qualifications:\nAt least 7 years of professional software engineering experience is required.")),null);
   assert.equal(officialCareerReference("https://evil.example/search/"+id),null);
   assert.equal(officialCareerReference("https://user:pass@lifeattiktok.com/search/"+id),null);
@@ -58,6 +59,8 @@ test("official failures distinguish closures from outages without retaining stal
   }
   const result=await enrichReviewedCareerPages([{...row,applyUrl:official}],{},now,(async()=>{throw new Error('timeout');}) as typeof fetch);
   assert.equal(result.observations[0].status,"unknown");assert.equal(result.observations[0].httpStatus,null);
+  const closed=await enrichReviewedCareerPages([{...row,applyUrl:official}],{},now,(async()=>new Response(page().replace('<h2>','<p>This job is no longer available</p><h2>'))) as typeof fetch);
+  assert.equal(closed.observations[0].status,"closed");assert.equal(closed.observations[0].httpStatus,200);
 });
 
 test("hidden streaming fragments cannot establish a visible employer posting",()=>{
