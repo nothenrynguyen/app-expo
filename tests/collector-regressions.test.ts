@@ -25,3 +25,11 @@ test("specific AI and IT internships map to supported work without accepting gen
     assert.ok(!tags.includes("ai-ml-engineering") && !tags.includes("data-science") && !tags.includes("it-support-network"), title);
   }
 });
+
+test("graduate research scientist titles require concrete ML development duties",()=>{
+  const rawText="Build industry-leading recommendation system. Deliver end-to-end machine learning solutions and optimize algorithms. Minimum qualifications: completing a computer science degree.";
+  assert.ok(classifyRoleTags({title:"(General Hire) Research Scientist Graduate (TikTok Recommendation) - 2027 Start",rawText,category:"New grad"}).includes("data-science"));
+  for(const title of ["Research Scientist", "Senior Research Scientist Graduate", "Clinical Research Scientist Graduate", "Research Scientist Graduate - Marketing"])
+    assert.ok(!classifyRoleTags({title,rawText,category:"New grad"}).includes("data-science"),title);
+  assert.ok(!classifyRoleTags({title:"Research Scientist Graduate",rawText:"Our company uses machine learning for advertising.",category:"New grad"}).includes("data-science"));
+});

@@ -141,6 +141,12 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
   if (/\b(?:senior|sr\.?|staff|principal|director|head|lead)\b/i.test(job.title)) return [];
   if (/\bmanager\b/i.test(job.title) && !explicitEarlyCareerTitle && !/\b(?:product|technical program) manager\b/i.test(job.title)) return [];
   const tags = new Set<RoleTag>();
+  // A graduate research title can omit its ML specialty. Require concrete
+  // model/system development duties as well as technical subject matter.
+  if (/\bresearch scientist\s+(?:graduates?|intern)\b/.test(title)
+    && /\b(?:machine learning|deep learning|neural networks?)\b/.test(rawText)
+    && /\b(?:build|train|develop|optimize)\b.{0,100}\b(?:models?|algorithms?|recommendation systems?|machine learning (?:solutions?|systems?))\b/.test(rawText)
+    && !/\b(?:clinical|laboratory|biolog|chemistry|education|recruiting|marketing|sales)\b/.test(title)) tags.add("data-science");
   // Specific early-career AI titles need functional context, not a bare AI
   // keyword that could describe marketing, recruiting or unrelated work.
   if (explicitEarlyCareerTitle && /\b(?:ai|ai\/ml|machine learning|deep learning|generative ai)\b/.test(title)
