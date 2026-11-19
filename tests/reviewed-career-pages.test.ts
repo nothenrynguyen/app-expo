@@ -68,6 +68,30 @@ test("hidden streaming fragments cannot establish a visible employer posting",()
   assert.equal(parseOfficialCareerPage(official,hidden),null);
 });
 
+test("completed React segments establish visible content while incomplete or unused hidden content stays excluded",()=>{
+  const content=page().match(/<body>([\s\S]*)<\/body>/)![1];
+  const prefix=`<title>Backend Software Engineer Graduate - 2027 Start</title><template id="B:0"></template><div hidden id="S:0"><template id="P:1"></template></div><div hidden id="S:1">${content}</div>`;
+  const move='<script>$RS=function(){};$RS("S:1","P:1")</script>';
+  const complete='<script>$RC=function(){};$RC("B:0","S:0")</script>';
+  assert.equal(parseOfficialCareerPage(official,prefix+move+complete)?.location,'Seattle');
+  assert.equal(parseOfficialCareerPage(official,prefix+move),null);
+  assert.equal(parseOfficialCareerPage(official,prefix+complete),null);
+  assert.equal(parseOfficialCareerPage(official,prefix+move+complete.replace('B:0','B:9')),null);
+  const closed=prefix.replace('Build and maintain','This job is no longer available. Build and maintain');
+  assert.equal(parseOfficialCareerPage(official,closed+move+complete),null);
+});
+
+test("parser upgrades retry recent HTTP-200 false negatives and retain canonical identity without granting success to a shell",async()=>{
+  const legacy={ [row.applyUrl]:{checkedAt:now.toISOString(),httpStatus:200,targetUrl:official} };
+  const first=await enrichReviewedCareerPages([row],legacy,now,(async(u:unknown)=>String(u).includes('go.vansh')?new Response(null,{status:302,headers:{location:official}}):new Response(page())) as typeof fetch);
+  assert.equal(first.verified,1);assert.equal(first.requests,2);
+  const unknown=await enrichReviewedCareerPages([row],{},now,(async(u:unknown)=>String(u).includes('go.vansh')?new Response(null,{status:302,headers:{location:official}}):new Response('<title>Loading</title>')) as typeof fetch);
+  assert.equal(unknown.candidates[0].applyUrl,official);
+  assert.equal(careerPageEvidenceAt(unknown.candidates[0]),undefined);
+  const cached=await enrichReviewedCareerPages([row],unknown.state,now,fetch);
+  assert.equal(cached.requests,0);
+});
+
 test("both brands receive checks and positive evidence renews before its hard expiry",async()=>{
   const rows=[...Array.from({length:30},(_,i)=>({...row,applyUrl:`https://go.vansh.nyc/A${i}`})),{...row,company:"ByteDance",applyUrl:"https://go.vansh.nyc/Z"}];
   const first=await enrichReviewedCareerPages(rows,{},now,(async()=>new Response('',{status:503})) as typeof fetch);

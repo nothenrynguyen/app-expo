@@ -8,7 +8,8 @@ import { inBatches } from "./concurrency";
 
 type Brand = "TikTok" | "ByteDance";
 type Posting = { company: Brand; url: string; title: string; location: string; description: string };
-export type CareerPageState = Record<string, { checkedAt: string; targetUrl?: string; httpStatus?: number | null; closed?: boolean; posting?: Posting }>;
+export type CareerPageState = Record<string, { checkedAt: string; parserVersion?: number; targetUrl?: string; httpStatus?: number | null; closed?: boolean; posting?: Posting }>;
+const PARSER_VERSION = 2;
 const evidence = new WeakMap<CandidateJob, string>();
 export const careerPageEvidenceAt = (row: CandidateJob) => evidence.get(row);
 const brandFor = (name: string): Brand | null => name.trim().toLowerCase() === "tiktok" ? "TikTok" : name.trim().toLowerCase() === "bytedance" ? "ByteDance" : null;
@@ -32,9 +33,24 @@ export function needsCareerPageEvidence(row: CandidateJob) {
 
 export function parseOfficialCareerPage(url: string, html: string): Posting | null {
   const ref = officialCareerReference(url);
-  if (!ref || classifyListingResponse(200,html)==="closed") return null;
+  if (!ref) return null;
   const $=load(html);
+  // React streams completed career content in hidden S:n containers, then
+  // moves it into visible template slots. Resolve only literal completed
+  // segment moves emitted by this page, in order. Never execute page scripts
+  // or reveal arbitrary/unreferenced hidden content.
+  const scripts=$("script").toArray().map(node=>$(node).text());
+  if (scripts.some(script=>/\$RC\s*=\s*function/.test(script)) && scripts.some(script=>/\$RC\("B:\d+","S:\d+"\)/.test(script))) {
+    for(const script of scripts) for(const match of script.matchAll(/\$(RS|RC)\("([BPS]:\d+)","([BPS]:\d+)"\)/g)) {
+      const source=match[1]==="RS"?match[2]:match[3], target=match[1]==="RS"?match[3]:match[2];
+      if(!/^S:\d+$/.test(source) || !(match[1]==="RS"?/^P:\d+$/:/^B:\d+$/).test(target))continue;
+      const segment=$(`div[hidden][id="${source}"]`), slot=$(`template[id="${target}"]`);
+      if(segment.length!==1 || slot.length!==1 || segment.find(`template[id="${target}"]`).length)continue;
+      slot.replaceWith(segment.contents());segment.remove();
+    }
+  }
   $("script,style,template,noscript,[hidden],[aria-hidden='true']").remove();
+  if(classifyListingResponse(200,$.html())==="closed")return null;
   const title=$("h2").first().text().trim();
   if (!title || $("title").text().trim() !== title) return null;
   const apply=ref.company === "TikTok" ? `https://careers.tiktok.com/resume/${ref.id}/apply` : `https://jobs.bytedance.com/en/resume/${ref.id}/apply`;
@@ -54,9 +70,12 @@ export async function enrichReviewedCareerPages(candidates: CandidateJob[], stat
   const eligible=[...new Map(candidates.filter(row=>row.sourceActive!==false && needsCareerPageEvidence(row) && !holds.has(sourceReviewHoldIdentity(row.applyUrl)??""))
     .map(row=>[canonicalizeUrl(row.applyUrl)!,row])).entries()];
   const next=structuredClone(state);
-  const waiting=eligible.filter(([key])=>!state[key] || nowMs-Date.parse(state[key].checkedAt)>=(state[key].posting?12:1)*3600_000)
-    .sort(([a],[b])=>Number(!!state[b]?.posting)-Number(!!state[a]?.posting)
-      || Date.parse(state[a]?.checkedAt??"1970-01-01")-Date.parse(state[b]?.checkedAt??"1970-01-01") || a.localeCompare(b));
+  const parserRetry=(key:string)=>state[key]?.httpStatus===200 && !state[key]?.posting && !state[key]?.closed && state[key]?.parserVersion!==PARSER_VERSION;
+  const recentParserRetry=(key:string)=>parserRetry(key) && nowMs-Date.parse(state[key].checkedAt)<3600_000;
+  const waiting=eligible.filter(([key])=>parserRetry(key) || !state[key] || nowMs-Date.parse(state[key].checkedAt)>=(state[key].posting?12:1)*3600_000)
+    .sort(([a],[b])=>Number(recentParserRetry(b))-Number(recentParserRetry(a)) || Number(!!state[b]?.posting)-Number(!!state[a]?.posting)
+      || Number(parserRetry(b))-Number(parserRetry(a))
+      || (parserRetry(a)&&parserRetry(b)?-1:1)*(Date.parse(state[a]?.checkedAt??"1970-01-01")-Date.parse(state[b]?.checkedAt??"1970-01-01")) || a.localeCompare(b));
   const queues=[...Map.groupBy(waiting,([,row])=>brandFor(row.company)).values()];
   const due: typeof waiting=[];
   while(due.length<limit && queues.some(queue=>queue.length)) for(const queue of queues) {
@@ -65,7 +84,7 @@ export async function enrichReviewedCareerPages(candidates: CandidateJob[], stat
   }
   let requests=0;
   await inBatches(due,4,async([key,row])=>{
-    next[key]={checkedAt:now.toISOString(),httpStatus:null};
+    next[key]={checkedAt:now.toISOString(),parserVersion:PARSER_VERSION,httpStatus:null};
     try {
       let ref=officialCareerReference(row.applyUrl);
       if (!ref) {
@@ -90,11 +109,14 @@ export async function enrichReviewedCareerPages(candidates: CandidateJob[], stat
   const dueKeys=new Set(due.map(([key])=>key)), verified=new Set<string>(), reused=new Set<string>();
   const rows=candidates.map(row=>{
     const key=canonicalizeUrl(row.applyUrl),record=key?next[key]:null,posting=record?.posting;
+    const target=record?.targetUrl?officialCareerReference(record.targetUrl):null;
+    const pending=row.sourceActive!==false && target && target.company===brandFor(row.company) && record && nowMs-Date.parse(record.checkedAt)<24*3600_000
+      && !holds.has(sourceReviewHoldIdentity(row.applyUrl)??"") && !holds.has(sourceReviewHoldIdentity(target.url)??"")?{...row,applyUrl:target.url}:row;
     if (row.sourceActive===false || !needsCareerPageEvidence(row) || !record || !posting || posting.company!==brandFor(row.company)
       || officialCareerReference(posting.url)?.company!==posting.company || !posting.title || !posting.location || !posting.description
       || typeof posting.title!=="string" || typeof posting.location!=="string" || typeof posting.description!=="string"
       || !isEarlyCareerTitle(posting.title.replace(/\bgraduates\b/gi,"Graduate"),posting.description) || hasRequiredExperienceConflict(posting.description)
-      || nowMs-Date.parse(record.checkedAt)>=24*3600_000 || holds.has(sourceReviewHoldIdentity(row.applyUrl)??"") || holds.has(sourceReviewHoldIdentity(posting.url)??"")) return row;
+      || nowMs-Date.parse(record.checkedAt)>=24*3600_000 || holds.has(sourceReviewHoldIdentity(row.applyUrl)??"") || holds.has(sourceReviewHoldIdentity(posting.url)??"")) return pending;
     const result={...row,company:posting.company,title:posting.title,location:posting.location,applyUrl:posting.url,
       rawText:posting.description,sourceActive:true};
     evidence.set(result,record.checkedAt); (dueKeys.has(key!)?verified:reused).add(posting.url); return result;
