@@ -67,4 +67,6 @@ Intake is **23,882 candidate rows and 18,907 unique opportunities**, compared wi
 
 ## Next bounded batch
 
+Follow-up: the [cybersecurity pilot and classification correction](CYBER_SOURCE_PILOT_2026-11-18.md) are now production-verified. That follow-up corrected 131 graduate jobs previously counted as internships. Historical collection counters above preserve their original labels and should not be treated as a classification-adjusted internship growth baseline.
+
 The completed batch covers steps 1 through 4: baseline, focused review, implementation and measured production verification. Steps 5 and 6 remain open. Extend current-official verification to another high-impact employer with a reviewed public careers interface (GlobalFoundries/Micron are investigation candidates), separately reconcile historical Workday site variants where exact evidence supports aliases, and pilot one permitted source using overlap-adjusted qualifying additions. Keep reporting internship and early-career changes separately and distinguish recovered old listings from genuinely new intake. Do not loosen availability standards or activate duplicate/unlicensed feeds to raise the count.
