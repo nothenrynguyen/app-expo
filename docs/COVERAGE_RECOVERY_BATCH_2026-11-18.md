@@ -32,7 +32,7 @@ The focused pilot found **29 missing November 15 internship opportunities still 
 
 The successful old HNTB sample is explicitly limited to current/recent HNTB interns in its title. That eligibility restriction is preserved. The pilot is verification evidence, not a published-admission count. Broader current HNTB candidates are processed through the normal production gates in bounded batches.
 
-Focused regression coverage checks exact destination and employer scope, identity/country/qualification mismatches, withdrawn and missing records, source holds, actual timestamps, failed rechecks, expiry and hard request limits. All 234 tests, lint and the production static build pass. Production receipts follow below. No paid service, new account, additional request budget or public availability tab was added. No screen-control session was needed.
+Focused regression coverage checks exact destination and employer scope, identity/country/qualification mismatches, withdrawn and missing records, source holds, actual timestamps, failed rechecks, expiry and hard request limits. All 234 tests, lint and the production static build pass. Production receipts follow below. No paid service, new account, additional request budget or public availability tab was added. No native desktop screen control was used. A later short background-browser check is described below and was ended/reset.
 
 ## First production result and discovered follow-up
 
@@ -47,3 +47,24 @@ Investigation of the ByteDance removals showed the feed was healthy and the job 
 The official career site delivers React streaming containers initially marked hidden, then emits literal segment moves that insert their contents into the visible page. The prior parser removed those completed job segments along with genuinely unused hidden content. The correction resolves only the page's literal completed segment/template moves, in document order, without running scripts. Unreferenced hidden content, incomplete streams, mismatched job IDs, closure notices and unsupported qualifications still fail. The saved real ByteDance graduate-research sample now parses successfully and matches the browser-visible behavior.
 
 The parser version permits a one-time retry of old HTTP-200 inconclusive records within the existing 25-job/50-request cap, prioritizing recent false negatives while retaining renewal and expiry rules. Validated redirect destinations normalize pending candidates to the exact employer identity without granting positive evidence. Existing actual dates, strict source requirements and hidden-content rejection remain in force. Final full-suite results and follow-up production admissions are recorded below.
+## Production completion and measured growth
+
+The completed-stream correction `9a59396` passed [run 44443862984](https://github.com/nothenrynguyen/app-expo/actions/runs/44443862984), publishing `0280af3`. Normal follow-up refreshes continued safely. The latest checked [run 44471098942](https://github.com/nothenrynguyen/app-expo/actions/runs/44471098942) published snapshot **4d000a2**, generated November 18 at **10:19 p.m. Pacific**. All nine most recent refresh runs succeeded; Vercel deployment status is successful and all four live public JSON files match the latest snapshot byte-for-byte. All **236 tests**, lint and the production build passed for the final implementation.
+
+| Current inventory | Starting 3997b88 | Latest 4d000a2 | Net change |
+| --- | ---: | ---: | ---: |
+| Internships | 3,365 | **3,413** | **+48** |
+| Early-career jobs | 2,081 | **2,089** | **+8** |
+| All current postings | 5,446 | **5,502** | **+56** |
+
+Comparing exact opportunity identities with the starting current snapshot gives **61 additions and five removals** across the interval. Added current postings include **19 HNTB** (all 19 have live mirror evidence), **39 ByteDance**, **one Allegion**, and two other normal pipeline additions. These are new to this starting current inventory, not a claim that all are newly created employer vacancies. Four HNTB opportunities and the Allegion opportunity match the November 15 baseline, with their historical public IDs preserved. Other HNTB career-site variants are not claimed as reconciled old-site identities. Explicit former-intern restrictions remain visible in affected titles.
+
+All seven ByteDance jobs that disappeared in the first run are present again. Because they were already in the starting snapshot, their restoration is not included in the 39 additional ByteDance postings. The completed-stream parser also processes more previously inconclusive pages automatically. The latest lane checked 25 jobs with 50 requests, verified all 25 and reused 229 valid positives. The HNTB lane reused 19 live observations without additional requests in that latest run. The queued probes and prior automatic runs stayed within the fixed per-run caps.
+
+Current holds remain 622 (318 internships, 303 early-career jobs and one uncategorized). Workday remains degraded: the latest report has 53 cooldown records and five actual rate-limit records. The latest run adds ten tracked opportunities with no removals or unresolved-removal diagnoses. This is partial coverage recovery, not provider recovery.
+
+Intake is **23,882 candidate rows and 18,907 unique opportunities**, compared with 23,893 and 18,908 at the start. This batch improved publication/retention of existing opportunities and did not increase source intake or achieve doubling. The internship total remains 747 below the November 15 count of 4,160.
+
+## Next bounded batch
+
+The completed batch covers steps 1 through 4: baseline, focused review, implementation and measured production verification. Steps 5 and 6 remain open. Extend current-official verification to another high-impact employer with a reviewed public careers interface (GlobalFoundries/Micron are investigation candidates), separately reconcile historical Workday site variants where exact evidence supports aliases, and pilot one permitted source using overlap-adjusted qualifying additions. Keep reporting internship and early-career changes separately and distinguish recovered old listings from genuinely new intake. Do not loosen availability standards or activate duplicate/unlicensed feeds to raise the count.
