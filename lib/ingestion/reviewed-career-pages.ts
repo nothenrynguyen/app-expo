@@ -118,6 +118,10 @@ export async function enrichReviewedCareerPages(candidates: CandidateJob[], stat
       || !isEarlyCareerTitle(posting.title.replace(/\bgraduates\b/gi,"Graduate"),posting.description) || hasRequiredExperienceConflict(posting.description)
       || nowMs-Date.parse(record.checkedAt)>=24*3600_000 || holds.has(sourceReviewHoldIdentity(row.applyUrl)??"") || holds.has(sourceReviewHoldIdentity(posting.url)??"")) return pending;
     const result={...row,company:posting.company,title:posting.title,location:posting.location,applyUrl:posting.url,
+      // A feed's table label cannot override the verified employer's explicit
+      // employment type. Keep graduate jobs out of the internship collection.
+      category:/\bintern(?:ship)?\b|\bco-?op\b/i.test(posting.title)?"Internship"
+        :/\bgraduates?\b|\bnew (?:college )?grad\b/i.test(posting.title)?"New grad":row.category,
       rawText:posting.description,sourceActive:true};
     evidence.set(result,record.checkedAt); (dueKeys.has(key!)?verified:reused).add(posting.url); return result;
   });

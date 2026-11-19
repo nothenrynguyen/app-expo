@@ -32,6 +32,19 @@ test("a reviewed redirect is replaced by current employer fields and evidence ke
   assert.equal(careerPageEvidenceAt(later.candidates[0]),now.toISOString());
 });
 
+test("verified employer titles correct feed collection labels on fresh and cached evidence",async()=>{
+  const wrong={...row,applyUrl:official,category:"Internship"};
+  const first=await enrichReviewedCareerPages([wrong],{},now,(async()=>new Response(page())) as typeof fetch);
+  assert.equal(first.candidates[0].category,"New grad");
+  const cached=await enrichReviewedCareerPages([wrong],first.state,new Date(now.getTime()+3600000),fetch);
+  assert.equal(cached.requests,0);assert.equal(cached.candidates[0].category,"New grad");
+  const intern=await enrichReviewedCareerPages([{...wrong,category:"New grad"}],{},now,
+    (async()=>new Response(page("Security Engineering Project Intern - 2027 Start"))) as typeof fetch);
+  assert.equal(intern.candidates[0].category,"Internship");
+  const inconclusive=await enrichReviewedCareerPages([wrong],{},now,(async()=>new Response("<title>Loading</title>")) as typeof fetch);
+  assert.equal(inconclusive.candidates[0].category,"Internship");
+});
+
 test("bad redirects, brand mismatches, source holds and source closures never gain evidence",async()=>{
   for(const location of ['http://lifeattiktok.com/search/'+id,'https://127.0.0.1/private','https://joinbytedance.com/search/'+id]){
     let calls=0;const f=(async()=>{calls++;return new Response(null,{status:302,headers:{location}});}) as typeof fetch;
