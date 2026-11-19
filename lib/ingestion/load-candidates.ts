@@ -4,6 +4,8 @@ import { loadReviewedUsaJobs } from "./usajobs";
 import { readFile, writeFile, rename } from "node:fs/promises";
 import { enrichReviewedCareerPages, type CareerPageState } from "./reviewed-career-pages";
 import { enrichEmployerMirrors, type MirrorState } from "./employer-mirrors";
+import { enrichPublicCareerIndex, type PublicIndexState } from "./public-career-index";
+import { resolveSourceRedirects, applyVerifiedRedirects, type RedirectState } from "./source-redirects";
 import path from "node:path";
 import { createAtsBoard, discoverAtsBoard, fetchAtsBoard, isEarlyCareerTitle, type AtsBoardSeed } from "../ats-boards";
 import { applyMicrosoftCareersPosting, fetchMicrosoftCareersPosting, parseMicrosoftCareersJobUrl } from "../microsoft-careers";
@@ -168,7 +170,23 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
   candidates.splice(0, candidates.length, ...mirrors.candidates);
   await writeFile(`${mirrorPath}.tmp`, `${JSON.stringify(mirrors.state, null, 2)}\n`);
   await rename(`${mirrorPath}.tmp`, mirrorPath);
-  for (const candidate of candidates) {
+  const indexPath = path.join(root,"data/public-career-index.json");
+  const indexState: PublicIndexState = await readFile(indexPath,"utf8").then(value=>JSON.parse(value))
+    .catch((error:NodeJS.ErrnoException)=>{if(error.code==="ENOENT")return {postings:{}};throw error;});
+  const publicIndex = await enrichPublicCareerIndex(candidates,indexState,new Date(),fetch,careerHolds);
+  candidates.splice(0,candidates.length,...publicIndex.candidates);
+  await writeFile(`${indexPath}.tmp`,`${JSON.stringify(publicIndex.state,null,2)}\n`);
+  await rename(`${indexPath}.tmp`,indexPath);
+  const redirectsPath=path.join(root,"data/source-redirects.json");
+  const redirectState: RedirectState=await readFile(redirectsPath,"utf8").then(value=>JSON.parse(value))
+    .catch((error:NodeJS.ErrnoException)=>{if(error.code==="ENOENT")return {};throw error;});
+  const allowedRedirectSources=new Set(sources.filter(source=>source.repository.startsWith("vanshb03/")
+    &&sourceAllowsAtsExpansion(source.name,sources)).map(source=>source.name));
+  const redirects=await resolveSourceRedirects(candidates,redirectState,allowedRedirectSources,new Date(),fetch,careerHolds,
+    new Set(previousJobs.map(job=>jobIdentity(job.applyUrl)).filter((id):id is string=>!!id)));
+  await writeFile(`${redirectsPath}.tmp`,`${JSON.stringify(redirects.state,null,2)}\n`);
+  await rename(`${redirectsPath}.tmp`,redirectsPath);
+  for (const candidate of [...candidates,...redirects.discovered]) {
     if (!sourceAllowsAtsExpansion(candidate.source, sources)) continue;
     const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
     if (board && !boards.has(board.id)) boards.set(board.id, board);
@@ -218,6 +236,8 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     return { id: board.id, provider: board.provider, key: board.key, company: board.company, status: "failed", rows: 0, retryRequests: retryCounts.has(index) ? 1 : 0, durationMs: result.durationMs, message: errorMessage(result.reason) };
   });
 
+  const verifiedRedirects=applyVerifiedRedirects(candidates,redirects.targets,boardResults);
+  candidates.splice(0,candidates.length,...verifiedRedirects.candidates);
   const workdaySeeds = await readFile(path.join(root, "data/workday-boards.json"), "utf8")
     .then((value) => JSON.parse(value) as WorkdayBoardSeed[])
     .catch(() => []);
@@ -341,8 +361,8 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     if (diagnostic) diagnostic.message = JSON.stringify({ reviewHoldsConfigured: source.reviewHolds!.length, heldCandidateRowsAcrossSources: reviewed.held.length });
   }
   return {
-    reviewedCareerRequests: reviewedCareers.requests + mirrors.requests,
-    reviewedCareerObservations: [...reviewedCareers.observations, ...mirrors.observations],
+    reviewedCareerRequests: reviewedCareers.requests + mirrors.requests + publicIndex.requests + redirects.requests,
+    reviewedCareerObservations: [...reviewedCareers.observations, ...mirrors.observations, ...publicIndex.observations],
     retiredBoardIds: [...retiredBoardIds],
     workdaySchedule,
     workdayChecks,
@@ -357,6 +377,9 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     boardResults,
     boardRegistry,
     verificationDiagnostics: [
+      {provider:"source_redirects",attempted:redirects.requests,verified:verifiedRedirects.enriched,requests:redirects.requests,reused:redirects.reused},
+      {provider:"public_career_index",attempted:publicIndex.attempted,verified:publicIndex.verified,requests:publicIndex.requests,reused:publicIndex.reused,
+        indexStatus:publicIndex.state.index?.status??"unused",indexed:publicIndex.state.index?.positions.length??0},
       {provider:"reviewed_career_pages",attempted:reviewedCareers.attempted,verified:reviewedCareers.verified,requests:reviewedCareers.requests,reused:reviewedCareers.reused},
       {provider:"employer_mirrors",attempted:mirrors.attempted,verified:mirrors.verified,requests:mirrors.requests,reused:mirrors.reused},
       { provider: "smartrecruiters", attempted: smartRecruitersEntries.length, verified: smartRecruitersPostings.size },

@@ -36,6 +36,20 @@ test("verification backlog counts opportunities once, with acceptance and termin
   assert.deepEqual(result.byEmployer,[{company:"Acme",opportunities:1}]);
 });
 
+test("backlog groups exact boards and reports the actionable pending blocker once per opportunity",()=>{
+  const tracker=createScreeningTracker();
+  const url="https://acme.wd1.myworkdayjobs.com/External/job/Texas/Engineer_JR-123";
+  const other=url.replace('/External/','/University/');
+  tracker.record(url,"pendingVerification","Employer identity has not been established.");
+  tracker.record(url,"pendingVerification","Current employer listing availability could not be verified.");
+  tracker.record(other,"pendingVerification","Employer identity has not been established.");
+  const candidates=[url,url,other].map(applyUrl=>({company:"Acme",applyUrl}) as CandidateJob);
+  const result=buildVerificationBacklog({candidates,acceptedUrls:[],outcomeFor:tracker.opportunityOutcomeFor,decisionsFor:tracker.decisionsFor});
+  assert.equal(result.total,2);
+  assert.deepEqual(result.byBlocker,[{key:"availability",opportunities:1},{key:"employer-identity",opportunities:1}]);
+  assert.equal(result.byBoard.length,2);assert.ok(result.byBoard.some(x=>x.key.endsWith(':university')));
+});
+
 test("reviewed Martin Marietta employer approval requires early career and the exact official application site", () => {
   const registry=trust as CompanyTrustEntry[];
   const url="https://martinmarietta.wd5.myworkdayjobs.com/Martin_Marietta_Careers/job/Raleigh-NC/Intern_JR024144";

@@ -1,6 +1,7 @@
 import { preserveWorkdayJobIds, collectJobIdAliases } from "../lib/ingestion/preserve-job-ids";
 import { careerPageEvidenceAt, needsCareerPageEvidence } from "../lib/ingestion/reviewed-career-pages";
 import { mirrorEvidenceAt } from "../lib/ingestion/employer-mirrors";
+import { publicIndexEvidenceAt } from "../lib/ingestion/public-career-index";
 import { buildVerificationBacklog } from "../lib/ingestion/verification-backlog";
 import { trustedWorkdayFeedPolicy, type TrustedFeedState } from "../lib/ingestion/trusted-workday-feed";
 import { buildOutageHolds, validateOutageHolds } from "../lib/ingestion/outage-holds";
@@ -47,7 +48,7 @@ import { classifyRoleTags, getJobRoleTags } from "../lib/role-areas";
 import type { SourceCatalog } from "../lib/source-catalog";
 import { canonicalizeUrl, jobIdentity, opportunityIdentity, normalizeDisplayText, stableJobId } from "../lib/source-normalization";
 
-const employerPageEvidenceAt = (row: import("../lib/source-normalization").CandidateJob) => careerPageEvidenceAt(row) ?? mirrorEvidenceAt(row);
+const employerPageEvidenceAt = (row: import("../lib/source-normalization").CandidateJob) => careerPageEvidenceAt(row) ?? mirrorEvidenceAt(row) ?? publicIndexEvidenceAt(row);
 
 async function main() {
   const startedAt = new Date();
@@ -552,7 +553,8 @@ async function main() {
     knownClosed: closedPostingsCaught,
     screening: snapshot.screening,
   }), verificationBacklog: buildVerificationBacklog({ candidates,
-    acceptedUrls: [...jobs, ...merged.values()].map(job => job.applyUrl), outcomeFor: screening.opportunityOutcomeFor }), intake: {
+    acceptedUrls: [...jobs, ...merged.values()].map(job => job.applyUrl), outcomeFor: screening.opportunityOutcomeFor,
+    decisionsFor: screening.decisionsFor }), intake: {
     candidateRows: candidates.length,
     uniqueOpportunities: new Set(candidates.map(candidate => opportunityIdentity(candidate.applyUrl)).filter(Boolean)).size,
     duplicateRows: candidates.length - new Set(candidates.map(candidate => opportunityIdentity(candidate.applyUrl)).filter(Boolean)).size,

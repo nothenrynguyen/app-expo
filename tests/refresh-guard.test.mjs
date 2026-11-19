@@ -28,7 +28,7 @@ test("failed refresh retry-state commits cannot include an already staged public
   assert.match(fallback,/if: failure\(\)/);
   assert.match(fallback,/git commit --only/);
   const files=fallback.match(/git commit --only[^\n]+ -- ([^\n]+)/)[1].trim().split(/\s+/);
-  assert.deepEqual(files,['data/workday-schedule.json','data/employer-recovery-state.json','data/listing-health.json','data/scoped-listing-health.json','data/source-verification-targets.json','data/employer-mirror-observations.json','data/reviewed-career-pages.json','data/trusted-feed-observations.json','data/workday-continuity.json']);
+  assert.deepEqual(files,['data/workday-schedule.json','data/employer-recovery-state.json','data/listing-health.json','data/scoped-listing-health.json','data/source-verification-targets.json','data/employer-mirror-observations.json','data/public-career-index.json','data/source-redirects.json','data/reviewed-career-pages.json','data/trusted-feed-observations.json','data/workday-continuity.json']);
   const prefix=path.join(tmpdir(),'empluzzed-retry-state-');
   const root=await mkdtemp(prefix);
   const git=(...args)=>execFileSync('git',['-C',root,...args],{encoding:'utf8',stdio:['ignore','pipe','pipe']});

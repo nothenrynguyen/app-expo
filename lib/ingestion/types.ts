@@ -34,7 +34,9 @@ export type BoardRefreshDiagnostic = {
 };
 
 export type VerificationDiagnostic = {
-  provider: "smartrecruiters" | "microsoft" | "scoped_employer" | "source_listing" | "reviewed_career_pages" | "employer_mirrors";
+  indexStatus?: "live" | "unknown" | "unused";
+  indexed?: number;
+  provider: "smartrecruiters" | "microsoft" | "scoped_employer" | "source_listing" | "reviewed_career_pages" | "employer_mirrors" | "public_career_index" | "source_redirects";
   requests?: number;
   reused?: number;
   attempted: number;
