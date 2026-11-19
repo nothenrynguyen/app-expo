@@ -1,7 +1,7 @@
 export type JobSource = {
   id: string;
   name: string;
-  kind: "engine_json" | "markdown" | "applyguy_json" | "keryx_markdown";
+  kind: "engine_json" | "markdown" | "applyguy_json" | "keryx_markdown" | "cyber_json";
   url: string;
   repository: string;
   path?: string;

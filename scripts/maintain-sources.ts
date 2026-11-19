@@ -3,6 +3,7 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import type { JobSource, SourceCatalog, SourceHealthRecord, SourceHealthState } from "../lib/source-catalog";
 import { parseKeryxSource, parseMarkdownSource } from "../lib/source-parsers";
+import { parseCyberSource } from "../lib/ingestion/cyber-source";
 
 type MaintenanceMode = "daily" | "weekly" | "monthly";
 type GithubRepository = { full_name: string; default_branch: string; archived: boolean; pushed_at: string | null; name: string };
@@ -36,6 +37,7 @@ function emptyHealth(): SourceHealthRecord {
 
 async function countRows(source: JobSource): Promise<number> {
   const text = await fetchText(source.url);
+  if (source.kind === "cyber_json") return parseCyberSource(text, source.name).length;
   if (source.kind === "engine_json") return (JSON.parse(text) as { jobs?: unknown[] }).jobs?.length ?? 0;
   if (source.kind === "applyguy_json") {
     const jobs = (JSON.parse(text) as { jobs?: Array<{ category?: string }> }).jobs ?? [];

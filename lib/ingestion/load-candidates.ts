@@ -1,4 +1,5 @@
 import { parseEngineJobs } from "./engine-source";
+import { parseCyberSource } from "./cyber-source";
 import { loadReviewedUsaJobs } from "./usajobs";
 import { readFile, writeFile, rename } from "node:fs/promises";
 import { enrichReviewedCareerPages, type CareerPageState } from "./reviewed-career-pages";
@@ -96,8 +97,11 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     }
   }
 
-  for (const source of sources.filter((candidate) => candidate.kind === "applyguy_json")) {
-    const result = await runTimed(async () => parseApplyGuySource(await fetchText(source.url), source.name, source.categories));
+  for (const source of sources.filter((candidate) => candidate.kind === "applyguy_json" || candidate.kind === "cyber_json")) {
+    const result = await runTimed(async () => {
+      const text = await fetchText(source.url);
+      return source.kind === "cyber_json" ? parseCyberSource(text, source.name) : parseApplyGuySource(text, source.name, source.categories);
+    });
     if (result.status === "fulfilled") {
       candidates.push(...result.value);
       health.push({ name: source.name, status: "ok", rows: result.value.length });
