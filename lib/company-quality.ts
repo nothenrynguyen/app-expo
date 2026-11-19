@@ -153,7 +153,7 @@ export function evaluateCompanyQuality(
   return {
     status: "quarantined",
     coverageExceptionAllowed: true,
-    reason: "Company size and substantial U.S. operating presence have not been verified.",
+    reason: "Employer identity has not been established through reviewed company evidence or a current official listing.",
     linkedInUrl: null,
     minimumEmployees: null,
   };

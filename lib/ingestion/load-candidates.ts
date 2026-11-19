@@ -2,6 +2,7 @@ import { parseEngineJobs } from "./engine-source";
 import { loadReviewedUsaJobs } from "./usajobs";
 import { readFile, writeFile, rename } from "node:fs/promises";
 import { enrichReviewedCareerPages, type CareerPageState } from "./reviewed-career-pages";
+import { enrichEmployerMirrors, type MirrorState } from "./employer-mirrors";
 import path from "node:path";
 import { createAtsBoard, discoverAtsBoard, fetchAtsBoard, isEarlyCareerTitle, type AtsBoardSeed } from "../ats-boards";
 import { applyMicrosoftCareersPosting, fetchMicrosoftCareersPosting, parseMicrosoftCareersJobUrl } from "../microsoft-careers";
@@ -156,6 +157,13 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
   candidates.splice(0,candidates.length,...reviewedCareers.candidates);
   await writeFile(`${careerStatePath}.tmp`,`${JSON.stringify(reviewedCareers.state,null,2)}\n`);
   await rename(`${careerStatePath}.tmp`,careerStatePath);
+  const mirrorPath = path.join(root, "data/employer-mirror-observations.json");
+  const mirrorState: MirrorState = await readFile(mirrorPath, "utf8").then(value => JSON.parse(value))
+    .catch((error: NodeJS.ErrnoException) => { if (error.code === "ENOENT") return {}; throw error; });
+  const mirrors = await enrichEmployerMirrors(candidates, mirrorState, new Date(), fetch, careerHolds);
+  candidates.splice(0, candidates.length, ...mirrors.candidates);
+  await writeFile(`${mirrorPath}.tmp`, `${JSON.stringify(mirrors.state, null, 2)}\n`);
+  await rename(`${mirrorPath}.tmp`, mirrorPath);
   for (const candidate of candidates) {
     if (!sourceAllowsAtsExpansion(candidate.source, sources)) continue;
     const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
@@ -329,8 +337,8 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     if (diagnostic) diagnostic.message = JSON.stringify({ reviewHoldsConfigured: source.reviewHolds!.length, heldCandidateRowsAcrossSources: reviewed.held.length });
   }
   return {
-    reviewedCareerRequests: reviewedCareers.requests,
-    reviewedCareerObservations: reviewedCareers.observations,
+    reviewedCareerRequests: reviewedCareers.requests + mirrors.requests,
+    reviewedCareerObservations: [...reviewedCareers.observations, ...mirrors.observations],
     retiredBoardIds: [...retiredBoardIds],
     workdaySchedule,
     workdayChecks,
@@ -346,6 +354,7 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     boardRegistry,
     verificationDiagnostics: [
       {provider:"reviewed_career_pages",attempted:reviewedCareers.attempted,verified:reviewedCareers.verified,requests:reviewedCareers.requests,reused:reviewedCareers.reused},
+      {provider:"employer_mirrors",attempted:mirrors.attempted,verified:mirrors.verified,requests:mirrors.requests,reused:mirrors.reused},
       { provider: "smartrecruiters", attempted: smartRecruitersEntries.length, verified: smartRecruitersPostings.size },
       { provider: "microsoft", attempted: microsoftEntries.length, verified: microsoftPostings.size },
     ],

@@ -1,5 +1,6 @@
 import { preserveWorkdayJobIds, collectJobIdAliases } from "../lib/ingestion/preserve-job-ids";
 import { careerPageEvidenceAt, needsCareerPageEvidence } from "../lib/ingestion/reviewed-career-pages";
+import { mirrorEvidenceAt } from "../lib/ingestion/employer-mirrors";
 import { buildVerificationBacklog } from "../lib/ingestion/verification-backlog";
 import { trustedWorkdayFeedPolicy, type TrustedFeedState } from "../lib/ingestion/trusted-workday-feed";
 import { buildOutageHolds, validateOutageHolds } from "../lib/ingestion/outage-holds";
@@ -45,6 +46,8 @@ import { isListingUnavailable, needsListingCheck, verifyListing, type ListingHea
 import { classifyRoleTags, getJobRoleTags } from "../lib/role-areas";
 import type { SourceCatalog } from "../lib/source-catalog";
 import { canonicalizeUrl, jobIdentity, opportunityIdentity, normalizeDisplayText, stableJobId } from "../lib/source-normalization";
+
+const employerPageEvidenceAt = (row: import("../lib/source-normalization").CandidateJob) => careerPageEvidenceAt(row) ?? mirrorEvidenceAt(row);
 
 async function main() {
   const startedAt = new Date();
@@ -112,7 +115,7 @@ async function main() {
   const currentBoardEvidence = (candidate: import("../lib/source-normalization").CandidateJob) => {
     const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
     const result = board && boardResults.get(board.id);
-    return isRecoveryLive(candidate) || !!careerPageEvidenceAt(candidate) || !!workdayEvidence?.matches(candidate) || !!result && normalizeCompanyName(result.board.company) === normalizeCompanyName(candidate.company)
+    return isRecoveryLive(candidate) || !!employerPageEvidenceAt(candidate) || !!workdayEvidence?.matches(candidate) || !!result && normalizeCompanyName(result.board.company) === normalizeCompanyName(candidate.company)
       && result.liveIdentities.has(jobIdentity(candidate.applyUrl) ?? "");
   };
   const unhealthySources = health.filter((source) => source.status === "failed" || source.rows === 0);
@@ -181,7 +184,7 @@ async function main() {
   }
   for (const identity of scopedUrls.keys()) if (!scopedCache[identity]) scopedCache[identity] = { status: "unknown", checkedAt: null, firstSeenAt: startedAt.toISOString() };
   for (const candidate of candidates) {
-    const evidence = recoveryEvidenceAt(candidate) ?? careerPageEvidenceAt(candidate);
+    const evidence = recoveryEvidenceAt(candidate) ?? employerPageEvidenceAt(candidate);
     if (!evidence) continue;
     for (const key of [jobIdentity(candidate.applyUrl), sourceVerificationKey(candidate.applyUrl)]) {
       if (key && scopedUrls.has(key)) scopedCache[key] = {status: "live", checkedAt: evidence, firstSeenAt: scopedCache[key].firstSeenAt};
@@ -216,7 +219,7 @@ async function main() {
     diagnostics: sourceDiagnostics, boards: boardRegistry, candidates, state: feedState, now: observationTime });
   const fallbackAccepted = new Set<string>();
   const strictSourceIds = new Set(catalog.sources.filter(source => source.requireLiveListing && !source.workdayFeedFallback).map(source => source.id));
-  const careerChecks=new Map(candidates.flatMap(row=>{const checkedAt=careerPageEvidenceAt(row);return checkedAt?[[opportunityIdentity(row.applyUrl)!,{company:row.company,checkedAt}] as const]:[];}));
+  const careerChecks=new Map(candidates.flatMap(row=>{const checkedAt=employerPageEvidenceAt(row);return checkedAt?[[opportunityIdentity(row.applyUrl)!,{company:row.company,checkedAt}] as const]:[];}));
   const lastPositiveAt = (job: PublicJob) => lastVerificationAt(job, observationTime, {
     workdayCache, workdayChecks, recoveryState: recoveryState ?? {}, listingHealth, scopedCache, boardResults,
     careerChecks,
@@ -240,7 +243,7 @@ async function main() {
     if(needsCareerPageEvidence(candidate) && isListingUnavailable(listingHealth[jobIdentity(candidate.applyUrl)??""])) {
       screening.record(candidate.applyUrl,"closed");continue;
     }
-    if (needsCareerPageEvidence(candidate) && !careerPageEvidenceAt(candidate)) {
+    if (needsCareerPageEvidence(candidate) && !employerPageEvidenceAt(candidate)) {
       screening.record(candidate.applyUrl,"pendingVerification","The reviewed employer page must confirm the exact job, location and early-career qualifications.");
       continue;
     }
@@ -340,7 +343,7 @@ async function main() {
       rejectedCount += 1;
       continue;
     }
-    if (!authoritativeBoard && !isRecoveryLive(candidate) && !careerPageEvidenceAt(candidate) && isListingUnavailable(listingHealth[identity])) {
+    if (!authoritativeBoard && !isRecoveryLive(candidate) && !employerPageEvidenceAt(candidate) && isListingUnavailable(listingHealth[identity])) {
       screening.record(candidate.applyUrl, "closed");
       rejectedCount += 1;
       continue;

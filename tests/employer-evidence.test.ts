@@ -6,6 +6,16 @@ import { buildVerificationBacklog } from "../lib/ingestion/verification-backlog"
 import { createScreeningTracker } from "../lib/ingestion/screening";
 import type { CandidateJob } from "../lib/source-normalization";
 
+test("reviewed Allegion identity stays restricted to exact career destinations and live early-career vacancies",()=>{
+  const applyUrl="https://allegion.wd5.myworkdayjobs.com/careers/job/Golden-CO/Summer-Intern_JR37472-1";
+  const decide=(title:string,url=applyUrl)=>evaluateCompanyQuality({name:"Allegion",title,applyUrl:url},"",[],trust as CompanyTrustEntry[]);
+  assert.equal(decide("Software Engineering Intern").status,"approved");
+  assert.equal(decide("Software Engineering Intern").requireLiveListing,true);
+  assert.equal(decide("Software Engineer").status,"quarantined");
+  for(const url of [applyUrl.replace('careers/job/','Other/job/'),applyUrl.replace('allegion.wd5','other.wd5'),applyUrl.replace('https:','http:')])
+    assert.equal(decide("Software Engineering Intern",url).status,"quarantined");
+});
+
 test("Sony internship board display correction is scoped to the reviewed board and does not change job IDs", () => {
   const url="https://job-boards.greenhouse.io/usinternshipspubliccareerssite/jobs/6221769004";
   const raw="US Internships Public Careers S…";
