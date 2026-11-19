@@ -182,8 +182,9 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     .catch((error:NodeJS.ErrnoException)=>{if(error.code==="ENOENT")return {};throw error;});
   const allowedRedirectSources=new Set(sources.filter(source=>source.repository.startsWith("vanshb03/")
     &&sourceAllowsAtsExpansion(source.name,sources)).map(source=>source.name));
+  const dreamworkRedirectSources=new Set(sources.filter(source=>source.repository.startsWith("dreamworkhq/")).map(source=>source.name));
   const redirects=await resolveSourceRedirects(candidates,redirectState,allowedRedirectSources,new Date(),fetch,careerHolds,
-    new Set(previousJobs.map(job=>jobIdentity(job.applyUrl)).filter((id):id is string=>!!id)));
+    new Set(previousJobs.map(job=>jobIdentity(job.applyUrl)).filter((id):id is string=>!!id)),100,dreamworkRedirectSources);
   await writeFile(`${redirectsPath}.tmp`,`${JSON.stringify(redirects.state,null,2)}\n`);
   await rename(`${redirectsPath}.tmp`,redirectsPath);
   for (const candidate of [...candidates,...redirects.discovered]) {

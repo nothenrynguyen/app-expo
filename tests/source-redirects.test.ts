@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {resolveSourceRedirects,applyVerifiedRedirects} from '../lib/ingestion/source-redirects';
+import {resolveSourceRedirects,applyVerifiedRedirects,originalPostingLink} from '../lib/ingestion/source-redirects';
 import {discoverAtsBoard,type AtsBoardResult} from '../lib/ats-boards';
 import {jobIdentity,type CandidateJob} from '../lib/source-normalization';
 import {sourceReviewHoldIdentity} from '../lib/ingestion/source-review-holds';
@@ -51,4 +51,28 @@ test('mapping reuse makes no requests; failed rechecks clear mappings and rate l
   assert.ok(limited.requests<=2);assert.equal(limited.targets.size,0);
   const capped=await resolveSourceRedirects(rows,{},allowed,now,redirect(),new Set(),new Set(),3);
   assert.equal(capped.requests,3);
+});
+
+test('licensed Dreamwork pages expose only an unambiguous visible original-posting link',async()=>{
+  const html=`<h1>Software Engineering Intern</h1><a class="job-original-link" href="${target}">View original posting</a>`;
+  assert.equal(originalPostingLink(html),target);
+  assert.equal(originalPostingLink(`<div hidden>${html}</div>`),null);
+  assert.equal(originalPostingLink(html+`<a class="job-original-link" href="https://evil.example">View original posting</a>`),null);
+  assert.equal(originalPostingLink(html+'<p>This job is no longer available</p>'),null);
+  const dream={...row,source:'Licensed Dreamwork feed',applyUrl:'https://www.dreamworkhq.com/job/e4750740-bbd4-498b-9bef-85a5126fbef8'};
+  const f=(async()=>new Response(html)) as typeof fetch;
+  const denied=await resolveSourceRedirects([dream],{},allowed,now,f);
+  assert.equal(denied.requests,0);
+  const result=await resolveSourceRedirects([dream],{},allowed,now,f,new Set(),new Set(),100,new Set([dream.source]));
+  assert.equal(result.requests,1);assert.equal(result.targets.size,1);
+});
+
+test('the shared discovery budget balances source types without fetching destinations',async()=>{
+  const dream={...row,source:'Licensed Dreamwork feed',applyUrl:'https://www.dreamworkhq.com/job/e4750740-bbd4-498b-9bef-85a5126fbef8'};
+  const calls:string[]=[];
+  const f=(async(value:unknown)=>{const url=String(value);calls.push(url);return url.includes('dreamworkhq.com')
+    ?new Response(`<a class="job-original-link" href="${target}">View original posting</a>`):new Response(null,{status:302,headers:{location:target}});}) as typeof fetch;
+  const result=await resolveSourceRedirects([row,{...row,applyUrl:'https://go.vansh.nyc/DEF'},dream],{},allowed,now,f,new Set(),new Set(),2,new Set([dream.source]));
+  assert.equal(result.requests,2);assert.ok(calls.some(url=>url.includes('dreamworkhq.com')));
+  assert.ok(calls.every(url=>!url.includes('greenhouse.io')));
 });
