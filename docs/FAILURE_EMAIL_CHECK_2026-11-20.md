@@ -10,10 +10,10 @@ The latest fifteen GitHub refresh/maintenance runs checked here all succeeded, i
 
 Added `npm run typecheck` (`tsc --noEmit --incremental false`) to the front of `npm run verify`, and added the same explicit type check to the refresh workflow before tests and ingestion/publication. This makes missing-type errors visible to the standard release command and stops automated data publication when the committed code fails type checking. It does not suppress genuine errors or guarantee that every future deployment succeeds. Existing notification preferences are unchanged.
 
-Validation and publication of the prevention gate are in progress. The corrected fixture and latest pre-gate production deployment are already verified. A real workflow run must confirm the new gate in a clean hosted environment before marking this follow-up complete.
+Prevention gate `5037442` is published. Local `npm run verify` completed successfully with explicit exit-status handling: clean nonincremental types, all 254 tests, lint and production build. Hosted refresh [44708324464](https://github.com/nothenrynguyen/app-expo/actions/runs/44708324464) succeeded, including the new “Check types before refresh publication” step and tests, then published snapshot `81cd520`. Vercel reports successful deployments for the gate commit and resulting snapshot. All four live JSON files exactly match `81cd520`. This verifies the specific defect is resolved and the guard works in the clean hosted environment. No email labels or notification settings were changed, and no browser control was used for this follow-up.
 
 ## Recommended next steps
 
-1. Verify the new clean type-check step in a real refresh and confirm production deployment success.
-2. Keep genuine failure notifications enabled; compare any new notice's commit/run and timestamp with the current successful revision.
-3. Resume the approved November 21 retention/coverage checkpoint after this incident check. No provider retry limit, quality gate or paid setting changes are needed.
+1. Confirm the next scheduled refresh remains green with the new gate; investigate any genuinely newer failure by its commit/run and timestamp.
+2. Keep genuine failure notifications enabled. These two older deployment notices do not establish a current refresh outage.
+3. Resume the approved November 21 retention/coverage checkpoint and subsequent high-yield employer/source expansion. No provider retry limit, quality gate or paid setting changes are needed.
