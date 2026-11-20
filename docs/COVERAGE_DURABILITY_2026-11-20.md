@@ -8,7 +8,7 @@ The owner returned just after midnight Pacific for the approved 24–48 hour che
 
 Compared with verified release snapshot `66acfd5`:
 
-| Metric | Release | Current |
+| Metric | Release | First check |
 | --- | ---: | ---: |
 | Current internships | 3,332 | 3,427 |
 | Current early-career jobs | 2,267 | 2,355 |
@@ -37,11 +37,21 @@ Two previously published GlobalFoundries jobs still have current official-index 
 
 The fix adds previously published/held, exactly scoped GlobalFoundries requisitions to the adapter's discovery queue only when their prior source is still active and passes the loader's permission review. Current candidates deduplicate these leads. Old job metadata supplies discovery and provenance only. A missing-feed lead enters intake only if the adapter obtains or reuses still-valid exact employer evidence; unknown, expired, held or ineligible checks do not create a new admission. Company, availability, role, compensation, location, freshness and review-hold checks remain effective. Existing URLs are retained and public-ID preservation remains in place.
 
-Regression coverage checks inactive source provenance, duplicate/current candidates, wrong career sites, discovery without positive evidence, fresh official confirmation and failed verification. The first publication (`1458363`) exposed a TypeScript error in the new test fixture: it omitted required `verifiedCompany` and `linkedInUrl` fields. Vercel rejected that build, while the previous site remained live. The local validation command's exit status had not been checked correctly when reviewing test output. The fixture now supplies the required fields; a clean nonincremental type check and the full 254-test/lint/build command are rerun with explicit exit-status handling. No credit, storage, plan or security setting changed. Production verification remains pending.
+Regression coverage checks inactive source provenance, duplicate/current candidates, wrong career sites, discovery without positive evidence, fresh official confirmation and failed verification. The first publication (`1458363`) exposed a TypeScript error in the new test fixture: it omitted required `verifiedCompany` and `linkedInUrl` fields. Vercel rejected that build, while the previous site remained live. The local validation command's exit status had not been checked correctly when reviewing test output. The fixture now supplies the required fields; a clean nonincremental type check and the full 254-test/lint/build command passed with explicit exit-status handling. No credit, storage, plan or security setting changed.
+
+## Fix publication and final live verification
+
+Production refresh [44704857132](https://github.com/nothenrynguyen/app-expo/actions/runs/44704857132) succeeded and published snapshot `7409242`, generated at 08:48 UTC November 20 (12:48 a.m. Pacific). It verified both missing-feed GlobalFoundries jobs through two fresh employer-detail requests and reused 24 other valid positives. Both jobs returned from internal holds with their public IDs preserved. No manual admission or source/quality exception was added.
+
+The deployment fixture correction is published as `59f3758`; Vercel reports success. All four public JSON files match the production snapshot exactly. Browser inspection was limited to reading the failed deployment's build log in a background tab; browser control was ended and reset immediately afterward. The connector could not access this deployment, so the signed-in browser was the read-only fallback.
+
+Final current counts are **3,426 internships / 2,355 early-career jobs / 5,781 total**, with 625 holds. Net growth is **+182** versus release `66acfd5`. The verification refresh added four current postings (the two restored GlobalFoundries roles and two Horizon3.ai sales roles) and removed five ByteDance postings from current results: four pending verification and one scope exclusion. This explains the net -1 since the first check; none of those five was classified confirmed closed. The pending candidate backlog is 7,152. The resolver continued with 100 requests, 566 reused mappings and 415 eligible matched destinations, not 415 new jobs.
+
+The first approximately 25-hour observation checkpoint is complete, with growth and bounded queue progress established. It also found and corrected a retention gap. This does not close remaining unresolved removals, Workday cooldowns or the broader expansion/doubling project. The new retention fix should receive its own subsequent scheduled-run check.
 
 ## Recommended next steps
 
-1. Publish and verify the scoped retention fix, measuring actual returned postings and preserved IDs.
+1. Recheck the new retention fix through subsequent scheduled refreshes, including missing-feed job retention and actual evidence timestamps.
 2. Continue automated source resolution; measure qualifying growth after overlap rather than raw mapping counts.
-3. Prioritize unresolved losses by shared employer system and exact evidence, preserving provider cooldowns.
-4. Recheck the new fix and the original queues after another scheduled observation window. The doubling target and broader expansion project remain open; prior approval covers this work.
+3. Prioritize unresolved losses and the next shared employer integration using exact evidence and recoverable yield, preserving provider cooldowns.
+4. Review that next observation window on November 21 Pacific. The doubling target and broader expansion project remain open; prior approval covers this work.
