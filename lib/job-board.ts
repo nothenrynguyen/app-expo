@@ -8,6 +8,7 @@ import {
 } from "./job-locations";
 import type { PublicJob } from "./jobs";
 import { matchesRoleSelection, type RoleSelection } from "./role-areas";
+import {matchesJobDateWindow,type JobDateWindow} from "./job-date-window";
 
 export type JobCollection = "internships" | "fulltime";
 
@@ -22,6 +23,8 @@ type JobBoardFilters = {
   companyTiers: readonly CompanyTier[];
   savedOnly: boolean;
   savedJobIds: ReadonlySet<string>;
+  dateWindow?: JobDateWindow;
+  now?: Date;
 };
 
 export function filterJobs(jobs: readonly PublicJob[], filters: JobBoardFilters): PublicJob[] {
@@ -33,6 +36,7 @@ export function filterJobs(jobs: readonly PublicJob[], filters: JobBoardFilters)
       const { eligible, regions: jobRegions, metros: jobMetros } = getJobLocationMetadata(job);
 
       return isInCollection(job, filters.type)
+        && matchesJobDateWindow(job.firstPublishedAt,filters.dateWindow??'all',filters.now)
         && eligible
         && (!normalizedQuery || search.includes(normalizedQuery))
         && matchesRoleSelection(job, filters.roleSelection)
@@ -43,7 +47,8 @@ export function filterJobs(jobs: readonly PublicJob[], filters: JobBoardFilters)
         && (filters.companyTiers.length === 0 || filters.companyTiers.some((tier) => hasCompanyTier(job.company, tier)))
         && (!filters.savedOnly || filters.savedJobIds.has(job.id));
     })
-    .sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime());
+    .sort((a, b) => new Date(filters.dateWindow&&filters.dateWindow!=='all'?b.firstPublishedAt!:b.postedAt).getTime()
+      - new Date(filters.dateWindow&&filters.dateWindow!=='all'?a.firstPublishedAt!:a.postedAt).getTime());
 }
 
 export function getJobTerms(jobs: readonly PublicJob[]): string[] {

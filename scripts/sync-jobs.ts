@@ -43,6 +43,7 @@ import { normalizeJobLocation } from "../lib/job-locations";
 import { getJobLocationMetadata } from "../lib/job-location-policy";
 import { buildJobsSummary } from "../lib/job-summary";
 import { allSnapshotJobs, type JobsSnapshot, type PublicJob } from "../lib/jobs";
+import {emptyPublicationDates,readPublicationDates,planPublicationDates} from "../lib/ingestion/publication-dates";
 import { isListingUnavailable, needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
 import { classifyRoleTags, getJobRoleTags } from "../lib/role-areas";
 import type { SourceCatalog } from "../lib/source-catalog";
@@ -62,6 +63,9 @@ async function main() {
   const output = path.join(root, "public/jobs.json");
   const previous = await readFile(output, "utf8").then((value) => JSON.parse(value) as JobsSnapshot).catch(() => null);
   const previousJobs = allSnapshotJobs(previous);
+  const publicationDatesPath=path.join(root,'data/publication-dates.json');
+  const publicationDates=await readFile(publicationDatesPath,'utf8').then(value=>readPublicationDates(JSON.parse(value)))
+    .catch((error:NodeJS.ErrnoException)=>{if(error.code==='ENOENT')return emptyPublicationDates();throw error;});
   const previousByUrl = new Map(previousJobs.map((job) => [opportunityIdentity(job.applyUrl), job]));
   const priorHeldById = new Map(previousJobs.filter(job => job.verification?.status === "awaiting")
     .flatMap(job => [job.id, ...(job.previousIds ?? [])].map(id => [publishedJobIdAliases[id as keyof typeof publishedJobIdAliases] ?? id, job] as const)));
@@ -482,9 +486,12 @@ async function main() {
       workdayChecks, boardRegistry, boardResults, sourceDiagnostics, retired, screeningFor: screening.decisionsFor }),
   };
   let proposedChanges = buildListingChanges(changeInput);
-  const awaitingVerification = buildOutageHolds(previousJobs, proposedChanges, observationTime, lastPositiveAt);
+  let awaitingVerification = buildOutageHolds(previousJobs, proposedChanges, observationTime, lastPositiveAt);
   const publicationAliases = collectJobIdAliases([...jobs, ...awaitingVerification], publishedJobIdAliases);
   jobs = availabilityInventory(jobs, awaitingVerification, publicationAliases);
+  const datedPublication=planPublicationDates(jobs,awaitingVerification,previous?.jobs??[],publicationDates,snapshot.generatedAt,publicationAliases);
+  jobs=datedPublication.jobs;
+  awaitingVerification=datedPublication.held;
   snapshot.jobs = jobs;
   changeInput.current = jobs;
   proposedChanges = buildListingChanges(changeInput);
@@ -531,6 +538,8 @@ async function main() {
   }
 
   await mkdir(path.join(root, "data"), { recursive: true });
+  await writeFile(`${publicationDatesPath}.tmp`,`${JSON.stringify(datedPublication.state,null,2)}\n`);
+  await rename(`${publicationDatesPath}.tmp`,publicationDatesPath);
   // Public IDs only. Keep compatibility when an opening later leaves the feed.
   const jobIdAliases = collectJobIdAliases(trackedJobs, publicationAliases);
   await writeFile(path.join(root, "data/job-id-aliases.json"), `${JSON.stringify(jobIdAliases, null, 2)}\n`);

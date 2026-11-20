@@ -29,9 +29,10 @@ type JobFiltersProps = {
   onTermsChange: (terms: string[]) => void;
   onCompanyTiersChange: (tiers: CompanyTier[]) => void;
   onViewChange: (viewMode: ViewMode) => void;
+  onRoleNavigate:()=>void;
 };
 
-export function RoleTabs({ selection, type }: { selection: RoleSelection; type: "internships" | "fulltime" }) {
+export function RoleTabs({ selection, type,onNavigate }: { selection: RoleSelection; type: "internships" | "fulltime";onNavigate?:()=>void }) {
   const route = type === "internships" ? "/internships" : "/jobs";
   const activeTabRef = useRef<HTMLAnchorElement>(null);
 
@@ -48,7 +49,8 @@ export function RoleTabs({ selection, type }: { selection: RoleSelection; type: 
         {ROLE_FAMILIES.map((option) => (
           <Link
             className={selection.family === option.value ? "active" : ""}
-            href={option.value === "all" ? route : `${route}?role=${option.value}`}
+            href={`${route}?role=${option.value}`}
+            onClick={onNavigate}
             key={option.value}
             aria-current={selection.family === option.value && !selection.specialty ? "page" : undefined}
             ref={selection.family === option.value ? activeTabRef : undefined}
@@ -81,6 +83,7 @@ export function JobFilters({
   onTermsChange,
   onCompanyTiersChange,
   onViewChange,
+  onRoleNavigate,
 }: JobFiltersProps) {
   const route = type === "internships" ? "/internships" : "/jobs";
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -170,7 +173,7 @@ export function JobFilters({
         aria-modal={mobileFiltersOpen ? true : undefined}
         aria-label={mobileFiltersOpen ? "Job filters" : undefined}
         onClick={(event) => {
-          if ((event.target as Element).closest("a")) closeMobileFilters();
+          if ((event.target as Element).closest("a")) {closeMobileFilters();onRoleNavigate();}
         }}
       >
         <div className="mobile-filter-panel-header">

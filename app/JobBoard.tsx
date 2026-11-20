@@ -1,10 +1,9 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import type { CompanyTier } from "@/lib/company-tiers";
 import { countSavedJobs, filterJobs, getAvailableMetroOptions, getJobTerms } from "@/lib/job-board";
-import { formatSnapshotAge, type JobMetro, type JobRegion } from "@/lib/job-locations";
+import { formatSnapshotAge } from "@/lib/job-locations";
 import type { JobsSnapshot } from "@/lib/jobs";
 import { getJobRoleTags, getRoleSelection, getRoleTagsForFamily } from "@/lib/role-areas";
 import { JobFilters, RoleTabs } from "./job-board/JobFilters";
@@ -21,6 +20,8 @@ import { useApplicationStatuses } from "./useApplicationStatuses";
 import { APPLICATION_STATUSES, isApplicationStatus, matchesApplicationStatus, type ApplicationStatus } from "@/lib/application-status";
 import { useBoardActivity } from "./ActivityTracking";
 import { createSnapshotPoller, SNAPSHOT_POLL_MS } from "@/lib/snapshot-polling";
+import {useBoardPreferences} from "./useBoardPreferences";
+import {BoardFreshnessControls} from "./job-board/BoardFreshnessControls";
 
 type JobBoardProps = {
   type: "internships" | "fulltime";
@@ -30,17 +31,20 @@ const EMPTY_JOBS: JobsSnapshot["jobs"] = [];
 
 export function JobBoard({ type }: JobBoardProps) {
   const searchParams = useSearchParams();
+  const router=useRouter();
+  const {preferences,update:remember,reset:resetPreferences,storageError:preferenceError}=useBoardPreferences(type);
   const roleParam = searchParams.get("role");
   const specialtyParam = searchParams.get("specialty");
-  const roleSelection = useMemo(() => getRoleSelection(roleParam, specialtyParam), [roleParam, specialtyParam]);
+  const explicitRole=roleParam!==null||specialtyParam!==null;
+  const linkedRole=useMemo(()=>getRoleSelection(roleParam,specialtyParam),[roleParam,specialtyParam]);
+  const roleSelection=explicitRole?linkedRole:preferences.role;
+  useEffect(()=>{
+    if(explicitRole&&(preferences.role.family!==linkedRole.family||preferences.role.specialty!==linkedRole.specialty))remember({role:linkedRole});
+  },[explicitRole,linkedRole,preferences.role,remember]);
   const [snapshot, setSnapshot] = useState<JobsSnapshot | null>(null);
   const [error, setError] = useState(false);
   const [query, setQuery] = useState("");
-  const [regions, setRegions] = useState<JobRegion[]>(["us"]);
-  const [metros, setMetros] = useState<JobMetro[]>([]);
-  const [modes, setModes] = useState<string[]>([]);
-  const [selectedTerms, setSelectedTerms] = useState<string[]>([]);
-  const [companyTiers, setCompanyTiers] = useState<CompanyTier[]>([]);
+  const {regions,metros,modes,terms:selectedTerms,companyTiers,dateWindow}=preferences;
   const [savedOnly, setSavedOnly] = useState(false);
   const [statusFilter, setStatusFilter] = useState<ApplicationStatus | "All">("All");
   const { statuses } = useApplicationStatuses();
@@ -111,13 +115,15 @@ export function JobBoard({ type }: JobBoardProps) {
       companyTiers: roleSelection.family === "engineering" ? [] : companyTiers,
       savedOnly,
       savedJobIds,
+      dateWindow,
+      now,
     }).filter((job) => savedOnly ? matchesApplicationStatus(job.id, statuses, statusFilter) : !hiddenKeys.has(companyPreferenceKey(job.company))),
-    [sourceJobs, type, roleSelection, query, regions, metros, modes, selectedTerms, companyTiers, savedOnly, savedJobIds, statuses, statusFilter, hiddenKeys],
+    [sourceJobs, type, roleSelection, query, regions, metros, modes, selectedTerms, companyTiers, savedOnly, savedJobIds, statuses, statusFilter, hiddenKeys,dateWindow,now],
   );
 
   useBoardActivity(snapshot !== null, jobs.length, {
     search: query, region: regions.join(","), metro: metros.join(","), workplace: modes.join(","),
-    term: selectedTerms.join(","), company_tier: companyTiers.join(","), role: `${roleParam ?? ""}:${specialtyParam ?? ""}`,
+    term: selectedTerms.join(","), company_tier: companyTiers.join(","), role: `${roleSelection.family}:${roleSelection.specialty ?? ""}`,
     saved: String(savedOnly), status: statusFilter,
   });
 
@@ -144,7 +150,7 @@ export function JobBoard({ type }: JobBoardProps) {
   return (
     <>
       <div className="role-toolbar">
-        <RoleTabs selection={roleSelection} type={type} />
+        <RoleTabs selection={roleSelection} type={type} onNavigate={resetPage} />
         <button
           className={`saved-filter category-saved ${savedOnly ? "active" : ""}`}
           type="button"
@@ -171,6 +177,8 @@ export function JobBoard({ type }: JobBoardProps) {
         <span className="refresh-age">&middot; updated {formatSnapshotAge(snapshot.generatedAt, now)}</span>
         <span className="matching-count"><strong>{jobs.length}</strong> matching roles</span>
       </div>
+      <BoardFreshnessControls value={dateWindow} onChange={value=>{remember({dateWindow:value});resetPage();}}
+        storageError={preferenceError} onReset={()=>{resetPreferences();setQuery('');setStatusFilter('All');resetPage();router.replace(`${type==='internships'?'/internships':'/jobs'}?role=all`,{scroll:false});}} />
       <JobFilters
         query={query}
         regions={regions}
@@ -185,11 +193,12 @@ export function JobBoard({ type }: JobBoardProps) {
         type={type}
         viewMode={viewMode}
         onQueryChange={(value) => { setQuery(value); resetPage(); }}
-        onRegionsChange={(values) => { setRegions(values); setMetros([]); resetPage(); }}
-        onMetrosChange={(values) => { setMetros(values); resetPage(); }}
-        onModesChange={(values) => { setModes(values); resetPage(); }}
-        onTermsChange={(values) => { setSelectedTerms(values); resetPage(); }}
-        onCompanyTiersChange={(values) => { setCompanyTiers(values); resetPage(); }}
+        onRegionsChange={(values) => { remember({regions:values,metros:[]}); resetPage(); }}
+        onMetrosChange={(values) => { remember({metros:values}); resetPage(); }}
+        onModesChange={(values) => { remember({modes:values}); resetPage(); }}
+        onTermsChange={(values) => { remember({terms:values}); resetPage(); }}
+        onCompanyTiersChange={(values) => { remember({companyTiers:values}); resetPage(); }}
+        onRoleNavigate={resetPage}
         onViewChange={changeView}
       />
       <JobResults

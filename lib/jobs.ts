@@ -15,6 +15,7 @@ export type PublicJob = {
   metros?: import("./job-locations").JobMetro[];
   workMode: "remote" | "hybrid" | "in_person" | "unknown";
   postedAt: string;
+  firstPublishedAt?: string;
   postedAtSource: PostedAtSource;
   applyUrl: string;
   linkedInUrl: string | null;
