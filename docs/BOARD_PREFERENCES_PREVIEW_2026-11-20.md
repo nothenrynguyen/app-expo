@@ -1,6 +1,6 @@
 # Remembered filters and calendar discovery preview
 
-Status: owner approved publication after reviewing the local preview on November 20. Feature `d5277fd` is published to main and production-verified. All 261 tests, clean types, lint and static export pass. First post-release hosted refresh verification remains pending.
+Status: owner approved publication after reviewing the local preview on November 20. Feature `d5277fd` is published to main and production-verified. All 261 tests, clean types, lint and static export pass. First normal hosted refresh `44761809132` and resulting snapshot `289d37a` are production-verified, including first-added date continuity.
 
 ## Decisions
 
@@ -23,9 +23,9 @@ Status: owner approved publication after reviewing the local preview on November
 
 ## Recommended next steps
 
-1. Verify the first normal hosted refresh preserves historical dates and passes the publication guard.
-2. Confirm its resulting snapshot and deployment match production.
-3. Verify live UI and the first normal refresh preserve dates/IDs; continue the November 21 coverage checkpoint. This feature improves discovery and does not resolve remaining Workday cooldowns, Iterable failures or the unmet intake-doubling goal.
+1. Resume the November 21 coverage checkpoint and measure recovered unique opportunities separately from ordinary feed churn.
+2. Prioritize evidence-backed employer recovery and additional permitted sources. This feature improves discovery and does not resolve remaining Workday cooldowns, Iterable failures or the unmet intake-doubling goal.
+3. Keep genuine refresh/deployment notifications enabled; investigate any new failure by its run, commit and timestamp.
 
 ## Published release evidence
 
@@ -35,3 +35,11 @@ Status: owner approved publication after reviewing the local preview on November
 - Live Internships: New today selects 5 US roles and survives reload; New this week selects 433. Live Early Career starts independently at All and selects 325 US roles this week. Test preferences were reset afterwards. Production desktop/mobile screenshots are retained locally; browser control ended and viewport override was reset.
 - November release description names the new controls and remembered filters, and measures exactly two desktop lines (51px at 25.5px line height).
 - The connected Vercel account did not list this project, so deployment verification used GitHub's Vercel status plus the actual production domain. A credential-helper API status script was rejected by automatic approval review and never executed; verification continued through connected tools. GitHub browser was signed out, so no manual dispatch was attempted. The normal hourly refresh remains scheduled.
+
+## First normal post-release refresh
+
+- [Run 44761809132](https://github.com/nothenrynguyen/app-expo/actions/runs/44761809132), scheduled hourly slot November 20 07:17 Pacific, completed successfully at 07:20:32. It passed clean types, all tests, ingestion and the unchanged publication guard.
+- Snapshot [289d37a](https://github.com/nothenrynguyen/app-expo/commit/289d37a), generated 07:20:19 Pacific: 3,438 internships, 2,362 early-career jobs, 5,800 current and 621 internal holds. Relative to the reviewed snapshot: +4 internships, -2 early-career jobs, net +2. This is ordinary refresh movement, not growth attributed to the browsing feature.
+- Exact opportunity-identity comparison verifies all 6,415 continuing current/held listings retain their first-added timestamps. Six newly present identities and four no-longer-present identities reconcile the tracked count change; absence alone is not a closure diagnosis. Every current row matches its stored date registry entry and no date is after snapshot generation.
+- All four live JSON files byte-match `289d37a`; its [Vercel deployment](https://vercel.com/henrys-projects-84715f33/app-expo/2XtHXbrhjH6XQhMaSsFsfKt2r8Wj) reports success. No new failure was observed. Local evidence is `.cache/refresh-publication-continuity.json`.
+- Browser control is ended. The local preview server was stopped after the production release; use the live site for review.
