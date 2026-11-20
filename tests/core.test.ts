@@ -38,6 +38,26 @@ import type { SourceCatalog } from "../lib/source-catalog";
 import { buildReviewedEmployerCoverage, employerBoardIdentity } from "../lib/ingestion/reviewed-employer-coverage";
 import type { CandidateJob } from "../lib/source-normalization";
 
+test("compiler internships are software roles even without engineer in the title", () => {
+  for (const title of ["Intern, ML Compiler (Kernel Auto-Tuning)", "Deep Learning Compiler Intern", "AI Compiler and Kernel Intern", "Intern - Compiler Team", "GPU Compiler Development Intern, HW", "Compiler Intern, Simulator", "Tools and Compilers Research and Development Intern"]) {
+    assert.ok(classifyRoleTags({title, category: "Internship"}).includes("software-engineering"), title);
+  }
+});
+
+test("explicit student architecture and perception functions retain their disciplines", () => {
+  for (const title of ["Intern, HBM Memory Architecture", "Next-Generation HBM Architecture Intern"]) assert.ok(classifyRoleTags({title,category:"Internship"}).includes("hardware-electrical"),title);
+  for (const title of ["Intern, LLM Inference Acceleration Architecture", "Co-Op, Robot Perception & State Estimation", "Optical Sensing Intern - Robot Perception"]) assert.ok(classifyRoleTags({title,category:"Internship"}).includes("ai-ml-engineering"),title);
+});
+
+test("inverted data analyst and corporate strategy titles match existing supported roles", () => {
+  assert.ok(classifyRoleTags({title:"Analyst, Data and Insights",category:"New grad"}).includes("analytics"));
+  assert.ok(classifyRoleTags({title:"Corporate Strategy Intern",category:"Internship"}).includes("business-analyst"));
+});
+
+test("technical title recovery does not admit unrelated keywords or override seniority", () => {
+  for (const title of ["AI Education Intern", "Compiler Marketing Intern", "Legal Compiler Intern", "HBM Sales Intern", "Senior Compiler Intern", "Staff Robot Perception Intern", "Corporate Strategy Manager", "AI Transformation Intern"]) assert.deepEqual(classifyRoleTags({title,category:"Other"}).filter(tag=>["software-engineering","ai-ml-engineering","hardware-electrical","business-analyst"].includes(tag)),[],title);
+});
+
 test("foreign cities cannot inherit a contradictory US suffix or stale snapshot tag", () => {
   for (const location of ["Shanghai, 200335, United States", "Shanghai, 200335", "Prague, United States", "Prague"]) {
     assert.equal(getSupportedJobRegions(location).includes("us"), false, location);

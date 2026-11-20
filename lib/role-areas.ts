@@ -141,6 +141,23 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
   if (/\b(?:senior|sr\.?|staff|principal|director|head|lead)\b/i.test(job.title)) return [];
   if (/\bmanager\b/i.test(job.title) && !explicitEarlyCareerTitle && !/\b(?:product|technical program) manager\b/i.test(job.title)) return [];
   const tags = new Set<RoleTag>();
+  // Functional titles that omit "engineer" still name a supported discipline.
+  // Keep this title-specific, never treat a bare AI keyword as qualification.
+  const unrelatedTechnicalTitle = /\b(?:sales|marketing|recruiting|education|clinical|legal|human resources)\b/.test(title);
+  if (explicitEarlyCareerTitle && !unrelatedTechnicalTitle) {
+    const compilerRole = /\bcompilers?\b/.test(title)
+      && /\b(?:compiler(?:s)?(?: development| team)?|kernel)\s+(?:intern|co-?op)\b|\b(?:intern|co-?op)\b.{0,25}\bcompiler\b|\bcompilers? research and development intern\b/.test(title);
+    if (compilerRole) {
+      tags.add("software-engineering");
+      if (/\b(?:ai|ml|deep learning|machine learning)\b/.test(title)) tags.add("ai-ml-engineering");
+    }
+    if (/\bllm inference\b.*\b(?:architecture|acceleration|optimization)\b|\brobot perception\b/.test(title)) {
+      tags.add("software-engineering");
+      tags.add("ai-ml-engineering");
+    }
+    if (/\bhbm (?:memory )?architecture\b/.test(title)) tags.add("hardware-electrical");
+    if (/\bcorporate strategy\b/.test(title)) tags.add("business-analyst");
+  }
   // A graduate research title can omit its ML specialty. Require concrete
   // model/system development duties as well as technical subject matter.
   if (/\bresearch scientist\s+(?:graduates?|intern)\b/.test(title)
@@ -177,7 +194,7 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
   if (!/\b(?:customer experience|customer support|customer service)\b/.test(title)) add("quant", /\bquant(?:itative)?\b|\btrader\b|\btrading\b|\bsystematic\b|\balgorithmic trading\b/);
   add("data-science", /\bdata scien(?:ce|tist)\b|\bdecision scientist\b|\bmachine learning scientist\b|\b(?:ai|artificial intelligence|machine learning|deep learning) research(?:er)?\b|\bapplied scientist\b|\bstatistician\b/);
   add("data-engineering", /\bdata engineer(?:ing)?\b|\banalytics engineer(?:ing)?\b|\bdata platform engineer(?:ing)?\b|\bdata infrastructure\b/);
-  add("analytics", /\bdata analyst\b|\banalytics?\b|\bstrategy\s*(?:&|and)\s*analyt|\bbusiness intelligence\b|\bbi analyst\b/);
+  add("analytics", /\bdata analyst\b|\banalyst\s*[,/:\u2013-]\s*data\b|\banalytics?\b|\bstrategy\s*(?:&|and)\s*analyt|\bbusiness intelligence\b|\bbi analyst\b/);
   add("business-analyst", /\bbusiness (?:systems? )?analyst\b|\bstrategy analyst\b|\bprocess analyst\b|\bprogram analyst\b|\bmanagement analyst\b|\bconsulting analyst\b|\bsupply chain analyst\b|\bprocurement analyst\b|\bcommercial analyst\b|\bproject analyst\b|\bbusiness development analyst\b|\bmanagement consulting\b|\bbusiness operations\b|\bstrategy and operations\b/);
   if (!excludedOperationsDomain(title)) {
     add("business-analyst", /\boperations analyst\b/);
