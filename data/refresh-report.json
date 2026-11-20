@@ -3,17 +3,17 @@
     "path": "data/listing-changes.json",
     "reconciliation": {
       "unit": "opportunities",
-      "previous": 6408,
-      "current": 6409,
-      "retained": 6408,
-      "added": 1,
-      "removed": 0,
-      "net": 1
+      "previous": 6409,
+      "current": 6406,
+      "retained": 6404,
+      "added": 2,
+      "removed": 5,
+      "net": -3
     },
     "categoryCounts": {
       "confirmed-closed": 0,
-      "scope-exclusion": 0,
-      "verification-pending": 0,
+      "scope-exclusion": 1,
+      "verification-pending": 4,
       "source-unavailable": 0,
       "unresolved": 0,
       "deduplicated": 0
@@ -21,58 +21,58 @@
   },
   "coverage": {
     "boards": {
-      "discovered": 408,
-      "retained": 360
+      "discovered": 410,
+      "retained": 359
     },
     "availability": {
-      "current": 5782,
-      "awaitingVerification": 627,
-      "tracked": 6409
+      "current": 5781,
+      "awaitingVerification": 625,
+      "tracked": 6406
     },
     "collections": [
       {
         "collection": "internships",
         "previous": 3746,
-        "current": 3746,
-        "removed": 0,
+        "current": 3745,
+        "removed": 1,
         "unexplained": 0,
         "previousOpportunities": 3746,
-        "currentOpportunities": 3746,
+        "currentOpportunities": 3745,
         "largeDrop": false,
         "blocked": false
       },
       {
         "collection": "fulltime",
-        "previous": 2661,
-        "current": 2662,
-        "removed": 0,
+        "previous": 2662,
+        "current": 2660,
+        "removed": 4,
         "unexplained": 0,
-        "previousOpportunities": 2661,
-        "currentOpportunities": 2662,
+        "previousOpportunities": 2662,
+        "currentOpportunities": 2660,
         "largeDrop": false,
         "blocked": false
       }
     ]
   },
   "version": 1,
-  "startedAt": "2026-11-20T08:18:42.852Z",
-  "completedAt": "2026-11-20T08:21:25.199Z",
-  "durationMs": 162347,
+  "startedAt": "2026-11-20T08:44:53.381Z",
+  "completedAt": "2026-11-20T08:48:11.063Z",
+  "durationMs": 197682,
   "status": "degraded",
   "sources": {
     "total": 80,
     "healthy": 22,
     "failed": 58,
     "empty": 0,
-    "requestCount": 219,
-    "durationMs": 40181,
+    "requestCount": 93,
+    "durationMs": 100831,
     "records": [
       {
         "name": "Internship Engine",
         "kind": "engine_json",
         "status": "ok",
         "rows": 1236,
-        "durationMs": 104,
+        "durationMs": 106,
         "requestCount": 1
       },
       {
@@ -80,7 +80,7 @@
         "kind": "applyguy_json",
         "status": "ok",
         "rows": 47,
-        "durationMs": 44,
+        "durationMs": 74,
         "requestCount": 1
       },
       {
@@ -88,7 +88,7 @@
         "kind": "cyber_json",
         "status": "ok",
         "rows": 33,
-        "durationMs": 82,
+        "durationMs": 129,
         "requestCount": 1
       },
       {
@@ -96,7 +96,7 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 582,
-        "durationMs": 533,
+        "durationMs": 378,
         "requestCount": 1
       },
       {
@@ -104,7 +104,7 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 769,
-        "durationMs": 791,
+        "durationMs": 856,
         "requestCount": 1
       },
       {
@@ -112,7 +112,7 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 2890,
-        "durationMs": 1102,
+        "durationMs": 1234,
         "requestCount": 1
       },
       {
@@ -120,7 +120,7 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 555,
-        "durationMs": 383,
+        "durationMs": 600,
         "requestCount": 1
       },
       {
@@ -128,7 +128,7 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 525,
-        "durationMs": 545,
+        "durationMs": 664,
         "requestCount": 1
       },
       {
@@ -136,7 +136,7 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 1310,
-        "durationMs": 609,
+        "durationMs": 919,
         "requestCount": 1
       },
       {
@@ -144,7 +144,7 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 1315,
-        "durationMs": 845,
+        "durationMs": 444,
         "requestCount": 1
       },
       {
@@ -152,7 +152,7 @@
         "kind": "keryx_markdown",
         "status": "ok",
         "rows": 133,
-        "durationMs": 733,
+        "durationMs": 950,
         "requestCount": 1
       },
       {
@@ -160,7 +160,7 @@
         "kind": "keryx_markdown",
         "status": "ok",
         "rows": 237,
-        "durationMs": 639,
+        "durationMs": 691,
         "requestCount": 1
       },
       {
@@ -168,7 +168,7 @@
         "kind": "keryx_markdown",
         "status": "ok",
         "rows": 1654,
-        "durationMs": 1220,
+        "durationMs": 1400,
         "requestCount": 1
       },
       {
@@ -176,7 +176,7 @@
         "kind": "keryx_markdown",
         "status": "ok",
         "rows": 83,
-        "durationMs": 441,
+        "durationMs": 563,
         "requestCount": 1,
         "message": "{\"reviewHoldsConfigured\":16,\"heldCandidateRowsAcrossSources\":19}"
       },
@@ -184,8 +184,8 @@
         "name": "New-Grad-2027 2027",
         "kind": "markdown",
         "status": "ok",
-        "rows": 799,
-        "durationMs": 707,
+        "rows": 803,
+        "durationMs": 780,
         "requestCount": 1
       },
       {
@@ -193,7 +193,7 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 2007,
-        "durationMs": 334,
+        "durationMs": 530,
         "requestCount": 1
       },
       {
@@ -201,7 +201,7 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 100,
-        "durationMs": 65,
+        "durationMs": 70,
         "requestCount": 1
       },
       {
@@ -209,15 +209,15 @@
         "kind": "markdown",
         "status": "ok",
         "rows": 480,
-        "durationMs": 407,
+        "durationMs": 630,
         "requestCount": 1
       },
       {
         "name": "Vansh Summer 2027",
         "kind": "markdown",
         "status": "ok",
-        "rows": 1987,
-        "durationMs": 240,
+        "rows": 1996,
+        "durationMs": 244,
         "requestCount": 1
       },
       {
@@ -225,7 +225,7 @@
         "kind": "keryx_markdown",
         "status": "ok",
         "rows": 34,
-        "durationMs": 849,
+        "durationMs": 1228,
         "requestCount": 1
       },
       {
@@ -233,7 +233,7 @@
         "kind": "usajobs",
         "status": "ok",
         "rows": 10,
-        "durationMs": 24505,
+        "durationMs": 88335,
         "requestCount": 73,
         "message": "{\"accepted\":10,\"holds\":[{\"url\":\"https://www.usajobs.gov/job/893523800\",\"reason\":\"unverified-role-category\"},{\"url\":\"https://www.usajobs.gov/job/891991400\",\"reason\":\"unverified-or-ineligible-location\"},{\"url\":\"https://www.usajobs.gov/job/892836800\",\"reason\":\"closed-or-closing-today\"},{\"url\":\"https://www.usajobs.gov/job/892855000\",\"reason\":\"closed-or-closing-today\"},{\"url\":\"https://www.usajobs.gov/job/891497900\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/880490300\",\"reason\":\"unverified-paid-compensation\"},{\"url\":\"https://www.usajobs.gov/job/878753900\",\"reason\":\"extended-recruitment-window\"},{\"url\":\"https://www.usajobs.gov/job/887072300\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/888775700\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/892841300\",\"reason\":\"closed-or-closing-today\"},{\"url\":\"https://www.usajobs.gov/job/891900000\",\"reason\":\"unverified-paid-compensation\"},{\"url\":\"https://www.usajobs.gov/job/891901100\",\"reason\":\"unverified-paid-compensation\"},{\"url\":\"https://www.usajobs.gov/job/869475000\",\"reason\":\"extended-recruitment-window\"},{\"url\":\"https://www.usajobs.gov/job/887758500\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/888601400\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/888632500\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/888633100\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/893069100\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/892745700\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/887032000\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/887032700\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/887033500\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/887326500\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/892502700\",\"reason\":\"unverified-career-level\"},{\"url\":\"https://www.usajobs.gov/job/887034500\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/887072000\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/887073900\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/885610500\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/885611800\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/885613300\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/885613800\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/886732200\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/886753300\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/887034100\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/887073500\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/869474800\",\"reason\":\"extended-recruitment-window\"},{\"url\":\"https://www.usajobs.gov/job/892741100\",\"reason\":\"extended-recruitment-window\"},{\"url\":\"https://www.usajobs.gov/job/892623200\",\"reason\":\"unverified-career-level\"},{\"url\":\"https://www.usajobs.gov/job/888514800\",\"reason\":\"extended-recruitment-window\"},{\"url\":\"https://www.usajobs.gov/job/888515400\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/888516200\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/893336800\",\"reason\":\"seniority\"},{\"url\":\"https://www.usajobs.gov/job/893230000\",\"reason\":\"seniority\"},{\"url\":\"https://www.usajobs.gov/job/893222400\",\"reason\":\"seniority\"},{\"url\":\"https://www.usajobs.gov/job/892801900\",\"reason\":\"seniority\"},{\"url\":\"https://www.usajobs.gov/job/892269800\",\"reason\":\"seniority\"},{\"url\":\"https://www.usajobs.gov/job/892443500\",\"reason\":\"unverified-career-level\"},{\"url\":\"https://www.usajobs.gov/job/890056500\",\"reason\":\"unverified-career-level\"},{\"url\":\"https://www.usajobs.gov/job/888436600\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/893586200\",\"reason\":\"unverified-career-level\"},{\"url\":\"https://www.usajobs.gov/job/888437200\",\"reason\":\"standing-recruitment-notice\"},{\"url\":\"https://www.usajobs.gov/job/888512300\",\"reason\":\"standing-recruitment-notice\"}],\"discovered\":62,\"searchRequests\":11,\"detailRequests\":62,\"truncated\":false,\"searches\":[{\"query\":\"student-trainees\",\"page\":1,\"rows\":15,\"matched\":15},{\"query\":\"finance-student\",\"page\":1,\"rows\":1,\"matched\":1},{\"query\":\"business-student\",\"page\":1,\"rows\":3,\"matched\":3},{\"query\":\"engineering-student\",\"page\":1,\"rows\":8,\"matched\":8},{\"query\":\"it-data-student\",\"page\":1,\"rows\":4,\"matched\":4},{\"query\":\"analysis-student\",\"page\":1,\"rows\":9,\"matched\":9},{\"query\":\"finance-graduates\",\"page\":1,\"rows\":6,\"matched\":6},{\"query\":\"business-graduates\",\"page\":1,\"rows\":8,\"matched\":8},{\"query\":\"engineering-graduates\",\"page\":1,\"rows\":14,\"matched\":14},{\"query\":\"it-data-graduates\",\"page\":1,\"rows\":6,\"matched\":6},{\"query\":\"analysis-graduates\",\"page\":1,\"rows\":10,\"matched\":10}]}"
       },
@@ -263,7 +263,7 @@
         "status": "failed",
         "outcome": "cooldown",
         "rows": 0,
-        "durationMs": 1,
+        "durationMs": 0,
         "requestCount": 0,
         "message": "Cooldown until 2026-11-20T16:20:06.633Z: 429 Too Many Requests"
       },
@@ -823,20 +823,20 @@
         "status": "ok",
         "outcome": "partial",
         "rows": 136,
-        "requestCount": 126,
-        "durationMs": 5002,
+        "requestCount": 0,
+        "durationMs": 6,
         "message": "{\"targets\":3094,\"live\":136,\"unknown\":2598,\"unchecked\":0,\"pausedHosts\":435,\"reusedCurrentPostings\":0}"
       }
     ]
   },
   "boards": {
-    "total": 826,
-    "healthy": 767,
+    "total": 827,
+    "healthy": 768,
     "failed": 59,
-    "requestCount": 772,
-    "retryRequests": 4,
+    "requestCount": 769,
+    "retryRequests": 0,
     "detailFailures": 0,
-    "durationMs": 447287,
+    "durationMs": 385327,
     "records": [
       {
         "id": "ashby:atalanta",
@@ -846,7 +846,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 77
+        "durationMs": 62
       },
       {
         "id": "ashby:reliable-robotics",
@@ -856,7 +856,7 @@
         "status": "ok",
         "rows": 75,
         "retryRequests": 0,
-        "durationMs": 106
+        "durationMs": 96
       },
       {
         "id": "greenhouse:samsungsemiconductor",
@@ -866,7 +866,7 @@
         "status": "ok",
         "rows": 77,
         "retryRequests": 0,
-        "durationMs": 598
+        "durationMs": 231
       },
       {
         "id": "greenhouse:muonspace",
@@ -876,7 +876,7 @@
         "status": "ok",
         "rows": 137,
         "retryRequests": 0,
-        "durationMs": 663
+        "durationMs": 334
       },
       {
         "id": "lever:api.lever.co:zoox",
@@ -886,7 +886,7 @@
         "status": "ok",
         "rows": 246,
         "retryRequests": 0,
-        "durationMs": 2240
+        "durationMs": 1221
       },
       {
         "id": "greenhouse:sharkninjaoperatingllc",
@@ -896,7 +896,7 @@
         "status": "ok",
         "rows": 159,
         "retryRequests": 0,
-        "durationMs": 1717
+        "durationMs": 1156
       },
       {
         "id": "greenhouse:arcesiumllc",
@@ -906,7 +906,7 @@
         "status": "ok",
         "rows": 44,
         "retryRequests": 0,
-        "durationMs": 711
+        "durationMs": 270
       },
       {
         "id": "ashby:leland",
@@ -916,7 +916,7 @@
         "status": "ok",
         "rows": 192,
         "retryRequests": 0,
-        "durationMs": 750
+        "durationMs": 421
       },
       {
         "id": "lever:api.lever.co:tri",
@@ -925,8 +925,8 @@
         "company": "Toyota Research Institute",
         "status": "ok",
         "rows": 48,
-        "retryRequests": 1,
-        "durationMs": 14873
+        "retryRequests": 0,
+        "durationMs": 1367
       },
       {
         "id": "greenhouse:formlabsinternships",
@@ -936,7 +936,7 @@
         "status": "ok",
         "rows": 14,
         "retryRequests": 0,
-        "durationMs": 670
+        "durationMs": 241
       },
       {
         "id": "greenhouse:lightmatter",
@@ -946,7 +946,7 @@
         "status": "ok",
         "rows": 79,
         "retryRequests": 0,
-        "durationMs": 789
+        "durationMs": 365
       },
       {
         "id": "greenhouse:minitab",
@@ -956,7 +956,7 @@
         "status": "ok",
         "rows": 24,
         "retryRequests": 0,
-        "durationMs": 685
+        "durationMs": 382
       },
       {
         "id": "ashby:regent",
@@ -966,7 +966,7 @@
         "status": "ok",
         "rows": 68,
         "retryRequests": 0,
-        "durationMs": 75
+        "durationMs": 89
       },
       {
         "id": "ashby:shield",
@@ -976,7 +976,7 @@
         "status": "ok",
         "rows": 660,
         "retryRequests": 0,
-        "durationMs": 432
+        "durationMs": 1815
       },
       {
         "id": "ashby:skydio",
@@ -986,7 +986,7 @@
         "status": "ok",
         "rows": 191,
         "retryRequests": 0,
-        "durationMs": 159
+        "durationMs": 485
       },
       {
         "id": "greenhouse:judihealth",
@@ -996,7 +996,7 @@
         "status": "ok",
         "rows": 82,
         "retryRequests": 0,
-        "durationMs": 603
+        "durationMs": 471
       },
       {
         "id": "greenhouse:addepar1",
@@ -1004,9 +1004,9 @@
         "key": "addepar1",
         "company": "Addepar",
         "status": "ok",
-        "rows": 120,
+        "rows": 121,
         "retryRequests": 0,
-        "durationMs": 440
+        "durationMs": 303
       },
       {
         "id": "lever:api.lever.co:palantir",
@@ -1016,7 +1016,7 @@
         "status": "ok",
         "rows": 307,
         "retryRequests": 0,
-        "durationMs": 1944
+        "durationMs": 1420
       },
       {
         "id": "greenhouse:celonis",
@@ -1026,7 +1026,7 @@
         "status": "ok",
         "rows": 261,
         "retryRequests": 0,
-        "durationMs": 1343
+        "durationMs": 1214
       },
       {
         "id": "ashby:illumio",
@@ -1036,7 +1036,7 @@
         "status": "ok",
         "rows": 70,
         "retryRequests": 0,
-        "durationMs": 149
+        "durationMs": 112
       },
       {
         "id": "greenhouse:thenewyorktimes",
@@ -1046,7 +1046,7 @@
         "status": "ok",
         "rows": 144,
         "retryRequests": 0,
-        "durationMs": 491
+        "durationMs": 551
       },
       {
         "id": "lever:api.lever.co:pivotal",
@@ -1056,7 +1056,7 @@
         "status": "ok",
         "rows": 39,
         "retryRequests": 0,
-        "durationMs": 1024
+        "durationMs": 1617
       },
       {
         "id": "greenhouse:lilasciences",
@@ -1066,7 +1066,7 @@
         "status": "ok",
         "rows": 115,
         "retryRequests": 0,
-        "durationMs": 316
+        "durationMs": 343
       },
       {
         "id": "greenhouse:sharpelectronics",
@@ -1076,7 +1076,7 @@
         "status": "ok",
         "rows": 48,
         "retryRequests": 0,
-        "durationMs": 211
+        "durationMs": 206
       },
       {
         "id": "ashby:formulary",
@@ -1086,7 +1086,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 22
+        "durationMs": 78
       },
       {
         "id": "ashby:parspec",
@@ -1096,7 +1096,7 @@
         "status": "ok",
         "rows": 11,
         "retryRequests": 0,
-        "durationMs": 168
+        "durationMs": 66
       },
       {
         "id": "greenhouse:vardaspace",
@@ -1106,7 +1106,7 @@
         "status": "ok",
         "rows": 141,
         "retryRequests": 0,
-        "durationMs": 625
+        "durationMs": 1310
       },
       {
         "id": "ashby:notion",
@@ -1116,7 +1116,7 @@
         "status": "ok",
         "rows": 168,
         "retryRequests": 0,
-        "durationMs": 445
+        "durationMs": 598
       },
       {
         "id": "ashby:niural",
@@ -1126,7 +1126,7 @@
         "status": "ok",
         "rows": 27,
         "retryRequests": 0,
-        "durationMs": 82
+        "durationMs": 75
       },
       {
         "id": "greenhouse:galaxydigitalservices",
@@ -1136,7 +1136,7 @@
         "status": "ok",
         "rows": 56,
         "retryRequests": 0,
-        "durationMs": 295
+        "durationMs": 168
       },
       {
         "id": "lever:api.lever.co:matchgroup",
@@ -1146,7 +1146,7 @@
         "status": "ok",
         "rows": 70,
         "retryRequests": 0,
-        "durationMs": 1037
+        "durationMs": 1325
       },
       {
         "id": "greenhouse:raft",
@@ -1156,7 +1156,7 @@
         "status": "ok",
         "rows": 34,
         "retryRequests": 0,
-        "durationMs": 148
+        "durationMs": 638
       },
       {
         "id": "greenhouse:lumbermens",
@@ -1166,7 +1166,7 @@
         "status": "ok",
         "rows": 27,
         "retryRequests": 0,
-        "durationMs": 78
+        "durationMs": 250
       },
       {
         "id": "greenhouse:hearst",
@@ -1176,7 +1176,7 @@
         "status": "ok",
         "rows": 400,
         "retryRequests": 0,
-        "durationMs": 1606
+        "durationMs": 1654
       },
       {
         "id": "greenhouse:samsungresearchamericainternship",
@@ -1186,7 +1186,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 170
+        "durationMs": 359
       },
       {
         "id": "greenhouse:roboforce",
@@ -1196,7 +1196,7 @@
         "status": "ok",
         "rows": 19,
         "retryRequests": 0,
-        "durationMs": 132
+        "durationMs": 684
       },
       {
         "id": "greenhouse:usafacts",
@@ -1206,7 +1206,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 126
+        "durationMs": 347
       },
       {
         "id": "ashby:onepot",
@@ -1216,7 +1216,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 117
+        "durationMs": 545
       },
       {
         "id": "greenhouse:nex",
@@ -1226,7 +1226,7 @@
         "status": "ok",
         "rows": 59,
         "retryRequests": 0,
-        "durationMs": 347
+        "durationMs": 590
       },
       {
         "id": "greenhouse:flagshippioneeringinc",
@@ -1236,7 +1236,7 @@
         "status": "ok",
         "rows": 103,
         "retryRequests": 0,
-        "durationMs": 640
+        "durationMs": 730
       },
       {
         "id": "greenhouse:paretocaptiveservicesllc",
@@ -1246,7 +1246,7 @@
         "status": "ok",
         "rows": 37,
         "retryRequests": 0,
-        "durationMs": 273
+        "durationMs": 523
       },
       {
         "id": "greenhouse:trace3",
@@ -1256,7 +1256,7 @@
         "status": "ok",
         "rows": 99,
         "retryRequests": 0,
-        "durationMs": 789
+        "durationMs": 744
       },
       {
         "id": "lever:api.lever.co:fireworkhq",
@@ -1266,7 +1266,7 @@
         "status": "ok",
         "rows": 24,
         "retryRequests": 0,
-        "durationMs": 1212
+        "durationMs": 349
       },
       {
         "id": "lever:api.lever.co:tevora",
@@ -1276,7 +1276,7 @@
         "status": "ok",
         "rows": 27,
         "retryRequests": 0,
-        "durationMs": 1580
+        "durationMs": 161
       },
       {
         "id": "greenhouse:gardacp",
@@ -1286,7 +1286,7 @@
         "status": "ok",
         "rows": 9,
         "retryRequests": 0,
-        "durationMs": 230
+        "durationMs": 142
       },
       {
         "id": "greenhouse:asteraearlycareer2027",
@@ -1296,7 +1296,7 @@
         "status": "ok",
         "rows": 90,
         "retryRequests": 0,
-        "durationMs": 259
+        "durationMs": 425
       },
       {
         "id": "greenhouse:fccincinnati",
@@ -1306,7 +1306,7 @@
         "status": "ok",
         "rows": 20,
         "retryRequests": 0,
-        "durationMs": 351
+        "durationMs": 169
       },
       {
         "id": "greenhouse:gcmgrosvenor",
@@ -1316,7 +1316,7 @@
         "status": "ok",
         "rows": 18,
         "retryRequests": 0,
-        "durationMs": 352
+        "durationMs": 165
       },
       {
         "id": "greenhouse:twosixtechnologies",
@@ -1326,7 +1326,7 @@
         "status": "ok",
         "rows": 91,
         "retryRequests": 0,
-        "durationMs": 573
+        "durationMs": 534
       },
       {
         "id": "ashby:subtotal",
@@ -1336,7 +1336,7 @@
         "status": "ok",
         "rows": 3,
         "retryRequests": 0,
-        "durationMs": 139
+        "durationMs": 18
       },
       {
         "id": "greenhouse:protagonist",
@@ -1346,7 +1346,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 170
+        "durationMs": 106
       },
       {
         "id": "greenhouse:cssmerge",
@@ -1356,7 +1356,7 @@
         "status": "ok",
         "rows": 361,
         "retryRequests": 0,
-        "durationMs": 1062
+        "durationMs": 1037
       },
       {
         "id": "greenhouse:parallel",
@@ -1366,7 +1366,7 @@
         "status": "ok",
         "rows": 22,
         "retryRequests": 0,
-        "durationMs": 141
+        "durationMs": 380
       },
       {
         "id": "greenhouse:hivefinancialsystems",
@@ -1376,7 +1376,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 63
+        "durationMs": 303
       },
       {
         "id": "ashby:quadric",
@@ -1386,7 +1386,7 @@
         "status": "ok",
         "rows": 20,
         "retryRequests": 0,
-        "durationMs": 50
+        "durationMs": 48
       },
       {
         "id": "ashby:scout-ai",
@@ -1396,7 +1396,7 @@
         "status": "ok",
         "rows": 32,
         "retryRequests": 0,
-        "durationMs": 56
+        "durationMs": 51
       },
       {
         "id": "greenhouse:amperesand",
@@ -1406,7 +1406,7 @@
         "status": "ok",
         "rows": 53,
         "retryRequests": 0,
-        "durationMs": 635
+        "durationMs": 705
       },
       {
         "id": "greenhouse:idmeuniversityrecruiting",
@@ -1416,7 +1416,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 33
+        "durationMs": 242
       },
       {
         "id": "greenhouse:olsson",
@@ -1426,7 +1426,7 @@
         "status": "ok",
         "rows": 346,
         "retryRequests": 0,
-        "durationMs": 1103
+        "durationMs": 1280
       },
       {
         "id": "ashby:openart",
@@ -1436,7 +1436,7 @@
         "status": "ok",
         "rows": 33,
         "retryRequests": 0,
-        "durationMs": 186
+        "durationMs": 243
       },
       {
         "id": "ashby:metalenz",
@@ -1446,7 +1446,7 @@
         "status": "ok",
         "rows": 3,
         "retryRequests": 0,
-        "durationMs": 133
+        "durationMs": 138
       },
       {
         "id": "ashby:integrate",
@@ -1456,7 +1456,7 @@
         "status": "ok",
         "rows": 11,
         "retryRequests": 0,
-        "durationMs": 147
+        "durationMs": 105
       },
       {
         "id": "greenhouse:andurilindustries",
@@ -1466,7 +1466,7 @@
         "status": "ok",
         "rows": 2624,
         "retryRequests": 0,
-        "durationMs": 10282
+        "durationMs": 10507
       },
       {
         "id": "greenhouse:insomniac",
@@ -1476,7 +1476,7 @@
         "status": "ok",
         "rows": 25,
         "retryRequests": 0,
-        "durationMs": 346
+        "durationMs": 161
       },
       {
         "id": "ashby:amplify",
@@ -1486,7 +1486,7 @@
         "status": "ok",
         "rows": 33,
         "retryRequests": 0,
-        "durationMs": 294
+        "durationMs": 78
       },
       {
         "id": "ashby:patreon",
@@ -1496,7 +1496,7 @@
         "status": "ok",
         "rows": 21,
         "retryRequests": 0,
-        "durationMs": 286
+        "durationMs": 55
       },
       {
         "id": "greenhouse:braze",
@@ -1506,7 +1506,7 @@
         "status": "ok",
         "rows": 329,
         "retryRequests": 0,
-        "durationMs": 1748
+        "durationMs": 2010
       },
       {
         "id": "greenhouse:nisc",
@@ -1516,7 +1516,7 @@
         "status": "ok",
         "rows": 31,
         "retryRequests": 0,
-        "durationMs": 82
+        "durationMs": 364
       },
       {
         "id": "greenhouse:scaleai",
@@ -1526,7 +1526,7 @@
         "status": "ok",
         "rows": 168,
         "retryRequests": 0,
-        "durationMs": 787
+        "durationMs": 1255
       },
       {
         "id": "greenhouse:thealleninstitute",
@@ -1536,7 +1536,7 @@
         "status": "ok",
         "rows": 20,
         "retryRequests": 0,
-        "durationMs": 159
+        "durationMs": 127
       },
       {
         "id": "greenhouse:gravitonresearchcapital",
@@ -1546,7 +1546,7 @@
         "status": "ok",
         "rows": 19,
         "retryRequests": 0,
-        "durationMs": 49
+        "durationMs": 383
       },
       {
         "id": "greenhouse:inversionspace",
@@ -1556,7 +1556,7 @@
         "status": "ok",
         "rows": 58,
         "retryRequests": 0,
-        "durationMs": 183
+        "durationMs": 638
       },
       {
         "id": "ashby:agzen",
@@ -1566,7 +1566,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 78
+        "durationMs": 30
       },
       {
         "id": "greenhouse:aidashinc",
@@ -1576,7 +1576,7 @@
         "status": "ok",
         "rows": 21,
         "retryRequests": 0,
-        "durationMs": 118
+        "durationMs": 303
       },
       {
         "id": "greenhouse:generalmatter",
@@ -1586,7 +1586,7 @@
         "status": "ok",
         "rows": 131,
         "retryRequests": 0,
-        "durationMs": 746
+        "durationMs": 697
       },
       {
         "id": "ashby:zus-health",
@@ -1596,7 +1596,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 25
+        "durationMs": 29
       },
       {
         "id": "lever:api.lever.co:pattern",
@@ -1606,7 +1606,7 @@
         "status": "ok",
         "rows": 89,
         "retryRequests": 0,
-        "durationMs": 9860
+        "durationMs": 1710
       },
       {
         "id": "greenhouse:point72",
@@ -1616,7 +1616,7 @@
         "status": "ok",
         "rows": 202,
         "retryRequests": 0,
-        "durationMs": 812
+        "durationMs": 771
       },
       {
         "id": "greenhouse:tenstorrentuniversity",
@@ -1626,7 +1626,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 56
+        "durationMs": 282
       },
       {
         "id": "lever:api.lever.co:field-ai",
@@ -1636,7 +1636,7 @@
         "status": "ok",
         "rows": 86,
         "retryRequests": 0,
-        "durationMs": 441
+        "durationMs": 263
       },
       {
         "id": "lever:api.lever.co:azul",
@@ -1646,7 +1646,7 @@
         "status": "ok",
         "rows": 15,
         "retryRequests": 0,
-        "durationMs": 206
+        "durationMs": 2488
       },
       {
         "id": "lever:api.lever.co:viget",
@@ -1656,7 +1656,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 202
+        "durationMs": 111
       },
       {
         "id": "greenhouse:ruggedrobotics",
@@ -1666,7 +1666,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 233
+        "durationMs": 58
       },
       {
         "id": "greenhouse:doordashusa",
@@ -1676,7 +1676,7 @@
         "status": "ok",
         "rows": 414,
         "retryRequests": 0,
-        "durationMs": 2657
+        "durationMs": 2711
       },
       {
         "id": "greenhouse:sigmacomputing",
@@ -1686,7 +1686,7 @@
         "status": "ok",
         "rows": 83,
         "retryRequests": 0,
-        "durationMs": 401
+        "durationMs": 572
       },
       {
         "id": "greenhouse:courierhealth",
@@ -1696,7 +1696,7 @@
         "status": "ok",
         "rows": 18,
         "retryRequests": 0,
-        "durationMs": 152
+        "durationMs": 297
       },
       {
         "id": "greenhouse:purestorage",
@@ -1706,7 +1706,7 @@
         "status": "ok",
         "rows": 403,
         "retryRequests": 0,
-        "durationMs": 1522
+        "durationMs": 1738
       },
       {
         "id": "lever:api.lever.co:rosaiclabs",
@@ -1716,7 +1716,7 @@
         "status": "ok",
         "rows": 15,
         "retryRequests": 0,
-        "durationMs": 575
+        "durationMs": 177
       },
       {
         "id": "greenhouse:foundenergy",
@@ -1726,7 +1726,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 110
+        "durationMs": 122
       },
       {
         "id": "greenhouse:affirm",
@@ -1736,7 +1736,7 @@
         "status": "ok",
         "rows": 225,
         "retryRequests": 0,
-        "durationMs": 462
+        "durationMs": 500
       },
       {
         "id": "greenhouse:arcboatcompany",
@@ -1746,7 +1746,7 @@
         "status": "ok",
         "rows": 40,
         "retryRequests": 0,
-        "durationMs": 179
+        "durationMs": 126
       },
       {
         "id": "greenhouse:xai",
@@ -1756,7 +1756,7 @@
         "status": "ok",
         "rows": 299,
         "retryRequests": 0,
-        "durationMs": 830
+        "durationMs": 583
       },
       {
         "id": "ashby:bedrock-robotics",
@@ -1766,7 +1766,7 @@
         "status": "ok",
         "rows": 60,
         "retryRequests": 0,
-        "durationMs": 134
+        "durationMs": 212
       },
       {
         "id": "lever:api.lever.co:shopback-2",
@@ -1776,7 +1776,7 @@
         "status": "ok",
         "rows": 72,
         "retryRequests": 0,
-        "durationMs": 518
+        "durationMs": 381
       },
       {
         "id": "greenhouse:profluent",
@@ -1786,7 +1786,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 66
+        "durationMs": 61
       },
       {
         "id": "greenhouse:datacor",
@@ -1796,7 +1796,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 479
+        "durationMs": 69
       },
       {
         "id": "ashby:allen-control-systems",
@@ -1806,7 +1806,7 @@
         "status": "ok",
         "rows": 19,
         "retryRequests": 0,
-        "durationMs": 142
+        "durationMs": 44
       },
       {
         "id": "greenhouse:amca",
@@ -1816,7 +1816,7 @@
         "status": "ok",
         "rows": 52,
         "retryRequests": 0,
-        "durationMs": 522
+        "durationMs": 236
       },
       {
         "id": "greenhouse:nationallifeinsurancecompany",
@@ -1826,7 +1826,7 @@
         "status": "ok",
         "rows": 82,
         "retryRequests": 0,
-        "durationMs": 638
+        "durationMs": 813
       },
       {
         "id": "lever:api.lever.co:hermeus",
@@ -1836,7 +1836,7 @@
         "status": "ok",
         "rows": 79,
         "retryRequests": 0,
-        "durationMs": 312
+        "durationMs": 633
       },
       {
         "id": "greenhouse:queracomputinginc",
@@ -1846,7 +1846,7 @@
         "status": "ok",
         "rows": 78,
         "retryRequests": 0,
-        "durationMs": 284
+        "durationMs": 584
       },
       {
         "id": "greenhouse:machindustries",
@@ -1856,7 +1856,7 @@
         "status": "ok",
         "rows": 194,
         "retryRequests": 0,
-        "durationMs": 1114
+        "durationMs": 1385
       },
       {
         "id": "greenhouse:mill",
@@ -1866,7 +1866,7 @@
         "status": "ok",
         "rows": 23,
         "retryRequests": 0,
-        "durationMs": 158
+        "durationMs": 146
       },
       {
         "id": "ashby:genesis-molecular-ai",
@@ -1876,7 +1876,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 136
+        "durationMs": 25
       },
       {
         "id": "greenhouse:voloridgeinvestmentmanagement",
@@ -1886,7 +1886,7 @@
         "status": "ok",
         "rows": 9,
         "retryRequests": 0,
-        "durationMs": 61
+        "durationMs": 342
       },
       {
         "id": "greenhouse:figma",
@@ -1896,7 +1896,7 @@
         "status": "ok",
         "rows": 145,
         "retryRequests": 0,
-        "durationMs": 646
+        "durationMs": 881
       },
       {
         "id": "greenhouse:astranis",
@@ -1906,7 +1906,7 @@
         "status": "ok",
         "rows": 173,
         "retryRequests": 0,
-        "durationMs": 766
+        "durationMs": 765
       },
       {
         "id": "ashby:cowboyspace",
@@ -1916,7 +1916,7 @@
         "status": "ok",
         "rows": 63,
         "retryRequests": 0,
-        "durationMs": 168
+        "durationMs": 247
       },
       {
         "id": "greenhouse:covar",
@@ -1926,7 +1926,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 44
+        "durationMs": 119
       },
       {
         "id": "ashby:gecko-robotics",
@@ -1936,7 +1936,7 @@
         "status": "ok",
         "rows": 25,
         "retryRequests": 0,
-        "durationMs": 138
+        "durationMs": 124
       },
       {
         "id": "greenhouse:relaypro",
@@ -1946,7 +1946,7 @@
         "status": "ok",
         "rows": 26,
         "retryRequests": 0,
-        "durationMs": 151
+        "durationMs": 109
       },
       {
         "id": "greenhouse:singlestore",
@@ -1956,7 +1956,7 @@
         "status": "ok",
         "rows": 42,
         "retryRequests": 0,
-        "durationMs": 360
+        "durationMs": 328
       },
       {
         "id": "greenhouse:workshop",
@@ -1966,7 +1966,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 292
+        "durationMs": 44
       },
       {
         "id": "ashby:cyvl",
@@ -1976,7 +1976,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 279
+        "durationMs": 26
       },
       {
         "id": "lever:api.lever.co:anavationllc",
@@ -1986,7 +1986,7 @@
         "status": "ok",
         "rows": 73,
         "retryRequests": 0,
-        "durationMs": 254
+        "durationMs": 559
       },
       {
         "id": "greenhouse:farmersmutualhailinsurancecompany",
@@ -1996,7 +1996,7 @@
         "status": "ok",
         "rows": 19,
         "retryRequests": 0,
-        "durationMs": 62
+        "durationMs": 289
       },
       {
         "id": "ashby:megazone",
@@ -2016,7 +2016,7 @@
         "status": "ok",
         "rows": 74,
         "retryRequests": 0,
-        "durationMs": 576
+        "durationMs": 1570
       },
       {
         "id": "greenhouse:dvtrading",
@@ -2026,7 +2026,7 @@
         "status": "ok",
         "rows": 70,
         "retryRequests": 0,
-        "durationMs": 461
+        "durationMs": 381
       },
       {
         "id": "greenhouse:tanium",
@@ -2036,7 +2036,7 @@
         "status": "ok",
         "rows": 66,
         "retryRequests": 0,
-        "durationMs": 517
+        "durationMs": 581
       },
       {
         "id": "greenhouse:testnisc",
@@ -2046,7 +2046,7 @@
         "status": "ok",
         "rows": 17,
         "retryRequests": 0,
-        "durationMs": 133
+        "durationMs": 159
       },
       {
         "id": "ashby:saronic",
@@ -2056,7 +2056,7 @@
         "status": "ok",
         "rows": 288,
         "retryRequests": 0,
-        "durationMs": 1312
+        "durationMs": 1283
       },
       {
         "id": "greenhouse:pacificfusion",
@@ -2066,7 +2066,7 @@
         "status": "ok",
         "rows": 36,
         "retryRequests": 0,
-        "durationMs": 342
+        "durationMs": 348
       },
       {
         "id": "greenhouse:rocketlab",
@@ -2076,7 +2076,7 @@
         "status": "ok",
         "rows": 551,
         "retryRequests": 0,
-        "durationMs": 2980
+        "durationMs": 3286
       },
       {
         "id": "greenhouse:quberesearchandtechnologies",
@@ -2086,7 +2086,7 @@
         "status": "ok",
         "rows": 204,
         "retryRequests": 0,
-        "durationMs": 806
+        "durationMs": 895
       },
       {
         "id": "lever:api.lever.co:futo-org",
@@ -2096,7 +2096,7 @@
         "status": "ok",
         "rows": 3,
         "retryRequests": 0,
-        "durationMs": 113
+        "durationMs": 184
       },
       {
         "id": "greenhouse:viamrobotics",
@@ -2106,7 +2106,7 @@
         "status": "ok",
         "rows": 9,
         "retryRequests": 0,
-        "durationMs": 119
+        "durationMs": 169
       },
       {
         "id": "ashby:talos-trading",
@@ -2116,7 +2116,7 @@
         "status": "ok",
         "rows": 19,
         "retryRequests": 0,
-        "durationMs": 410
+        "durationMs": 70
       },
       {
         "id": "greenhouse:schonfeld",
@@ -2126,7 +2126,7 @@
         "status": "ok",
         "rows": 72,
         "retryRequests": 0,
-        "durationMs": 397
+        "durationMs": 171
       },
       {
         "id": "ashby:the-exploration-company",
@@ -2134,9 +2134,9 @@
         "key": "the-exploration-company",
         "company": "The Exploration Company",
         "status": "ok",
-        "rows": 130,
+        "rows": 129,
         "retryRequests": 0,
-        "durationMs": 606
+        "durationMs": 710
       },
       {
         "id": "ashby:hadrian-automation",
@@ -2146,7 +2146,7 @@
         "status": "ok",
         "rows": 176,
         "retryRequests": 0,
-        "durationMs": 898
+        "durationMs": 1196
       },
       {
         "id": "greenhouse:stokespacetechnologies",
@@ -2156,7 +2156,7 @@
         "status": "ok",
         "rows": 67,
         "retryRequests": 0,
-        "durationMs": 413
+        "durationMs": 506
       },
       {
         "id": "lever:api.lever.co:foth",
@@ -2166,7 +2166,7 @@
         "status": "ok",
         "rows": 62,
         "retryRequests": 0,
-        "durationMs": 221
+        "durationMs": 9614
       },
       {
         "id": "greenhouse:c3ascend",
@@ -2176,7 +2176,7 @@
         "status": "ok",
         "rows": 3,
         "retryRequests": 0,
-        "durationMs": 46
+        "durationMs": 349
       },
       {
         "id": "ashby:sierra",
@@ -2186,7 +2186,7 @@
         "status": "ok",
         "rows": 194,
         "retryRequests": 0,
-        "durationMs": 852
+        "durationMs": 935
       },
       {
         "id": "greenhouse:hpiq",
@@ -2196,7 +2196,7 @@
         "status": "ok",
         "rows": 29,
         "retryRequests": 0,
-        "durationMs": 237
+        "durationMs": 171
       },
       {
         "id": "greenhouse:awetomaton",
@@ -2206,7 +2206,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 165
+        "durationMs": 70
       },
       {
         "id": "greenhouse:charlesriverassociates",
@@ -2216,7 +2216,7 @@
         "status": "ok",
         "rows": 92,
         "retryRequests": 0,
-        "durationMs": 513
+        "durationMs": 435
       },
       {
         "id": "greenhouse:whitewatermidstream",
@@ -2226,7 +2226,7 @@
         "status": "ok",
         "rows": 31,
         "retryRequests": 0,
-        "durationMs": 95
+        "durationMs": 110
       },
       {
         "id": "greenhouse:verkada",
@@ -2236,7 +2236,7 @@
         "status": "ok",
         "rows": 349,
         "retryRequests": 0,
-        "durationMs": 1146
+        "durationMs": 1322
       },
       {
         "id": "ashby:phoebe-work",
@@ -2246,7 +2246,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 21
+        "durationMs": 19
       },
       {
         "id": "greenhouse:xantium",
@@ -2256,7 +2256,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 180
+        "durationMs": 62
       },
       {
         "id": "ashby:voleon",
@@ -2266,7 +2266,7 @@
         "status": "ok",
         "rows": 61,
         "retryRequests": 0,
-        "durationMs": 320
+        "durationMs": 253
       },
       {
         "id": "greenhouse:freeformfuturecorp",
@@ -2276,7 +2276,7 @@
         "status": "ok",
         "rows": 80,
         "retryRequests": 0,
-        "durationMs": 473
+        "durationMs": 652
       },
       {
         "id": "greenhouse:thenuclearcompany",
@@ -2286,7 +2286,7 @@
         "status": "ok",
         "rows": 65,
         "retryRequests": 0,
-        "durationMs": 537
+        "durationMs": 581
       },
       {
         "id": "lever:api.lever.co:belvederetrading",
@@ -2296,7 +2296,7 @@
         "status": "ok",
         "rows": 11,
         "retryRequests": 0,
-        "durationMs": 125
+        "durationMs": 120
       },
       {
         "id": "greenhouse:hyannisportresearch",
@@ -2306,7 +2306,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 56
+        "durationMs": 98
       },
       {
         "id": "ashby:heliux",
@@ -2316,7 +2316,7 @@
         "status": "ok",
         "rows": 11,
         "retryRequests": 0,
-        "durationMs": 25
+        "durationMs": 70
       },
       {
         "id": "greenhouse:appian",
@@ -2326,7 +2326,7 @@
         "status": "ok",
         "rows": 158,
         "retryRequests": 0,
-        "durationMs": 553
+        "durationMs": 690
       },
       {
         "id": "greenhouse:pdtpartners",
@@ -2336,7 +2336,7 @@
         "status": "ok",
         "rows": 13,
         "retryRequests": 0,
-        "durationMs": 101
+        "durationMs": 244
       },
       {
         "id": "ashby:quadrillion-labs",
@@ -2346,7 +2346,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 66
+        "durationMs": 124
       },
       {
         "id": "greenhouse:virtu",
@@ -2356,7 +2356,7 @@
         "status": "ok",
         "rows": 44,
         "retryRequests": 0,
-        "durationMs": 229
+        "durationMs": 255
       },
       {
         "id": "greenhouse:ctccampusboard",
@@ -2366,7 +2366,7 @@
         "status": "ok",
         "rows": 3,
         "retryRequests": 0,
-        "durationMs": 77
+        "durationMs": 109
       },
       {
         "id": "greenhouse:akunacapitaloci",
@@ -2376,7 +2376,7 @@
         "status": "ok",
         "rows": 15,
         "retryRequests": 0,
-        "durationMs": 188
+        "durationMs": 119
       },
       {
         "id": "ashby:old-mission-capital",
@@ -2386,7 +2386,7 @@
         "status": "ok",
         "rows": 40,
         "retryRequests": 0,
-        "durationMs": 164
+        "durationMs": 107
       },
       {
         "id": "greenhouse:fiveringsllc",
@@ -2396,7 +2396,7 @@
         "status": "ok",
         "rows": 21,
         "retryRequests": 0,
-        "durationMs": 130
+        "durationMs": 167
       },
       {
         "id": "greenhouse:flowtraders",
@@ -2406,7 +2406,7 @@
         "status": "ok",
         "rows": 41,
         "retryRequests": 0,
-        "durationMs": 134
+        "durationMs": 182
       },
       {
         "id": "greenhouse:quantiq",
@@ -2416,7 +2416,7 @@
         "status": "ok",
         "rows": 11,
         "retryRequests": 0,
-        "durationMs": 98
+        "durationMs": 143
       },
       {
         "id": "greenhouse:walleyecapital-external-students",
@@ -2426,7 +2426,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 92
+        "durationMs": 58
       },
       {
         "id": "ashby:ellipsislabs",
@@ -2446,7 +2446,7 @@
         "status": "ok",
         "rows": 15,
         "retryRequests": 0,
-        "durationMs": 75
+        "durationMs": 87
       },
       {
         "id": "ashby:snowflake",
@@ -2456,7 +2456,7 @@
         "status": "ok",
         "rows": 380,
         "retryRequests": 0,
-        "durationMs": 874
+        "durationMs": 896
       },
       {
         "id": "greenhouse:systemstechnologyresearch",
@@ -2466,7 +2466,7 @@
         "status": "ok",
         "rows": 158,
         "retryRequests": 0,
-        "durationMs": 660
+        "durationMs": 722
       },
       {
         "id": "lever:api.lever.co:saviynt",
@@ -2476,7 +2476,7 @@
         "status": "ok",
         "rows": 59,
         "retryRequests": 0,
-        "durationMs": 3008
+        "durationMs": 174
       },
       {
         "id": "greenhouse:guidepointsecurity",
@@ -2486,7 +2486,7 @@
         "status": "ok",
         "rows": 83,
         "retryRequests": 0,
-        "durationMs": 516
+        "durationMs": 357
       },
       {
         "id": "greenhouse:tines",
@@ -2496,7 +2496,7 @@
         "status": "ok",
         "rows": 33,
         "retryRequests": 0,
-        "durationMs": 175
+        "durationMs": 88
       },
       {
         "id": "greenhouse:idme",
@@ -2506,7 +2506,7 @@
         "status": "ok",
         "rows": 47,
         "retryRequests": 0,
-        "durationMs": 411
+        "durationMs": 134
       },
       {
         "id": "greenhouse:extrahopnetworks",
@@ -2516,7 +2516,7 @@
         "status": "ok",
         "rows": 20,
         "retryRequests": 0,
-        "durationMs": 298
+        "durationMs": 85
       },
       {
         "id": "ashby:applied",
@@ -2526,7 +2526,7 @@
         "status": "ok",
         "rows": 334,
         "retryRequests": 0,
-        "durationMs": 1249
+        "durationMs": 1750
       },
       {
         "id": "ashby:delinea",
@@ -2536,7 +2536,7 @@
         "status": "ok",
         "rows": 76,
         "retryRequests": 0,
-        "durationMs": 165
+        "durationMs": 492
       },
       {
         "id": "ashby:semgrep",
@@ -2546,7 +2546,7 @@
         "status": "ok",
         "rows": 16,
         "retryRequests": 0,
-        "durationMs": 140
+        "durationMs": 144
       },
       {
         "id": "ashby:prophet-security",
@@ -2556,7 +2556,7 @@
         "status": "ok",
         "rows": 9,
         "retryRequests": 0,
-        "durationMs": 69
+        "durationMs": 133
       },
       {
         "id": "ashby:trm-labs",
@@ -2566,7 +2566,7 @@
         "status": "ok",
         "rows": 114,
         "retryRequests": 0,
-        "durationMs": 1190
+        "durationMs": 832
       },
       {
         "id": "greenhouse:icapitalnetwork",
@@ -2576,7 +2576,7 @@
         "status": "ok",
         "rows": 233,
         "retryRequests": 0,
-        "durationMs": 1076
+        "durationMs": 732
       },
       {
         "id": "greenhouse:burnsengineeringinc",
@@ -2586,7 +2586,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 150
+        "durationMs": 329
       },
       {
         "id": "greenhouse:biomedrealty",
@@ -2596,7 +2596,7 @@
         "status": "ok",
         "rows": 3,
         "retryRequests": 0,
-        "durationMs": 86
+        "durationMs": 280
       },
       {
         "id": "lever:api.lever.co:duetti",
@@ -2606,7 +2606,7 @@
         "status": "ok",
         "rows": 9,
         "retryRequests": 0,
-        "durationMs": 6446
+        "durationMs": 77
       },
       {
         "id": "greenhouse:fanaticscollectibles",
@@ -2616,7 +2616,7 @@
         "status": "ok",
         "rows": 228,
         "retryRequests": 0,
-        "durationMs": 1355
+        "durationMs": 1536
       },
       {
         "id": "greenhouse:atricure",
@@ -2626,7 +2626,7 @@
         "status": "ok",
         "rows": 58,
         "retryRequests": 0,
-        "durationMs": 771
+        "durationMs": 271
       },
       {
         "id": "greenhouse:davidzwirnergallery",
@@ -2636,7 +2636,7 @@
         "status": "ok",
         "rows": 18,
         "retryRequests": 0,
-        "durationMs": 396
+        "durationMs": 210
       },
       {
         "id": "greenhouse:twelectric",
@@ -2646,7 +2646,7 @@
         "status": "ok",
         "rows": 3,
         "retryRequests": 0,
-        "durationMs": 192
+        "durationMs": 193
       },
       {
         "id": "greenhouse:imafinancialgroup",
@@ -2656,7 +2656,7 @@
         "status": "ok",
         "rows": 98,
         "retryRequests": 0,
-        "durationMs": 555
+        "durationMs": 498
       },
       {
         "id": "greenhouse:robinhood",
@@ -2666,7 +2666,7 @@
         "status": "ok",
         "rows": 166,
         "retryRequests": 0,
-        "durationMs": 746
+        "durationMs": 1466
       },
       {
         "id": "greenhouse:groma",
@@ -2676,7 +2676,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 386
+        "durationMs": 76
       },
       {
         "id": "greenhouse:faradayfuture",
@@ -2686,7 +2686,7 @@
         "status": "ok",
         "rows": 65,
         "retryRequests": 0,
-        "durationMs": 255
+        "durationMs": 397
       },
       {
         "id": "greenhouse:attainpartners",
@@ -2696,7 +2696,7 @@
         "status": "ok",
         "rows": 24,
         "retryRequests": 0,
-        "durationMs": 277
+        "durationMs": 966
       },
       {
         "id": "greenhouse:enova",
@@ -2706,7 +2706,7 @@
         "status": "ok",
         "rows": 38,
         "retryRequests": 0,
-        "durationMs": 142
+        "durationMs": 353
       },
       {
         "id": "greenhouse:stratolaunch",
@@ -2716,7 +2716,7 @@
         "status": "ok",
         "rows": 84,
         "retryRequests": 0,
-        "durationMs": 343
+        "durationMs": 937
       },
       {
         "id": "greenhouse:divergent",
@@ -2726,7 +2726,7 @@
         "status": "ok",
         "rows": 148,
         "retryRequests": 0,
-        "durationMs": 808
+        "durationMs": 1557
       },
       {
         "id": "greenhouse:toshibaglobalcommercesolutions",
@@ -2736,7 +2736,7 @@
         "status": "ok",
         "rows": 94,
         "retryRequests": 0,
-        "durationMs": 563
+        "durationMs": 1167
       },
       {
         "id": "lever:api.lever.co:standtogether",
@@ -2746,7 +2746,7 @@
         "status": "ok",
         "rows": 131,
         "retryRequests": 0,
-        "durationMs": 9457
+        "durationMs": 434
       },
       {
         "id": "ashby:ibotta",
@@ -2756,7 +2756,7 @@
         "status": "ok",
         "rows": 43,
         "retryRequests": 0,
-        "durationMs": 354
+        "durationMs": 632
       },
       {
         "id": "greenhouse:integrainterns",
@@ -2766,7 +2766,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 69
+        "durationMs": 58
       },
       {
         "id": "ashby:northwoodspace",
@@ -2776,7 +2776,7 @@
         "status": "ok",
         "rows": 63,
         "retryRequests": 0,
-        "durationMs": 175
+        "durationMs": 311
       },
       {
         "id": "ashby:kira",
@@ -2786,7 +2786,7 @@
         "status": "ok",
         "rows": 14,
         "retryRequests": 0,
-        "durationMs": 117
+        "durationMs": 197
       },
       {
         "id": "ashby:leantechniques",
@@ -2796,7 +2796,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 25
+        "durationMs": 29
       },
       {
         "id": "greenhouse:truveta",
@@ -2806,7 +2806,7 @@
         "status": "ok",
         "rows": 36,
         "retryRequests": 0,
-        "durationMs": 108
+        "durationMs": 320
       },
       {
         "id": "greenhouse:iex-interns",
@@ -2816,7 +2816,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 28
+        "durationMs": 94
       },
       {
         "id": "greenhouse:strategicmissioncritical",
@@ -2826,7 +2826,7 @@
         "status": "ok",
         "rows": 26,
         "retryRequests": 0,
-        "durationMs": 53
+        "durationMs": 131
       },
       {
         "id": "lever:api.lever.co:questanalytics",
@@ -2836,7 +2836,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 1254
+        "durationMs": 94
       },
       {
         "id": "ashby:clera",
@@ -2846,7 +2846,7 @@
         "status": "ok",
         "rows": 299,
         "retryRequests": 0,
-        "durationMs": 233
+        "durationMs": 866
       },
       {
         "id": "ashby:nexus-cognitive",
@@ -2856,7 +2856,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 113
+        "durationMs": 195
       },
       {
         "id": "ashby:fab2",
@@ -2866,7 +2866,7 @@
         "status": "ok",
         "rows": 58,
         "retryRequests": 0,
-        "durationMs": 110
+        "durationMs": 225
       },
       {
         "id": "greenhouse:octantbio",
@@ -2876,7 +2876,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 40
+        "durationMs": 157
       },
       {
         "id": "ashby:uipath",
@@ -2886,7 +2886,7 @@
         "status": "ok",
         "rows": 105,
         "retryRequests": 0,
-        "durationMs": 267
+        "durationMs": 488
       },
       {
         "id": "ashby:nooks",
@@ -2896,7 +2896,7 @@
         "status": "ok",
         "rows": 60,
         "retryRequests": 0,
-        "durationMs": 266
+        "durationMs": 298
       },
       {
         "id": "ashby:astro-mechanica",
@@ -2906,7 +2906,7 @@
         "status": "ok",
         "rows": 42,
         "retryRequests": 0,
-        "durationMs": 279
+        "durationMs": 240
       },
       {
         "id": "greenhouse:lunarenergy",
@@ -2916,7 +2916,7 @@
         "status": "ok",
         "rows": 22,
         "retryRequests": 0,
-        "durationMs": 203
+        "durationMs": 238
       },
       {
         "id": "ashby:maticrobots",
@@ -2926,7 +2926,7 @@
         "status": "ok",
         "rows": 24,
         "retryRequests": 0,
-        "durationMs": 94
+        "durationMs": 226
       },
       {
         "id": "lever:api.lever.co:diversified-automation",
@@ -2936,7 +2936,7 @@
         "status": "ok",
         "rows": 13,
         "retryRequests": 0,
-        "durationMs": 3306
+        "durationMs": 93
       },
       {
         "id": "ashby:graymatter-robotics",
@@ -2946,7 +2946,7 @@
         "status": "ok",
         "rows": 13,
         "retryRequests": 0,
-        "durationMs": 37
+        "durationMs": 105
       },
       {
         "id": "greenhouse:eqtcorporation",
@@ -2956,7 +2956,7 @@
         "status": "ok",
         "rows": 48,
         "retryRequests": 0,
-        "durationMs": 75
+        "durationMs": 152
       },
       {
         "id": "greenhouse:meshopticaltechnologies",
@@ -2966,7 +2966,7 @@
         "status": "ok",
         "rows": 29,
         "retryRequests": 0,
-        "durationMs": 45
+        "durationMs": 137
       },
       {
         "id": "greenhouse:twitch",
@@ -2976,7 +2976,7 @@
         "status": "ok",
         "rows": 52,
         "retryRequests": 0,
-        "durationMs": 81
+        "durationMs": 364
       },
       {
         "id": "greenhouse:pathrobotics",
@@ -2986,7 +2986,7 @@
         "status": "ok",
         "rows": 62,
         "retryRequests": 0,
-        "durationMs": 121
+        "durationMs": 337
       },
       {
         "id": "greenhouse:opensesame",
@@ -2996,7 +2996,7 @@
         "status": "ok",
         "rows": 16,
         "retryRequests": 0,
-        "durationMs": 63
+        "durationMs": 125
       },
       {
         "id": "ashby:rivianvw.tech",
@@ -3006,7 +3006,7 @@
         "status": "ok",
         "rows": 183,
         "retryRequests": 0,
-        "durationMs": 213
+        "durationMs": 916
       },
       {
         "id": "greenhouse:drivewealth",
@@ -3016,7 +3016,7 @@
         "status": "ok",
         "rows": 26,
         "retryRequests": 0,
-        "durationMs": 76
+        "durationMs": 263
       },
       {
         "id": "greenhouse:bracebridgecapital",
@@ -3026,7 +3026,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 35
+        "durationMs": 59
       },
       {
         "id": "greenhouse:wikimedia",
@@ -3036,7 +3036,7 @@
         "status": "ok",
         "rows": 15,
         "retryRequests": 0,
-        "durationMs": 47
+        "durationMs": 272
       },
       {
         "id": "greenhouse:hasbro",
@@ -3046,7 +3046,7 @@
         "status": "ok",
         "rows": 98,
         "retryRequests": 0,
-        "durationMs": 289
+        "durationMs": 595
       },
       {
         "id": "lever:api.lever.co:solopulseco",
@@ -3056,7 +3056,7 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 2968
+        "durationMs": 163
       },
       {
         "id": "ashby:stradahq",
@@ -3066,7 +3066,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 117
+        "durationMs": 154
       },
       {
         "id": "ashby:happyrobot.ai",
@@ -3076,7 +3076,7 @@
         "status": "ok",
         "rows": 36,
         "retryRequests": 0,
-        "durationMs": 51
+        "durationMs": 189
       },
       {
         "id": "ashby:range",
@@ -3086,7 +3086,7 @@
         "status": "ok",
         "rows": 65,
         "retryRequests": 0,
-        "durationMs": 59
+        "durationMs": 211
       },
       {
         "id": "greenhouse:voyagertechnologiesinc",
@@ -3096,7 +3096,7 @@
         "status": "ok",
         "rows": 179,
         "retryRequests": 0,
-        "durationMs": 472
+        "durationMs": 884
       },
       {
         "id": "greenhouse:aevexaerospace",
@@ -3106,7 +3106,7 @@
         "status": "ok",
         "rows": 64,
         "retryRequests": 0,
-        "durationMs": 194
+        "durationMs": 274
       },
       {
         "id": "greenhouse:ziprecruiter",
@@ -3116,7 +3116,7 @@
         "status": "ok",
         "rows": 55,
         "retryRequests": 0,
-        "durationMs": 109
+        "durationMs": 198
       },
       {
         "id": "ashby:qumulo",
@@ -3126,7 +3126,7 @@
         "status": "ok",
         "rows": 24,
         "retryRequests": 0,
-        "durationMs": 47
+        "durationMs": 87
       },
       {
         "id": "ashby:ramp",
@@ -3136,7 +3136,7 @@
         "status": "ok",
         "rows": 185,
         "retryRequests": 0,
-        "durationMs": 172
+        "durationMs": 658
       },
       {
         "id": "greenhouse:rebuildmanufacturing",
@@ -3146,7 +3146,7 @@
         "status": "ok",
         "rows": 139,
         "retryRequests": 0,
-        "durationMs": 404
+        "durationMs": 418
       },
       {
         "id": "greenhouse:genevatrading",
@@ -3156,7 +3156,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 268
+        "durationMs": 65
       },
       {
         "id": "ashby:conductorai",
@@ -3166,7 +3166,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 144
+        "durationMs": 33
       },
       {
         "id": "greenhouse:newsbreak",
@@ -3176,7 +3176,7 @@
         "status": "ok",
         "rows": 65,
         "retryRequests": 0,
-        "durationMs": 193
+        "durationMs": 153
       },
       {
         "id": "greenhouse:compeerfinancial",
@@ -3186,7 +3186,7 @@
         "status": "ok",
         "rows": 38,
         "retryRequests": 0,
-        "durationMs": 143
+        "durationMs": 116
       },
       {
         "id": "greenhouse:syskahennessy",
@@ -3196,7 +3196,7 @@
         "status": "ok",
         "rows": 168,
         "retryRequests": 0,
-        "durationMs": 307
+        "durationMs": 771
       },
       {
         "id": "lever:api.lever.co:dynamiccatholic",
@@ -3206,7 +3206,7 @@
         "status": "ok",
         "rows": 23,
         "retryRequests": 0,
-        "durationMs": 2342
+        "durationMs": 5650
       },
       {
         "id": "greenhouse:eulerity",
@@ -3216,7 +3216,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 55
+        "durationMs": 139
       },
       {
         "id": "ashby:telus-digital",
@@ -3226,7 +3226,7 @@
         "status": "ok",
         "rows": 58,
         "retryRequests": 0,
-        "durationMs": 79
+        "durationMs": 149
       },
       {
         "id": "ashby:dedalus-labs",
@@ -3236,7 +3236,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 34
+        "durationMs": 74
       },
       {
         "id": "ashby:composio",
@@ -3246,7 +3246,7 @@
         "status": "ok",
         "rows": 30,
         "retryRequests": 0,
-        "durationMs": 46
+        "durationMs": 23
       },
       {
         "id": "ashby:yotta",
@@ -3256,7 +3256,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 34
+        "durationMs": 19
       },
       {
         "id": "ashby:terranova",
@@ -3266,7 +3266,7 @@
         "status": "ok",
         "rows": 11,
         "retryRequests": 0,
-        "durationMs": 92
+        "durationMs": 314
       },
       {
         "id": "greenhouse:spacex",
@@ -3276,7 +3276,7 @@
         "status": "ok",
         "rows": 2777,
         "retryRequests": 0,
-        "durationMs": 5297
+        "durationMs": 5134
       },
       {
         "id": "ashby:gritt",
@@ -3286,7 +3286,7 @@
         "status": "ok",
         "rows": 18,
         "retryRequests": 0,
-        "durationMs": 86
+        "durationMs": 117
       },
       {
         "id": "greenhouse:drweng",
@@ -3296,7 +3296,7 @@
         "status": "ok",
         "rows": 153,
         "retryRequests": 0,
-        "durationMs": 149
+        "durationMs": 697
       },
       {
         "id": "greenhouse:sevenresearch",
@@ -3306,7 +3306,7 @@
         "status": "ok",
         "rows": 13,
         "retryRequests": 0,
-        "durationMs": 37
+        "durationMs": 192
       },
       {
         "id": "ashby:ctgt",
@@ -3316,7 +3316,7 @@
         "status": "ok",
         "rows": 3,
         "retryRequests": 0,
-        "durationMs": 17
+        "durationMs": 82
       },
       {
         "id": "greenhouse:instead",
@@ -3326,7 +3326,7 @@
         "status": "ok",
         "rows": 11,
         "retryRequests": 0,
-        "durationMs": 48
+        "durationMs": 244
       },
       {
         "id": "ashby:odys-aviation",
@@ -3336,7 +3336,7 @@
         "status": "ok",
         "rows": 19,
         "retryRequests": 0,
-        "durationMs": 27
+        "durationMs": 256
       },
       {
         "id": "ashby:n1",
@@ -3346,7 +3346,7 @@
         "status": "ok",
         "rows": 11,
         "retryRequests": 0,
-        "durationMs": 84
+        "durationMs": 152
       },
       {
         "id": "greenhouse:maesa",
@@ -3356,7 +3356,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 85
+        "durationMs": 165
       },
       {
         "id": "greenhouse:haizelabs",
@@ -3366,7 +3366,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 1954
+        "durationMs": 144
       },
       {
         "id": "greenhouse:defenseunicorns",
@@ -3376,7 +3376,7 @@
         "status": "ok",
         "rows": 44,
         "retryRequests": 0,
-        "durationMs": 2013
+        "durationMs": 172
       },
       {
         "id": "ashby:constellationspace",
@@ -3386,7 +3386,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 1938
+        "durationMs": 24
       },
       {
         "id": "lever:api.lever.co:layup",
@@ -3396,7 +3396,7 @@
         "status": "ok",
         "rows": 32,
         "retryRequests": 0,
-        "durationMs": 1270
+        "durationMs": 216
       },
       {
         "id": "ashby:auctor",
@@ -3406,7 +3406,7 @@
         "status": "ok",
         "rows": 11,
         "retryRequests": 0,
-        "durationMs": 74
+        "durationMs": 21
       },
       {
         "id": "ashby:allium",
@@ -3416,7 +3416,7 @@
         "status": "ok",
         "rows": 14,
         "retryRequests": 0,
-        "durationMs": 80
+        "durationMs": 120
       },
       {
         "id": "ashby:uncountable",
@@ -3426,7 +3426,7 @@
         "status": "ok",
         "rows": 31,
         "retryRequests": 0,
-        "durationMs": 89
+        "durationMs": 98
       },
       {
         "id": "greenhouse:neuralink",
@@ -3436,7 +3436,7 @@
         "status": "ok",
         "rows": 74,
         "retryRequests": 0,
-        "durationMs": 122
+        "durationMs": 184
       },
       {
         "id": "lever:api.lever.co:drivetrain",
@@ -3445,8 +3445,8 @@
         "company": "Drivetrain",
         "status": "ok",
         "rows": 37,
-        "retryRequests": 1,
-        "durationMs": 13536
+        "retryRequests": 0,
+        "durationMs": 5632
       },
       {
         "id": "lever:api.lever.co:wearedream",
@@ -3456,7 +3456,7 @@
         "status": "ok",
         "rows": 50,
         "retryRequests": 0,
-        "durationMs": 148
+        "durationMs": 9232
       },
       {
         "id": "greenhouse:legendcareers",
@@ -3466,7 +3466,7 @@
         "status": "ok",
         "rows": 68,
         "retryRequests": 0,
-        "durationMs": 251
+        "durationMs": 372
       },
       {
         "id": "greenhouse:faire",
@@ -3476,7 +3476,7 @@
         "status": "ok",
         "rows": 73,
         "retryRequests": 0,
-        "durationMs": 183
+        "durationMs": 228
       },
       {
         "id": "lever:api.lever.co:neighbor",
@@ -3486,7 +3486,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 751
+        "durationMs": 4971
       },
       {
         "id": "ashby:mercor",
@@ -3496,7 +3496,7 @@
         "status": "ok",
         "rows": 107,
         "retryRequests": 0,
-        "durationMs": 375
+        "durationMs": 338
       },
       {
         "id": "ashby:barnes",
@@ -3506,7 +3506,7 @@
         "status": "ok",
         "rows": 156,
         "retryRequests": 0,
-        "durationMs": 257
+        "durationMs": 222
       },
       {
         "id": "ashby:vendelux",
@@ -3516,7 +3516,7 @@
         "status": "ok",
         "rows": 28,
         "retryRequests": 0,
-        "durationMs": 45
+        "durationMs": 94
       },
       {
         "id": "ashby:anthelioncap",
@@ -3526,7 +3526,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 16
+        "durationMs": 17
       },
       {
         "id": "lever:api.lever.co:filevine",
@@ -3536,7 +3536,7 @@
         "status": "ok",
         "rows": 128,
         "retryRequests": 0,
-        "durationMs": 223
+        "durationMs": 220
       },
       {
         "id": "greenhouse:c3integratedsolutions",
@@ -3546,7 +3546,7 @@
         "status": "ok",
         "rows": 2,
         "retryRequests": 0,
-        "durationMs": 94
+        "durationMs": 220
       },
       {
         "id": "greenhouse:kodiak",
@@ -3556,7 +3556,7 @@
         "status": "ok",
         "rows": 46,
         "retryRequests": 0,
-        "durationMs": 281
+        "durationMs": 194
       },
       {
         "id": "lever:api.lever.co:certik",
@@ -3566,7 +3566,7 @@
         "status": "ok",
         "rows": 28,
         "retryRequests": 0,
-        "durationMs": 369
+        "durationMs": 4209
       },
       {
         "id": "lever:api.lever.co:globalstrategygroup",
@@ -3576,7 +3576,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 11001
+        "durationMs": 2036
       },
       {
         "id": "ashby:american-housing",
@@ -3586,7 +3586,7 @@
         "status": "ok",
         "rows": 16,
         "retryRequests": 0,
-        "durationMs": 114
+        "durationMs": 43
       },
       {
         "id": "greenhouse:southernpovertylawcenter",
@@ -3596,7 +3596,7 @@
         "status": "ok",
         "rows": 19,
         "retryRequests": 0,
-        "durationMs": 68
+        "durationMs": 119
       },
       {
         "id": "lever:api.lever.co:immuta",
@@ -3606,7 +3606,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 750
+        "durationMs": 4072
       },
       {
         "id": "lever:api.lever.co:wadetrim",
@@ -3615,8 +3615,8 @@
         "company": "Wadetrim",
         "status": "ok",
         "rows": 112,
-        "retryRequests": 1,
-        "durationMs": 12855
+        "retryRequests": 0,
+        "durationMs": 4245
       },
       {
         "id": "ashby:rilla",
@@ -3626,7 +3626,7 @@
         "status": "ok",
         "rows": 25,
         "retryRequests": 0,
-        "durationMs": 57
+        "durationMs": 30
       },
       {
         "id": "greenhouse:cloudflare",
@@ -3636,7 +3636,7 @@
         "status": "ok",
         "rows": 497,
         "retryRequests": 0,
-        "durationMs": 698
+        "durationMs": 2271
       },
       {
         "id": "greenhouse:gofundme",
@@ -3646,7 +3646,7 @@
         "status": "ok",
         "rows": 21,
         "retryRequests": 0,
-        "durationMs": 51
+        "durationMs": 69
       },
       {
         "id": "ashby:opusclip",
@@ -3656,7 +3656,7 @@
         "status": "ok",
         "rows": 14,
         "retryRequests": 0,
-        "durationMs": 33
+        "durationMs": 23
       },
       {
         "id": "greenhouse:rise8",
@@ -3666,7 +3666,7 @@
         "status": "ok",
         "rows": 9,
         "retryRequests": 0,
-        "durationMs": 36
+        "durationMs": 51
       },
       {
         "id": "ashby:creatify",
@@ -3676,7 +3676,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 21
+        "durationMs": 17
       },
       {
         "id": "greenhouse:thetradedesk",
@@ -3686,7 +3686,7 @@
         "status": "ok",
         "rows": 114,
         "retryRequests": 0,
-        "durationMs": 149
+        "durationMs": 2209
       },
       {
         "id": "ashby:netic",
@@ -3696,7 +3696,7 @@
         "status": "ok",
         "rows": 27,
         "retryRequests": 0,
-        "durationMs": 38
+        "durationMs": 23
       },
       {
         "id": "greenhouse:databricks",
@@ -3706,7 +3706,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 4248
+        "durationMs": 4338
       },
       {
         "id": "greenhouse:towerresearchcapital",
@@ -3716,7 +3716,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 480
+        "durationMs": 1770
       },
       {
         "id": "greenhouse:aquaticcapitalmanagement",
@@ -3726,7 +3726,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 38
+        "durationMs": 108
       },
       {
         "id": "greenhouse:twilio",
@@ -3736,7 +3736,7 @@
         "status": "ok",
         "rows": 106,
         "retryRequests": 0,
-        "durationMs": 541
+        "durationMs": 297
       },
       {
         "id": "ashby:eightsleep",
@@ -3746,7 +3746,7 @@
         "status": "ok",
         "rows": 34,
         "retryRequests": 0,
-        "durationMs": 94
+        "durationMs": 207
       },
       {
         "id": "greenhouse:relativity",
@@ -3756,7 +3756,7 @@
         "status": "ok",
         "rows": 403,
         "retryRequests": 0,
-        "durationMs": 2860
+        "durationMs": 1614
       },
       {
         "id": "lever:api.lever.co:jobgether",
@@ -3766,7 +3766,7 @@
         "status": "ok",
         "rows": 1000,
         "retryRequests": 0,
-        "durationMs": 2617
+        "durationMs": 785
       },
       {
         "id": "greenhouse:atoms",
@@ -3776,7 +3776,7 @@
         "status": "ok",
         "rows": 172,
         "retryRequests": 0,
-        "durationMs": 2010
+        "durationMs": 315
       },
       {
         "id": "ashby:silnahealth.com",
@@ -3786,7 +3786,7 @@
         "status": "ok",
         "rows": 14,
         "retryRequests": 0,
-        "durationMs": 24
+        "durationMs": 33
       },
       {
         "id": "greenhouse:momentumcompany3",
@@ -3796,7 +3796,7 @@
         "status": "ok",
         "rows": 20,
         "retryRequests": 0,
-        "durationMs": 104
+        "durationMs": 135
       },
       {
         "id": "lever:api.lever.co:crosscountry-consulting",
@@ -3806,7 +3806,7 @@
         "status": "ok",
         "rows": 105,
         "retryRequests": 0,
-        "durationMs": 1992
+        "durationMs": 868
       },
       {
         "id": "greenhouse:canonical",
@@ -3816,7 +3816,7 @@
         "status": "ok",
         "rows": 317,
         "retryRequests": 0,
-        "durationMs": 2923
+        "durationMs": 1095
       },
       {
         "id": "greenhouse:integratedbiosciencesinc",
@@ -3826,7 +3826,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 30
+        "durationMs": 130
       },
       {
         "id": "ashby:zetta2",
@@ -3836,7 +3836,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 1711
+        "durationMs": 123
       },
       {
         "id": "greenhouse:emergingtalent",
@@ -3846,7 +3846,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 106
+        "durationMs": 100
       },
       {
         "id": "greenhouse:d3",
@@ -3856,7 +3856,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 101
+        "durationMs": 49
       },
       {
         "id": "ashby:elevenlabs",
@@ -3866,7 +3866,7 @@
         "status": "ok",
         "rows": 125,
         "retryRequests": 0,
-        "durationMs": 197
+        "durationMs": 524
       },
       {
         "id": "ashby:secfix",
@@ -3876,7 +3876,7 @@
         "status": "ok",
         "rows": 18,
         "retryRequests": 0,
-        "durationMs": 71
+        "durationMs": 54
       },
       {
         "id": "greenhouse:stubhubinc",
@@ -3886,7 +3886,7 @@
         "status": "ok",
         "rows": 56,
         "retryRequests": 0,
-        "durationMs": 113
+        "durationMs": 590
       },
       {
         "id": "ashby:synhawk",
@@ -3896,7 +3896,7 @@
         "status": "ok",
         "rows": 2,
         "retryRequests": 0,
-        "durationMs": 19
+        "durationMs": 31
       },
       {
         "id": "greenhouse:nuancelabs",
@@ -3906,7 +3906,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 55
+        "durationMs": 424
       },
       {
         "id": "greenhouse:humaninterestswe1",
@@ -3916,7 +3916,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 44
+        "durationMs": 414
       },
       {
         "id": "ashby:endeavorai",
@@ -3926,7 +3926,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 482
+        "durationMs": 401
       },
       {
         "id": "lever:api.lever.co:casino-cash-trac",
@@ -3936,7 +3936,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 483
+        "durationMs": 152
       },
       {
         "id": "ashby:realmalliance",
@@ -3946,7 +3946,7 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 711
+        "durationMs": 86
       },
       {
         "id": "ashby:preference-model",
@@ -3956,7 +3956,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 647
+        "durationMs": 90
       },
       {
         "id": "ashby:julius",
@@ -3966,7 +3966,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 244
+        "durationMs": 85
       },
       {
         "id": "ashby:fsh",
@@ -3976,7 +3976,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 246
+        "durationMs": 144
       },
       {
         "id": "ashby:faros-ai",
@@ -3986,7 +3986,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 248
+        "durationMs": 137
       },
       {
         "id": "ashby:cylake-inc",
@@ -3996,7 +3996,7 @@
         "status": "ok",
         "rows": 15,
         "retryRequests": 0,
-        "durationMs": 25
+        "durationMs": 19
       },
       {
         "id": "greenhouse:superapp",
@@ -4006,7 +4006,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 47
+        "durationMs": 105
       },
       {
         "id": "ashby:relling",
@@ -4016,7 +4016,7 @@
         "status": "ok",
         "rows": 13,
         "retryRequests": 0,
-        "durationMs": 20
+        "durationMs": 98
       },
       {
         "id": "ashby:hyphenate",
@@ -4026,7 +4026,7 @@
         "status": "ok",
         "rows": 15,
         "retryRequests": 0,
-        "durationMs": 30
+        "durationMs": 99
       },
       {
         "id": "ashby:goaly",
@@ -4036,7 +4036,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 31
+        "durationMs": 82
       },
       {
         "id": "ashby:ambral",
@@ -4046,7 +4046,7 @@
         "status": "ok",
         "rows": 3,
         "retryRequests": 0,
-        "durationMs": 26
+        "durationMs": 72
       },
       {
         "id": "greenhouse:lovelytics",
@@ -4056,7 +4056,7 @@
         "status": "ok",
         "rows": 19,
         "retryRequests": 0,
-        "durationMs": 235
+        "durationMs": 288
       },
       {
         "id": "ashby:cerebras",
@@ -4066,7 +4066,7 @@
         "status": "ok",
         "rows": 129,
         "retryRequests": 0,
-        "durationMs": 308
+        "durationMs": 348
       },
       {
         "id": "lever:api.lever.co:evr",
@@ -4076,7 +4076,7 @@
         "status": "ok",
         "rows": 45,
         "retryRequests": 0,
-        "durationMs": 336
+        "durationMs": 262
       },
       {
         "id": "lever:api.lever.co:exowatt",
@@ -4086,7 +4086,7 @@
         "status": "ok",
         "rows": 17,
         "retryRequests": 0,
-        "durationMs": 200
+        "durationMs": 235
       },
       {
         "id": "ashby:regscale",
@@ -4096,7 +4096,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 205
+        "durationMs": 271
       },
       {
         "id": "greenhouse:skhynixmemorysolutionsamericainc",
@@ -4106,7 +4106,7 @@
         "status": "ok",
         "rows": 24,
         "retryRequests": 0,
-        "durationMs": 217
+        "durationMs": 273
       },
       {
         "id": "lever:api.lever.co:magnetforensics",
@@ -4116,7 +4116,7 @@
         "status": "ok",
         "rows": 29,
         "retryRequests": 0,
-        "durationMs": 2282
+        "durationMs": 1239
       },
       {
         "id": "ashby:tonicai",
@@ -4126,7 +4126,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 27
+        "durationMs": 253
       },
       {
         "id": "ashby:mossrobotics",
@@ -4136,7 +4136,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 25
+        "durationMs": 33
       },
       {
         "id": "greenhouse:langanengineeringandenvironmentalservicesllc",
@@ -4146,7 +4146,7 @@
         "status": "ok",
         "rows": 585,
         "retryRequests": 0,
-        "durationMs": 1700
+        "durationMs": 2305
       },
       {
         "id": "ashby:apex-technology-inc",
@@ -4156,7 +4156,7 @@
         "status": "ok",
         "rows": 141,
         "retryRequests": 0,
-        "durationMs": 733
+        "durationMs": 1085
       },
       {
         "id": "greenhouse:waterloocoop",
@@ -4166,7 +4166,7 @@
         "status": "ok",
         "rows": 3,
         "retryRequests": 0,
-        "durationMs": 68
+        "durationMs": 304
       },
       {
         "id": "ashby:etched",
@@ -4176,7 +4176,7 @@
         "status": "ok",
         "rows": 118,
         "retryRequests": 0,
-        "durationMs": 168
+        "durationMs": 414
       },
       {
         "id": "ashby:engramme",
@@ -4186,7 +4186,7 @@
         "status": "ok",
         "rows": 15,
         "retryRequests": 0,
-        "durationMs": 55
+        "durationMs": 295
       },
       {
         "id": "greenhouse:tribalscale",
@@ -4196,7 +4196,7 @@
         "status": "ok",
         "rows": 19,
         "retryRequests": 0,
-        "durationMs": 123
+        "durationMs": 312
       },
       {
         "id": "ashby:ema",
@@ -4206,7 +4206,7 @@
         "status": "ok",
         "rows": 39,
         "retryRequests": 0,
-        "durationMs": 110
+        "durationMs": 323
       },
       {
         "id": "greenhouse:castelioncorporation",
@@ -4216,7 +4216,7 @@
         "status": "ok",
         "rows": 271,
         "retryRequests": 0,
-        "durationMs": 1165
+        "durationMs": 1433
       },
       {
         "id": "greenhouse:internrecruiting",
@@ -4226,7 +4226,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 45
+        "durationMs": 54
       },
       {
         "id": "ashby:geniusai",
@@ -4236,7 +4236,7 @@
         "status": "ok",
         "rows": 16,
         "retryRequests": 0,
-        "durationMs": 429
+        "durationMs": 57
       },
       {
         "id": "greenhouse:nasdaq",
@@ -4246,7 +4246,7 @@
         "status": "ok",
         "rows": 23,
         "retryRequests": 0,
-        "durationMs": 414
+        "durationMs": 64
       },
       {
         "id": "greenhouse:acluinternships",
@@ -4256,7 +4256,7 @@
         "status": "ok",
         "rows": 42,
         "retryRequests": 0,
-        "durationMs": 549
+        "durationMs": 237
       },
       {
         "id": "greenhouse:oneethos",
@@ -4266,7 +4266,7 @@
         "status": "ok",
         "rows": 2,
         "retryRequests": 0,
-        "durationMs": 124
+        "durationMs": 79
       },
       {
         "id": "greenhouse:sitimecorporation",
@@ -4276,7 +4276,7 @@
         "status": "ok",
         "rows": 203,
         "retryRequests": 0,
-        "durationMs": 296
+        "durationMs": 965
       },
       {
         "id": "lever:api.lever.co:eqbank",
@@ -4286,7 +4286,7 @@
         "status": "ok",
         "rows": 81,
         "retryRequests": 0,
-        "durationMs": 405
+        "durationMs": 175
       },
       {
         "id": "greenhouse:figureai",
@@ -4296,7 +4296,7 @@
         "status": "ok",
         "rows": 104,
         "retryRequests": 0,
-        "durationMs": 86
+        "durationMs": 110
       },
       {
         "id": "ashby:pangramlabs",
@@ -4306,7 +4306,7 @@
         "status": "ok",
         "rows": 14,
         "retryRequests": 0,
-        "durationMs": 39
+        "durationMs": 19
       },
       {
         "id": "ashby:skyband systems",
@@ -4316,7 +4316,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 17
+        "durationMs": 141
       },
       {
         "id": "ashby:plot",
@@ -4326,7 +4326,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 46
+        "durationMs": 97
       },
       {
         "id": "ashby:npx",
@@ -4336,7 +4336,7 @@
         "status": "ok",
         "rows": 16,
         "retryRequests": 0,
-        "durationMs": 42
+        "durationMs": 96
       },
       {
         "id": "greenhouse:heartflowinc",
@@ -4346,7 +4346,7 @@
         "status": "ok",
         "rows": 62,
         "retryRequests": 0,
-        "durationMs": 165
+        "durationMs": 636
       },
       {
         "id": "greenhouse:workstream",
@@ -4356,7 +4356,7 @@
         "status": "ok",
         "rows": 20,
         "retryRequests": 0,
-        "durationMs": 121
+        "durationMs": 577
       },
       {
         "id": "greenhouse:octaura",
@@ -4366,7 +4366,7 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 102
+        "durationMs": 439
       },
       {
         "id": "greenhouse:m3",
@@ -4376,7 +4376,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 174
+        "durationMs": 529
       },
       {
         "id": "greenhouse:hexarmor",
@@ -4386,7 +4386,17 @@
         "status": "ok",
         "rows": 19,
         "retryRequests": 0,
-        "durationMs": 181
+        "durationMs": 516
+      },
+      {
+        "id": "ashby:horizon3ai",
+        "provider": "ashby",
+        "key": "horizon3ai",
+        "company": "Horizon3.ai",
+        "status": "ok",
+        "rows": 202,
+        "retryRequests": 0,
+        "durationMs": 782
       },
       {
         "id": "ashby:vital-lyfe",
@@ -4396,7 +4406,7 @@
         "status": "ok",
         "rows": 14,
         "retryRequests": 0,
-        "durationMs": 156
+        "durationMs": 110
       },
       {
         "id": "greenhouse:usinternshipspubliccareerssite",
@@ -4406,7 +4416,7 @@
         "status": "ok",
         "rows": 22,
         "retryRequests": 0,
-        "durationMs": 365
+        "durationMs": 185
       },
       {
         "id": "ashby:rhoda-ai",
@@ -4416,7 +4426,7 @@
         "status": "ok",
         "rows": 40,
         "retryRequests": 0,
-        "durationMs": 269
+        "durationMs": 55
       },
       {
         "id": "greenhouse:ecjobb",
@@ -4426,7 +4436,7 @@
         "status": "ok",
         "rows": 17,
         "retryRequests": 0,
-        "durationMs": 227
+        "durationMs": 114
       },
       {
         "id": "greenhouse:studentinternships",
@@ -4436,7 +4446,7 @@
         "status": "ok",
         "rows": 15,
         "retryRequests": 0,
-        "durationMs": 231
+        "durationMs": 116
       },
       {
         "id": "ashby:hookmusic",
@@ -4446,7 +4456,7 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 194
+        "durationMs": 92
       },
       {
         "id": "greenhouse:summer2027",
@@ -4456,7 +4466,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 223
+        "durationMs": 109
       },
       {
         "id": "greenhouse:scoutmotors",
@@ -4466,7 +4476,7 @@
         "status": "ok",
         "rows": 210,
         "retryRequests": 0,
-        "durationMs": 940
+        "durationMs": 2128
       },
       {
         "id": "ashby:pika",
@@ -4486,7 +4496,7 @@
         "status": "ok",
         "rows": 23,
         "retryRequests": 0,
-        "durationMs": 91
+        "durationMs": 370
       },
       {
         "id": "lever:api.eu.lever.co:cirrus",
@@ -4496,7 +4506,7 @@
         "status": "ok",
         "rows": 125,
         "retryRequests": 0,
-        "durationMs": 1633
+        "durationMs": 1609
       },
       {
         "id": "lever:api.lever.co:cesiumastro",
@@ -4506,7 +4516,7 @@
         "status": "ok",
         "rows": 379,
         "retryRequests": 0,
-        "durationMs": 2042
+        "durationMs": 1238
       },
       {
         "id": "greenhouse:deeplocal",
@@ -4516,7 +4526,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 72
+        "durationMs": 110
       },
       {
         "id": "ashby:trajectory",
@@ -4526,7 +4536,7 @@
         "status": "ok",
         "rows": 9,
         "retryRequests": 0,
-        "durationMs": 51
+        "durationMs": 106
       },
       {
         "id": "ashby:machinacognita",
@@ -4536,7 +4546,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 47
+        "durationMs": 93
       },
       {
         "id": "greenhouse:doordashcanada",
@@ -4546,7 +4556,7 @@
         "status": "ok",
         "rows": 42,
         "retryRequests": 0,
-        "durationMs": 362
+        "durationMs": 300
       },
       {
         "id": "ashby:logiqal",
@@ -4556,7 +4566,7 @@
         "status": "ok",
         "rows": 9,
         "retryRequests": 0,
-        "durationMs": 19
+        "durationMs": 192
       },
       {
         "id": "ashby:genmd",
@@ -4566,7 +4576,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 18
+        "durationMs": 183
       },
       {
         "id": "ashby:sycamore",
@@ -4576,7 +4586,7 @@
         "status": "ok",
         "rows": 15,
         "retryRequests": 0,
-        "durationMs": 304
+        "durationMs": 198
       },
       {
         "id": "ashby:mach9",
@@ -4586,7 +4596,7 @@
         "status": "ok",
         "rows": 20,
         "retryRequests": 0,
-        "durationMs": 282
+        "durationMs": 62
       },
       {
         "id": "greenhouse:tobogganlabs",
@@ -4596,7 +4606,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 300
+        "durationMs": 72
       },
       {
         "id": "ashby:powertown",
@@ -4606,7 +4616,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 22
+        "durationMs": 47
       },
       {
         "id": "ashby:onerobot",
@@ -4616,7 +4626,7 @@
         "status": "ok",
         "rows": 3,
         "retryRequests": 0,
-        "durationMs": 22
+        "durationMs": 96
       },
       {
         "id": "ashby:laminar-jobs",
@@ -4626,7 +4636,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 16
+        "durationMs": 26
       },
       {
         "id": "ashby:generalintuition-medal",
@@ -4636,7 +4646,7 @@
         "status": "ok",
         "rows": 19,
         "retryRequests": 0,
-        "durationMs": 18
+        "durationMs": 27
       },
       {
         "id": "ashby:dryft",
@@ -4646,7 +4656,7 @@
         "status": "ok",
         "rows": 15,
         "retryRequests": 0,
-        "durationMs": 46
+        "durationMs": 51
       },
       {
         "id": "ashby:drivewealth",
@@ -4656,7 +4666,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 37
+        "durationMs": 44
       },
       {
         "id": "greenhouse:veritiongroupllcinternships",
@@ -4666,7 +4676,7 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 37
+        "durationMs": 46
       },
       {
         "id": "ashby:revel",
@@ -4676,7 +4686,7 @@
         "status": "ok",
         "rows": 32,
         "retryRequests": 0,
-        "durationMs": 48
+        "durationMs": 53
       },
       {
         "id": "greenhouse:centerforartificialintelligencesafetyinc",
@@ -4686,7 +4696,17 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 45
+        "durationMs": 150
+      },
+      {
+        "id": "ashby:aurora-operations-inc",
+        "provider": "ashby",
+        "key": "aurora-operations-inc",
+        "company": "Aurora Innovation",
+        "status": "ok",
+        "rows": 86,
+        "retryRequests": 0,
+        "durationMs": 263
       },
       {
         "id": "ashby:antares",
@@ -4696,7 +4716,7 @@
         "status": "ok",
         "rows": 81,
         "retryRequests": 0,
-        "durationMs": 153
+        "durationMs": 308
       },
       {
         "id": "ashby:withpace",
@@ -4716,7 +4736,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 31
+        "durationMs": 139
       },
       {
         "id": "greenhouse:baidu",
@@ -4726,7 +4746,7 @@
         "status": "ok",
         "rows": 27,
         "retryRequests": 0,
-        "durationMs": 41
+        "durationMs": 139
       },
       {
         "id": "ashby:afterquery",
@@ -4736,7 +4756,7 @@
         "status": "ok",
         "rows": 41,
         "retryRequests": 0,
-        "durationMs": 66
+        "durationMs": 145
       },
       {
         "id": "ashby:chartahealth",
@@ -4746,7 +4766,7 @@
         "status": "ok",
         "rows": 21,
         "retryRequests": 0,
-        "durationMs": 38
+        "durationMs": 51
       },
       {
         "id": "greenhouse:aechelontechnology",
@@ -4756,7 +4776,7 @@
         "status": "ok",
         "rows": 23,
         "retryRequests": 0,
-        "durationMs": 125
+        "durationMs": 128
       },
       {
         "id": "ashby:serval",
@@ -4766,7 +4786,7 @@
         "status": "ok",
         "rows": 68,
         "retryRequests": 0,
-        "durationMs": 135
+        "durationMs": 73
       },
       {
         "id": "greenhouse:scmaea",
@@ -4776,7 +4796,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 32
+        "durationMs": 64
       },
       {
         "id": "ashby:colonist",
@@ -4786,7 +4806,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 56
+        "durationMs": 45
       },
       {
         "id": "greenhouse:rackner",
@@ -4796,7 +4816,7 @@
         "status": "ok",
         "rows": 41,
         "retryRequests": 0,
-        "durationMs": 107
+        "durationMs": 164
       },
       {
         "id": "greenhouse:bandwidth",
@@ -4806,7 +4826,7 @@
         "status": "ok",
         "rows": 21,
         "retryRequests": 0,
-        "durationMs": 81
+        "durationMs": 112
       },
       {
         "id": "greenhouse:bgeinccampus",
@@ -4816,7 +4836,7 @@
         "status": "ok",
         "rows": 55,
         "retryRequests": 0,
-        "durationMs": 64
+        "durationMs": 97
       },
       {
         "id": "greenhouse:iterable",
@@ -4826,7 +4846,7 @@
         "status": "failed",
         "rows": 0,
         "retryRequests": 0,
-        "durationMs": 28,
+        "durationMs": 87,
         "message": "404 Not Found"
       },
       {
@@ -4837,7 +4857,7 @@
         "status": "ok",
         "rows": 105,
         "retryRequests": 0,
-        "durationMs": 414
+        "durationMs": 1501
       },
       {
         "id": "lever:api.lever.co:rigetti",
@@ -4847,7 +4867,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 298
+        "durationMs": 871
       },
       {
         "id": "greenhouse:silananotechnologies",
@@ -4857,7 +4877,7 @@
         "status": "ok",
         "rows": 34,
         "retryRequests": 0,
-        "durationMs": 323
+        "durationMs": 899
       },
       {
         "id": "greenhouse:smartbear",
@@ -4867,7 +4887,7 @@
         "status": "ok",
         "rows": 11,
         "retryRequests": 0,
-        "durationMs": 298
+        "durationMs": 57
       },
       {
         "id": "ashby:twelve",
@@ -4877,7 +4897,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 265
+        "durationMs": 37
       },
       {
         "id": "greenhouse:tpgcareers",
@@ -4887,7 +4907,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 40
+        "durationMs": 375
       },
       {
         "id": "ashby:clark",
@@ -4897,7 +4917,7 @@
         "status": "ok",
         "rows": 18,
         "retryRequests": 0,
-        "durationMs": 37
+        "durationMs": 349
       },
       {
         "id": "greenhouse:transmarketgroup",
@@ -4907,7 +4927,7 @@
         "status": "ok",
         "rows": 17,
         "retryRequests": 0,
-        "durationMs": 52
+        "durationMs": 333
       },
       {
         "id": "lever:api.lever.co:veeva",
@@ -4916,8 +4936,8 @@
         "company": "Veeva Systems",
         "status": "ok",
         "rows": 865,
-        "retryRequests": 1,
-        "durationMs": 17867
+        "retryRequests": 0,
+        "durationMs": 768
       },
       {
         "id": "ashby:1password",
@@ -4927,7 +4947,7 @@
         "status": "ok",
         "rows": 81,
         "retryRequests": 0,
-        "durationMs": 185
+        "durationMs": 1166
       },
       {
         "id": "ashby:2ndwave",
@@ -4937,7 +4957,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 22
+        "durationMs": 495
       },
       {
         "id": "ashby:42dot",
@@ -4947,7 +4967,7 @@
         "status": "ok",
         "rows": 107,
         "retryRequests": 0,
-        "durationMs": 206
+        "durationMs": 655
       },
       {
         "id": "ashby:agave",
@@ -4957,7 +4977,7 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 83
+        "durationMs": 490
       },
       {
         "id": "ashby:aiprise",
@@ -4967,7 +4987,7 @@
         "status": "ok",
         "rows": 19,
         "retryRequests": 0,
-        "durationMs": 86
+        "durationMs": 400
       },
       {
         "id": "ashby:ambrook",
@@ -4977,7 +4997,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 197
+        "durationMs": 91
       },
       {
         "id": "ashby:amplitude",
@@ -4987,7 +5007,7 @@
         "status": "ok",
         "rows": 49,
         "retryRequests": 0,
-        "durationMs": 232
+        "durationMs": 264
       },
       {
         "id": "ashby:anori",
@@ -4997,7 +5017,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 78
+        "durationMs": 55
       },
       {
         "id": "ashby:anysignal",
@@ -5007,7 +5027,7 @@
         "status": "ok",
         "rows": 27,
         "retryRequests": 0,
-        "durationMs": 127
+        "durationMs": 65
       },
       {
         "id": "ashby:arizent",
@@ -5017,7 +5037,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 47
+        "durationMs": 34
       },
       {
         "id": "ashby:armadin",
@@ -5027,7 +5047,7 @@
         "status": "ok",
         "rows": 24,
         "retryRequests": 0,
-        "durationMs": 61
+        "durationMs": 50
       },
       {
         "id": "ashby:assorthealth",
@@ -5037,7 +5057,7 @@
         "status": "ok",
         "rows": 37,
         "retryRequests": 0,
-        "durationMs": 51
+        "durationMs": 68
       },
       {
         "id": "ashby:astera",
@@ -5047,7 +5067,7 @@
         "status": "ok",
         "rows": 42,
         "retryRequests": 0,
-        "durationMs": 71
+        "durationMs": 89
       },
       {
         "id": "ashby:aurelian",
@@ -5057,17 +5077,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 23
-      },
-      {
-        "id": "ashby:aurora-operations-inc",
-        "provider": "ashby",
-        "key": "aurora-operations-inc",
-        "company": "Aurora Innovation",
-        "status": "ok",
-        "rows": 86,
-        "retryRequests": 0,
-        "durationMs": 143
+        "durationMs": 32
       },
       {
         "id": "ashby:bagsfm",
@@ -5077,7 +5087,7 @@
         "status": "ok",
         "rows": 11,
         "retryRequests": 0,
-        "durationMs": 29
+        "durationMs": 32
       },
       {
         "id": "ashby:base-power",
@@ -5087,7 +5097,7 @@
         "status": "ok",
         "rows": 199,
         "retryRequests": 0,
-        "durationMs": 304
+        "durationMs": 1127
       },
       {
         "id": "ashby:berma-llc-dba-nogood",
@@ -5097,7 +5107,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 76
+        "durationMs": 39
       },
       {
         "id": "ashby:bild-ai",
@@ -5107,7 +5117,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 23
+        "durationMs": 13
       },
       {
         "id": "ashby:binance.us",
@@ -5117,7 +5127,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 36
+        "durationMs": 54
       },
       {
         "id": "ashby:blissway",
@@ -5127,7 +5137,7 @@
         "status": "ok",
         "rows": 11,
         "retryRequests": 0,
-        "durationMs": 42
+        "durationMs": 90
       },
       {
         "id": "ashby:blockhouse",
@@ -5137,7 +5147,7 @@
         "status": "ok",
         "rows": 2,
         "retryRequests": 0,
-        "durationMs": 19
+        "durationMs": 34
       },
       {
         "id": "ashby:bobyard",
@@ -5147,7 +5157,7 @@
         "status": "ok",
         "rows": 41,
         "retryRequests": 0,
-        "durationMs": 76
+        "durationMs": 122
       },
       {
         "id": "ashby:bracket-bot",
@@ -5157,7 +5167,7 @@
         "status": "ok",
         "rows": 14,
         "retryRequests": 0,
-        "durationMs": 51
+        "durationMs": 61
       },
       {
         "id": "ashby:brainco",
@@ -5167,7 +5177,7 @@
         "status": "ok",
         "rows": 48,
         "retryRequests": 0,
-        "durationMs": 89
+        "durationMs": 367
       },
       {
         "id": "ashby:bree",
@@ -5187,7 +5197,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 28
+        "durationMs": 14
       },
       {
         "id": "ashby:build-ai",
@@ -5197,7 +5207,7 @@
         "status": "ok",
         "rows": 29,
         "retryRequests": 0,
-        "durationMs": 69
+        "durationMs": 342
       },
       {
         "id": "ashby:chalk",
@@ -5207,7 +5217,7 @@
         "status": "ok",
         "rows": 17,
         "retryRequests": 0,
-        "durationMs": 45
+        "durationMs": 60
       },
       {
         "id": "ashby:cheiron",
@@ -5217,7 +5227,7 @@
         "status": "ok",
         "rows": 14,
         "retryRequests": 0,
-        "durationMs": 42
+        "durationMs": 326
       },
       {
         "id": "ashby:claylabs",
@@ -5227,7 +5237,7 @@
         "status": "ok",
         "rows": 59,
         "retryRequests": 0,
-        "durationMs": 185
+        "durationMs": 544
       },
       {
         "id": "ashby:cobot",
@@ -5237,7 +5247,7 @@
         "status": "ok",
         "rows": 14,
         "retryRequests": 0,
-        "durationMs": 32
+        "durationMs": 424
       },
       {
         "id": "ashby:collinear-ai",
@@ -5247,7 +5257,7 @@
         "status": "ok",
         "rows": 18,
         "retryRequests": 0,
-        "durationMs": 31
+        "durationMs": 419
       },
       {
         "id": "ashby:commure",
@@ -5257,7 +5267,7 @@
         "status": "ok",
         "rows": 73,
         "retryRequests": 0,
-        "durationMs": 262
+        "durationMs": 633
       },
       {
         "id": "ashby:concourse",
@@ -5267,7 +5277,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 102
+        "durationMs": 129
       },
       {
         "id": "ashby:crusoe",
@@ -5277,7 +5287,7 @@
         "status": "ok",
         "rows": 326,
         "retryRequests": 0,
-        "durationMs": 910
+        "durationMs": 1449
       },
       {
         "id": "ashby:dandy",
@@ -5287,7 +5297,7 @@
         "status": "ok",
         "rows": 75,
         "retryRequests": 0,
-        "durationMs": 161
+        "durationMs": 344
       },
       {
         "id": "ashby:decagon",
@@ -5297,7 +5307,7 @@
         "status": "ok",
         "rows": 109,
         "retryRequests": 0,
-        "durationMs": 268
+        "durationMs": 414
       },
       {
         "id": "ashby:deeter-analytics",
@@ -5307,7 +5317,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 38
+        "durationMs": 118
       },
       {
         "id": "ashby:embedding-vc",
@@ -5317,7 +5327,7 @@
         "status": "ok",
         "rows": 57,
         "retryRequests": 0,
-        "durationMs": 142
+        "durationMs": 229
       },
       {
         "id": "ashby:exa",
@@ -5327,7 +5337,7 @@
         "status": "ok",
         "rows": 67,
         "retryRequests": 0,
-        "durationMs": 164
+        "durationMs": 203
       },
       {
         "id": "ashby:exegy",
@@ -5337,7 +5347,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 46
+        "durationMs": 29
       },
       {
         "id": "ashby:f7d8749a-72d6-407c-bf98-292ea630c73a",
@@ -5347,7 +5357,7 @@
         "status": "ok",
         "rows": 660,
         "retryRequests": 0,
-        "durationMs": 1652
+        "durationMs": 2559
       },
       {
         "id": "ashby:fanvue.com",
@@ -5357,7 +5367,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 39
+        "durationMs": 58
       },
       {
         "id": "ashby:flint",
@@ -5367,7 +5377,7 @@
         "status": "ok",
         "rows": 9,
         "retryRequests": 0,
-        "durationMs": 58
+        "durationMs": 34
       },
       {
         "id": "ashby:fuel-cycle",
@@ -5377,7 +5387,7 @@
         "status": "ok",
         "rows": 14,
         "retryRequests": 0,
-        "durationMs": 63
+        "durationMs": 92
       },
       {
         "id": "ashby:g2",
@@ -5387,7 +5397,7 @@
         "status": "ok",
         "rows": 45,
         "retryRequests": 0,
-        "durationMs": 132
+        "durationMs": 273
       },
       {
         "id": "ashby:govsignals",
@@ -5397,7 +5407,7 @@
         "status": "ok",
         "rows": 9,
         "retryRequests": 0,
-        "durationMs": 68
+        "durationMs": 44
       },
       {
         "id": "ashby:greptile",
@@ -5407,7 +5417,7 @@
         "status": "ok",
         "rows": 18,
         "retryRequests": 0,
-        "durationMs": 113
+        "durationMs": 79
       },
       {
         "id": "ashby:grow-therapy",
@@ -5417,7 +5427,7 @@
         "status": "ok",
         "rows": 33,
         "retryRequests": 0,
-        "durationMs": 135
+        "durationMs": 237
       },
       {
         "id": "ashby:h3x-technologies",
@@ -5427,7 +5437,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 70
+        "durationMs": 51
       },
       {
         "id": "ashby:handshake",
@@ -5437,7 +5447,7 @@
         "status": "ok",
         "rows": 69,
         "retryRequests": 0,
-        "durationMs": 141
+        "durationMs": 273
       },
       {
         "id": "ashby:harvey",
@@ -5447,7 +5457,7 @@
         "status": "ok",
         "rows": 388,
         "retryRequests": 0,
-        "durationMs": 883
+        "durationMs": 1396
       },
       {
         "id": "ashby:heron-power",
@@ -5457,7 +5467,7 @@
         "status": "ok",
         "rows": 60,
         "retryRequests": 0,
-        "durationMs": 255
+        "durationMs": 217
       },
       {
         "id": "ashby:hex",
@@ -5467,7 +5477,7 @@
         "status": "ok",
         "rows": 42,
         "retryRequests": 0,
-        "durationMs": 48
+        "durationMs": 190
       },
       {
         "id": "ashby:hippocratic ai",
@@ -5477,7 +5487,7 @@
         "status": "ok",
         "rows": 54,
         "retryRequests": 0,
-        "durationMs": 251
+        "durationMs": 381
       },
       {
         "id": "ashby:hiya",
@@ -5487,7 +5497,7 @@
         "status": "ok",
         "rows": 19,
         "retryRequests": 0,
-        "durationMs": 164
+        "durationMs": 234
       },
       {
         "id": "ashby:iambic-therapeutics",
@@ -5497,7 +5507,7 @@
         "status": "ok",
         "rows": 28,
         "retryRequests": 0,
-        "durationMs": 144
+        "durationMs": 138
       },
       {
         "id": "ashby:idler",
@@ -5507,7 +5517,7 @@
         "status": "ok",
         "rows": 3,
         "retryRequests": 0,
-        "durationMs": 17
+        "durationMs": 48
       },
       {
         "id": "ashby:incident",
@@ -5517,7 +5527,7 @@
         "status": "ok",
         "rows": 33,
         "retryRequests": 0,
-        "durationMs": 92
+        "durationMs": 105
       },
       {
         "id": "ashby:inferact",
@@ -5527,7 +5537,7 @@
         "status": "ok",
         "rows": 32,
         "retryRequests": 0,
-        "durationMs": 72
+        "durationMs": 94
       },
       {
         "id": "ashby:interplay",
@@ -5537,7 +5547,7 @@
         "status": "ok",
         "rows": 13,
         "retryRequests": 0,
-        "durationMs": 54
+        "durationMs": 64
       },
       {
         "id": "ashby:jerry.ai",
@@ -5547,7 +5557,7 @@
         "status": "ok",
         "rows": 37,
         "retryRequests": 0,
-        "durationMs": 285
+        "durationMs": 279
       },
       {
         "id": "ashby:juicebox",
@@ -5557,7 +5567,7 @@
         "status": "ok",
         "rows": 42,
         "retryRequests": 0,
-        "durationMs": 58
+        "durationMs": 194
       },
       {
         "id": "ashby:kastle",
@@ -5567,7 +5577,7 @@
         "status": "ok",
         "rows": 17,
         "retryRequests": 0,
-        "durationMs": 35
+        "durationMs": 136
       },
       {
         "id": "ashby:keyrock",
@@ -5577,7 +5587,7 @@
         "status": "ok",
         "rows": 11,
         "retryRequests": 0,
-        "durationMs": 58
+        "durationMs": 164
       },
       {
         "id": "ashby:koahlabs",
@@ -5587,7 +5597,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 184
+        "durationMs": 108
       },
       {
         "id": "ashby:kognitos",
@@ -5597,7 +5607,7 @@
         "status": "ok",
         "rows": 3,
         "retryRequests": 0,
-        "durationMs": 24
+        "durationMs": 94
       },
       {
         "id": "ashby:lendable",
@@ -5607,7 +5617,7 @@
         "status": "ok",
         "rows": 71,
         "retryRequests": 0,
-        "durationMs": 300
+        "durationMs": 360
       },
       {
         "id": "ashby:lightfield",
@@ -5617,7 +5627,7 @@
         "status": "ok",
         "rows": 20,
         "retryRequests": 0,
-        "durationMs": 165
+        "durationMs": 82
       },
       {
         "id": "ashby:litellm",
@@ -5627,7 +5637,7 @@
         "status": "ok",
         "rows": 16,
         "retryRequests": 0,
-        "durationMs": 149
+        "durationMs": 73
       },
       {
         "id": "ashby:lpadesignstudios",
@@ -5637,7 +5647,7 @@
         "status": "ok",
         "rows": 39,
         "retryRequests": 0,
-        "durationMs": 85
+        "durationMs": 145
       },
       {
         "id": "ashby:lumos",
@@ -5647,7 +5657,7 @@
         "status": "ok",
         "rows": 9,
         "retryRequests": 0,
-        "durationMs": 53
+        "durationMs": 59
       },
       {
         "id": "ashby:madhive",
@@ -5657,7 +5667,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 40
+        "durationMs": 85
       },
       {
         "id": "ashby:maki",
@@ -5667,7 +5677,7 @@
         "status": "ok",
         "rows": 13,
         "retryRequests": 0,
-        "durationMs": 46
+        "durationMs": 45
       },
       {
         "id": "ashby:maxinsights",
@@ -5677,7 +5687,7 @@
         "status": "ok",
         "rows": 14,
         "retryRequests": 0,
-        "durationMs": 51
+        "durationMs": 72
       },
       {
         "id": "ashby:meow",
@@ -5687,7 +5697,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 38
+        "durationMs": 48
       },
       {
         "id": "ashby:metamorphic",
@@ -5697,7 +5707,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 33
+        "durationMs": 50
       },
       {
         "id": "ashby:miter",
@@ -5707,7 +5717,7 @@
         "status": "ok",
         "rows": 13,
         "retryRequests": 0,
-        "durationMs": 45
+        "durationMs": 94
       },
       {
         "id": "ashby:modal",
@@ -5717,7 +5727,7 @@
         "status": "ok",
         "rows": 51,
         "retryRequests": 0,
-        "durationMs": 88
+        "durationMs": 107
       },
       {
         "id": "ashby:neon",
@@ -5727,7 +5737,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 22
+        "durationMs": 42
       },
       {
         "id": "ashby:newxel",
@@ -5737,7 +5747,7 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 60
+        "durationMs": 47
       },
       {
         "id": "ashby:niantic-spatial",
@@ -5747,7 +5757,7 @@
         "status": "ok",
         "rows": 20,
         "retryRequests": 0,
-        "durationMs": 86
+        "durationMs": 94
       },
       {
         "id": "ashby:nova-talent",
@@ -5757,7 +5767,7 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 47
+        "durationMs": 36
       },
       {
         "id": "ashby:oneapp",
@@ -5767,7 +5777,7 @@
         "status": "ok",
         "rows": 33,
         "retryRequests": 0,
-        "durationMs": 95
+        "durationMs": 103
       },
       {
         "id": "ashby:ontic",
@@ -5777,7 +5787,7 @@
         "status": "ok",
         "rows": 13,
         "retryRequests": 0,
-        "durationMs": 64
+        "durationMs": 166
       },
       {
         "id": "ashby:openai",
@@ -5787,7 +5797,7 @@
         "status": "ok",
         "rows": 852,
         "retryRequests": 0,
-        "durationMs": 2098,
+        "durationMs": 3371,
         "outcome": "partial",
         "message": "1 posting(s) have incomplete titles and remain unverified."
       },
@@ -5799,7 +5809,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 34
+        "durationMs": 44
       },
       {
         "id": "ashby:parafin",
@@ -5809,7 +5819,7 @@
         "status": "ok",
         "rows": 2,
         "retryRequests": 0,
-        "durationMs": 43
+        "durationMs": 15
       },
       {
         "id": "ashby:pariveda",
@@ -5819,7 +5829,7 @@
         "status": "ok",
         "rows": 28,
         "retryRequests": 0,
-        "durationMs": 225
+        "durationMs": 135
       },
       {
         "id": "ashby:pear-vc",
@@ -5829,7 +5839,7 @@
         "status": "ok",
         "rows": 110,
         "retryRequests": 0,
-        "durationMs": 298
+        "durationMs": 248
       },
       {
         "id": "ashby:petra-security",
@@ -5839,7 +5849,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 183
+        "durationMs": 47
       },
       {
         "id": "ashby:physicalintelligence",
@@ -5849,7 +5859,7 @@
         "status": "ok",
         "rows": 45,
         "retryRequests": 0,
-        "durationMs": 212
+        "durationMs": 140
       },
       {
         "id": "ashby:pluralis-research",
@@ -5859,7 +5869,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 170
+        "durationMs": 70
       },
       {
         "id": "ashby:primer",
@@ -5869,7 +5879,7 @@
         "status": "ok",
         "rows": 16,
         "retryRequests": 0,
-        "durationMs": 57
+        "durationMs": 88
       },
       {
         "id": "ashby:pylon-labs",
@@ -5879,7 +5889,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 53
+        "durationMs": 50
       },
       {
         "id": "ashby:quora",
@@ -5889,7 +5899,7 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 39
+        "durationMs": 70
       },
       {
         "id": "ashby:radiant-industries",
@@ -5899,7 +5909,7 @@
         "status": "ok",
         "rows": 112,
         "retryRequests": 0,
-        "durationMs": 223
+        "durationMs": 499
       },
       {
         "id": "ashby:red-gate",
@@ -5909,7 +5919,7 @@
         "status": "ok",
         "rows": 9,
         "retryRequests": 0,
-        "durationMs": 21
+        "durationMs": 39
       },
       {
         "id": "ashby:reflect-orbital",
@@ -5919,7 +5929,7 @@
         "status": "ok",
         "rows": 16,
         "retryRequests": 0,
-        "durationMs": 72
+        "durationMs": 47
       },
       {
         "id": "ashby:replit",
@@ -5929,7 +5939,7 @@
         "status": "ok",
         "rows": 37,
         "retryRequests": 0,
-        "durationMs": 114
+        "durationMs": 154
       },
       {
         "id": "ashby:resurgent-industries",
@@ -5939,7 +5949,7 @@
         "status": "ok",
         "rows": 15,
         "retryRequests": 0,
-        "durationMs": 69
+        "durationMs": 46
       },
       {
         "id": "ashby:rundoo",
@@ -5949,7 +5959,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 51
+        "durationMs": 31
       },
       {
         "id": "ashby:solace",
@@ -5959,7 +5969,7 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 36
+        "durationMs": 34
       },
       {
         "id": "ashby:solink",
@@ -5969,7 +5979,7 @@
         "status": "ok",
         "rows": 23,
         "retryRequests": 0,
-        "durationMs": 160
+        "durationMs": 144
       },
       {
         "id": "ashby:spaice-tech",
@@ -5979,7 +5989,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 18
+        "durationMs": 16
       },
       {
         "id": "ashby:spruceid",
@@ -5989,7 +5999,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 51
+        "durationMs": 21
       },
       {
         "id": "ashby:steel",
@@ -5999,7 +6009,7 @@
         "status": "ok",
         "rows": 3,
         "retryRequests": 0,
-        "durationMs": 42
+        "durationMs": 12
       },
       {
         "id": "ashby:swarmaero",
@@ -6009,7 +6019,7 @@
         "status": "ok",
         "rows": 43,
         "retryRequests": 0,
-        "durationMs": 56
+        "durationMs": 148
       },
       {
         "id": "ashby:switchboard",
@@ -6019,7 +6029,7 @@
         "status": "ok",
         "rows": 13,
         "retryRequests": 0,
-        "durationMs": 89
+        "durationMs": 59
       },
       {
         "id": "ashby:tensorwave",
@@ -6029,7 +6039,7 @@
         "status": "ok",
         "rows": 45,
         "retryRequests": 0,
-        "durationMs": 151
+        "durationMs": 175
       },
       {
         "id": "ashby:tessera-labs",
@@ -6039,7 +6049,7 @@
         "status": "ok",
         "rows": 38,
         "retryRequests": 0,
-        "durationMs": 128
+        "durationMs": 194
       },
       {
         "id": "ashby:tracelabs",
@@ -6049,7 +6059,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 58
+        "durationMs": 74
       },
       {
         "id": "ashby:triumph-arcade",
@@ -6059,7 +6069,7 @@
         "status": "ok",
         "rows": 35,
         "retryRequests": 0,
-        "durationMs": 88
+        "durationMs": 97
       },
       {
         "id": "ashby:valency",
@@ -6069,7 +6079,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 32
+        "durationMs": 28
       },
       {
         "id": "ashby:valinor",
@@ -6079,7 +6089,7 @@
         "status": "ok",
         "rows": 13,
         "retryRequests": 0,
-        "durationMs": 27
+        "durationMs": 93
       },
       {
         "id": "ashby:valon",
@@ -6089,7 +6099,7 @@
         "status": "ok",
         "rows": 30,
         "retryRequests": 0,
-        "durationMs": 319
+        "durationMs": 303
       },
       {
         "id": "ashby:walrusfi",
@@ -6099,7 +6109,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 57
+        "durationMs": 36
       },
       {
         "id": "ashby:wealth-com",
@@ -6109,7 +6119,7 @@
         "status": "ok",
         "rows": 15,
         "retryRequests": 0,
-        "durationMs": 61
+        "durationMs": 72
       },
       {
         "id": "ashby:webai",
@@ -6119,7 +6129,7 @@
         "status": "ok",
         "rows": 17,
         "retryRequests": 0,
-        "durationMs": 48
+        "durationMs": 74
       },
       {
         "id": "ashby:webfx",
@@ -6129,7 +6139,7 @@
         "status": "ok",
         "rows": 38,
         "retryRequests": 0,
-        "durationMs": 297
+        "durationMs": 510
       },
       {
         "id": "ashby:westmag",
@@ -6139,7 +6149,7 @@
         "status": "ok",
         "rows": 13,
         "retryRequests": 0,
-        "durationMs": 242
+        "durationMs": 43
       },
       {
         "id": "ashby:whoop",
@@ -6149,7 +6159,7 @@
         "status": "ok",
         "rows": 110,
         "retryRequests": 0,
-        "durationMs": 347
+        "durationMs": 530
       },
       {
         "id": "ashby:zefr",
@@ -6159,7 +6169,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 228
+        "durationMs": 203
       },
       {
         "id": "ashby:zettabyte-space",
@@ -6169,7 +6179,7 @@
         "status": "ok",
         "rows": 0,
         "retryRequests": 0,
-        "durationMs": 216
+        "durationMs": 17
       },
       {
         "id": "greenhouse:66degrees",
@@ -6179,7 +6189,7 @@
         "status": "ok",
         "rows": 16,
         "retryRequests": 0,
-        "durationMs": 76
+        "durationMs": 225
       },
       {
         "id": "greenhouse:accenturefederalservices",
@@ -6189,7 +6199,7 @@
         "status": "ok",
         "rows": 702,
         "retryRequests": 0,
-        "durationMs": 3031
+        "durationMs": 4787
       },
       {
         "id": "greenhouse:advancedspace",
@@ -6199,7 +6209,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 56
+        "durationMs": 202
       },
       {
         "id": "greenhouse:adyen",
@@ -6209,7 +6219,7 @@
         "status": "ok",
         "rows": 244,
         "retryRequests": 0,
-        "durationMs": 368
+        "durationMs": 719
       },
       {
         "id": "greenhouse:alarmcom",
@@ -6219,7 +6229,7 @@
         "status": "ok",
         "rows": 90,
         "retryRequests": 0,
-        "durationMs": 186
+        "durationMs": 448
       },
       {
         "id": "greenhouse:aloyoga",
@@ -6229,7 +6239,7 @@
         "status": "ok",
         "rows": 734,
         "retryRequests": 0,
-        "durationMs": 5068
+        "durationMs": 7176
       },
       {
         "id": "greenhouse:altentechnologyusa",
@@ -6239,7 +6249,7 @@
         "status": "ok",
         "rows": 233,
         "retryRequests": 0,
-        "durationMs": 461
+        "durationMs": 868
       },
       {
         "id": "greenhouse:amiralearning",
@@ -6249,7 +6259,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 51
+        "durationMs": 208
       },
       {
         "id": "greenhouse:aperaaiinc",
@@ -6259,7 +6269,7 @@
         "status": "ok",
         "rows": 9,
         "retryRequests": 0,
-        "durationMs": 147
+        "durationMs": 232
       },
       {
         "id": "greenhouse:applovin",
@@ -6269,7 +6279,7 @@
         "status": "ok",
         "rows": 45,
         "retryRequests": 0,
-        "durationMs": 129
+        "durationMs": 137
       },
       {
         "id": "greenhouse:apptronik",
@@ -6279,7 +6289,7 @@
         "status": "ok",
         "rows": 88,
         "retryRequests": 0,
-        "durationMs": 356
+        "durationMs": 296
       },
       {
         "id": "greenhouse:archer56",
@@ -6289,7 +6299,7 @@
         "status": "ok",
         "rows": 79,
         "retryRequests": 0,
-        "durationMs": 351
+        "durationMs": 231
       },
       {
         "id": "greenhouse:arcinstitute",
@@ -6299,7 +6309,7 @@
         "status": "ok",
         "rows": 24,
         "retryRequests": 0,
-        "durationMs": 135
+        "durationMs": 275
       },
       {
         "id": "greenhouse:artefactlinkedin",
@@ -6309,7 +6319,7 @@
         "status": "ok",
         "rows": 130,
         "retryRequests": 0,
-        "durationMs": 343
+        "durationMs": 635
       },
       {
         "id": "greenhouse:artofproblemsolving",
@@ -6319,7 +6329,7 @@
         "status": "ok",
         "rows": 75,
         "retryRequests": 0,
-        "durationMs": 249
+        "durationMs": 355
       },
       {
         "id": "greenhouse:ascend21",
@@ -6329,7 +6339,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 90
+        "durationMs": 106
       },
       {
         "id": "greenhouse:assuredguaranty",
@@ -6339,7 +6349,7 @@
         "status": "ok",
         "rows": 2,
         "retryRequests": 0,
-        "durationMs": 41
+        "durationMs": 62
       },
       {
         "id": "greenhouse:assystinc",
@@ -6349,7 +6359,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 48
+        "durationMs": 149
       },
       {
         "id": "greenhouse:astronicscorporation",
@@ -6359,7 +6369,7 @@
         "status": "ok",
         "rows": 91,
         "retryRequests": 0,
-        "durationMs": 236
+        "durationMs": 755
       },
       {
         "id": "greenhouse:axon",
@@ -6369,7 +6379,7 @@
         "status": "ok",
         "rows": 479,
         "retryRequests": 0,
-        "durationMs": 1576
+        "durationMs": 2675
       },
       {
         "id": "greenhouse:axontalentcommunity",
@@ -6379,7 +6389,7 @@
         "status": "ok",
         "rows": 0,
         "retryRequests": 0,
-        "durationMs": 74
+        "durationMs": 121
       },
       {
         "id": "greenhouse:axq",
@@ -6389,7 +6399,7 @@
         "status": "ok",
         "rows": 16,
         "retryRequests": 0,
-        "durationMs": 75
+        "durationMs": 59
       },
       {
         "id": "greenhouse:beamtherapeutics",
@@ -6399,7 +6409,7 @@
         "status": "ok",
         "rows": 35,
         "retryRequests": 0,
-        "durationMs": 605
+        "durationMs": 322
       },
       {
         "id": "greenhouse:bertramcapitalmanagement",
@@ -6409,7 +6419,7 @@
         "status": "ok",
         "rows": 9,
         "retryRequests": 0,
-        "durationMs": 583
+        "durationMs": 210
       },
       {
         "id": "greenhouse:bettermentcampusrecruiting",
@@ -6419,7 +6429,7 @@
         "status": "ok",
         "rows": 0,
         "retryRequests": 0,
-        "durationMs": 33
+        "durationMs": 176
       },
       {
         "id": "greenhouse:beyondtrust",
@@ -6429,7 +6439,7 @@
         "status": "ok",
         "rows": 41,
         "retryRequests": 0,
-        "durationMs": 585
+        "durationMs": 251
       },
       {
         "id": "greenhouse:bgeinc",
@@ -6439,7 +6449,7 @@
         "status": "ok",
         "rows": 119,
         "retryRequests": 0,
-        "durationMs": 566
+        "durationMs": 513
       },
       {
         "id": "greenhouse:blackcanyonconsulting",
@@ -6449,7 +6459,7 @@
         "status": "ok",
         "rows": 80,
         "retryRequests": 0,
-        "durationMs": 144
+        "durationMs": 448
       },
       {
         "id": "greenhouse:blend",
@@ -6459,7 +6469,7 @@
         "status": "ok",
         "rows": 11,
         "retryRequests": 0,
-        "durationMs": 51
+        "durationMs": 114
       },
       {
         "id": "greenhouse:botauto",
@@ -6469,7 +6479,7 @@
         "status": "ok",
         "rows": 20,
         "retryRequests": 0,
-        "durationMs": 134
+        "durationMs": 61
       },
       {
         "id": "greenhouse:bottomlinetechnologies",
@@ -6479,7 +6489,7 @@
         "status": "ok",
         "rows": 47,
         "retryRequests": 0,
-        "durationMs": 239
+        "durationMs": 515
       },
       {
         "id": "greenhouse:brave",
@@ -6489,7 +6499,7 @@
         "status": "ok",
         "rows": 9,
         "retryRequests": 0,
-        "durationMs": 95
+        "durationMs": 234
       },
       {
         "id": "greenhouse:brevium",
@@ -6499,7 +6509,7 @@
         "status": "ok",
         "rows": 2,
         "retryRequests": 0,
-        "durationMs": 39
+        "durationMs": 221
       },
       {
         "id": "greenhouse:brex",
@@ -6509,7 +6519,7 @@
         "status": "ok",
         "rows": 249,
         "retryRequests": 0,
-        "durationMs": 356
+        "durationMs": 784
       },
       {
         "id": "greenhouse:burgessniple",
@@ -6519,7 +6529,7 @@
         "status": "ok",
         "rows": 61,
         "retryRequests": 0,
-        "durationMs": 77
+        "durationMs": 218
       },
       {
         "id": "greenhouse:businessolverinvitationonly",
@@ -6529,7 +6539,7 @@
         "status": "ok",
         "rows": 2,
         "retryRequests": 0,
-        "durationMs": 85
+        "durationMs": 79
       },
       {
         "id": "greenhouse:capstoneinvestmentadvisors",
@@ -6539,7 +6549,7 @@
         "status": "ok",
         "rows": 13,
         "retryRequests": 0,
-        "durationMs": 41
+        "durationMs": 118
       },
       {
         "id": "greenhouse:caredxinc",
@@ -6547,9 +6557,9 @@
         "key": "caredxinc",
         "company": "Caredxinc",
         "status": "ok",
-        "rows": 60,
+        "rows": 59,
         "retryRequests": 0,
-        "durationMs": 161
+        "durationMs": 282
       },
       {
         "id": "greenhouse:cartesiansystems",
@@ -6559,7 +6569,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 72
+        "durationMs": 111
       },
       {
         "id": "greenhouse:chicagotradingcampus",
@@ -6569,7 +6579,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 54
+        "durationMs": 71
       },
       {
         "id": "greenhouse:civisanalytics",
@@ -6579,7 +6589,7 @@
         "status": "ok",
         "rows": 2,
         "retryRequests": 0,
-        "durationMs": 81
+        "durationMs": 55
       },
       {
         "id": "greenhouse:clear",
@@ -6589,7 +6599,7 @@
         "status": "ok",
         "rows": 60,
         "retryRequests": 0,
-        "durationMs": 239
+        "durationMs": 223
       },
       {
         "id": "greenhouse:clearstreet",
@@ -6599,7 +6609,7 @@
         "status": "ok",
         "rows": 34,
         "retryRequests": 0,
-        "durationMs": 90
+        "durationMs": 125
       },
       {
         "id": "greenhouse:clenera",
@@ -6609,7 +6619,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 177
+        "durationMs": 103
       },
       {
         "id": "greenhouse:clockworksystems",
@@ -6619,7 +6629,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 138
+        "durationMs": 86
       },
       {
         "id": "greenhouse:commvault",
@@ -6629,7 +6639,7 @@
         "status": "ok",
         "rows": 57,
         "retryRequests": 0,
-        "durationMs": 579
+        "durationMs": 251
       },
       {
         "id": "greenhouse:curicapitalcareers",
@@ -6639,7 +6649,7 @@
         "status": "ok",
         "rows": 3,
         "retryRequests": 0,
-        "durationMs": 43
+        "durationMs": 91
       },
       {
         "id": "greenhouse:darkwolfsolutions",
@@ -6649,7 +6659,7 @@
         "status": "ok",
         "rows": 45,
         "retryRequests": 0,
-        "durationMs": 417
+        "durationMs": 141
       },
       {
         "id": "greenhouse:didi",
@@ -6659,7 +6669,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 369
+        "durationMs": 83
       },
       {
         "id": "greenhouse:dlrgroup",
@@ -6669,7 +6679,7 @@
         "status": "ok",
         "rows": 147,
         "retryRequests": 0,
-        "durationMs": 1305
+        "durationMs": 552
       },
       {
         "id": "greenhouse:drwuniversityjobs",
@@ -6679,7 +6689,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 351
+        "durationMs": 64
       },
       {
         "id": "greenhouse:duolingo",
@@ -6689,7 +6699,7 @@
         "status": "ok",
         "rows": 55,
         "retryRequests": 0,
-        "durationMs": 148
+        "durationMs": 286
       },
       {
         "id": "greenhouse:duolingounirecruitment",
@@ -6699,7 +6709,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 30
+        "durationMs": 54
       },
       {
         "id": "greenhouse:edmentum",
@@ -6709,7 +6719,7 @@
         "status": "ok",
         "rows": 37,
         "retryRequests": 0,
-        "durationMs": 178
+        "durationMs": 330
       },
       {
         "id": "greenhouse:emergentlabsinc",
@@ -6719,7 +6729,7 @@
         "status": "ok",
         "rows": 48,
         "retryRequests": 0,
-        "durationMs": 70
+        "durationMs": 270
       },
       {
         "id": "greenhouse:ensco",
@@ -6729,7 +6739,7 @@
         "status": "ok",
         "rows": 32,
         "retryRequests": 0,
-        "durationMs": 88
+        "durationMs": 249
       },
       {
         "id": "greenhouse:equipmentsharecom",
@@ -6739,7 +6749,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 5655
+        "durationMs": 6315
       },
       {
         "id": "greenhouse:eudia",
@@ -6749,7 +6759,7 @@
         "status": "ok",
         "rows": 11,
         "retryRequests": 0,
-        "durationMs": 94
+        "durationMs": 124
       },
       {
         "id": "greenhouse:evolutioniq",
@@ -6759,7 +6769,7 @@
         "status": "ok",
         "rows": 24,
         "retryRequests": 0,
-        "durationMs": 89
+        "durationMs": 164
       },
       {
         "id": "greenhouse:exadelinc",
@@ -6769,7 +6779,7 @@
         "status": "ok",
         "rows": 39,
         "retryRequests": 0,
-        "durationMs": 719
+        "durationMs": 173
       },
       {
         "id": "greenhouse:exoduspoint",
@@ -6779,7 +6789,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 48
+        "durationMs": 81
       },
       {
         "id": "greenhouse:fidelityguarantylifeinternships",
@@ -6789,7 +6799,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 661
+        "durationMs": 61
       },
       {
         "id": "greenhouse:firstglobalmanagementservicesinc",
@@ -6799,7 +6809,7 @@
         "status": "ok",
         "rows": 63,
         "retryRequests": 0,
-        "durationMs": 856
+        "durationMs": 230
       },
       {
         "id": "greenhouse:freedomconsulting",
@@ -6809,7 +6819,7 @@
         "status": "ok",
         "rows": 109,
         "retryRequests": 0,
-        "durationMs": 1006
+        "durationMs": 881
       },
       {
         "id": "greenhouse:freestonecapitalmanagement",
@@ -6819,7 +6829,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 662
+        "durationMs": 141
       },
       {
         "id": "greenhouse:fspco-op012325",
@@ -6829,7 +6839,7 @@
         "status": "ok",
         "rows": 17,
         "retryRequests": 0,
-        "durationMs": 142
+        "durationMs": 201
       },
       {
         "id": "greenhouse:gallup",
@@ -6839,7 +6849,7 @@
         "status": "ok",
         "rows": 29,
         "retryRequests": 0,
-        "durationMs": 149
+        "durationMs": 207
       },
       {
         "id": "greenhouse:garnerhealth",
@@ -6849,7 +6859,7 @@
         "status": "ok",
         "rows": 60,
         "retryRequests": 0,
-        "durationMs": 221
+        "durationMs": 225
       },
       {
         "id": "greenhouse:gelbergroup",
@@ -6859,7 +6869,7 @@
         "status": "ok",
         "rows": 13,
         "retryRequests": 0,
-        "durationMs": 96
+        "durationMs": 151
       },
       {
         "id": "greenhouse:genscript",
@@ -6869,7 +6879,7 @@
         "status": "ok",
         "rows": 85,
         "retryRequests": 0,
-        "durationMs": 304
+        "durationMs": 193
       },
       {
         "id": "greenhouse:geotab",
@@ -6879,7 +6889,7 @@
         "status": "ok",
         "rows": 60,
         "retryRequests": 0,
-        "durationMs": 396
+        "durationMs": 1277
       },
       {
         "id": "greenhouse:giftogram",
@@ -6889,7 +6899,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 36
+        "durationMs": 63
       },
       {
         "id": "greenhouse:gigfinesse",
@@ -6899,7 +6909,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 72
+        "durationMs": 51
       },
       {
         "id": "greenhouse:gitai",
@@ -6909,7 +6919,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 102
+        "durationMs": 99
       },
       {
         "id": "greenhouse:gleanwork",
@@ -6919,7 +6929,7 @@
         "status": "ok",
         "rows": 128,
         "retryRequests": 0,
-        "durationMs": 659
+        "durationMs": 1369
       },
       {
         "id": "greenhouse:grahamcapitalmanagement",
@@ -6929,7 +6939,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 56
+        "durationMs": 77
       },
       {
         "id": "greenhouse:graphcore",
@@ -6939,7 +6949,7 @@
         "status": "ok",
         "rows": 190,
         "retryRequests": 0,
-        "durationMs": 827
+        "durationMs": 1576
       },
       {
         "id": "greenhouse:graphcore-early-careers",
@@ -6949,7 +6959,7 @@
         "status": "ok",
         "rows": 30,
         "retryRequests": 0,
-        "durationMs": 198
+        "durationMs": 569
       },
       {
         "id": "greenhouse:gusto",
@@ -6959,7 +6969,7 @@
         "status": "ok",
         "rows": 82,
         "retryRequests": 0,
-        "durationMs": 352
+        "durationMs": 991
       },
       {
         "id": "greenhouse:harbingermotors",
@@ -6969,7 +6979,7 @@
         "status": "ok",
         "rows": 85,
         "retryRequests": 0,
-        "durationMs": 438
+        "durationMs": 1048
       },
       {
         "id": "greenhouse:hearcom",
@@ -6979,7 +6989,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 59
+        "durationMs": 96
       },
       {
         "id": "greenhouse:heygen",
@@ -6989,7 +6999,7 @@
         "status": "ok",
         "rows": 16,
         "retryRequests": 0,
-        "durationMs": 107
+        "durationMs": 410
       },
       {
         "id": "greenhouse:hourglasscosmetics",
@@ -6999,7 +7009,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 213
+        "durationMs": 612
       },
       {
         "id": "greenhouse:hyperquakellc",
@@ -7009,7 +7019,7 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 84
+        "durationMs": 439
       },
       {
         "id": "greenhouse:i360technologiesinc",
@@ -7019,7 +7029,7 @@
         "status": "ok",
         "rows": 43,
         "retryRequests": 0,
-        "durationMs": 344
+        "durationMs": 249
       },
       {
         "id": "greenhouse:impact",
@@ -7029,7 +7039,7 @@
         "status": "ok",
         "rows": 74,
         "retryRequests": 0,
-        "durationMs": 440
+        "durationMs": 450
       },
       {
         "id": "greenhouse:instawork",
@@ -7039,7 +7049,7 @@
         "status": "ok",
         "rows": 56,
         "retryRequests": 0,
-        "durationMs": 381
+        "durationMs": 348
       },
       {
         "id": "greenhouse:integra",
@@ -7049,7 +7059,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 110
+        "durationMs": 129
       },
       {
         "id": "greenhouse:internshiplist2000",
@@ -7059,7 +7069,7 @@
         "status": "ok",
         "rows": 2,
         "retryRequests": 0,
-        "durationMs": 100
+        "durationMs": 97
       },
       {
         "id": "greenhouse:intersystems",
@@ -7069,7 +7079,7 @@
         "status": "ok",
         "rows": 84,
         "retryRequests": 0,
-        "durationMs": 488
+        "durationMs": 533
       },
       {
         "id": "greenhouse:iris",
@@ -7079,7 +7089,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 76
+        "durationMs": 59
       },
       {
         "id": "greenhouse:justworks",
@@ -7089,7 +7099,7 @@
         "status": "ok",
         "rows": 107,
         "retryRequests": 0,
-        "durationMs": 1484
+        "durationMs": 1370
       },
       {
         "id": "greenhouse:k2spacecorporation",
@@ -7099,7 +7109,7 @@
         "status": "ok",
         "rows": 248,
         "retryRequests": 0,
-        "durationMs": 2339
+        "durationMs": 2170
       },
       {
         "id": "greenhouse:kargo",
@@ -7109,7 +7119,7 @@
         "status": "ok",
         "rows": 11,
         "retryRequests": 0,
-        "durationMs": 118
+        "durationMs": 124
       },
       {
         "id": "greenhouse:keenfootwear",
@@ -7119,7 +7129,7 @@
         "status": "ok",
         "rows": 44,
         "retryRequests": 0,
-        "durationMs": 247
+        "durationMs": 243
       },
       {
         "id": "greenhouse:klaviyocampus",
@@ -7129,7 +7139,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 30
+        "durationMs": 54
       },
       {
         "id": "greenhouse:knowbe4",
@@ -7139,7 +7149,7 @@
         "status": "ok",
         "rows": 54,
         "retryRequests": 0,
-        "durationMs": 365
+        "durationMs": 267
       },
       {
         "id": "greenhouse:lakeweekendwearllc",
@@ -7149,7 +7159,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 270
+        "durationMs": 61
       },
       {
         "id": "greenhouse:later",
@@ -7159,7 +7169,7 @@
         "status": "ok",
         "rows": 33,
         "retryRequests": 0,
-        "durationMs": 271
+        "durationMs": 250
       },
       {
         "id": "greenhouse:lexingtonmedical",
@@ -7169,7 +7179,7 @@
         "status": "ok",
         "rows": 15,
         "retryRequests": 0,
-        "durationMs": 200
+        "durationMs": 148
       },
       {
         "id": "greenhouse:matteprojects",
@@ -7179,7 +7189,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 99
+        "durationMs": 122
       },
       {
         "id": "greenhouse:mediaalpha",
@@ -7189,7 +7199,7 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 68
+        "durationMs": 91
       },
       {
         "id": "greenhouse:memx",
@@ -7199,7 +7209,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 61
+        "durationMs": 92
       },
       {
         "id": "greenhouse:mercury",
@@ -7209,7 +7219,7 @@
         "status": "ok",
         "rows": 72,
         "retryRequests": 0,
-        "durationMs": 1099
+        "durationMs": 902
       },
       {
         "id": "greenhouse:metron",
@@ -7219,7 +7229,7 @@
         "status": "ok",
         "rows": 20,
         "retryRequests": 0,
-        "durationMs": 103
+        "durationMs": 175
       },
       {
         "id": "greenhouse:mirakl",
@@ -7229,7 +7239,7 @@
         "status": "ok",
         "rows": 19,
         "retryRequests": 0,
-        "durationMs": 115
+        "durationMs": 145
       },
       {
         "id": "greenhouse:mlbevents",
@@ -7239,7 +7249,7 @@
         "status": "ok",
         "rows": 2,
         "retryRequests": 0,
-        "durationMs": 35
+        "durationMs": 91
       },
       {
         "id": "greenhouse:momentenergy",
@@ -7249,7 +7259,7 @@
         "status": "ok",
         "rows": 25,
         "retryRequests": 0,
-        "durationMs": 1092
+        "durationMs": 791
       },
       {
         "id": "greenhouse:monecoadvisors",
@@ -7259,7 +7269,7 @@
         "status": "ok",
         "rows": 13,
         "retryRequests": 0,
-        "durationMs": 78
+        "durationMs": 65
       },
       {
         "id": "greenhouse:morph",
@@ -7269,7 +7279,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 38
+        "durationMs": 667
       },
       {
         "id": "greenhouse:morsecorpcoop",
@@ -7279,7 +7289,7 @@
         "status": "ok",
         "rows": 18,
         "retryRequests": 0,
-        "durationMs": 884
+        "durationMs": 691
       },
       {
         "id": "greenhouse:mwinternshipprogram",
@@ -7289,7 +7299,7 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 42
+        "durationMs": 661
       },
       {
         "id": "greenhouse:myfundedfutures",
@@ -7299,7 +7309,7 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 957
+        "durationMs": 656
       },
       {
         "id": "greenhouse:nanopathinc",
@@ -7309,7 +7319,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 842
+        "durationMs": 616
       },
       {
         "id": "greenhouse:newrelic",
@@ -7319,7 +7329,7 @@
         "status": "ok",
         "rows": 42,
         "retryRequests": 0,
-        "durationMs": 1054
+        "durationMs": 261
       },
       {
         "id": "greenhouse:nintendo",
@@ -7329,7 +7339,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 1088
+        "durationMs": 292
       },
       {
         "id": "greenhouse:northmarq",
@@ -7339,7 +7349,7 @@
         "status": "ok",
         "rows": 19,
         "retryRequests": 0,
-        "durationMs": 151
+        "durationMs": 112
       },
       {
         "id": "greenhouse:nyisocoops",
@@ -7349,7 +7359,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 101
+        "durationMs": 63
       },
       {
         "id": "greenhouse:nyisointernships",
@@ -7359,7 +7369,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 96
+        "durationMs": 52
       },
       {
         "id": "greenhouse:obsidiansecurity",
@@ -7369,7 +7379,7 @@
         "status": "ok",
         "rows": 15,
         "retryRequests": 0,
-        "durationMs": 104
+        "durationMs": 181
       },
       {
         "id": "greenhouse:oneimaging",
@@ -7379,7 +7389,7 @@
         "status": "ok",
         "rows": 15,
         "retryRequests": 0,
-        "durationMs": 85
+        "durationMs": 162
       },
       {
         "id": "greenhouse:phoenixcontact",
@@ -7389,7 +7399,7 @@
         "status": "ok",
         "rows": 51,
         "retryRequests": 0,
-        "durationMs": 317
+        "durationMs": 357
       },
       {
         "id": "greenhouse:pinterest",
@@ -7399,7 +7409,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 529
+        "durationMs": 583
       },
       {
         "id": "greenhouse:pmg",
@@ -7409,7 +7419,7 @@
         "status": "ok",
         "rows": 99,
         "retryRequests": 0,
-        "durationMs": 350
+        "durationMs": 409
       },
       {
         "id": "greenhouse:podium81",
@@ -7419,7 +7429,7 @@
         "status": "ok",
         "rows": 67,
         "retryRequests": 0,
-        "durationMs": 167
+        "durationMs": 233
       },
       {
         "id": "greenhouse:precisionaq",
@@ -7429,7 +7439,7 @@
         "status": "ok",
         "rows": 44,
         "retryRequests": 0,
-        "durationMs": 179
+        "durationMs": 265
       },
       {
         "id": "greenhouse:precisionmedicinegroup",
@@ -7437,9 +7447,9 @@
         "key": "precisionmedicinegroup",
         "company": "Precision Medicine Group",
         "status": "ok",
-        "rows": 146,
+        "rows": 137,
         "retryRequests": 0,
-        "durationMs": 596
+        "durationMs": 585
       },
       {
         "id": "greenhouse:prosperlcpa",
@@ -7449,7 +7459,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 68
+        "durationMs": 69
       },
       {
         "id": "greenhouse:recidiviz",
@@ -7459,7 +7469,7 @@
         "status": "ok",
         "rows": 13,
         "retryRequests": 0,
-        "durationMs": 57
+        "durationMs": 130
       },
       {
         "id": "greenhouse:reformation",
@@ -7469,7 +7479,7 @@
         "status": "ok",
         "rows": 150,
         "retryRequests": 0,
-        "durationMs": 906
+        "durationMs": 869
       },
       {
         "id": "greenhouse:rendezvousrobotics",
@@ -7479,7 +7489,7 @@
         "status": "ok",
         "rows": 23,
         "retryRequests": 0,
-        "durationMs": 96
+        "durationMs": 73
       },
       {
         "id": "greenhouse:rfsmart",
@@ -7489,7 +7499,7 @@
         "status": "ok",
         "rows": 24,
         "retryRequests": 0,
-        "durationMs": 98
+        "durationMs": 207
       },
       {
         "id": "greenhouse:rothesaygraduates",
@@ -7499,7 +7509,7 @@
         "status": "ok",
         "rows": 0,
         "retryRequests": 0,
-        "durationMs": 48
+        "durationMs": 62
       },
       {
         "id": "greenhouse:rvohealth",
@@ -7509,7 +7519,7 @@
         "status": "ok",
         "rows": 23,
         "retryRequests": 0,
-        "durationMs": 152
+        "durationMs": 148
       },
       {
         "id": "greenhouse:sage49",
@@ -7519,7 +7529,7 @@
         "status": "ok",
         "rows": 9,
         "retryRequests": 0,
-        "durationMs": 69
+        "durationMs": 110
       },
       {
         "id": "greenhouse:schneiderdowns",
@@ -7529,7 +7539,7 @@
         "status": "ok",
         "rows": 14,
         "retryRequests": 0,
-        "durationMs": 76
+        "durationMs": 131
       },
       {
         "id": "greenhouse:scopely",
@@ -7537,9 +7547,9 @@
         "key": "scopely",
         "company": "Scopely",
         "status": "ok",
-        "rows": 175,
+        "rows": 173,
         "retryRequests": 0,
-        "durationMs": 959
+        "durationMs": 823
       },
       {
         "id": "greenhouse:shiphawk",
@@ -7549,7 +7559,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 87
+        "durationMs": 57
       },
       {
         "id": "greenhouse:signifyd95",
@@ -7559,7 +7569,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 82
+        "durationMs": 51
       },
       {
         "id": "greenhouse:simplisafe",
@@ -7569,7 +7579,7 @@
         "status": "ok",
         "rows": 35,
         "retryRequests": 0,
-        "durationMs": 97
+        "durationMs": 161
       },
       {
         "id": "greenhouse:smartlyio",
@@ -7579,7 +7589,7 @@
         "status": "ok",
         "rows": 72,
         "retryRequests": 0,
-        "durationMs": 192
+        "durationMs": 274
       },
       {
         "id": "greenhouse:solutions",
@@ -7589,7 +7599,7 @@
         "status": "ok",
         "rows": 13,
         "retryRequests": 0,
-        "durationMs": 47
+        "durationMs": 108
       },
       {
         "id": "greenhouse:sonyinteractiveentertainmentglobal",
@@ -7599,7 +7609,7 @@
         "status": "ok",
         "rows": 217,
         "retryRequests": 0,
-        "durationMs": 1287
+        "durationMs": 1233
       },
       {
         "id": "greenhouse:splashfinancial",
@@ -7609,7 +7619,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 41
+        "durationMs": 82
       },
       {
         "id": "greenhouse:stateaffairs",
@@ -7619,7 +7629,7 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 106
+        "durationMs": 53
       },
       {
         "id": "greenhouse:striveworks",
@@ -7629,7 +7639,7 @@
         "status": "ok",
         "rows": 33,
         "retryRequests": 0,
-        "durationMs": 138
+        "durationMs": 359
       },
       {
         "id": "greenhouse:sxinternships",
@@ -7639,7 +7649,7 @@
         "status": "ok",
         "rows": 0,
         "retryRequests": 0,
-        "durationMs": 84
+        "durationMs": 161
       },
       {
         "id": "greenhouse:taxrise",
@@ -7649,7 +7659,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 332
+        "durationMs": 146
       },
       {
         "id": "greenhouse:teletrackingtechnologiesinc",
@@ -7659,7 +7669,7 @@
         "status": "ok",
         "rows": 14,
         "retryRequests": 0,
-        "durationMs": 341
+        "durationMs": 147
       },
       {
         "id": "greenhouse:tenet3",
@@ -7669,7 +7679,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 148
+        "durationMs": 230
       },
       {
         "id": "greenhouse:terraclear",
@@ -7679,7 +7689,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 108
+        "durationMs": 184
       },
       {
         "id": "greenhouse:thebrattlegroup",
@@ -7689,7 +7699,7 @@
         "status": "ok",
         "rows": 44,
         "retryRequests": 0,
-        "durationMs": 321
+        "durationMs": 360
       },
       {
         "id": "greenhouse:themjcos",
@@ -7699,7 +7709,7 @@
         "status": "ok",
         "rows": 18,
         "retryRequests": 0,
-        "durationMs": 202
+        "durationMs": 319
       },
       {
         "id": "greenhouse:theweathercompany",
@@ -7709,7 +7719,7 @@
         "status": "ok",
         "rows": 36,
         "retryRequests": 0,
-        "durationMs": 241
+        "durationMs": 468
       },
       {
         "id": "greenhouse:togetherai",
@@ -7719,7 +7729,7 @@
         "status": "ok",
         "rows": 73,
         "retryRequests": 0,
-        "durationMs": 419
+        "durationMs": 344
       },
       {
         "id": "greenhouse:torcrobotics",
@@ -7729,7 +7739,7 @@
         "status": "ok",
         "rows": 53,
         "retryRequests": 0,
-        "durationMs": 501
+        "durationMs": 407
       },
       {
         "id": "greenhouse:trueanomalyinc",
@@ -7739,7 +7749,7 @@
         "status": "ok",
         "rows": 215,
         "retryRequests": 0,
-        "durationMs": 1017
+        "durationMs": 2523
       },
       {
         "id": "greenhouse:tubitv",
@@ -7749,7 +7759,7 @@
         "status": "ok",
         "rows": 25,
         "retryRequests": 0,
-        "durationMs": 247
+        "durationMs": 178
       },
       {
         "id": "greenhouse:uasi",
@@ -7759,7 +7769,7 @@
         "status": "ok",
         "rows": 24,
         "retryRequests": 0,
-        "durationMs": 195
+        "durationMs": 150
       },
       {
         "id": "greenhouse:vaticlabs",
@@ -7769,7 +7779,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 160
+        "durationMs": 133
       },
       {
         "id": "greenhouse:vercel",
@@ -7779,7 +7789,7 @@
         "status": "ok",
         "rows": 86,
         "retryRequests": 0,
-        "durationMs": 382
+        "durationMs": 263
       },
       {
         "id": "greenhouse:vestmark",
@@ -7789,7 +7799,7 @@
         "status": "ok",
         "rows": 3,
         "retryRequests": 0,
-        "durationMs": 46
+        "durationMs": 88
       },
       {
         "id": "greenhouse:via",
@@ -7799,7 +7809,7 @@
         "status": "ok",
         "rows": 173,
         "retryRequests": 0,
-        "durationMs": 455
+        "durationMs": 377
       },
       {
         "id": "greenhouse:vialogic",
@@ -7809,7 +7819,7 @@
         "status": "ok",
         "rows": 16,
         "retryRequests": 0,
-        "durationMs": 173
+        "durationMs": 86
       },
       {
         "id": "greenhouse:vikingglobalinvestors",
@@ -7819,7 +7829,7 @@
         "status": "ok",
         "rows": 3,
         "retryRequests": 0,
-        "durationMs": 129
+        "durationMs": 60
       },
       {
         "id": "greenhouse:vividseatsllc",
@@ -7829,7 +7839,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 148
+        "durationMs": 61
       },
       {
         "id": "greenhouse:wasabi",
@@ -7839,7 +7849,7 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 142
+        "durationMs": 146
       },
       {
         "id": "greenhouse:waymark",
@@ -7849,7 +7859,7 @@
         "status": "ok",
         "rows": 19,
         "retryRequests": 0,
-        "durationMs": 139
+        "durationMs": 151
       },
       {
         "id": "greenhouse:wfclainc",
@@ -7859,7 +7869,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 77
+        "durationMs": 107
       },
       {
         "id": "greenhouse:wilsonelser",
@@ -7869,7 +7879,7 @@
         "status": "ok",
         "rows": 49,
         "retryRequests": 0,
-        "durationMs": 211
+        "durationMs": 216
       },
       {
         "id": "greenhouse:wurljobs",
@@ -7879,7 +7889,7 @@
         "status": "ok",
         "rows": 2,
         "retryRequests": 0,
-        "durationMs": 57
+        "durationMs": 78
       },
       {
         "id": "greenhouse:xairatherapeutics",
@@ -7889,7 +7899,7 @@
         "status": "ok",
         "rows": 27,
         "retryRequests": 0,
-        "durationMs": 123
+        "durationMs": 113
       },
       {
         "id": "greenhouse:xpengmotors",
@@ -7909,7 +7919,7 @@
         "status": "ok",
         "rows": 29,
         "retryRequests": 0,
-        "durationMs": 108
+        "durationMs": 146
       },
       {
         "id": "greenhouse:zestai",
@@ -7919,7 +7929,7 @@
         "status": "ok",
         "rows": 1,
         "retryRequests": 0,
-        "durationMs": 41
+        "durationMs": 45
       },
       {
         "id": "lever:api.eu.lever.co:quantinuum",
@@ -7929,7 +7939,7 @@
         "status": "ok",
         "rows": 125,
         "retryRequests": 0,
-        "durationMs": 1607
+        "durationMs": 2353
       },
       {
         "id": "lever:api.lever.co:acronaviation",
@@ -7939,7 +7949,7 @@
         "status": "ok",
         "rows": 45,
         "retryRequests": 0,
-        "durationMs": 1631
+        "durationMs": 2274
       },
       {
         "id": "lever:api.lever.co:agile-defense",
@@ -7949,7 +7959,7 @@
         "status": "ok",
         "rows": 171,
         "retryRequests": 0,
-        "durationMs": 6741
+        "durationMs": 2517
       },
       {
         "id": "lever:api.lever.co:allegiantair",
@@ -7959,7 +7969,7 @@
         "status": "ok",
         "rows": 46,
         "retryRequests": 0,
-        "durationMs": 1943
+        "durationMs": 2182
       },
       {
         "id": "lever:api.lever.co:alloy",
@@ -7969,7 +7979,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 1779
+        "durationMs": 2010
       },
       {
         "id": "lever:api.lever.co:analyticpartners",
@@ -7979,7 +7989,7 @@
         "status": "ok",
         "rows": 22,
         "retryRequests": 0,
-        "durationMs": 1550
+        "durationMs": 2139
       },
       {
         "id": "lever:api.lever.co:artera",
@@ -7989,7 +7999,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 1529
+        "durationMs": 1989
       },
       {
         "id": "lever:api.lever.co:artera-2",
@@ -7999,7 +8009,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 1699
+        "durationMs": 2064
       },
       {
         "id": "lever:api.lever.co:auw",
@@ -8009,7 +8019,7 @@
         "status": "ok",
         "rows": 22,
         "retryRequests": 0,
-        "durationMs": 1494
+        "durationMs": 2252
       },
       {
         "id": "lever:api.lever.co:bosonai",
@@ -8019,7 +8029,7 @@
         "status": "ok",
         "rows": 11,
         "retryRequests": 0,
-        "durationMs": 1409
+        "durationMs": 1395
       },
       {
         "id": "lever:api.lever.co:brillio-2",
@@ -8029,7 +8039,7 @@
         "status": "ok",
         "rows": 215,
         "retryRequests": 0,
-        "durationMs": 2582
+        "durationMs": 1808
       },
       {
         "id": "lever:api.lever.co:brooksrunning",
@@ -8039,7 +8049,7 @@
         "status": "ok",
         "rows": 9,
         "retryRequests": 0,
-        "durationMs": 1182
+        "durationMs": 629
       },
       {
         "id": "lever:api.lever.co:camstex",
@@ -8049,7 +8059,7 @@
         "status": "ok",
         "rows": 42,
         "retryRequests": 0,
-        "durationMs": 2341
+        "durationMs": 975
       },
       {
         "id": "lever:api.lever.co:cfsenergy",
@@ -8059,7 +8069,7 @@
         "status": "ok",
         "rows": 136,
         "retryRequests": 0,
-        "durationMs": 1957
+        "durationMs": 532
       },
       {
         "id": "lever:api.lever.co:crestoperations",
@@ -8069,7 +8079,7 @@
         "status": "ok",
         "rows": 106,
         "retryRequests": 0,
-        "durationMs": 1711
+        "durationMs": 577
       },
       {
         "id": "lever:api.lever.co:cscgeneration-2",
@@ -8079,7 +8089,7 @@
         "status": "ok",
         "rows": 454,
         "retryRequests": 0,
-        "durationMs": 4461
+        "durationMs": 1174
       },
       {
         "id": "lever:api.lever.co:datalabusa",
@@ -8089,7 +8099,7 @@
         "status": "ok",
         "rows": 14,
         "retryRequests": 0,
-        "durationMs": 458
+        "durationMs": 4221
       },
       {
         "id": "lever:api.lever.co:deepgenomics",
@@ -8099,7 +8109,7 @@
         "status": "ok",
         "rows": 0,
         "retryRequests": 0,
-        "durationMs": 110
+        "durationMs": 166
       },
       {
         "id": "lever:api.lever.co:economicmodeling",
@@ -8109,7 +8119,7 @@
         "status": "ok",
         "rows": 22,
         "retryRequests": 0,
-        "durationMs": 180
+        "durationMs": 119
       },
       {
         "id": "lever:api.lever.co:ekimetrics",
@@ -8119,7 +8129,7 @@
         "status": "ok",
         "rows": 28,
         "retryRequests": 0,
-        "durationMs": 578
+        "durationMs": 268
       },
       {
         "id": "lever:api.lever.co:erg",
@@ -8129,7 +8139,7 @@
         "status": "ok",
         "rows": 48,
         "retryRequests": 0,
-        "durationMs": 114
+        "durationMs": 535
       },
       {
         "id": "lever:api.lever.co:espace",
@@ -8139,7 +8149,7 @@
         "status": "ok",
         "rows": 99,
         "retryRequests": 0,
-        "durationMs": 3515
+        "durationMs": 377
       },
       {
         "id": "lever:api.lever.co:galatea-associates",
@@ -8149,7 +8159,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 155
+        "durationMs": 104
       },
       {
         "id": "lever:api.lever.co:genbio",
@@ -8159,7 +8169,7 @@
         "status": "ok",
         "rows": 6,
         "retryRequests": 0,
-        "durationMs": 90
+        "durationMs": 83
       },
       {
         "id": "lever:api.lever.co:germanamerican",
@@ -8169,7 +8179,7 @@
         "status": "ok",
         "rows": 67,
         "retryRequests": 0,
-        "durationMs": 731
+        "durationMs": 451
       },
       {
         "id": "lever:api.lever.co:glsllc",
@@ -8179,7 +8189,7 @@
         "status": "ok",
         "rows": 43,
         "retryRequests": 0,
-        "durationMs": 935
+        "durationMs": 107
       },
       {
         "id": "lever:api.lever.co:gmo",
@@ -8189,7 +8199,7 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 96
+        "durationMs": 107
       },
       {
         "id": "lever:api.lever.co:hatchit",
@@ -8199,7 +8209,7 @@
         "status": "ok",
         "rows": 29,
         "retryRequests": 0,
-        "durationMs": 5400
+        "durationMs": 172
       },
       {
         "id": "lever:api.lever.co:hive",
@@ -8209,7 +8219,7 @@
         "status": "ok",
         "rows": 73,
         "retryRequests": 0,
-        "durationMs": 669
+        "durationMs": 398
       },
       {
         "id": "lever:api.lever.co:humble-robotics",
@@ -8219,7 +8229,7 @@
         "status": "ok",
         "rows": 22,
         "retryRequests": 0,
-        "durationMs": 174
+        "durationMs": 120
       },
       {
         "id": "lever:api.lever.co:kepler",
@@ -8239,7 +8249,7 @@
         "status": "ok",
         "rows": 4,
         "retryRequests": 0,
-        "durationMs": 157
+        "durationMs": 76
       },
       {
         "id": "lever:api.lever.co:kitware",
@@ -8249,7 +8259,7 @@
         "status": "ok",
         "rows": 23,
         "retryRequests": 0,
-        "durationMs": 102
+        "durationMs": 2270
       },
       {
         "id": "lever:api.lever.co:kobie",
@@ -8259,7 +8269,7 @@
         "status": "ok",
         "rows": 32,
         "retryRequests": 0,
-        "durationMs": 127
+        "durationMs": 116
       },
       {
         "id": "lever:api.lever.co:modernintelligence",
@@ -8269,7 +8279,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 153
+        "durationMs": 562
       },
       {
         "id": "lever:api.lever.co:nationaljournal",
@@ -8279,7 +8289,7 @@
         "status": "ok",
         "rows": 5,
         "retryRequests": 0,
-        "durationMs": 672
+        "durationMs": 114
       },
       {
         "id": "lever:api.lever.co:nuuds",
@@ -8289,7 +8299,7 @@
         "status": "ok",
         "rows": 2,
         "retryRequests": 0,
-        "durationMs": 110
+        "durationMs": 607
       },
       {
         "id": "lever:api.lever.co:openx",
@@ -8299,7 +8309,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 447
+        "durationMs": 162
       },
       {
         "id": "lever:api.lever.co:parallelwireless",
@@ -8309,7 +8319,7 @@
         "status": "ok",
         "rows": 50,
         "retryRequests": 0,
-        "durationMs": 231
+        "durationMs": 170
       },
       {
         "id": "lever:api.lever.co:pointclickcare",
@@ -8319,7 +8329,7 @@
         "status": "ok",
         "rows": 86,
         "retryRequests": 0,
-        "durationMs": 324
+        "durationMs": 2567
       },
       {
         "id": "lever:api.lever.co:protective",
@@ -8329,7 +8339,7 @@
         "status": "ok",
         "rows": 49,
         "retryRequests": 0,
-        "durationMs": 8157
+        "durationMs": 384
       },
       {
         "id": "lever:api.lever.co:redhorsecorp",
@@ -8339,7 +8349,7 @@
         "status": "ok",
         "rows": 70,
         "retryRequests": 0,
-        "durationMs": 1254
+        "durationMs": 400
       },
       {
         "id": "lever:api.lever.co:regal.ai",
@@ -8349,7 +8359,7 @@
         "status": "ok",
         "rows": 10,
         "retryRequests": 0,
-        "durationMs": 104
+        "durationMs": 330
       },
       {
         "id": "lever:api.lever.co:riverdale",
@@ -8359,7 +8369,7 @@
         "status": "ok",
         "rows": 16,
         "retryRequests": 0,
-        "durationMs": 157
+        "durationMs": 325
       },
       {
         "id": "lever:api.lever.co:rover",
@@ -8369,7 +8379,7 @@
         "status": "ok",
         "rows": 22,
         "retryRequests": 0,
-        "durationMs": 143
+        "durationMs": 284
       },
       {
         "id": "lever:api.lever.co:runlaminar",
@@ -8379,7 +8389,7 @@
         "status": "ok",
         "rows": 21,
         "retryRequests": 0,
-        "durationMs": 541
+        "durationMs": 106
       },
       {
         "id": "lever:api.lever.co:sep",
@@ -8389,7 +8399,7 @@
         "status": "ok",
         "rows": 7,
         "retryRequests": 0,
-        "durationMs": 94
+        "durationMs": 144
       },
       {
         "id": "lever:api.lever.co:servicewire",
@@ -8399,7 +8409,7 @@
         "status": "ok",
         "rows": 35,
         "retryRequests": 0,
-        "durationMs": 4064
+        "durationMs": 250
       },
       {
         "id": "lever:api.lever.co:shieldai",
@@ -8409,7 +8419,7 @@
         "status": "ok",
         "rows": 0,
         "retryRequests": 0,
-        "durationMs": 401
+        "durationMs": 903
       },
       {
         "id": "lever:api.lever.co:significanceinc",
@@ -8419,7 +8429,7 @@
         "status": "ok",
         "rows": 41,
         "retryRequests": 0,
-        "durationMs": 6557
+        "durationMs": 703
       },
       {
         "id": "lever:api.lever.co:simberobotics",
@@ -8429,7 +8439,7 @@
         "status": "ok",
         "rows": 14,
         "retryRequests": 0,
-        "durationMs": 102
+        "durationMs": 574
       },
       {
         "id": "lever:api.lever.co:simulmedia",
@@ -8439,7 +8449,7 @@
         "status": "ok",
         "rows": 8,
         "retryRequests": 0,
-        "durationMs": 91
+        "durationMs": 1346
       },
       {
         "id": "lever:api.lever.co:sonarsource",
@@ -8449,7 +8459,7 @@
         "status": "ok",
         "rows": 110,
         "retryRequests": 0,
-        "durationMs": 171
+        "durationMs": 259
       },
       {
         "id": "lever:api.lever.co:steerbridge",
@@ -8459,7 +8469,7 @@
         "status": "ok",
         "rows": 45,
         "retryRequests": 0,
-        "durationMs": 273
+        "durationMs": 182
       },
       {
         "id": "lever:api.lever.co:stradaeducation",
@@ -8469,7 +8479,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 117
+        "durationMs": 133
       },
       {
         "id": "lever:api.lever.co:upscale-ai",
@@ -8479,7 +8489,7 @@
         "status": "ok",
         "rows": 40,
         "retryRequests": 0,
-        "durationMs": 124
+        "durationMs": 3913
       },
       {
         "id": "lever:api.lever.co:vitana-pediatric",
@@ -8489,7 +8499,7 @@
         "status": "ok",
         "rows": 36,
         "retryRequests": 0,
-        "durationMs": 7791
+        "durationMs": 163
       },
       {
         "id": "lever:api.lever.co:waabi",
@@ -8499,7 +8509,7 @@
         "status": "ok",
         "rows": 85,
         "retryRequests": 0,
-        "durationMs": 8958
+        "durationMs": 366
       },
       {
         "id": "lever:api.lever.co:weride",
@@ -8509,7 +8519,7 @@
         "status": "ok",
         "rows": 12,
         "retryRequests": 0,
-        "durationMs": 122
+        "durationMs": 127
       },
       {
         "id": "lever:api.lever.co:wintermute-trading",
@@ -8519,7 +8529,7 @@
         "status": "ok",
         "rows": 18,
         "retryRequests": 0,
-        "durationMs": 101
+        "durationMs": 109
       },
       {
         "id": "workday:amat.wd1.myworkdayjobs.com:external",
@@ -8553,7 +8563,7 @@
         "status": "failed",
         "outcome": "cooldown",
         "rows": 0,
-        "durationMs": 1,
+        "durationMs": 0,
         "requestCount": 0,
         "message": "Cooldown until 2026-11-20T16:20:06.633Z: 429 Too Many Requests"
       },
@@ -9223,25 +9233,25 @@
     {
       "provider": "source_redirects",
       "attempted": 100,
-      "verified": 406,
+      "verified": 415,
       "requests": 100,
-      "reused": 551
+      "reused": 566
     },
     {
       "provider": "public_career_index",
-      "attempted": 26,
-      "verified": 24,
-      "requests": 26,
-      "reused": 0,
+      "attempted": 2,
+      "verified": 2,
+      "requests": 2,
+      "reused": 24,
       "indexStatus": "live",
       "indexed": 150
     },
     {
       "provider": "reviewed_career_pages",
       "attempted": 25,
-      "verified": 21,
+      "verified": 20,
       "requests": 50,
-      "reused": 270
+      "reused": 266
     },
     {
       "provider": "employer_mirrors",
@@ -9267,51 +9277,51 @@
     },
     {
       "provider": "source_listing",
-      "attempted": 1,
+      "attempted": 0,
       "verified": 0
     }
   ],
   "listings": {
-    "candidates": 24345,
-    "accepted": 5782,
+    "candidates": 24364,
+    "accepted": 5781,
     "quarantined": 14307,
-    "rejected": 1788,
+    "rejected": 1792,
     "preservedFromLastHealthySnapshot": 1,
-    "checksAttempted": 74,
-    "checksCompleted": 74,
+    "checksAttempted": 98,
+    "checksCompleted": 98,
     "knownClosed": 911,
     "screening": {
       "version": 1,
       "unit": "application_destinations",
-      "reviewed": 19450,
-      "accepted": 5803,
-      "excluded": 6026,
-      "pendingVerification": 7621,
+      "reviewed": 19457,
+      "accepted": 5802,
+      "excluded": 6031,
+      "pendingVerification": 7624,
       "uncountedRecords": 0,
       "reasons": {
         "closed": 165,
         "expired": 47,
-        "location": 1555,
-        "role": 4253,
+        "location": 1559,
+        "role": 4254,
         "employer": 6
       }
     }
   },
   "verificationBacklog": {
     "unit": "unique_opportunities_present_in_candidate_batch",
-    "total": 7149,
+    "total": 7152,
     "byBlocker": [
       {
         "key": "employer-identity",
-        "opportunities": 6520
+        "opportunities": 6516
       },
       {
         "key": "availability",
-        "opportunities": 412
+        "opportunities": 415
       },
       {
         "key": "application-destination",
-        "opportunities": 146
+        "opportunities": 145
       },
       {
         "key": "early-career-evidence",
@@ -9319,17 +9329,17 @@
       },
       {
         "key": "career-page-evidence",
-        "opportunities": 16
+        "opportunities": 21
       }
     ],
     "byBoard": [
       {
         "key": "www.dreamworkhq.com",
-        "opportunities": 1824
+        "opportunities": 1818
       },
       {
         "key": "go.vansh.nyc",
-        "opportunities": 1582
+        "opportunities": 1586
       },
       {
         "key": "workday:bah.wd1.myworkdayjobs.com:bah_jobs",
@@ -9440,6 +9450,10 @@
         "opportunities": 18
       },
       {
+        "key": "joinbytedance.com",
+        "opportunities": 17
+      },
+      {
         "key": "workday:rb.wd5.myworkdayjobs.com:frs",
         "opportunities": 17
       },
@@ -9518,10 +9532,6 @@
       {
         "key": "jobs.ashbyhq.com:1password",
         "opportunities": 12
-      },
-      {
-        "key": "joinbytedance.com",
-        "opportunities": 12
       }
     ],
     "byEmployer": [
@@ -9591,7 +9601,7 @@
       },
       {
         "company": "SpaceX",
-        "opportunities": 35
+        "opportunities": 34
       },
       {
         "company": "ASML",
@@ -9648,13 +9658,13 @@
     ]
   },
   "intake": {
-    "candidateRows": 24345,
-    "uniqueOpportunities": 18910,
-    "duplicateRows": 5435,
+    "candidateRows": 24364,
+    "uniqueOpportunities": 18917,
+    "duplicateRows": 5447,
     "trustedWorkdayFeed": {
-      "observed": 1939,
+      "observed": 1940,
       "eligible": 255,
-      "expired": 992,
+      "expired": 993,
       "admitted": 8
     },
     "bySource": [
@@ -9684,8 +9694,8 @@
       },
       {
         "source": "Vansh Summer 2027",
-        "rows": 1987,
-        "uniqueOpportunities": 1567,
+        "rows": 1996,
+        "uniqueOpportunities": 1576,
         "workdayOpportunities": 0
       },
       {
@@ -9708,8 +9718,8 @@
       },
       {
         "source": "Direct ATS (Ashby)",
-        "rows": 1169,
-        "uniqueOpportunities": 1121,
+        "rows": 1173,
+        "uniqueOpportunities": 1125,
         "workdayOpportunities": 0
       },
       {
@@ -9726,8 +9736,8 @@
       },
       {
         "source": "New-Grad-2027 2027",
-        "rows": 799,
-        "uniqueOpportunities": 711,
+        "rows": 803,
+        "uniqueOpportunities": 714,
         "workdayOpportunities": 0
       },
       {
@@ -9744,9 +9754,9 @@
       },
       {
         "source": "Dreamwork Business Internships 2027",
-        "rows": 525,
-        "uniqueOpportunities": 511,
-        "workdayOpportunities": 253
+        "rows": 526,
+        "uniqueOpportunities": 512,
+        "workdayOpportunities": 254
       },
       {
         "source": "Vansh Off-Season 2027",
@@ -9768,9 +9778,9 @@
       },
       {
         "source": "Keryx Non-Software New Grad 2027",
-        "rows": 133,
-        "uniqueOpportunities": 133,
-        "workdayOpportunities": 52
+        "rows": 134,
+        "uniqueOpportunities": 134,
+        "workdayOpportunities": 53
       },
       {
         "source": "Summer 2027 Tech Internships",
