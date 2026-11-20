@@ -4,7 +4,7 @@ import { loadReviewedUsaJobs } from "./usajobs";
 import { readFile, writeFile, rename } from "node:fs/promises";
 import { enrichReviewedCareerPages, type CareerPageState } from "./reviewed-career-pages";
 import { enrichEmployerMirrors, type MirrorState } from "./employer-mirrors";
-import { enrichPublicCareerIndex, type PublicIndexState } from "./public-career-index";
+import { enrichPublicCareerIndex, publicIndexEvidenceAt, publicIndexRecoveryRows, type PublicIndexState } from "./public-career-index";
 import { resolveSourceRedirects, applyVerifiedRedirects, type RedirectState } from "./source-redirects";
 import path from "node:path";
 import { createAtsBoard, discoverAtsBoard, fetchAtsBoard, isEarlyCareerTitle, type AtsBoardSeed } from "../ats-boards";
@@ -173,8 +173,11 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
   const indexPath = path.join(root,"data/public-career-index.json");
   const indexState: PublicIndexState = await readFile(indexPath,"utf8").then(value=>JSON.parse(value))
     .catch((error:NodeJS.ErrnoException)=>{if(error.code==="ENOENT")return {postings:{}};throw error;});
-  const publicIndex = await enrichPublicCareerIndex(candidates,indexState,new Date(),fetch,careerHolds);
-  candidates.splice(0,candidates.length,...publicIndex.candidates);
+  const recoveryRows=publicIndexRecoveryRows(previousJobs,candidates,new Set(sources.map(source=>source.name)));
+  const originalCandidateCount=candidates.length;
+  const publicIndex = await enrichPublicCareerIndex([...candidates,...recoveryRows],indexState,new Date(),fetch,careerHolds);
+  const recoveredIndexRows=publicIndex.candidates.slice(originalCandidateCount).filter(row=>!!publicIndexEvidenceAt(row));
+  candidates.splice(0,candidates.length,...publicIndex.candidates.slice(0,originalCandidateCount),...recoveredIndexRows);
   await writeFile(`${indexPath}.tmp`,`${JSON.stringify(publicIndex.state,null,2)}\n`);
   await rename(`${indexPath}.tmp`,indexPath);
   const redirectsPath=path.join(root,"data/source-redirects.json");

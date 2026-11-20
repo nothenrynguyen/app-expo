@@ -7,6 +7,7 @@ import { inferTerm, inferWorkMode, normalizeDisplayText, opportunityIdentity, ty
 import { sourceReviewHoldIdentity } from "./source-review-holds";
 import type { ListingHealthRecord } from "../listing-health";
 import { inBatches } from "./concurrency";
+import type { PublicJob } from "../jobs";
 
 // Reviewed link: https://gf.com/careers/ -> https://careers.gf.com/.
 // These are anonymous endpoints used by that site's public search client.
@@ -32,6 +33,21 @@ export function publicIndexReference(row: Pick<CandidateJob, "company" | "applyU
       || !key?.match(/^workday:globalfoundries\.wd1\.myworkdayjobs\.com:external:jr-\d+$/)) return null;
     return { key, reqid: key.split(":").at(-1)!.toUpperCase() };
   } catch { return null; }
+}
+
+// A community feed omission must not prevent a reviewed employer from freshly
+// confirming an already published requisition. Previous rows supply discovery
+// and licensed provenance only, never evidence of present availability.
+export function publicIndexRecoveryRows(previous: PublicJob[], candidates: CandidateJob[], activeSources: Set<string>): CandidateJob[] {
+  const seen = new Set(candidates.map(row=>opportunityIdentity(row.applyUrl)));
+  const rows: CandidateJob[] = [];
+  for (const job of previous) {
+    const ref=publicIndexReference(job), source=job.sources.find(name=>activeSources.has(name));
+    if (!ref || !source || seen.has(ref.key)) continue;
+    seen.add(ref.key);
+    rows.push({...job,source,rawText:job.title});
+  }
+  return rows;
 }
 
 export function parsePublicIndexPosting(position: Position, payload: unknown, now: Date): Posting | null {

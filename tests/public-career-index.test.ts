@@ -1,7 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { enrichPublicCareerIndex, parsePublicIndexPosting, publicIndexEvidenceAt, publicIndexReference, type PublicIndexState } from "../lib/ingestion/public-career-index";
+import { enrichPublicCareerIndex, parsePublicIndexPosting, publicIndexEvidenceAt, publicIndexReference, publicIndexRecoveryRows, type PublicIndexState } from "../lib/ingestion/public-career-index";
 import type { CandidateJob } from "../lib/source-normalization";
+import type { PublicJob } from "../lib/jobs";
 import { sourceReviewHoldIdentity } from "../lib/ingestion/source-review-holds";
 const now=new Date("2026-11-19T07:00:00Z");
 const row={company:"GlobalFoundries",title:"Source title",location:"Source location",applyUrl:"https://globalfoundries.wd1.myworkdayjobs.com/External/job/Texas/AI-Software-Intern_JR-2604029",source:"Licensed feed",category:"New grad",term:"2027",workMode:"unknown",postedAt:now.toISOString(),postedAtSource:"first_seen",salary:null,rawText:"Source text"} as CandidateJob;
@@ -12,6 +13,20 @@ const detail=()=>({status:200,metadata:null,data:{id:position.id,displayJobId:po
 const search=()=>({status:200,data:{count:1,positions:[{id:position.id,displayJobId:position.reqid,atsJobId:position.reqid,name:position.title,positionUrl:`/careers/job/${position.id}`}]}});
 const fetcher=(async(url:unknown)=>new Response(JSON.stringify(String(url).includes('position_details')?detail():search()))) as typeof fetch;
 const empty=():PublicIndexState=>({postings:{}});
+
+test("feed omissions retain only reviewed discovery with active licensed-source provenance",async()=>{
+  const previous={...row,id:"prior-id",sources:[row.source]} as PublicJob;
+  const active=new Set([row.source]);
+  assert.equal(publicIndexRecoveryRows([previous],[],new Set()).length,0);
+  assert.equal(publicIndexRecoveryRows([previous],[row],active).length,0);
+  assert.equal(publicIndexRecoveryRows([{...previous,applyUrl:row.applyUrl.replace('/External/','/Other/')}],[],active).length,0);
+  const leads=publicIndexRecoveryRows([previous,previous],[],active);
+  assert.equal(leads.length,1);assert.equal(publicIndexEvidenceAt(leads[0]),undefined);
+  const verified=await enrichPublicCareerIndex(leads,empty(),now,fetcher);
+  assert.equal(verified.verified,1);assert.equal(verified.candidates[0].applyUrl,previous.applyUrl);
+  const failed=await enrichPublicCareerIndex(leads,empty(),now,(async()=>new Response('',{status:503})) as typeof fetch);
+  assert.equal(publicIndexEvidenceAt(failed.candidates[0]),undefined);
+});
 
 test("public employer index maps only the reviewed employer and career site",()=>{
   assert.ok(publicIndexReference(row));
