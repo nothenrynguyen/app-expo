@@ -1,6 +1,6 @@
 # empluzzed Roadmap
 
-November 20 remembered filters and Pacific calendar discovery controls are implemented and verified locally, pending owner preview review before publication. All 261 tests, clean types, lint and static export pass; desktop/mobile checks pass. Counts and eligibility remain unchanged. See [decisions, evidence and recommended next steps](docs/BOARD_PREFERENCES_PREVIEW_2026-11-20.md).
+November 20 remembered filters and Pacific calendar discovery controls are published as `d5277fd` after owner preview approval. All 261 tests, clean types, lint and static export pass; production desktop/mobile checks and all four live-file comparisons pass. Counts and eligibility remain unchanged. First post-release hosted refresh verification is pending. See [decisions, evidence and recommended next steps](docs/BOARD_PREFERENCES_PREVIEW_2026-11-20.md).
 
 November 20 failure-email follow-up is verified: the two new notices were Vercel builds inheriting the test-fixture error already corrected in 59f3758. Prevention gate 5037442 adds clean type checking to standard verification and before refresh publication. All 254 tests, clean types, lint/build and hosted run 44708324464 pass; snapshot 81cd520 deploys successfully and all four live files match. Notification settings remain unchanged. Resume the approved November 21 coverage checkpoint. See [cause, prevention and recommended next steps](docs/FAILURE_EMAIL_CHECK_2026-11-20.md).
 

@@ -1,6 +1,6 @@
 # Remembered filters and calendar discovery preview
 
-Status: owner approved publication after reviewing the local preview on November 20. Release validation is underway on `codex/board-preferences-preview`, based on `8a79737b`. Deployment and first hosted refresh verification remain pending.
+Status: owner approved publication after reviewing the local preview on November 20. Feature `d5277fd` is published to main and production-verified. All 261 tests, clean types, lint and static export pass. First post-release hosted refresh verification remains pending.
 
 ## Decisions
 
@@ -23,6 +23,15 @@ Status: owner approved publication after reviewing the local preview on November
 
 ## Recommended next steps
 
-1. Publish the owner-approved feature after final checks, preserving unrelated analytics/Cloudflare work and the latest main job snapshot.
-2. Confirm production deployment and all public snapshot files, then verify the first hosted refresh preserves historical dates.
+1. Verify the first normal hosted refresh preserves historical dates and passes the publication guard.
+2. Confirm its resulting snapshot and deployment match production.
 3. Verify live UI and the first normal refresh preserve dates/IDs; continue the November 21 coverage checkpoint. This feature improves discovery and does not resolve remaining Workday cooldowns, Iterable failures or the unmet intake-doubling goal.
+
+## Published release evidence
+
+- Approved commit [d5277fd](https://github.com/nothenrynguyen/app-expo/commit/d5277fd) was pushed over unchanged main `8a79737`. No unrelated root analytics or old worktree Cloudflare edits were included.
+- GitHub's Vercel status reports success: [production deployment](https://vercel.com/henrys-projects-84715f33/app-expo/7vRYWHx53fL6QpxEMiP21q4fxXKj), project app-expo, team henrys-projects-84715f33.
+- Production domain is [empluzzed.fyi](https://empluzzed.fyi/internships). All four public JSON files byte-match committed `d5277fd`. Comparison uses committed blobs, avoiding Windows checkout CRLF differences.
+- Live Internships: New today selects 5 US roles and survives reload; New this week selects 433. Live Early Career starts independently at All and selects 325 US roles this week. Test preferences were reset afterwards. Production desktop/mobile screenshots are retained locally; browser control ended and viewport override was reset.
+- November release description names the new controls and remembered filters, and measures exactly two desktop lines (51px at 25.5px line height).
+- The connected Vercel account did not list this project, so deployment verification used GitHub's Vercel status plus the actual production domain. A credential-helper API status script was rejected by automatic approval review and never executed; verification continued through connected tools. GitHub browser was signed out, so no manual dispatch was attempted. The normal hourly refresh remains scheduled.
