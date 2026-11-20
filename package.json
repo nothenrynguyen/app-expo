@@ -7,14 +7,15 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "eslint .",
-    "verify": "npm test && npm run lint && npm run build",
+    "verify": "npm run typecheck && npm test && npm run lint && npm run build",
     "activity:credentials": "node scripts/prepare-activity-credentials.mjs",
     "activity:verify": "node scripts/verify-activity.mjs",
     "sync:jobs": "node --env-file-if-exists=.env.local --import tsx scripts/sync-jobs.ts",
     "maintain:sources": "tsx scripts/maintain-sources.ts",
     "test": "tsx --test tests/core.test.ts tests/analytics.test.ts tests/activity-client.test.ts tests/activity-collector.test.ts tests/application-status.test.ts tests/saved-job-details.test.ts tests/applications.test.ts tests/application-backup.test.ts tests/hidden-companies.test.ts tests/refresh.test.ts tests/refresh-guard.test.mjs tests/publish-refresh.test.mjs tests/source-verification.test.ts tests/coverage.test.ts tests/source-permissions.test.ts tests/employer-recovery.test.ts tests/workday-continuity.test.ts tests/source-health.test.ts tests/identity-scope.test.ts tests/early-career-evidence.test.ts tests/outage-holds.test.ts tests/refresh-incident.test.mjs tests/trusted-workday-feed.test.ts tests/collector-regressions.test.ts tests/employer-evidence.test.ts tests/reviewed-career-pages.test.ts tests/employer-mirrors.test.ts tests/cyber-source.test.ts tests/public-career-index.test.ts tests/source-redirects.test.ts",
     "measure:usajobs": "node --env-file-if-exists=.env.local --import tsx scripts/measure-usajobs.ts",
-    "measure:coverage": "tsx scripts/measure-coverage-gap.ts"
+    "measure:coverage": "tsx scripts/measure-coverage-gap.ts",
+    "typecheck": "tsc --noEmit --incremental false"
   },
   "dependencies": {
     "@vercel/analytics": "2.0.1",
