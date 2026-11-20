@@ -15,7 +15,7 @@ const fetcher=(async(url:unknown)=>new Response(JSON.stringify(String(url).inclu
 const empty=():PublicIndexState=>({postings:{}});
 
 test("feed omissions retain only reviewed discovery with active licensed-source provenance",async()=>{
-  const previous={...row,id:"prior-id",sources:[row.source]} as PublicJob;
+  const previous={...row,id:"prior-id",sources:[row.source],verifiedCompany:true,linkedInUrl:null} as PublicJob;
   const active=new Set([row.source]);
   assert.equal(publicIndexRecoveryRows([previous],[],new Set()).length,0);
   assert.equal(publicIndexRecoveryRows([previous],[row],active).length,0);
