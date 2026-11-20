@@ -1,6 +1,6 @@
 # Coverage checkpoint and targeted recovery, November 20
 
-Status: owner-authorized coverage batch implemented locally and release-validated. Publication, hosted refresh and resulting live inventory verification are pending. This is the current checkpoint, not a claim that the November 21 observation date has elapsed.
+Status: owner-authorized coverage batch `6fa4658` is published to main after all 265 tests, clean types, lint and static export passed. Post-change hosted refresh and resulting live inventory verification remain pending. This is the current checkpoint, not a claim that the November 21 observation date has elapsed.
 
 ## Current evidence
 
@@ -26,6 +26,6 @@ Status: owner-authorized coverage batch implemented locally and release-validate
 
 ## Recommended next steps
 
-1. Publish this validated batch, run a normal guard-passing hosted refresh and verify exact recovered identities and all live snapshot files.
+1. Check the next normal hosted refresh, expected November 20 around 08:17 Pacific, and verify exact recovered identities and all live snapshot files after it completes. The native browser-control attempt stopped before input because it could not reliably determine Chrome's current URL; the session was ended/reset. No manual refresh was dispatched, so pilot leads are not yet claimed as published additions.
 2. At the November 21 checkpoint, measure retention of recovered jobs and continued queue progress.
 3. Scope the next shared official-employer adapter around the largest unresolved Workday groups, starting with Booz Allen / RTX after exact employer-site and application identity review. Add permitted sources only with measured net unique coverage and unchanged quality checks.
