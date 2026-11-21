@@ -202,6 +202,7 @@ export function JobBoard({ type }: JobBoardProps) {
         onViewChange={changeView}
       />
       <JobResults
+        addedDates={dateWindow!=='all'}
         activeView={activeView}
         exitingView={exitingView}
         jobs={visibleJobs}

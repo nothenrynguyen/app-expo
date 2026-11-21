@@ -372,6 +372,7 @@
   .job-table-title { grid-area:title; font-size:15px; }
   .job-table-location { grid-area:location; }
   .job-table-date { grid-area:date; }
+  .job-table-date[data-label="Added"]::before { content:"Added "; }
   .job-table-action[data-label="Save"] { grid-area:save; }
   .job-table-action[data-label="Apply"] { grid-area:apply; }
   .job-table-action[data-label="LinkedIn"] { grid-area:linkedin; }

@@ -5,6 +5,14 @@ import {boardPreferencesKey,defaultBoardPreferences,parseBoardPreferences,serial
 import {emptyPublicationDates,planPublicationDates,recordPublicationHistory,readPublicationDates} from "../lib/ingestion/publication-dates";
 import type {PublicJob} from "../lib/jobs";
 import {filterJobs} from "../lib/job-board";
+import {listingDateDisplay} from '../lib/listing-date-display';
+test('New views display the Pacific added day while preserving the original date on hover',()=>{
+  const posting={postedAt:'2026-10-19T19:11:05.132Z',postedAtSource:'exact' as const,firstPublishedAt:'2026-11-21T00:19:58.400Z'};
+  assert.equal(listingDateDisplay(posting,true).text,'Nov 20, 2026');
+  assert.match(listingDateDisplay(posting,true).explanation,/Original posting\/source date: Oct 19, 2026/);
+  assert.equal(listingDateDisplay(posting).text,'Oct 19, 2026');
+  assert.equal(listingDateDisplay({...posting,firstPublishedAt:undefined},true).text,'Date unavailable');
+});
 const job=(id:string):PublicJob=>({id,company:'Example',title:'Software Engineering Intern',term:'Summer 2027',location:'New York, NY',workMode:'in_person',postedAt:'2026-11-20T12:00:00Z',postedAtSource:'exact',applyUrl:`https://example.com/jobs/${id}`,linkedInUrl:null,category:'Software',salary:null,sources:['example'],verifiedCompany:true});
 test('Pacific midnight separates calendar days, including daylight saving transitions',()=>{
   for(const [before,after] of [['2026-11-20T07:59:59Z','2026-11-20T08:00:00Z'],['2026-03-08T07:59:59Z','2026-03-08T08:00:00Z'],['2026-11-01T06:59:59Z','2026-11-01T07:00:00Z']]){

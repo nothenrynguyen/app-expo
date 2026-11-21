@@ -5,33 +5,21 @@ import { ApplicationStatusSelect } from "./ApplicationStatusSelect";
 import { VerificationStatus } from "./VerificationStatus";
 import { companyTierLabel } from "@/lib/company-tiers";
 import type { PublicJob } from "@/lib/jobs";
+import {listingDateDisplay} from "@/lib/listing-date-display";
 import { displayText, getLinkedInUrl, getLocationDisplay, modeLabels, type ViewMode } from "./job-board-utils";
 
 const logoToken = process.env.NEXT_PUBLIC_LOGO_DEV_TOKEN;
 const showCompanyLogos = Boolean(logoToken);
 
-const listingDateFormatter = new Intl.DateTimeFormat("en-US", {
-  month: "short",
-  day: "numeric",
-  year: "numeric",
-  timeZone: "UTC",
-});
-
-function ListingDate({ job }: { job: PublicJob }) {
-  const timestamp = Date.parse(job.postedAt);
-  if (!Number.isFinite(timestamp)) return <span>Date unavailable</span>;
-
-  const explanation = job.postedAtSource === "first_seen"
-    ? "When empluzzed first found this listing. The employer may have posted it earlier."
-    : job.postedAtSource === "relative_derived"
-      ? "Estimated from a relative source date, such as 3 days ago."
-      : "Date supplied by the listing source. It may reflect publication or creation.";
-  return <span title={explanation}>
-    <time dateTime={job.postedAt.slice(0, 10)}>{listingDateFormatter.format(timestamp)}</time>
+function ListingDate({ job, added=false, showLabel=false }: { job: PublicJob; added?:boolean; showLabel?:boolean }) {
+  const {text,dateTime,explanation}=listingDateDisplay(job,added);
+  return <span title={explanation} aria-label={`${added?'Added ':''}${text}. ${explanation}`}>
+    {added&&showLabel?'Added ':null}<time dateTime={dateTime}>{text}</time>
   </span>;
 }
 
 type JobResultsProps = {
+  addedDates?:boolean;
   activeView: ViewMode;
   exitingView: ViewMode | null;
   jobs: readonly PublicJob[];
@@ -45,6 +33,7 @@ type JobResultsProps = {
 };
 
 export function JobResults({
+  addedDates=false,
   activeView,
   exitingView,
   jobs,
@@ -59,6 +48,7 @@ export function JobResults({
   const isSwitching = exitingView !== null;
   const renderCompact = (className = "") => (
     <CompactJobView
+      addedDates={addedDates}
       className={className}
       jobs={jobs}
       totalJobCount={totalJobCount}
@@ -70,6 +60,7 @@ export function JobResults({
   );
   const renderCards = (className = "") => (
     <CardJobView
+      addedDates={addedDates}
       className={className}
       jobs={jobs}
       totalJobCount={totalJobCount}
@@ -93,7 +84,8 @@ export function JobResults({
   );
 }
 
-function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJobIds, onToggleSaved, onHideCompany }: {
+function CompactJobView({ addedDates, className, jobs, totalJobCount, emptyMessage, savedJobIds, onToggleSaved, onHideCompany }: {
+  addedDates:boolean;
   className: string;
   jobs: readonly PublicJob[];
   totalJobCount: number;
@@ -109,7 +101,7 @@ function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJob
           <span role="columnheader">Company</span>
           <span role="columnheader">Position</span>
           <span role="columnheader">Location</span>
-          <span role="columnheader">Date</span>
+          <span role="columnheader">{addedDates?'Added':'Date'}</span>
           <span role="columnheader">Save</span>
           <span role="columnheader">{jobs.some(job => job.verification) ? "Listing" : "Apply"}</span>
           <span role="columnheader">LinkedIn</span>
@@ -130,7 +122,7 @@ function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJob
                   ? <span className="location-with-more" tabIndex={0}><span className="location-label">{location.compact}</span><span className="location-popover" role="tooltip">{location.full}</span></span>
                   : <span className="location-label" title={location.full}>{location.compact}</span>}
               </div>
-              <div className="job-table-date" role="cell" data-label="Date"><ListingDate job={job} /></div>
+              <div className="job-table-date" role="cell" data-label={addedDates?'Added':'Date'}><ListingDate job={job} added={addedDates} /></div>
               <div className="job-table-action" role="cell" data-label="Save"><SaveButton compact isSaved={savedJobIds.has(job.id)} job={job} onToggle={() => onToggleSaved(job.id)} /></div>
               <div className="job-table-action" role="cell" data-label={job.verification ? "Listing" : "Apply"}><a className="button table-button primary" href={job.applyUrl} target="_blank" rel="noreferrer" title={job.verification ? "Open the employer listing. Availability is awaiting verification." : undefined} onClick={() => trackActivity("apply_click")}>{job.verification ? "Open" : "Apply"}</a></div>
               <div className="job-table-action" role="cell" data-label="LinkedIn"><a className="button table-button secondary" href={getLinkedInUrl(job)} target="_blank" rel="noreferrer">LinkedIn</a></div>
@@ -144,7 +136,8 @@ function CompactJobView({ className, jobs, totalJobCount, emptyMessage, savedJob
   );
 }
 
-function CardJobView({ className, jobs, totalJobCount, emptyMessage, savedJobIds, expandedJobId, onToggleSaved, onToggleExpanded, onHideCompany }: {
+function CardJobView({ addedDates, className, jobs, totalJobCount, emptyMessage, savedJobIds, expandedJobId, onToggleSaved, onToggleExpanded, onHideCompany }: {
+  addedDates:boolean;
   className: string;
   jobs: readonly PublicJob[];
   totalJobCount: number;
@@ -170,7 +163,7 @@ function CardJobView({ className, jobs, totalJobCount, emptyMessage, savedJobIds
                 <span>{getLocationDisplay(job.location, job.workMode).full}</span>
                 {modeLabels[job.workMode] ? <span>{modeLabels[job.workMode]}</span> : null}
                 {job.term !== "Not stated" ? <span>{displayText(job.term)}</span> : null}
-                <ListingDate job={job} />
+                <ListingDate job={job} added={addedDates} showLabel />
               </div>
             </div>
             <div className="actions">
