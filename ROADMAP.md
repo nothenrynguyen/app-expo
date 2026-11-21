@@ -1,6 +1,6 @@
 # empluzzed Roadmap
 
-November 20 23:17 Pacific refresh failed with Node's uncaught Undici parser assertion; live files remain on successful `69a80d7` (5,834 current). Owner-approved collector-only fixed client `undici@8.12.4` passes 272 tests, clean types, lint/export, employer-board smoke and zero-advisory production audit. Publication and hosted recovery verification are pending. See [cause, repair and remaining checks](docs/HTTP_PARSER_FAILURE_2026-11-20.md).
+November 20 HTTP parser repair `c326f6b` is published and hosted recovery is verified. Rerun `44879563546` attempt 2 logs fixed `undici@8.12.4`, passes types/all 272 tests and the coverage guard, then publishes deployed snapshot `ddb080f`. All four live files match: 3,438 internships / 2,402 early-career jobs / 5,840 current. Other source warnings remain; observe the next normal refresh. See [cause, repair and evidence](docs/HTTP_PARSER_FAILURE_2026-11-20.md).
 
 November 20 coverage checkpoint: 39 checked workflow attempts succeed; latest inventory is 5,800 current, +201 since the first recovery release, while 7,018 candidate opportunities remain pending. Published fix `6fa4658` addresses Iterable's proven Greenhouse-to-Ashby migration and narrow technical/business role misses; all 265 tests, clean types, lint/export pass. Post-change hosted inventory verification is pending; six pilot leads are not yet claimed as published additions. See [evidence, boundaries and next steps](docs/COVERAGE_CHECKPOINT_2026-11-20.md).
 

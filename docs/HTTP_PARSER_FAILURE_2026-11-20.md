@@ -1,6 +1,6 @@
 # Refresh HTTP parser crash, November 20, 2026
 
-Status: owner approved remediation. Collector-only HTTP repair is implemented and locally release-validated; publication and a successful post-fix hosted refresh remain pending. Node 22, notification settings and quality policies are unchanged.
+Status: owner-approved repair `c326f6b` is published and hosted recovery is verified. Attempt 2 of run `44879563546` succeeds with the fixed client, publishes snapshot `ddb080f`, and all four live public files match. Node 22, notification settings and quality policies are unchanged. Sustained observation continues; other employer-source warnings remain.
 
 ## Exact failure
 
@@ -23,9 +23,8 @@ GitHub incident issue 3 was updated in place. Its generic "publication failed" t
 
 ## Recommended next steps
 
-1. Publish the validated collector repair and rerun the failed workflow using its existing main-branch checkout.
-2. Verify hosted logs identify the fixed client, a guard-passing snapshot, production deployment and all four public data files.
-3. Observe the following normal refresh. Do not catch and ignore uncaught exceptions, weaken coverage checks, suppress emails or blindly retry every collector request.
+1. Observe the following normal scheduled refresh for durability. Do not catch and ignore uncaught exceptions, weaken coverage checks, suppress emails or blindly retry every collector request.
+2. Continue evidence-backed employer recovery and permitted-source expansion; the HTTP fix is operational resilience, not a solution to Workday throttling.
 
 ## Approved repair and local validation
 
@@ -34,3 +33,11 @@ GitHub incident issue 3 was updated in place. Its generic "publication failed" t
 - No global uncaught-exception handler, source retry increase, proxy, cooldown reset, quality-gate change or notification suppression was introduced. The browser app does not load this preloader.
 - Five isolated local TCP scenarios verify complete Content-Length, chunked and EOF bodies survive delayed consumption after peer close, while truncated Content-Length and chunked bodies reject. A sixth test ensures the production command loads the preloader before the collector. The old local Windows runtime did not reproduce the crash; these scenario tests plus inspected upstream code do not establish a deterministic before/after reproduction on this machine.
 - `npm run verify` passes all 272 tests, clean nonincremental types, lint and static export. One live Samsung employer-board smoke test through the new preloader succeeds (78 live records, 16 student candidates). Production dependency audit: zero advisories. This smoke test is compatibility evidence, not a full hosted refresh.
+
+## Hosted recovery evidence
+
+- Repair [c326f6b](https://github.com/nothenrynguyen/app-expo/commit/c326f6b) was published with the approved collector-only fix. The failed-job rerun was requested through the connected GitHub tool, with no browser control or credential extraction.
+- [Attempt 2](https://github.com/nothenrynguyen/app-expo/actions/runs/44879563546/attempts/2), job `136774724633`, completed successfully November 20 at 23:34:05 Pacific. Although the run metadata retains the original triggering SHA, the workflow's explicit main checkout loaded the repair: hosted startup logs state `Collector HTTP client: undici 8.12.4; v22.23.5`.
+- Hosted clean types and all 272 tests pass. Collection and the unchanged coverage guard pass; publication succeeds. Snapshot [ddb080f](https://github.com/nothenrynguyen/app-expo/commit/ddb080f), generated at 23:33:49 Pacific, contains 3,438 internships / 2,402 early-career jobs / 5,840 current (+6 from the previous successful snapshot), plus 630 internal holds. Count movement is ordinary refresh activity, not claimed causal growth from the transport fix.
+- All four production files respond HTTP 200 and byte-match `ddb080f`. GitHub's Vercel status confirms successful deployment. No employer request caps, cooldowns, admission checks or notification settings were changed.
+- The single incident issue remains open because other sources are unavailable/incomplete; its body now correctly says the refresh completed and published healthy-source updates. This remaining warning state does not mean the rerun failed or the HTTP crash remains active.
