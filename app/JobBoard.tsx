@@ -172,8 +172,8 @@ export function JobBoard({ type }: JobBoardProps) {
         const value = event.target.value;
         if (value === "All" || isApplicationStatus(value)) { setStatusFilter(value); resetPage(); }
       }}><option value="All">All statuses</option>{APPLICATION_STATUSES.map((status) => <option key={status}>{status}</option>)}</select></label> : null}
-      <div className="board-stats" title={`Snapshot updated ${new Date(snapshot.generatedAt).toLocaleString()}. This is not a new verification time for held jobs.`}>
-        <span className="live-status"><i />Snapshot</span>
+      <div className="board-stats" title={`Job feed refreshed ${new Date(snapshot.generatedAt).toLocaleString()}. Refreshes run hourly; individual employer verification may be older.`}>
+        <span className="live-status"><i />Live</span>
         <span className="refresh-age">&middot; updated {formatSnapshotAge(snapshot.generatedAt, now)}</span>
         <span className="matching-count"><strong>{jobs.length}</strong> matching roles</span>
       </div>
