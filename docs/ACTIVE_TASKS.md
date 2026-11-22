@@ -1,5 +1,7 @@
 # Active project tasks
 
+November 21 UI release complete: `4fb49bc` is published; Vercel success and live HTTP/browser checks verify production. All 272 tests, types, lint/export, focused React DOM transition/deletion tests and production dependency audit pass. Latest job data and existing calendar/preferences features are preserved. Browser control ended and preview server stopped. See [receipt and remaining non-certified checks](UI_RELEASE_2026-11-21.md).
+
 November 21 UI release follow-up: fresh desktop/tablet/mobile browser checks and focused React DOM tests pass, including reduced-motion transitions and deletion/fallback focus. The earlier browser blocker is resolved for this scoped release. The owner-authorized next step is publication and live verification; preserve current data and unrelated local edits. See [release evidence and limits](UI_RELEASE_2026-11-21.md).
 
 November 21 approved UI release: integrated locally over `4b30c2c0` in isolated branch `codex/ui-audit-release`. All 272 tests, types, lint/static export pass; production dependency audit is clear on the existing Next.js 16.4.6 baseline. Browser verification stopped because the automation safety check could not confidently determine the active URL. Finish reduced-motion, tablet/zoom and deletion-focus checks before the owner-authorized deployment. No publication yet. See [preparation and resume steps](UI_RELEASE_2026-11-21.md).

@@ -1,6 +1,16 @@
 # UI release preparation, November 21, 2026
 
-Status: final verification completed locally; release is authorized and publication is next. The browser blocker described below is historical and was resolved with a fresh session plus focused interaction tests. Production success must still be verified after pushing.
+Status: published and production-verified. The browser blocker described below is historical and was resolved with a fresh session plus focused interaction tests.
+
+## Published release
+
+- Code commit: [`4fb49bc`](https://github.com/nothenrynguyen/app-expo/commit/4fb49bcfb5896d5591d01616134ad799067a9595), pushed to main using a normal fast-forward update over `f0d9269`. A prior push was rejected when an automatic refresh arrived; its data-only changes were integrated without force-pushing or replacing public snapshots.
+- GitHub's Vercel status reports success for [deployment 36XWhYBsJNie2BoXYRxp78xQ1UzS](https://vercel.com/henrys-projects-84715f33/app-expo/36XWhYBsJNie2BoXYRxp78xQ1UzS), existing app-expo project and production domain [empluzzed.fyi](https://empluzzed.fyi).
+- Final validation: clean type checking, all 272 tests, lint and static export passed. Both focused React DOM interaction groups passed again after integrating the newer snapshot. Production dependency audit reports zero advisories. The release changes no data, collection rules, dependencies, worker configuration or hosting settings.
+- Live HTTP checks returned 200 for home, Early Career, Internships and Applications. All four live public files (`internships.json`, `fulltime.json`, `jobs.json`, `summary.json`) byte-match committed release blobs. Evidence: primary checkout `.cache/ui-release-production-http.json`.
+- Live browser: named filters, settled result-count announcements, full-location click/Escape, Compact-to-Cards outgoing inert/hidden state and cleanup, desktop layout and mobile targets all pass. At 390px, sampled card actions/company menu measure at least 44px and page width stays inside the viewport. Mobile Filters Escape returns focus to Filters. Applications opens and cancels a blank editor with correct focus return; the tracker stays empty and no real application record was created or altered. Captured production warnings/errors were empty.
+- Live screenshots: primary checkout `.cache/ui-release-live-desktop.jpg` and `.cache/ui-release-live-mobile.jpg`. Temporary viewport override was reset and production verification tab closed. Local preview server is stopped. The unrelated primary-checkout work remains preserved; release source is in `.cache/ui-release-2026-11-21`.
+- This completes the approved eight-finding UI release. Full screen-reader speech testing, physical device testing and actual browser zoom are not certified; these limits do not represent observed defects in the scoped release.
 
 ## Final verification follow-up
 
@@ -28,7 +38,7 @@ Status: final verification completed locally; release is authorized and publicat
 - Browser emulation repeatedly expired during `Emulation.setEmulatedMedia`; do not repeat that failing route. Native Chrome fallback was then stopped by the computer-use safety check because it could not confidently identify the active URL. No further UI input was attempted.
 - Outstanding: reduced-motion runtime verification, intermediate-width and zoom/reflow checks, assistive-technology interaction, and delete-confirmation/fallback-focus verification. The fictional sample from the earlier localhost:3000 test may remain in isolated browser storage; cleanup is not confirmed.
 
-## Resume
+## Preparation checklist (historical, completed for this release)
 
 1. Restore a working, policy-verifiable browser session; complete the outstanding checks without altering real records.
 2. Run final checks in this checkout and record results. Inspect final scoped diff.

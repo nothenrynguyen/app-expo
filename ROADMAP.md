@@ -1,5 +1,7 @@
 # empluzzed Roadmap
 
+November 21 UI accessibility/touch release `4fb49bc` is published and production-verified. All 272 tests, clean types, lint/export, focused motion/deletion interaction tests and zero-advisory production audit pass. Live desktop/mobile filters, announcements, location disclosure, transitions and tracker focus pass; public job files byte-match the preserved snapshot. No collection or hosting changes. See [release receipt and verification limits](docs/UI_RELEASE_2026-11-21.md).
+
 November 21 UI release checks: a fresh browser session and focused React DOM tests completed the scoped desktop/tablet/mobile, reduced-motion, deletion and focus verification. Approved fixes preserve current calendar filters, browser-local preferences and verification labels. Production dependency audit is clear on the existing patched baseline. Publication is owner-authorized; live status will be recorded in the [release receipt](docs/UI_RELEASE_2026-11-21.md).
 
 November 21 UI release preparation: the owner authorized deployment after final verification. The approved UI fixes are integrated over current published source in `codex/ui-audit-release`, preserving remembered filters, date windows and verification state. All 272 tests, types, lint/export and zero-advisory production dependency audit pass. Remaining browser checks are blocked after computer use could not verify the active URL. No commit, push or deployment. See [release preparation](docs/UI_RELEASE_2026-11-21.md).
