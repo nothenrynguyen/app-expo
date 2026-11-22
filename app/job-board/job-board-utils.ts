@@ -2,7 +2,7 @@ import { formatJobLocation, normalizeJobLocation } from "@/lib/job-locations";
 import type { PublicJob } from "@/lib/jobs";
 
 export const PAGE_SIZE = 100;
-export const LAYOUT_TRANSITION_MS = 1050;
+export const LAYOUT_TRANSITION_MS = 350;
 
 export type ViewMode = "compact" | "cards";
 

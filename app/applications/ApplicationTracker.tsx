@@ -20,6 +20,17 @@ export function ApplicationTracker() {
   const [editorOpen, setEditorOpen] = useState(false);
   const [view, setView] = useState<"applications" | "saved">("applications");
   const editor = useRef<HTMLDivElement>(null);
+  const editorOpener = useRef<HTMLButtonElement | null>(null);
+  const addButton = useRef<HTMLButtonElement>(null);
+  const closeEditor = () => {
+    setEditing(null);
+    setForm(blank());
+    setEditorOpen(false);
+    window.requestAnimationFrame(() => {
+      const target = editorOpener.current?.isConnected ? editorOpener.current : addButton.current;
+      target?.focus({ preventScroll: true });
+    });
+  };
   useEffect(() => {
     if (editorOpen) {
       editor.current?.scrollIntoView({ block: "nearest" });
@@ -36,7 +47,7 @@ export function ApplicationTracker() {
       } catch { setMessage("Could not read saved jobs. Check browser storage."); }
   };
   return <section className="application-tracker">
-    <div className="tracker-toolbar"><div className="tracker-view-switch" role="group" aria-label="Record list"><button type="button" aria-pressed={view === "applications"} onClick={() => setView("applications")}>Applications <span>{applications.length}</span></button><button type="button" aria-pressed={view === "saved"} onClick={() => setView("saved")}>Saved jobs</button></div><div className="tracker-toolbar-actions"><button type="button" className="button primary" aria-expanded={editorOpen} aria-controls="application-editor" onClick={() => { setEditing(null); setForm(blank()); setEditorOpen(true); }}>Add application</button><details className="tracker-backup-menu"><summary>Manage records</summary><ApplicationBackups /><button type="button" className="button secondary" onClick={importSaved}>Import saved jobs</button></details></div></div>
+    <div className="tracker-toolbar"><div className="tracker-view-switch" role="group" aria-label="Record list"><button type="button" aria-pressed={view === "applications"} onClick={() => setView("applications")}>Applications <span>{applications.length}</span></button><button type="button" aria-pressed={view === "saved"} onClick={() => setView("saved")}>Saved jobs</button></div><div className="tracker-toolbar-actions"><button ref={addButton} type="button" className="button primary" aria-expanded={editorOpen} aria-controls="application-editor" onClick={(event) => { editorOpener.current = event.currentTarget; setEditing(null); setForm(blank()); setEditorOpen(true); }}>Add application</button><details className="tracker-backup-menu"><summary>Manage records</summary><ApplicationBackups /><button type="button" className="button secondary" onClick={importSaved}>Import saved jobs</button></details></div></div>
     {editorOpen ? <div id="application-editor" ref={editor} className="tracker-editor">
     <h2>{editing ? "Edit application" : "Add an application"}</h2>
     <p>Add existing applications or jobs you found outside empluzzed. An application date is optional; enter the date you actually applied.</p>
@@ -48,7 +59,7 @@ export function ApplicationTracker() {
       if (!change((current) => [...current.filter((item) => item.id !== record.id), record])) { setMessage("Could not save. Your form is still here. Check browser storage."); return; }
       const synced = !record.jobId || update(record.jobId, record.status);
       setMessage(synced ? "Application saved in this browser." : "Tracker record saved, but the board status could not be updated. Please retry editing the record.");
-      setEditing(null); setForm(blank()); setEditorOpen(false);
+      closeEditor();
     }}>
       <label>Company<input required maxLength={300} value={form.company} onChange={(e) => setForm({ ...form, company: e.target.value })} /></label>
       <label>Location<input maxLength={500} value={form.location} onChange={(e) => setForm({ ...form, location: e.target.value })} /></label>
@@ -58,11 +69,11 @@ export function ApplicationTracker() {
       <label>Application date (optional)<input type="date" value={form.appliedOn} onInput={(e) => { const appliedOn = e.currentTarget.value; setForm((current) => ({ ...current, appliedOn })); }} onChange={(e) => { const appliedOn = e.target.value; setForm((current) => ({ ...current, appliedOn })); }} /></label>
       <label className="application-notes">Notes (optional)<textarea maxLength={5000} value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} /></label>
       <button className="button primary" type="submit">{editing ? "Save changes" : "Add application"}</button>
-      <button className="button secondary" type="button" onClick={() => { setEditing(null); setForm(blank()); setEditorOpen(false); }}>Cancel</button>
+      <button className="button secondary" type="button" onClick={closeEditor}>Cancel</button>
       {editing ? <button className="button secondary" type="button" onClick={() => {
         if (!window.confirm(`Delete the application at ${editing.company}? Saved jobs are unchanged.`)) return;
         if (!change((current) => current.filter((record) => record.id !== editing.id))) { setMessage("Could not delete. Check browser storage."); return; }
-        setEditing(null); setForm(blank()); setEditorOpen(false); setMessage("Application deleted.");
+        closeEditor(); setMessage("Application deleted.");
       }}>Delete application</button> : null}
     </form></div> : null}
     <p role="status">{message}</p>
@@ -78,7 +89,7 @@ export function ApplicationTracker() {
         const synced = !record.jobId || update(record.jobId, status);
         setMessage(synced ? "Status updated." : "Record saved, but its saved-job status could not update. Please retry.");
       }}>{APPLICATION_STATUSES.map((status) => <option key={status}>{status}</option>)}</select></td>
-      <td><button type="button" className="application-edit" onClick={() => { setEditing(record); setForm({ ...record, location: record.location ?? "", status: effectiveStatus(record) }); setEditorOpen(true); }}>Edit<span className="sr-only"> {record.company}{record.title ? `, ${record.title}` : ""}</span></button></td>
+      <td><button type="button" className="application-edit" onClick={(event) => { editorOpener.current = event.currentTarget; setEditing(record); setForm({ ...record, location: record.location ?? "", status: effectiveStatus(record) }); setEditorOpen(true); }}>Edit<span className="sr-only"> {record.company}{record.title ? `, ${record.title}` : ""}</span></button></td>
     </tr>)}
     {!applications.length ? <tr><td colSpan={5} className="application-table-empty">No applications yet. Add an application to get started.</td></tr> : applications.every((record) => filter !== "All" && effectiveStatus(record) !== filter) ? <tr><td colSpan={5} className="application-table-empty">No applications match this status.</td></tr> : null}
     </tbody></table>

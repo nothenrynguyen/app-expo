@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import type { CompanyTier } from "@/lib/company-tiers";
 import { JOB_REGIONS, type JobMetro, type JobRegion } from "@/lib/job-locations";
 import { ROLE_FAMILIES, type RoleSelection, type RoleTag } from "@/lib/role-areas";
@@ -211,30 +211,32 @@ export function JobFilters({
 }
 
 function SingleFilter({ label, value, hrefForValue, options, allLabel }: { label: string; value: string | null; hrefForValue: (value: string | null) => string; options: readonly FilterOption[]; allLabel: string }) {
+  const id = useId();
   const [open, setOpen] = useState(false);
   const summary = value === null ? allLabel : options.find(([optionValue]) => optionValue === value)?.[1] ?? allLabel;
 
   return (
     <div className="filter-control">
-      <span>{label}</span>
+      <span id={`${id}-label`}>{label}</span>
       <details className="multi-filter single-filter" open={open} onToggle={(event) => setOpen(event.currentTarget.open)}>
-        <summary>{summary}</summary>
-        <div className="multi-filter-menu single-filter-menu" role="radiogroup" aria-label={label}>
-          <Link role="radio" className={value === null ? "selected" : ""} aria-checked={value === null} href={hrefForValue(null)}>
+        <summary aria-labelledby={`${id}-label ${id}-value`}><span id={`${id}-value`}>{summary}</span></summary>
+        <nav className="multi-filter-menu single-filter-menu" aria-label={label}>
+          <Link className={value === null ? "selected" : ""} aria-current={value === null ? "page" : undefined} href={hrefForValue(null)}>
             <span aria-hidden="true" />{allLabel}
           </Link>
           {options.map(([optionValue, optionLabel]) => (
-            <Link role="radio" className={value === optionValue ? "selected" : ""} aria-checked={value === optionValue} href={hrefForValue(optionValue)} key={optionValue}>
+            <Link className={value === optionValue ? "selected" : ""} aria-current={value === optionValue ? "page" : undefined} href={hrefForValue(optionValue)} key={optionValue}>
               <span aria-hidden="true" />{optionLabel}
             </Link>
           ))}
-        </div>
+        </nav>
       </details>
     </div>
   );
 }
 
 function MultiFilter({ label, values, onChange, options, allLabel = "All" }: { label: string; values: readonly string[]; onChange: (values: string[]) => void; options: readonly FilterOption[]; allLabel?: string }) {
+  const id = useId();
   const summary = values.length === 0
     ? "All"
     : values.length === 1
@@ -246,10 +248,10 @@ function MultiFilter({ label, values, onChange, options, allLabel = "All" }: { l
 
   return (
     <div className="filter-control">
-      <span>{label}</span>
+      <span id={`${id}-label`}>{label}</span>
       <details className="multi-filter">
-        <summary>{summary}</summary>
-        <div className="multi-filter-menu">
+        <summary aria-labelledby={`${id}-label ${id}-value`}><span id={`${id}-value`}>{summary}</span></summary>
+        <div className="multi-filter-menu" role="group" aria-labelledby={`${id}-label`}>
           <label><input type="checkbox" checked={values.length === 0} onChange={() => onChange([])} />{allLabel}</label>
           {options.map(([value, optionLabel]) => (
             <label key={value}>

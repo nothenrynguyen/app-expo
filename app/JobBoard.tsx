@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { countSavedJobs, filterJobs, getAvailableMetroOptions, getJobTerms } from "@/lib/job-board";
 import { formatSnapshotAge } from "@/lib/job-locations";
 import type { JobsSnapshot } from "@/lib/jobs";
@@ -28,8 +28,26 @@ type JobBoardProps = {
 };
 
 const EMPTY_JOBS: JobsSnapshot["jobs"] = [];
+const reducedMotionQuery = "(prefers-reduced-motion: reduce)";
+const getReducedMotion = () => window.matchMedia(reducedMotionQuery).matches;
+const getServerReducedMotion = () => true;
+const subscribeReducedMotion = (onChange: () => void) => {
+  const preference = window.matchMedia(reducedMotionQuery);
+  preference.addEventListener("change", onChange);
+  return () => preference.removeEventListener("change", onChange);
+};
+
+function BoardStatus({ message, error = false }: { message: string; error?: boolean }) {
+  const [announcement, setAnnouncement] = useState("");
+  useEffect(() => {
+    const timer = window.setTimeout(() => setAnnouncement(message), 300);
+    return () => window.clearTimeout(timer);
+  }, [message]);
+  return <p className="sr-only" role={error ? "alert" : "status"} aria-atomic="true">{announcement}</p>;
+}
 
 export function JobBoard({ type }: JobBoardProps) {
+  const reducedMotion = useSyncExternalStore(subscribeReducedMotion, getReducedMotion, getServerReducedMotion);
   const searchParams = useSearchParams();
   const router=useRouter();
   const {preferences,update:remember,reset:resetPreferences,storageError:preferenceError}=useBoardPreferences(type);
@@ -84,9 +102,9 @@ export function JobBoard({ type }: JobBoardProps) {
 
   useEffect(() => {
     if (!exitingView) return;
-    const timer = window.setTimeout(() => setExitingView(null), LAYOUT_TRANSITION_MS);
+    const timer = window.setTimeout(() => setExitingView(null), reducedMotion ? 0 : LAYOUT_TRANSITION_MS);
     return () => window.clearTimeout(timer);
-  }, [exitingView]);
+  }, [exitingView, reducedMotion]);
 
   const currentJobs = snapshot?.jobs ?? EMPTY_JOBS;
   const awaitingJobs = snapshot?.awaitingVerification ?? EMPTY_JOBS;
@@ -127,8 +145,8 @@ export function JobBoard({ type }: JobBoardProps) {
     saved: String(savedOnly), status: statusFilter,
   });
 
-  if (error) return <p className="state-card">The latest job snapshot could not be loaded. Please try again shortly.</p>;
-  if (!snapshot) return <p className="state-card">Loading jobs...</p>;
+  if (error) return <><BoardStatus error message="The latest job snapshot could not be loaded. Please try again shortly." /><p className="state-card">The latest job snapshot could not be loaded. Please try again shortly.</p></>;
+  if (!snapshot) return <><BoardStatus message="Loading jobs..." /><p className="state-card">Loading jobs...</p></>;
 
   const { pageCount, safePage, startIndex, endIndex } = getPaginationState(jobs.length, page);
   const visibleJobs = jobs.slice(startIndex, endIndex);
@@ -143,12 +161,13 @@ export function JobBoard({ type }: JobBoardProps) {
   const changeView = (nextView: ViewMode) => {
     if (nextView === activeView) return;
     setViewMode(nextView);
-    setExitingView(activeView);
+    setExitingView(reducedMotion ? null : activeView);
     setActiveView(nextView);
   };
 
   return (
     <>
+      <BoardStatus message={`${jobs.length} matching ${jobs.length === 1 ? "role" : "roles"}.${jobs.length > 0 ? ` Page ${safePage + 1} of ${pageCount}.` : ""}`} />
       <div className="role-toolbar">
         <RoleTabs selection={roleSelection} type={type} onNavigate={resetPage} />
         <button
@@ -204,7 +223,7 @@ export function JobBoard({ type }: JobBoardProps) {
       <JobResults
         addedDates={dateWindow!=='all'}
         activeView={activeView}
-        exitingView={exitingView}
+        exitingView={reducedMotion ? null : exitingView}
         jobs={visibleJobs}
         totalJobCount={jobs.length}
         emptyMessage={!savedOnly && hiddenCompanies.length ? `${emptyMessage} Some companies are hidden. Open Show hidden companies above to restore them.` : emptyMessage}

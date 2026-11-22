@@ -75,8 +75,9 @@ export function JobResults({
 
   return (
     <div className={`layout-stage ${isSwitching ? "is-switching" : ""}`}>
-      {exitingView === "compact" ? renderCompact("panel-exit compact-exit") : null}
-      {exitingView === "cards" ? renderCards("panel-exit cards-exit") : null}
+      {exitingView ? <div className="panel-exit" inert aria-hidden="true">
+        {exitingView === "compact" ? renderCompact() : renderCards()}
+      </div> : null}
       {activeView === "compact"
         ? renderCompact(isSwitching ? "panel-enter compact-enter" : "")
         : renderCards(isSwitching ? "panel-enter cards-enter" : "")}
@@ -119,7 +120,16 @@ function CompactJobView({ addedDates, className, jobs, totalJobCount, emptyMessa
               </div>
               <div className="job-table-location" role="cell" data-label="Location">
                 {location.hasMore
-                  ? <span className="location-with-more" tabIndex={0}><span className="location-label">{location.compact}</span><span className="location-popover" role="tooltip">{location.full}</span></span>
+                  ? <details className="location-with-more" onKeyDown={(event) => {
+                    if (event.key === "Escape" && event.currentTarget.open) {
+                      event.stopPropagation();
+                      event.currentTarget.open = false;
+                      event.currentTarget.querySelector("summary")?.focus();
+                    }
+                  }}>
+                    <summary className="location-label" aria-label={`All locations: ${location.compact}`}>{location.compact}</summary>
+                    <span className="location-popover">{location.full}</span>
+                  </details>
                   : <span className="location-label" title={location.full}>{location.compact}</span>}
               </div>
               <div className="job-table-date" role="cell" data-label={addedDates?'Added':'Date'}><ListingDate job={job} added={addedDates} /></div>
