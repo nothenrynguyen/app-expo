@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { createAtsBoard, discoverAtsBoard, fetchAtsBoard } from "../lib/ats-boards";
+import { reviewedGreenhouseBoard } from "../lib/reviewed-ats-domains";
+import { employerBoardIdentity } from "../lib/ingestion/reviewed-employer-coverage";
+import { currentAtsExperienceConflict } from "../lib/ingestion/ats-eligibility";
+import { createSourceListingVerifier } from "../lib/ingestion/source-verification";
 import { selectRefreshBoards, completeBoardHistory, MAX_RETAINED_BOARDS } from "../lib/ingestion/board-history";
 import { assessCoverage, assertCoverageSafe } from "../lib/ingestion/coverage-guard";
 import { buildListingChanges, formatListingChangesSummary } from "../lib/ingestion/listing-changes";
@@ -17,6 +21,44 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 
 const now = new Date("2026-10-29T05:00:00Z");
+
+test("reviewed custom careers routes identify only their fixed employer board", () => {
+  for (const [url, key, company] of [
+    ["https://careers.formlabs.com/job/8400855/apply/", "formlabs", "Formlabs"],
+    ["https://careers.roblox.com/jobs/8242621", "roblox", "Roblox"],
+    ["https://www.samsara.com/company/careers/roles/8214590?gh_jid=8214590", "samsara", "Samsara"],
+    ["https://www.akunacapital.com/careers/job/8016687", "akunacapital", "Akuna Capital"],
+    ["https://akunacapital.com/careers/job/8016687/", "akunacapital", "Akuna Capital"],
+    ["https://careers.datadoghq.com/detail/8186363", "datadog", "Datadog"],
+    ["https://www.asana.com/jobs/apply/8357334", "asana", "Asana"],
+  ]) {
+    const board = discoverAtsBoard(url, "Untrusted label", "test")!;
+    assert.equal(board.id, `greenhouse:${key}`);
+    assert.equal(board.company, company);
+    assert.equal(employerBoardIdentity(url), `greenhouse:us:${key}`);
+  }
+  for (const url of [
+    "http://careers.formlabs.com/job/8400855/apply", "https://user@careers.formlabs.com/job/8400855/apply",
+    "https://careers.formlabs.com:8443/job/8400855/apply", "https://careers.formlabs.com.evil.example/job/8400855/apply",
+    "https://careers.formlabs.com/job/8400855/other", "https://careers.formlabs.com/internships/",
+    "https://www.samsara.com/company/careers/roles?gh_jid=8214590", "https://www.mongodb.com/careers/job",
+    "https://www.jumptrading.com/hr/job", "invalid",
+  ]) assert.equal(reviewedGreenhouseBoard(url), null, url);
+});
+
+test("custom careers links still require exact current ATS membership and preserve qualification gates", async () => {
+  const url = "https://careers.formlabs.com/job/8400855/apply";
+  const board = createAtsBoard({ provider: "greenhouse", key: "formlabs", company: "Formlabs" });
+  const result = { board, jobs: [], liveIdentities: new Set([jobIdentity(url)!]), experienceConflictUrls: [url] };
+  const boards = new Map([[board.id, result]]);
+  const verify = createSourceListingVerifier({ boardResults: boards, fetchImpl: async () => { throw new Error("Unexpected request"); } });
+  assert.equal(await verify(url), true);
+  assert.equal(await verify("https://careers.formlabs.com/job/9999999/apply"), false);
+  assert.equal(await createSourceListingVerifier({ fetchImpl: async () => { throw new Error("Unavailable"); } })(url), false);
+  assert.equal(currentAtsExperienceConflict({ company: "Formlabs", applyUrl: url }, boards), true);
+  assert.equal(currentAtsExperienceConflict({ company: "Different Employer", applyUrl: url }, boards), false);
+  assert.equal(currentAtsExperienceConflict({ company: "Formlabs", applyUrl: "https://careers.formlabs.com/job/9999999/apply" }, boards), false);
+});
 const board = createAtsBoard({ provider: "greenhouse", key: "example", company: "Example" });
 const history = { version: 1 as const, boards: [{ provider: "greenhouse" as const, key: "example", company: "Example", lastDiscoveredAt: "2026-10-21T00:00:00Z" }] };
 

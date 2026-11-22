@@ -1,6 +1,7 @@
 import type { CandidateJob } from "./source-normalization";
 import { canonicalizeUrl, inferTerm, inferWorkMode, jobIdentity } from "./source-normalization";
 import { hasRequiredExperienceConflict, qualificationText } from "./early-career-evidence";
+import { reviewedGreenhouseBoard } from "./reviewed-ats-domains";
 
 export type AtsProvider = "greenhouse" | "lever" | "ashby";
 
@@ -56,6 +57,8 @@ export function createAtsBoard(seed: AtsBoardSeed, source = "Pinned ATS"): AtsBo
 }
 
 export function discoverAtsBoard(applyUrl: string, company: string, source: string): AtsBoard | null {
+  const reviewed = reviewedGreenhouseBoard(applyUrl);
+  if (reviewed) return createAtsBoard({ provider: "greenhouse", ...reviewed }, source);
   const canonical = canonicalizeUrl(applyUrl);
   if (!canonical) return null;
   const url = new URL(canonical);
