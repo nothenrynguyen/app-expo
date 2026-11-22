@@ -19,8 +19,9 @@ export default function Home() {
           <div className="about-intro">
             <p className="eyebrow">About empluzzed</p>
             <h2 className="about-statement">
-              <span>One place to browse.</span>
-              <span>Employer links preferred.</span>
+              <span>One place.</span>
+              <span>No bullshit.</span>
+              <span>Always free.</span>
             </h2>
           </div>
           <div className="about-copy">

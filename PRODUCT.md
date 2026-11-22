@@ -41,6 +41,7 @@ Account-free browsing combines maintained public job sources with employer caree
 
 - Name: empluzzed, styled lowercase in current product copy.
 - Voice: direct, approachable, personal, and candid about limitations, consistent with the existing homepage and About page.
+- Homepage headline commitment: "One place. No bullshit. Always free." Keep employer-link preferences in supporting explanations rather than this headline, as requested by the owner.
 - Preserve the always-free and account-free commitments. Do not invent coverage, placement, customer, or outcome claims.
 - Never use em dashes in user-facing copy.
 
