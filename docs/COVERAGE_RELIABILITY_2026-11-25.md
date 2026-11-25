@@ -66,3 +66,19 @@ The next normal Cloudflare invocation was observed at approximately 04:17:34 Pac
 Run 45612358363 passed all 276 tests but failed before the coverage guard with `Invalid persisted source verification target`. The first repair's overly broad query preservation had written two keys for Brex and Samsara that no longer matched the corrected path-based normalization. This was introduced during this release, not an external outage. The owner reported failure emails and requested continued work; notifications remain enabled.
 
 Re-key exactly those two reviewed records to their existing canonical path identities, union their guarded-source IDs with any existing target, and preserve every source restriction. One Samsara record merges into its already-existing canonical target, so total targets change from 2,014 to 2,013 without losing provenance. No positive verification observations are copied, renewed or invented. Every resulting key matches the current validator; the validator remains unchanged and rejects unrelated corrupt state. Add a test loading the actual checked-in production target file before collection, preventing this class of compatibility regression from passing CI. Full-suite validation and a hosted retry follow.
+
+## Final checkpoint, November 25 at 04:28 Pacific
+
+State repair and regression test `b23ccc41` are published; Vercel status is successful. All 277 local tests pass, with clean types and focused lint. The prior complete production build/export gate also passed, and the final change affects persisted targets, a test and documentation only.
+
+Attempt 2 of normal scheduler run 45612358363 (job 139202716548) passes hosted clean types and all 277 tests, completes collection, and reaches the unchanged coverage guard. The persisted-target failure is resolved in a real hosted collection. The guard still rejects publication: 155 unexplained internship removals and 93 early-career removals. Its proposed counts are 5,785 current jobs, 648 holds and 276 additions across the whole refresh, all rejected proposal counts. TikTok/ByteDance unresolved groups fell from 142/62 in the first retry to 122/42. Existing persisted observations are making progress without renewed timestamps, larger caps or relaxed gates. This does not establish that every missing role remains valid or predict a guaranteed recovery time.
+
+Code publication, Vercel deployment, the existing hourly dispatch path and persisted-state repair are verified. Fresh snapshot publication and realized gains from the new 69-role pilot remain blocked. Production remains the protected November 23 snapshot of 5,942 jobs. Failure notifications remain enabled, as requested by the operating policy and the owner's email follow-up. Further failure emails may reflect this genuine coverage guard until the existing queue and remaining investigations resolve it. No new automation or monitor remains running.
+
+Recommended next list:
+1. Observe the existing bounded hourly/retry queue through its next guard-passing publication. The next already-configured scheduler check is approximately 04:37 Pacific; no new reminder or automation was created.
+2. Reconcile all 69 new pilot identities against current/held/rejected outcomes and compare the four production files to the accepted Git snapshot. Do not count rejected proposals as additions.
+3. Investigate the remaining non-TikTok/ByteDance source omissions using the grouped artifact, and recover only with exact employer evidence.
+4. Continue productive private-sector board expansion and identity review across supported fields. Intake doubling and broad coverage recovery remain open.
+
+The primary checkout's original dirty UI/analytics work is unchanged. Local diagnostic observation files remain isolated and unpublished in `.cache/coverage-reliability-2026-11-25`; final receipts are in clean `.cache/coverage-receipt-2026-11-25`.
