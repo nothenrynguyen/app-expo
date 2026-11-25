@@ -39,6 +39,21 @@ test('paid volunteer benefits and prior volunteering do not reject a paid job',a
  assert.equal(evaluateCompanyQuality({name:'Example',title:'Volunteer Software Developer'},'Work on software.',[]).status,'rejected');
 });
 
+test('SmartRecruiters recovery requires matching public posting metadata and non-conflicting qualifications',()=>{
+  const target={company:'Example',url:'https://jobs.smartrecruiters.com/Example/123456789-software-engineer'};
+  const good={id:'123456789',active:true,visibility:'PUBLIC',company:{identifier:'Example'},name:'Software Engineering Intern',
+    releasedDate:now.toISOString(),location:{city:'Seattle',region:'WA',country:'us'},jobAd:{sections:{
+      jobDescription:{text:'Build and maintain reliable software systems for our customers. Collaborate with engineering teams on application quality and performance.'},
+      qualifications:{text:'Currently enrolled in a computer science degree. Programming experience through coursework or projects.'}}}};
+  assert.ok(parseRecoveryPosting(target,good,now));
+  for(const bad of [{...good,id:undefined},{...good,id:'987654321'},{...good,company:{}},{...good,company:{identifier:'Other'}},
+    {...good,visibility:'INTERNAL'},{...good,visibility:undefined},{...good,active:false},{...good,jobAd:{sections:{jobDescription:{text:'Loading'}}}},
+    {...good,jobAd:{sections:{...good.jobAd.sections,qualifications:{text:'Minimum qualifications: At least 5 years of professional software engineering experience required.'}}}}])
+    assert.equal(parseRecoveryPosting(target,bad,now),null);
+  assert.equal(parseRecoveryPosting({...target,url:target.url.replace('https:','http:')},good,now),null);
+  assert.equal(parseRecoveryPosting({...target,url:target.url.replace('smartrecruiters.com','smartrecruiters.com:8443')},good,now),null);
+});
+
 test('SmartRecruiters title slugs retain the exact posting identity',async()=>{const {parseSmartRecruitersJobUrl}=await import('../lib/smartrecruiters');assert.equal(parseSmartRecruitersJobUrl('https://jobs.smartrecruiters.com/Example/123456789-software-engineer')?.jobId,'123456789');assert.equal(parseSmartRecruitersJobUrl('https://jobs.smartrecruiters.com/Example/not-a-job'),null);});
 
 test('graduate and associate engineering titles are eligible while senior and management titles remain excluded',async()=>{const {isEarlyCareerTitle}=await import('../lib/ats-boards');for(const title of ['Graduate Civil Engineer','Associate Software Engineer','Associate Consultant'])assert.equal(isEarlyCareerTitle(title),true);for(const title of ['Senior Graduate Recruiter','Graduate Program Manager','Principal Associate Engineer'])assert.equal(isEarlyCareerTitle(title),false);});

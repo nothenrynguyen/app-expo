@@ -9,6 +9,7 @@ import { evaluateCompanyQuality } from "../company-quality";
 import { employerBoardIdentity } from "./reviewed-employer-coverage";
 import { sourceVerificationKey } from "./source-verification";
 import { inBatches } from "./concurrency";
+import { hasRequiredExperienceConflict } from "../early-career-evidence";
 
 export type RecoverySeed = {company: string; url: string};
 export type RecoveryState = Record<string, {checkedAt: string; status: "live" | "unknown"; accessDenied?: boolean; candidate?: CandidateJob}>;
@@ -19,7 +20,7 @@ export const isRecoveryLive = (candidate: CandidateJob) => liveThisRun.has(candi
 export function recoveryEndpoint(seed: RecoverySeed): {url: string; provider: "workday" | "smartrecruiters"; site?: string; externalPath?: string} | null {
   try {
     const url = new URL(seed.url);
-    if (url.protocol !== "https:" || url.username || url.password) return null;
+    if (url.protocol !== "https:" || url.username || url.password || url.port) return null;
     if (/^[a-z0-9-]+\.wd\d+\.myworkdayjobs\.com$/i.test(url.hostname)) {
       const parts = url.pathname.split("/").filter(Boolean).map(decodeURIComponent);
       const index = parts.indexOf("job");
@@ -47,12 +48,14 @@ export function parseRecoveryPosting(seed: RecoverySeed, data: Record<string, un
     candidate = parseWorkdayJob(board, {externalPath: reference.externalPath}, data, now);
     if (candidate && info.country?.descriptor && !candidate.location.toLowerCase().includes(info.country.descriptor.toLowerCase())) candidate.location += `, ${info.country.descriptor}`;
   } else {
-    const posting = data as {id?: string; company?: {identifier?: string}; active?: boolean; name?: string; releasedDate?: string; location?: {city?: string; region?: string; country?: string}; jobAd?: {sections?: Record<string, {text?: string}>}};
-    if (posting.active !== true || typeof posting.name !== "string" || !posting.name.trim()) return null;
+    const posting = data as {id?: string; visibility?: string; company?: {identifier?: string}; active?: boolean; name?: string; releasedDate?: string; location?: {city?: string; region?: string; country?: string}; jobAd?: {sections?: Record<string, {text?: string}>}};
+    if (posting.active !== true || posting.visibility !== "PUBLIC" || typeof posting.name !== "string" || !posting.name.trim()) return null;
     const expected = parseSmartRecruitersJobUrl(seed.url)!;
-    if (posting.id && String(posting.id) !== expected.jobId || posting.company?.identifier && posting.company.identifier.toLowerCase() !== expected.companyIdentifier.toLowerCase()) return null;
+    if (String(posting.id ?? "") !== expected.jobId || typeof posting.company?.identifier !== "string"
+      || posting.company.identifier.toLowerCase() !== expected.companyIdentifier.toLowerCase()) return null;
     const description = Object.values(posting.jobAd?.sections ?? {}).map(section => section.text ?? "").join(" ").replace(/<[^>]+>/g, " ");
-    if (!isEarlyCareerTitle(posting.name, description)) return null;
+    const qualifications = posting.jobAd?.sections?.qualifications?.text ?? description;
+    if (description.length < 120 || !isEarlyCareerTitle(posting.name, description) || hasRequiredExperienceConflict(qualifications)) return null;
     const country = posting.location?.country;
     const location = [posting.location?.city, posting.location?.region, country && /^[a-z]{2}$/i.test(country) ? new Intl.DisplayNames(["en"], {type: "region"}).of(country.toUpperCase()) : country].filter(Boolean).join(", ") || "Location not stated";
     const date = posting.releasedDate ? new Date(posting.releasedDate) : null;
