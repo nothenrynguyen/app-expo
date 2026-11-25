@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { readFile } from "node:fs/promises";
 import { buildSourceVerificationTargets, createSourceListingVerifier, sourceListingIsAllowed, sourceVerificationKey } from "../lib/ingestion/source-verification";
 import { scopedListingIsLive, selectScopedChecks, selectBalancedScopedChecks, type ScopedListingCache } from "../lib/ingestion/scoped-listing-cache";
 import type { JobSource } from "../lib/source-catalog";
@@ -72,6 +73,13 @@ test("prior source provenance restores a guard, and corrupt target state fails c
   assert.equal(sourceListingIsAllowed(url, targets, new Set()), false);
   assert.throws(() => buildSourceVerificationTargets([source], [], [], { invalid: { url, sourceIds: [source.id] } }), /Invalid persisted/);
   assert.throws(() => buildSourceVerificationTargets([source], [], [], [] as unknown as Parameters<typeof buildSourceVerificationTargets>[3]), /Invalid persisted/);
+});
+
+test("persisted production source guards remain readable after URL normalization changes", async () => {
+  const saved = JSON.parse(await readFile(new URL("../data/source-verification-targets.json", import.meta.url), "utf8"));
+  // Exercise the actual persisted schema before a collector can make hundreds
+  // of requests. No source policies or positive observations are fabricated.
+  assert.doesNotThrow(() => buildSourceVerificationTargets([], [], [], saved));
 });
 
 test("Workday verification requires matching requisition, title and explicit application flags", async () => {

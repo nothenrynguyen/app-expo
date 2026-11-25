@@ -1,7 +1,7 @@
 # Hourly job refreshes
 
 The site keeps its hourly-update wording. The collection pipeline still runs on
-standard GitHub-hosted Ubuntu runners in the public `nothenrynguyen/app-expo`
+standard GitHub-hosted Ubuntu runners in the public `nothenrynguyen/empluzzed`
 repository. Cloudflare supplies the primary clock, not job collection or storage.
 
 ## Schedule and duplicate protection
@@ -169,3 +169,7 @@ to work around an authentication error. To stop external dispatches, change
 - Activation is verified from Cloudflare Cron through GitHub ingestion and
   publication to the production snapshots. Provider outages and free caps can
   still delay future runs; no exact hourly completion SLA is implied.
+
+## Repository rename repair, November 25, 2026
+
+The canonical repository is now `nothenrynguyen/empluzzed`. The old API workflow address returns 301 and is correctly rejected by the scheduler's redirect boundary. Implementation `9efebe17` updates only its fixed repository target; schedule, credentials, retry cap and free configuration stay intact. Existing Worker `empluzzed-refresh` was deployed at 100% version `6a5d23d4-587c-4f9c-ac3f-079ba288d3fe`. Its normal 04:17 Pacific invocation succeeded with no exceptions and dispatched [45612358363](https://github.com/nothenrynguyen/empluzzed/actions/runs/45612358363). This verifies dispatch recovery, not successful collection or publication. Coverage safety still blocked the preceding retry. See [current investigation and action list](COVERAGE_RELIABILITY_2026-11-25.md).

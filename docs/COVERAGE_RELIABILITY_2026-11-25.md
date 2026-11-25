@@ -4,9 +4,9 @@
 
 - Complete: inspect dirty worktrees and isolate work on `codex/coverage-reliability-2026-11-25` at `.cache/coverage-reliability-2026-11-25`. Root UI/analytics work is untouched.
 - Complete: November 23/24 Pacific ingestion audit, four-file production comparison and November 22 cohort reconciliation.
-- Complete locally: exact query-based posting identity recovery, five productive employer pins, 25-board private-sector survey and grouped blocked-ingestion reporting.
-- In progress: scoped publication, repair deployment of the existing hourly scheduler, hosted collection and live reconciliation.
-- Next: renew employer evidence within existing budgets, investigate remaining identity holds, and expand productive boards after recovery.
+- Published and locally validated: exact query-based posting identity recovery, five productive employer pins, 25-board private-sector survey and grouped blocked-ingestion reporting.
+- Complete: scoped code publication, repair deployment of the existing hourly scheduler, successful normal hourly dispatch and protected live-file reconciliation.
+- In progress: hosted collection/publication recovery. Next: renew employer evidence within existing budgets, investigate remaining identity holds, and expand productive boards after recovery.
 
 ## Audit evidence
 
@@ -32,7 +32,7 @@ The final local pilot has 69 distinct opportunity and semantic identities: Mongo
 
 Actions summaries now group the largest investigation cohorts by employer, recorded reason and exact board membership. Counts use unique opportunities, with table-cell sanitization. Blocked artifacts now also retain unique intake and verification backlog, previously available only after successful publication. Failure behavior, public snapshots and notification settings remain unchanged.
 
-Local release checks: 276 tests and clean types pass. Full lint/export passed before the final Brex route addition; the final complete gate is running. Restricted fixture failures were local TCP/Git permission failures, and passed with permitted fixtures. No paid service, new automation, dependency, access-control bypass or destructive operation was introduced. Local observation files from the diagnostic collection are excluded from the release.
+Local release checks: all 276 tests, clean types, full lint and static export pass, including the final Brex route addition and compatibility correction. Restricted fixture failures were local TCP/Git permission failures, and passed with permitted fixtures. No paid service, new automation, dependency, access-control bypass or destructive operation was introduced. Local observation files from the diagnostic collection are excluded from the release.
 
 ## Recommended next steps
 
@@ -46,3 +46,23 @@ Local release checks: 276 tests and clean types pass. Full lint/export passed be
 Implementation `9efebe17` is published and Vercel reports successful deployment. All 276 tests, types, lint and static export pass. The existing scheduler is deployed at 100% version `6a5d23d4-587c-4f9c-ac3f-079ba288d3fe`, enabled on the unchanged `17,37,57 * * * *` schedule. Its next natural invocation is still unobserved. A single rerun of 45546139122 is collecting on current main; no new automation was created.
 
 Compatibility review tightened query preservation to the four query-identified routes only. Existing path-identified Samsara, Asana, Datadog and Brex URLs continue ignoring redundant `gh_jid`, preserving their prior identities. A regression check covers this explicitly; all 276 tests, types, lint and export pass again. No rejected snapshot or local observation state is published.
+
+## Additional measured checks
+
+The software-engineering tag covers 1,595 published opportunities in both the November 22 baseline and November 23 live snapshot. There was no successful November 24 publication, so there is no newer published software count to attribute to that day. Tags can overlap and must not be summed into a total.
+
+A high-yield Rivian-labeled backlog sample points to the distinct Rivian and Volkswagen Group Technologies joint venture. Its official `https://rivianvw.tech/` page returned 200 and links directly to `https://jobs.ashbyhq.com/rivianvw.tech`. The current direct board contained 177 postings but yielded zero eligible unique missing opportunities after existing role/location/freshness/qualification and identity comparisons. No parent-company alias, trust relaxation or extra pin was added. The 56 historical Rivian backlog rows are not claimed as 56 recoverable jobs.
+
+## Hosted verification checkpoint, November 25 at 04:18 Pacific
+
+Both implementation commits, `9efebe17` and compatibility follow-up `7acb2f76`, have successful Vercel deployment statuses. Production dependency audit reports zero advisories. A post-release four-file byte comparison at 04:16 Pacific confirms the protected November 23 snapshot remains live; all original November 22 pilot roles remain present. No new pilot additions have been published yet.
+
+The owner-authorized single retry of run 45546139122 (attempt 2, job 139194454274) loaded the release, passed all 276 tests and clean types, and completed collection through the repaired Undici client. The unchanged guard blocked 288 unexplained removals: 168 internships and 120 early-career jobs. Proposed current count was 5,729, with 650 internal holds and 290 proposed additions across the whole refresh. These are rejected proposal counts, not production results or causal growth from this release. New grouped diagnostics identify TikTok (142) and ByteDance (62) as the largest unresolved groups. Observation progress is persisted by hosted commit `687631ad`; public data remains unchanged.
+
+The next normal Cloudflare invocation was observed at approximately 04:17:34 Pacific on version `6a5d23d4-587c-4f9c-ac3f-079ba288d3fe`: outcome `ok`, no exceptions, 3 ms CPU. It dispatched run 45612358363 for slot `2026-11-25T12:17:00.000Z`, created at 04:17:37 Pacific. This verifies the actual hourly dispatch path after the repository rename. The temporary event listener was stopped after observing the outcome. Collection/publication recovery is still separate and unverified; the normal run is in progress.
+
+## Persisted-state repair after the normal invocation
+
+Run 45612358363 passed all 276 tests but failed before the coverage guard with `Invalid persisted source verification target`. The first repair's overly broad query preservation had written two keys for Brex and Samsara that no longer matched the corrected path-based normalization. This was introduced during this release, not an external outage. The owner reported failure emails and requested continued work; notifications remain enabled.
+
+Re-key exactly those two reviewed records to their existing canonical path identities, union their guarded-source IDs with any existing target, and preserve every source restriction. One Samsara record merges into its already-existing canonical target, so total targets change from 2,014 to 2,013 without losing provenance. No positive verification observations are copied, renewed or invented. Every resulting key matches the current validator; the validator remains unchanged and rejects unrelated corrupt state. Add a test loading the actual checked-in production target file before collection, preventing this class of compatibility regression from passing CI. Full-suite validation and a hosted retry follow.
