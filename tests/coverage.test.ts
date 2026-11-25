@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { createAtsBoard, discoverAtsBoard, fetchAtsBoard } from "../lib/ats-boards";
-import { reviewedGreenhouseBoard } from "../lib/reviewed-ats-domains";
+import { reviewedAtsApplicationUrl, reviewedGreenhouseBoard } from "../lib/reviewed-ats-domains";
+import { summarizeBoardAdmissions, formatBoardAdmissions } from "../lib/ingestion/board-admissions";
 import { employerBoardIdentity } from "../lib/ingestion/reviewed-employer-coverage";
 import { currentAtsExperienceConflict } from "../lib/ingestion/ats-eligibility";
 import { createSourceListingVerifier } from "../lib/ingestion/source-verification";
@@ -22,8 +23,22 @@ import path from "node:path";
 
 const now = new Date("2026-10-29T05:00:00Z");
 
+test("board admission reports deduplicate feeds and separate new jobs from prior held restorations", () => {
+  const make = (id: string) => ({company:"Example|<name>",applyUrl:`https://job-boards.greenhouse.io/example/jobs/${id}`,source:"Feed"});
+  const held = make("1234567"), fresh = make("1234568"), rejected = make("1234569");
+  const candidates = [held, fresh, {...fresh, source:"Other feed"}, rejected];
+  const previouslyHeld = {...held, verification:{status:"awaiting"}};
+  const rows = summarizeBoardAdmissions(candidates, [held, fresh], [previouslyHeld]);
+  assert.deepEqual(rows, [{board:"greenhouse:example",company:"Example|<name>",candidateOpportunities:3,proposedCurrent:2,proposedNew:1}]);
+  assert.match(formatBoardAdmissions(rows), /not published gains/);
+  assert.doesNotMatch(formatBoardAdmissions(rows), /Example\|<name>/);
+});
+
 test("reviewed custom careers routes identify only their fixed employer board", () => {
   for (const [url, key, company] of [
+    ["https://block.xyz/careers/jobs/5428321008", "block", "Block"],
+    ["https://www.okta.com/company/careers/opportunity/8404911", "okta", "Okta"],
+    ["https://www.qualtrics.com/careers/us/en/job/8335545", "qualtrics", "Qualtrics"],
     ["https://www.brex.com/careers/8924533002", "brex", "Brex"],
     ["https://careers.formlabs.com/job/8400855/apply/", "formlabs", "Formlabs"],
     ["https://careers.roblox.com/jobs/8242621", "roblox", "Roblox"],
@@ -45,6 +60,17 @@ test("reviewed custom careers routes identify only their fixed employer board", 
     "https://www.samsara.com/company/careers/roles?gh_jid=8214590", "https://www.mongodb.com/careers/job",
     "https://www.jumptrading.com/hr/job", "invalid",
   ]) assert.equal(reviewedGreenhouseBoard(url), null, url);
+});
+
+test("Block API HTTP links upgrade only on reviewed posting paths and retain identity", () => {
+  const url = "http://block.xyz/careers/jobs/5428321008";
+  const secure = reviewedAtsApplicationUrl(url);
+  assert.equal(secure, url.replace("http:", "https:"));
+  assert.equal(opportunityIdentity(secure), opportunityIdentity(url));
+  assert.equal(reviewedGreenhouseBoard(url), null, "HTTP itself grants no reviewed board evidence");
+  for (const value of ["http://lookalike.example/careers/jobs/5428321008", "http://user:pass@block.xyz/careers/jobs/5428321008",
+    "http://block.xyz:8080/careers/jobs/5428321008", "http://block.xyz/careers/jobs", "http://block.xyz/careers/jobs/not-a-job"])
+    assert.equal(reviewedAtsApplicationUrl(value), value);
 });
 
 test("custom careers links still require exact current ATS membership and preserve qualification gates", async () => {

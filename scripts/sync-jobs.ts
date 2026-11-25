@@ -3,6 +3,7 @@ import { careerPageEvidenceAt, needsCareerPageEvidence } from "../lib/ingestion/
 import { mirrorEvidenceAt } from "../lib/ingestion/employer-mirrors";
 import { publicIndexEvidenceAt } from "../lib/ingestion/public-career-index";
 import { buildVerificationBacklog } from "../lib/ingestion/verification-backlog";
+import { summarizeBoardAdmissions, formatBoardAdmissions } from "../lib/ingestion/board-admissions";
 import { trustedWorkdayFeedPolicy, type TrustedFeedState } from "../lib/ingestion/trusted-workday-feed";
 import { buildOutageHolds, validateOutageHolds } from "../lib/ingestion/outage-holds";
 import { availabilityInventory } from "../lib/ingestion/availability-inventory";
@@ -516,6 +517,10 @@ async function main() {
     acceptedUrls: [...jobs, ...merged.values()].map(job => job.applyUrl), outcomeFor: screening.opportunityOutcomeFor,
     decisionsFor: screening.decisionsFor });
   const uniqueIntake = new Set(candidates.map(candidate => opportunityIdentity(candidate.applyUrl)).filter(Boolean)).size;
+  const boardAdmissions = summarizeBoardAdmissions(candidates, jobs, previousJobs);
+  const admissionSummary = formatBoardAdmissions(boardAdmissions);
+  console.log(admissionSummary);
+  if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY, admissionSummary);
   // Observations survive blocked publication. This preserves exact checkedAt
   // values, invalidations and queue progress, without changing admission rules.
   // Workday continuity is still limited to jobs that passed every admission
@@ -537,7 +542,7 @@ async function main() {
   try { assertCoverageSafe(coverage.collections); }
   catch (error) {
     await mkdir(path.join(root, ".cache"), { recursive: true });
-    await writeFile(path.join(root, ".cache/refresh-blocked.json"), `${JSON.stringify({ coverage, listingChanges, intake: { candidateRows: candidates.length, uniqueOpportunities: uniqueIntake, duplicateRows: candidates.length - uniqueIntake }, verificationBacklog, refreshDiagnostics: { sources: sourceDiagnostics, boards: boardRegistry, verification: verificationDiagnostics, scopedQueue: { eligible: scopedUrls.size, selected: scopedChecks.length, publishedSelected: scopedChecks.filter(([id]) => publishedScopedIds.has(id)).length, verified: verifiedScopedIds.size, paused: [...scopedUrls.values()].filter(url => !requestGate.canRequest(url)).length } } }, null, 2)}\n`);
+    await writeFile(path.join(root, ".cache/refresh-blocked.json"), `${JSON.stringify({ coverage, listingChanges, intake: { candidateRows: candidates.length, uniqueOpportunities: uniqueIntake, duplicateRows: candidates.length - uniqueIntake }, verificationBacklog, boardAdmissions, refreshDiagnostics: { sources: sourceDiagnostics, boards: boardRegistry, verification: verificationDiagnostics, scopedQueue: { eligible: scopedUrls.size, selected: scopedChecks.length, publishedSelected: scopedChecks.filter(([id]) => publishedScopedIds.has(id)).length, verified: verifiedScopedIds.size, paused: [...scopedUrls.values()].filter(url => !requestGate.canRequest(url)).length } } }, null, 2)}\n`);
     throw error;
   }
 
@@ -565,7 +570,7 @@ async function main() {
     checksCompleted: completedListingChecks,
     knownClosed: closedPostingsCaught,
     screening: snapshot.screening,
-  }), verificationBacklog, intake: {
+  }), verificationBacklog, boardAdmissions, intake: {
     candidateRows: candidates.length,
     uniqueOpportunities: uniqueIntake,
     duplicateRows: candidates.length - uniqueIntake,

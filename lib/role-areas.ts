@@ -126,7 +126,7 @@ function isStoreRetailRole(title: string, rawText = ""): boolean {
 }
 
 function excludedOperationsDomain(title: string): boolean {
-  if (/\b(?:talent acquisition|recruiting|human resources?|people|legal|law|l&d|learning and development|learning & development|talent development|internship program (?:manager|management))\b/i.test(title)) return true;
+  if (/\b(?:talent acquisition|talent operations?|recruiting|human resources?|people|legal|law|l&d|learning and development|learning & development|talent development|internship program (?:manager|management))\b/i.test(title)) return true;
   // Supply-chain and logistics work remain supported in clinical employers.
   return /\b(?:clinical|laboratory|lab)\b/i.test(title)
     && !/\bsupply chain\b|\bprocurement\b|\blogistics\b|\binventory\b|\bproduction planning\b|\bvendor management\b/i.test(title);
@@ -181,7 +181,7 @@ export function classifyRoleTags(job: RoleClassificationCandidate): RoleTag[] {
     || /\b(?:medical device|medical technology|supplier quality|manufacturing quality|design quality|quality systems?|quality control|failure analysis|capa|gmp|iso 13485|fda)\b/.test(rawText);
   const customerFacingContext = /\b(?:customer-facing|client-facing|work(?:ing)? (?:directly )?with (?:our )?(?:customers|clients)|support(?:ing)? (?:our )?(?:customers|clients)|customer deployments?|client implementations?|pre[- ]sales|post[- ]sales|technical sales|field applications?)\b/.test(rawText);
 
-  const internalPeopleRole = /\b(?:talent acquisition|recruiting|human resources?|people operations?)\b/.test(title);
+  const internalPeopleRole = /\b(?:talent acquisition|talent operations?|recruiting|human resources?|people operations?)\b/.test(title);
   if (!internalPeopleRole) addTitle("solutions-support", /^\s*(?:(?:associate|junior) )?support engineer(?:ing)?\b|\b(?:product|software) support(?: \([^)]*\))?\s*(?:[-\u2013]\s*)?engineer(?:ing)?\b|\b(?:technical|application|cloud|platform) support engineer(?:ing)?\b|\bcustomer support engineer(?:ing)?\b|^\s*(?:(?:associate|junior) )?solutions? engineer(?:ing)?\b|\b(?:technical|customer) solutions? engineer(?:ing)?\b|^\s*(?:(?:associate|junior) )?implementation engineer(?:ing)?\b|\bcustomer engineer(?:ing)?\b|\bfield applications? engineer(?:ing)?\b|\bsales engineer(?:ing)?\b|\bdeployment engineer(?:ing)?\b|\bforward deployed (?:software |infrastructure |ai )?engineer(?:ing)?\b|\btechnical account manager\b/);
   if (!internalPeopleRole && /\bimplementation engineer(?:ing)?\b/.test(title) && customerFacingContext) tags.add("solutions-support");
   const contextualSolutionsTitle = /\bsolutions? engineer(?:ing)?\b/.test(title);
@@ -243,7 +243,7 @@ export function getJobRoleTags(job: RoleCandidate): RoleTag[] {
     if (!isRoleTag(tag) || tag === "design" || tag === "program-management") return false;
     if (tag === "solutions-support" && !current.includes(tag)) {
       return !job.rawText && /\b(?:solutions?|applications?) engineer(?:ing)?\b/i.test(job.title)
-        && !/\b(?:talent acquisition|recruiting|human resources?|people operations?)\b/i.test(job.title);
+        && !/\b(?:talent acquisition|talent operations?|recruiting|human resources?|people operations?)\b/i.test(job.title);
     }
     return true;
   });

@@ -851,6 +851,15 @@ test("store-floor retail roles cannot inherit professional sales tags", () => {
   assert.ok(classifyRoleTags({ title: "Retail Data Analyst", category: "New grad" }).includes("analytics"));
 });
 
+test("talent operations stay outside business operations without excluding technical talent platforms", () => {
+  for (const title of ["Junior Talent Operations Specialist", "Talent Operations Intern", "Talent Operation Analyst"]) {
+    assert.deepEqual(classifyRoleTags({title, category:"New grad"}), []);
+    assert.deepEqual(getJobRoleTags({title, category:"New grad", roleTags:["operations-supply-chain"]}), []);
+  }
+  assert.ok(classifyRoleTags({title:"Software Engineer - Talent Platform",category:"New grad"}).includes("software-engineering"));
+  assert.ok(classifyRoleTags({title:"Business Operations Analyst",category:"New grad"}).includes("operations-supply-chain"));
+});
+
 test("role taxonomy supports multiple tags, broad families, and legacy links", () => {
   const semiconductor = { title: "Materials and Process Engineering Intern", category: "Internship" };
   assert.deepEqual(classifyRoleTags(semiconductor), ["process-manufacturing", "materials-chemical"]);

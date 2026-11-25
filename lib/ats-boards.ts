@@ -1,7 +1,7 @@
 import type { CandidateJob } from "./source-normalization";
 import { canonicalizeUrl, inferTerm, inferWorkMode, jobIdentity } from "./source-normalization";
 import { hasRequiredExperienceConflict, qualificationText } from "./early-career-evidence";
-import { reviewedGreenhouseBoard } from "./reviewed-ats-domains";
+import { reviewedAtsApplicationUrl, reviewedGreenhouseBoard } from "./reviewed-ats-domains";
 
 export type AtsProvider = "greenhouse" | "lever" | "ashby";
 
@@ -177,7 +177,7 @@ export async function fetchAtsBoard(board: AtsBoard, now = new Date()): Promise<
   const jobs: CandidateJob[] = [];
 
   for (const job of parsed) {
-    const applyUrl = canonicalizeUrl(job.applyUrl);
+    const applyUrl = canonicalizeUrl(reviewedAtsApplicationUrl(job.applyUrl));
     const identity = applyUrl && jobIdentity(applyUrl);
     if (!applyUrl || !identity) continue;
     // An Ashby posting can have a real URL but an empty title. Hold that
