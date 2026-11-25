@@ -13,6 +13,20 @@ import { hasRequiredExperienceConflict } from "../early-career-evidence";
 
 export type RecoverySeed = {company: string; url: string};
 export type RecoveryState = Record<string, {checkedAt: string; status: "live" | "unknown"; accessDenied?: boolean; candidate?: CandidateJob}>;
+export type RecoveryDenial = { url: string; checkedAt: string };
+
+// Negative evidence is scoped to the original full opportunity, including the
+// Workday career site. Legacy host/requisition-only records cannot create holds.
+export function recentRecoveryDenials(seeds: RecoverySeed[], state: RecoveryState, now: Date) {
+  const denials = new Map<string, RecoveryDenial>();
+  for (const seed of seeds) {
+    const identity = opportunityIdentity(seed.url), entry = identity ? state[identity] : undefined;
+    const age = now.getTime() - Date.parse(entry?.checkedAt ?? "");
+    if (identity && recoveryEndpoint(seed) && entry?.status === "unknown" && entry.accessDenied === true
+      && age >= 0 && age < 24 * 3600_000) denials.set(identity, { url: seed.url, checkedAt: entry.checkedAt });
+  }
+  return denials;
+}
 const liveThisRun = new WeakMap<CandidateJob, string>();
 export const recoveryEvidenceAt = (candidate: CandidateJob) => liveThisRun.get(candidate);
 export const isRecoveryLive = (candidate: CandidateJob) => liveThisRun.has(candidate);

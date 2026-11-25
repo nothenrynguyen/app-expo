@@ -16,6 +16,7 @@ export function outageHoldSource(row: Removal): string | null {
   // investigation, not an outage exception.
   if (e.workdayChecks.some(c => c.status === "live") || e.postingCheck?.currentRun && e.postingCheck.status === "live"
     || e.board?.membership === "present") return null;
+  if (e.recoveryDenial) return "Employer recovery";
   if (e.board?.outage) return e.board.id;
   const failed = e.sources.find(s => s.status === "failed" && s.outage);
   if (failed) return failed.diagnosticName ?? failed.name;

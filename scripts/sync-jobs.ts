@@ -34,7 +34,7 @@ import { assessCoverage, assertCoverageSafe } from "../lib/ingestion/coverage-gu
 import { buildReviewedEmployerCoverage } from "../lib/ingestion/reviewed-employer-coverage";
 import { permissionHeldSourceNames } from "../lib/ingestion/source-permissions";
 import { admitWithCurrentEmployerEvidence, continuityMatcher, type EmployerContinuity } from "../lib/ingestion/employer-continuity";
-import { isRecoveryLive, recoveryEvidenceAt } from "../lib/ingestion/employer-recovery";
+import { isRecoveryLive, recoveryEvidenceAt, recentRecoveryDenials } from "../lib/ingestion/employer-recovery";
 import { parseSmartRecruitersJobUrl } from "../lib/smartrecruiters";
 import { isInCollection } from "../lib/job-collections";
 import { deduplicateCrossSourceJobs } from "../lib/job-dedup";
@@ -484,6 +484,7 @@ async function main() {
       return boardRegistry.some(record => record.status === "failed" && record.provider === board.provider && record.key.toLowerCase() === board.key.toLowerCase()) ? "unavailable" : null;
     },
     evidenceFor: createListingChangeEvidence({ startedAt, generatedAt: snapshot.generatedAt, listingHealth,
+      recoveryDenials: recentRecoveryDenials(previousJobs.map(job => ({company: job.company, url: job.applyUrl})), recoveryState ?? {}, observationTime),
       workdayChecks, boardRegistry, boardResults, sourceDiagnostics, retired, screeningFor: screening.decisionsFor }),
   };
   let proposedChanges = buildListingChanges(changeInput);

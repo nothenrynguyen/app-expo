@@ -8,7 +8,8 @@ import { assessCoverage, assertCoverageSafe } from "../lib/ingestion/coverage-gu
 import { lastVerificationAt, canRestoreHeldJob } from "../lib/ingestion/last-verification";
 import { workdayEvidenceKey } from "../lib/ingestion/workday-continuity";
 import { buildJobsSummary } from "../lib/job-summary";
-import { jobIdentity } from "../lib/source-normalization";
+import { jobIdentity, opportunityIdentity } from "../lib/source-normalization";
+import { recentRecoveryDenials, type RecoveryState } from "../lib/ingestion/employer-recovery";
 import { createSnapshotPoller } from "../lib/snapshot-polling";
 import { retainSavedDetails, missingSavedDetails } from "../lib/saved-job-details";
 import { availabilityInventory } from "../lib/ingestion/availability-inventory";
@@ -46,6 +47,45 @@ test("outage holds preserve IDs and positive timestamps without renewing verific
   assert.equal(again[0].verification?.since, now.toISOString());
   assert.equal(again[0].verification?.lastVerifiedAt, prior.lastVerifiedAt);
   assert.equal(buildOutageHolds(holds, changes(holds, [{...prior, lastVerifiedAt: now.toISOString()}]), now).length, 0);
+});
+
+test("recent exact recovery denials retain internal holds without granting current availability", () => {
+  const prior = job(), checkedAt = new Date(now.getTime() - 3600_000).toISOString();
+  const seeds = [{company:prior.company,url:prior.applyUrl}];
+  const denials = recentRecoveryDenials(seeds, {[opportunityIdentity(prior.applyUrl)!]:{status:"unknown",accessDenied:true,checkedAt}}, now);
+  const report = changes([prior], [], {boardRegistry:[], recoveryDenials:denials}, () => undefined);
+  assert.equal(report.removedOpportunities[0].category, "source-unavailable");
+  assert.equal(report.removedOpportunities[0].evidence?.recoveryDenial?.checkedAt, checkedAt);
+  const holds = buildOutageHolds([prior], report, now);
+  assert.equal(holds.length, 1);
+  assert.equal(holds[0].id, prior.id);
+  assert.equal(holds[0].lastVerifiedAt, prior.lastVerifiedAt);
+  assert.equal(holds[0].verification?.source, "Employer recovery");
+  validateOutageHolds([prior], [], holds, report, now);
+  assert.equal(availabilityInventory([prior], holds, {}).length, 0);
+  assert.equal(canRestoreHeldJob(holds[0], prior.lastVerifiedAt!, now), false);
+  for (const reason of ["role", "location", "employer", "expired", "source-permission"] as const)
+    assert.equal(buildOutageHolds([prior], changes([prior], [], {boardRegistry:[],recoveryDenials:denials}, () => reason), now).length, 0);
+  assert.equal(buildOutageHolds([prior], changes([prior], [], {boardRegistry:[],recoveryDenials:denials,
+    workdayChecks:[{url:prior.applyUrl,status:"live"}]}, () => undefined), now).length, 0);
+});
+
+test("recovery denial holds reject stale, future, generic, cross-site and unproven records", () => {
+  const prior = job(), identity = opportunityIdentity(prior.applyUrl)!;
+  const seeds = [{company:prior.company,url:prior.applyUrl}];
+  for (const entry of [
+    {status:"unknown",accessDenied:true,checkedAt:new Date(now.getTime()-24*3600_000).toISOString()},
+    {status:"unknown",accessDenied:true,checkedAt:new Date(now.getTime()+1).toISOString()},
+    {status:"unknown",accessDenied:true,checkedAt:"invalid"},
+    {status:"unknown",checkedAt:now.toISOString()},
+    {status:"live",accessDenied:true,checkedAt:now.toISOString()},
+  ] as RecoveryState[string][]) assert.equal(recentRecoveryDenials(seeds, {[identity]:entry}, now).size, 0);
+  const entry = {status:"unknown" as const,accessDenied:true,checkedAt:now.toISOString()};
+  assert.equal(recentRecoveryDenials(seeds, {[jobIdentity(prior.applyUrl)!]:entry}, now).size, 0);
+  const foreign = prior.applyUrl.replace("/External/", "/Internal/");
+  assert.equal(recentRecoveryDenials(seeds, {[opportunityIdentity(foreign)!]:entry}, now).size, 0);
+  const forged = new Map([[identity,{url:foreign,checkedAt:now.toISOString()}]]);
+  assert.equal(buildOutageHolds([prior], changes([prior], [], {boardRegistry:[],recoveryDenials:forged}, () => undefined), now).length, 0);
 });
 
 test("closures, policy exclusions, positive conflicts and unexplained loss never become outage holds", () => {

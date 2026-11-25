@@ -6,6 +6,7 @@ import { employerBoardIdentity } from "./reviewed-employer-coverage";
 import type { BoardRefreshDiagnostic, SourceRefreshDiagnostic } from "./types";
 import type { WorkdayCheck } from "./workday-continuity";
 import type { ScreeningReason } from "./screening";
+import type { RecoveryDenial } from "./employer-recovery";
 
 export function createListingChangeEvidence(input: {
   startedAt: Date; generatedAt: string;
@@ -13,6 +14,7 @@ export function createListingChangeEvidence(input: {
   boardRegistry: BoardRefreshDiagnostic[]; boardResults: Map<string, AtsBoardResult>;
   sourceDiagnostics: SourceRefreshDiagnostic[]; retired: Set<string>;
   screeningFor?: (url: string) => Array<{ url: string; reason: ScreeningReason; detail: string | null }>;
+  recoveryDenials?: Map<string, RecoveryDenial>;
 }) {
   const checks = Map.groupBy(input.workdayChecks, check => opportunityIdentity(check.url));
   const records = new Map(input.boardRegistry.map(record => [record.id ?? (record.provider === "workday" ? null : createAtsBoard({ provider: record.provider, key: record.key, company: record.company }).id), record]));
@@ -26,7 +28,12 @@ export function createListingChangeEvidence(input: {
     // exact requisition evidence; current Workday checks retain the full site.
     const health = boardId?.startsWith("workday:") ? undefined : input.listingHealth[jobIdentity(job.applyUrl) ?? ""];
     const currentRun = !!health && Date.parse(health.checkedAt) >= input.startedAt.getTime() && Date.parse(health.checkedAt) <= Date.parse(input.generatedAt);
+    const denial = input.recoveryDenials?.get(opportunityIdentity(job.applyUrl) ?? "");
+    const denialAge = Date.parse(input.generatedAt) - Date.parse(denial?.checkedAt ?? "");
+    const recoveryDenial = denial && opportunityIdentity(denial.url) === opportunityIdentity(job.applyUrl)
+      && denialAge >= 0 && denialAge < 24 * 3600_000 ? denial : null;
     return {
+      ...(recoveryDenial ? { recoveryDenial } : {}),
       screening: input.screeningFor?.(job.applyUrl) ?? [],
       runStartedAt: input.startedAt.toISOString(),
       postingCheck: health ? { status: health.status, checkedAt: health.checkedAt, httpStatus: health.httpStatus, currentRun } : null,

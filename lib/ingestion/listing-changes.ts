@@ -16,7 +16,7 @@ function diagnose(reason: RemovalReason, evidence?: ListingChangeEvidence) {
   else if (["role", "location", "employer", "expired", "source-permission"].includes(reason) || checks.some(check => check.status === "ineligible")) category = "scope-exclusion";
   else if (reason === "deduplicated") category = "deduplicated";
   else if (reason === "pendingVerification") category = "verification-pending";
-  else if (checks.some(check => check.status === "unknown") || posting?.status === "unknown" || posting?.status === "unavailable"
+  else if (evidence?.recoveryDenial || checks.some(check => check.status === "unknown") || posting?.status === "unknown" || posting?.status === "unavailable"
     || evidence?.board?.status === "failed" || evidence?.board?.outcome && evidence.board.outcome !== "healthy"
     || evidence?.sources.some(source => source.status === "failed" || source.outcome && source.outcome !== "healthy")) category = "source-unavailable";
   else category = "unresolved";
