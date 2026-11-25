@@ -6,7 +6,7 @@ type Fetcher = typeof fetch;
 
 const HOUR = 3_600_000;
 const OFFSET = 17 * 60_000;
-const REPO = "nothenrynguyen/app-expo";
+const REPO = "nothenrynguyen/empluzzed";
 const API = `https://api.github.com/repos/${REPO}/actions/workflows/sync-jobs.yml`;
 const SITE_SUMMARY = "https://empluzzed.fyi/summary.json";
 const REPO_SUMMARY = `https://raw.githubusercontent.com/${REPO}/main/public/summary.json`;

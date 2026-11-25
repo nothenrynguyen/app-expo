@@ -40,7 +40,7 @@ test("stale snapshot triggers only the fixed repository workflow and slot", asyn
   const f = schedulerFixture();
   assert.deepEqual(await checkRefresh(env, now, f.fetcher), { status: "dispatched", slot, attempt: 1 });
   const dispatch = f.calls.at(-1)!;
-  assert.equal(dispatch.url, "https://api.github.com/repos/nothenrynguyen/app-expo/actions/workflows/sync-jobs.yml/dispatches");
+  assert.equal(dispatch.url, "https://api.github.com/repos/nothenrynguyen/empluzzed/actions/workflows/sync-jobs.yml/dispatches");
   assert.deepEqual(JSON.parse(String(dispatch.init?.body)), { ref: "main", inputs: { refresh_slot: slot } });
   assert.equal(dispatch.init?.redirect, "manual");
   for (const call of f.calls.filter((c) => !c.url.startsWith("https://api.github.com/"))) {

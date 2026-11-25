@@ -1,6 +1,11 @@
 // Exact employer-owned routes reviewed against the employer's public ATS
 // response and careers site. This identifies a board, never a live vacancy.
 const REVIEWED_ROUTES = [
+  { host: "www.brex.com", path: /^\/careers\/\d{6,}\/?$/, key: "brex", company: "Brex" },
+  { host: "www.mongodb.com", path: /^\/careers\/job\/?$/, key: "mongodb", company: "MongoDB", queryId: true },
+  { host: "www.jumptrading.com", path: /^\/hr\/job\/?$/, key: "jumptrading", company: "Jump Trading", queryId: true },
+  { host: "stripe.com", path: /^\/jobs\/search\/?$/, key: "stripe", company: "Stripe", queryId: true },
+  { host: "careers.withwaymo.com", path: /^\/jobs\/?$/, key: "waymo", company: "Waymo", queryId: true },
   { host: "careers.formlabs.com", path: /^\/job\/\d{6,}(?:\/apply)?\/?$/, key: "formlabs", company: "Formlabs" },
   { host: "careers.roblox.com", path: /^\/jobs\/\d{6,}\/?$/, key: "roblox", company: "Roblox" },
   { host: "www.samsara.com", path: /^\/company\/careers\/roles\/\d{6,}\/?$/, key: "samsara", company: "Samsara" },
@@ -14,7 +19,8 @@ export function reviewedGreenhouseBoard(value: string): { key: string; company: 
   try {
     const url = new URL(value);
     if (url.protocol !== "https:" || url.username || url.password || url.port) return null;
-    const route = REVIEWED_ROUTES.find(route => route.host === url.hostname && route.path.test(url.pathname));
+    const route = REVIEWED_ROUTES.find(route => route.host === url.hostname && route.path.test(url.pathname)
+      && (!route.queryId || url.searchParams.getAll("gh_jid").length === 1 && /^\d{6,}$/.test(url.searchParams.get("gh_jid") ?? "")));
     return route ? { key: route.key, company: route.company } : null;
   } catch {
     return null;

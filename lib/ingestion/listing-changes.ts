@@ -113,6 +113,14 @@ export function formatListingChangesSummary(report: ReturnType<typeof buildListi
     ...Object.entries(report.categoryCounts).map(([category, count]) => `| ${category} | ${count} |`), "",
     "Uncertain omissions are not confirmed closures. After publication: data/listing-changes.json (removedOpportunities). If blocked: the blocked-coverage Actions artifact (listingChanges.removedOpportunities).", ""];
   const pending = report.removedOpportunities.filter(row => row.requiresInvestigation);
+  if (pending.length) {
+    const groups = [...Map.groupBy(pending, row => `${row.company.replace(/[\r\n<>|]/g, " ")} | ${row.reason} | ${row.evidence?.board?.membership ?? "unknown"}`)]
+      .map(([key, rows]) => ({ key, count: rows.length }))
+      .sort((a, b) => b.count - a.count || a.key.localeCompare(b.key));
+    lines.push("### Largest investigation groups", "", "| Employer | Recorded reason | Exact board membership | Openings |", "| --- | --- | --- | ---: |",
+      ...groups.slice(0, 15).map(group => `| ${group.key} | ${group.count} |`), "",
+      "Counts are unique opportunities. Present membership with an admission failure needs investigation; absent membership alone does not prove closure.", "");
+  }
   for (const row of pending.slice(0, 10)) lines.push(`- ${row.company.replace(/[\r\n<>]/g, " ")}: ${row.category}. ${row.nextAction}`);
   if (pending.length > 10) lines.push(`See the report for ${pending.length - 10} additional cases.`);
   return lines.join("\n") + "\n";

@@ -10,7 +10,7 @@ import { assessCoverage, assertCoverageSafe } from "../lib/ingestion/coverage-gu
 import { buildListingChanges, formatListingChangesSummary } from "../lib/ingestion/listing-changes";
 import { createListingChangeEvidence } from "../lib/ingestion/listing-change-evidence";
 import { createScreeningTracker } from "../lib/ingestion/screening";
-import { jobIdentity } from "../lib/source-normalization";
+import { canonicalizeUrl, jobIdentity, opportunityIdentity } from "../lib/source-normalization";
 import { classifyRoleTags } from "../lib/role-areas";
 import type { PublicJob } from "../lib/jobs";
 import { boardRecoveryPolicy } from "../lib/ingestion/last-known-good";
@@ -24,6 +24,7 @@ const now = new Date("2026-10-29T05:00:00Z");
 
 test("reviewed custom careers routes identify only their fixed employer board", () => {
   for (const [url, key, company] of [
+    ["https://www.brex.com/careers/8924533002", "brex", "Brex"],
     ["https://careers.formlabs.com/job/8400855/apply/", "formlabs", "Formlabs"],
     ["https://careers.roblox.com/jobs/8242621", "roblox", "Roblox"],
     ["https://www.samsara.com/company/careers/roles/8214590?gh_jid=8214590", "samsara", "Samsara"],
@@ -69,6 +70,40 @@ const evidence = (overrides: Partial<Parameters<typeof createListingChangeEviden
 });
 const changesFor = (overrides: Partial<Parameters<typeof buildListingChanges>[0]> = {}) => buildListingChanges({
   generatedAt, previousGeneratedAt: "2026-10-29T04:00:00Z", previous: [priorJob], current: [], acceptedBeforeDedup: [], candidateUrls: [], outcomeFor: () => undefined, boardState: () => null, evidenceFor: evidence(), ...overrides,
+});
+
+test("reviewed query-based application links retain distinct exact posting identities", async () => {
+  for (const [base, key] of [["https://www.mongodb.com/careers/job/", "mongodb"],
+    ["https://www.jumptrading.com/hr/job", "jumptrading"], ["https://stripe.com/jobs/search", "stripe"],
+    ["https://careers.withwaymo.com/jobs", "waymo"]]) {
+    const first = `${base}?gh_jid=8346138&utm_source=test`;
+    const second = `${base}?gh_jid=8346144`;
+    assert.match(canonicalizeUrl(first)!, /gh_jid=8346138/);
+    assert.doesNotMatch(canonicalizeUrl(first)!, /utm_source/);
+    assert.notEqual(opportunityIdentity(first), opportunityIdentity(second));
+    assert.equal(discoverAtsBoard(first, "Example", "test")!.key, key);
+    for (const suffix of ["", "?gh_jid=bad", "?gh_jid=123", "?gh_jid=8346138&gh_jid=8346144"])
+      assert.equal(reviewedGreenhouseBoard(`${base}${suffix}`), null);
+    assert.equal(reviewedGreenhouseBoard(first.replace("https://", "http://")), null);
+    assert.equal(reviewedGreenhouseBoard(first.replace(new URL(first).hostname, "lookalike.example")), null);
+    const board = createAtsBoard({ provider: "greenhouse", key, company: "Example" });
+    const verify = createSourceListingVerifier({ boardResults: new Map([[board.id, { board, jobs: [], liveIdentities: new Set([jobIdentity(first)!]) }]]),
+      fetchImpl: async () => { throw new Error("No posting fallback"); } });
+    assert.equal(await verify(first), true);
+    assert.equal(await verify(second), false);
+  }
+});
+
+test("investigation summaries group unique opportunities and sanitize employer table cells", () => {
+  const a = {...priorJob, company: "Example|<corp>\n", applyUrl: "https://example.com/jobs/1234567"};
+  const alias = {...a, id: "alias", applyUrl: `${a.applyUrl}?utm_source=feed`};
+  const report = changesFor({ previous: [a, alias], evidenceFor: evidence() });
+  const summary = formatListingChangesSummary(report);
+  assert.equal(report.removedOpportunities.length, 1);
+  assert.match(summary, /Largest investigation groups/);
+  assert.match(summary, /not-returned-by-sources \| unknown \| 1/);
+  assert.doesNotMatch(summary, /Example\|<corp>/);
+  assert.match(summary, /absent membership alone does not prove closure/);
 });
 
 test("removal diagnoses require current posting evidence for closure, not board absence or stale screening", () => {

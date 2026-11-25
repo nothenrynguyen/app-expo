@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import type { PostedAtSource, PublicJob } from "./jobs";
 import { workdayOpportunityIdentity } from "./workday-identity";
+import { reviewedGreenhouseBoard } from "./reviewed-ats-domains";
 
 export type CandidateJob = Omit<PublicJob, "id" | "sources" | "verifiedCompany" | "linkedInUrl"> & {
   source: string;
@@ -23,7 +24,7 @@ export function canonicalizeUrl(value: string): string | null {
     url.hostname = url.hostname.toLowerCase();
     url.hash = "";
     for (const key of [...url.searchParams.keys()]) {
-      if (key.toLowerCase().startsWith("utm_") || TRACKING_PARAMS.has(key.toLowerCase()) || key.toLowerCase() === "gh_jid") {
+      if (key.toLowerCase().startsWith("utm_") || TRACKING_PARAMS.has(key.toLowerCase()) || key.toLowerCase() === "gh_jid" && !reviewedGreenhouseBoard(value)) {
         url.searchParams.delete(key);
       }
     }
@@ -41,7 +42,8 @@ export function jobIdentity(value: string): string | null {
   const url = new URL(canonical);
   const workdayId = url.pathname.match(/_(JR\d+)/i)?.[1];
   const greenhouseId = url.pathname.match(/(?:jobs|job)\/(\d{6,})/i)?.[1];
-  const greenhouseToken = /greenhouse\.io$/i.test(url.hostname) ? url.searchParams.get("token") : null;
+  const greenhouseToken = reviewedGreenhouseBoard(canonical) ? url.searchParams.get("gh_jid")
+    : /greenhouse\.io$/i.test(url.hostname) ? url.searchParams.get("token") : null;
   const microsoftId = url.searchParams.get("pid") ?? url.pathname.match(/job\/(\d{8,})/i)?.[1];
   const googleId = url.pathname.match(/results\/(\d{8,})/i)?.[1];
   const uuid = url.pathname.match(/\b([0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12})\b/i)?.[1];

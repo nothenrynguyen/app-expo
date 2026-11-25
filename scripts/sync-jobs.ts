@@ -512,6 +512,10 @@ async function main() {
   if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY, changeSummary);
   const coverage = { boards: boardCoverage, availability: listingChanges.availability,
     collections: assessCoverage(previousJobs, trackedJobs, listingChanges) };
+  const verificationBacklog = buildVerificationBacklog({ candidates,
+    acceptedUrls: [...jobs, ...merged.values()].map(job => job.applyUrl), outcomeFor: screening.opportunityOutcomeFor,
+    decisionsFor: screening.decisionsFor });
+  const uniqueIntake = new Set(candidates.map(candidate => opportunityIdentity(candidate.applyUrl)).filter(Boolean)).size;
   // Observations survive blocked publication. This preserves exact checkedAt
   // values, invalidations and queue progress, without changing admission rules.
   // Workday continuity is still limited to jobs that passed every admission
@@ -533,7 +537,7 @@ async function main() {
   try { assertCoverageSafe(coverage.collections); }
   catch (error) {
     await mkdir(path.join(root, ".cache"), { recursive: true });
-    await writeFile(path.join(root, ".cache/refresh-blocked.json"), `${JSON.stringify({ coverage, listingChanges, refreshDiagnostics: { sources: sourceDiagnostics, boards: boardRegistry, verification: verificationDiagnostics, scopedQueue: { eligible: scopedUrls.size, selected: scopedChecks.length, publishedSelected: scopedChecks.filter(([id]) => publishedScopedIds.has(id)).length, verified: verifiedScopedIds.size, paused: [...scopedUrls.values()].filter(url => !requestGate.canRequest(url)).length } } }, null, 2)}\n`);
+    await writeFile(path.join(root, ".cache/refresh-blocked.json"), `${JSON.stringify({ coverage, listingChanges, intake: { candidateRows: candidates.length, uniqueOpportunities: uniqueIntake, duplicateRows: candidates.length - uniqueIntake }, verificationBacklog, refreshDiagnostics: { sources: sourceDiagnostics, boards: boardRegistry, verification: verificationDiagnostics, scopedQueue: { eligible: scopedUrls.size, selected: scopedChecks.length, publishedSelected: scopedChecks.filter(([id]) => publishedScopedIds.has(id)).length, verified: verifiedScopedIds.size, paused: [...scopedUrls.values()].filter(url => !requestGate.canRequest(url)).length } } }, null, 2)}\n`);
     throw error;
   }
 
@@ -561,12 +565,10 @@ async function main() {
     checksCompleted: completedListingChecks,
     knownClosed: closedPostingsCaught,
     screening: snapshot.screening,
-  }), verificationBacklog: buildVerificationBacklog({ candidates,
-    acceptedUrls: [...jobs, ...merged.values()].map(job => job.applyUrl), outcomeFor: screening.opportunityOutcomeFor,
-    decisionsFor: screening.decisionsFor }), intake: {
+  }), verificationBacklog, intake: {
     candidateRows: candidates.length,
-    uniqueOpportunities: new Set(candidates.map(candidate => opportunityIdentity(candidate.applyUrl)).filter(Boolean)).size,
-    duplicateRows: candidates.length - new Set(candidates.map(candidate => opportunityIdentity(candidate.applyUrl)).filter(Boolean)).size,
+    uniqueOpportunities: uniqueIntake,
+    duplicateRows: candidates.length - uniqueIntake,
     trustedWorkdayFeed: { ...feedPolicy.counts, admitted: jobs.filter(job => fallbackAccepted.has(opportunityIdentity(job.applyUrl)!)).length },
     bySource: [...Map.groupBy(candidates, candidate => candidate.source)].map(([source, rows]) => ({
       source, rows: rows.length, uniqueOpportunities: new Set(rows.map(row => opportunityIdentity(row.applyUrl)).filter(Boolean)).size,
