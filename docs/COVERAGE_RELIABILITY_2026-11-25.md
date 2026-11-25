@@ -40,3 +40,9 @@ Local release checks: 276 tests and clean types pass. Full lint/export passed be
 2. Inspect the hosted blocked artifact or new snapshot, reconcile the 69-role pilot and compare all four live files.
 3. Let the existing bounded verification queue renew evidence; investigate remaining unexplained losses instead of weakening the guard.
 4. Continue employer identity and independently verified private-sector board expansion, measuring unique and actually published additions separately.
+
+## Publication checkpoint, November 25 at 04:12 Pacific
+
+Implementation `9efebe17` is published and Vercel reports successful deployment. All 276 tests, types, lint and static export pass. The existing scheduler is deployed at 100% version `6a5d23d4-587c-4f9c-ac3f-079ba288d3fe`, enabled on the unchanged `17,37,57 * * * *` schedule. Its next natural invocation is still unobserved. A single rerun of 45546139122 is collecting on current main; no new automation was created.
+
+Compatibility review tightened query preservation to the four query-identified routes only. Existing path-identified Samsara, Asana, Datadog and Brex URLs continue ignoring redundant `gh_jid`, preserving their prior identities. A regression check covers this explicitly; all 276 tests, types, lint and export pass again. No rejected snapshot or local observation state is published.

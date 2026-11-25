@@ -26,3 +26,12 @@ export function reviewedGreenhouseBoard(value: string): { key: string; company: 
     return null;
   }
 }
+
+// Only these routes need the query parameter to identify a posting. On routes
+// whose path already identifies the posting, it remains redundant tracking.
+export function reviewedGreenhouseQueryId(value: string): string | null {
+  if (!reviewedGreenhouseBoard(value)) return null;
+  const url = new URL(value);
+  return REVIEWED_ROUTES.some(route => route.queryId && route.host === url.hostname && route.path.test(url.pathname))
+    ? url.searchParams.get("gh_jid") : null;
+}

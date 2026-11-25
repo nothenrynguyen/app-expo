@@ -73,6 +73,9 @@ const changesFor = (overrides: Partial<Parameters<typeof buildListingChanges>[0]
 });
 
 test("reviewed query-based application links retain distinct exact posting identities", async () => {
+  for (const url of ["https://www.samsara.com/company/careers/roles/8214590", "https://www.asana.com/jobs/apply/8357334",
+    "https://careers.datadoghq.com/detail/8186363", "https://www.brex.com/careers/8924533002"])
+    assert.equal(opportunityIdentity(`${url}?gh_jid=9999999`), opportunityIdentity(url), "Path-based identities retain their existing normalization");
   for (const [base, key] of [["https://www.mongodb.com/careers/job/", "mongodb"],
     ["https://www.jumptrading.com/hr/job", "jumptrading"], ["https://stripe.com/jobs/search", "stripe"],
     ["https://careers.withwaymo.com/jobs", "waymo"]]) {
