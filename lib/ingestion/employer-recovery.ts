@@ -1,5 +1,5 @@
 import { createWorkdayBoard, parseWorkdayJob } from "../workday";
-import { parseSmartRecruitersJobUrl } from "../smartrecruiters";
+import { parseSmartRecruitersJobUrl, smartRecruitersOpportunityIdentity } from "../smartrecruiters";
 import { canonicalizeUrl, inferTerm, inferWorkMode, jobIdentity, opportunityIdentity, type CandidateJob } from "../source-normalization";
 import type { PublicJob } from "../jobs";
 import { currentWorkdayEvidence, type WorkdayCheck } from "./workday-continuity";
@@ -86,12 +86,29 @@ function recoveryCandidate(candidate: CandidateJob): CandidateJob {
   return {...candidate, applyUrl: canonicalizeUrl(candidate.applyUrl)!, sourceActive: true, source: "Employer recovery", roleTags, rawText: `${candidate.title} ${candidate.location} ${roleTags.map(tag => ROLE_TAGS.find(role => role.value === tag)?.label ?? "").join(" ")}`};
 }
 
+// Old URL-keyed SmartRecruiters state is attributable to an exact native
+// posting. Preserve its observation time; newer negative evidence wins ties.
+export function migrateSmartRecoveryState(seeds: RecoverySeed[], saved: RecoveryState): RecoveryState {
+  const state = {...saved};
+  const allowed = new Map(seeds.map(seed => [smartRecruitersOpportunityIdentity(seed.url), seed]));
+  for (const [oldKey, entry] of Object.entries(saved)) {
+    const key = smartRecruitersOpportunityIdentity(oldKey), seed = key ? allowed.get(key) : undefined;
+    if (!key || !seed || !Number.isFinite(Date.parse(entry.checkedAt))) continue;
+    if (entry.status === "live" && (!entry.candidate || smartRecruitersOpportunityIdentity(entry.candidate.applyUrl) !== key || entry.candidate.company !== seed.company)) continue;
+    const current = state[key];
+    if (!current || Date.parse(entry.checkedAt) > Date.parse(current.checkedAt)
+      || entry.checkedAt === current.checkedAt && entry.status === "unknown") state[key] = entry;
+    delete state[oldKey];
+  }
+  return state;
+}
+
 export async function loadEmployerRecovery(seeds: RecoverySeed[], saved: RecoveryState, now = new Date(), fetcher: typeof fetch = fetch, limit = 500, options: {
   previousJobs?: PublicJob[]; seenUrls?: string[]; workdayPostings?: CandidateJob[]; workdayChecks?: WorkdayCheck[];
   canRequest?: (url: string) => boolean;
 } = {}) {
   if (!Number.isInteger(limit) || limit < 0 || limit > 500) throw new Error("Recovery request budget must be an integer from 0 to 500");
-  const state: RecoveryState = {...saved};
+  const state: RecoveryState = migrateSmartRecoveryState(seeds, saved);
   const candidates: CandidateJob[] = [];
   const unique = [...new Map(seeds.filter(seed => seed.company?.trim() && recoveryEndpoint(seed)).map(seed => [opportunityIdentity(seed.url)!, seed])).entries()];
   // Import legacy positive entries only when their full opportunity and employer

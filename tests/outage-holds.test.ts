@@ -172,3 +172,15 @@ test("known saved-ID aliases cannot inflate counts or bypass a held opportunity"
   const held = buildOutageHolds([canonical], changes([canonical]), now);
   assert.equal(availabilityInventory([alias], held, aliases).length, 0);
 });
+
+
+test("SmartRecruiters holds preserve every published alias without renewing positive evidence",()=>{
+  const bare="https://jobs.smartrecruiters.com/Example/744000123456789";
+  const a={...job(101),applyUrl:bare}, b={...job(102),applyUrl:bare+"-software-intern?oga=true"};
+  const report=changes([a,b],[],{recoveryDenials:new Map([[opportunityIdentity(bare)!,{url:bare,checkedAt:now.toISOString()}]])});
+  const holds=buildOutageHolds([a,b],report,now);
+  assert.equal(holds.length,1);
+  assert.deepEqual(holds[0].previousIds?.sort(),[a.id,b.id].sort());
+  assert.equal(holds[0].lastVerifiedAt,b.lastVerifiedAt);
+  validateOutageHolds([a,b],[],holds,report,now);
+});

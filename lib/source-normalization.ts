@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import type { PostedAtSource, PublicJob } from "./jobs";
 import { workdayOpportunityIdentity } from "./workday-identity";
+import { smartRecruitersOpportunityIdentity } from "./smartrecruiters";
 import { reviewedGreenhouseQueryId } from "./reviewed-ats-domains";
 
 export type CandidateJob = Omit<PublicJob, "id" | "sources" | "verifiedCompany" | "linkedInUrl"> & {
@@ -58,6 +59,8 @@ export function stableJobId(url: string, company: string, title: string): string
 // Opportunity matching is separate from legacy URL-health cache keys. Do not
 // copy host-only cached trust into a different employer career site.
 export function opportunityIdentity(value: string): string | null {
+  const smart = smartRecruitersOpportunityIdentity(value);
+  if (smart) return smart;
   const workday = workdayOpportunityIdentity(value);
   if (workday) return workday;
   const canonical = canonicalizeUrl(value);

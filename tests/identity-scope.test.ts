@@ -106,3 +106,49 @@ test("saved aliases retain status, details and tracker notes without requiring s
   registerJobIdAliases([{...job("collision-a"), previousIds: ["ambiguous-old"]}, {...job("collision-b"), previousIds: ["ambiguous-old"]}]);
   assert.equal(canonicalJobId("ambiguous-old"), "ambiguous-old");
 });
+
+
+test("SmartRecruiters exact native identities preserve published IDs, dates and saved history", async () => {
+  const {smartRecruitersOpportunityIdentity, parseSmartRecruitersJobUrl, applySmartRecruitersPosting} = await import("../lib/smartrecruiters");
+  const {preserveSmartRecruitersJobIds} = await import("../lib/ingestion/preserve-job-ids");
+  const {sourceReviewHoldIdentity} = await import("../lib/ingestion/source-review-holds");
+  const {planPublicationDates, emptyPublicationDates} = await import("../lib/ingestion/publication-dates");
+  const bare = "https://jobs.smartrecruiters.com/Example/744000123456789";
+  const slug = bare + "-software-intern?oga=true";
+  assert.equal(opportunityIdentity(bare), opportunityIdentity(slug));
+  assert.equal(sourceReviewHoldIdentity(bare), sourceReviewHoldIdentity(slug));
+  for (const value of [bare.replace("https:", "http:"), bare.replace("https://", "https://user:pass@"), bare.replace(".com/", ".com:8443/"), bare + "/apply"])
+    assert.equal(parseSmartRecruitersJobUrl(value), null);
+  assert.notEqual(smartRecruitersOpportunityIdentity(bare), smartRecruitersOpportunityIdentity(bare.replace("Example", "Other")));
+  assert.notEqual(smartRecruitersOpportunityIdentity(bare), smartRecruitersOpportunityIdentity(bare.replace("789", "790")));
+  const previous = [{...job("smart-old-a", bare), firstPublishedAt:"2026-10-01T00:00:00Z"}, {...job("smart-old-b", slug), firstPublishedAt:"2026-10-02T00:00:00Z"}];
+  const compact = deduplicateCrossSourceJobs(previous);
+  assert.equal(compact.length, 1);
+  const [current] = preserveSmartRecruitersJobIds([{...compact[0], id:"never-published"}], previous, {});
+  assert.deepEqual(current.previousIds?.sort(), ["smart-old-a", "smart-old-b"]);
+  const aliases = collectJobIdAliases([current], {});
+  assert.equal(preserveSmartRecruitersJobIds([job("unpublished-return", slug)], [], aliases)[0].id, current.id);
+  assert.deepEqual(preserveSmartRecruitersJobIds([job("unpublished-return", slug)], [], aliases)[0].previousIds?.sort(), current.previousIds?.sort());
+  registerJobIdAliases([current]);
+  assert.deepEqual(parseSavedJobIds('["smart-old-a","smart-old-b"]'), [current.id]);
+  assert.deepEqual(parseApplicationStatuses('{"smart-old-a":"Applied"}'), {[current.id]:"Applied"});
+  const planned = planPublicationDates([current], [], previous, emptyPublicationDates(), "2026-11-25T00:00:00Z", aliases);
+  assert.equal(Date.parse(planned.jobs[0].firstPublishedAt!), Date.parse(previous[0].firstPublishedAt));
+  const candidate = {...job("candidate", bare), source:"Test", rawText:"Software internship"};
+  const posting = {id:"744000123456789", company:{identifier:"Example"}, active:true, visibility:"PUBLIC", typeOfEmployment:{id:"intern"}};
+  assert.equal(applySmartRecruitersPosting(candidate, posting).category, "Internship");
+  assert.equal(applySmartRecruitersPosting(candidate, {...posting,id:"other"}).category, candidate.category);
+  assert.equal(applySmartRecruitersPosting(candidate, {...posting,visibility:"INTERNAL"}).category, candidate.category);
+});
+
+test("SmartRecruiters alias compaction passes coverage while real posting losses block", () => {
+  const previous = Array.from({length:100}, (_,i)=>job(`smart-row-${i}`, `https://jobs.smartrecruiters.com/Example/${744000000000000 + Math.floor(i/2)}${i%2 ? "-other-title?oga=true" : ""}`));
+  const current = deduplicateCrossSourceJobs(previous);
+  assert.equal(current.length,50);
+  const input = {generatedAt:"2026-11-25T00:00:00Z",previousGeneratedAt:null,previous,current,acceptedBeforeDedup:current,candidateUrls:current.map(j=>j.applyUrl),outcomeFor:()=>undefined,boardState:()=>null};
+  const changes = buildListingChanges(input);
+  assert.equal(changes.removedOpportunities.length,0);
+  assert.equal(assessCoverage(previous,current,changes)[1].blocked,false);
+  const missing = buildListingChanges({...input,current:[],acceptedBeforeDedup:[]});
+  assert.equal(assessCoverage(previous,[],missing)[1].blocked,true);
+});

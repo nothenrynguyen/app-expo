@@ -1,9 +1,10 @@
 import { jobIdentity, type CandidateJob } from "../source-normalization";
 import type { JobSource } from "../source-catalog";
 import { workdayRequisitionIdentity } from "../job-dedup";
+import { smartRecruitersOpportunityIdentity } from "../smartrecruiters";
 
 export function sourceReviewHoldIdentity(url: string): string | null {
-  return workdayRequisitionIdentity(url) ?? jobIdentity(url);
+  return workdayRequisitionIdentity(url) ?? smartRecruitersOpportunityIdentity(url) ?? jobIdentity(url);
 }
 
 // Explicit local review decisions apply across feeds so another source cannot

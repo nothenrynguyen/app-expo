@@ -1106,7 +1106,7 @@ test("last-known-good recovery preserves only missing jobs that still pass valid
 });
 
 test("SmartRecruiters records replace source-list age with employer date and status", () => {
-  const url = "https://jobs.smartrecruiters.com/InbulksCorp/743999750129753/example";
+  const url = "https://jobs.smartrecruiters.com/InbulksCorp/743999750129753-example";
   assert.deepEqual(parseSmartRecruitersJobUrl(url), {
     companyIdentifier: "InbulksCorp",
     jobId: "743999750129753",

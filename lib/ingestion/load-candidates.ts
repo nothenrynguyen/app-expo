@@ -11,7 +11,7 @@ import { createAtsBoard, discoverAtsBoard, fetchAtsBoard, isEarlyCareerTitle, ty
 import { applyMicrosoftCareersPosting, fetchMicrosoftCareersPosting, parseMicrosoftCareersJobUrl } from "../microsoft-careers";
 import { applySmartRecruitersPosting, fetchSmartRecruitersPosting, parseSmartRecruitersJobUrl } from "../smartrecruiters";
 import type { JobSource } from "../source-catalog";
-import { canonicalizeUrl, inferTerm, inferWorkMode, jobIdentity, type CandidateJob } from "../source-normalization";
+import { canonicalizeUrl, inferTerm, inferWorkMode, jobIdentity, opportunityIdentity, type CandidateJob } from "../source-normalization";
 import { parseApplyGuySource, parseKeryxSource, parseMarkdownSource, sourceAllowsAtsExpansion } from "../source-parsers";
 import { createWorkdayBoard, fetchWorkdayBoard, type WorkdayBoardSeed } from "../workday";
 import { inBatches } from "./concurrency";
@@ -327,14 +327,14 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
   }
   const smartRecruitersUrls = new Map<string, string>();
   for (const candidate of candidates) {
-    const identity = jobIdentity(candidate.applyUrl);
+    const identity = opportunityIdentity(candidate.applyUrl);
     if (candidate.source !== "Employer recovery" && identity && parseSmartRecruitersJobUrl(candidate.applyUrl)) smartRecruitersUrls.set(identity, candidate.applyUrl);
   }
   const smartRecruitersEntries = [...smartRecruitersUrls];
   const smartRecruitersFetches = await inBatches(smartRecruitersEntries, 12, async ([identity, url]) => ({ identity, posting: await fetchSmartRecruitersPosting(url) }));
   const smartRecruitersPostings = new Map(smartRecruitersFetches.flatMap((result) => result.status === "fulfilled" && result.value.posting ? [[result.value.identity, result.value.posting] as const] : []));
   for (let index = 0; index < candidates.length; index += 1) {
-    const identity = jobIdentity(candidates[index].applyUrl);
+    const identity = opportunityIdentity(candidates[index].applyUrl);
     const posting = identity ? smartRecruitersPostings.get(identity) : null;
     if (posting) candidates[index] = applySmartRecruitersPosting(candidates[index], posting);
   }

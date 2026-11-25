@@ -1,6 +1,7 @@
 import type { PublicJob } from "../jobs";
 import { createHash } from "node:crypto";
 import { workdayOpportunityIdentity } from "../workday-identity";
+import { smartRecruitersOpportunityIdentity } from "../smartrecruiters";
 import legacy from "../../data/workday-legacy-ids.json";
 import publishedAliases from "../../data/job-id-aliases.json";
 
@@ -25,6 +26,32 @@ export function preserveWorkdayJobIds(current: PublicJob[], previous: PublicJob[
       ...((legacy as Record<string, string[]>)[key] ?? [])])].filter(value => value !== id);
     return { ...job, id, ...(previousIds.length ? { previousIds } : {}) };
   });
+}
+
+// Only actually published IDs become aliases. Native posting identity is stable
+// across slug and tracking changes, including a return after a snapshot gap.
+export function preserveSmartRecruitersJobIds(current: PublicJob[], previous: PublicJob[], known: Record<string, string> = publishedAliases): PublicJob[] {
+  const prior = new Map<string, PublicJob[]>();
+  for (const job of previous) {
+    const key = smartRecruitersOpportunityIdentity(job.applyUrl);
+    if (key) prior.set(key, [...(prior.get(key) ?? []), job]);
+  }
+  const aliasesByTarget = new Map<string, string[]>();
+  for (const [old, target] of Object.entries(known)) aliasesByTarget.set(target, [...(aliasesByTarget.get(target) ?? []), old]);
+  return current.map(job => {
+    const key = smartRecruitersOpportunityIdentity(job.applyUrl);
+    if (!key) return job;
+    const id = createHash("sha256").update(key).digest("hex").slice(0, 24);
+    const previousIds = [...new Set([...(aliasesByTarget.get(id) ?? []),
+      ...(prior.get(key) ?? []).flatMap(old => [old.id, ...(old.previousIds ?? [])])])].filter(old => old !== id);
+    const result = {...job, id};
+    delete result.previousIds;
+    return {...result, ...(previousIds.length ? {previousIds} : {})};
+  });
+}
+
+export function preserveEmployerJobIds(current: PublicJob[], previous: PublicJob[]) {
+  return preserveSmartRecruitersJobIds(preserveWorkdayJobIds(current, previous), previous);
 }
 
 export function collectJobIdAliases(jobs: PublicJob[], existing: Record<string, string>) {

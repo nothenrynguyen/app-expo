@@ -129,3 +129,24 @@ test('legacy recovery migration binds positives to their exact site and preserve
   const denied=await loadEmployerRecovery([seed,other],{[jobIdentity(seed.url)!]:{status:'unknown',checkedAt:now.toISOString(),accessDenied:true}},now,(async()=>{requests++;return Response.json(payload)}) as typeof fetch,5);
   assert.equal(requests,0);assert.equal(denied.candidates.length,0);assert.equal(denied.pausedHosts,1);
 });
+
+
+test('SmartRecruiters legacy observations migrate exactly and freshest denial wins without renewed trust', async()=>{
+  const {migrateSmartRecoveryState}=await import('../lib/ingestion/employer-recovery');
+  const bare='https://jobs.smartrecruiters.com/Example/744000123456789', slug=bare+'-intern?oga=true';
+  const target={company:'Example',url:bare};
+  const candidate={...({id:'old',company:'Example',applyUrl:bare,title:'Software Intern',category:'Internship',location:'Boston, MA',term:'Not stated',workMode:'unknown',postedAt:now.toISOString(),postedAtSource:'exact',sources:['Test'],verifiedCompany:true,linkedInUrl:null,salary:null} as PublicJob),source:'Employer recovery',rawText:'Software intern'};
+  const old={checkedAt:'2026-10-29T10:00:00Z',status:'live' as const,candidate};
+  const denied={checkedAt:'2026-10-29T11:00:00Z',status:'unknown' as const,accessDenied:true};
+  const key=opportunityIdentity(bare)!;
+  const saved={[jobIdentity(bare)!]:old,[jobIdentity(slug)!]:denied,'legacy-workday':denied};
+  const migrated=migrateSmartRecoveryState([target],saved);
+  assert.deepEqual(migrated[key],denied);assert.equal(migrated['legacy-workday'],denied);
+  assert.equal(saved[jobIdentity(bare)!],old);
+  const positive=migrateSmartRecoveryState([target],{[jobIdentity(slug)!]:old});
+  assert.equal(positive[key].checkedAt,old.checkedAt);
+  let requests=0;
+  const result=await loadEmployerRecovery([target],positive,now,(async()=>{requests++;throw Error('unexpected')}) as typeof fetch);
+  assert.equal(requests,0);assert.equal(recoveryEvidenceAt(result.candidates[0]),old.checkedAt);
+  assert.equal(migrateSmartRecoveryState([{...target,company:'Other'}],{[jobIdentity(bare)!]:old})[key],undefined);
+});

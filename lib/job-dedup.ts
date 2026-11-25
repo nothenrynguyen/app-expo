@@ -3,6 +3,10 @@ import { normalizeJobLocation } from "./job-locations";
 import type { PostedAtSource, PublicJob } from "./jobs";
 import { workdayOpportunityIdentity } from "./workday-identity";
 
+import { smartRecruitersOpportunityIdentity } from "./smartrecruiters";
+
+const exactEmployerIdentity = (url: string) => workdayOpportunityIdentity(url) ?? smartRecruitersOpportunityIdentity(url);
+
 const AGGREGATOR_HOSTS = new Set([
   "applyguy.ai",
   "www.applyguy.ai",
@@ -79,7 +83,7 @@ export function deduplicateCrossSourceJobs(jobs: PublicJob[]): PublicJob[] {
 
   for (const job of jobs) {
     const key = semanticJobIdentity(job);
-    const opportunity = workdayOpportunityIdentity(job.applyUrl);
+    const opportunity = exactEmployerIdentity(job.applyUrl);
     const exactIndex = opportunity ? byWorkdayOpportunity.get(opportunity) : undefined;
     if (exactIndex !== undefined) {
       results[exactIndex] = mergeJobs(results[exactIndex], job);
@@ -88,7 +92,7 @@ export function deduplicateCrossSourceJobs(jobs: PublicJob[]): PublicJob[] {
     const possibleMatches = bySemanticIdentity.get(key) ?? [];
     const matchIndex = possibleMatches.find((index) => {
       const existing = results[index];
-      const existingOpportunity = workdayOpportunityIdentity(existing.applyUrl);
+      const existingOpportunity = exactEmployerIdentity(existing.applyUrl);
       if (opportunity && existingOpportunity) return opportunity === existingOpportunity;
       const sharesSource = existing.sources.some((source) => job.sources.includes(source));
       return !sharesSource && (isAggregatorJobUrl(existing.applyUrl) || isAggregatorJobUrl(job.applyUrl));

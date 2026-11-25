@@ -2,6 +2,8 @@ import type { PublicJob } from "../jobs";
 import { opportunityIdentity } from "../source-normalization";
 import type { buildListingChanges } from "./listing-changes";
 
+import { preserveSmartRecruitersJobIds } from "./preserve-job-ids";
+
 type Changes = ReturnType<typeof buildListingChanges>;
 type Removal = Changes["removedOpportunities"][number];
 
@@ -29,7 +31,7 @@ export function outageHoldSource(row: Removal): string | null {
 export function buildOutageHolds(previous: PublicJob[], changes: Changes, now: Date,
   lastPositiveAt: (job: PublicJob) => string | null = job => job.lastVerifiedAt ?? null): PublicJob[] {
   const prior = new Map(previous.map(job => [opportunityIdentity(job.applyUrl), job]));
-  return changes.removedOpportunities.flatMap(row => {
+  return preserveSmartRecruitersJobIds(changes.removedOpportunities.flatMap(row => {
     const source = outageHoldSource(row), job = prior.get(row.identity);
     if (!source || !job) return [];
     const old = job.verification;
@@ -39,7 +41,7 @@ export function buildOutageHolds(previous: PublicJob[], changes: Changes, now: D
       status: "awaiting" as const, since: old?.since ?? now.toISOString(), lastVerifiedAt: validPositive,
       checkedAt: now.toISOString(), reason: "source-unavailable" as const, source,
     }}];
-  });
+  }), previous);
 }
 
 export function validateOutageHolds(previous: PublicJob[], current: PublicJob[], holds: PublicJob[], changes: Changes, now: Date,

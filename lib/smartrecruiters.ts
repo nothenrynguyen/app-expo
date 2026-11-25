@@ -7,6 +7,9 @@ type SmartRecruitersJobReference = {
 };
 
 export type SmartRecruitersPosting = {
+  id?: string;
+  visibility?: string;
+  typeOfEmployment?: { id?: string };
   active?: boolean;
   releasedDate?: string;
   name?: string;
@@ -16,8 +19,10 @@ export type SmartRecruitersPosting = {
 export function parseSmartRecruitersJobUrl(value: string): SmartRecruitersJobReference | null {
   try {
     const url = new URL(value);
-    if (url.hostname.toLowerCase() !== "jobs.smartrecruiters.com") return null;
-    const [companyIdentifier, posting] = url.pathname.split("/").filter(Boolean);
+    if (url.protocol !== "https:" || url.username || url.password || url.port || url.hostname.toLowerCase() !== "jobs.smartrecruiters.com") return null;
+    const parts = url.pathname.split("/").filter(Boolean);
+    if (parts.length !== 2) return null;
+    const [companyIdentifier, posting] = parts;
     const jobId = posting?.match(/^(\d+)(?:-|$)/)?.[1];
     if (!companyIdentifier || !jobId) return null;
     return {
@@ -28,6 +33,11 @@ export function parseSmartRecruitersJobUrl(value: string): SmartRecruitersJobRef
   } catch {
     return null;
   }
+}
+
+export function smartRecruitersOpportunityIdentity(value: string): string | null {
+  const reference = parseSmartRecruitersJobUrl(value);
+  return reference ? `smartrecruiters:${reference.companyIdentifier.toLowerCase()}:${reference.jobId}` : null;
 }
 
 export async function fetchSmartRecruitersPosting(value: string): Promise<SmartRecruitersPosting | null> {
@@ -48,8 +58,13 @@ export function applySmartRecruitersPosting(
 ): CandidateJob {
   const releasedAt = posting.releasedDate ? new Date(posting.releasedDate) : null;
   const hasValidReleaseDate = releasedAt && Number.isFinite(releasedAt.getTime());
+  const reference = parseSmartRecruitersJobUrl(candidate.applyUrl);
+  const verifiedInternship = reference && String(posting.id ?? "") === reference.jobId
+    && posting.company?.identifier?.toLowerCase() === reference.companyIdentifier.toLowerCase()
+    && posting.active === true && posting.visibility === "PUBLIC" && posting.typeOfEmployment?.id === "intern";
   return {
     ...candidate,
+    category: verifiedInternship ? "Internship" : candidate.category,
     postedAt: hasValidReleaseDate ? releasedAt.toISOString() : candidate.postedAt,
     postedAtSource: hasValidReleaseDate ? "exact" : candidate.postedAtSource,
     sourceActive: posting.active ?? candidate.sourceActive,

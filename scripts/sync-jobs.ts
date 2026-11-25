@@ -1,4 +1,4 @@
-import { preserveWorkdayJobIds, collectJobIdAliases } from "../lib/ingestion/preserve-job-ids";
+import { preserveEmployerJobIds, collectJobIdAliases } from "../lib/ingestion/preserve-job-ids";
 import { careerPageEvidenceAt, needsCareerPageEvidence } from "../lib/ingestion/reviewed-career-pages";
 import { mirrorEvidenceAt } from "../lib/ingestion/employer-mirrors";
 import { publicIndexEvidenceAt } from "../lib/ingestion/public-career-index";
@@ -449,7 +449,7 @@ async function main() {
     });
   }
 
-  let jobs: PublicJob[] = preserveWorkdayJobIds(deduplicateCrossSourceJobs([...merged.values()]), previousJobs)
+  let jobs: PublicJob[] = preserveEmployerJobIds(deduplicateCrossSourceJobs([...merged.values()]), previousJobs)
     .map((job) => ({ ...job, roleTags: getJobRoleTags(job), lastVerifiedAt: lastPositiveAt(job) }))
     .sort((a, b) => new Date(b.postedAt).getTime() - new Date(a.postedAt).getTime());
   if (jobs.length < 10) throw new Error(`Refusing to publish anomalous snapshot with only ${jobs.length} approved jobs.`);
