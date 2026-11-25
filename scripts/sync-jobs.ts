@@ -4,6 +4,7 @@ import { mirrorEvidenceAt } from "../lib/ingestion/employer-mirrors";
 import { publicIndexEvidenceAt } from "../lib/ingestion/public-career-index";
 import { buildVerificationBacklog } from "../lib/ingestion/verification-backlog";
 import { summarizeBoardAdmissions, formatBoardAdmissions } from "../lib/ingestion/board-admissions";
+import { isNativeDiagnosticUrl, selectGenericListingChecks } from "../lib/ingestion/missing-listing-checks";
 import { trustedWorkdayFeedPolicy, type TrustedFeedState } from "../lib/ingestion/trusted-workday-feed";
 import { buildOutageHolds, validateOutageHolds } from "../lib/ingestion/outage-holds";
 import { availabilityInventory } from "../lib/ingestion/availability-inventory";
@@ -45,7 +46,7 @@ import { getJobLocationMetadata } from "../lib/job-location-policy";
 import { buildJobsSummary } from "../lib/job-summary";
 import { allSnapshotJobs, type JobsSnapshot, type PublicJob } from "../lib/jobs";
 import {emptyPublicationDates,readPublicationDates,planPublicationDates} from "../lib/ingestion/publication-dates";
-import { isListingUnavailable, needsListingCheck, verifyListing, type ListingHealthFile } from "../lib/listing-health";
+import { isListingUnavailable, verifyListing, type ListingHealthFile } from "../lib/listing-health";
 import { classifyRoleTags, getJobRoleTags } from "../lib/role-areas";
 import type { SourceCatalog } from "../lib/source-catalog";
 import { canonicalizeUrl, jobIdentity, opportunityIdentity, normalizeDisplayText, stableJobId } from "../lib/source-normalization";
@@ -144,11 +145,22 @@ async function main() {
     const board = discoverAtsBoard(candidate.applyUrl, candidate.company, candidate.source);
     if (identity && !needsCareerPageEvidence(candidate) && !isRecoveryLive(candidate) && candidate.source !== "Direct ATS (Workday)" && (!board || !boardResults.has(board.id))) genericUrls.set(identity, candidate.applyUrl);
   }
-  const dueChecks = [...genericUrls]
-    .filter(([, url]) => requestGate.canRequest(url))
-    .filter(([identity]) => needsListingCheck(listingHealth[identity]))
-    .sort(([a], [b]) => new Date(listingHealth[a]?.checkedAt ?? 0).getTime() - new Date(listingHealth[b]?.checkedAt ?? 0).getTime())
-    .slice(0, Math.max(0,250-reviewedCareerRequests));
+  const missingPublishedGeneric = new Set<string>();
+  const candidateOpportunities = new Set(candidates.map(candidate => opportunityIdentity(candidate.applyUrl)));
+  const activeSourceNames = new Set(activeSources.map(source => source.name));
+  for (const prior of previousJobs) {
+    if (!isNativeDiagnosticUrl(prior.applyUrl) || candidateOpportunities.has(opportunityIdentity(prior.applyUrl))
+      || !prior.sources.some(source => activeSourceNames.has(source)) || prior.sources.some(source => permissionHeldSources.has(source))
+      || reviewHoldIds.has(sourceReviewHoldIdentity(prior.applyUrl)) || getFreshnessRejection(prior)
+      || !getJobLocationMetadata(prior).eligible || !classifyRoleTags(prior).length) continue;
+    const quality = evaluateCompanyQuality({name:prior.company,title:prior.title,applyUrl:prior.applyUrl}, "", registry, trustRegistry);
+    if (quality.status === "rejected" || quality.status === "quarantined" && !quality.coverageExceptionAllowed) continue;
+    const identity = jobIdentity(prior.applyUrl);
+    if (identity) { genericUrls.set(identity, prior.applyUrl); missingPublishedGeneric.add(identity); }
+  }
+  const dueChecks = selectGenericListingChecks([...genericUrls].filter(([, url]) => requestGate.canRequest(url)),
+    listingHealth, new Date(), Math.max(0,250-reviewedCareerRequests), missingPublishedGeneric);
+  console.log(`Native omission diagnostics: ${dueChecks.filter(([id]) => missingPublishedGeneric.has(id)).length} selected within the unchanged shared listing-check budget.`);
   const checked = await inBatches(dueChecks, 20, ([, url]) => verifyListing(url, startedAt, requestGate.fetch));
   let completedListingChecks = 0;
   for (const result of checked) {

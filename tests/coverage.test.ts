@@ -3,6 +3,7 @@ import test from "node:test";
 import { createAtsBoard, discoverAtsBoard, fetchAtsBoard } from "../lib/ats-boards";
 import { reviewedAtsApplicationUrl, reviewedGreenhouseBoard } from "../lib/reviewed-ats-domains";
 import { summarizeBoardAdmissions, formatBoardAdmissions } from "../lib/ingestion/board-admissions";
+import { isNativeDiagnosticUrl, selectGenericListingChecks } from "../lib/ingestion/missing-listing-checks";
 import { employerBoardIdentity } from "../lib/ingestion/reviewed-employer-coverage";
 import { currentAtsExperienceConflict } from "../lib/ingestion/ats-eligibility";
 import { createSourceListingVerifier } from "../lib/ingestion/source-verification";
@@ -22,6 +23,33 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 
 const now = new Date("2026-10-29T05:00:00Z");
+
+test("native omission diagnostics reject aggregators, internal portals and non-posting paths", () => {
+  for (const url of ["https://oraclelighting.bamboohr.com/careers/90", "https://careers-example.icims.com/jobs/5590/job?in_iframe=1",
+    "https://jobs.dayforcehcm.com/morganprop/candidateportal/jobs/22658", "https://jobs.dayforcehcm.com/en-US/example/CANDIDATEPORTAL/jobs/22658",
+    "https://ebqb.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/14799"])
+    assert.equal(isNativeDiagnosticUrl(url), true, url);
+  for (const url of ["https://www.dreamworkhq.com/job/123", "https://go.vansh.nyc/123", "https://internal-example.icims.com/jobs/5590/job",
+    "https://jobs.dayforcehcm.com/example/candidateportal/jobs", "https://example.bamboohr.com/careers", "http://example.bamboohr.com/careers/90",
+    "https://user:pass@example.bamboohr.com/careers/90", "https://example.bamboohr.com:8443/careers/90",
+    "https://example.bamboohr.com.evil.example/careers/90", "https://ebqb.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX"])
+    assert.equal(isNativeDiagnosticUrl(url), false, url);
+});
+
+test("missing-posting diagnostics reserve existing slots without growing or starving the generic budget", () => {
+  const entries = Array.from({length:20}, (_, i) => [`discovery-${i}`, `https://example.com/${i}`] as [string,string]);
+  const priority = Array.from({length:4}, (_, i) => [`missing-${i}`, `https://native.example/${i}`] as [string,string]);
+  const all = [...entries, ...priority, priority[0]], ids = new Set(priority.map(([id]) => id));
+  const selected = selectGenericListingChecks(all, {}, now, 5, ids);
+  assert.equal(selected.length, 5);
+  assert.equal(new Set(selected.map(([id]) => id)).size, 5);
+  assert.equal(selected.filter(([id]) => ids.has(id)).length, 4);
+  assert.equal(selected.filter(([id]) => !ids.has(id)).length, 1);
+  const health = Object.fromEntries(priority.map(([id,url]) => [id,{url,status:"live" as const,checkedAt:now.toISOString(),httpStatus:200}]));
+  assert.equal(selectGenericListingChecks(all, health, now, 5, ids).filter(([id]) => ids.has(id)).length, 0);
+  assert.equal(selectGenericListingChecks(all, {}, now, 0, ids).length, 0);
+  for (const limit of [-1, 251, 1.5]) assert.throws(() => selectGenericListingChecks(all, {}, now, limit, ids), /budget/);
+});
 
 test("board admission reports deduplicate feeds and separate new jobs from prior held restorations", () => {
   const make = (id: string) => ({company:"Example|<name>",applyUrl:`https://job-boards.greenhouse.io/example/jobs/${id}`,source:"Feed"});
