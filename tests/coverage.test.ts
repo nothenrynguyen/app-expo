@@ -36,6 +36,7 @@ test("board admission reports deduplicate feeds and separate new jobs from prior
 
 test("reviewed custom careers routes identify only their fixed employer board", () => {
   for (const [url, key, company] of [
+    ["https://job-boards.eu.greenhouse.io/imc/jobs/4823805101", "imc", "IMC Trading"],
     ["https://block.xyz/careers/jobs/5428321008", "block", "Block"],
     ["https://www.okta.com/company/careers/opportunity/8404911", "okta", "Okta"],
     ["https://www.qualtrics.com/careers/us/en/job/8335545", "qualtrics", "Qualtrics"],
@@ -51,7 +52,7 @@ test("reviewed custom careers routes identify only their fixed employer board", 
     const board = discoverAtsBoard(url, "Untrusted label", "test")!;
     assert.equal(board.id, `greenhouse:${key}`);
     assert.equal(board.company, company);
-    assert.equal(employerBoardIdentity(url), `greenhouse:us:${key}`);
+    assert.equal(employerBoardIdentity(url), `greenhouse:${new URL(url).hostname === "job-boards.eu.greenhouse.io" ? "eu" : "us"}:${key}`);
   }
   for (const url of [
     "http://careers.formlabs.com/job/8400855/apply", "https://user@careers.formlabs.com/job/8400855/apply",
@@ -71,6 +72,16 @@ test("Block API HTTP links upgrade only on reviewed posting paths and retain ide
   for (const value of ["http://lookalike.example/careers/jobs/5428321008", "http://user:pass@block.xyz/careers/jobs/5428321008",
     "http://block.xyz:8080/careers/jobs/5428321008", "http://block.xyz/careers/jobs", "http://block.xyz/careers/jobs/not-a-job"])
     assert.equal(reviewedAtsApplicationUrl(value), value);
+});
+
+test("the reviewed IMC European board never trusts another regional board or a landing page", () => {
+  assert.equal(employerBoardIdentity("https://job-boards.eu.greenhouse.io/imc/jobs/4823805101"), "greenhouse:eu:imc");
+  assert.equal(employerBoardIdentity("https://job-boards.greenhouse.io/imc/jobs/4823805101"), "greenhouse:us:imc");
+  for (const url of ["https://job-boards.eu.greenhouse.io/other/jobs/4823805101", "https://job-boards.eu.greenhouse.io/imc",
+    "https://job-boards.eu.greenhouse.io/imc/jobs/not-a-job", "http://job-boards.eu.greenhouse.io/imc/jobs/4823805101"])
+    assert.equal(reviewedGreenhouseBoard(url), null);
+  assert.equal(opportunityIdentity("https://job-boards.eu.greenhouse.io/imc/jobs/4823805101?gh_jid=9999999"),
+    opportunityIdentity("https://job-boards.eu.greenhouse.io/imc/jobs/4823805101"));
 });
 
 test("custom careers links still require exact current ATS membership and preserve qualification gates", async () => {

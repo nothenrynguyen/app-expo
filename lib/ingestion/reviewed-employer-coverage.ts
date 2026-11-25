@@ -8,7 +8,7 @@ import { reviewedGreenhouseBoard } from "../reviewed-ats-domains";
 // Match an employer-owned ATS site, never a shared hosting domain alone.
 export function employerBoardIdentity(value: string): string | null {
   const reviewed = reviewedGreenhouseBoard(value);
-  if (reviewed) return `greenhouse:us:${reviewed.key}`;
+  if (reviewed) return `greenhouse:${new URL(value).hostname === "job-boards.eu.greenhouse.io" ? "eu" : "us"}:${reviewed.key}`;
   try {
     const url = new URL(value);
     if (url.protocol !== "https:" || url.username || url.password) return null;

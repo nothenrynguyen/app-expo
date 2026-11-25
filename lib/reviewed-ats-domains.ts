@@ -1,6 +1,7 @@
 // Exact employer-owned routes reviewed against the employer's public ATS
 // response and careers site. This identifies a board, never a live vacancy.
 const REVIEWED_ROUTES = [
+  { host: "job-boards.eu.greenhouse.io", path: /^\/imc\/jobs\/\d{6,}\/?$/, key: "imc", company: "IMC Trading" },
   { host: "block.xyz", path: /^\/careers\/jobs\/\d{6,}\/?$/, key: "block", company: "Block" },
   { host: "www.okta.com", path: /^\/company\/careers\/opportunity\/\d{6,}\/?$/, key: "okta", company: "Okta" },
   { host: "www.qualtrics.com", path: /^\/careers\/us\/en\/job\/\d{6,}\/?$/, key: "qualtrics", company: "Qualtrics" },
