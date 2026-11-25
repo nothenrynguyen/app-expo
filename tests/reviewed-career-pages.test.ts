@@ -25,10 +25,13 @@ test("a reviewed redirect is replaced by current employer fields and evidence ke
   const fetcher=(async(u:unknown)=>{calls.push(String(u));return String(u).includes('go.vansh')?new Response(null,{status:302,headers:{location:official}}):new Response(page());}) as typeof fetch;
   const first=await enrichReviewedCareerPages([row],{},now,fetcher);
   assert.equal(first.requests,2);assert.equal(first.candidates[0].applyUrl,official);
+  assert.equal(first.queue.selectedRenewals,0);assert.equal(first.queue.selectedOther,1);
+  assert.equal(first.queue.byEmployer[0].employer,"TikTok");
   assert.equal(first.candidates[0].title,"Backend Software Engineer Graduate - 2027 Start");
   assert.equal(careerPageEvidenceAt(first.candidates[0]),now.toISOString());
   const later=await enrichReviewedCareerPages([row],first.state,new Date(now.getTime()+3600000),fetcher);
   assert.equal(later.requests,0);assert.equal(calls.length,2);
+  assert.equal(later.queue.selectedRenewals+later.queue.selectedOther,0);
   assert.equal(careerPageEvidenceAt(later.candidates[0]),now.toISOString());
 });
 

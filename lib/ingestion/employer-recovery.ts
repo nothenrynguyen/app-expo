@@ -62,18 +62,19 @@ export function parseRecoveryPosting(seed: RecoverySeed, data: Record<string, un
     candidate = parseWorkdayJob(board, {externalPath: reference.externalPath}, data, now);
     if (candidate && info.country?.descriptor && !candidate.location.toLowerCase().includes(info.country.descriptor.toLowerCase())) candidate.location += `, ${info.country.descriptor}`;
   } else {
-    const posting = data as {id?: string; visibility?: string; company?: {identifier?: string}; active?: boolean; name?: string; releasedDate?: string; location?: {city?: string; region?: string; country?: string}; jobAd?: {sections?: Record<string, {text?: string}>}};
+    const posting = data as {id?: string; visibility?: string; company?: {identifier?: string}; active?: boolean; name?: string; releasedDate?: string; typeOfEmployment?: {id?: string}; location?: {city?: string; region?: string; country?: string}; jobAd?: {sections?: Record<string, {text?: string}>}};
     if (posting.active !== true || posting.visibility !== "PUBLIC" || typeof posting.name !== "string" || !posting.name.trim()) return null;
     const expected = parseSmartRecruitersJobUrl(seed.url)!;
     if (String(posting.id ?? "") !== expected.jobId || typeof posting.company?.identifier !== "string"
       || posting.company.identifier.toLowerCase() !== expected.companyIdentifier.toLowerCase()) return null;
     const description = Object.values(posting.jobAd?.sections ?? {}).map(section => section.text ?? "").join(" ").replace(/<[^>]+>/g, " ");
     const qualifications = posting.jobAd?.sections?.qualifications?.text ?? description;
-    if (description.length < 120 || !isEarlyCareerTitle(posting.name, description) || hasRequiredExperienceConflict(qualifications)) return null;
+    const eligibilityTitle = posting.typeOfEmployment?.id === "intern" ? posting.name.replace(/\binternships\b/gi, "Internship") : posting.name;
+    if (description.length < 120 || !isEarlyCareerTitle(eligibilityTitle, description) || hasRequiredExperienceConflict(qualifications)) return null;
     const country = posting.location?.country;
     const location = [posting.location?.city, posting.location?.region, country && /^[a-z]{2}$/i.test(country) ? new Intl.DisplayNames(["en"], {type: "region"}).of(country.toUpperCase()) : country].filter(Boolean).join(", ") || "Location not stated";
     const date = posting.releasedDate ? new Date(posting.releasedDate) : null;
-    candidate = {company: seed.company, title: posting.name, applyUrl: seed.url, category: /\bintern(?:ship)?\b|\bco-?op\b/i.test(posting.name) ? "Internship" : "New grad", location, term: inferTerm(posting.name), workMode: inferWorkMode(`${posting.name} ${description}`), postedAt: date && Number.isFinite(date.getTime()) ? date.toISOString() : now.toISOString(), postedAtSource: date && Number.isFinite(date.getTime()) ? "exact" : "first_seen", source: "Employer recovery", salary: null, rawText: `${posting.name} ${description}`};
+    candidate = {company: seed.company, title: posting.name, applyUrl: seed.url, category: /\bintern(?:ship)?\b|\bco-?op\b/i.test(eligibilityTitle) ? "Internship" : "New grad", location, term: inferTerm(posting.name), workMode: inferWorkMode(`${posting.name} ${description}`), postedAt: date && Number.isFinite(date.getTime()) ? date.toISOString() : now.toISOString(), postedAtSource: date && Number.isFinite(date.getTime()) ? "exact" : "first_seen", source: "Employer recovery", salary: null, rawText: `${posting.name} ${description}`};
   }
   if (!candidate || sourceVerificationKey(candidate.applyUrl) !== sourceVerificationKey(seed.url) || employerBoardIdentity(candidate.applyUrl) !== employerBoardIdentity(seed.url) || evaluateCompanyQuality({name: seed.company, title: candidate.title}, candidate.rawText, []).status === "rejected") return null;
   return recoveryCandidate(candidate);

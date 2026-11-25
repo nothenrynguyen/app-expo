@@ -160,6 +160,7 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
     .catch((error:NodeJS.ErrnoException)=>{if(error.code==="ENOENT")return {};throw error;});
   const careerHolds=new Set(sources.flatMap(source=>source.reviewHolds??[]).map(hold=>sourceReviewHoldIdentity(hold.url)).filter((id):id is string=>!!id));
   const reviewedCareers=await enrichReviewedCareerPages(candidates,careerState,new Date(),fetch,careerHolds);
+  console.log("Career-page queue:", JSON.stringify(reviewedCareers.queue));
   candidates.splice(0,candidates.length,...reviewedCareers.candidates);
   await writeFile(`${careerStatePath}.tmp`,`${JSON.stringify(reviewedCareers.state,null,2)}\n`);
   await rename(`${careerStatePath}.tmp`,careerStatePath);
@@ -384,7 +385,7 @@ export async function loadCandidates(root: string, sources: JobSource[], previou
       {provider:"source_redirects",attempted:redirects.requests,verified:verifiedRedirects.enriched,requests:redirects.requests,reused:redirects.reused},
       {provider:"public_career_index",attempted:publicIndex.attempted,verified:publicIndex.verified,requests:publicIndex.requests,reused:publicIndex.reused,
         indexStatus:publicIndex.state.index?.status??"unused",indexed:publicIndex.state.index?.positions.length??0},
-      {provider:"reviewed_career_pages",attempted:reviewedCareers.attempted,verified:reviewedCareers.verified,requests:reviewedCareers.requests,reused:reviewedCareers.reused},
+      {provider:"reviewed_career_pages",attempted:reviewedCareers.attempted,verified:reviewedCareers.verified,requests:reviewedCareers.requests,reused:reviewedCareers.reused,queue:reviewedCareers.queue},
       {provider:"employer_mirrors",attempted:mirrors.attempted,verified:mirrors.verified,requests:mirrors.requests,reused:mirrors.reused},
       { provider: "smartrecruiters", attempted: smartRecruitersEntries.length, verified: smartRecruitersPostings.size },
       { provider: "microsoft", attempted: microsoftEntries.length, verified: microsoftPostings.size },

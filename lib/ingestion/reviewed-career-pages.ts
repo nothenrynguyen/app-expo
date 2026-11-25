@@ -82,6 +82,18 @@ export async function enrichReviewedCareerPages(candidates: CandidateJob[], stat
     if(due.length>=limit)break;
     const row=queue.shift();if(row)due.push(row);
   }
+  const selectedKeys = new Set(due.map(([key]) => key));
+  const queue = {
+    eligible: eligible.length, renewalDue: waiting.filter(([key]) => !!state[key]?.posting).length,
+    otherDue: waiting.filter(([key]) => !state[key]?.posting).length,
+    selectedRenewals: due.filter(([key]) => !!state[key]?.posting).length,
+    selectedOther: due.filter(([key]) => !state[key]?.posting).length,
+    byEmployer: [...Map.groupBy(waiting, ([, row]) => brandFor(row.company) ?? "unknown")].map(([employer, rows]) => ({
+      employer, due: rows.length, renewalDue: rows.filter(([key]) => !!state[key]?.posting).length,
+      selected: rows.filter(([key]) => selectedKeys.has(key)).length,
+      selectedRenewals: rows.filter(([key]) => selectedKeys.has(key) && !!state[key]?.posting).length,
+    })),
+  };
   let requests=0;
   await inBatches(due,4,async([key,row])=>{
     next[key]={checkedAt:now.toISOString(),parserVersion:PARSER_VERSION,httpStatus:null};
@@ -130,5 +142,5 @@ export async function enrichReviewedCareerPages(candidates: CandidateJob[], stat
     return url && officialCareerReference(url)?[{url,checkedAt:record.checkedAt,httpStatus:record.httpStatus??null,
       status:record.posting?"live" as const:record.closed || [404,410].includes(record.httpStatus??0)?"closed" as const:"unknown" as const}]:[];
   });
-  return {candidates:rows,state:next,requests,attempted:due.length,verified:verified.size,reused:reused.size,observations};
+  return {candidates:rows,state:next,requests,attempted:due.length,verified:verified.size,reused:reused.size,observations,queue};
 }

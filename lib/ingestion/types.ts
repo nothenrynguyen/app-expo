@@ -34,6 +34,7 @@ export type BoardRefreshDiagnostic = {
 };
 
 export type VerificationDiagnostic = {
+  queue?: Awaited<ReturnType<typeof import("./reviewed-career-pages").enrichReviewedCareerPages>>["queue"];
   indexStatus?: "live" | "unknown" | "unused";
   indexed?: number;
   provider: "smartrecruiters" | "microsoft" | "scoped_employer" | "source_listing" | "reviewed_career_pages" | "employer_mirrors" | "public_career_index" | "source_redirects";

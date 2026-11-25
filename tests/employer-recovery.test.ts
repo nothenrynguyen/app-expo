@@ -46,6 +46,13 @@ test('SmartRecruiters recovery requires matching public posting metadata and non
       jobDescription:{text:'Build and maintain reliable software systems for our customers. Collaborate with engineering teams on application quality and performance.'},
       qualifications:{text:'Currently enrolled in a computer science degree. Programming experience through coursework or projects.'}}}};
   assert.ok(parseRecoveryPosting(target,good,now));
+  const grouped={...good,name:'Software Engineering Internships - Summer 2027',typeOfEmployment:{id:'intern'}};
+  const internship=parseRecoveryPosting(target,grouped,now);
+  assert.equal(internship?.title,grouped.name);
+  assert.equal(internship?.category,'Internship');
+  assert.equal(parseRecoveryPosting(target,{...grouped,typeOfEmployment:{id:'permanent'}},now),null);
+  assert.equal(parseRecoveryPosting(target,{...grouped,name:'Senior Software Engineering Internships Manager'},now),null);
+  assert.equal(parseRecoveryPosting(target,{...grouped,jobAd:{sections:{...good.jobAd.sections,qualifications:{text:'Minimum qualifications: 5 years of professional engineering experience required.'}}}},now),null);
   for(const bad of [{...good,id:undefined},{...good,id:'987654321'},{...good,company:{}},{...good,company:{identifier:'Other'}},
     {...good,visibility:'INTERNAL'},{...good,visibility:undefined},{...good,active:false},{...good,jobAd:{sections:{jobDescription:{text:'Loading'}}}},
     {...good,jobAd:{sections:{...good.jobAd.sections,qualifications:{text:'Minimum qualifications: At least 5 years of professional software engineering experience required.'}}}}])
